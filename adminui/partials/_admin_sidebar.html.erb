@@ -1,0 +1,47 @@
+<input type="checkbox" class="sr-only sidebar-ctrler" id="v-nav-primary" checked>
+<div class="vertical_nav sidebar sidebar--primary">
+    <div class="sidebar__header media">
+        <div class="logo-left">
+            <h1 class="logo"><a class="logo__link" href="/"><img class="logo__img" src="../assets/logo@2x.png" alt="back" title="admin" width="73" height="20" /></a></h1>
+        </div>
+        <div class="media-body text-right">
+            <label class="sidebar-ctrler--label" for="v-nav-primary"><i class="fa fa-ellipsis-v"></i></label>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="sidebar-scroll">
+            <ul class="nav">
+                <!-- DATA from /kktix-prototype/admin/view_helpers.rb -->
+                <% sidebar_items.each_with_index do |item, index| %>
+                    <% if item[:header] %>
+                        <% if item[:divider] %>
+                            <li class="divider"></li>
+                        <% else %>
+                            <li class="title">
+                                <span class="menu-label"><%= item[:title] %></span>
+                            </li>
+                        <% end %>
+                    <% else %>
+                        <li class="<%= item[:active] ? 'active' : '' %>
+                                   <%= item[:sub] ? 'has-sub' : '' %> ">
+                            <a class="<%= item[:sub] ? 'nav-ctrler' : '' %>" href="<%= item[:sub] ? '###' : item[:href] %>">
+                                <i class="fa <%=item[:icon]%>" title="<%=item[:title]%>"></i>
+                                <span class="menu-label"><%=item[:title]%></span>
+                                <% if item[:sub] %>
+                                    <i class="fa fa-angle-left leftNavIcon"></i>
+                                <% end %>
+                            </a>
+                            <% if item[:sub] %>
+                                <ul>
+                                    <% item[:sub].each do |subitem| %>
+                                    <li><a href="<%= subitem[:href] %>"><%= subitem[:title] %></a></li>
+                                    <% end %>
+                                </ul>
+                            <% end %>
+                        </li>
+                    <% end %>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</div>

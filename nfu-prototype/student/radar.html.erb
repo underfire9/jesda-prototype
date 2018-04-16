@@ -1,0 +1,142 @@
+<!-- 學生專區 -->
+<div class="radar-wrapper">
+    <header>
+        <div class="fluid-wrapper">
+            <a class="logo" href="../index.html"><img src="../assets/logo-sm.svg" /></a>
+            <div class="link-group float-right">
+                <a href="index.html">修課職能查詢</a>
+                <a class="active" href="radar.html">職能雷達圖</a>
+            </div>
+        </div>
+    </header>
+    <div class="radar-container">
+        <main>
+            <div class="fluid-wrapper">
+                <h3 class="page-title">職能雷達圖</h3>
+                <div class="row">
+                    <select class="mdb-select col-4">
+                        <option value="8" disabled selected>電機工程系日間部四技部</option>
+                        <option value="10">電機工程系進修推廣部四技部</option>
+                        <option value="11">電機工程系進修推廣部四技部攜手專班</option>
+                    </select>
+                    <select class="mdb-select col-4">
+                        <option value="1" disabled selected>請選擇目標人才</option>
+                        <option value="2">電機工程-教育目標_2</option>
+                        <option value="3">軟體開發及程式設計人才</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="chart-wrapper chart1">
+                            <h3>專業職能</h3>
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
+                        <ol class="desc">
+                            <% 10.times do %>
+                            <li><%= zh_lorem_sentences 2 %></li>
+                            <% end %>
+                        </ol>
+                    </div>
+                    <div class="col-6">
+                        <div class="chart-wrapper chart2">
+                            <h3>共通職能</h3>
+                            <canvas id="myChart2" width="400" height="400"></canvas>
+                        </div>
+                        <ol class="desc">
+                            <% 10.times do %>
+                            <li><%= zh_lorem_sentences 2 %></li>
+                            <% end %>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <%= render :partial => "/partials/footer" %>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<script src="../javascripts/Chart.bundle.min.js"></script>
+
+<script>
+	$(document).ready(function() {		
+		$('.mdb-select').material_select();
+	});
+	
+	var data =  {
+		labels: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
+		datasets: [{
+			label: "My First dataset",
+			borderColor: "rgba(100,142,184,0.5)",
+			backgroundColor: "rgba(100,142,184,0.2)",
+			pointBackgroundColor: "rgba(100,142,184,1)",
+			data: [65, 85, 77, 49, 62, 90, 88, 58, 64, 41, 91]
+		}]
+	}
+	var ctx = document.getElementById("myChart");
+	var myChart = new Chart(ctx, {
+		type: 'radar',
+		data: data,
+		options: {
+		  responsive:true,
+				legend: {
+						display: false,
+					},
+					title: {
+						display: false,
+						text: '專業職能',
+						size: 24
+					},
+					scale: {
+						display: true,
+						reverse: false,
+						ticks: {
+							min: 0,
+							max: 100,
+							maxTicksLimit: 5
+						}
+					}
+	
+		}
+	});
+	
+	var data =  {
+		labels: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
+		datasets: [{
+			label: "My Second dataset",
+			borderColor: "rgba(200,112,164,0.5)",
+			backgroundColor: "rgba(200,112,164,0.2)",
+			pointBackgroundColor: "rgba(200,112,164,1)",
+			data: [65, 59, 90, 81, 56, 55, 40, 66, 59, 90, 81]
+		}]
+	}
+	var ctx = document.getElementById("myChart2");
+	var myChart = new Chart(ctx, {
+		type: 'radar',
+		data: data,
+		options: {
+		  responsive:true,
+				legend: {
+						display: false,
+					},
+					title: {
+						display: false,
+						text: '共通職能',
+						size: 24
+					},
+					scale: {
+						display: true,
+						reverse: false,
+						ticks: {
+							min: 0,
+							max: 100,
+							maxTicksLimit: 5
+						}
+					}
+	
+		}
+	});
+</script>
+
+<% end %>

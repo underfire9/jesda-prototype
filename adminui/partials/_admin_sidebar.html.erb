@@ -11,7 +11,7 @@
     <div class="menu">
         <div class="sidebar-scroll">
             <ul class="nav">
-                <!-- DATA from /kktix-prototype/admin/view_helpers.rb -->
+                <!-- DATA from /jesda-prototype/adminui/view_helpers.rb -->
                 <% sidebar_items.each_with_index do |item, index| %>
                     <% if item[:header] %>
                         <% if item[:divider] %>
@@ -24,7 +24,7 @@
                     <% else %>
                         <li class="<%= item[:active] ? 'active' : '' %>
                                    <%= item[:sub] ? 'has-sub' : '' %> ">
-                            <a class="<%= item[:sub] ? 'nav-ctrler' : '' %>" href="<%= item[:sub] ? '###' : item[:href] %>">
+                            <a class="<%= item[:sub] ? 'nav-ctrler waves-effect' : '' %>" href="<%= item[:sub] ? '###' : item[:href] %>">
                                 <i class="fa <%=item[:icon]%>" title="<%=item[:title]%>"></i>
                                 <span class="menu-label"><%=item[:title]%></span>
                                 <% if item[:sub] %>
@@ -34,7 +34,7 @@
                             <% if item[:sub] %>
                                 <ul>
                                     <% item[:sub].each do |subitem| %>
-                                    <li><a href="<%= subitem[:href] %>"><%= subitem[:title] %></a></li>
+                                    <li><a class="waves-effect" href="<%= subitem[:href] %>"><%= subitem[:title] %></a></li>
                                     <% end %>
                                 </ul>
                             <% end %>

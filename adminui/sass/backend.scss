@@ -15,12 +15,13 @@
 /* utilities ---------------------------------------------------------------------------*/
 @import "widgets/backend_utilities";
 
+/* slidebars ---------------------------------------------------------------------------*/
+@import "widgets/slidebars";
 
-body { background-color: $body_background; }
 
-[class*="col-"].block, [class*="col-"] .block, .row.block, .block {
-	background: #fff;
-	margin-bottom: 20px;
+body {
+	background-color: $body_background;
+	font-size: 15px;
 }
 
 .content-wrapper {
@@ -153,8 +154,55 @@ header.header {
 	}
 }
 
+/* `Breadcrumb
+-----------------------------------------------------------------------------*/
+
+.breadcrumb-block {
+	border-bottom: 1px solid #e0e0e0;
+	margin-bottom: 0 !important;
+	padding: 10px 20px;
+	position: relative;
+}
+
+.breadcrumb {
+	background-color: transparent;
+	margin-bottom: 0;
+	padding: 0;
+	.active { color: #999; }
+}
+
 /* `Block
 -----------------------------------------------------------------------------*/
+
+[class*="col-"] { margin-bottom: 30px; }
+
+[class*="col-"] [class*="col-"] { margin-bottom: 0; }
+
+[class*="col-"] {
+	.block-content {}
+}
+
+.col-block {
+	display: flex;
+	flex-wrap: wrap;
+	background: #fff;
+	padding: 0;
+	& > [class*="col-"] {
+		padding-left: 10px;
+		padding-right: 10px;
+		.block-content, .block-header, .block-footer {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+}
+
+.row > .col-block {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.block-header, .block-content, .block-footer { width: 100%; }
 
 .block-header, .nav-tabs {
 	margin-bottom: 15px;
@@ -172,9 +220,10 @@ header.header {
 	}
 }
 
-.block[class*="col-"], [class*="col-"] .block, .row.block {
+.block-footer { margin-top: 15px; }
+
+.col-block {
 	.block-content {
-		padding: 20px;
 		&.expansion {
 			.table-bordered, .table-striped { margin-bottom: 0; }
 			padding: 0;
@@ -193,9 +242,11 @@ header.header {
 			.datatable th { padding: 10px; }
 		}
 	}
-	.block-header, .block-footer {
+	.block-header, .block-content, .block-footer {
+		margin-top: 0;
 		margin-bottom: 0;
 		padding: 15px 20px;
+		width: 100%;
 		&.has-border { border-bottom: 1px solid #e9e9e9; }
 		&.has-bg { background-color: #f9f9f9; }
 		h3 {
@@ -476,22 +527,6 @@ ul.ticket-tax-list {
 	font-size: 1rem;
 }
 
-/* `Breadcrumb
------------------------------------------------------------------------------*/
-
-.breadcrumb-block {
-	border-bottom: 1px solid #e0e0e0;
-	margin-bottom: 0 !important;
-	padding: 10px 0;
-}
-
-.breadcrumb {
-	background-color: transparent;
-	margin-bottom: 0;
-	padding: 0;
-	.active { color: #999; }
-}
-
 /* `Tabs
 -----------------------------------------------------------------------------*/
 
@@ -515,4 +550,17 @@ ul.ticket-tax-list {
 		}
 	}
 	.nav-tabs > li.active > a { color: #333; }
+}
+
+/* `Slidebars
+-----------------------------------------------------------------------------*/
+
+[off-canvas] {
+	background-color: $sidebar-bg;
+	color: white;
+}
+
+.slidebar {
+	.sidebar {
+	}
 }

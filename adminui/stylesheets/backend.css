@@ -2177,6 +2177,14 @@
 
 /* `Header
 -----------------------------------------------------------------------------*/
+header.header {
+  height: 60px;
+  background-color: #fff;
+  border-bottom: #eceaeb 1px solid;
+  box-sizing: content-box;
+  position: relative;
+  z-index: 3;
+}
 header.header .nav-right .dropdown-toggle ~ .dropdown-menu {
   left: auto;
   right: 0;
@@ -2186,9 +2194,12 @@ header.header .nav-right .email-dropdown, header.header .nav-right .notification
   height: 40px;
   line-height: 40px;
 }
+header.header .nav-right .email-dropdown .fa, header.header .nav-right .notifications-dropdown .fa {
+  font-size: 18px;
+}
 header.header .navbar {
   box-shadow: none;
-  padding: 7px 20px;
+  padding: 9px 20px 6px;
 }
 header.header .nav-item .counter {
   border-radius: 50%;
@@ -2205,6 +2216,8 @@ header.header .nav-item .counter {
 header.header .navbar .peers {
   display: flex;
   flex-flow: row wrap;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 header.header .peer {
   display: block;
@@ -2223,10 +2236,16 @@ header.header .username {
 header.header .no-after:after {
   content: none;
 }
+header.header .form-inline {
+  margin-top: 0;
+}
+header.header .form-inline .form-control {
+  margin-bottom: 0;
+}
 
 .dropdown-menu {
   max-width: 350px;
-  width: 300px;
+  width: 250px;
 }
 .dropdown-menu ul.has-row, .dropdown-menu ul.has-row li {
   margin: 0;
@@ -2287,8 +2306,10 @@ header.header .no-after:after {
   background: #eee;
   border-radius: 22px 0 0 22px;
   margin-right: -20px;
-  padding: 10px 8px 10px 1rem !important;
-  font-size: 13px;
+  margin-left: 5px;
+  padding: 10px 10px 10px 1rem !important;
+  color: #fff !important;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
 /* `Footer
@@ -2456,6 +2477,15 @@ footer.footer-simple {
 }
 
 /* Variables --------------------------------------------------------------------- */
+.workspace .row {
+  margin-right: -10px;
+  margin-left: -10px;
+}
+.workspace .col-1, .workspace .col-2, .workspace .col-3, .workspace .col-4, .workspace .col-5, .workspace .col-6, .workspace .col-7, .workspace .col-8, .workspace .col-9, .workspace .col-10, .workspace .col-11, .workspace .col-12, .workspace .col, .workspace .col-auto, .workspace .col-sm-1, .workspace .col-sm-2, .workspace .col-sm-3, .workspace .col-sm-4, .workspace .col-sm-5, .workspace .col-sm-6, .workspace .col-sm-7, .workspace .col-sm-8, .workspace .col-sm-9, .workspace .col-sm-10, .workspace .col-sm-11, .workspace .col-sm-12, .workspace .col-sm, .workspace .col-sm-auto, .workspace .col-md-1, .workspace .col-md-2, .workspace .col-md-3, .workspace .col-md-4, .workspace .col-md-5, .workspace .col-md-6, .workspace .col-md-7, .workspace .col-md-8, .workspace .col-md-9, .workspace .col-md-10, .workspace .col-md-11, .workspace .col-md-12, .workspace .col-md, .workspace .col-md-auto, .workspace .col-lg-1, .workspace .col-lg-2, .workspace .col-lg-3, .workspace .col-lg-4, .workspace .col-lg-5, .workspace .col-lg-6, .workspace .col-lg-7, .workspace .col-lg-8, .workspace .col-lg-9, .workspace .col-lg-10, .workspace .col-lg-11, .workspace .col-lg-12, .workspace .col-lg, .workspace .col-lg-auto, .workspace .col-xl-1, .workspace .col-xl-2, .workspace .col-xl-3, .workspace .col-xl-4, .workspace .col-xl-5, .workspace .col-xl-6, .workspace .col-xl-7, .workspace .col-xl-8, .workspace .col-xl-9, .workspace .col-xl-10, .workspace .col-xl-11, .workspace .col-xl-12, .workspace .col-xl, .workspace .col-xl-auto {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 /* layout ---------------------------------------------------------------------------*/
 html, body {
   width: 100%;
@@ -3653,42 +3683,6 @@ body {
   padding: 20px 20px 0;
 }
 
-header.header {
-  height: 60px;
-  background-color: #fff;
-  border-bottom: #eceaeb 1px solid;
-  box-sizing: content-box;
-  position: relative;
-  z-index: 3;
-}
-header.header h1 {
-  float: left;
-  font-size: 24px;
-  margin: 0 20px 0 0;
-  padding: 0;
-  line-height: 44px;
-  color: #0875ae;
-}
-header.header h1 span {
-  font-size: 15px;
-  color: #999;
-  font-weight: 400;
-  line-height: 1.5px;
-}
-header.header h1 .name, header.header h1 .title {
-  line-height: 44px;
-}
-header.header h1 .name {
-  font-size: 0.85em;
-}
-header.header h1 .title {
-  font-size: 24px;
-  color: #0875ae;
-}
-header.header .block-options {
-  padding-top: 5px;
-}
-
 .dashboard-head {
   border-bottom: 1px solid #eee;
 }
@@ -4227,6 +4221,62 @@ ul.ticket-tax-list .ticket-info .toggle-switch {
 [off-canvas] {
   background-color: #313638;
   color: white;
+}
+
+.slidebar .slidebar-title {
+  border-bottom: 1px solid #191c1d;
+  padding: 1.2rem 1rem 0 2rem;
+  min-height: 60px;
+}
+.slidebar .accordion .card {
+  background-color: transparent;
+  border-bottom: none;
+}
+.slidebar .accordion .card .fa {
+  position: absolute;
+  top: 1.05rem;
+  left: 1rem;
+}
+.slidebar .accordion .card-header, .slidebar .accordion .card-body {
+  color: #fff;
+}
+.slidebar .accordion .card-header a, .slidebar .accordion .card-body a {
+  transition: all .2s ease-in-out;
+  display: block;
+  color: inherit;
+}
+.slidebar .accordion .card-header a:hover, .slidebar .accordion .card-body a:hover {
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+.slidebar .accordion .card-header {
+  padding: 0;
+}
+.slidebar .accordion .card-header a {
+  padding: 0.75rem 1rem 0.75rem 2rem;
+  position: relative;
+  opacity: 1;
+}
+.slidebar .accordion .card-header a.collapsed {
+  opacity: 0.6;
+}
+.slidebar .accordion .card-body {
+  padding: 0.75rem 1rem 0.75rem 2rem;
+}
+.slidebar .accordion ul.card-body {
+  padding: 0;
+  padding-top: 0;
+  margin: 0;
+  list-style: none;
+}
+.slidebar .accordion ul.card-body a {
+  padding: 0.5rem 1rem 0.5rem 2rem;
+  opacity: 0.6;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.slidebar .accordion .card .card-header a:not(.collapsed) .rotate-icon {
+  transform: rotate(90deg);
 }
 
 /*# sourceMappingURL=backend.css.map */

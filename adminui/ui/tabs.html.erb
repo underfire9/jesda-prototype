@@ -1,0 +1,52 @@
+<!-- admin-page: UI / Block Tabs -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<div class="main">
+    <div class="page-header">
+        <h2>Block Tabs</h2>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="col-block">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a href="#home" class="active" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                    <li class="nav-item"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                    <li class="nav-item block-options flex"><button class="clean" title="block-options"><i class="fa fa-cog"></i></button></li>
+                </ul>
+                <div class="block-content tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <h4 class="push">Block Tabs With Options</h4>
+                        <%= lorem_sentences(5) %>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile"><%= lorem_sentences(5) %></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="col-block">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="nav-item"><a href="#home2" class="active" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                    <li class="nav-item"><a href="#profile2" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                    <li class="nav-item"><a href="#messages2" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+                </ul>
+                <div class="block-content tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home2">
+                        <h4 class="push">Justified Tabs</h4>
+                        <%= lorem_sentences(5) %>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile2"><%= lorem_sentences(5) %></div>
+                    <div role="tabpanel" class="tab-pane" id="messages2"><%= lorem_sentences(5) %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+    <script>
+		$('#myTabs a').click(function (e) {
+			e.preventDefault()
+			$(this).tab('show')
+		})
+    </script>
+<% end %>

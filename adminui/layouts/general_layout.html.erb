@@ -12,17 +12,19 @@
         <%= render :partial => "/partials/admin_sidebar" %>
     <% end %>
     <div class="page">
-        <div class="page-wrapper">
-            <% if content_for? :header %>
-                <%= yield :header %>
-            <% else %>
-                <%= render :partial => "/partials/admin_header" %>
-            <% end %>
-            <div class="content-wrapper clearfix">
-                <%= yield %>
+        <div class="page-inner">
+            <div class="page-wrapper">
+                <% if content_for? :header %>
+                    <%= yield :header %>
+                <% else %>
+                    <%= render :partial => "/partials/admin_header" %>
+                <% end %>
+                <div class="content-wrapper clearfix">
+                    <%= yield %>
+                </div>
             </div>
+            <%= render :partial => "/partials/admin_footer" %>
         </div>
-		<%= render :partial => "/partials/admin_footer" %>
     </div>
     </div>
     <%= render :partial => "/partials/simpler_sidebar" %>

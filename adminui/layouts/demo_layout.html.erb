@@ -13,16 +13,18 @@
         <%= render :partial => "/partials/event_sidebar" %>
     <% end %>
     <div class="page event-page">
-        <div class="page-wrapper">
-            <% if content_for? :header %>
-                <%= yield :header %>
-            <% else %>
-                <%= render :partial => "/partials/admin_header" %>
-            <% end %>
-            <div class="content-wrapper clearfix">
-                <%= yield %>
+        <div class="page-inner">
+            <div class="page-wrapper">
+                <% if content_for? :header %>
+                    <%= yield :header %>
+                <% else %>
+                    <%= render :partial => "/partials/admin_header" %>
+                <% end %>
+                <div class="content-wrapper clearfix">
+                    <%= yield %>
+                </div>
             </div>
-			<%= render :partial => "/partials/admin_footer" %>
+            <%= render :partial => "/partials/admin_footer" %>
         </div>
     </div>
     </div>

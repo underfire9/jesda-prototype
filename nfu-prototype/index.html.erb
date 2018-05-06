@@ -478,7 +478,7 @@
 	})
 			
 	// Section minHeight ==========================
-    $(".scroll-panel .container").css({ minHeight: $(window).innerHeight() + 'px' });
+    $(".scroll-panel .container").css({ height: $(window).innerHeight() + 'px' });
 	
 	// Scroll Nav ==========================
 	$('.scroll-page').scrollNav();
@@ -713,10 +713,10 @@
 		function draw(){
 		  svg.innerHTML='';
 
-		  for(let wave of waves){
-			let height = wave.center_y+wave.dy*Math.sin((phase+wave.phase_drift)/wave.period)
-			svg.innerHTML += '<path class="wave'+wave.id+'" d="M'+wave.start_x+' '+wave.center_y+' Q'+wave.control_x+' '+height+' '+wave.center_x+' '+wave.center_y+' T'+wave.end_x+' '+wave.center_y+'"/>'
-		  }
+			for(let i=0;i<waves.length;i++){
+				let height = waves[i].center_y+waves[i].dy*Math.sin((phase+waves[i].phase_drift)/waves[i].period);
+				svg.innerHTML += '<path class="waves[i]'+waves[i].id+'" d="M'+waves[i].start_x+' '+waves[i].center_y+' Q'+waves[i].control_x+' '+height+' '+waves[i].center_x+' '+waves[i].center_y+' T'+waves[i].end_x+' '+waves[i].center_y+'"/>';
+			}
 		}
 
 		function randomizeWaves(){
@@ -755,7 +755,7 @@
 
 		waves = randomizeWaves();
 
-		setInterval(()=>{draw();phase+=0.01}, 16)
+		setInterval(function(){draw();phase+=0.01}, 16)
 		
 	</script>
 <% end %>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>慈濟</title>
+    <% if content_for? :replace_css %>
+        <%= yield :replace_css %>
+    <% end %>
+    <link rel="stylesheet" media="all" href="stylesheets/bootstrap.css">
+    <link rel="stylesheet" media="all" href="stylesheets/mdb.css">
+    <link rel="stylesheet" media="all" href="stylesheets/homepage.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="javascripts/modernizr.custom.26633.js"></script>
+</head>
+<body>
+<div>
+    <header class="header lightness">
+        <%= render :partial => "/partials/header" %>
+    </header>
+    <%= yield %>
+    <%= render :partial => "/partials/footer" %>
+</div>
+<script src="javascripts/jquery-3.2.1.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/mdb.min.js"></script>
+
+<% if content_for? :js %>
+    <%= yield :js %>
+<% end %>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% if content_for? :title %>
+        <%= yield :title %>
+    <% else %>
+        <title>慈濟</title>
+    <% end %>
+    <% if content_for? :replace_css %>
+        <%= yield :replace_css %>
+    <% end %>
+    <link rel="stylesheet" media="all" href="stylesheets/application.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="javascripts/modernizr.custom.js"></script>
+</head>
+<body>
+<div>
+    <header class="header lightness">
+        <%= render :partial => "/partials/header" %>
+    </header>
+    <%= yield %>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<script src="javascripts/jquery-3.2.1.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/mdb.min.js"></script>
+
+<% if content_for? :js %>
+    <%= yield :js %>
+<% end %>
+
+</body>
+</html>

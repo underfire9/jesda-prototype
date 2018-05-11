@@ -38,6 +38,7 @@ body { background: $body_background; }
 		}
 	}
 	.controller {
+		min-height: 41px;
 		margin-bottom: 20px;
 		.btn.btn-sm { margin: 0; }
 		position: relative;
@@ -48,4 +49,98 @@ body { background: $body_background; }
 			top: 0;
 		}
 	}
+}
+
+.form-wrap {
+	background-color: #fff;
+	border-radius: 5px;
+	margin-top: 20px;
+	padding: 2rem 2rem 1rem;
+	&:first-child { margin-top: 0; }
+}
+
+.form-action { margin-top: 15px; }
+
+.preview {
+	.form-wrap {
+		background-color: #fdfdfd;
+		border: 1px solid #eee;
+	}
+}
+
+.fc-event, .fc-event:hover {
+    color: #fff !important;
+}
+
+.fc-header-toolbar {
+	h2 { font-size: 1.5em; }
+	.btn-primary { background-color: $main_color !important; }
+	.btn-primary:hover, .btn-primary:focus { background-color: lighten($main_color, 8) !important; }
+	.btn-primary:active, .btn-primary:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active, .show > .btn-primary.dropdown-toggle { background-color: darken($main_color, 10) !important; }
+}
+
+.fc-event, .fc-event-dot {
+	background-color: $main_color;
+	border-color: $main_color;
+}
+
+/* `Responsive
+-----------------------------------------------------------------------------*/
+
+@media (max-width: 767px) {
+	header.header {
+		.header-wrap {
+			display: block;
+			padding: 10px 0;
+			height: auto;
+		}
+		.brands {
+			display: block !important;
+			margin-bottom: 0;
+			text-align: center;
+			transform: scale(0.75);
+		}
+		.account { text-align: center; }
+	}
+	.tab-content.card {
+		.table {
+			* { word-break: normal; }
+		}
+	}
+	.list-wrap {
+		.controller {
+			.btn { display: inline-block; }
+			.search-form {
+				display: inline-block;
+				position: static; 
+			}
+			.w-25 { width: auto !important; }
+		}
+	}
+	footer.footer {
+		.footer-wrap {
+			display: block;
+			padding: 10px 20px;
+		}
+	}
+}
+
+@media (max-width: 575px) {
+	.list-wrap {
+		.controller {
+			.search-form {
+				.fa { display: none; }
+			}
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	body { background: #fff; }
+	.list-wrap {
+		.nav-item .nav-link { padding: 0.75rem 1rem; }
+		.tab-content.card { padding: 1.25rem 0; }
+	}
+	.form-wrap { padding: 1rem 0 0; }
+	.preview .form-wrap { padding: 10px; }
 }

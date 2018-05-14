@@ -3,7 +3,7 @@
 http_path = "/"
 css_dir = "stylesheets"
 sass_dir = "sass"
-images_dir = "images"
+images_dir = "assets"
 javascripts_dir = "javascripts"
 
 relative_assets = false
@@ -16,7 +16,7 @@ output_style = :expanded
 
 css_dir = "stylesheets" # by Fire.app 
 sass_dir = "sass" # by Fire.app 
-images_dir = "images" # by Fire.app 
+images_dir = "assets" # by Fire.app 
 javascripts_dir = "javascripts" # by Fire.app 
 fireapp_coffeescripts_dir = "coffeescripts" # by Fire.app 
 fireapp_livescripts_dir = "livescripts" # by Fire.app 

@@ -93,7 +93,10 @@ body { background: $body_background; }
 		margin: 0;
 		padding: 0;
 	}
-	li { border-bottom: 1px solid #eee; }
+	li {
+		border-bottom: 1px solid #eee;
+		&:last-child { border-bottom: none; }
+	}
 	.item {
 		display: flex;
 		align-items: stretch;
@@ -116,6 +119,7 @@ body { background: $body_background; }
 	.status, .result {
 		display: inline-block;
 		width: 50px;
+		color: $red_color;
 		word-break: keep-all;
 	}
 	.all-pass {
@@ -123,7 +127,18 @@ body { background: $body_background; }
 		.end {
 			width: 65px;
 		}
-		.status, .result { width: 30px; }
+		.status, .result {
+			width: 30px;
+			color: $main_color;
+		}
+	}
+	&.excursus {
+		margin-top: 30px;
+		.num {
+			width: 65px;
+			font-weight: 400;
+			text-align: left;
+		}
 	}
 }
 

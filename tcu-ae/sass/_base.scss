@@ -70,8 +70,12 @@ p { line-height: 1.8; }
 	.highlight {
 		td { background-color: #fffde7; }
 	}
-	thead th { word-break: keep-all; }
-	tbody td:nth-child(2n) { word-break: keep-all; }
+}
+
+.keep-all { word-break: keep-all; }
+
+@media (max-width: 575px) {
+	.keep-all { word-break: normal; }
 }
 
 .ans-control {
@@ -86,3 +90,29 @@ p { line-height: 1.8; }
 }
 
 .form-control { font-size: 0.9375rem; }
+
+.normal-link {
+	color: $main_color !important;
+	text-decoration: underline;
+	&:hover { color: darken($main_color, 10) !important; }
+}
+
+/* `覆蓋 MDB input & label & slect 樣式
+-----------------------------------------------------------------------------*/
+
+.md-form .prefix {
+	top: 1rem;
+	font-size: 1.25rem;
+	&.grey-text { color: #ccc !important; }
+}
+
+.md-form input[type="text"]:focus:not([readonly]), .md-form input[type="password"]:focus:not([readonly]), .md-form input[type="email"]:focus:not([readonly]), .md-form input[type="url"]:focus:not([readonly]), .md-form input[type="time"]:focus:not([readonly]), .md-form input[type="date"]:focus:not([readonly]), .md-form input[type="datetime-local"]:focus:not([readonly]), .md-form input[type="tel"]:focus:not([readonly]), .md-form input[type="number"]:focus:not([readonly]), .md-form input[type="search-md"]:focus:not([readonly]), .md-form input[type="search"]:focus:not([readonly]), .md-form textarea.md-textarea:focus:not([readonly]) {
+	border-bottom: 1px solid $main_color;
+	box-shadow: 0 1px 0 0 $main_color;
+}
+
+.md-form label.active {
+	color: $main_color !important;
+}
+
+.select-wrapper input.select-dropdown { margin-bottom: -19px; }

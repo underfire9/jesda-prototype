@@ -1,0 +1,58 @@
+
+
+@import "base";
+
+
+body { background: $body_background; }
+
+.main-block {
+	background: #fff;
+	border-radius: 5px;
+	padding: 1.25rem;
+}
+
+/* `Sidenav
+-----------------------------------------------------------------------------*/
+
+.sidenav {
+	margin-right: -30px;
+	ul, li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.menu-item {
+		border-bottom: 1px solid #e5e5e5;
+		&:last-child { border-bottom: none; }
+	}
+	.collapsible-header {
+		display: block;
+		padding: 15px 0;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.has-sub {
+		.collapsible-header:before {
+		   font-family: 'FontAwesome';
+		   content: "\f107";
+		   float: right;
+		   transition: all 0.1s;
+		}
+	}
+	.panel-heading.active .collapsible-header:before {
+		transform: rotate(180deg);
+	}
+	.sub-menu {
+		padding: 0 0 20px 20px;
+		font-size: 16px;
+		a {
+			display: block;
+			padding: 5px 0;
+			color: #aaa;
+		}
+	}
+	.menu-before .collapsible-header { color: $before_color; }
+	.menu-after .collapsible-header { color: $after_color; }
+	.menu-leaving .collapsible-header { color: $leaving_color; }
+	a { padding-right: 30px !important; }
+}

@@ -3051,7 +3051,7 @@ header.header .brands a {
 }
 header.header .h1-logo {
   display: inline-block;
-  width: 116px;
+  width: 268px;
   height: 60px;
   vertical-align: middle;
 }
@@ -3066,7 +3066,7 @@ header.header .h1-logo {
 /* `Footer
 -----------------------------------------------------------------------------*/
 footer.footer {
-  margin-top: 60px;
+  margin: 60px 0 20px;
   color: #aaa;
 }
 footer.footer a {
@@ -3155,6 +3155,11 @@ p {
   border-color: #333;
 }
 
+.custom-select.xs {
+  padding: 0.2rem 1.75rem 0.275rem 0.75rem;
+  height: calc(1.8rem + 2px);
+}
+
 .table .btn {
   margin: 0;
 }
@@ -3210,10 +3215,77 @@ body {
   background: #fcfcfc;
 }
 
+.login_page {
+  background: url(../assets/bg.jpg) center center;
+  background-size: cover;
+}
+.login_page .container {
+  max-width: 768px;
+}
+.login_page header.header {
+  margin-bottom: 20px;
+}
+
+.login-modal .modal-dialog {
+  margin-top: 0;
+  max-width: 100%;
+}
+.login-modal .modal-content {
+  border: none;
+}
+.login-modal .captcha-img {
+  display: inline-block;
+  margin: 0 10px;
+}
+.login-modal .modal-footer {
+  justify-content: center;
+}
+
 .main-block {
   background: #fff;
   border-radius: 5px;
-  padding: 1.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.main-block .main-inner {
+  padding: 1.25rem 1rem 2rem;
+}
+
+main.main-block {
+  padding: 1.5rem;
+}
+main.main-block.extended {
+  padding: 0;
+}
+main.main-block.extended > .table thead th {
+  border-top: 0;
+}
+main.main-block.extended .main-inner {
+  padding: 2rem;
+}
+
+input.number {
+  border: 1px solid #dee2e6;
+  border-radius: 2px;
+  width: 65px;
+}
+
+.page-title {
+  background: #f4f4f4;
+  border-bottom: 1px solid #e5e5e5;
+  margin: 0 -15px;
+  padding: 1.1rem 1.75rem;
+}
+
+.form-title {
+  margin: 2rem 0 1rem;
+  font-weight: bold;
+}
+
+.form-request {
+  padding-left: 0.25rem;
+  font-size: 18px;
+  font-weight: bold;
+  color: #e91e63;
 }
 
 /* `Sidenav
@@ -3232,19 +3304,29 @@ body {
 .sidenav .menu-item:last-child {
   border-bottom: none;
 }
-.sidenav .collapsible-header {
+.sidenav .btn {
   display: block;
-  padding: 15px 0;
+  padding: 20px 0;
+  width: 100%;
   font-size: 18px;
   font-weight: bold;
+  color: #187fc4 !important;
+  text-align: left;
+  text-transform: none;
 }
-.sidenav .has-sub .collapsible-header:before {
+.sidenav .btn:hover, .sidenav .btn:focus {
+  text-decoration: none;
+}
+.sidenav .has-sub .btn {
+  padding-right: 30px;
+}
+.sidenav .has-sub .btn:before {
   font-family: 'FontAwesome';
   content: "\f107";
   float: right;
   transition: all 0.1s;
 }
-.sidenav .panel-heading.active .collapsible-header:before {
+.sidenav .panel-heading.active .btn:before {
   transform: rotate(180deg);
 }
 .sidenav .sub-menu {
@@ -3256,17 +3338,183 @@ body {
   padding: 5px 0;
   color: #aaa;
 }
-.sidenav .menu-before .collapsible-header {
-  color: #7fb10d;
+.sidenav .sub-menu a:hover {
+  text-decoration: none;
 }
-.sidenav .menu-after .collapsible-header {
-  color: #de8b07;
+.sidenav .sub-menu .completed a {
+  color: #333;
 }
-.sidenav .menu-leaving .collapsible-header {
-  color: #cf2568;
+.sidenav .sub-menu .current a {
+  font-weight: bold;
+  color: #000;
+}
+.sidenav .menu-before .btn {
+  color: #7fb10d !important;
+}
+.sidenav .menu-after .btn {
+  color: #de8b07 !important;
+}
+.sidenav .menu-leaving .btn {
+  color: #cf2568 !important;
 }
 .sidenav a {
   padding-right: 30px !important;
+}
+
+/* `Doc List
+-----------------------------------------------------------------------------*/
+.doc-list li {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.5rem;
+}
+.doc-list.leaving li:last-child {
+  border: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.doc-list h5 {
+  font-size: 18px;
+}
+.doc-list .list-bd {
+  margin: 1rem 0;
+}
+.doc-list .list-ft {
+  margin-top: 1rem;
+}
+.doc-list .list-ft.d-flex {
+  justify-content: space-between;
+  align-items: center;
+}
+.doc-list .date {
+  color: #999;
+}
+.doc-list .avatar {
+  background: #f9f9f9;
+  border: 1px solid #f1f1f1;
+  width: 256px;
+  height: 256px;
+}
+
+.progress {
+  border-radius: 0.75rem;
+  height: 1.5rem;
+}
+
+.experience-photos, .experience-photos li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.experience-photos li {
+  float: left;
+  margin: 0 20px 20px 0;
+  position: relative;
+  width: auto;
+  height: 200px;
+}
+.experience-photos li:before {
+  content: "";
+  transition: all 0.1s linear 0s;
+  background: #000;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+}
+.experience-photos li .action {
+  transition: all 0.1s linear 0s;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 3;
+}
+.experience-photos li:hover:before {
+  opacity: .75;
+}
+.experience-photos li:hover .action {
+  opacity: 1;
+}
+.experience-photos img {
+  width: auto;
+  max-height: 200px;
+}
+
+/* `Partner
+-----------------------------------------------------------------------------*/
+.partner-avatar {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.partner-avatar img {
+  max-width: 256px;
+  height: auto;
+}
+
+.partner-info, .student-info {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+.partner-info h5, .student-info h5 {
+  font-weight: 700;
+}
+
+.partner-statistics,
+.partner-statistics li,
+.student-statistics,
+.student-statistics li,
+.label-item,
+.label-item li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.partner-statistics li,
+.student-statistics li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #e5e5e5;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+.partner-statistics li:last-child,
+.student-statistics li:last-child {
+  border: none;
+  margin-bottom: 0;
+}
+
+.has-scroll {
+  overflow-x: scroll;
+}
+
+.student-avatar {
+  margin-bottom: 2rem;
+  padding: 0 10%;
+  text-align: center;
+}
+.student-avatar img {
+  width: 100%;
+  height: auto;
+}
+
+.label-item li {
+  border-bottom: 1px dashed #e5e5e5;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+.label-item li:last-child {
+  border: none;
+  margin-bottom: 0;
 }
 
 /*# sourceMappingURL=application.css.map */

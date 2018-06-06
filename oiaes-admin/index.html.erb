@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OIA ES admin</title>
+    <link type="text/css" rel="stylesheet" href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css' >
+    <link rel="stylesheet" href="/__utilities/jquery.tablesorter/themes/blue/style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/__utilities/jquery.tablesorter/jquery.tablesorter.js"></script>
+    <script>
+    $(function() {
+        $('table').tablesorter({
+            sortList: [[2,1], [1,0]]
+        });
+    });
+    </script>
+</head>
+<body>
+    <%=
+        time_freshmeat = 60*60*24*7
+        li=[]
+        files=Dir.glob("**/*.html.*")
+        files.sort!
+        files.each do |path|
+            next if path =~ /^(tmp|_)/  || path =~ /\/_/ || path =~ /^vendor\// || path =~ /^index\.html\.erb/
+            title = open(path){|f|
+                match = f.read().match(/<!-- oiaes-admin: (.*?) -->/)
+                match && match[1]
+            }
+            next if title.blank?
+            li << "<tr class=\"#{Time.now - File.new(path).mtime < time_freshmeat ? "warning" : ""}\"><td>#{link_to(title, path.gsub(/(.*)\..*/,'/\1'))}</td><td>#{link_to("/#{path}", path.gsub(/(.*)\..*/,'/\1'))}</td><td>#{File.new(path).mtime.strftime('%F %T %z')}</td></tr>"
+        end
+        "<table class='table table-bordered table-striped tablesorter'><thead><tr><th>名稱</th><th>網址</th><th>更新日期</th></tr></thead><tbody>#{li.join()}</tbody></table>"
+    %>
+</body>
+</html>

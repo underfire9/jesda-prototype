@@ -1,0 +1,141 @@
+<!-- oiaes-admin: 單一學校資料管理 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h2>單一學校資料管理</h2>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="col-block mb-20">
+                <div class="block-header has-border">
+                    <h3>提名狀態</h3>
+                </div>
+                <div class="block-content">
+                    <div class="form-inline">
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                未送出
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-inline">
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                已送出
+                            </label>
+                            <input type="text" class="form-control ml-2" placeholder="">
+                            <span class="ml-2">將提名狀態變更為未送出，對方學校即可修改提名結果</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-block mb-20">
+                <div class="block-header has-border">
+                    <h3>交換計畫一覽</h3>
+                </div>
+                <div class="block-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>計畫名稱</th>
+                                <th>前端申請顯示名稱</th>
+                                <th>交換名額</th>
+                                <th>提名名額</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% (1..6).map do |i| %>
+                            <tr>
+                                <td><button class="btn btn-xs btn-primary">編輯</button></td>
+                                <td><%= lorem_sentences(1) %></td>
+                                <td><%= lorem_sentences(1) %></td>
+                                <td>5</td>
+                                <td>2</td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-block mb-20">
+                <div class="block-header has-border">
+                    <h3>其他設定</h3>
+                </div>
+                <div class="block-content">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">是否提供獎學金</label>
+                        <div class="form-inline">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadiosInline1" value="option1" checked>
+                                <label class="form-check-label" for="exampleRadiosInline1">是</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadiosInline2" value="option2">
+                                <label class="form-check-label" for="exampleRadiosInline2">否</label>
+                            </div>
+                        </div>
+                        <span class="form-text text-muted ml-3">選擇"是"則姊妹校承辦人確認提名畫面須額外填寫獎學金提名調查</span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-right">是否免宿費</label>
+                        <div class="form-inline">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadiosInline3" value="option1" checked>
+                                <label class="form-check-label" for="exampleRadiosInline3">是</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadiosInline4" value="option2">
+                                <label class="form-check-label" for="exampleRadiosInline4">否</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-default" type="submit">儲存</button>
+                <button class="btn btn-angel" type="submit">取消</button>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="col-block">
+                <div class="block-content">
+                    <div class="partner-avatar">
+                        <img src="../assets/default.png" alt="partner" />
+                        <h4>東京大學</h4>
+                        <h5>University of Tokyo</h5>
+                    </div>
+                    <div class="partner-info">
+                        <p>其他想要顯示的資訊</p>
+                        <p><%= lorem_sentences(2) %></p>
+                    </div>
+                    <div class="mb-3">
+                        <ul class="nav quick-nav">
+                            <li class="primary"><a href="#">登入姊妹校</a></li>
+                            <li class="info"><a href="#">寄送提名通知</a></li>
+                            <li class="secondary"><a href="#">通知紀錄 <span class="badge badge-pill pink">3</span></a></li>
+                        </ul>
+                    </div>
+                    <ul class="items items-nav">
+                        <li><a href="#">交換計畫</a></li>
+                        <li><a href="#">姊妹校承辦人</a></li>
+                        <li><a href="#">申請學生</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<% content_for :js do %>
+    <script>
+		$(document).ready(function() {
+            $('.mdb-select').material_select();
+		});
+		$('.datepicker').pickadate();
+		$('.input_starttime').pickatime({});
+    </script>
+<% end %>

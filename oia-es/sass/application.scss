@@ -279,3 +279,88 @@ input.number {
 		}
 	}
 }
+
+/* `Step
+-----------------------------------------------------------------------------*/
+
+.step-bar {
+	margin: 40px auto;
+	text-align: center;
+	ul, li {
+		display: inline-block;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		float: left;
+		width: 200px;
+		font-weight: 400;
+	}
+	.step {
+		display: block;
+		border-radius: 20px;
+		border: 4px solid #bfbfbf;
+		margin: 0 0 12px 80px;
+		width: 40px;
+		height: 40px;
+		font-size: 20px;
+		font-weight: 400;
+		color: #666;
+		line-height: 32px;
+		position: relative;
+		&:before, &:after {
+			content: "";
+			background: #bfbfbf;
+			width: 65px;
+			height: 4px;
+			position: absolute;
+			top: 14px;
+		}
+		&:before {
+			border-radius: 0 2px 2px 0;
+			left: -84px;
+		}
+		&:after {
+			border-radius: 2px 0 0 2px;
+			right: -84px;
+		}
+	}
+    h4 { font-size: 20px; }
+	li {
+		&:first-child .step:before, &:last-child .step:after {
+			content: none;
+		}
+	}
+	.active {
+		color: $main_color;
+	    .step {
+			border-color: $main_color;
+			color: $main_color;
+			&:before {
+				background: $main_color;
+			}
+		}
+	}
+	.done {
+		color: #000;
+		.step {
+			background: $main_color;
+			border-color: $main_color;
+			color: #fff;
+			&:before, &:after {
+				background: $main_color;
+			}
+		}
+	}
+}
+
+.step-bar.with-pick-seat {
+	li { width: 160px; }
+	.step {
+		margin-left: 60px;
+	}
+	&:before, &:after { width: 45px; }
+	&:before { left: -64px; }
+	&:after { right: -64px; }
+}

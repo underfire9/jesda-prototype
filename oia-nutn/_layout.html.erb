@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+<div class="wrap">
+    <%= render :partial => "/partials/header" %>
+    <%= yield %>
+</div>
+<%= render :partial => "/partials/footer" %>
+
+<script src="javascripts/jquery-3.3.1.min.js"></script>
+<script src="javascripts/popper.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+<script>
+$('.back-to-top').click(function() {
+    $('html, body').animate({
+        scrollTop: 0
+    }, 800);
+    return false;
+});
+</script>
+<% if content_for? :js %>
+    <%= yield :js %>
+<% end %>
+
+<!--%= livereload_js if ENV["RACK_ENV"] != "production" && defined?(App)%-->
+</body>
+</html>

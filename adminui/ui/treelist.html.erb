@@ -11,41 +11,11 @@
                 <div class="flex-wrapper treeview-container">
                     <div class="treeview-wrapper">
                         <div class="block-content">
-                            <div class="easy-tree">
-                                <ul>
-                                    <li>Example 1</li>
-                                    <li>Example 2</li>
-                                    <li>Example 3
-                                        <ul>
-                                            <li>Example 1</li>
-                                            <li>Example 2
-                                                <ul>
-                                                    <li>Example 1</li>
-                                                    <li>Example 2</li>
-                                                    <li>Example 3</li>
-                                                    <li>Example 4</li>
-                                                </ul>
-                                            </li>
-                                            <li>Example 3</li>
-                                            <li>Example 4</li>
-                                        </ul>
-                                    </li>
-                                    <li>Example 0
-                                        <ul>
-                                            <li>Example 1</li>
-                                            <li>Example 2</li>
-                                            <li>Example 3</li>
-                                            <li>Example 4
-                                                <ul>
-                                                    <li>Example 1</li>
-                                                    <li>Example 2</li>
-                                                    <li>Example 3</li>
-                                                    <li>Example 4</li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                            <div class="js-tree">
+                                <button id="createForlder" class="btn btn-default btn-xs"><span class="fa fa-plus"></span></button>
+                                <button id="" class="btn btn-primary btn-xs"><span class="fa fa-pencil"></span></button>
+                                <button id="" class="btn btn-danger btn-xs"><span class="fa fa-times"></span></button>
+                                <div id="data" class="demo mt-4"></div>
                             </div>
                         </div>
                     </div>
@@ -558,21 +528,45 @@
 </main>
 
 <% content_for :js do %>
-    <script src="../javascripts/easyTree.js"></script>
+    <script src="../javascripts/jstree.js"></script>
     <script src="../javascripts/datatables.js"></script>
     <script>
-    
-        (function ($) {
-            function init() {
-                $('.easy-tree').EasyTree({
-                    addable: true,
-                    editable: true,
-                    deletable: true
-                });
+        // JS Tree inline data demo
+        $('#data').jstree({
+          'core' : {
+            'data' : [
+              { "text" : "Root node", "children" : [
+                { "text" : "Child node 1" },
+                { "text" : "Child node 2" }
+              ]}
+            ],
+            'check_callback' : true
+            },
+          'types' : {
+            '#' : {
+              'max_depth': 2
+            },
+            'default' : { 
+              'valid_children' : ['default','folder'],
+              'max_children': 4
             }
+          },
+          'plugins' : ['dnd']
+        });
 
-            window.onload = init();
-        })(jQuery)
+        $('#createForlder').on('click', create_node);
+
+        function create_node() {
+          var ref = $('#data').jstree(true),
+              sel = ref.get_selected();
+          if(!sel.length) { sel[0] = '#'; }
+          sel = sel[0];
+          sel = ref.create_node(sel, {"text" : "Nueva Carpeta"}, 'last');
+          if(sel) {
+            ref.edit(sel);
+          }
+        }
+        
         
         $(document).ready(function () {
           $('#dtMaterialDesignExample').DataTable();

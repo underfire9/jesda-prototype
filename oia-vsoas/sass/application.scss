@@ -1,0 +1,214 @@
+
+
+@import "base";
+
+.page-link { color: $main_color; }
+
+body { background: $body_background; }
+
+.container { min-width: 1024px; }
+
+.login_page {
+	header.header { margin-bottom: 20px; }
+}
+
+.login-modal {
+	.modal-dialog {
+		margin-top: 0;
+		max-width: 100%;
+	}
+	.modal-content { border: none; }
+	.captcha-img {
+		display: inline-block;
+		margin: 0 10px;
+	}
+	.modal-footer { justify-content: center; }
+}
+
+.main-block {
+	background: #fff;
+	border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(#000, .04);
+    .main-inner { padding: 1.25rem 1rem 2rem; }
+}
+
+main.main-block {
+	padding: 1.5rem;
+	&.extended {
+		padding: 0;
+		& > .table thead th { border-top: 0; }
+		.main-inner { padding: 2rem; }
+	}
+}
+
+.aside-block { padding: 1.5rem 0; }
+
+input.number {
+	border: 1px solid #dee2e6;
+	border-radius: 2px;
+	width: 65px;
+}
+
+.page-title {
+	background: #f4f4f4;
+	border-bottom: 1px solid #e5e5e5;
+	margin: 0 -15px;
+	padding: 1.1rem 1.75rem;
+}
+
+.form-title {
+	margin: 2rem 0 1rem;
+	font-weight: bold;
+}
+
+.form-request {
+	padding-left: 0.25rem;
+	font-size: 18px;
+	font-weight: bold;
+	color: #e91e63;
+}
+
+/* `Apply List
+-----------------------------------------------------------------------------*/
+
+.list-reset, .list-reset li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.apply-list {
+    li {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px dashed #ddd;
+        padding: 1.5rem 0;
+        h5 { margin-bottom: 0; }
+        small {
+            margin-left: 1rem;
+            font-size: 15px;
+            color: #757575;
+        }
+        .caption {
+            width: 60%;
+        }
+    }
+    .status {
+        background: red;
+        border-radius: 16px;
+        padding: 0 16px;
+        height: 32px;
+        color: #fff;
+        line-height: 32px;
+        &.passed { background-color: $main_color; }
+    }
+}
+
+/* `Step
+-----------------------------------------------------------------------------*/
+
+.step-bar {
+	margin: 40px auto;
+	text-align: center;
+	ul, li {
+		display: inline-block;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		float: left;
+		width: 300px;
+		font-weight: 400;
+	}
+	.step {
+		display: block;
+		border-radius: 20px;
+		border: 4px solid #bfbfbf;
+		margin: 0 0 12px 130px;
+		width: 40px;
+		height: 40px;
+		font-size: 20px;
+		font-weight: 400;
+		color: #666;
+		line-height: 32px;
+		position: relative;
+		&:before, &:after {
+			content: "";
+			background: #bfbfbf;
+			width: 115px;
+			height: 4px;
+			position: absolute;
+			top: 14px;
+		}
+		&:before {
+			border-radius: 0 2px 2px 0;
+			left: -134px;
+		}
+		&:after {
+			border-radius: 2px 0 0 2px;
+			right: -134px;
+		}
+	}
+    h4 { font-size: 20px; }
+	li {
+		&:first-child .step:before, &:last-child .step:after {
+			content: none;
+		}
+	}
+	.active {
+		color: $main_color;
+	    .step {
+			border-color: $main_color;
+			color: $main_color;
+			&:before {
+				background: $main_color;
+			}
+		}
+	}
+	.done {
+		color: #000;
+		.step {
+			background: $main_color;
+			border-color: $main_color;
+			color: #fff;
+			&:before, &:after {
+				background: $main_color;
+			}
+		}
+	}
+}
+
+.step-bar.with-pick-seat {
+	li { width: 160px; }
+	.step {
+		margin-left: 60px;
+	}
+	&:before, &:after { width: 45px; }
+	&:before { left: -64px; }
+	&:after { right: -64px; }
+}
+
+/* `Doc List
+-----------------------------------------------------------------------------*/
+
+.doc-list {
+	li {
+		border-bottom: 1px dashed #e5e5e5;
+		margin-bottom: 1.25rem;
+		padding-bottom: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+	}
+	h5 {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+	.date { color: #999; }
+	.avatar {
+		background: #f9f9f9;
+		border: 1px solid #f1f1f1;
+		width: 256px;
+		height: 256px;
+	}
+}

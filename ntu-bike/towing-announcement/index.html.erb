@@ -1,0 +1,128 @@
+<!-- NTU-Bike: 違規拖吊車輛公告  -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="page-title">違規拖吊車輛公告</h2>
+            <div class="control-top d-flex justify-content-between">
+                <form class="d-flex form-sort">
+                    <div class="form-group time-control row">
+                        <label for="date-picker-example" class="col-sm-4 col-form-label d-none">拖吊日期</label>
+                        <div class="col-12">
+                            <input placeholder="拖吊日期" type="text" id="date-picker-example" class="form-control datepicker">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputText" class="col-sm-4 col-form-label d-none">車證編號</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="inputText" placeholder="車證編號">
+                        </div>
+                    </div>
+                    <div class="form-group form-btn row">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary btn-md">查詢</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="map-link">
+                    <a href="#" class="btn btn-sm btn-outline-info btn-rounded shadow-none waves-effect">
+                       <i class="fa fa-map-o"></i>
+                        違規區域說明
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <ul class="filter-list">
+                <li><a href="#" class="waves-effect">全部</a></li>
+                <li><a href="#" class="is-checked waves-effect">kitty</a></li>
+                <li><a href="#" class="waves-effect">學生</a></li>
+                <li><a href="#" class="waves-effect">校內教職員工</a></li>
+                <li><a href="#" class="waves-effect">校內單位公務車</a></li>
+                <li><a href="#" class="waves-effect">校外人士</a></li>
+                <li><a href="#" class="waves-effect">Ubike</a></li>
+                <li><a href="#" class="waves-effect">廠商1</a></li>
+                <li><a href="#" class="waves-effect">無證車輛</a></li>
+            </ul>
+        </div>
+        <div class="col-9">
+            <ul class="violation-list">
+                <li>
+                    <figure>
+                        <a data-fancybox="" href="http://placekitten.com/1200/900"><img src="http://placekitten.com/1200/900" alt=""></a>
+                    </figure>
+                    <div class="info">
+                        <h4><span class="label">車證編號</span>2023-1500848680-01</h4>
+                        <p><i class="fa fa-map-marker"></i>拖吊地點名稱1</p>
+                        <p><i class="fa fa-clock-o"></i>2018/12/10 02:05:00 PM</p>
+                    </div>
+                </li>
+                <% (1..8).map do |i| %>
+                <li>
+                    <figure>
+                        <a data-fancybox="" href="http://placekitten.com/600/420"><img src="http://placekitten.com/600/420" alt=""></a>
+                    </figure>
+                    <div class="info">
+                        <h4><span class="label">車證編號</span>2023-1500848680-01</h4>
+                        <p><i class="fa fa-map-marker"></i>拖吊地點名稱1</p>
+                        <p><i class="fa fa-clock-o"></i>2018/12/10 02:05:00 PM</p>
+                    </div>
+                </li>
+                <% end %>
+                <li>
+                    <figure>
+                        <a data-fancybox="" href="http://placekitten.com/600/800"><img src="http://placekitten.com/600/800" alt=""></a>
+                    </figure>
+                    <div class="info">
+                        <h4><span class="label">車證編號</span>2023-1500848680-01</h4>
+                        <p><i class="fa fa-map-marker"></i>拖吊地點名稱1</p>
+                        <p><i class="fa fa-clock-o"></i>2018/12/10 02:05:00 PM</p>
+                    </div>
+                </li>
+            </ul>
+            
+            <!--Pagination-->
+            <nav aria-label="pagination example">
+                <ul class="pagination pg-blue justify-content-end">
+
+                    <!--Arrow left-->
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+	</div>
+</div>
+
+<% content_for :js do %>
+<script src="../javascripts/jquery.alphaindex.js"></script>
+<script src="../javascripts/jquery.fancybox.js"></script>
+<script>
+    $('.datepicker').pickadate();
+    
+    $('#my-list').makeAlphaIndex()
+    $('.alpha-index-bar').addClass("col-3");
+    $('.alpha-index-list').addClass("col-9");
+</script>
+<% end %>

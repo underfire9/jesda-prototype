@@ -87,14 +87,47 @@ body { background: $body_background; }
             display: flex;
             align-items: center;
             margin-bottom: 0;
-            padding-right: 30px;
-            width: 230px;
+            width: 200px;
             height: 140px;
             overflow: hidden;
+            a {
+                display: block;
+                position: relative;
+                &:before,&:after {
+                    transition: all .15s ease-in-out;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    opacity: 0;
+                }
+                &:before {
+                    content: "";
+                    background: rgba(#000, .5);
+                    z-index: 2;
+                }
+                &:after {
+                    content: "\f002";
+                    font-family: 'FontAwesome';
+                    z-index: 3;
+                    font-size: 20px;
+                    color: #fff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                }
+                &:hover:before, &:hover:after {
+                    opacity: 1;
+                }
+            }
         }
         img {
             width: 100%;
             height: auto;
+            position: relative;
+            z-index: 1;
         }
         h4 {
             margin-bottom: 3rem;
@@ -107,6 +140,7 @@ body { background: $body_background; }
             }
         }
         .info {
+            padding-left: 30px;
             p { margin-bottom: 0.3rem; }
             .fa {
                 margin-right: 1rem;

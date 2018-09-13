@@ -1,0 +1,82 @@
+<!-- NTU-Bike: 自行車遺失通報申請  -->
+
+<div class="container">
+    <h2 class="page-title">自行車遺失通報申請</h2>
+	<div class="app-form">
+        <p>申請日期：2018/08/02 14:03</p>
+		<div class="row">
+		    <div class="col-xl-6">
+			    <span class="label">申請人姓名</span>
+				<span class="export">username</span>
+			</div>
+			<div class="col-xl-6">
+			    <span class="label">申請人學號</span>
+				<span class="export">B07201548</span>
+			</div>
+			<div class="col-xl-6">
+			    <span class="label">Email</span>
+				<span class="export">suchart@aaa.com.tw</span>
+			</div>
+			<div class="col-xl-6">
+			    <span class="label">申請人系所</span>
+				<span class="export">管理學院 資訊管理學系</span>
+			</div>
+		</div>
+		<form class="mt-4">
+			<div class="form-group row">
+				<div class="form-group col-md-6">
+					<label for="number"><span class="red-text pr-2">*</span>身分證/居留證/護照號碼</label>
+					<input type="text" class="form-control" id="number" placeholder="">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="Phone"><span class="red-text pr-2">*</span>連絡電話</label>
+					<input type="text" class="form-control" id="Phone" placeholder="">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="number2"><span class="red-text pr-2">*</span>選擇遺失車證</label>
+					<select class="browser-default">
+						<option value="" disabled selected>Choose your option</option>
+						<option value="1">2023-1500848680-01</option>
+						<option value="2">Option 2</option>
+						<option value="3">Option 3</option>
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="number2"><span class="red-text pr-2">*</span>遺失地點</label>
+					<input type="text" class="form-control" id="number2" placeholder="">
+				</div>
+				<div class="form-group col-md-12">
+					<label for="exampleFormControlTextarea1"><span class="red-text pr-2">*</span>車輛描述</label>
+					<textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="4"></textarea>
+				</div>
+				<div class="form-check col-md-12 mt-3">
+					<input type="checkbox" class="form-check-input" id="materialUnchecked">
+					<label class="form-check-label" for="materialUnchecked">如發現該車輛時，車輛鎖於定著物，本人同意剪鎖移置拖吊場</label>
+				</div>
+				<div class="input-group col-md-6 my-4">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+					</div>
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+						<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+					</div>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">送出申請</button>
+			<button type="submit" class="btn btn-blue-grey">取消</button>
+		</form>
+	</div>
+</div>
+
+<% content_for :js do %>
+<script src="../javascripts/jquery.alphaindex.js"></script>
+<script src="../javascripts/jquery.fancybox.js"></script>
+<script>
+    $('.datepicker').pickadate();
+    
+    $('#my-list').makeAlphaIndex()
+    $('.alpha-index-bar').addClass("col-3");
+    $('.alpha-index-list').addClass("col-9");
+</script>
+<% end %>

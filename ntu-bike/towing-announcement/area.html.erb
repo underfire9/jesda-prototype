@@ -1,0 +1,52 @@
+<!-- NTU-Bike: 違規區域說明  -->
+
+<div class="container">
+    <h2 class="page-title">違規區域說明</h2>
+    <div class="row">
+        <div class="col-3">
+            <ul class="filter-list">
+                <li><a href="#" class="waves-effect">區域 A</a></li>
+                <li><a href="#" class="waves-effect">區域 B</a></li>
+                <li><a href="#" class="is-checked waves-effect">區域 C</a></li>
+                <li><a href="#" class="waves-effect">區域 D</a></li>
+                <li><a href="#" class="waves-effect">區域 E</a></li>
+                <li><a href="#" class="waves-effect">區域 F</a></li>
+            </ul>
+        </div>
+        <div class="col-9">
+            <table class="table first-keep">
+			    <thead>
+				    <tr>
+					    <th>地點名稱</th>
+						<th>說明</th>
+						<th>座標</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% (1..9).map do |i| %>
+				    <tr>
+					    <td><%= zh_lorem_words(5) %></td>
+						<td><%= zh_lorem_sentence %></td>
+						<td>
+						    <span class="d-block">41°24'12.2"N </span>
+							<span class="d-block">2°10'26.5"E</span>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+        </div>
+	</div>
+</div>
+
+<% content_for :js do %>
+<script src="../javascripts/jquery.alphaindex.js"></script>
+<script src="../javascripts/jquery.fancybox.js"></script>
+<script>
+    $('.datepicker').pickadate();
+    
+    $('#my-list').makeAlphaIndex()
+    $('.alpha-index-bar').addClass("col-3");
+    $('.alpha-index-list').addClass("col-9");
+</script>
+<% end %>

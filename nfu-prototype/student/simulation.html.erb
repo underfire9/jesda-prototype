@@ -1,0 +1,220 @@
+<!-- 選課模擬 -->
+<div class="radar-wrapper">
+    <header>
+        <div class="fluid-wrapper">
+            <a class="logo" href="../index.html"><img src="../assets/logo-sm.svg" /></a>
+            <div class="link-group float-right">
+                <a href="index.html">修課職能查詢</a>
+                <a href="radar.html">職能雷達圖</a>
+				<a class="active" href="simulation.html">選課模擬</a>
+            </div>
+        </div>
+    </header>
+    <div class="radar-container">
+        <main class="simulation-container">
+            <div class="fluid-wrapper">
+                <h3 class="page-title">選課模擬</h3>
+				<ul class="nav nav-tabs default-tabs" id="myTab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="general_course-tab" data-toggle="tab" href="#general_course" role="tab" aria-controls="general_course" aria-selected="true">一般課程</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="education_course-tab" data-toggle="tab" href="#education_course" role="tab" aria-controls="education_course" aria-selected="false">通識課程</a>
+					</li>
+				</ul>
+				
+				<div class="tab-content default-tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="general_course" role="tabpanel" aria-labelledby="general_course-tab">
+						<div class="table-wrapper-scroll-y">
+							<table class="table table-sm table-striped">
+								<thead>
+									<tr>
+										<th>課號</th>
+										<th>課程名稱</th>
+										<th>開課班級</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% 20.times do %>
+									<tr>
+										<td>
+											<div class="form-check">
+												<input type="checkbox" class="form-check-input" id="materialUnchecked">
+												<label class="form-check-label" for="materialUnchecked">Material unchecked</label>
+											</div>
+										</td>
+										<td><%= lorem_word %></td>
+										<td><%= lorem_word %></td>
+									</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
+						<div class="row justify-content-end mt-5">
+							<select class="mdb-select col-4">
+								<option value="8" disabled selected>領域</option>
+								<option value="10">電機工程系進修推廣部四技部</option>
+								<option value="11">電機工程系進修推廣部四技部攜手專班</option>
+							</select>
+							<select class="mdb-select col-4">
+								<option value="1" disabled selected>目標人才</option>
+								<option value="2">電機工程-教育目標_2</option>
+								<option value="3">軟體開發及程式設計人才</option>
+							</select>
+						</div>
+						
+						<div class="row mt-4">
+							<div class="col-6">
+								<div class="chart-wrapper chart1 w-100">
+								    <h3>專業職能</h3>
+								</div>
+								<h5>選擇課程</h5>
+								<ul class="course_selected">
+									<% 20.times do %>
+									<li>
+										<button type="button" class="close" aria-label="Close">
+											<span aria-hidden="true">×</span>
+										</button>
+										<span class="course"><%= lorem_word %></span>
+									</li>
+									<% end %>
+								</ul>
+							</div>
+							<div class="col-6">
+								<div class="chart-wrapper chart1">
+									<canvas id="myChart" width="400" height="400"></canvas>
+								</div>
+								<ol class="desc">
+									<% 10.times do %>
+									<li><%= zh_lorem_sentences 2 %></li>
+									<% end %>
+								</ol>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-6">
+								<div class="chart-wrapper chart2 w-100">
+								    <h3>共通職能</h3>
+								</div>
+								<h5>選擇課程</h5>
+								<ul class="course_selected">
+									<% 15.times do %>
+									<li>
+										<button type="button" class="close" aria-label="Close">
+											<span aria-hidden="true">×</span>
+										</button>
+										<span class="course"><%= lorem_word %></span>
+									</li>
+									<% end %>
+								</ul>
+							</div>
+							<div class="col-6">
+								<div class="chart-wrapper chart2">
+									<canvas id="myChart2" width="400" height="400"></canvas>
+								</div>
+								<ol class="desc">
+									<% 10.times do %>
+									<li><%= zh_lorem_sentences 2 %></li>
+									<% end %>
+								</ol>
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane fade" id="education_course" role="tabpanel" aria-labelledby="education_course-tab">
+						Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+					</div>
+				</div>
+				
+            </div>
+        </main>
+        <%= render :partial => "/partials/footer" %>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<script src="../javascripts/Chart.bundle.min.js"></script>
+
+<script>
+	$(document).ready(function() {		
+		$('.mdb-select').material_select();
+	});
+	
+	var data =  {
+		labels: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
+		datasets: [{
+			label: "My First dataset",
+			borderColor: "rgba(54,131,207,0.5)",
+			backgroundColor: "rgba(54,131,207,0.2)",
+			pointBackgroundColor: "rgba(54,131,207,1)",
+			data: [65, 85, 77, 49, 62, 90, 88, 58, 64, 41, 91]
+		}]
+	}
+	var ctx = document.getElementById("myChart");
+	var myChart = new Chart(ctx, {
+		type: 'radar',
+		data: data,
+		options: {
+		  responsive:true,
+				legend: {
+						display: false,
+					},
+					title: {
+						display: false,
+						text: '專業職能',
+						size: 24
+					},
+					scale: {
+						display: true,
+						reverse: false,
+						ticks: {
+							min: 0,
+							max: 100,
+							maxTicksLimit: 5
+						}
+					}
+	
+		}
+	});
+	
+	var data =  {
+		labels: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
+		datasets: [{
+			label: "My Second dataset",
+			borderColor: "rgba(220,71,159,0.5)",
+			backgroundColor: "rgba(220,71,159,0.2)",
+			pointBackgroundColor: "rgba(220,71,159,1)",
+			data: [65, 59, 90, 81, 56, 55, 40, 66, 59, 90, 81]
+		}]
+	}
+	var ctx = document.getElementById("myChart2");
+	var myChart = new Chart(ctx, {
+		type: 'radar',
+		data: data,
+		options: {
+		  responsive:true,
+				legend: {
+						display: false,
+					},
+					title: {
+						display: false,
+						text: '共通職能',
+						size: 24
+					},
+					scale: {
+						display: true,
+						reverse: false,
+						ticks: {
+							min: 0,
+							max: 100,
+							maxTicksLimit: 5
+						}
+					}
+	
+		}
+	});
+</script>
+
+<% end %>

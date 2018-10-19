@@ -1,0 +1,117 @@
+
+@import "vendor/font-awesome/font-awesome";
+@import "widgets/variables";
+@import "partials/header";
+@import "partials/footer";
+
+/* `Base
+-----------------------------------------------------------------------------*/
+
+html, body {
+	height: 100%;
+	min-height: 100%;
+}
+
+body {
+	background: $body_background;
+	font-family: 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
+	                                                     // 微軟正黑體
+    line-height: 1.6;
+	font-size: 15px;
+	color: #333;
+}
+
+a {
+	color: $link;
+	&:focus {
+		outline: none; /* for Firefox Google Chrome  */
+		behavior: expression(this.onFocus=this.blur()); /* for IE */
+	}
+}
+
+a:hover { color: darken($link, 15%); }
+
+.menu-item, .menu-item li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.btn, .btn.btn-md, .btn.btn-sm { font-size: 100%; } /* 覆蓋 mdbootstrap */
+
+p { line-height: 1.8; }
+
+.un-shadows { box-shadow: none; }
+
+.btn.un-shadows {
+	box-shadow: none;
+	&:hover, &:active, &:focus { box-shadow: none; }
+}
+
+.btn.btn-xs {
+	border-radius: 0.2rem;
+	padding: 0.25rem 0.5rem 0.35rem;
+	font-size: 0.875rem;
+	line-height: 1.2;
+	word-break: keep-all;
+}
+
+.btn.btn-white {
+	background-color: transparent;
+	border: 1px solid #ccc;
+	color: #333;
+	&:hover, &:active, &:focus { box-shadow: none; }
+	&:hover, &:focus {
+		border-color: #333;
+	}
+}
+
+select.browser-default {
+	border-radius: 0.25rem;
+	border: 1px solid #ced4da;
+	box-shadow: none;
+	padding: 7px;
+	width: 100%;
+	color: #333;
+}
+
+.custom-select.xs {
+	padding: 0.2rem 1.75rem 0.275rem 0.75rem;
+	height: calc(1.8rem + 2px);
+}
+
+.table {
+	.btn { margin: 0; }
+	.highlight {
+		td { background-color: #fffde7; }
+	}
+}
+
+.keep-all { word-break: keep-all; }
+
+@media (max-width: 575px) {
+	.keep-all { word-break: normal; }
+}
+
+.form-control { font-size: 0.9375rem; }
+
+.normal-link {
+	color: $main_color !important;
+	text-decoration: underline;
+	&:hover { color: darken($main_color, 10) !important; }
+}
+
+/* `覆蓋 MDB input & label & slect 樣式
+-----------------------------------------------------------------------------*/
+
+.md-form .prefix {
+	top: 1rem;
+	font-size: 1.25rem;
+	&.grey-text { color: #ccc !important; }
+}
+
+.md-form label.active {
+	color: $main_color !important;
+}
+
+.select-wrapper input.select-dropdown { margin-bottom: -19px; }

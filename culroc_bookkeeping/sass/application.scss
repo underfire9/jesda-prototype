@@ -38,7 +38,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	li {
-		width: 33.333%;
+		width: 33.33334%;
 		height: 220px;
 		&:nth-child(1) { background: $one_color; }
 		&:nth-child(2) { background: $two_color; }
@@ -53,6 +53,7 @@
 		display: flex;
 		align-content: center;
 		align-items: center;
+		padding: 1rem;
 		text-align: center;
 		height: 220px;
 		color: #fff;
@@ -61,7 +62,10 @@
 		}
 		.inner { width: 100%; }
 		h5 { font-size: 1.5rem; }
-		p { font-size: 1.15rem; }
+		p {
+			margin-bottom: 0;
+			font-size: 1.15rem;
+		}
 		.stress {
 			padding-left: 0.5rem;
 			font-weight: bold;
@@ -112,7 +116,7 @@
 			padding: 5rem 2rem;
 		}
 	}
-	form {
+	.form-width {
 		margin: 0 auto;
 		width: 50%;
 	}
@@ -171,12 +175,117 @@
 }
 
 
+/* `Responsive
+-----------------------------------------------------------------------------*/
 
+@media (max-width: 1199px) {
+	.table-responsive-xxl {
+		display: block;
+		width: 100%;
+		overflow-x: auto;
+		th, td { word-break: keep-all; }
+	}
+}
 
+@media (max-width: 767px) {
+	$guide_height: 180px;
+	.nav-guide {
+		li { height: $guide_height; }
+		.guide-wrap {
+			height: $guide_height;
+			h5 {
+				font-size: 1.2rem;
+				font-weight: bold;
+			}
+			p {
+				font-size: 1.1rem;
+			}
+			.stress {
+				display: block;
+				padding-left: 0;
+			}
+		}
+	}
+	
+	.main-content {
+		.main-hd {
+			h4 { width: 42%; }
+		}
+	}
+	.main-content.login .table-wrap,
+	.main-content.password .table-wrap { padding: 2rem; }
+}
 
+@media (max-width: 574px) {
+	.nav-guide {
+		li { width: 50%; }
+	}
+	.main-content {
+		.main-hd {
+			h4 {
+				width: 100%;
+				font-size: 1.4rem;
+			}
+			h4, .back, h5 {
+				height: 60px;
+				line-height: 60px;
+			}
+			h5 { font-size: 1.2rem; }
+		}
+		.main-hd.has-col {
+			flex-wrap: wrap;
+			h4 {
+				width: 80%;
+			}
+			.back { width: 20%; }
+			
+		}
+	}
+}
 
+@media (max-width: 480px) {
+	.main-content .form-width {
+		width: 100%;
+	}
+}
 
+@media (max-width: 460px) {
+	.stock-table-responsive {
+		display: block;
+		width: 100%;
+		overflow-x: auto;
+		th, td { word-break: keep-all; }
+	}
+}
 
+@media (max-width: 410px) {
+	.mutual-aid-table-responsive {
+		display: block;
+		width: 100%;
+		overflow-x: auto;
+		th, td { word-break: keep-all; }
+	}
+}
+
+@media (max-width: 370px) {
+	.repayment-table-responsive {
+		display: block;
+		width: 100%;
+		overflow-x: auto;
+		th, td { word-break: keep-all; }
+	}
+}
+
+@media (max-width: 375px) {
+	$guide_height: 160px;
+	.nav-guide {
+		li {
+			width: 100%;
+			height: $guide_height;
+		}
+		.guide-wrap { height: $guide_height; }
+	}
+}
 
 
 

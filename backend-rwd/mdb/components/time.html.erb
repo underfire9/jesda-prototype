@@ -1,0 +1,68 @@
+<!-- backend-rwd: MDB / Time Picker -->
+<%= render :partial => "/partials/backend_breadcrumb" %>
+
+    <!--Main layout-->
+    <main class="main">
+
+		<div class="">
+
+			<div class="row">
+				<div class="col-md-6 col-lg-5 ml-auto">
+					<div class="card px-5 py-3 mt-5 mx-2">
+
+						<div class="md-form">
+							<input placeholder="Selected time" type="text" id="input_starttime" class="form-control timepicker">
+							<label for="input_starttime" class="active">Light version, 12hours</label>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-5 mr-auto">
+					<div class="card px-5 py-3 mt-5 mx-2">
+
+						<div class="md-form">
+							<input placeholder="Selected time" type="text" id="input_endtime" class="form-control timepicker">
+							<label for="input_starttime" class="active">Dark version, 24 hours</label>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!--Section: Docs link-->
+			<section class="pb-4 pt-5 mt-5">
+
+			   <!--Panel-->
+				<div class="card text-center">
+					<h3 class="card-header primary-color white-text">Full documentation</h3>
+					<div class="card-body">
+						<p class="card-text">Read the full documentation for these components.</p>
+						<a href="https://mdbootstrap.com/javascript/time-picker/" target="_blank" class="btn btn-primary">Learn more</a>
+					</div>
+				</div>
+				<!--/.Panel-->
+
+
+			</section>
+			<!--Section: Docs link-->
+
+		</div>
+
+    </main>
+    <!--Main layout-->
+
+
+<% content_for :js do %>
+    <script>
+        // Time Picker Initialization
+        $('#input_starttime').pickatime({
+            twelvehour: true
+        });
+        $('#input_endtime').pickatime({
+            // 12 or 24 hour 
+            twelvehour: false,
+            // Light or Dark theme
+            darktheme: true
+        });
+    </script>
+<% end %>

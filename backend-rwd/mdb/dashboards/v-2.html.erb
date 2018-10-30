@@ -1,0 +1,431 @@
+<!-- backend-rwd: MDB / Dashboard v.2 -->
+<%= render :partial => "/partials/backend_breadcrumb" %>
+
+    <!--Main layout-->
+    <main class="main">
+
+
+            <!--Section: Analytical panel-->
+            <section class="mb-5">
+
+                <!--Card-->
+                <div class="card card-cascade narrower">
+
+                    <!--Section: Chart-->
+                    <section>
+
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-xl-5 col-md-12 mr-0">
+
+                                <!--Card image-->
+                                <div class="view view-cascade gradient-card-header primary-color">
+                                    <h4 class="h4-responsive mb-0 font-weight-bold">Traffic</h4>
+                                </div>
+                                <!--/Card image-->
+
+                                <!--Card content-->
+                                <div class="card-body card-body-cascade pb-0">
+
+                                    <!--Panel data-->
+                                    <div class="row card-body pt-3">
+
+                                        <!--First column-->
+                                        <div class="col-md-12">
+
+                                            <!--Date select-->
+                                            <h4><span class="badge big-badge primary-color">Data range</span></h4>
+                                            <select class="mdb-select">
+                                                    <option value="" disabled selected>Choose time period</option>
+                                                    <option value="1">Today</option>
+                                                    <option value="2">Yesterday</option>
+                                                    <option value="3">Last 7 days</option>
+                                                    <option value="3">Last 30 days</option>
+                                                    <option value="3">Last week</option>
+                                                    <option value="3">Last month</option>
+                                                </select>
+                                            <br>
+
+                                            <!--Date pickers-->
+                                            <h4><span class="badge big-badge primary-color">Custom date</span></h4>
+                                            <br>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="md-form">
+                                                    <input placeholder="Selected date" type="text" id="from" class="form-control datepicker">
+                                                    <label for="date-picker-example">From</label>
+                                                </div>
+                                                <div class="md-form">
+                                                    <input placeholder="Selected date" type="text" id="to" class="form-control datepicker">
+                                                    <label for="date-picker-example">To</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!--/First column-->
+
+                                    </div>
+                                    <!--/Panel data-->
+
+                                </div>
+                                <!--/.Card content-->
+
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-xl-7 col-md-12 mb-4">
+
+                                <!--Card image-->
+                                <div class="view view-cascade gradient-card-header primary-color">
+
+                                    <!-- Chart -->
+                                    <canvas id="traffic" height="145px"></canvas>
+
+                                </div>
+                                <!--/Card image-->
+
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                    </section>
+                    <!--Section: Chart-->
+
+                </div>
+                <!--/.Card-->
+
+            </section>
+            <!--Section: Analytical panel-->
+
+            <!-- Section: data tables -->
+            <section class="section">
+
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h4 class="h4-responsive text-center mb-3">
+                                    Visits by Browser
+                                </h4>
+
+                                <canvas id="doughnutChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table large-header">
+                                        <thead>
+                                            <tr>
+                                                <th class="font-weight-bold dark-grey-text"><strong>Keywords</strong></th>
+                                                <th class="font-weight-bold dark-grey-text"><strong>Visits</strong></th>
+                                                <th class="font-weight-bold dark-grey-text"><strong>Pages</strong></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Material Design</td>
+                                                <td>15</td>
+                                                <td>307</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bootstrap</td>
+                                                <td>32</td>
+                                                <td>504</td>
+                                            </tr>
+                                            <tr>
+                                                <td>MDBootstrap</td>
+                                                <td>41</td>
+                                                <td>613</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Frontend</td>
+                                                <td>14</td>
+                                                <td>208</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <button class="btn btn btn-flat grey lighten-3 btn-rounded waves-effect float-right font-weight-bold dark-grey-text">View full report</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <table class="table large-header">
+                                    <thead>
+                                        <tr>
+                                            <th class="font-weight-bold dark-grey-text"><strong>Country</strong></th>
+                                            <th class="font-weight-bold dark-grey-text"><strong>Visits</strong></th>
+                                            <th class="font-weight-bold dark-grey-text"><strong>Pages</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><img src="../../img/flags/us.png" class="flag"> United States</td>
+                                            <td>15</td>
+                                            <td>307</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="../../img/flags/in.png" class="flag"> India</td>
+                                            <td>32</td>
+                                            <td>504</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="../../img/flags/cn.png" class="flag"> China</td>
+                                            <td>41</td>
+                                            <td>613</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="../../img/flags/pl.png" class="flag"> Poland</td>
+                                            <td>14</td>
+                                            <td>208</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="../../img/flags/it.png" class="flag"> Italy</td>
+                                            <td>24</td>
+                                            <td>314</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <button class="btn btn btn-flat grey lighten-3 btn-rounded waves-effect float-right font-weight-bold dark-grey-text">View full report</button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <table class="table large-header mb-1">
+                                    <thead>
+                                        <tr>
+                                            <th class="font-weight-bold dark-grey-text"><strong>Browser</strong></th>
+                                            <th class="font-weight-bold dark-grey-text"><strong>Visits</strong></th>
+                                            <th class="font-weight-bold dark-grey-text"><strong>Pages</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Google Chrome</td>
+                                            <td>15</td>
+                                            <td>307</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mozilla Firefox</td>
+                                            <td>32</td>
+                                            <td>504</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Safari</td>
+                                            <td>41</td>
+                                            <td>613</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Opera</td>
+                                            <td>14</td>
+                                            <td>208</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Microsoft Edge</td>
+                                            <td>24</td>
+                                            <td>314</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <button class="btn btn btn-flat grey lighten-3 btn-rounded waves-effect font-weight-bold dark-grey-text float-right">View full report</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+            <!-- /.Section: data tables -->
+
+    </main>
+    <!--/Main layout-->
+
+<% content_for :js do %>
+
+    <!--Initializations-->
+    <script>
+
+        // Data Picker Initialization
+        $('.datepicker').pickadate();
+
+        // Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').material_select();
+        });
+
+        // Tooltips Initialization
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <script>
+        $(function () {
+            var data = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,.15)",
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    backgroundColor: "#4CAF50",
+                }, {
+                    label: "My Second dataset",
+                    fillColor: "rgba(255,255,255,.25)",
+                    strokeColor: "rgba(255,255,255,.75)",
+                    pointColor: "#fff",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(0,0,0,.15)",
+                    data: [28, 48, 40, 19, 86, 27, 90]
+                }]
+            };
+
+
+            var dataPie = [{
+                value: 300,
+                color: "#4caf50",
+                highlight: "#66bb6a",
+                label: "Google Chrome"
+            }, {
+                value: 50,
+                color: "#03a9f4",
+                highlight: "#29b6f6",
+                label: "Edge"
+            }, {
+                value: 100,
+                color: "#d32f2f",
+                highlight: "#e53935",
+                label: "Firefox"
+            }]
+
+            var option = {
+                responsive: true,
+                // set font color
+                scaleFontColor: "#fff",
+                // font family
+                defaultFontFamily: "'Roboto', sans-serif",
+                // background grid lines color
+                scaleGridLineColor: "rgba(255,255,255,.1)",
+                // hide vertical lines
+                scaleShowVerticalLines: false,
+            };
+
+            // // Get the context of the canvas element we want to select
+            // var ctx = document.getElementById("sales").getContext('2d');
+            // var myLineChart = new Chart(ctx).Line(data, option); //'Line' defines type of the chart.
+
+            // // Get the context of the canvas element we want to select
+            // var ctx = document.getElementById("conversion").getContext('2d');
+            // var myRadarChart = new Chart(ctx).Radar(data, option);
+
+            // Get the context of the canvas element we want to select
+
+            //bar
+            var ctxB = document.getElementById("traffic").getContext('2d');
+            var myBarChart = new Chart(ctxB, {
+                type: 'bar',
+                data: {
+                    labels: ["January", "Febuary", "March", "April", "May", "June"],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 255, 255, 0.3)',
+                            'rgba(255, 255, 255, 0.3)',
+                            'rgba(255, 255, 255, 0.3)',
+                            'rgba(255, 255, 255, 0.3)',
+                            'rgba(255, 255, 255, 0.3)',
+                            'rgba(255, 255, 255, 0.3)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(255, 255, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    legend: {
+                        labels: {
+                            fontColor: "white"
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: "white"
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontColor: "white"
+                            }
+                        }]
+                    }
+                }
+            });
+
+            //pie
+            var ctxP = document.getElementById("doughnutChart").getContext('2d');
+            var myPieChart = new Chart(ctxP, {
+                type: 'doughnut',
+                data: {
+                    labels: ["March", "April", "May", "June"],
+                    datasets: [
+                        {
+                            data: [160, 50, 80, 60],
+                            backgroundColor: ["#4285F4", "#ffbb33", "#29b6f6", "#FF5252"],
+                            hoverBackgroundColor: ["#6ea0f2", "#fec451", "#52c3f6", "#fa6e6e"]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+
+
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('.min-chart#chart-sales').easyPieChart({
+                barColor: "#4caf50",
+                onStep: function (from, to, percent) {
+                    $(this.el).find('.percent').text(Math.round(percent));
+                }
+            });
+        });
+    </script>
+<% end %>

@@ -166,7 +166,10 @@ section.section {
 			}
 		}
 		.current a {
-			color: #333;
+			background: #f0f0f0;
+			padding-left: 0.85rem;
+			padding-right: 0.85rem;
+			color: #111;
 			cursor: default;
 			&:after { content: none; }
 		}
@@ -175,11 +178,9 @@ section.section {
 		margin: 2rem 0;
 	}
 	.contact-wrap {
-		background: $secondary_color;
-		padding: 0.8rem;
 		color: #222;
 		li {
-			border-bottom: 1px dashed rgba(#fff, .4);
+			border-bottom: 1px dashed rgba(#000, .1);
 			margin-bottom: 0.4rem;
 			padding-bottom: 0.4rem;
 			word-break: break-all;
@@ -196,7 +197,63 @@ section.section {
 	}
 }
 
-
+.scholarship-status {
+	> li {
+		width: 48.2%;
+	}
+	.hd {
+		border-bottom: none;
+	}
+	.status {
+		padding: 10px 20px;
+		font-size: 18px;
+		font-weight: bold;
+		position: relative;
+		overflow: hidden;
+		&:after, &:before {
+			content: "";
+			transition: all 0.2s ease-in-out;
+			position: absolute;
+			top: 15px;
+			right: -94px;
+			height: 120px;
+			width: 120px;
+			transform: rotate(45deg);
+		}
+	}
+	.open {
+		.status {
+			border-bottom: 2px solid $secondary_color;
+			color: darken($secondary_color, 10);
+			&:before {
+				background: $main_color;
+				top: 0;
+			}
+			&:after {
+				background: $secondary_color;
+			}
+		}
+	}
+	.closed {
+		.status {
+			border-bottom: 2px solid $main_color;
+			color: $main_color;
+			&:before {
+				background: $secondary_color;
+				top: 0;
+			}
+			&:after {
+				background: $main_color;
+			}
+		}
+	}
+	li:hover {
+		.status:after,
+		.status:before {
+			right: -102px;
+		}
+	}
+}
 
 
 

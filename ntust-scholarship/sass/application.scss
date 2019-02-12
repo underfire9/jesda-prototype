@@ -1,6 +1,14 @@
 
 @import "base";
 
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
 section.section {
 	margin-bottom: 2rem;
 }
@@ -27,12 +35,13 @@ section.section {
 -----------------------------------------------------------------------------*/
 
 .wrap-list {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+	@include clearfix;
 	> li {
+		float: left;
 		margin-bottom: 30px;
+		margin-right: 3.2%;
 		width: 31.2%;
+		&:nth-child(3n) { margin-right: 0; }
 	}
 	.title {
 		font-size: 18px;
@@ -208,6 +217,9 @@ section.section {
 .scholarship-status {
 	> li {
 		width: 48.2%;
+		margin-right: 3.6%;
+		&:nth-child(3n) { margin-right: 3.6%; }
+		&:nth-child(2n) { margin-right: 0; }
 	}
 	.hd {
 		border-bottom: none;

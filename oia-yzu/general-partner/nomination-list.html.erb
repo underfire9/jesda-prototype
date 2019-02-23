@@ -1,0 +1,194 @@
+<!-- oia-yzu: 姊妹校 - 提名學生名單  -->
+
+<div class="container">
+	<h4 class="block-title">2019 秋季班 赴本校交換生提名作業</h4>
+	<div class="leading-principles d-flex justify-content-between">
+	    <span class="item">Contract level：<strong>School</strong></span>
+		<span class="item">School contracted：<strong>Global office</strong></span>
+		<span class="item">Date：<strong>2018/8/2</strong></span>
+		<span class="item">Quota ：<strong>4</strong></span>
+	</div>
+	<div class="btn-group btn-group-sm unshadow mb-2">
+		<a class="btn btn-white" role="button" data-toggle="modal" data-target="#basicExampleModal">新增提名學生</a>
+		<a class="btn btn-white" role="button">名單匯入</a>
+		<a class="btn btn-white" role="button">匯入範本下載</a>
+		<a class="btn btn-white" role="button">送出提名通知</a>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th></th>
+				<th></th>
+				<th><input type="checkbox" class="defaultstyle"></th>
+				<th>English name</th>
+				<th>Gender</th>
+				<th>Email</th>
+				<th class="text-center">Department</th>
+				<th class="text-center">Grade</th>
+				<th>Period</th>
+				<th class="text-center">Nomination time</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><button class="btn btn-xs btn-info" data-toggle="modal" data-target="#basicExampleModal">Edit</button></td>
+				<td class="text-center">1</td>
+				<td><input type="checkbox" class="defaultstyle"></td>
+				<td><%= lorem_words(2) %></td>
+				<td>男</td>
+				<td><%= lorem_email %></td>
+				<td>資工系</td>
+				<td class="text-center">2</td>
+				<td>一學期</td>
+				<td class="text-center">03/17 18:00</td>
+				<td>
+					
+					<button class="btn btn-xs btn-link"><i class="fa fa-times"></i> Delete</button>
+				</td>
+			</tr>
+			<% 5.times do %>
+			<tr>
+				<td><button class="btn btn-xs btn-info" data-toggle="modal" data-target="#basicExampleModal">Edit</button></td>
+				<td class="text-center">2</td>
+				<td><input type="checkbox" class="defaultstyle"></td>
+				<td><%= lorem_words(2) %></td>
+				<td>男</td>
+				<td><%= lorem_email %></td>
+				<td>資工系</td>
+				<td class="text-center">2</td>
+				<td>一學期</td>
+				<td class="text-center">03/17 18:00</td>
+				<td>
+					<button class="btn btn-xs btn-link"><i class="fa fa-times"></i> Delete</button>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">提名資料</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+				<div class="form-group">
+					<label for="Chinesefullname">中文姓名</label>
+					<input type="text" class="form-control" id="Chinesefullname" placeholder="">
+				</div>
+				<div class="form-group">
+					<label for="FullnameinEnglish"><span class="required">*</span> 英文姓名</label>
+					<div class="row">
+						<div class="col">
+							<input type="text" class="form-control" placeholder="Last Name">
+						</div>
+						<div class="col">
+							<input type="text" class="form-control" placeholder="First Name">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="Email"><span class="required">*</span> 電子郵件</label>
+					<input type="text" class="form-control" id="Email" placeholder="">
+				</div>
+				<div class="form-group">
+					<label><span class="required">*</span> 性別</label>
+					<div>
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" class="custom-control-input" id="male" name="PersonalGender">
+							<label class="custom-control-label" for="male">Male</label>
+						</div>
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" class="custom-control-input" id="female" name="PersonalGender">
+							<label class="custom-control-label" for="female">Female</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for=""><span class="required">*</span> 原學校就讀系所</label>
+					<div class="row">
+						<div class="col-4">
+							<select class="browser-default custom-select d-inline-block">
+								<option selected>Please choose</option>
+								<option value="1">學士</option>
+								<option value="2">碩士</option>
+								<option value="3">博士</option>
+							</select>
+						</div>
+						<div class="col-8">
+							<input type="text" class="form-control" placeholder="請輸入系所資料">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="grade"><span class="required">*</span> 年級</label>
+					<select id="grade" class="browser-default custom-select">
+						<option selected>Please choose</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label><span class="required">*</span> 交換期間</label>
+					<div>
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" class="custom-control-input" id="semester" name="PersonalGender">
+							<label class="custom-control-label" for="semester">一學期</label>
+						</div>
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" class="custom-control-input" id="academic" name="PersonalGender">
+							<label class="custom-control-label" for="academic">一學年</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for=""><span class="required">*</span> 欲在元智就讀之系所</label>
+					<div class="row">
+						<div class="col">
+							<select class="browser-default custom-select d-inline-block">
+								<option selected>Please choose</option>
+								<option value="1">理工學院</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+						<div class="col">
+							<select class="browser-default custom-select d-inline-block">
+								<option selected>Please choose</option>
+								<option value="1">應用數學系</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="grade2"><span class="required">*</span> 年級</label>
+					<select id="grade2" class="browser-default custom-select">
+						<option selected>Please choose</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="guidingMentor"><span class="required">*</span> 指導教授</label>
+					<input type="text" class="form-control" id="guidingMentor" placeholder="">
+					<p class="form-text text-muted">若無事先接洽者由校方安排</p>
+				</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3140,7 +3140,7 @@ header.header .form-inline .form-control {
 }
 
 .side-nav {
-  background-color: #484B50;
+  background-color: #2f324f;
 }
 .side-nav .logo-sn {
   padding: 0;
@@ -10792,6 +10792,13 @@ table.table a:hover {
   height: auto;
 }
 
+.bg-transparent {
+  background-color: transparent !important;
+}
+.bg-transparent:after {
+  content: none !important;
+}
+
 /* `Rollcall
 -----------------------------------------------------------------------------*/
 .card.rollcall-card .view.view-cascade {
@@ -10934,6 +10941,7 @@ table.table a:hover {
 -----------------------------------------------------------------------------*/
 .signing-flow {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   border-bottom: 1px dashed #aaa;
   padding: 3rem 0 2rem;
@@ -10952,10 +10960,30 @@ table.table a:hover {
   color: #fff;
 }
 .signing-flow .avatar {
-  display: inline-block;
-  border-radius: 50%;
-  padding: 0 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-right: 1.5rem;
+  padding: 1rem 0.5rem 0.5rem;
   width: 200px;
+  min-width: 200px;
+  position: relative;
+  transition: all .1s ease-in-out;
+}
+.signing-flow .avatar:hover {
+  background: #f7f9fc;
+}
+.signing-flow .avatar:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 8px 0 0;
+  border-color: #f28d04 transparent transparent transparent;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.signing-flow .avatar:last-child {
+  margin-right: 0;
 }
 .signing-flow .avatar .fa {
   font-size: 48px;
@@ -10974,9 +11002,7 @@ table.table a:hover {
   color: #999;
 }
 .signing-flow .avatar .summary {
-  background: #f5f5f5;
-  border-radius: 5px;
-  padding: 0.5rem;
+  padding-top: 0.5rem;
 }
 .signing-flow .action-top {
   position: absolute;

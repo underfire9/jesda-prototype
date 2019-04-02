@@ -1,0 +1,284 @@
+<!-- CULROC_admin: Dashborad -->
+<div class="full-block dashboard-head bg-white">
+    <div class="row">
+        <div class="col-3">
+            <div class="clearfix">
+                <div class="float-left pt-1">
+                    <h5>新建活動</h5>
+                    <p class="text-muted text-uppercase"><small><i class="fa fa-calendar"></i> Today</small></p>
+                </div>
+                <h3 class="float-left ml-3 font-w400">300</h3>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="clearfix">
+                <div class="float-left pt-1">
+                    <h5>新建活動</h5>
+                    <p class="text-muted text-uppercase"><small><i class="fa fa-calendar"></i> This Month</small></p>
+                </div>
+                <h3 class="float-left ml-3 font-w400">1,200</h3>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="clearfix">
+                <div class="float-left pt-1">
+                    <h5>目前上線活動</h5>
+                    <p class="text-muted text-uppercase"><small><i class="fa fa-calendar"></i> All Time</small></p>
+                </div>
+                <h3 class="float-left ml-3 font-w400">5,432</h3>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="clearfix">
+                <div class="float-left pt-1">
+                    <h5>會員人數</h5>
+                    <p class="text-muted text-uppercase"><small><i class="fa fa-calendar"></i> All Time</small></p>
+                </div>
+                <h3 class="float-left ml-3 font-w400">90,363</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="main">
+    <div class="page-header">
+        <h2>Dashborad</h2>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="col-block">
+                <div class="block-header has-border">
+                    <h3>Weekly Overview</h3>
+                    <div class="block-options pull-right">
+                        <button class="clean" title="未知的功能選項"><i class="fa fa-cog"></i></button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div><canvas id="canvas" style="max-height:400px;"></canvas></div>
+                </div>
+                <div class="block-footer has-border data-footer">
+                    <div class="row text-center">
+                        <div class="col-3">
+                            <h2 class="font-w400 text-darkgray"><i class="fa fa-line-chart"></i></h2>
+                            <h4 class="font-w400 text-muted">+ 205 Sales</h4>
+                        </div>
+                        <div class="col-3">
+                            <h2 class="font-w400 text-darkgray"><i class="fa fa-users"></i></h2>
+                            <h4 class="font-w400 text-muted">+ 25% Clients</p>
+                        </div>
+                        <div class="col-3">
+                            <h2 class="font-w400 text-darkgray"><i class="fa fa-star-o"></i></h2>
+                            <h4 class="font-w400 text-muted">+ 10 Ratings</p>
+                        </div>
+                        <div class="col-3 col-last">
+                            <h2 class="font-w400 text-darkgray"><i class="fa fa-share-alt"></i></h2>
+                            <h4 class="font-w400 text-muted">+ 35 Followers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col-12 mb-20">
+                    <div class="col-block">
+                        <div class="block-header has-border">
+                            <h3>Bar chart</h3>
+                            <div class="block-options pull-right">
+                                <button class="clean" title="未知的功能選項"><i class="fa fa-refresh"></i></button>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <div><canvas id="canvasbar"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="col-block">
+                        <div class="block-header has-border"><h3>Pie Chart</h3></div>
+                        <div class="block-content text-center">
+                            <div><canvas id="chart-area"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="col-block">
+                <div class="block-header has-border"><h3>最新活動列表</h3></div>
+                <div class="block-content expansion">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>活動名稱</th>
+                                <th>日期</th>
+                                <th>主辦單位</th>
+                            </tr>   
+                        </thead>
+                        <tbody>
+                            <% 10.times do %>
+                            <tr>
+                                <td><a href="/"><%= zh_lorem_sentence %></a></td>
+                                <td><%= lorem_date("%Y/%m/%d", 2015..2016) %></td>
+                                <td><%= lorem_word %></td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="col-block">
+                <div class="block-header has-border"><h3>Timeline</h3></div>
+                <div class="block-content">
+                    <div class="timeline block-timeline">
+                        <ul>
+                            <li class="time-warning">
+                                <div class="timeline-circ"></div>
+                                <div class="card">
+                                    <div class="card-body small-padding">
+                                        <span class="timeline-date"><i class="fa fa-clock-o" aria-hidden="true"></i> 2018 年 5 月 3 日, 星期四</span>
+                                        <span class="text-medium">申請 <a href="###">未送出</a> 來自 <span class="info">工業工程學研究所</span></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="timeline-circ"></div>
+                                <div class="card">
+                                    <div class="card-body small-padding">
+                                        <span class="timeline-date"><i class="fa fa-clock-o" aria-hidden="true"></i> 2018 年 5 月 3 日, 星期四</span>
+                                        <span class="text-medium"><%= zh_lorem_sentence %> <a href="###"><%= zh_lorem_sentence %></a> 來自 <span class="info"><%= lorem_email %></span></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="time-warning">
+                                <div class="timeline-circ"></div>
+                                <div class="card">
+                                    <div class="card-body small-padding">
+                                        <span class="timeline-date"><i class="fa fa-clock-o" aria-hidden="true"></i> 2018 年 5 月 3 日, 星期四</span>
+                                        <span class="text-medium"><%= zh_lorem_sentence %> <a href="###"><%= zh_lorem_sentence %></a> 來自 <span class="info"><%= zh_lorem_paragraph %></span></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="time-danger">
+                                <div class="timeline-circ"></div>
+                                <div class="card">
+                                    <div class="card-body small-padding">
+                                        <span class="timeline-date"><i class="fa fa-clock-o" aria-hidden="true"></i> 2018 年 5 月 3 日, 星期四</span>
+                                        <span class="text-medium"><%= zh_lorem_paragraph %> <a href="###"><%= zh_lorem_sentence %></a> 來自 <span class="info"><%= zh_lorem_paragraph %></span></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<% content_for :js do %>
+    <script src="../javascripts/Chart.js"></script>
+	<script>
+		var randomScalingFactor = function(){ return Math.round(Math.random()*80)};
+		var lineChartData = {
+			labels : ["January","February","March","April","May","June","July"],
+			datasets : [
+				{
+					label: "My First dataset",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				},
+				{
+					label: "My Second dataset",
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				}
+			]
+
+		}
+	var randomScalingFactor = function(){ return Math.round(Math.random()*80)};
+
+	var barChartData = {
+		labels : ["January","February","March","April","May","June","July"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,0.8)",
+				highlightFill : "rgba(151,187,205,0.75)",
+				highlightStroke : "rgba(151,187,205,1)",
+				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+			}
+		]
+
+	}
+
+	var pieData = [
+			{
+				value: 300,
+				color:"#F7464A",
+				highlight: "#FF5A5E",
+				label: "Red"
+			},
+			{
+				value: 50,
+				color: "#46BFBD",
+				highlight: "#5AD3D1",
+				label: "Green"
+			},
+			{
+				value: 100,
+				color: "#FDB45C",
+				highlight: "#FFC870",
+				label: "Yellow"
+			},
+			{
+				value: 40,
+				color: "#949FB1",
+				highlight: "#A8B3C5",
+				label: "Grey"
+			},
+			{
+				value: 120,
+				color: "#4D5360",
+				highlight: "#616774",
+				label: "Dark Grey"
+			}
+
+		];
+
+	window.onload = function(){
+		var ctx1 = document.getElementById("canvas").getContext("2d");
+		window.myLine = new Chart(ctx1).Line(lineChartData, {
+			responsive: true
+		});
+		var ctx2 = document.getElementById("canvasbar").getContext("2d");
+		window.myBar = new Chart(ctx2).Bar(barChartData, {
+			responsive : true
+		});
+		var ctx3 = document.getElementById("chart-area").getContext("2d");
+		window.myPie = new Chart(ctx3).Pie(pieData);
+	}
+
+	</script>
+<% end %>

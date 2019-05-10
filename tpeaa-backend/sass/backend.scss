@@ -112,8 +112,8 @@ body {
 }
 
 table.table {
-	a { color: lighten($main_lighten_color, 5); }
-	a:hover { color: lighten($main_color, 10); }
+	a { color: $main_color; }
+	a:hover { color: darken($main_color, 20); }
 }
 
 .rp-img {
@@ -370,39 +370,34 @@ table.table {
 -----------------------------------------------------------------------------*/
 
 .login-container {
+	background: #fff;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	background-image: url(../assets/trianglify.svg);
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: cover;
 	height: 100vh;
 	width: 100vw;
-	position: relative;
-	&:before {
-		content: "";
-		background: rgba(#000, .35);
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
+	.login-campus {
+		background-image: url(../assets/login_bg2.jpg);
+		background-position: center bottom;
+		background-repeat: no-repeat;
+		background-size: cover;
+		width: 65%;
 	}
-	.login {
-		min-width: 400px;
+	.login-wrap {
+		display: flex;
+		align-items: center;
+		background: #fff;
+		padding: 0 5rem;
+		width: 35%;
 	}
 	.logo {
 		margin-bottom: 1rem;
-		position: relative;
-		font-size: 1.8rem;
-		color: white;
-		text-align: center;
 		img {
-			width: 48px;
+			width: 100%;
 			height: auto;
 		}
+	}
+	.stupid-imgtext img {
+		max-width: 100%;
+		height: auto;
 	}
 }
 
@@ -874,26 +869,50 @@ ul.ticket-tax-list {
 		margin-bottom: 1rem;
 		width: 32%;
 		&:nth-child(3n) { margin-right: 0; }
-		&:nth-child(7n+1) .process-icon {
-			background: #90caf9;
+		&:nth-child(15n+1) .process-icon {
+			background: $sky_blue;
 		}
-		&:nth-child(7n+2) .process-icon {
-			background: #64b5f6;
+		&:nth-child(15n+2) .process-icon {
+			background: darken($sky_blue, 4);
 		}
-		&:nth-child(7n+3) .process-icon {
-			background: #42a5f5;
+		&:nth-child(15n+3) .process-icon {
+			background: darken($sky_blue, 8);
 		}
-		&:nth-child(7n+4) .process-icon {
-			background: #2196f3;
+		&:nth-child(15n+4) .process-icon {
+			background: darken($sky_blue, 12);
 		}
-		&:nth-child(7n+5) .process-icon {
-			background: #1e88e5;
+		&:nth-child(15n+5) .process-icon {
+			background: darken($sky_blue, 16);
 		}
-		&:nth-child(7n+6) .process-icon {
-			background: #1976d2;
+		&:nth-child(15n+6) .process-icon {
+			background: darken($sky_blue, 20);
 		}
-		&:nth-child(7n+7) .process-icon {
-			background: #1565c0;
+		&:nth-child(15n+7) .process-icon {
+			background: darken($sky_blue, 24);
+		}
+		&:nth-child(15n+8) .process-icon {
+			background: darken($sky_blue, 28);
+		}
+		&:nth-child(15n+9) .process-icon {
+			background: darken($sky_blue, 32);
+		}
+		&:nth-child(15n+10) .process-icon {
+			background: darken($sky_blue, 36);
+		}
+		&:nth-child(15n+11) .process-icon {
+			background: darken($sky_blue, 40);
+		}
+		&:nth-child(15n+12) .process-icon {
+			background: darken($sky_blue, 44);
+		}
+		&:nth-child(15n+13) .process-icon {
+			background: darken($sky_blue, 48);
+		}
+		&:nth-child(15n+14) .process-icon {
+			background: darken($sky_blue, 52);
+		}
+		&:nth-child(15n+15) .process-icon {
+			background: darken($sky_blue, 56);
 		}
 	}
 	.process-icon, .process-body {
@@ -1228,8 +1247,39 @@ ul.ticket-tax-list {
 @media (max-width: 1440px) {
     .fixed-sn .content-wrapper {
         padding-left: 0;
-    } 
+    }
+	.login-container {
+		.login-campus {
+			width: 55%;
+		}
+		.login-wrap {
+			width: 45%;
+		}
+	}
 }
+
+@media (max-width: 1024px) {
+	.login-container {
+		.login-campus {
+			width: 50%;
+		}
+		.login-wrap {
+			width: 50%;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.login-container {
+		.login-campus {
+			width: 25%;
+		}
+		.login-wrap {
+			width: 75%;
+		}
+	}
+}
+
 
 @media (max-width: 767px) {
     .block-header .form-row, .form-row.mb-3 {
@@ -1261,6 +1311,26 @@ ul.ticket-tax-list {
 			padding-right: 0;
 		}
 	}
+	.login-container {
+		.login-campus {
+			width: 15%;
+		}
+		.login-wrap {
+			width: 85%;
+		}
+	}
+}
+
+@media (max-width: 575px) {
+	.login-container {
+		.login-campus {
+			display: none;
+		}
+		.login-wrap {
+			width: 100%;
+		}
+		.h4 { text-align: center; }
+	}
 }
 
 @media (max-width: 480px) {
@@ -1284,3 +1354,10 @@ ul.ticket-tax-list {
 	}
 }
 
+@media (max-width: 479px) {
+	.login-container {
+		.login-wrap {
+			padding: 0 3rem;
+		}
+	}
+}

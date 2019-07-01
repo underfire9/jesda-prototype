@@ -1,0 +1,179 @@
+<!-- NTU-OSA: 行事曆  -->
+
+<div class="container">
+	
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">首頁</a></li>
+			<li class="breadcrumb-item active">行事曆</li>
+		</ol>
+	</nav>
+	
+	<main class="main">
+		<div id='calendar'>
+		    <div class="search-part">
+			    <form class="search-form">
+					<div class="keyword-form md-form active-cyan-2">
+						<input id="calendar_search" class="form-control" type="text" placeholder="請輸入關鍵字" aria-label="Search" title="關鍵字搜尋">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</div>
+					<div class="interval-form">
+					    <div class="form-row">
+							<div class="col-1">
+								<div class="md-form">或</div>
+							</div>
+						    <div class="col">
+							    <div class="md-form">
+								    <input id="calendar_interval1" type="text" class="form-control" placeholder="日期區間" title="日期區間">
+								</div>
+							</div>
+							<div class="col-1">
+								<div class="md-form">~</div>
+							</div>
+							<div class="col">
+							    <div class="md-form">
+								    <input id="calendar_interval2" type="text" class="form-control" placeholder="日期區間" title="日期區間">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</main>
+	
+</div>
+
+
+<% content_for :js do %>
+	<script src='../javascripts/moment.min.js'></script>
+	<script src='../javascripts/fullcalendar.js'></script>
+    <script src='../javascripts/locale/zh-tw.js'></script>
+	<script>
+		$(document).ready(function() {
+			var initialLocaleCode = 'zh-tw';
+			$('#calendar').fullCalendar({
+				header: {
+					left: 'prev,next today title month,basicWeek,basicDay,listYear',
+					center: '',
+					right: ''
+				},
+				defaultDate: '2019-06-12',
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
+				events: [
+					{
+						title: 'All Day Event',
+						start: '2019-06-01'
+					},
+					{
+						title: 'Long Event',
+						start: '2019-06-07',
+						end: '2019-06-10'
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: '2019-06-09T16:00:00'
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: '2019-06-16T16:00:00'
+					},
+					{
+						title: 'Conference',
+						start: '2019-06-11',
+						end: '2019-06-13'
+					},
+					{
+						title: 'Meeting',
+						start: '2019-06-12T10:30:00',
+						end: '2019-06-12T12:30:00'
+					},
+					{
+						title: 'Lunch',
+						start: '2019-06-12T12:00:00'
+					},
+					{
+						title: 'Meeting',
+						start: '2019-06-12T14:30:00'
+					},
+					{
+						title: 'Happy Hour',
+						start: '2019-06-12T17:30:00'
+					},
+					{
+						title: 'Dinner',
+						start: '2019-06-12T20:00:00'
+					},
+					{
+						title: 'Birthday Party',
+						start: '2019-06-13T07:00:00'
+					},
+					{
+						title: 'Click for Google',
+						url: 'http://google.com/',
+						start: '2019-06-28'
+					}
+				]
+			});
+
+		});
+
+	</script>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

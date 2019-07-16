@@ -249,14 +249,16 @@ main.main {
 -----------------------------------------------------------------------------*/
 
 .service-container {
-	display: flex;
-	justify-content: space-between;
 	border-top: 1px solid #e5ebf2;
 	border-bottom: 1px solid #e5ebf2;
 	padding: 60px 0;
+	.service-wrap {
+        display: flex;
+		flex-wrap: wrap;
+	}
 	.service-item {
-		//padding-top: 2rem;
-		width: 30%;
+		margin-bottom: 2rem;
+		width: 50%;
 		font-size: 1.15rem;
 		text-align: center;
 	}
@@ -290,6 +292,44 @@ main.main {
 		.item-wrap:hover {
 			.afterimage {
 				opacity: 0.5;
+			}
+		}
+	}
+	.cais {
+		.item-logo {
+			max-width: 176px;
+		}
+	}
+	.form-list {
+		li {
+			margin-bottom: 1rem;
+		}
+		a {
+			transition: all .2s ease-in-out;
+			background: #f9f9f9;
+			display: block;
+			padding: 0.6rem 1rem 0.6rem 1.3rem;
+			font-size: 18px;
+			color: #333;
+			position: relative;
+			z-index: 2;
+			&:before {
+				transition: all .2s ease-in-out;
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				background: #ddd;
+				width: 8px;
+				z-index: -1;
+			}
+			&:hover {
+				color: #fff;
+				&:before {
+					background: $main_color;
+					width: 100%;
+				}
 			}
 		}
 	}

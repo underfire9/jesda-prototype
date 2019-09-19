@@ -1,0 +1,151 @@
+<!-- NTU-OSA: 檔案中心 -->
+
+<div class="container">
+    <%= render :partial => "/partials/sticky" %>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">首頁</a></li>
+			<li class="breadcrumb-item active">檔案中心</li>
+		</ol>
+	</nav>
+	<main class="main">
+		<div class="row">
+			<div class="col-md-3 sidenav">
+				<div class="sticky">
+					<ul class="collapsible collapsible-accordion menu-item">
+						<li><a href="#" class="collapsible-header waves-effect">書院活動宗旨</a></li>
+						<li><a href="#" class="collapsible-header waves-effect">各學院分梯次及日期區間</a></li>
+						<li><a href="#" class="collapsible-header waves-effect">報到日期、時間、地點</a></li>
+						<li><a href="#" class="collapsible-header waves-effect">課程表</a></li>
+						<li><a href="#" class="collapsible-header waves-effect">抽獎資訊</a></li>
+						<li><a class="collapsible-header waves-effect arrow-r">書院團隊介紹<i class="fa fa-angle-down rotate-icon"></i></a>
+							<div class="collapsible-body">
+								<ul>
+									<li><a class="waves-effect" href="#">課外組團隊</a></li>
+									<li><a class="waves-effect" href="#">籌借人員團隊</a></li>
+									<li><a class="waves-effect" href="#">隊輔團隊照片</a></li>
+								</ul>
+							</div>
+						</li>
+						<li><a href="#" class="collapsible-header waves-effect">常見問題</a></li>
+						<li><a href="#" class="collapsible-header waves-effect current">重要文件下載</a></li>
+						<li><a href="#" class="collapsible-header waves-effect">學生手冊</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="section-title">
+					<h3>重要文件下載</h3>
+				</div>
+				<div class="files-section">
+					<ul class="menu-item file-list">
+						<% (1..5).map do |i| %>
+					    <li>
+						    <h6><%= lorem_sentence %></h6>
+							<div class="file-dl">
+								<a href="#" title="PDF">PDF</a>
+								<a href="#" title="DOCX">DOCX</a>
+								<a href="#" title="ODF">ODF</a>
+							</div>
+						</li>
+						<li>
+						    <h6><%= zh_lorem_sentences(2) %></h6>
+							<div class="file-dl">
+								<a href="#" title="PDF">PDF</a>
+								<a href="#" title="DOCX">DOCX</a>
+								<a href="#" title="ODF">ODF</a>
+							</div>
+						</li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
+
+
+<% content_for :js do %>
+<script>
+$(function () {
+	$(".sticky").sticky({
+		topSpacing: 30,
+		zIndex: 2,
+		stopper: "footer.footer",
+		minWidth: 991
+	});
+    jQuery(document).ready(function($) {
+        var alterClass = function() {
+            var ww = document.body.clientWidth;
+            if (ww < 767) {
+                $('.sticky').addClass('sticky-fix');
+            } else if (ww >= 767) {
+                $('.sticky').removeClass('sticky-fix');
+            };
+        };
+        $(window).resize(function() {
+            alterClass();
+        });
+        //Fire it when the page first loads:
+        alterClass();
+    });
+	// MDB Lightbox Init
+    $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
+	
+});
+	
+</script>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,8 +6,19 @@ header.header {
 	.navbar {
 		background: $main_lighten_color;
 		box-shadow: 0 1px 1px rgba(#000, .05);
-		border-radius: 0 0 6px 6px;
 		padding: 0;
+		.header-toolbar {
+            padding-right: 7px;
+            padding-left: 0;
+			a {
+                color: $main_darken_color !important;
+				&:hover {
+					background: none; 
+					color: #000 !important;
+				}
+            }
+			li:last-child a { padding-right: 6px; }
+		}
 	}
 	.nav-item {
 		padding: 0 0.5rem 0;
@@ -37,12 +48,22 @@ header.header {
 	.navbar-toggler {
 		margin: 6px 0;
 	}
+	.search-form {
+        position: relative;
+        &:after {
+            content: "\f002";
+            font-family: 'FontAwesome';
+            position: absolute;
+            right: 10px;
+            top: 7px;
+        }
+	}
+	.mobile-only { display: none; }
 }
 
 .header-bar {
 	background: $main_color;
 	border-bottom: 1px solid rgba(#000, .07);
-	padding-left: 16px;
 	font-size: 13px;
 	text-align: right;
 }
@@ -74,17 +95,16 @@ header.header {
 			color: $main_darken_color;
 		}
 	}
-	li {
-		&:last-child a { padding-right: 20px; }
-	}
 }
 
 .header-wrap {
     background: $main_color;
-	padding: .6rem 1.25rem;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	padding: .6rem 0;
+	.container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;	
+	}
 	.brands {
 		a {
             align-items: center;
@@ -123,4 +143,21 @@ header.header {
 		}
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

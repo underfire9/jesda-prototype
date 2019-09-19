@@ -3532,6 +3532,43 @@ select.browser-default {
   transform: rotate(90deg);
 }
 
+.video-wrapper {
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+}
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lazy-wrapper .dl-box {
+  display: block;
+  position: relative;
+}
+.lazy-wrapper .dl-box:before {
+  content: "";
+  transition: all .15s ease-in-out;
+  background: #000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+}
+.lazy-wrapper .dl-box:hover:before {
+  opacity: 0.1;
+}
+.lazy-wrapper img {
+  width: 100%;
+  height: auto;
+}
+
 /* `Application
 -----------------------------------------------------------------------------*/
 .block {
@@ -3997,6 +4034,17 @@ select.browser-default {
   .main-link .main-btn {
     width: 49%;
   }
+
+  .stuff-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .stuff-wrapper .video-wrapper, .stuff-wrapper .lazy-wrapper {
+    width: 49%;
+  }
+  .stuff-wrapper .video-wrapper {
+    padding-bottom: 27.25%;
+  }
 }
 @media (max-width: 991px) {
   header.header {
@@ -4097,6 +4145,16 @@ select.browser-default {
   }
   .main-link .main-btn {
     width: 100%;
+  }
+
+  .stuff-wrapper {
+    display: block;
+  }
+  .stuff-wrapper .video-wrapper, .stuff-wrapper .lazy-wrapper {
+    width: 100%;
+  }
+  .stuff-wrapper .video-wrapper {
+    padding-bottom: 56.25%;
   }
 
   .faq-list .list-wrap div {

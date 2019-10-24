@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% if content_for? :title %>
+        <%= yield :title %>
+    <% else %>
+        <title>KKBOX Group</title>
+    <% end %>
+    <!-- FB -->
+    <meta property="og:url" content="http://kkboxcorp.com" />
+    <meta property="og:title" content="KKBOX Group" />
+    <meta property="og:site_name" content="KKBOX Group" />
+    <meta property="og:image" content="http://kkboxcorp.com/assets/kkboxcorp-og-image.png" />
+    <meta property="og:description" content="KKBOX Group - Practical Dreamers Powered by Curiosity" />
+    <meta property="og:type" content="website" />
+    <!-- Twitter -->
+    <meta name="twitter:site" content="http://kkboxcorp.com" />
+    <meta name="twitter:title" content="KKBOX Group" />
+    <meta name="twitter:image" content="http://kkboxcorp.com/assets/kkboxcorp-og-image.png" />
+    <meta name="twitter:description" content="KKBOX Group - Practical Dreamers Powered by Curiosity" />
+    <meta name="description" content="KKBOX Group - Practical Dreamers Powered by Curiosity" />
+    <% if content_for? :replace_css %>
+        <%= yield :replace_css %>
+    <% end %>
+    <!--[if lt IE 9]>
+        <script src="/javascripts/selectivizr-min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" media="all" href="stylesheets/application.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="javascripts/modernizr.custom.js"></script>
+</head>
+<body>
+<div class="pages">
+    <header class="header lightness">
+        <%= render :partial => "/partials/header" %>
+    </header>
+    <%= yield %>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="javascripts/bootstrap.js"></script>
+
+<% if content_for? :js %>
+    <%= yield :js %>
+<% end %>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-80192013-1', 'auto');
+ ga('send', 'pageview');
+
+</script>
+<%= livereload_js if ENV["RACK_ENV"] != "production" && defined?(App)%>
+</body>
+</html>

@@ -1,0 +1,212 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Lora:400,700|Roboto:500&display=swap');
+@import "normalize";
+
+$page-background-color: #2F3C4F;
+$gradient-color-1: #F57170;
+$gradient-color-2: #10DDC2;
+
+/* `Base
+-----------------------------------------------------------------------------*/
+
+html, bady { height: 100%; }
+
+body {
+	font-family: 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
+	                                                     // 微軟正黑體
+    line-height: 1.6;
+	font-size: 1rem;
+	font-weight: 400;
+	color: #333;
+}
+
+// Keyframes
+@keyframes animationgradienttitle {
+  0% {
+      background-position: 0 1600px;
+  }
+  100% {
+      background-position: 1600px 0;
+  }
+}
+
+
+.landing-page {
+	background: url("../assets/bg-landing.jpg") no-repeat center center;
+	background-size: cover;
+	min-height: 100vh;
+	position: relative;
+	color: #fff;
+	&:before {
+		content: "";
+		background: rgba(#000, .5);
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 0;
+	}
+}
+
+.pages {
+	padding: 7.5% 0 5%;
+	min-height: 100vh;
+}
+
+.welcome, .links {
+	position: relative;
+	z-index: 1;
+	text-align: center;
+}
+
+.welcome {
+	margin-bottom: 100px;
+	position: relative;
+	h1 {
+		margin: 0;
+		font-family: 'Lora', serif;
+		font-weight: 700;
+		font-size: 60px;
+		//text-shadow: 0 14px 8px rgba(#000, .6);
+		
+		background: -webkit-linear-gradient(left, $gradient-color-1,$gradient-color-2 , $gradient-color-1);
+		background-size: 1600px 200px;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation-duration: 3s;
+        animation-name: animationgradienttitle;
+        animation-iteration-count: infinite;
+        animation-fill-mode: forwards;
+	}
+	&:after {
+		content: "";
+		background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,166,0,1) 17%, rgba(255,231,0,1) 33%, rgba(0,255,72,1) 50%, rgba(45,190,255,1) 66%, rgba(58,69,255,1) 83%, rgba(255,0,211,1) 100%);
+		height: 2px;
+		width: 100px;
+		position: absolute;
+		bottom: -50px;
+		left: 50%;
+		margin-left: -50px;
+	}
+}
+
+.links {
+	ul, li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	li { margin-bottom: 20px; }
+	a {
+		display: inline-block;
+		background: rgba(#fff, .8);
+		border-radius: 32px;
+		width: 460px;
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: #000;
+		line-height: 64px;
+		transition: all .2s ease-in-out;
+		&:hover {
+			background: #fff;
+			box-shadow: 0 4px 8px rgba(#000, .5);
+			text-decoration: none;
+		}
+	}
+}
+
+.color-nisa a {
+	background: rgba(#00b3c5, .8);
+	color: #fff;
+    &:hover {
+        background: #0acde1;
+    }
+}
+
+.font-roboto a {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .landing-page {
+        background: url("../assets/bg-landing_mobile.jpg") no-repeat center center;
+		background-size: cover;
+    }
+}
+
+@media (max-width: 767px) {
+	.welcome h1 { font-size: 48px; }
+	.links a {
+		width: 400px;
+		font-size: 1.125rem;
+		line-height: 48px;
+	}
+}
+
+@media (max-width: 479px) {
+	.welcome {
+		margin-bottom: 60px;
+		&:after { bottom: -30px; }
+		h1 { font-size: 38px; }
+	}
+	.links {
+		li { margin-bottom: 12px; }
+		a {
+            width: 330px;
+            font-size: 1rem;
+        }
+	}
+}
+
+@media (max-width: 359px) {
+	.container-fluid {
+		min-width: 320px;
+	}
+	.welcome {
+		h1 { font-size: 34px; }
+	}
+	.links {
+		a {
+            width: 290px;
+            font-size: 0.9375rem;
+        }
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

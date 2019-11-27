@@ -11,7 +11,7 @@
 					Block Expansion
 				</div>
 				<div class="block-content expansion">
-					<table class="table table-striped datatable">
+					<table id="jesdaDataTable" class="table table-striped datatable">
 						<thead>
 							<tr>
 								<th>執行單位</th>
@@ -25,7 +25,7 @@
 								<th data-type="attendees_count">票數</th>
 								<th>繳費狀態</th>
 								<th data-type="price">金額</th>
-								<th class="align-right">手續費</th>
+								<th>手續費</th>
 								<th data-type="actions" data-sortable="false" class="unvisible">動作</th>
 							</tr>
 						</thead>
@@ -70,16 +70,16 @@
 								<td><span class="label label-default">已退票</span></td>
 								<% end %>
 								<% if i % 4 == 0 %>
-								<td class="align-right">TWD$1,600</td>
+								<td>TWD$1,600</td>
 								<% else %>
-								<td class="align-right">免費</td>
+								<td>免費</td>
 								<% end %>
 								<% if i % 4 == 0 %>
-								<td class="align-right">TWD$24</td>
+								<td>TWD$24</td>
 								<% else %>
-								<td class="align-right">免費</td>
+								<td>免費</td>
 								<% end %>
-								<td class="align-right"><a class="btn btn-default btn-xs" href="#">明細</a></td>
+								<td><a class="btn btn-default btn-xs" href="#">明細</a></td>
 								</tr>
 							<% end %>
 						</tbody>
@@ -90,133 +90,27 @@
     </div>
 </main>
 
-<script type="text/template" id="data-filter-tpl">
-<%= render "data-filter.erb" %>
-</script>
 
-<script type="text/template" id="column-filter-tpl">
-<%= render "column-filter.erb" %>
-</script>
-
-<template id="data-filter-popover-tpl">
-    <form class="popover form-inline data-filter" role="tooltip" style="max-width: 80vw">
-        <div class="arrow"></div>
-        <h3 class="popover-title"></h3>
-        <div class="popover-content"></div>
-        <div class="panel-footer " style="position: relative;">
-            <button class="btn btn-default" type="reset">清除</button>
-            <button class="btn btn-primary pull-right" type="submit">套用</button>
-        </div>
-    </form>
-</template>
 
 <% content_for :js do %>
-<script src="/javascripts/jquery.dataTables.js"></script>
-<script src="/javascripts/dataTables-settings.js"></script>
-<!-- <script src="/javascripts/dataTable-initialisation-with-select2.js"></script> -->
-<script src="/javascripts/select2.js"></script>
+<script src="../javascripts/datatables.min.js"></script>
 <script>
-    $(function(){
-        var dataTable = $('.datatable').DataTable( {
-            "sDom": "<'t-header clearfix'<'t-actions btn-toolbar'><'t-controls'<'t-filters'>><'t-data-filter-wrapper media-flex'<'t-search'f><'t-data-filter media-body-flex media-flex'>>r><'t-alert'><'datatable-wrapper't><'t-footer clearfix'<'t-footer-info'<'t-length'l><'t-info'i>><'t-pages'p>>",
-            "sPaginationType": "bootstrap",
-            "oLanguage": {
-                "sLengthMenu": "_MENU_ records per page"
-            },
-        });
-
-        var dataFilterTpl = $('#data-filter-tpl').text();
-        var replaceObj = function (str, o) {
-            return str.replace(/\$\{([^{}]*)\}/g, function (a, b) {
-                var r = o[b];
-                return typeof r === 'string' ? r : a;
-            });
-        };
-        var dataFilterPopoverTpl = $('#data-filter-popover-tpl')[0].innerHTML;
-
-        $(".t-data-filter")
-            .css({'align-items': 'baseline'})
-            .append('<button type="button" class="btn btn-default btn-sm filters-switch"> 篩選 <span class="caret"></span> </button><div class="filters media-body-flex"></div>');
-        $('.filters-switch').popover({
-            container: '.workspace > .page',
-            placement: 'bottom',
-            html: true,
-            content: dataFilterTpl,
-            template: dataFilterPopoverTpl,
-        });
-
-        $(document).on('submit.dataFilter', '.data-filter', function(event) {
-            event.preventDefault();
-            // update dataTable
-
-
-            // update filter string
-            var labels = $(this).find('input:checked').next('.label');
-            var filters = {};
-
-            var filtersTip = '';
-            $.each(labels, function(index, val) {
-                var _title = $(this).parent().parent().prev('.popover-heading').text();
-                if (!filters[_title]) { filters[_title] = []; }
-                filters[_title].push(this.outerHTML);
-            });
-            $.each(filters, function(index, val) {
-                filtersTip += '<div class="filtered-items" data-heading="' + index + '">' + val.join(' ') + '</div>';
-            });
-
-            $('.filters').html(filtersTip);
-            $('.filters-switch').popover('hide');
-        });
-
-
-
-        // column filter
-        var columnFilter = {};
-        columnFilter.item = location.pathname + 'columnFilterIdx';
-        columnFilter.idx = localStorage.getItem(columnFilter.item);
-        if (!columnFilter.idx) {
-            columnFilter.idx = new Array(dataTable.columns().header().length + 1).join('1');
-        }
-
-        $('.t-data-filter').append($('#column-filter-tpl').text());
-        var dropdown = $('#t-column-filter-dropdown');
-        var dropdownItemTpl = dropdown.find('.dropdown-menu').html();
-
-        // autohide columns
-        ;(function(argument) {
-            var hiddenColumns = columnFilter.idx.split('').map(function(val, index) {
-                if ('0' === val) {
-                    return index;
-                }
-            });
-            dataTable.columns(hiddenColumns).visible(false,false);
-        })();
-
-        dropdown.find('.dropdown-menu').html(
-            [].map.call(dataTable.columns().header(), function(el, i) {
-                return replaceObj(dropdownItemTpl, {idx: i+'', txt: el.textContent}).replace('${checked}', columnFilter.idx[i] === '1' ? 'checked' : '');
-            })
-        );
-
-        var setCharAt = function(str, index, char) {
-            if (index > str.length - 1) { return str; }
-            return str.substr(0, index) + ('' + char) + str.substr(index + 1);
-        };
-
-        dropdown
-            .on('click.columnFilter', 'ul', function(e) {
-                e.stopPropagation();
-            })
-            .on('change.columnFilter', '.column-vis', function() {
-                var _index = +this.value;
-                var _checked = this.checked;
-                var _oriIdx = columnFilter.idx;
-                dataTable.column(_index).visible(_checked, false);
-
-                columnFilter.idx = setCharAt(columnFilter.idx, _index, +_checked + '');
-                localStorage.setItem(columnFilter.item, columnFilter.idx);
-            });
-
-    });
+    $(document).ready( function () {
+        $('#jesdaDataTable').DataTable();
+    } );
 </script>
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

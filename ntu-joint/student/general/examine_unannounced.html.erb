@@ -1,0 +1,110 @@
+<!-- NTU-Joint: 資格審查待補繳文件 & 預錄取結果(未公告) -->
+
+<div class="container review-container">
+    <ul class="nav nav-tabs review-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="true">Review</a>
+        </li>
+		<li class="nav-item">
+            <a class="nav-link" id="recommend-tab" data-toggle="tab" href="#recommend" role="tab" aria-controls="recommend" aria-selected="true">Recommended progress <span class="badge badge-pill badge-danger un-shadows">2</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" id="result-tab" data-toggle="tab" href="#result" role="tab" aria-controls="result" aria-selected="false">Result <span class="badge badge-pill badge-dark un-shadows">Not announced</span></a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+		<!-- 申請資料瀏覽 -->
+        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+            <%= render :partial => "/partials/review" %>
+        </div>
+		
+		<!-- 資格審查待補繳文件 -->
+		<div class="tab-pane fade" id="recommend" role="tabpanel" aria-labelledby="recommend-tab">
+            <div class="precautions-block mb-3">
+                <p>After reviewing the documents, the following documents need to be repaid, please click "Modify" to re-upload the documents</p>
+            </div>
+			<div class="warning-block">
+			    <p><%= lorem_paragraphs(1) %></p>
+				<p><%= lorem_paragraphs(1) %></p>
+			</div>
+			<div class="step-container">
+			    <h4 class="wrapper-title-xl">Pending documents</h4>
+                <div class="document-item">
+                    <div class="document-hd">
+                        <h5 class="font-500"><%= lorem_words(5) %></h5>
+                        <p class="font-300 text-muted">Upload time <i class="fa fa-clock-o"></i> 2020/01/23 18:20</p>
+                    </div>
+                    <div class="document-ft">
+                        <a href="#" class="btn btn-secondary btn-xs" data-toggle="modal" data-target="#basicExampleModal">Description</a>
+                        <a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target="#basicExampleModal">View</a>
+                        <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#basicExampleModal">Edit</a>
+                    </div>
+                </div>
+				<div class="pending-caption">
+				    Back-end input to modify the description of the application form
+				</div>
+				<div class="document-item">
+                    <div class="document-hd">
+                        <h5 class="font-500"><%= lorem_words(5) %></h5>
+                        <p class="font-300 text-muted">Upload time <i class="fa fa-clock-o"></i> 2020/01/23 18:20</p>
+                    </div>
+                    <div class="document-ft">
+                        <a href="#" class="btn btn-secondary btn-xs" data-toggle="modal" data-target="#basicExampleModal">Description</a>
+                        <a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target="#basicExampleModal">View</a>
+                        <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#basicExampleModal">Edit</a>
+                    </div>
+                </div>
+				<div class="pending-caption">
+				    Back-end input to modify the description of the application form
+				</div>
+				
+				<h4 class="wrapper-title-xl">Pending application form</h4>
+                <div class="warning-block">
+                    <p><%= lorem_paragraph %></p>
+                </div>
+				<%= render :partial => "/partials/personal" %>
+			</div>
+            <div class="form-action">
+                <a href="#" class="btn btn-primary btn-lg">Submit</a>
+            </div>
+        </div>
+		
+		<!-- 預錄取結果(未公告) -->
+        <div class="tab-pane fade show active" id="result" role="tabpanel" aria-labelledby="result-tab">
+            <div class="success-block">
+				<h4 class="title">Congratulations on completing your application!</h4>
+                <div>Review has begun</div>
+				<div>Pre-admission result time: April 15, 2020 10:00 Taiwan</div>
+				<div>Results after filling time: April 15, 2020 10:00 Taiwan</div>
+				<div>Final result time: April 15, 2020 10:00 Taiwan</div>
+            </div>
+			<div>
+			    <p><%= lorem_paragraphs(2) %></p>
+				<p><%= lorem_paragraphs(2) %></p>
+			</div>
+		</div>
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Modal 相關設定請參考 <a href="https://mdbootstrap.com/docs/jquery/modals/basic/" btn-lg">Mdbootstrap</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-default">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

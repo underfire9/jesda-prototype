@@ -1,0 +1,124 @@
+<!-- NTU-Joint: 註冊  -->
+
+<div class="container">
+    <div class="login-wrap wide">
+		<h4 class="block-title">Register</h4>
+        <form>
+            <p><%= lorem_paragraph %></p>
+            <div class="md-form">
+                <select class="mdb-select md-form">
+                    <option value="" disabled selected><span class="required">*</span> Country</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+            </div>
+			<div class="row">
+				<div class="col-6">
+					<!-- 勾選 checkbox 時秀出自行輸入欄位已做完，還需要當勾選時將 select 設為 disabled 的部分 -->
+                    <div class="md-form">
+                        <select class="mdb-select md-form">
+                            <option value="" disabled selected><span class="required">*</span> School English Name</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+					<div class="form-check pl-0 pt-2">
+					    <input type="checkbox" class="form-check-input" id="registerForSchoolCheck">
+						<label class="form-check-label" for="registerForSchoolCheck">Cannot choose to school?</label>
+					</div>
+                    <div class="md-form">
+                        <input type="text" id="registerForKeyName" class="form-control" placeholder="Please enter full school name"  style="display: none">
+                    </div>
+				</div>
+				<div class="col-6">
+                    <div class="md-form">
+                        <input type="text" id="registerForSchoolChinese" class="form-control">
+                        <label for="registerForSchoolChinese">School Chinese Name</label>
+                    </div>
+				</div>
+			</div>
+			<div class="md-form">
+                <input type="text" id="registerForOriginalSchoolName" class="form-control">
+                <label for="registerForOriginalSchoolName">Original school name</label>
+            </div>
+			
+			<div class="row">
+				<div class="col-6">
+                    <div class="md-form">
+                        <input type="text" id="registerForOrganizersName" class="form-control">
+                        <label for="registerForOrganizersName"><span class="required">*</span>Organizer's name</label>
+                    </div>
+				</div>
+				<div class="col-6">
+                    <div class="md-form">
+                        <input type="text" id="registerForOrganizersDepartment" class="form-control">
+                        <label for="registerForOrganizersDepartment"><span class="required">*</span>Organizer Department</label>
+                    </div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-6">
+                    <div class="md-form">
+                        <input type="text" id="registerForOrganizersPosition" class="form-control">
+                        <label for="registerForOrganizersPosition"><span class="required">*</span>Organizer job title</label>
+                    </div>
+				</div>
+				<div class="col-6">
+                    <div class="md-form">
+                        <input type="text" id="registerForOrganizersContact" class="form-control">
+                        <label for="registerForOrganizersContact"><span class="required">*</span>Contact number</label>
+                    </div>
+				</div>
+			</div>
+			
+			<div class="md-form">
+                <input type="email" id="registerForOrganizersEmail" class="form-control">
+                <label for="registerForOrganizersEmail"><span class="required">*</span> Email</label>
+            </div>
+			
+			<div class="row">
+				<div class="col-6">
+                    <div class="md-form">
+                        <input type="text" id="registerForAccount" class="form-control">
+                        <label for="registerForAccount"><span class="required">*</span> Account</label>
+                    </div>
+				</div>
+				<div class="col-6">
+                    <div class="md-form">
+                        <input type="password" id="registerForPassword" class="form-control">
+                        <label for="registerForPassword"><span class="required">*</span> Password</label>
+                    </div>
+				</div>
+			</div>
+			
+            <div class="md-form">
+                <input type="password" id="registerForPasswordConfirm" class="form-control">
+                <label for="registerForPasswordConfirm"><span class="required">*</span> Confirm Password</label>
+            </div>
+			
+            <div class="text-center py-4">
+                <button class="btn btn-outline-success btn-rounded my-4 waves-effect z-depth-0" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<% content_for :js do %>
+<script>
+$(document).ready(function() {
+    $('.mdb-select').materialSelect();
+});
+$(function() {
+    $("#registerForSchoolCheck").click(function() {
+        if ($(this).is(":checked")) {
+            $("#registerForKeyName").show();
+        } else {
+            $("#registerForKeyName").hide();
+        }
+    });
+});
+</script>
+<% end %>

@@ -1,0 +1,66 @@
+<!-- NTU-Joint: 推薦信上傳  -->
+
+<div class="container">
+	<div class="datatables-container">
+	    <table id="sr-list" class="display nowrap table table-striped upload-table">
+            <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>Chinese name</th>
+                    <th>English name</th>
+                    <th>Apply school</th>
+                    <th>College & Department</th>
+                    <th>Upload</th>
+                </tr>
+            </thead>
+			<tbody>
+				<tr>
+                    <td>1080001</td>
+					<td><%= zh_lorem_words(3) %></td>
+					<td><%= lorem_words(3) %></td>
+					<td>National Taiwan University</td>
+					<td>Department of Engineering</td>
+					<td>
+						<a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#basicExampleModal">Edit</a>
+                        <span class="font-300 text-muted">Upload time <i class="fa fa-clock-o"></i> 2020/01/23 18:20</span>
+					</td>
+                </tr>
+				<% (2..30).each do |n| %>
+                <tr>
+                    <td>108000<%= n %></td>
+					<td><%= zh_lorem_words(3) %></td>
+					<td><%= lorem_words(3) %></td>
+					<td>National Taiwan University</td>
+					<td>Department of Engineering</td>
+					<td>
+                        <form class="md-form">
+                            <div class="file-field">
+                                <div class="btn btn-primary btn-xs float-left">
+                                    <span>Select</span>
+                                    <input type="file">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="Upload your file">
+                                </div>
+                            </div>
+                        </form>
+					</td>
+                </tr>
+				<% end %>
+            </tbody>
+		</table>
+	</div>
+</div>
+
+<% content_for :js do %>
+    <script src="../javascripts/datatables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#sr-list').DataTable( {
+                "dom": '<"toolbar">frtip'
+            } );
+
+            $("div.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
+        } );
+	</script>
+<% end %>

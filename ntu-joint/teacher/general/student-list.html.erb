@@ -1,0 +1,61 @@
+<!-- NTU-Joint: 推薦學生名單  -->
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Recommended List</a></li>
+            <li class="breadcrumb-item active">2020</li>
+        </ol>
+    </nav>
+	<div class="datatables-container">
+	    <table id="sr-list" class="display nowrap table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Chinese name</th>
+                    <th>English name</th>
+                    <th>Email</th>
+                    <th>Account</th>
+                    <th>Payment status</th>
+                    <th>Delivery status</th>
+                    <th>Admit status</th>
+                    <th>Admission status</th>
+                </tr>
+            </thead>
+			<tbody>
+				<% (1..30).each do |n| %>
+                <tr>
+                    <td class="text-center"><%= n %></td>
+					<td>123</td>
+					<td class="text-center"><a href="add_student"><i class="fa fa-pencil"></i></a></td>
+					<td><%= zh_lorem_words(3) %></td>
+					<td><%= lorem_words(3) %></td>
+					<td><%= lorem_word %>@mail.tw</td>
+					<td>108000<%= n %></td>
+					<td>Unpaid</td>
+					<td>Not delivered</td>
+					<td></td>
+					<td></td>
+                </tr>
+				<% end %>
+            </tbody>
+		</table>
+	</div>
+</div>
+
+<% content_for :js do %>
+    <script src="../javascripts/datatables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#sr-list').DataTable( {
+                "dom": '<"toolbar">frtip',
+				"scrollX": true
+            } );
+
+            $("div.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
+        } );
+	</script>
+<% end %>

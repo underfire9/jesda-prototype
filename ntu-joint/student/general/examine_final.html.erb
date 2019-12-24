@@ -1,0 +1,148 @@
+<!-- NTU-Joint: 最終錄取結果 -->
+
+<div class="container review-container">
+    <ul class="nav nav-tabs review-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="true">Review</a>
+        </li>
+		<li class="nav-item">
+            <a class="nav-link" id="recommend-tab" data-toggle="tab" href="#recommend" role="tab" aria-controls="recommend" aria-selected="true">Recommended progress</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" id="result-tab" data-toggle="tab" href="#result" role="tab" aria-controls="result" aria-selected="false">Result</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+		<!-- 申請資料瀏覽 -->
+        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+            <%= render :partial => "/partials/review" %>
+        </div>
+		
+		<!-- 無待補繳文件 -->
+		<div class="tab-pane fade" id="recommend" role="tabpanel" aria-labelledby="recommend-tab">
+			<div class="text-center py-5">
+			    <h5>Your information has been passed, no documents need to be added.</h5>
+			</div>
+        </div>
+		
+		<!-- 預錄取結果(已公告) -->
+        <div class="tab-pane fade show active" id="result" role="tabpanel" aria-labelledby="result-tab">
+            <h4 class="wrapper-title-slim mb-5">Deadline for admission confirmation of pre-admission results 2017-06-09 23:59</h4>
+			<div class="ranking-wrapper">
+                <div class="volunteer-ranking">
+                    <span class="num">1</span>
+                    <div class="volunteer-school">
+                        <p class="university">National Taiwan University</p>
+                        <p class="brief">Department of Engineering</p>
+                    </div>
+                </div>
+                <table class="table table-sm table-results mb-5">
+                    <tbody>
+                        <tr>
+                            <th>Pre-Admission Results</th>
+                            <td>officially enroll</td>
+                        </tr>
+                        <tr>
+                            <th>Pre-Admission Scholarship</th>
+                            <td><%= lorem_sentence %></td>
+                        </tr>
+                        <tr>
+                            <th>Admission results after filling</th>
+                            <td>Abstain</td>
+                        </tr>
+                        <tr>
+                            <th>Scholarship results after replacement</th>
+                            <td><%= lorem_sentence %></td>
+                        </tr>
+						<tr class="selective">
+                            <th>Final admission result</th>
+                            <td>Disqualification</td>
+                        </tr>
+                        <tr class="selective">
+                            <th>Final scholarship results</th>
+                            <td><%= lorem_sentence %></td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+			<div class="ranking-wrapper">
+                <div class="volunteer-ranking">
+                    <span class="num">2</span>
+                    <div class="volunteer-school">
+                        <p class="university">National Taiwan Normal University</p>
+                        <p class="brief">College of Bio-Resources & Agriculture</p>
+                    </div>
+                </div>
+                <table class="table table-sm table-results mb-5">
+                    <tbody>
+                        <tr>
+                            <th>Pre-Admission Results</th>
+                            <td>officially enroll</td>
+                        </tr>
+                        <tr>
+                            <th>Pre-Admission Scholarship</th>
+                            <td><%= lorem_sentence %></td>
+                        </tr>
+                        <tr>
+                            <th>Admission results after filling</th>
+                            <td>Abstain</td>
+                        </tr>
+                        <tr>
+                            <th>Scholarship results after replacement</th>
+                            <td><%= lorem_sentence %></td>
+                        </tr>
+						<tr class="selective">
+                            <th>Final admission result</th>
+                            <td>Abstain</td>
+                        </tr>
+                        <tr class="selective">
+                            <th>Final scholarship results</th>
+                            <td><%= lorem_sentence %></td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+            <div class="form-action">
+                <a href="#" class="btn btn-primary btn-lg">Submit</a>
+            </div>
+		</div>
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Modal 相關設定請參考 <a href="https://mdbootstrap.com/docs/jquery/modals/basic/" btn-lg">Mdbootstrap</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-default">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+					
+<% content_for :js do %>
+<script>
+$(document).ready(function() {
+   $('input[type="radio"]').click(function() {
+       if($(this).attr('id') == 'willingnessYes') {
+            $('#hideandseek').show();           
+       }
+       else {
+            $('#hideandseek').hide();   
+       }
+   });
+});
+</script>
+<% end %>

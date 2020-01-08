@@ -33,11 +33,20 @@
 /* jstree view ---------------------------------------------------------------------------*/
 @import "widgets/treeview";
 
+/* jQuery Scrollbar ---------------------------------------------------------------------------*/
+@import "widgets/jquery.scrollbar";
+
 
 body {
 	background-color: $body_background;
 	font-size: 15px;
 	font-weight: 400;
+}
+
+.menu-item, .menu-item li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .content-wrapper {
@@ -570,10 +579,22 @@ ul.ticket-tax-list {
 	}
 }
 
+.add-btn {
+	.btn {
+		display: inline-block;
+		margin: 0;
+		margin-right: 0.375rem;
+		.fa {
+			margin: 0;
+			padding-top: 4px;
+		}
+	}
+}
+
 /* `Tabs
 -----------------------------------------------------------------------------*/
 
-.col-block {
+.col-block.block-tabs {
 	.nav-tabs {
 		background-color: #f0f0f0;
 		border: none;
@@ -812,8 +833,114 @@ ul.ticket-tax-list {
 	}
 }
 
-/* `Datatables
+/* `Datatables Toolbar
 -----------------------------------------------------------------------------*/
+
+select.browser-default { padding-right: 1.5rem !important; }
+
+.dt-toolbar {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px dashed #d1d5d9;
+	padding-top: 1.25rem;
+	padding-bottom: 1.25rem;
+	.dt-toolbar-r {
+		text-align: right;
+	}
+	select.browser-default {
+		padding: 5px;
+	}
+	.custom-select.dt-custom-select {
+		height: calc(2rem + 3px);
+		line-height: 1.2;
+		font-size: 0.9375rem;
+		position: relative;
+		top: 1px;
+	}
+	.dropdown {
+		.dropdown-toggle {
+			box-shadow: none;
+			border: 1px solid #e5e5e5;
+			border-radius: 3px;
+			padding: 0.275rem 0.75rem;
+			text-transform: none;
+			font-size: 0.975rem;
+			&:active, &:focus {
+				background-color: #fff !important;
+				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+			}
+		}
+	}
+	.btn.btn-white {
+		color: #333 !important;
+		text-transform: none;
+        &:active, &:focus {
+            background-color: #fff !important;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+        }
+		&[data-toggle="collapse"][aria-expanded="true"] {
+			background-color: #333 !important;
+			border: 1px solid #333;
+			color: #fff !important;
+		}
+	}
+	.form-control.form-control-sm {
+		padding: 0.3rem 0.5rem;
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		position: relative;
+		top: 1px;
+	}
+}
+
+.dttoolbar-collapse {
+	$collapse-bg: #f8f8f8;
+	$collapse-navborder: $base_border_color;
+	background: $collapse-bg;
+	border: 1px dashed #d1d5d9;
+	border-top: none;
+	position: relative;
+	&:after {
+		content: "";
+		border-radius: 3rem 3rem 3rem 3rem;
+		box-shadow: 0 0 15px rgba(#000, .4), 0 0 20px rgba(#000, .2);
+		position: absolute;
+		top: 20px;
+		right: 40px;
+		bottom: 20px;
+		left: 40px;
+		z-index: -1;
+		animation: collapseShadow 1s ease-out forwards;
+	}
+	.collapse-inner { padding: 2rem 1.25rem 1.25rem; }
+	.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+		background: $collapse-bg;
+		border-color: $collapse-navborder $collapse-navborder $collapse-bg;
+	}
+	.nav-tabs {
+		border-color: $collapse-navborder;
+		margin-bottom: 0;
+	}
+	.continent {
+		display: none;
+	}
+	.form-action {
+		border-top: 1px solid $base_border_color;
+		padding-top: 1rem;
+	}
+}
+
+@keyframes collapseShadow
+{
+    0% {
+        right: 40px;
+		left: 40px;
+	}
+  100% {
+        right: 5px;
+		left: 5px;
+	}
+}
 
 .block-content.expansion {
 	.dataTables_wrapper {
@@ -827,19 +954,9 @@ ul.ticket-tax-list {
 			padding-right: 20px;
 		}
 	}
-}
-
-.dataTables_wrapper {
-	select.browser-default {
-		padding: 5px;
-		padding-right: 1.25rem;
-	}
-	.custom-select.dt-custom-select {
-		height: calc(1.8rem + 2px);
-		line-height: 1.2;
-		font-size: 100%;
-		position: relative;
-		top: 2px;
+	.dt-toolbar {
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 }
 
@@ -850,6 +967,210 @@ table.dataTable thead {
 		}
 	}
 	th.align-right.sorting { padding-right: 30px; }
+}
+
+select.select-hasadd {
+	border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.btn.btn-selectadd {
+	border-radius: 0 3px 3px 0;
+	box-shadow: none;
+	margin: -3px 0 0 -4px;
+	padding: 0.6rem 1rem;
+}
+
+.selected-wrapper {
+	background: #fff;
+	border-radius: 0.25rem;
+	border: 1px solid $base_border_color;
+	margin-top: 0.5rem;
+	padding: 1rem 4rem 1rem 1rem;
+	min-height: 3rem;
+	position: relative;
+	.selected-item {
+		margin-right: 3%;
+		margin-bottom: 0.75rem;
+		padding-left: 2.5rem;
+		width: 30%;
+		min-height: 1.5rem;
+		line-height: 1.5rem;
+		position: relative;
+		.selected-delete {
+			margin: 0;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	}
+	.selected-inner {
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 1rem;
+		&.width-auto {
+			.selected-item { width: auto; }
+		}
+	}
+}
+
+.btn.btn-clean {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f8f8f8 !important;
+	border-radius: 0 0.25rem 0.25rem 0;
+	border-left: 1px solid $base_border_color;
+	box-shadow: none;
+	margin: 0;
+	width: 4rem;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	.fa { color: red; }
+	&:hover { background-color: #eee !important; }
+}
+
+.selected-delete {
+	background: #ddd;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 0;
+    margin: 0.5rem;
+    overflow: hidden;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    width: 1.5rem;
+    height: 1.5rem;
+	line-height: 1.3rem;
+	text-align: center;
+	color: #fff;
+	.fa {
+		font-size: 0.75rem;
+		line-height: 1.5rem;
+	}
+	&:hover .fa { color: #333; }
+}
+
+.portlet-wrapper {
+	display: flex;
+	.portlet-box {
+		width: 40%;
+        .portlet-bd {
+			height: 250px;
+			position: relative;
+			overflow: hidden;
+        }
+		.portlet-hd {
+			background: #f7f7f7;
+			padding: 0.5rem 0;
+			text-align: center;
+			font-weight: bold;
+		}
+	}
+	.scrollbar-inner {
+		height: 250px;
+		position: absolute;
+        left: 0;
+		right: 0;
+        top: 0;
+        bottom: 0;
+		.menu-item { margin: 0.75rem 1rem 1rem; }
+	}
+	.dd-item {
+		margin: 0.3125rem 0;
+		.dd-handle {
+			background: #f5f5f5;
+			border-radius: 3px;
+			border: 0px solid $base_border_color;
+			padding: 0.3125rem 0.3125rem 0.1875rem 2.5rem;
+			position: relative;
+			transition: all 0.25s ease;
+			&:hover {
+				box-shadow: 0 2px 4px rgba(#000, .2);
+				cursor: move;
+			}
+			&:before, &:after {
+				transition: all 0.25s ease;
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+			}
+			&:before {
+				content: "";
+				border-radius: 3px 0 0 3px;
+				background: #565656;
+				width: 28px;
+			}
+			&:after {
+				content: "\f047";
+				font-family: "FontAwesome";
+				font-size: 0.625rem;
+				color: #fff;
+				left: 9px;
+				top: 28%;
+			}
+		}
+	}
+	.portlet-action {
+		width: 20%;
+		.portlet-hd {
+			border-left: 1px solid #e9edf1;
+			border-right: 1px solid #e9edf1;
+		}
+        .portlet-bd {
+			border: 1px solid $base_border_color;
+			padding: 0;
+			.btn { border-radius: 0; }
+        }
+	}
+	.portlet-selected {
+		.portlet-hd { border-top-left-radius: 5px; }
+        .portlet-bd {
+			border-bottom-left-radius: 5px;
+			border: 1px solid $base_border_color;
+			border-right: none;
+        }
+	}
+	.portlet-unselected {
+		.portlet-hd { border-top-right-radius: 5px; }
+        .portlet-bd {
+			border-bottom-right-radius: 5px;
+			border: 1px solid $base_border_color;
+			border-left: none;
+        }
+		.dd-handle {
+			&:hover {
+				box-shadow: 0 1px 2px rgba(#000, .2);
+			}
+			&:before { background: #aaa; }
+		}
+	}
+}
+
+.modal_sortblock {
+	display: flex;
+	align-items: center;
+	background: #f8f8f8;
+	border-radius: 3px;
+	margin-bottom: 0.5rem;
+	padding: 0.5rem;
+	.num {
+		width: 5%;
+		text-align: center;
+	}
+	.sort-select {
+		margin-right: 2%;
+		width: 73%;
+	}
+	.sort-by {
+		width: 25%;
+	}
 }
 
 /* `Metronic button style
@@ -900,7 +1221,8 @@ table.dataTable thead {
 	&.btn-lg { font-size: 1.125rem; }
 }
 
-
+/* inbox on modal ---------------------------------------------------------------------------*/
+@import "widgets/inbox";
 
 
 

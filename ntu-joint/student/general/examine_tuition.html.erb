@@ -1,4 +1,4 @@
-<!-- NTU-Joint: 最終錄取結果 -->
+<!-- NTU-Joint: 繳費 (已送申請) -->
 
 <div class="container review-container">
     <ul class="nav nav-tabs review-tabs" id="myTab" role="tablist">
@@ -6,13 +6,16 @@
             <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="true">Review</a>
         </li>
 		<li class="nav-item">
-            <a class="nav-link" id="tuition-tab" data-toggle="tab" href="#tuition" role="tab" aria-controls="tuition" aria-selected="false">Pay</a>
+            <a class="nav-link active" id="tuition-tab" data-toggle="tab" href="#tuition" role="tab" aria-controls="tuition" aria-selected="false">
+				Pay 
+				<span class="badge badge-pill badge-danger un-shadows"><i class="fa fa-info"></i></span>
+			</a>
         </li>
 		<li class="nav-item">
             <a class="nav-link" id="recommend-tab" data-toggle="tab" href="#recommend" role="tab" aria-controls="recommend" aria-selected="true">Recommended progress</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" id="result-tab" data-toggle="tab" href="#result" role="tab" aria-controls="result" aria-selected="false">Result</a>
+            <a class="nav-link" id="result-tab" data-toggle="tab" href="#result" role="tab" aria-controls="result" aria-selected="false">Result</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -22,13 +25,36 @@
         </div>
 		
 		<!-- 繳費 -->
-        <div class="tab-pane fade" id="tuition" role="tabpanel" aria-labelledby="tuition-tab">
+        <div class="tab-pane fade show active" id="tuition" role="tabpanel" aria-labelledby="tuition-tab">
             <div class="pay-container">
+                <div class="mb-5">
+                    <h4 class="wrapper-title">Payment details</h4>
+                    <table class="table table-vertical-middle">
+                        <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th class="text-right">Registration Fee (NTD)</th>
+                                <th class="text-right">Registration Fee (USD)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Registration Fee</td>
+                                <td class="text-right">2,000</td>
+                                <td class="text-right">70</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div>
-					<h4 class="wrapper-title">Payment details</h4>
-                    <p class="font-300 text-dark">Payment completed <i class="fa fa-clock-o"></i> 2020/01/23 18:20</p>
-					<p class="font-300 text-dark">Bank account: 001 1023456789876 Citibank</p>
-					<!-- 如需塞更多資訊請找 fire 設計 -->
+                    <h4 class="wrapper-title">Payment method</h4>
+                    <a class="btn btn-outline-primary btn-rounded pay-credit" href="#">
+                        <img class="credit-card" src="../assets/credit-card.png">
+                        <span>Pay by credit (card)</span>
+                    </a>
+                    <!-- 已完成繳費 -->
+                    <!--p class="font-300 text-dark">Payment completed <i class="fa fa-clock-o"></i> 2020/01/23 18:20</p-->
                 </div>
             </div>
         </div>
@@ -41,7 +67,7 @@
         </div>
 		
 		<!-- 預錄取結果(已公告) -->
-        <div class="tab-pane fade show active" id="result" role="tabpanel" aria-labelledby="result-tab">
+        <div class="tab-pane fade" id="result" role="tabpanel" aria-labelledby="result-tab">
             <h4 class="wrapper-title-slim mb-5">Deadline for admission confirmation of pre-admission results 2017-06-09 23:59</h4>
 			<div class="ranking-wrapper">
                 <div class="volunteer-ranking">
@@ -61,20 +87,12 @@
                             <th>Pre-Admission Scholarship</th>
                             <td><%= lorem_sentence %></td>
                         </tr>
-                        <tr>
+                        <tr class="selective">
                             <th>Admission results after filling</th>
                             <td>Abstain</td>
                         </tr>
-                        <tr>
-                            <th>Scholarship results after replacement</th>
-                            <td><%= lorem_sentence %></td>
-                        </tr>
-						<tr class="selective">
-                            <th>Final admission result</th>
-                            <td>Disqualification</td>
-                        </tr>
                         <tr class="selective">
-                            <th>Final scholarship results</th>
+                            <th>Scholarship results after replacement</th>
                             <td><%= lorem_sentence %></td>
                         </tr>
                     </tbody>
@@ -98,28 +116,43 @@
                             <th>Pre-Admission Scholarship</th>
                             <td><%= lorem_sentence %></td>
                         </tr>
-                        <tr>
+                        <tr class="selective">
                             <th>Admission results after filling</th>
                             <td>Abstain</td>
                         </tr>
-                        <tr>
-                            <th>Scholarship results after replacement</th>
-                            <td><%= lorem_sentence %></td>
-                        </tr>
-						<tr class="selective">
-                            <th>Final admission result</th>
-                            <td>Abstain</td>
-                        </tr>
                         <tr class="selective">
-                            <th>Final scholarship results</th>
+                            <th>Scholarship results after replacement</th>
                             <td><%= lorem_sentence %></td>
                         </tr>
                     </tbody>
                 </table>
 			</div>
-            <div class="form-action">
-                <a href="#" class="btn btn-primary btn-lg">Submit</a>
-            </div>
+			<h4 class="wrapper-title">Admission Survey</h4>
+			<form>
+			    <div class="form-check mb-2">
+                    <input type="radio" class="form-check-input" id="willingnessYes" name="willingnessRadios" value="Value1">
+                    <label class="form-check-label" for="willingnessYes">Yes, I am sure I want to enter school.</label>
+					<div id="hideandseek">
+                        <select class="browser-default custom-select">
+                            <option selected="">Please select a university</option>
+                            <option value="National Taiwan University">National Taiwan University</option>
+                            <option value="National Taiwan Normal University">National Taiwan Normal University</option>
+                            <option value="National Chiao Tung University">National Chiao Tung University</option>
+                        </select>
+					</div>
+                </div>
+				<div class="form-check mb-2">
+                    <input type="radio" class="form-check-input" id="willingnessNo" name="willingnessRadios" value="Value2">
+                    <label class="form-check-label" for="willingnessNo">No, I am giving up admission and not waiting for admission.</label>
+                </div>
+				<div class="form-check mb-2">
+                    <input type="radio" class="form-check-input" id="willingnessWait" name="willingnessRadios" value="Value3">
+                    <label class="form-check-label" for="willingnessWait">I want to wait for the alternate result <small class="text-danger pl-2">(Choosing to wait for the results will be deemed as giving up the original volunteer}</small></label>
+                </div>
+                <div class="form-action">
+                    <a href="#" class="btn btn-primary btn-lg">Submit</a>
+                </div>
+			</form>
 		</div>
     </div>
 

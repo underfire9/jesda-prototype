@@ -1,6 +1,8 @@
 
 @import "base";
 @import "widgets/vanillaCalendar";
+@import "widgets/slick";
+@import "widgets/slick-theme";
 @import "widgets/fullcalendar";
 
 
@@ -221,44 +223,62 @@
 	}
 }
 
-/* `Multislider
+/* `Slick
 -----------------------------------------------------------------------------*/
 
-.multislider-wrap {
+.slick-prev, .slick-next {
+	position: relative;
+	z-index: 2;
+}
+
+.slick-prev:before, .slick-next:before {
+    font: normal normal normal 16px/1 FontAwesome;
+    color: #000;
+	position: absolute;
+	top: 10px;
+}
+
+.slick-next:before {
+	content: "\f105";
+	left: 14px;
+}
+
+.slick-prev:before {
+	content: "\f104";
+	left: 12px;
+}
+
+.slick-six, .slick-five {
     position: relative;
 	margin-left: -5px;
 	margin-right: -5px;
-	.MS-content {
-        margin: 0;
+    .item {
+        display: inline-block;
+        padding: 0 5px;
+        height: 100%;
         overflow: hidden;
-        white-space: nowrap;
-		.item {
-            display: inline-block;
-			padding: 0 5px;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-            vertical-align: top;
-            width: 20%;
-		}
-		a {
-			display: block;
-			background: #f7f7f7;
-			color: #333;
-			text-align: center;
-			&:hover {
-				background: #fafafa;
-				color: #000;
-			}
-		}
-		.brief {
-			display: block;
-			white-space: normal;
-			line-height: 1.2;
-			
-		}
-	}
-    .btn-control {
+        position: relative;
+        vertical-align: top;
+        width: 20%;
+        a {
+            display: block;
+            background: #f7f7f7;
+            color: #333;
+            text-align: center;
+            &:hover {
+                background: #fafafa;
+                color: #000;
+            }
+        }
+    }
+	.icons { display: inline-block; }
+    .brief {
+        display: block;
+        white-space: normal;
+        line-height: 1.2;
+
+    }
+    .slick-arrow {
         background: #fff;
 		border: none;
 		border-radius: 50%;
@@ -271,7 +291,7 @@
 		text-align: center;
         outline: 0;
 		position: absolute;
-        top: 50%;
+        top: 58%;
 		transition: all .15s ease-in-out;
         &:hover {
 			background: #fcfcfc;
@@ -279,135 +299,130 @@
 			cursor: pointer;
 		}
     }
-    .MS-left { left: -11px; }
-    .MS-right { right: -11px; }
+    .slick-prev { left: -11px; }
+    .slick-next { right: -11px; }
 }
 
-#businessSlider {
-	.MS-content {
-		.item {
-			width: 16.666%;
-		}
-		a {
-			padding: 20px;
-			min-height: 156px;
-		}
-		.icons {
-			width: 80px;
-			height: auto;
-		}
-	}
+.slick-business {
+    .item {
+        width: 16.666%;
+    }
+    a {
+        padding: 20px;
+        min-height: 156px;
+    }
+    .icons {
+        width: 80px;
+        height: auto;
+    }
 }
 
 @media (max-width: 1200px) {
-    #businessSlider .MS-content .item {
+    .slick-business .item {
         width: 20%
     }
 }
 
 @media (max-width: 992px) {
-    #businessSlider .MS-content .item {
+    .slick-business .item {
         width: 25%;
     }
 }
 
-@media (max-width: 767px) {
-    #businessSlider .MS-content .item {
+@media (max-width: 768px) {
+    .slick-business .item {
         width: 33.3333%;
     }
 }
 
 @media (max-width: 575px) {
-    #businessSlider .MS-content .item {
+    .slick-business .item {
         width: 50%;
     }
 }
 
-#resourceSlider {
-	.MS-content {
-		.item {
-			width: 16.666%;
-		}
-		a {
-			padding: 30px 20px 10px;
-			min-height: 136px;
-		}
-		.icons {
-			margin-bottom: 0.75rem;
-			width: 48px;
-			height: auto;
-		}
-	}
+.slick-resource {
+    .item {
+        width: 16.666%;
+    }
+    a {
+        padding: 30px 20px 10px;
+        min-height: 136px;
+    }
+    .icons {
+        margin-bottom: 0.75rem;
+        width: 48px;
+        height: auto;
+    }
 }
 
 @media (max-width: 1200px) {
-    #resourceSlider .MS-content .item {
+    .slick-resource .item {
         width: 20%
     }
 }
 
 @media (max-width: 992px) {
-    #resourceSlider .MS-content .item {
+    .slick-resource .item {
         width: 25%;
     }
 }
 
-@media (max-width: 767px) {
-    #resourceSlider .MS-content .item {
+@media (max-width: 768px) {
+    .slick-resource .item {
         width: 33.3333%;
     }
 }
 
 @media (max-width: 575px) {
-    #resourceSlider .MS-content .item {
+    .slick-resource .item {
         width: 50%;
     }
 }
 
 
-#partnerSlider {
-	.MS-content {
-		.item {
-			width: 20%;
-		}
-		a {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background-color: transparent;
-			padding: 20px;
-			min-height: 128px;
-		}
-		.partner-logo {
-			max-width: 152px;
-			height: auto;
-			max-height: 75px;
-			width: auto;
-		}
-		.brief { display: none; }
-	}
+.slick-partner {
+    .item {
+        width: 20%;
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            padding: 20px;
+            min-height: 128px;
+			&:hover { background-color: transparent; }
+        }
+    }
+    .partner-logo {
+        max-width: 152px;
+        height: auto;
+        max-height: 75px;
+        width: auto;
+    }
+    .brief { display: none; }
 }
 
 @media (max-width: 1200px) {
-    #partnerSlider .MS-content .item {
+    .slick-partner .item {
         width: 25%
     }
 }
 
 @media (max-width: 992px) {
-    #partnerSlider .MS-content .item {
+    .slick-partner .item {
         width: 33.3333%;
     }
 }
 
-@media (max-width: 767px) {
-    #partnerSlider .MS-content .item {
+@media (max-width: 768px) {
+    .slick-partner .item {
         width: 50%;
     }
 }
 
-@media (max-width: 374px) {
-    #partnerSlider .MS-content .item {
+@media (max-width: 375px) {
+    .slick-partner .item {
         width: 100%;
     }
 }

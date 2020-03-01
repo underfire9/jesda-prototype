@@ -3587,6 +3587,251 @@ table td {
     padding: 1rem 0;
   }
 }
+/* Slider */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.slick-list:focus {
+  outline: none;
+}
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.slick-track:before, .slick-track:after {
+  content: "";
+  display: table;
+}
+.slick-track:after {
+  clear: both;
+}
+.slick-loading .slick-track {
+  visibility: hidden;
+}
+
+.slick-slide {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  display: none;
+}
+[dir="rtl"] .slick-slide {
+  float: right;
+}
+.slick-slide img {
+  display: block;
+}
+.slick-slide.slick-loading img {
+  display: none;
+}
+.slick-slide.dragging img {
+  pointer-events: none;
+}
+.slick-initialized .slick-slide {
+  display: block;
+}
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent;
+}
+
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+/* Slider */
+.slick-loading .slick-list {
+  background: #fff url('/assets/ajax-loader.gif') center center no-repeat;
+}
+
+/* Icons */
+@font-face {
+  font-family: "slick";
+  src: url('/fonts/slick.eot');
+  src: url('/fonts/slick.eot?#iefix') format("embedded-opentype"), url('/fonts/slick.woff') format("woff"), url('/fonts/slick.ttf') format("truetype"), url('/fonts/slick.svg#slick') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Arrows */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  display: block;
+  height: 20px;
+  width: 20px;
+  line-height: 0px;
+  font-size: 0px;
+  cursor: pointer;
+  background: transparent;
+  color: transparent;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  padding: 0;
+  border: none;
+  outline: none;
+}
+.slick-prev:hover, .slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  outline: none;
+  background: transparent;
+  color: transparent;
+}
+.slick-prev:hover:before, .slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before {
+  opacity: 1;
+}
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: 0.25;
+}
+.slick-prev:before,
+.slick-next:before {
+  font-family: "slick";
+  font-size: 20px;
+  line-height: 1;
+  color: #666;
+  opacity: 0.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+  left: -25px;
+}
+[dir="rtl"] .slick-prev {
+  left: auto;
+  right: -25px;
+}
+.slick-prev:before {
+  content: "←";
+}
+[dir="rtl"] .slick-prev:before {
+  content: "→";
+}
+
+.slick-next {
+  right: -25px;
+}
+[dir="rtl"] .slick-next {
+  left: -25px;
+  right: auto;
+}
+.slick-next:before {
+  content: "→";
+}
+[dir="rtl"] .slick-next:before {
+  content: "←";
+}
+
+/* Dots */
+.slick-dotted.slick-slider {
+  margin-bottom: 30px;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: -25px;
+  list-style: none;
+  display: block;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer;
+}
+.slick-dots li button {
+  border: 0;
+  background: transparent;
+  display: block;
+  height: 20px;
+  width: 20px;
+  outline: none;
+  line-height: 0px;
+  font-size: 0px;
+  color: transparent;
+  padding: 5px;
+  cursor: pointer;
+}
+.slick-dots li button:hover, .slick-dots li button:focus {
+  outline: none;
+}
+.slick-dots li button:hover:before, .slick-dots li button:focus:before {
+  opacity: 1;
+}
+.slick-dots li button:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "•";
+  width: 20px;
+  height: 20px;
+  font-family: "slick";
+  font-size: 6px;
+  line-height: 20px;
+  text-align: center;
+  color: black;
+  opacity: 0.25;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before {
+  color: black;
+  opacity: 0.75;
+}
+
 /*!
  * FullCalendar v3.9.0
  * Docs & License: https://fullcalendar.io/
@@ -5361,19 +5606,36 @@ be a descendant of the grid when it is being dragged.
   margin-right: 5px;
 }
 
-/* `Multislider
+/* `Slick
 -----------------------------------------------------------------------------*/
-.multislider-wrap {
+.slick-prev, .slick-next {
+  position: relative;
+  z-index: 2;
+}
+
+.slick-prev:before, .slick-next:before {
+  font: normal normal normal 16px/1 FontAwesome;
+  color: #000;
+  position: absolute;
+  top: 10px;
+}
+
+.slick-next:before {
+  content: "\f105";
+  left: 14px;
+}
+
+.slick-prev:before {
+  content: "\f104";
+  left: 12px;
+}
+
+.slick-six, .slick-five {
   position: relative;
   margin-left: -5px;
   margin-right: -5px;
 }
-.multislider-wrap .MS-content {
-  margin: 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.multislider-wrap .MS-content .item {
+.slick-six .item, .slick-five .item {
   display: inline-block;
   padding: 0 5px;
   height: 100%;
@@ -5382,22 +5644,25 @@ be a descendant of the grid when it is being dragged.
   vertical-align: top;
   width: 20%;
 }
-.multislider-wrap .MS-content a {
+.slick-six .item a, .slick-five .item a {
   display: block;
   background: #f7f7f7;
   color: #333;
   text-align: center;
 }
-.multislider-wrap .MS-content a:hover {
+.slick-six .item a:hover, .slick-five .item a:hover {
   background: #fafafa;
   color: #000;
 }
-.multislider-wrap .MS-content .brief {
+.slick-six .icons, .slick-five .icons {
+  display: inline-block;
+}
+.slick-six .brief, .slick-five .brief {
   display: block;
   white-space: normal;
   line-height: 1.2;
 }
-.multislider-wrap .btn-control {
+.slick-six .slick-arrow, .slick-five .slick-arrow {
   background: #fff;
   border: none;
   border-radius: 50%;
@@ -5410,90 +5675,90 @@ be a descendant of the grid when it is being dragged.
   text-align: center;
   outline: 0;
   position: absolute;
-  top: 50%;
+  top: 58%;
   transition: all .15s ease-in-out;
 }
-.multislider-wrap .btn-control:hover {
+.slick-six .slick-arrow:hover, .slick-five .slick-arrow:hover {
   background: #fcfcfc;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
   cursor: pointer;
 }
-.multislider-wrap .MS-left {
+.slick-six .slick-prev, .slick-five .slick-prev {
   left: -11px;
 }
-.multislider-wrap .MS-right {
+.slick-six .slick-next, .slick-five .slick-next {
   right: -11px;
 }
 
-#businessSlider .MS-content .item {
+.slick-business .item {
   width: 16.666%;
 }
-#businessSlider .MS-content a {
+.slick-business a {
   padding: 20px;
   min-height: 156px;
 }
-#businessSlider .MS-content .icons {
+.slick-business .icons {
   width: 80px;
   height: auto;
 }
 
 @media (max-width: 1200px) {
-  #businessSlider .MS-content .item {
+  .slick-business .item {
     width: 20%;
   }
 }
 @media (max-width: 992px) {
-  #businessSlider .MS-content .item {
+  .slick-business .item {
     width: 25%;
   }
 }
-@media (max-width: 767px) {
-  #businessSlider .MS-content .item {
+@media (max-width: 768px) {
+  .slick-business .item {
     width: 33.3333%;
   }
 }
 @media (max-width: 575px) {
-  #businessSlider .MS-content .item {
+  .slick-business .item {
     width: 50%;
   }
 }
-#resourceSlider .MS-content .item {
+.slick-resource .item {
   width: 16.666%;
 }
-#resourceSlider .MS-content a {
+.slick-resource a {
   padding: 30px 20px 10px;
   min-height: 136px;
 }
-#resourceSlider .MS-content .icons {
+.slick-resource .icons {
   margin-bottom: 0.75rem;
   width: 48px;
   height: auto;
 }
 
 @media (max-width: 1200px) {
-  #resourceSlider .MS-content .item {
+  .slick-resource .item {
     width: 20%;
   }
 }
 @media (max-width: 992px) {
-  #resourceSlider .MS-content .item {
+  .slick-resource .item {
     width: 25%;
   }
 }
-@media (max-width: 767px) {
-  #resourceSlider .MS-content .item {
+@media (max-width: 768px) {
+  .slick-resource .item {
     width: 33.3333%;
   }
 }
 @media (max-width: 575px) {
-  #resourceSlider .MS-content .item {
+  .slick-resource .item {
     width: 50%;
   }
 }
-#partnerSlider .MS-content .item {
+.slick-partner .item {
   width: 20%;
 }
-#partnerSlider .MS-content a {
+.slick-partner .item a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5501,33 +5766,36 @@ be a descendant of the grid when it is being dragged.
   padding: 20px;
   min-height: 128px;
 }
-#partnerSlider .MS-content .partner-logo {
+.slick-partner .item a:hover {
+  background-color: transparent;
+}
+.slick-partner .partner-logo {
   max-width: 152px;
   height: auto;
   max-height: 75px;
   width: auto;
 }
-#partnerSlider .MS-content .brief {
+.slick-partner .brief {
   display: none;
 }
 
 @media (max-width: 1200px) {
-  #partnerSlider .MS-content .item {
+  .slick-partner .item {
     width: 25%;
   }
 }
 @media (max-width: 992px) {
-  #partnerSlider .MS-content .item {
+  .slick-partner .item {
     width: 33.3333%;
   }
 }
-@media (max-width: 767px) {
-  #partnerSlider .MS-content .item {
+@media (max-width: 768px) {
+  .slick-partner .item {
     width: 50%;
   }
 }
-@media (max-width: 374px) {
-  #partnerSlider .MS-content .item {
+@media (max-width: 375px) {
+  .slick-partner .item {
     width: 100%;
   }
 }
@@ -5746,10 +6014,12 @@ be a descendant of the grid when it is being dragged.
 }
 .post-single table {
   margin-bottom: 1rem;
+  width: 100% !important;
 }
 .post-single table th, .post-single table td {
   padding: 0.25rem 0.25rem;
   font-size: 0.935rem;
+  width: auto !important;
 }
 .post-single .video-wrapper {
   margin-bottom: 1rem;

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% if content_for? :title %>
+        <%= yield :title %>
+    <% else %>
+        <title>國立成功大學子系統選單</title>
+    <% end %>
+    <% if content_for? :replace_css %>
+        <%= yield :replace_css %>
+    <% end %>
+    <!--[if lt IE 9]>
+        <script src="/javascripts/selectivizr-min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" media="all" href="stylesheets/menu.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="javascripts/modernizr.custom.js"></script>
+</head>
+<body>
+<div class="pages">
+    <header class="header lightness">
+        <%= render :partial => "/partials/header" %>
+    </header>
+    <%= yield %>
+</div>
+
+<script src="javascripts/jquery-3.4.1.min.js"></script>
+<script src="javascripts/parallax.min.js"></script>
+
+<% if content_for? :js %>
+    <%= yield :js %>
+<% end %>
+
+</body>
+</html>

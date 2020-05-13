@@ -1,0 +1,197 @@
+<!-- admin-page: Advanced search Version 3 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+<main class="main">
+    <div class="page-header">
+        <h2>Advanced search Version 3</h2>
+		<p>給台大國際用的，其他版本 <a href="datatables.html">Datatables Version 1</a>, <a href="adsearch.html">Advanced search 2</a></p>
+    </div>
+    <div class="row">
+        <div class="col-12">
+			<div class="col-block mb-4">
+				<div class="block-header has-border">
+					Version 3
+				</div>
+				<div class="block-content expansion">
+                    <div class="dt-toolbar">
+                        <div class="dt-toolbar-l">
+                            <div class="btn-group btn-group-sm unshadow">
+                                <button type="button" class="btn btn-white" data-toggle="modal" data-target="#adSeachModal">
+                                    進階搜尋
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+							<% (1..15).each do |n| %>
+                            <tr>
+                                <td scope="row"><%= n %></td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+							<% end %>
+                        </tbody>
+                    </table>
+				</div>
+			</div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="adSeachModal" tabindex="-1" role="dialog" aria-labelledby="adSeachModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="adSeachModalLabel">進階搜尋</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+			<form>
+                <div class="modal-body">
+                    <div class="template-search">
+					    <div class="condition-warp">
+						    <p class="introduction">直接搜尋或套用右方範本</p>
+							<div class="condition-bar">
+								<div class="condition-column">
+                                    <div class="select-box">
+                                        <select class="browser-default custom-select">
+                                            <option value="AND">AND</option>
+                                            <option value="OR">OR</option>
+                                        </select>
+                                    </div>
+                                    <div class="select-box">
+                                        <select class="browser-default custom-select">
+                                            <option value="接待紀錄任務名稱">接待紀錄任務名稱</option>
+                                            <option value="計畫合約(for 交換教授) 中文名稱">計畫合約(for 交換教授) 中文名稱</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                    <div class="select-box">
+                                        <select class="browser-default custom-select">
+                                            <option value="等於">等於</option>
+                                            <option value="不等於">不等於</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                    <div class="select-box">
+                                        <input type="text" id="exampleForm2" class="form-control" placeholder="placeholder">
+                                    </div>
+								</div>
+								<div class="action-box">
+								    <button type="submit" class="btn btn-secondary">加入條件</button>
+								</div>
+							</div>
+							<div class="condition-result">
+								<div class="portlet-wrapper">
+                                    <div class="scrollbar-inner">
+                                        <table class="condition-table table table-sm">
+                                            <tbody>
+                                                <% (1..4).map do |i| %>
+                                                <tr>
+                                                    <td class="action-delete"><a href="/"><i class="fa fa-times"></i></a></td>
+                                                    <td class="condition-one">AND</td>
+                                                    <td class="condition-two">接待紀錄任務名稱</td>
+                                                    <td class="condition-three">不等於</td>
+                                                    <td class="condition-four">巴基斯坦 Islamic Republic of Pakistan</td>
+                                                </tr>
+                                                <% end %>
+                                                <tr>
+                                                    <td class="action-delete"><a href="/"><i class="fa fa-times"></i></a></td>
+                                                    <td class="condition-one">AND</td>
+                                                    <td class="condition-two">任務名稱</td>
+                                                    <td class="condition-three">等於</td>
+                                                    <td class="condition-four">巴基斯坦 Islamic Republic of Pakistan</td>
+                                                </tr>
+                                                <% (1..5).map do |i| %>
+                                                <tr>
+                                                    <td class="action-delete"><a href="/"><i class="fa fa-times"></i></a></td>
+                                                    <td class="condition-one">OR</td>
+                                                    <td class="condition-two">接待紀錄</td>
+                                                    <td class="condition-three">不等於</td>
+                                                    <td class="condition-four">Islamic Republic of Pakistan</td>
+                                                </tr>
+                                                <% end %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+								</div>
+							</div>
+						</div>
+						<div class="template-warp">
+						    <p class="template-introduction"><i class="fa fa-clone"></i>選擇搜尋範本</p>
+							<div class="multiple-select">
+                                <select class="custom-select" size="20">
+                                    <option value="南亞六國 ">南亞六國 </option>
+                                    <option value="東協十國">東協十國</option>
+                                    <option value="歷年度">歷年度</option>
+									<option value="院系訪賓統計103學年度 ">院系訪賓統計103學年度 </option>
+									<option value="APRU 2013-">APRU 2013-</option>
+                                </select>
+							</div>
+						</div>
+					</div>
+					<div class="condition-save">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="saveTemplate">
+                            <label class="custom-control-label" for="saveTemplate">將本次搜尋存成範本 </label>
+                        </div>
+						<div class="input-template">
+						    <input type="text" class="form-control">
+						</div>
+					</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-link float-left">重設</button>
+                    <button type="submit" class="btn btn-primary">搜尋</button>
+                </div>
+			</form>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<script src="../javascripts/jquery.scrollbar.min.js"></script>
+<script>
+	$('.modal').appendTo("body").modal('hide');
+	
+	// jQuery scrollbar
+    jQuery(document).ready(function(){
+        jQuery('.scrollbar-inner').scrollbar();
+    });
+	
+	// jQuery show/hide
+    $('input#saveTemplate').change(function(){
+        if($(this).is(":checked")) {
+            $('.input-template').addClass("show");
+        } else {
+            $('.input-template').removeClass("show");
+        }
+    });
+</script>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

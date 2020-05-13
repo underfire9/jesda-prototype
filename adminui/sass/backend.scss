@@ -42,6 +42,12 @@
 /* Progress Timeline ---------------------------------------------------------------------------*/
 @import "widgets/progress-timeline";
 
+/* NTU Login ---------------------------------------------------------------------------*/
+@import "widgets/ntu_login";
+
+/* NTU Workbench ---------------------------------------------------------------------------*/
+@import "widgets/workbench";
+
 body {
 	background-color: $body_background;
 	font-size: 0.9375rem;
@@ -248,6 +254,18 @@ body {
 			.table-striped th { background: #fff; }
 			.t-header, .t-footer { padding: 0 1.25rem; }
 			//.datatable th { padding: 0.625rem; }
+			.table-sm {
+                th, td {
+                    padding-top: 0.6rem;
+                    padding-bottom: 0.6rem;
+                }
+			}
+			.table-xs {
+                th, td {
+                    padding-top: 0.375rem;
+                    padding-bottom: 0.375rem;
+                }
+			}
 		}
 	}
 	.block-header, .block-content, .block-footer {
@@ -598,6 +616,27 @@ ul.ticket-tax-list {
 			padding-top: 4px;
 		}
 	}
+}
+
+.table {
+    .table-xs {
+        th, td {
+            padding-top: 0.375rem;
+            padding-bottom: 0.375rem;
+        }
+    }
+	tr.onclick {
+		td {
+			background: #feffe5;
+		}
+	}
+}
+
+.table .ellipsis {
+	display: inline-block;
+    overflow : hidden;
+    text-overflow : ellipsis;
+    white-space : nowrap;
 }
 
 /* `Tabs
@@ -1196,6 +1235,88 @@ select.select-hasadd {
 	}
 	.sort-by {
 		width: 25%;
+	}
+}
+
+.template-search {
+	display: flex;
+	justify-content: space-between;
+	.template-introduction {
+		color: #5b656d;
+		.fa {
+			display: inline-block;
+			margin-right: 0.5rem;
+			color: #2eadd1;
+		}
+	}
+	.condition-warp {
+		width: 740px;
+	}
+	.template-warp {
+		width: 330px;
+	}
+	.condition-bar {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 1rem;
+		width: 100%;
+		.select-box { margin-right: 0.375rem; }
+	}
+	.condition-column {
+		display: flex;
+	}
+	.action-box {
+		.btn {
+			margin: 0;
+			padding: 0.5rem 1.25rem;
+			font-size: 0.9375rem;
+		}
+	}
+	.condition-result { position: relative; }
+	.condition-table {
+		width: 99%;
+		tr:first-child td {
+			border-top: none;
+		}
+		td {
+			padding-top: 0.5rem;
+			padding-bottom: 0.5rem;
+		}
+	}
+    .action-delete {
+        width: 40px;
+        text-align: center;
+        a {
+            color: red;
+            &:hover { color: #bb0c0c; }
+        }
+    }
+	.condition-one {
+		width: 50px;
+	}
+	.condition-three {
+		width: 60px;
+	}
+	.condition-two {
+		width: 140px;
+	}
+	.scrollbar-inner {
+		height: 360px;
+	}
+}
+
+.modal-body {
+    .condition-save {
+        display: flex;
+		align-items: center;
+		margin-top: 0.5rem;
+        width: 740px;
+		height: 38px;
+    }
+	.input-template {
+		display: none;
+		margin-left: 1rem;
+		&.show { display: block; }
 	}
 }
 

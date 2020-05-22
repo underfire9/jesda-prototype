@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>國立成功大學子系統選單</title>
+    <% if content_for? :replace_css %>
+        <%= yield :replace_css %>
+    <% end %>
+    <!--[if lt IE 9]>
+        <script src="../javascripts/selectivizr-min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" media="all" href="../stylesheets/entrance.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <script src="../javascripts/modernizr.custom.26633.js"></script>
+</head>
+<body class="entrance-layout">
+<div class="pages">
+    <%= yield %>
+</div>
+
+<script src="../javascripts/jquery-3.4.1.min.js"></script>
+<script src="../javascripts/parallax.min.js"></script>
+
+<script>
+    // run parallax when everything has loaded
+    $(window).on('load', function(){
+        // define parallax dependencies
+        var scene = document.getElementById('scene');
+        var images = $('.layer');
+        var p = new Parallax(scene);
+
+        //fade in the view
+        $('#scene').fadeIn(1800);
+    });
+</script>
+
+</body>
+</html>

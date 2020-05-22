@@ -3201,6 +3201,10 @@ footer.footer .power:before {
   z-index: 1;
 }
 
+html, body {
+  min-height: 100%;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
@@ -5598,8 +5602,6 @@ html, body, [canvas=container], [off-canvas] {
 
 html, body {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
 }
 
 /**
@@ -5688,9 +5690,6 @@ html, body {
  * Animation
  */
 [canvas], [off-canvas] {
-  -webkit-transform: translate(0px, 0px);
-  -ms-transform: translate(0px, 0px);
-  transform: translate(0px, 0px);
   -webkit-transition: -webkit-transform 300ms;
   transition: transform 300ms;
   -webkit-backface-visibility: hidden;
@@ -8719,6 +8718,11 @@ html, body {
 
 /* `Sticky
 -----------------------------------------------------------------------------*/
+.sticky-fixed {
+  position: fixed;
+  top: 20px;
+}
+
 .sticky-tabs-wrapper {
   display: flow-root;
 }
@@ -8754,7 +8758,7 @@ html, body {
   border-width: 8px 0 8px 8px;
   border-color: transparent transparent transparent #27b4cf;
   position: absolute;
-  right: -8px;
+  right: -7px;
   top: 50%;
   margin-top: -8px;
 }
@@ -8860,184 +8864,197 @@ html, body {
   font: normal normal normal 2.5rem/88px FontAwesome;
   color: red;
 }
-.progress-item.checked:nth-child(12n-11) .progress-circ {
+
+.progress-item.checked:nth-child(12n-11) .progress-circ, .history-timeline .progress-item:nth-child(12n-11) .progress-circ {
   background: #a7d906;
-}
-.progress-item.checked:nth-child(12n-11) .progress-circ:after {
   color: #a7d906;
 }
-.progress-item.checked:nth-child(12n-11) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-11) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-11) .progress-circ:after {
   color: #a7d906;
 }
-.progress-item.checked:nth-child(12n-11) .progress-card:before {
+.progress-item.checked:nth-child(12n-11) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-11) .progress-brief h5 {
+  color: #a7d906;
+}
+.progress-item.checked:nth-child(12n-11) .progress-card:before, .history-timeline .progress-item:nth-child(12n-11) .progress-card:before {
   background: #a7d906;
 }
-.progress-item.checked:nth-child(12n-11) .progress-card:after {
+.progress-item.checked:nth-child(12n-11) .progress-card:after, .history-timeline .progress-item:nth-child(12n-11) .progress-card:after {
   border-color: #a7d906;
 }
-.progress-item.checked:nth-child(12n-10) .progress-circ {
+.progress-item.checked:nth-child(12n-10) .progress-circ, .history-timeline .progress-item:nth-child(12n-10) .progress-circ {
   background: #f8596d;
-}
-.progress-item.checked:nth-child(12n-10) .progress-circ:after {
   color: #f8596d;
 }
-.progress-item.checked:nth-child(12n-10) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-10) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-10) .progress-circ:after {
   color: #f8596d;
 }
-.progress-item.checked:nth-child(12n-10) .progress-card:before {
+.progress-item.checked:nth-child(12n-10) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-10) .progress-brief h5 {
+  color: #f8596d;
+}
+.progress-item.checked:nth-child(12n-10) .progress-card:before, .history-timeline .progress-item:nth-child(12n-10) .progress-card:before {
   background: #f8596d;
 }
-.progress-item.checked:nth-child(12n-10) .progress-card:after {
+.progress-item.checked:nth-child(12n-10) .progress-card:after, .history-timeline .progress-item:nth-child(12n-10) .progress-card:after {
   border-color: #f8596d;
 }
-.progress-item.checked:nth-child(12n-9) .progress-circ {
+.progress-item.checked:nth-child(12n-9) .progress-circ, .history-timeline .progress-item:nth-child(12n-9) .progress-circ {
   background: #f7cb00;
-}
-.progress-item.checked:nth-child(12n-9) .progress-circ:after {
   color: #f7cb00;
 }
-.progress-item.checked:nth-child(12n-9) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-9) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-9) .progress-circ:after {
   color: #f7cb00;
 }
-.progress-item.checked:nth-child(12n-9) .progress-card:before {
+.progress-item.checked:nth-child(12n-9) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-9) .progress-brief h5 {
+  color: #f7cb00;
+}
+.progress-item.checked:nth-child(12n-9) .progress-card:before, .history-timeline .progress-item:nth-child(12n-9) .progress-card:before {
   background: #f7cb00;
 }
-.progress-item.checked:nth-child(12n-9) .progress-card:after {
+.progress-item.checked:nth-child(12n-9) .progress-card:after, .history-timeline .progress-item:nth-child(12n-9) .progress-card:after {
   border-color: #f7cb00;
 }
-.progress-item.checked:nth-child(12n-8) .progress-circ {
+.progress-item.checked:nth-child(12n-8) .progress-circ, .history-timeline .progress-item:nth-child(12n-8) .progress-circ {
   background: #1dd8bb;
-}
-.progress-item.checked:nth-child(12n-8) .progress-circ:after {
   color: #1dd8bb;
 }
-.progress-item.checked:nth-child(12n-8) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-8) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-8) .progress-circ:after {
   color: #1dd8bb;
 }
-.progress-item.checked:nth-child(12n-8) .progress-card:before {
+.progress-item.checked:nth-child(12n-8) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-8) .progress-brief h5 {
+  color: #1dd8bb;
+}
+.progress-item.checked:nth-child(12n-8) .progress-card:before, .history-timeline .progress-item:nth-child(12n-8) .progress-card:before {
   background: #1dd8bb;
 }
-.progress-item.checked:nth-child(12n-8) .progress-card:after {
+.progress-item.checked:nth-child(12n-8) .progress-card:after, .history-timeline .progress-item:nth-child(12n-8) .progress-card:after {
   border-color: #1dd8bb;
 }
-.progress-item.checked:nth-child(12n-7) .progress-circ {
+.progress-item.checked:nth-child(12n-7) .progress-circ, .history-timeline .progress-item:nth-child(12n-7) .progress-circ {
   background: #3dcfff;
-}
-.progress-item.checked:nth-child(12n-7) .progress-circ:after {
   color: #3dcfff;
 }
-.progress-item.checked:nth-child(12n-7) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-7) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-7) .progress-circ:after {
   color: #3dcfff;
 }
-.progress-item.checked:nth-child(12n-7) .progress-card:before {
+.progress-item.checked:nth-child(12n-7) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-7) .progress-brief h5 {
+  color: #3dcfff;
+}
+.progress-item.checked:nth-child(12n-7) .progress-card:before, .history-timeline .progress-item:nth-child(12n-7) .progress-card:before {
   background: #3dcfff;
 }
-.progress-item.checked:nth-child(12n-7) .progress-card:after {
+.progress-item.checked:nth-child(12n-7) .progress-card:after, .history-timeline .progress-item:nth-child(12n-7) .progress-card:after {
   border-color: #3dcfff;
 }
-.progress-item.checked:nth-child(12n-6) .progress-circ {
+.progress-item.checked:nth-child(12n-6) .progress-circ, .history-timeline .progress-item:nth-child(12n-6) .progress-circ {
   background: #ff78d7;
-}
-.progress-item.checked:nth-child(12n-6) .progress-circ:after {
   color: #ff78d7;
 }
-.progress-item.checked:nth-child(12n-6) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-6) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-6) .progress-circ:after {
   color: #ff78d7;
 }
-.progress-item.checked:nth-child(12n-6) .progress-card:before {
+.progress-item.checked:nth-child(12n-6) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-6) .progress-brief h5 {
+  color: #ff78d7;
+}
+.progress-item.checked:nth-child(12n-6) .progress-card:before, .history-timeline .progress-item:nth-child(12n-6) .progress-card:before {
   background: #ff78d7;
 }
-.progress-item.checked:nth-child(12n-6) .progress-card:after {
+.progress-item.checked:nth-child(12n-6) .progress-card:after, .history-timeline .progress-item:nth-child(12n-6) .progress-card:after {
   border-color: #ff78d7;
 }
-.progress-item.checked:nth-child(12n-5) .progress-circ {
+.progress-item.checked:nth-child(12n-5) .progress-circ, .history-timeline .progress-item:nth-child(12n-5) .progress-circ {
   background: #db7c3d;
-}
-.progress-item.checked:nth-child(12n-5) .progress-circ:after {
   color: #db7c3d;
 }
-.progress-item.checked:nth-child(12n-5) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-5) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-5) .progress-circ:after {
   color: #db7c3d;
 }
-.progress-item.checked:nth-child(12n-5) .progress-card:before {
+.progress-item.checked:nth-child(12n-5) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-5) .progress-brief h5 {
+  color: #db7c3d;
+}
+.progress-item.checked:nth-child(12n-5) .progress-card:before, .history-timeline .progress-item:nth-child(12n-5) .progress-card:before {
   background: #db7c3d;
 }
-.progress-item.checked:nth-child(12n-5) .progress-card:after {
+.progress-item.checked:nth-child(12n-5) .progress-card:after, .history-timeline .progress-item:nth-child(12n-5) .progress-card:after {
   border-color: #db7c3d;
 }
-.progress-item.checked:nth-child(12n-4) .progress-circ {
+.progress-item.checked:nth-child(12n-4) .progress-circ, .history-timeline .progress-item:nth-child(12n-4) .progress-circ {
   background: #963ef0;
-}
-.progress-item.checked:nth-child(12n-4) .progress-circ:after {
   color: #963ef0;
 }
-.progress-item.checked:nth-child(12n-4) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-4) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-4) .progress-circ:after {
   color: #963ef0;
 }
-.progress-item.checked:nth-child(12n-4) .progress-card:before {
+.progress-item.checked:nth-child(12n-4) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-4) .progress-brief h5 {
+  color: #963ef0;
+}
+.progress-item.checked:nth-child(12n-4) .progress-card:before, .history-timeline .progress-item:nth-child(12n-4) .progress-card:before {
   background: #963ef0;
 }
-.progress-item.checked:nth-child(12n-4) .progress-card:after {
+.progress-item.checked:nth-child(12n-4) .progress-card:after, .history-timeline .progress-item:nth-child(12n-4) .progress-card:after {
   border-color: #963ef0;
 }
-.progress-item.checked:nth-child(12n-3) .progress-circ {
+.progress-item.checked:nth-child(12n-3) .progress-circ, .history-timeline .progress-item:nth-child(12n-3) .progress-circ {
   background: #3e74fc;
-}
-.progress-item.checked:nth-child(12n-3) .progress-circ:after {
   color: #3e74fc;
 }
-.progress-item.checked:nth-child(12n-3) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-3) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-3) .progress-circ:after {
   color: #3e74fc;
 }
-.progress-item.checked:nth-child(12n-3) .progress-card:before {
+.progress-item.checked:nth-child(12n-3) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-3) .progress-brief h5 {
+  color: #3e74fc;
+}
+.progress-item.checked:nth-child(12n-3) .progress-card:before, .history-timeline .progress-item:nth-child(12n-3) .progress-card:before {
   background: #3e74fc;
 }
-.progress-item.checked:nth-child(12n-3) .progress-card:after {
+.progress-item.checked:nth-child(12n-3) .progress-card:after, .history-timeline .progress-item:nth-child(12n-3) .progress-card:after {
   border-color: #3e74fc;
 }
-.progress-item.checked:nth-child(12n-2) .progress-circ {
+.progress-item.checked:nth-child(12n-2) .progress-circ, .history-timeline .progress-item:nth-child(12n-2) .progress-circ {
   background: #d08f1d;
-}
-.progress-item.checked:nth-child(12n-2) .progress-circ:after {
   color: #d08f1d;
 }
-.progress-item.checked:nth-child(12n-2) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-2) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-2) .progress-circ:after {
   color: #d08f1d;
 }
-.progress-item.checked:nth-child(12n-2) .progress-card:before {
+.progress-item.checked:nth-child(12n-2) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-2) .progress-brief h5 {
+  color: #d08f1d;
+}
+.progress-item.checked:nth-child(12n-2) .progress-card:before, .history-timeline .progress-item:nth-child(12n-2) .progress-card:before {
   background: #d08f1d;
 }
-.progress-item.checked:nth-child(12n-2) .progress-card:after {
+.progress-item.checked:nth-child(12n-2) .progress-card:after, .history-timeline .progress-item:nth-child(12n-2) .progress-card:after {
   border-color: #d08f1d;
 }
-.progress-item.checked:nth-child(12n-1) .progress-circ {
+.progress-item.checked:nth-child(12n-1) .progress-circ, .history-timeline .progress-item:nth-child(12n-1) .progress-circ {
   background: #cb0;
-}
-.progress-item.checked:nth-child(12n-1) .progress-circ:after {
   color: #cb0;
 }
-.progress-item.checked:nth-child(12n-1) .progress-brief h5 {
+.progress-item.checked:nth-child(12n-1) .progress-circ:after, .history-timeline .progress-item:nth-child(12n-1) .progress-circ:after {
   color: #cb0;
 }
-.progress-item.checked:nth-child(12n-1) .progress-card:before {
+.progress-item.checked:nth-child(12n-1) .progress-brief h5, .history-timeline .progress-item:nth-child(12n-1) .progress-brief h5 {
+  color: #cb0;
+}
+.progress-item.checked:nth-child(12n-1) .progress-card:before, .history-timeline .progress-item:nth-child(12n-1) .progress-card:before {
   background: #cb0;
 }
-.progress-item.checked:nth-child(12n-1) .progress-card:after {
+.progress-item.checked:nth-child(12n-1) .progress-card:after, .history-timeline .progress-item:nth-child(12n-1) .progress-card:after {
   border-color: #cb0;
 }
-.progress-item.checked:nth-child(12n) .progress-circ {
+.progress-item.checked:nth-child(12n) .progress-circ, .history-timeline .progress-item:nth-child(12n) .progress-circ {
   background: #41c17d;
-}
-.progress-item.checked:nth-child(12n) .progress-circ:after {
   color: #41c17d;
 }
-.progress-item.checked:nth-child(12n) .progress-brief h5 {
+.progress-item.checked:nth-child(12n) .progress-circ:after, .history-timeline .progress-item:nth-child(12n) .progress-circ:after {
   color: #41c17d;
 }
-.progress-item.checked:nth-child(12n) .progress-card:before {
+.progress-item.checked:nth-child(12n) .progress-brief h5, .history-timeline .progress-item:nth-child(12n) .progress-brief h5 {
+  color: #41c17d;
+}
+.progress-item.checked:nth-child(12n) .progress-card:before, .history-timeline .progress-item:nth-child(12n) .progress-card:before {
   background: #41c17d;
 }
-.progress-item.checked:nth-child(12n) .progress-card:after {
+.progress-item.checked:nth-child(12n) .progress-card:after, .history-timeline .progress-item:nth-child(12n) .progress-card:after {
   border-color: #41c17d;
 }
 
@@ -9084,6 +9101,111 @@ html, body {
   border-top: 0;
   border-left: 2px solid #aaa;
   z-index: 1;
+}
+
+/* `History Timeline
+-----------------------------------------------------------------------------*/
+.history-timeline .dateline {
+  font-family: "Roboto",sans-serif;
+  font-weight: 300;
+}
+.history-timeline .dateline .years {
+  font-weight: 500;
+}
+.history-timeline .progress-list {
+  list-style: none;
+  margin: 0;
+  padding: 30px 0 1px;
+  position: relative;
+}
+.history-timeline .progress-list:after {
+  content: "";
+  border-radius: 2px;
+  background: #e3e5ea;
+  width: 4px;
+  position: absolute;
+  left: 258px;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+}
+.history-timeline .progress-item {
+  display: flow-root;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+.history-timeline .progress-check {
+  float: left;
+  width: 300px;
+  position: relative;
+}
+.history-timeline .progress-circ {
+  background: #999;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  font-family: "Roboto",sans-serif;
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #999;
+  text-align: center;
+  line-height: 80px;
+  position: absolute;
+  right: 0;
+  z-index: 0;
+}
+.history-timeline .progress-circ:before {
+  content: "";
+  display: block;
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
+  background: #fff;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: -1;
+}
+.history-timeline .progress-brief {
+  padding-top: 15px;
+  text-align: right;
+  width: 190px;
+}
+.history-timeline .progress-brief p {
+  margin-bottom: 0;
+  line-height: 1.4;
+  color: #838d93;
+}
+.history-timeline .progress-card {
+  margin-left: 340px;
+  position: relative;
+}
+.history-timeline .progress-card:before, .history-timeline .progress-card:after {
+  content: "";
+  position: absolute;
+}
+.history-timeline .progress-card:before {
+  background: #999;
+  width: 24px;
+  height: 2px;
+  top: 39px;
+  left: -40px;
+}
+.history-timeline .progress-card:after {
+  border-radius: 50%;
+  border: 2px solid #999;
+  width: 12px;
+  height: 12px;
+  top: 34px;
+  left: -16px;
+}
+.history-timeline .progress-card-body {
+  background: #fff;
+  border-radius: 5px;
+  padding-left: 20px;
+  min-height: 80px;
 }
 
 /* NTU Login ---------------------------------------------------------------------------*/
@@ -9871,6 +9993,10 @@ body {
 }
 /* `Login
 -----------------------------------------------------------------------------*/
+.height-layout {
+  height: 100vh;
+}
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -10406,6 +10532,24 @@ ul.ticket-tax-list .ticket-info .toggle-switch {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.add-blockhead-button {
+  position: relative;
+  padding-left: 1.25rem;
+  color: #333;
+}
+.add-blockhead-button:after {
+  content: "\f067";
+  font: normal normal normal 14px/1 FontAwesome;
+  color: #00c851;
+  position: absolute;
+  left: 0;
+  top: 3px;
+  transition: all 0.2s ease-in-out;
+}
+.add-blockhead-button:hover {
+  color: #00c851;
 }
 
 /* `Tabs
@@ -11334,6 +11478,47 @@ select.select-hasadd {
   color: #aaa;
 }
 
+/* `fancybox
+-----------------------------------------------------------------------------*/
+.fancybox-wrap {
+  margin-top: 1rem;
+}
+.fancybox-wrap figure a {
+  display: inline-block;
+  border-radius: 0.25rem;
+  width: 320px;
+  height: 180px;
+  overflow: hidden;
+}
+.fancybox-wrap figure a img {
+  width: 100%;
+  height: auto;
+}
+
+.files-well a {
+  display: inline-block;
+  border-radius: 0.5rem;
+  background: #f8f8f8;
+  margin-right: 0.375rem;
+  padding: 0.375rem 0.75rem 0.375rem 2.25rem;
+  color: #666;
+  position: relative;
+}
+.files-well a:after {
+  content: "\f0ed";
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 14px;
+  color: #333;
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  transition: all 0.2s ease-in-out;
+}
+.files-well a:hover {
+  background: #fafafa;
+  color: #0875ae;
+}
+
 /* inbox on modal (因為層級順序放後面) --------------------------------------------------------*/
 /* `Inbox
 -----------------------------------------------------------------------------*/
@@ -11738,6 +11923,15 @@ select.operating-select:focus {
     stroke-dashoffset: 187;
     transform: rotate(450deg);
   }
+}
+/* `NTU BIGGER
+-----------------------------------------------------------------------------*/
+label {
+  font-size: 1rem;
+}
+
+.table th, .table td {
+  font-size: 1rem;
 }
 
 /*# sourceMappingURL=backend.css.map */

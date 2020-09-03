@@ -1,50 +1,73 @@
 <!-- NCKU-Menu: 系統選單  -->
-<ul id="scene" class="clean-list">
-	<li class="layer layer1" data-depth="0.03"></li>
-	<li class="layer layer2" data-depth="0.02"></li>
-	<li class="layer layer3" data-depth="0.005">
-	    <img src="../assets/ncku-logo.svg" />
-	</li>
-	<li class="layer layer4" data-depth="0.02">
-	    <img src="../assets/ncku-logo.svg" />
-	</li>
-</ul>
-<div class="container">
-	<div class="account">
-		<span>您好, 史嘉蕾</span>
-		<a href="#" class="logout">登出</a>
-	</div>
-    <ul class="system-list clean-list">
-		<% (1..9).each do |n| %>
-	    <li>
-			<div class="card">
-			    <a href="#" class="card-link">
-					<img src="../assets/banner/b_0<%= n %>.jpg" />
-				    <span class="name">子系統名稱</span>
-					<span class="info">簡短的系統功能說明建議不大於四十八個字元</span>
-				</a>
-			</div>
-		</li>
-		<% end %>
-		<li>
-			<div class="card disabled">
-			    <a href="#" class="card-link">
-					<img src="../assets/banner/b_10.jpg" />
-				    <span class="name">不能 click 灰階圖片 sample</span>
-					<span class="info">簡短的系統功能說明建議不大於四十八個字元</span>
-				</a>
-			</div>
-		</li>
-		<% (1..3).each do |n| %>
-		<li>
-			<div class="card">
-			    <a href="#" class="card-link">
-					<img src="../assets/banner/b_1<%= n %>.jpg" />
-				    <span class="name">需要換行的子系統名稱</span>
-					<span class="info">簡短的系統功能說明建議不大於四十八個字元</span>
-				</a>
-			</div>
-		</li>
-		<% end %>
-	</ul>
+
+<body class="entrance-layout">
+<div class="pages">
+    <ul id="scene" class="clean-list">
+        <li class="layer layer1" data-depth="0.03"></li>
+        <li class="layer layer2" data-depth="0.02"></li>
+        <li class="layer layer3" data-depth="0.005">
+            <img src="../assets/ncku-logo.svg" />
+        </li>
+        <li class="layer layer4" data-depth="0.02">
+            <img src="../assets/ncku-logo.svg" />
+        </li>
+    </ul>
+    <div class="entrance-container">
+        <div class="account">
+            <span>您好, 史嘉蕾</span>
+            <a href="#" class="logout">登出</a>
+			<a href="#" class="btn btn-secondary">切換身份</a>
+        </div>
+        <ul class="system-list clean-list">
+            <% (1..9).each do |n| %>
+            <li>
+                <div class="card">
+                    <a href="#" class="card-link">
+                        <img src="../assets/banner/b_0<%= n %>.jpg" />
+                        <span class="name">子系統名稱</span>
+                        <span class="info">簡短的系統功能說明建議不大於四十八個字元</span>
+                    </a>
+                </div>
+            </li>
+            <% end %>
+            <li>
+                <div class="card disabled">
+                    <a href="#" class="card-link">
+                        <img src="../assets/banner/b_10.jpg" />
+                        <span class="name">不能 click 灰階圖片 sample</span>
+                        <span class="info">簡短的系統功能說明建議不大於四十八個字元</span>
+                    </a>
+                </div>
+            </li>
+            <% (1..3).each do |n| %>
+            <li>
+                <div class="card">
+                    <a href="#" class="card-link">
+                        <img src="../assets/banner/b_1<%= n %>.jpg" />
+                        <span class="name">需要換行的子系統名稱</span>
+                        <span class="info">簡短的系統功能說明建議不大於四十八個字元</span>
+                    </a>
+                </div>
+            </li>
+            <% end %>
+        </ul>
+    </div>
 </div>
+
+<script src="../javascripts/jquery-3.4.1.min.js"></script>
+<script src="../javascripts/parallax.min.js"></script>
+
+<script>
+    // run parallax when everything has loaded
+    $(window).on('load', function(){
+        // define parallax dependencies
+        var scene = document.getElementById('scene');
+        var images = $('.layer');
+        var p = new Parallax(scene);
+
+        //fade in the view
+        $('#scene').fadeIn(1800);
+    });
+</script>
+
+</body>

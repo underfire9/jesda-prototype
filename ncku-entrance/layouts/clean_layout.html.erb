@@ -11,33 +11,11 @@
     <% if content_for? :replace_css %>
         <%= yield :replace_css %>
     <% end %>
-    <!--[if lt IE 9]>
-        <script src="../javascripts/selectivizr-min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" media="screen" href="../stylesheets/bootstrap.css">
+    <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/mdb.min.css">
     <link rel="stylesheet" media="all" href="../stylesheets/entrance.css">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <script src="../javascripts/modernizr.custom.26633.js"></script>
 </head>
-<body class="entrance-layout">
-<div class="pages">
-    <%= yield %>
-</div>
-
-<script src="../javascripts/jquery-3.4.1.min.js"></script>
-<script src="../javascripts/parallax.min.js"></script>
-
-<script>
-    // run parallax when everything has loaded
-    $(window).on('load', function(){
-        // define parallax dependencies
-        var scene = document.getElementById('scene');
-        var images = $('.layer');
-        var p = new Parallax(scene);
-
-        //fade in the view
-        $('#scene').fadeIn(1800);
-    });
-</script>
-
-</body>
+<%= yield %>
 </html>

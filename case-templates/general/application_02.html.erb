@@ -1,0 +1,1137 @@
+<!-- templates: 申請表_02 - 可上傳頭像表單 -->
+
+<div class="container">
+	
+	<div class="step-bar four-step">
+		<ul>
+			<li class="active">
+				<span>
+					<span class="step">1</span>
+					<h4>申請表</h4>
+				</span>
+			</li>
+			<li>
+				<span>
+					<span class="step">2</span>
+					<h4>推薦信</h4>
+				</span>
+			</li>
+			<li>
+				<span>
+					<span class="step">3</span>
+					<h4>上傳文件</h4>
+				</span>
+			</li>
+			<li>
+				<span>
+					<span class="step">4</span>
+					<h4>預覽及送出</h4>
+				</span>
+			</li>
+		</ul>
+	</div>
+	
+	<form>
+		<p class="mb-5"><span class="required">*</span> 號為必填欄位，請確實填寫</p>
+		<div class="section-wrap">
+            <div class="form-section">
+                <h4 class="section-title">申請系所 <small class="grey-text">最少需填一個系所</small></h4>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-center">志願序</th>
+                            <th>學位</th>
+                            <th>系所</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..3).each do |n| %>
+                        <tr>
+                            <td class="text-center"><%= n %></td>
+                            <td>
+                                <select class="browser-default custom-select">
+                                    <option selected>請選擇</option>
+                                    <option value="1">學士班</option>
+                                    <option value="2">碩士班</option>
+                                    <option value="3">博士班</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col">
+                                        <select class="browser-default custom-select d-inline-block">
+                                            <option selected>請選擇學院</option>
+                                            <option value="1">理工學院</option>
+                                            <option value="2">人文社會科學學院</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <select class="browser-default custom-select d-inline-block">
+                                            <option selected>請選擇系所</option>
+                                            <option value="1">資訊工程學系學士班</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <select class="browser-default custom-select d-inline-block">
+                                            <option selected>請選擇課程分組</option>
+                                            <option value="1">分子化學組</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">個人資料 <small class="grey-text">必填</small></h4>
+                <div class="row">
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label for="FullnameinEnglish"><span class="required">*</span> 英文全名</label>
+                            <input type="text" class="form-control" id="FullnameinEnglish" placeholder="Example input">
+                            <p class="form-text text-muted">須與護照上英文姓名相符</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="Chinesefullname">中文全名</label>
+                                    <input type="text" class="form-control" id="Chinesefullname" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label><span class="required">*</span> 性別</label>
+                                    <div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="male" name="PersonalGender">
+                                            <label class="custom-control-label" for="male">男</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="female" name="PersonalGender">
+                                            <label class="custom-control-label" for="female">女</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="CountryofCitizenship"><span class="required">*</span> 國籍</label>
+                            <select id="CountryofCitizenship" class="browser-default custom-select">
+                                <option selected>Please choose</option>
+                                <option value="1">Bachelor class</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Passportnumber"><span class="required">*</span> 護照號碼</label>
+                            <input type="text" class="form-control" id="Passportnumber" placeholder="">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">電話</label>
+                                    <div class="form-row">
+                                        <div class="col-3">
+                                            <input type="text" class="form-control" placeholder="國碼">
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="text" class="form-control" placeholder="區碼">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" placeholder="號碼">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="Email">信箱</label>
+                                    <input type="text" class="form-control" id="Email" placeholder="test@gmail.com" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="Birthplace"><span class="required">*</span> 出生地點</label>
+                                    <input type="text" class="form-control" id="Birthplace" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">生日</label>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <select class="browser-default custom-select">
+                                                <option selected>年</option>
+                                                <option value="1">1999</option>
+                                                <option value="2">1998</option>
+                                                <option value="3">1997</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <select class="browser-default custom-select">
+                                                <option selected>月</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <select class="browser-default custom-select">
+                                                <option selected>日</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>婚姻狀況</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                                    <label class="custom-control-label" for="defaultInline1">未婚</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+                                    <label class="custom-control-label" for="defaultInline2">已婚</label>
+                                </div>
+                                <div class="custom-control custom-control-inline">
+                                    <input type="text" class="form-control" id="" placeholder="子女人數">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="file-field">
+                            <div class="mb-4 text-center">
+                                <img src="../assets/default.png" class="avatar-pic avatar-recent" alt="Personal recent photo">
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <div class="btn btn-default btn-rounded float-left">
+                                    <span>上傳照片</span>
+                                    <input type="file">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">地址 <small class="grey-text">必填</small></h4>
+                <div class="form-group">
+                    <label for="addressStreet"><span class="required">*</span> 街道</label>
+                    <input type="text" class="form-control" id="addressStreet" placeholder="">
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="addressCity"><span class="required">*</span> 城市 / 省份</label>
+                            <input type="text" class="form-control" id="addressCity" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for=""><span class="required">*</span> 國家</label>
+                            <select class="browser-default custom-select">
+                                <option selected>請選擇</option>
+                                <option value="波斯尼亞和黑塞哥維那">波斯尼亞和黑塞哥維那</option>
+                                <option value="克羅埃西亞">克羅埃西亞</option>
+                                <option value="捷克共和國">捷克共和國</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="addressPostalCode"><span class="required">*</span> 郵遞區號</label>
+                            <input type="text" class="form-control" id="addressPostalCode" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">現在通訊處</h4>
+                <div class="form-group">
+                    <label for="addressStreet">街道</label>
+                    <input type="text" class="form-control" id="addressStreet" placeholder="">
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="addressCity">城市 / 省份</label>
+                            <input type="text" class="form-control" id="addressCity" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="">國家</label>
+                            <select class="browser-default custom-select">
+                                <option selected>請選擇</option>
+                                <option value="波斯尼亞和黑塞哥維那">波斯尼亞和黑塞哥維那</option>
+                                <option value="克羅埃西亞">克羅埃西亞</option>
+                                <option value="捷克共和國">捷克共和國</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="addressPostalCode">郵遞區號</label>
+                            <input type="text" class="form-control" id="addressPostalCode" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">家庭資料 <small class="grey-text">必填</small></h4>
+                <div class="mb-3">
+                    <h5 class="font-weight-bold mb-3">父親資料</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="fatherEngName"><span class="required">*</span> 英文姓名</label>
+                                <input type="text" class="form-control" id="fatherEngName" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="fatherChtName"><span class="required">*</span> 中文姓名</label>
+                                <input type="text" class="form-control" id="fatherChtName" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label><span class="required">*</span> 國籍</label>
+                                <select class="browser-default custom-select">
+                                    <option selected>請選擇</option>
+                                    <option value="波斯尼亞和黑塞哥維那">波斯尼亞和黑塞哥維那</option>
+                                    <option value="克羅埃西亞">克羅埃西亞</option>
+                                    <option value="捷克共和國">捷克共和國</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label><span class="required">*</span> 出生國家</label>
+                                <select class="browser-default custom-select">
+                                    <option selected>請選擇</option>
+                                    <option value="波斯尼亞和黑塞哥維那">波斯尼亞和黑塞哥維那</option>
+                                    <option value="克羅埃西亞">克羅埃西亞</option>
+                                    <option value="捷克共和國">捷克共和國</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <h5 class="font-weight-bold mb-3">母親資料</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="motherEngName"><span class="required">*</span> 英文姓名</label>
+                                <input type="text" class="form-control" id="motherEngName" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="motherChtName"><span class="required">*</span> 中文姓名</label>
+                                <input type="text" class="form-control" id="motherChtName" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label><span class="required">*</span> 國籍</label>
+                                <select class="browser-default custom-select">
+                                    <option selected>請選擇</option>
+                                    <option value="波斯尼亞和黑塞哥維那">波斯尼亞和黑塞哥維那</option>
+                                    <option value="克羅埃西亞">克羅埃西亞</option>
+                                    <option value="捷克共和國">捷克共和國</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label><span class="required">*</span> 出生國家</label>
+                                <select class="browser-default custom-select">
+                                    <option selected>請選擇</option>
+                                    <option value="波斯尼亞和黑塞哥維那">波斯尼亞和黑塞哥維那</option>
+                                    <option value="克羅埃西亞">克羅埃西亞</option>
+                                    <option value="捷克共和國">捷克共和國</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">監護人資訊 <small class="grey-text">必填</small></h4>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="motherEngName">英文姓名</label>
+                            <input type="text" class="form-control" id="motherEngName" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="motherChtName">中文姓名</label>
+                            <input type="text" class="form-control" id="motherChtName" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="addressStreet">街道</label>
+                    <input type="text" class="form-control" id="addressStreet" placeholder="">
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="addressCity">城市 / 省份</label>
+                            <input type="text" class="form-control" id="addressCity" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="">國家</label>
+                            <select class="browser-default custom-select">
+                                <option selected>請選擇</option>
+                                <option value="波斯尼亞和黑塞哥維那">波斯尼亞和黑塞哥維那</option>
+                                <option value="克羅埃西亞">克羅埃西亞</option>
+                                <option value="捷克共和國">捷克共和國</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="addressPostalCode">郵遞區號</label>
+                            <input type="text" class="form-control" id="addressPostalCode" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="">電話</label>
+                            <div class="form-row">
+                                <div class="col-3">
+                                    <input type="text" class="form-control" placeholder="國碼">
+                                </div>
+                                <div class="col-3">
+                                    <input type="text" class="form-control" placeholder="區碼">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control" placeholder="號碼">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="contactEmail">信箱</label>
+                            <input type="text" class="form-control" id="contactEmail" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="contactProfession">職業</label>
+                            <input type="text" class="form-control" id="contactProfession" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="contactRelationship">關係</label>
+                            <input type="text" class="form-control" id="contactRelationship" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">申請人教育背景 <small class="grey-text">必填</small></h4>
+                <div class="form-group">
+                    <label>最高學歷</label>
+                    <div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="highestFive" name="highestEDU">
+                            <label class="custom-control-label" for="highestFive">中學五年制</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="highestSix" name="highestEDU">
+                            <label class="custom-control-label" for="highestSix">中學六年制</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="highestBachelor" name="highestEDU">
+                            <label class="custom-control-label" for="highestBachelor">學士</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="highestMaster" name="highestEDU">
+                            <label class="custom-control-label" for="highestMaster">碩士</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="highestPhD" name="highestEDU">
+                            <label class="custom-control-label" for="highestPhD">博士</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="highestOther" name="highestEDU">
+                            <label class="custom-control-label" for="highestOther">其他</label>
+                        </div>
+                        <div class="custom-control-inline">
+                            <input type="text" class="form-control d-inline" id="" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="highestSchoolName">學校名稱</label>
+                            <input type="text" class="form-control" id="highestSchoolName" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>學校所在國家</label>
+                            <select class="browser-default custom-select">
+                                <option selected>請選擇</option>
+                                <option value="波斯尼亞和黑塞哥維那">波斯尼亞和黑塞哥維那</option>
+                                <option value="克羅埃西亞">克羅埃西亞</option>
+                                <option value="捷克共和國">捷克共和國</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>就學期間</label>
+                            <div>
+                                <div class="d-inline-block pr-1">開始</div>
+                                <div class="d-inline-block">
+                                    <select class="browser-default custom-select">
+                                        <option selected>年</option>
+                                        <option value="1">1999</option>
+                                        <option value="2">1998</option>
+                                        <option value="3">1997</option>
+                                    </select>
+                                </div>
+                                <div class="d-inline-block">
+                                    <select class="browser-default custom-select">
+                                        <option selected>月</option>
+                                        <option value="1">12</option>
+                                        <option value="2">11</option>
+                                        <option value="3">10</option>
+                                    </select>
+                                </div>
+                                <div class="d-inline-block ml-3 pr-1">結束</div>
+                                <div class="d-inline-block">
+                                    <select class="browser-default custom-select">
+                                        <option selected>年</option>
+                                        <option value="1">1999</option>
+                                        <option value="2">1998</option>
+                                        <option value="3">1997</option>
+                                    </select>
+                                </div>
+                                <div class="d-inline-block">
+                                    <select class="browser-default custom-select">
+                                        <option selected>月</option>
+                                        <option value="1">12</option>
+                                        <option value="2">11</option>
+                                        <option value="3">10</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>是否畢業</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline pt-2">
+                                    <input type="radio" class="custom-control-input" id="highestGraduationYes" name="highestGraduation">
+                                    <label class="custom-control-label" for="highestGraduationYes">是</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline pt-2">
+                                    <input type="radio" class="custom-control-input" id="highestGraduationNo" name="highestGraduation">
+                                    <label class="custom-control-label" for="highestGraduationNo">否</label>
+                                </div>
+                                <div class="d-inline-block">
+                                    <div id="hideandseek">
+                                        <div class="d-inline-block pr-1">畢業</div>
+                                        <div class="d-inline-block">
+                                            <select class="browser-default custom-select">
+                                                <option selected>年</option>
+                                                <option value="1">1999</option>
+                                                <option value="2">1998</option>
+                                                <option value="3">1997</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <select class="browser-default custom-select">
+                                                <option selected>月</option>
+                                                <option value="1">12</option>
+                                                <option value="2">11</option>
+                                                <option value="3">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="highestMajor">主修</label>
+                            <input type="text" class="form-control" id="highestMajor" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="highestMinor">副修</label>
+                            <input type="text" class="form-control" id="highestMinor" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="highestAverageScore">最後2年平均成績</label>
+                            <input type="text" class="form-control" id="highestAverageScore" placeholder="請輸入 GPA 成績">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="highestMarks">成績滿分為</label>
+                            <input type="text" class="form-control" id="highestMarks" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <a href="#" class="add-btn">
+                        <span class="btn btn-sm btn-default btn-rounded waves-effect waves-light"><i class="fa fa-plus"></i></span>
+                        <span class="text-black-50">新增其他教育背景</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">中文語文能力</h4>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="chineseLearnYears">學習中文幾年</label>
+                            <input type="text" class="form-control" id="chineseLearnYears" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="chineseLearnPlace">學習中文環境</label>
+                            <input type="text" class="form-control" id="chineseLearnPlace" placeholder="高中、大學、語文機構">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>是否參加過中文語文能力測驗</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseTestYes" name="chineseTest">
+                                    <label class="custom-control-label" for="chineseTestYes">是</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseTestNo" name="chineseTest">
+                                    <label class="custom-control-label" for="chineseTestNo">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="chineseTestKind">何種測驗</label>
+                            <input type="text" class="form-control" id="chineseTestKind" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="chineseTestScore">分數</label>
+                            <input type="text" class="form-control" id="chineseTestScore" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <h5 class="font-weight-bold mb-3">自我評估</h5>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>聽</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseListenExcellent" name="chineseListen">
+                                    <label class="custom-control-label" for="chineseListenExcellent">非常好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseListenGood" name="chineseListen">
+                                    <label class="custom-control-label" for="chineseListenGood">好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseListenPassable" name="chineseListen">
+                                    <label class="custom-control-label" for="chineseListenPassable">尚可</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseListenPoor" name="chineseListen">
+                                    <label class="custom-control-label" for="chineseListenPoor">很不好</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>說</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseSpeakExcellent" name="chineseSpeak">
+                                    <label class="custom-control-label" for="chineseSpeakExcellent">非常好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseSpeakGood" name="chineseSpeak">
+                                    <label class="custom-control-label" for="chineseSpeakGood">好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseSpeakPassable" name="chineseSpeak">
+                                    <label class="custom-control-label" for="chineseSpeakPassable">尚可</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseSpeakPoor" name="chineseSpeak">
+                                    <label class="custom-control-label" for="chineseSpeakPoor">很不好</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>讀</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseReadExcellent" name="chineseRead">
+                                    <label class="custom-control-label" for="chineseReadExcellent">非常好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseReadGood" name="chineseRead">
+                                    <label class="custom-control-label" for="chineseReadGood">好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseReadPassable" name="chineseRead">
+                                    <label class="custom-control-label" for="chineseReadPassable">尚可</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseReadPoor" name="chineseRead">
+                                    <label class="custom-control-label" for="chineseReadPoor">很不好</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>寫</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseWriteExcellent" name="chineseWrite">
+                                    <label class="custom-control-label" for="chineseWriteExcellent">非常好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseWriteGood" name="chineseWrite">
+                                    <label class="custom-control-label" for="chineseWriteGood">好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseWritePassable" name="chineseWrite">
+                                    <label class="custom-control-label" for="chineseWritePassable">尚可</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="chineseWritePoor" name="chineseWrite">
+                                    <label class="custom-control-label" for="chineseWritePoor">很不好</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">英文語文能力</h4>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="englishLearnYears">學習英文幾年</label>
+                            <input type="text" class="form-control" id="englishLearnYears" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="englishLearPlacen">學習英文環境</label>
+                            <input type="text" class="form-control" id="englishLearPlacen" placeholder="高中、大學、語文機構">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>是否參加過英文語文能力測驗</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishTestYes" name="englishTest">
+                                    <label class="custom-control-label" for="englishTestYes">是</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishTestNo" name="englishTest">
+                                    <label class="custom-control-label" for="englishTestNo">否</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="englishTestKind">何種測驗</label>
+                            <input type="text" class="form-control" id="englishTestKind" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="englishTestScore">分數</label>
+                            <input type="text" class="form-control" id="englishTestScore" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <h5 class="font-weight-bold mb-3">自我評估</h5>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>聽</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishListenExcellent" name="englishListen">
+                                    <label class="custom-control-label" for="englishListenExcellent">非常好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishListenGood" name="englishListen">
+                                    <label class="custom-control-label" for="englishListenGood">好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishListenPassable" name="englishListen">
+                                    <label class="custom-control-label" for="englishListenPassable">尚可</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishListenPoor" name="englishListen">
+                                    <label class="custom-control-label" for="englishListenPoor">很不好</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>說</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishSpeakExcellent" name="englishSpeak">
+                                    <label class="custom-control-label" for="englishSpeakExcellent">非常好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishSpeakGood" name="englishSpeak">
+                                    <label class="custom-control-label" for="englishSpeakGood">好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishSpeakPassable" name="englishSpeak">
+                                    <label class="custom-control-label" for="englishSpeakPassable">尚可</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishSpeakPoor" name="englishSpeak">
+                                    <label class="custom-control-label" for="englishSpeakPoor">很不好</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>讀</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishReadExcellent" name="englishRead">
+                                    <label class="custom-control-label" for="englishReadExcellent">非常好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishReadGood" name="englishRead">
+                                    <label class="custom-control-label" for="englishReadGood">好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishReadPassable" name="englishRead">
+                                    <label class="custom-control-label" for="englishReadPassable">尚可</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishReadPoor" name="englishRead">
+                                    <label class="custom-control-label" for="englishReadPoor">很不好</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>寫</label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishWriteExcellent" name="englishWrite">
+                                    <label class="custom-control-label" for="englishWriteExcellent">非常好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishWriteGood" name="englishWrite">
+                                    <label class="custom-control-label" for="englishWriteGood">好</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishWritePassable" name="englishWrite">
+                                    <label class="custom-control-label" for="englishWritePassable">尚可</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="englishWritePoor" name="englishWrite">
+                                    <label class="custom-control-label" for="englishWritePoor">很不好</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">財力支援狀況</h4>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="resourcesPersonal">
+                                <label class="custom-control-label" for="resourcesPersonal">個人儲蓄</label>
+                                <div class="d-inline-block ml-2">
+                                    <input type="text" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="resourcesParents">
+                                <label class="custom-control-label" for="resourcesParents">父母支援</label>
+                                <div class="d-inline-block ml-2">
+                                    <input type="text" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="resourcesScholarship">
+                                <label class="custom-control-label" for="resourcesScholarship">獎助金</label>
+                                <div class="d-inline-block ml-2">
+                                    <input type="text" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="resourcesOther">
+                                <label class="custom-control-label" for="resourcesOther">其他</label>
+                                <div class="d-inline-block ml-2">
+                                    <input type="text" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="block-title">學雜費減免</h4>
+                <div class="form-group">
+                    <label>是否需要申請本校所提供之國際學生申請入學獎學金措施？</label>
+                    <div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="tuitionReductionYes" name="tuitionReduction">
+                            <label class="custom-control-label" for="tuitionReductionYes">需要</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="tuitionReductionNo" name="tuitionReduction">
+                            <label class="custom-control-label" for="tuitionReductionNo">不需要</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>即便無法獲得獎學金，您是否仍願意就讀本校？</label>
+                    <div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="tuitionScholarshipYes" name="tuitionScholarship">
+                            <label class="custom-control-label" for="tuitionScholarshipYes">是</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="tuitionScholarshipNo" name="tuitionScholarship">
+                            <label class="custom-control-label" for="tuitionScholarshipNo">否</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">學生宿舍</h4>
+                <div class="form-group">
+                    <label>本校優先保留宿舍床位予國際生申請，是否需要申請本校學生宿舍？</label>
+                    <div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="dormRoomYes" name="dormRoom">
+                            <label class="custom-control-label" for="dormRoomYes">是的，我要住宿舍，並同意於錄取後填妥學生宿舍合約文件及遵守宿舍規定</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="dormRoomNo" name="dormRoom">
+                            <label class="custom-control-label" for="dormRoomNo">不需要</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h4 class="section-title">其他</h4>
+                <div class="form-group">
+                    <label for="diseaseDepiction">如有疾病或缺陷請敘明之</label>
+                    <textarea class="form-control rounded-0" id="diseaseDepiction" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="publicationDepiction">如有著作或發表作品，請敘明發表年限 、著作／作品名稱 、出版商、出版地等資料</label>
+                    <textarea class="form-control rounded-0" id="publicationDepiction" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="diseaseDepiction">如有疾病或缺陷請敘明之</label>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>月／年 (在職時間)</th>
+                                <th>全／兼職</th>
+                                <th>公司名稱</th>
+                                <th>職位</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% (1..3).each do |n| %>
+                            <tr>
+                                <td width="15%"><input type="text" class="form-control" id=""></td>
+                                <td width="15%"><input type="text" class="form-control" id=""></td>
+                                <td width="40%"><input type="text" class="form-control" id=""></td>
+                                <td width="30%"><input type="text" class="form-control" id=""></td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+		
+		</div>
+
+		<div class="form-action no-border">
+			<a href="/" class="btn btn-primary">儲存</a>
+			<a href="/" class="btn btn-link">下一步</a>
+		</div>
+	</form>
+</div>
+
+
+<% content_for :js do %>
+<script>
+$(document).ready(function() {
+   $('input[type="radio"]').click(function() {
+       if($(this).attr('id') == 'highestGraduationYes') {
+            $('#hideandseek').show();           
+       }
+       else {
+            $('#hideandseek').hide();   
+       }
+   });
+});
+</script>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

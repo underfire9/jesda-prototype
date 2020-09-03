@@ -1,0 +1,114 @@
+<% I18n.locale = "en" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages container-responsive">
+            <%= render :partial => "/partials/header_login" %>
+            <div class="content">
+                <%= yield %>
+            </div>
+        </div>
+        <%= render :partial => "/partials/footer" %>
+	</div>
+	
+    <!-- Modal -->
+    <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-guide" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">TIGP On-line Application, 2020</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+					<div class="guide-output">
+                        <div class="form-group">
+                            <label>Degree</label>
+                            <div class="form-output">Ph.D.</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Entry Semester</label>
+                            <div class="form-output">First semester (September entry)</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Language of Instruction</label>
+                            <div class="form-output">Program taught in English</div>
+                        </div>
+						<div class="form-group">
+                            <label>Language Proficiency Requirement</label>
+                            <div class="form-output">
+								<%= lorem_sentence %>
+							    <ul>
+									<% (1..6).each do |n| %>
+								    <li><%= lorem_sentence %></li>
+									<% end %>
+									<li>Voluptatem <a href="/">mollitia magni</a> ut vitae aspernatur rerum</li>
+								</ul>
+							</div>
+                        </div>
+						<div class="form-group">
+                            <label>Application documents</label>
+                            <div class="form-output">
+								<%= lorem_sentence %>
+							    <ul>
+									<% (1..6).each do |n| %>
+								    <li><%= lorem_sentence %></li>
+									<% end %>
+								</ul>
+							</div>
+                        </div>
+						<div class="form-group">
+                            <label>Document required by program</label>
+                            <div class="form-output">
+								<%= lorem_sentence %>
+							    <ul>
+									<li>Tempora iusto <a href="/">mollitia magni</a> nam sint et quam voluptate</li>
+									<% (1..4).each do |n| %>
+								    <li><%= lorem_sentence %></li>
+									<% end %>
+								</ul>
+							</div>
+                        </div>
+						<div class="form-group">
+                            <label>Interview</label>
+                            <div class="form-output">Yes</div>
+                        </div>
+						<div class="form-group">
+                            <label>Additional notes</label>
+                            <div class="form-output"><%= lorem_sentences(2) %></div>
+                        </div>
+						<div class="form-group">
+                            <label>Website</label>
+                            <div class="form-output"><a href="/">https://www.google.com.tw/</a></div>
+                        </div>
+						<div class="form-group">
+                            <label>Program Assistant</label>
+                            <div class="form-output">Wang Sky</div>
+                        </div>
+						<div class="form-group">
+                            <label>Email</label>
+                            <div class="form-output"><a href="#">tigp@gate.sinica.edu.tw</a></div>
+                        </div>
+					</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<%= render :partial => "/partials/simpler_sidebar" %>
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+
+    <%= yield :js %>
+</body>
+</html>

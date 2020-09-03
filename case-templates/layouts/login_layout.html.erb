@@ -1,0 +1,26 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages">
+            <%= render :partial => "/partials/header_login" %>
+            <div class="content">
+                <%= yield %>
+            </div>
+        </div>
+        <%= render :partial => "/partials/footer" %>
+	</div>
+	<%= render :partial => "/partials/simpler_sidebar" %>
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+	<script src="../javascripts/slidebars.min.js"></script>
+	<script src="../javascripts/slidebars.scripts.js"></script>
+    <%= yield :js %>
+</body>
+</html>

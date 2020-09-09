@@ -2,82 +2,149 @@
 -----------------------------------------------------------------------------*/
 
 header.header {
-	border-top: 6px solid $main_color;
-	margin-bottom: 3.75rem;
+	border-top: $main_color solid 10px;
 	position: relative;
-	.language {
-		margin-bottom: 0.5rem;
-		font-size: 0.9375rem;
-		a {
-			display: inline-block;
-			padding: 0 0.5rem;
-			position: relative;
-			color: #999;
-			&:hover { color: $main_color; }
-			&.current {
-				cursor: default;
-				color: #000;
-			}
-			&:after {
-				content: "";
-				background: #e5e5e5;
-				width: 1px;
-				height: 16px;
-				position: absolute;
-				right: -0.125rem;
-				top: 0.25rem;
-			}
-			&:last-child:after {
-				content: none;
+	&:before {
+		content: "";
+		background: $secondary_color;
+		width: 100%;
+		height: 5px;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	nav.navbar {
+		box-shadow: none;
+		border-top: 1px solid $base_border_color;
+		border-bottom: 1px solid $base_border_color;
+		padding: 0;
+		font-weight: 400;
+	}
+	.navbar-nav {
+		width: 100%;
+		.nav-item {
+			flex-grow: 1;
+			border-left: 1px solid $base_border_color;
+			border-right: 1px solid $base_border_color;
+			margin-left: -1px;
+			&:first-child { margin-left: 0; }
+		}
+		.nav-link {
+			text-align: center;
+			color: #333;
+			line-height: 48px;
+			&:hover {
+				background: $main_color;
+				color: #fff;
 			}
 		}
 	}
 }
 
-.header-right { text-align: right; }
+.header-top {
+	display: none;
+	.topnav {
+		li { display: inline-block; }
+	}
+}
 
 .header-wrap {
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-end;
-	height: 100px;
+	align-items: center;
+	padding: 1.75rem 0;
 	.brands {
 		a {
+			display: flex;
             align-items: center;
 			color: #333;
             &:hover { text-decoration: none; }
 		}
         h1 { margin: 0; }
 	}
+    .logo {
+        position: relative;
+        &:after {
+            content: "";
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(#000, .2);
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    }
 	.h1-logo {
 		display: inline-block;
-		width: auto;
-		height: 64px;
-		vertical-align: middle;
+		width: 88px;
+		height: auto;
+
 	}
-    .logo {
-        margin-right: 20px;
-    }
     .sub {
+		margin-left: 1.25rem;
         line-height: 1.2;
         > span {
             display: block;
-            font-size: 1.5rem;
         }
+		.ch {
+			margin-bottom: 0.375rem;
+			font-size: 2rem;
+		}
 		.en {
 			font-family: "Roboto", sans-serif;
-			font-size: 1rem;
-			font-weight: 500;
+			font-size: 1.25rem;
+			font-weight: 300;
 		}
     }
-    .account {
-		padding: 0 0.5rem;
-		.nav-link {
+}
+
+.header-right {
+	text-align: right;
+	.subnav {
+		li {
 			display: inline-block;
-			padding: 0;
-			height: 32px;
-			line-height: 32px;
+			margin-left: 1.125rem;
+			position: relative;
+            &:after {
+                content: "";
+                width: 4px;
+                height: 4px;
+				background: #e1e5ec;
+                border-radius: 50%;
+                position: absolute;
+                top: 45%;
+                left: -13px;
+            }
+			&:first-child:after { content: none; }
+			&:last-child {
+				margin-left: 2.25rem;
+				&:after {
+					background: #e7e7e7;
+					width: 1px;
+					height: 1rem;
+					top: 5px;
+					right: auto;
+					left: -1.125rem;
+				}
+			}
+		}
+		.language a {
+			color: $link;
+		}
+		a {
+			display: inline-block;
+			color: #777;
+			&:hover { color: $link_hover; }
+		}
+		.search-btn {
+			a {
+				padding-left: 0.25rem;
+				position: relative;
+				top: -0.125rem;
+			}
 		}
 	}
 }
-

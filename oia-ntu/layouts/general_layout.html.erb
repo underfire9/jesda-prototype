@@ -14,34 +14,29 @@
         </div>
         <%= render :partial => "/partials/footer" %>
 	</div>
-	
-    <!-- Modal -->
-    <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+
+    <div class="modal fade top" id="frameSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-frame modal-top ntu_search" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{吃該上傳項目的標題} 說明</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
-                    <p><%= lorem_sentences(5) %></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">關閉</button>
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <form class="form-inline">
+							<div class="search-wrapper">
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search" />
+                                <i class="fa fa-search" aria-hidden="true"></i>
+							</div>
+                        </form>
+                        <button type="button" class="btn btn-sm btn-link" data-dismiss="modal"><i class="fa fa-times"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-	
-	<%= render :partial => "/partials/simpler_sidebar" %>
+
     <script src="../javascripts/jquery-3.4.1.min.js"></script>
     <script src="../javascripts/popper.min.js"></script>
     <script src="../javascripts/bootstrap.min.js"></script>
     <script src="../javascripts/mdb.min.js"></script>
-	<script src="../javascripts/slidebars.min.js"></script>
-	<script src="../javascripts/slidebars.scripts.js"></script>
     <%= yield :js %>
 </body>
 </html>

@@ -1,0 +1,140 @@
+
+/* `Slidebars
+-----------------------------------------------------------------------------*/
+
+[off-canvas] {
+    background-color: #fafafa;
+    color: #333;
+}
+
+[canvas=container] { background-color: transparent; }
+
+.slidebars {
+	//border-left: 1px solid rgba(#000, .1);
+	.description {
+		color: #777;
+		line-height: 1.5;
+	}
+	.error-item {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		li {
+			border-bottom: 1px dashed #ddd;
+			padding-top: 0.5rem;
+			padding-bottom: 0.5rem;
+			.item-wrap {
+                display: flex;
+                justify-content: space-between;
+				align-items: center;
+			}
+			.label {
+				width: 64%;
+				font-weight: bold;
+			}
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+		.btn-group {
+			.btn {
+				margin-top: 0;
+				margin-bottom: 0;
+			}
+			.btn:first-child {
+				border-radius: 15px 0 0 15px;
+			}
+			.btn:last-child {
+				border-radius: 0 15px 15px 0;
+			}
+		}
+	}
+}
+
+.js-toggle-right-slidebar {
+	font-size: 15px;
+	position: absolute;
+	right: 0;
+	top: 34px;
+	&.js-toggle-slidebar {
+		background: linear-gradient(90deg, rgba(17,16,0,1) 60%, rgba(255,255,255,1) 96%);
+		border-radius: 22px 0 0 22px;
+		box-shadow: 0 5px 11px 0 rgba(0,0,0,.18),0 4px 15px 0 rgba(0,0,0,.15);
+		margin-left: 5px;
+		padding: 10px 10px 10px 1rem !important;
+		width: 80px;
+		color: #fff !important;
+	}
+}
+
+.editor-switch-wrapper {
+	background: #fff;
+	border-bottom: 1px solid rgba(#000, .1);
+	padding: 1.5rem 1rem;
+	.description { margin-bottom: 0; }
+}
+
+.message-wrapper {
+	padding: 1.5rem 1rem;
+}
+
+.editor-switch {
+	display: flex;
+	align-items: center;
+	.label {
+		margin-bottom: 0.375rem;
+		margin-right: 1rem;
+		font-size: 1.125rem;
+		font-weight: bold;
+	}
+    input[type="checkbox"].switch + label {
+        width: 56px;
+        height: 28px;
+        background: lightgray;
+        display: inline-block;
+        border-radius: 14px;
+        position: relative;
+        cursor: pointer;
+		margin: 0;
+        &:before,
+        &:after {
+            content: "";
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: -1px;
+            left: 0;
+            transition: all 0.2s;
+        }
+        &:after {
+            box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+        }
+        &:before {
+            background: lightgray;
+            transform: scale3d(0, 0, 1);
+        }
+        &:active:before {
+            transform: scale3d(3, 3, 1);
+            opacity: 0;
+        }
+    }
+
+    input[type="checkbox"].switch {
+        display: none;
+        &:checked + label {
+            background: rgba($switch_green-theme, 0.3);
+            &:before,
+            &:after {
+                left: 32px;
+                background: $switch_green-theme;
+            }
+        }
+        &:disabled + label {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+    }
+}

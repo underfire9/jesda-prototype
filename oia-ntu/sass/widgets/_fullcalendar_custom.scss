@@ -1,0 +1,203 @@
+
+/* `FullCalendar
+-----------------------------------------------------------------------------*/
+
+#calendar {
+	margin-top: 4rem;
+	padding-bottom: 4rem;
+	position: relative;
+}
+
+.search-part {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 40%;
+	.search-form {
+		display: flex;
+		justify-content: space-between;
+	}
+	.keyword-form {
+		position: relative;
+		width: 40%;
+		.form-control {
+			padding-left: 1.75rem;
+		}
+		.fa-search {
+			color: #bbb;
+			position: absolute;
+			left: 0;
+			top: 0.75rem;
+		}
+	}
+	.interval-form {
+		padding-left: 20px;
+		width: 60%;
+		.md-form { position: relative; }
+		.fa-search {
+			position: absolute;
+			left: 20px;
+			top: 10px;
+		}
+		.col-1 { padding-top: 5px; }
+	}
+	.md-form {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.form-control { display: inline-block; }
+}
+
+.fc-state-default {
+	background: $link;
+	border: none;
+	box-shadow: none;
+	text-shadow: none;
+	color: #fff;
+	&:hover {
+		background: $link_hover;
+	}
+}
+
+.fc-event {
+	background: #fbf6ea;
+	border: none;
+	color: #333;
+	&:hover { color: #000; }
+	.fc-title {
+		display: inline-block;
+		padding: 1px 2px 2px;
+	}
+}
+
+.fc-button-group {
+	.fc-button {
+		border-left: 1px solid rgba(#000, .05);
+		border-right: 1px solid rgba(#000, .05);
+		&:first-child { border-left: none; }
+		&:last-child { border-right: none; }
+	}
+}
+
+.fc-toolbar h2 { font-size: 1.75rem; }
+
+.popup-trigger { display: none !important; }
+
+.animate, .btn, .btn span, .overlay .overlay-content, .overlay .overlay-content .overlay-close, .overlay .overlay-content .signup-form input {
+  transition: all 0.3s;
+}
+
+.popup-trigger {
+    width: auto;
+    margin: -2px 0 1rem 0;
+    position: relative;
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    float: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    -webkit-transform: translateY(200px);
+    transform: translateY(200px);
+    transition: opacity 0.5s, z-index 0s 0.5s, -webkit-transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s, z-index 0s 0.5s;
+    transition: opacity 0.5s, transform 0.5s, z-index 0s 0.5s, -webkit-transform 0.5s;
+	.search-form {
+		.fa-search {
+			color: rgba(#645a41, .2);
+			position: absolute;
+			right: 0;
+			top: 6px;
+		}
+	}
+    .md-form input[type="text"]:not(.browser-default) {
+        border-color: rgba(#645a41, .2);
+		&:focus {
+			border-bottom: 1px solid $secondary_color;
+			box-shadow: none;
+		}
+    }
+}
+
+.overlay {
+    .overlay-background {
+        background-color: rgba(#fbf7ec, 1);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+    }
+    .overlay-content {
+        width: 100%;
+        max-width: 530px;
+        margin: 100px auto 0;
+        padding: 0 15px;
+        color: #645a41;
+        position: relative;
+        z-index: 10;
+        .overlay-close {
+            display: block;
+            font-size: 1.75rem;
+            color: $main_color;
+            cursor: pointer;
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            opacity: 0.1;
+            &:hover { opacity: 0.3; }
+        }
+        .blurb {
+            margin-top: 35px;
+            line-height: 100%;
+            font-size: 18px;
+        }
+        .blurb-tagline {
+            display: block;
+            margin-top: 10px;
+            line-height: 100%;
+            font-size: 14px;
+        }
+        .signup-form {
+            margin-top: 35px;
+            label {
+                line-height: 100%;
+                margin-bottom: 5px;
+                font-size: 14px;
+            }
+            input {
+                background-color: transparent;
+                width: 100%;
+                height: 30px;
+                margin-bottom: 20px;
+                padding: 0 8px;
+                border: 1px solid rgba(254, 254, 254, 0.3);
+                border-radius: 5px;
+            }
+            .submit-btn {
+                width: 150px;
+            }
+        }
+    }
+	&.open {
+        z-index: 15;
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        transition: opacity 0.5s, z-index 0s, -webkit-transform 0.5s;
+        transition: opacity 0.5s, transform 0.5s, z-index 0s;
+        transition: opacity 0.5s, transform 0.5s, z-index 0s, -webkit-transform 0.5s;
+    }
+	&.short .overlay-content {
+		margin: 30px auto;
+	}
+}

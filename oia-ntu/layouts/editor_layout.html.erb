@@ -1,8 +1,14 @@
 <% I18n.locale = "zh-TW" %>
 <!doctype html>
+<!-- html lang 在切換語系時需要吃 "zh-TW" 或 "en"，因應字元寬度不同需要的版面調整 -->
 <html lang="<%= I18n.locale %>" class="no-js">
 <head>
     <%= render :partial => "/partials/head" %>
+	<style>
+        [canvas=container] {
+            position: relative;
+        }	
+	</style>
 </head>
 <body>
 	<div class="workspace" canvas="container">
@@ -14,6 +20,23 @@
         </div>
         <%= render :partial => "/partials/footer" %>
 	</div>
+    <div class="modal fade top" id="frameSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-frame modal-top ntu_search" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <form class="form-inline">
+							<div class="search-wrapper">
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search" />
+                                <i class="fa fa-search" aria-hidden="true"></i>
+							</div>
+                        </form>
+                        <button type="button" class="btn btn-sm btn-link" data-dismiss="modal"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	<%= render :partial => "/partials/simpler_sidebar" %>
     <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">

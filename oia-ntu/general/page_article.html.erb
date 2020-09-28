@@ -1,4 +1,4 @@
-<!-- ntuoia: 文章、相簿 -->
+<!-- ntuoia: 文章 -->
 
 <%= render :partial => "/partials/breadcrumb" %>
 
@@ -31,6 +31,7 @@
                         </ol>
 
                         <h3>大圖加段落</h3>
+						<p>文章內圖片因應 rwd 會自動 100% 寬，當螢幕寬度變化時才能自動縮放，除非設定如下方示範的文繞圖，在外層容器加上 <code>.text-runaround</code> 或 <code>.text-runaround .right</code></p>
                         <img src="../assets/fake/03.jpg" alt="測試" title="測試">
                         <p><%= zh_lorem_paragraphs(5) %></p>
 
@@ -46,34 +47,13 @@
                             <img src="../assets/fake/04.jpg" alt="測試" title="測試">
                             <p><%= zh_lorem_paragraphs(10) %></p>
                         </div>
-
-                        <div class="photo-gallery">
-                            <h3>多圖並列</h3>
-                            <div class="img-group">
-                                <img src="../assets/fake/04.jpg" alt="測試" title="測試">
-                                <img src="../assets/fake/04.jpg" alt="測試" title="測試">
-                                <img src="../assets/fake/04.jpg" alt="測試" title="測試">
-                                <img src="../assets/fake/04.jpg" alt="測試" title="測試">
-                                <img src="../assets/fake/04.jpg" alt="測試" title="測試">
-                            </div>
-                            <p>圖片固定為三張一列，不足的右邊會被空出來，使用者上傳的照片長寬比例必須一致,請在後台標註讓使用者知道這點，否則排列有可能會爛掉。</p>
-                        </div>
-
-                        <div class="photo-gallery upright">
-                            <h3>直立多圖並列</h3>
-                            <div class="img-group">
-                                <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
-                                <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
-                                <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
-                                <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
-                                <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
-                            </div>
-                            <p>圖片固定為四張一列，不足的右邊會被空出來，使用者上傳的照片長寬比例必須一致，請在後台標註讓使用者知道這點，否則排列有可能會爛掉。</p>
-                        </div>
-
-                        <h3>表格</h3>
+						
+						<h3>關於 table</h3>
+						<p>文章內所有 table 須加上 <code>.table</code>，特性為寬度 100% 以及基本樣式，更多樣式可參考 <a href="https://mdbootstrap.com/docs/jquery/tables/basic/">MDBootstrap</a>，另外所有 table 需在外層包一層 <code>.table-responsive</code>，可設定系統自動生或使用者自行 coding</p>
+						
+						<h3>表格</h3>
                         <div class="table-responsive">
-                            <table>
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <% 5.times do %>
@@ -94,9 +74,9 @@
                         </div>
 
                         <h3>表格內容不斷行</h3>
-                        <p>容器加上 .text-nowrap</p>
+                        <p>容器加上 <code>.text-nowrap</code>，或等 991px 時自動導入樣式。</p>
                         <div class="table-responsive text-nowrap">
-                            <table>
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <% 5.times do %>
@@ -115,84 +95,28 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <div class="album-gallery">
-                            <h3>相簿</h3>
+                        <div class="photo-gallery">
+                            <h3>多圖並列</h3>
                             <div class="img-group">
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="../assets/fake/04.jpg" alt="測試" title="測試">
-                                    </div>
-                                    <p>相簿名稱</p>
-                                </a>
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="../assets/fake/05.jpg" alt="測試" title="測試">
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                                </a>
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="../assets/fake/06.jpg" alt="測試" title="測試">
-                                    </div>
-                                    <p>相簿名稱</p>
-                                </a>
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="../assets/fake/07.jpg" alt="測試" title="測試">
-                                    </div>
-                                    <p>相簿名稱</p>
-                                </a>
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="../assets/fake/04.jpg" alt="測試" title="測試">
-                                    </div>
-                                    <p>相簿名稱</p>
-                                </a>
+                                <img src="../assets/fake/04.jpg" alt="測試" title="測試">
+                                <img src="../assets/fake/04.jpg" alt="測試" title="測試">
+                                <img src="../assets/fake/04.jpg" alt="測試" title="測試">
+                                <img src="../assets/fake/04.jpg" alt="測試" title="測試">
+                                <img src="../assets/fake/04.jpg" alt="測試" title="測試">
                             </div>
-                            <p>相簿圖片容器為標準的 16:9，代表 user 上傳或選擇的封面照任何尺寸都可以</p>
+                            <p>圖片固定為三張一列，不足的右邊會被空出來，使用者上傳的照片長寬比例必須一致，請在後台標註讓使用者知道這點，否則排列有可能會爛掉。</p>
                         </div>
 
-                        <div class="album-gallery upright">
-                            <h3>直立相簿</h3>
+                        <div class="photo-gallery upright">
+                            <h3>直立多圖並列</h3>
                             <div class="img-group">
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="../assets/fake/04.jpg" alt="測試" title="測試">
-                                    </div>
-                                    <p>相簿名稱</p>
-                                </a>
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="http://placekitten.com/720/1280" alt="測試" title="測試">
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                                </a>
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
-                                    </div>
-                                    <p>相簿名稱</p>
-                                </a>
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="http://placekitten.com/180/320" alt="測試" title="測試">
-                                    </div>
-                                    <p>相簿名稱</p>
-                                </a>
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="http://placekitten.com/360/640" alt="測試" title="測試">
-                                    </div>
-                                    <p>相簿名稱</p>
-                                </a>
-                                <a href="#" class="album-item">
-                                    <div class="image-wrapper">
-                                        <img src="http://placekitten.com/540/960" alt="測試" title="測試">
-                                    </div>
-                                    <p>相簿名稱</p>
-                                </a>
+                                <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
+                                <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
+                                <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
+                                <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
+                                <img src="../assets/fake/fake-01.jpg" alt="測試" title="測試">
                             </div>
+                            <p>圖片固定為四張一列，不足的右邊會被空出來，使用者上傳的照片長寬比例必須一致，請在後台標註讓使用者知道這點，否則排列有可能會爛掉。</p>
                         </div>
                     </div>
                 </article>

@@ -3,8 +3,8 @@
 -----------------------------------------------------------------------------*/
 
 #calendar {
-	margin-top: 4rem;
-	padding-bottom: 4rem;
+	margin-top: 3rem;
+	padding-bottom: 1rem;
 	position: relative;
 }
 
@@ -45,7 +45,13 @@
 		margin-top: 0;
 		margin-bottom: 0;
 	}
-	.form-control { display: inline-block; }
+	.form-control {
+		display: inline-block;
+        &:focus {
+            border-bottom: 1px solid $secondary_color !important;
+            box-shadow: 0 1px 0 0 $secondary_color !important;
+        }
+	}
 }
 
 .fc-state-default {
@@ -72,6 +78,7 @@
 
 .fc-button-group {
 	.fc-button {
+		border-radius: 0;
 		border-left: 1px solid rgba(#000, .05);
 		border-right: 1px solid rgba(#000, .05);
 		&:first-child { border-left: none; }
@@ -79,7 +86,10 @@
 	}
 }
 
-.fc-toolbar h2 { font-size: 1.75rem; }
+.fc-toolbar {
+	h2 { font-size: 1.75rem; }
+	.fc-button.fc-today-button { border-radius: 0; }
+}
 
 .popup-trigger { display: none !important; }
 

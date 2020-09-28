@@ -34,8 +34,20 @@
         </div>
     </div>
     
-	<!-- 成員 modal -->
-	 <%= render :partial => "/partials/member-modal" %>
+    <div class="modal fade bottom modal_cookie" id="modalCookie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="true">
+        <div class="modal-dialog modal-frame modal-bottom modal-notify modal-info" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="cookie-wrap">
+                        <p class="pt-3 pr-2">This website uses cookies as well as similar tools and technologies to understand visitors' experiences. By continuing to use this website, you consent to NTU's usage of cookies and similar technologies, in accordance with the NTU Website Cookie Notice.</p>
+
+                        <a href="https://policies.google.com/technologies/cookies?hl=zh-TW" target="_blank" type="button" class="btn btn-sm btn-unique">Learn more <i class="fa fa-book ml-1"></i></a>
+                        <a type="button" class="btn-accept btn btn-sm btn-outline-unique waves-effect" data-dismiss="modal">Ok, thanks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	
     <script src="../javascripts/jquery-3.4.1.min.js"></script>
     <script src="../javascripts/popper.min.js"></script>
@@ -94,6 +106,22 @@
             // SideNav Scrollbar Initialization
             var sideNavScrollbar = document.querySelector(".custom-scrollbar");
             var ps = new PerfectScrollbar(sideNavScrollbar);
+        });
+	</script>
+	
+	<!-- Cookie Modal -->
+	<script>
+        $(window).on("load", function () {
+            if (localStorage.getItem("hakoCookiesAllowed") !== "true") {
+                $("#modalCookie").modal("show");
+            } else {
+                //alert('ls value erkannt kein modal');
+                $(".cookie-overlay").remove();
+            }
+        });
+
+        $("#btn-accept").on("click", function () {
+            localStorage.setItem("hakoCookiesAllowed", "true");
         });
 	</script>
     <%= yield :js %>

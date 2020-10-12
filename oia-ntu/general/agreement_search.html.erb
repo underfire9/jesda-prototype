@@ -1,0 +1,241 @@
+<!-- ntuoia: 合約查詢 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="container">
+	<div class="pages-row">
+	    <%= render :partial => "/partials/accordian_nav" %>
+		<main class="main">
+		    <div class="main-inner">
+                <div class="title-wrap">
+                    <h3 class="section-title">合約查詢</h3>
+                </div>
+				<div class="agreement-search">
+                    <form>
+						<h5 class="mb-3">合約查詢條件設定</h5>
+					    <div class="form-row">
+						    <div class="col-12 col-sm-6 col-lg-6">
+							    <div class="form-group">
+								    <label for="schoolName">校名</label>
+									<input type="text" class="form-control" id="schoolName">
+								</div>
+							</div>
+							<div class="col-12 col-sm-6 col-lg-6">
+							    <div class="form-group">
+								    <label>種類</label>
+                                    <select class="browser-default custom-select">
+                                        <option selected>請選擇</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>洲別 / 國別</label>
+							<div class="form-row">
+							    <div class="col-12 col-sm-6 col-lg-3">
+                                    <select class="browser-default custom-select">
+                                        <option selected>請選擇</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+								</div>
+								<div class="col-12 col-sm-6 col-lg-6">
+                                    <select class="browser-default custom-select">
+                                        <option selected>請選擇</option>
+                                        <option value="1">SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+								</div>
+								<div class="col-12 col-sm-6 col-lg-3">
+                                    <select class="browser-default custom-select">
+                                        <option selected>請選擇</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+						    <div class="col-12 col-sm-6 col-lg-6">
+							    <div class="form-group">
+								    <label>簽約時間</label>
+                                    <div id="date-picker-start" class="md-form md-outline input-with-post-icon datepicker mt-0">
+                                        <input placeholder="請選擇日期" type="text" id="date-start" class="form-control" />
+                                        <label for="date-start"></label>
+                                        <i class="fa fa-calendar input-prefix" tabindex="0"></i>
+                                    </div>
+								</div>
+							</div>
+							<div class="col-12 col-sm-6 col-lg-6">
+							    <div class="form-group">
+								    <label>到期日</label>
+                                    <div id="date-picker-expiry" class="md-form md-outline input-with-post-icon datepicker mt-0">
+                                        <input placeholder="請選擇日期" type="text" id="date-expiry" class="form-control" />
+                                        <label for="date-expiry"></label>
+                                        <i class="fa fa-calendar input-prefix" tabindex="0"></i>
+                                    </div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>合約等級</label>
+							<div class="form-row">
+							    <div class="col-12 col-sm-6 col-lg-6">
+                                    <select class="browser-default custom-select">
+                                        <option selected>請選擇</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>本校簽約單位</label>
+							<div class="form-row">
+							    <div class="col-12 col-sm-6 col-lg-6">
+                                    <select class="browser-default custom-select">
+                                        <option selected>請選擇</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+								</div>
+								<div class="col-12 col-sm-6 col-lg-6">
+                                    <select class="browser-default custom-select disabled">
+                                        <option selected>請選擇</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+								</div>
+							</div>
+						</div>
+                        <div class="text-center">
+                            <a href="/" class="btn btn-sm btn-amber">搜尋</a>
+                            <a href="application_home.html" class="btn btn-sm btn-link">清除</a>
+                        </div>
+					</form>
+                </div>
+				<h4 class="block-title">
+					<span>合約查詢結果列表</span>
+				</h4>
+				<div class="table-responsive">
+				    <table class="table table-sm table-striped table-bordered table-align-middle">
+					    <thead>
+						    <tr>
+								<th>
+									<a href="#">對方校名 <i class="fa fa-caret-down"></i></a>
+								</th>
+							    <th>
+								    <a href="#">洲別名 <i class="fa fa-caret-up"></i></a>
+								</th>
+								<th>
+								    <a href="#">國別名</a>
+								</th>
+								<th>
+								    <a href="#">本校單位</a>
+								</th>
+								<th>
+								    <a href="#">等級</a>
+								</th>
+								<th>
+								    <a href="#">種類</a>
+								</th>
+								<th>
+								    <a href="#">簽約日</a>
+								</th>
+								<th>
+								    <a href="#">到期日</a>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+						    <tr>
+							    <td>查理士大學</td>
+								<td>歐洲</td>
+								<td>捷克共和國</td>
+								<td>臺灣大學</td>
+								<td>校級</td>
+								<td>母約</td>
+								<td>1995-05-02</td>
+								<td></td>
+							</tr>
+							<% (1..2).each do |n| %>
+							<tr>
+							    <td>查理士大學</td>
+								<td>歐洲</td>
+								<td>捷克共和國</td>
+								<td>臺灣大學</td>
+								<td>校級</td>
+								<td>交換學生</td>
+								<td>2012-07-16</td>
+								<td>2021-07-16</td>
+							</tr>
+							<% end %>
+							<tr>
+							    <td>
+									<span class="break">查理士大學</span>
+									<span class="break">政治所</span>
+								</td>
+								<td>歐洲</td>
+								<td>捷克共和國</td>
+								<td>政治學系</td>
+								<td>系所中心</td>
+								<td>雙聯學位</td>
+								<td>2018-09-21</td>
+								<td>2021-09-21</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</main>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+    $('.datepicker').datepicker();
+</script>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

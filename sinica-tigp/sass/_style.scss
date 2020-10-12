@@ -4,8 +4,56 @@
 	width: 48%;
 }
 
+.content {
+	.container + .container {
+		margin-top: 2rem;
+	}
+}
+
 /* `Index
 -----------------------------------------------------------------------------*/
+
+.program-wrapper {
+	background: #f6f8fa;
+	padding: 40px 0;
+	.program-title {
+		padding-right: 230px;
+	}
+	.btn-custom {
+		border-top: none;
+		width: 200px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		.flat-btn {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			float: none;
+			padding: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+			left: 0;
+			&:hover { background: darken($main_color, 5); }
+		}
+	}
+	.program-title + .program-title {
+		margin-top: 20px;
+	}
+	.launch {
+		margin-top: 0.75rem;
+		font-size: 1.125rem;
+		color: #a3c2e0;
+		strong {
+			display: inline-block;
+			margin-right: 0.5rem;
+			color: #d8cd98;
+		}
+	}
+}
 
 .btn-primary {
 	background-color: $main_color !important;
@@ -908,6 +956,14 @@ $custom-file-text: (
 /* `Responsive
 -----------------------------------------------------------------------------*/
 
+@media (max-width: 1199px) {
+    .program-wrapper {
+        .program-title {
+			h3 { font-size: 1.625rem; }
+        }
+    }
+}
+
 @media (max-width: 991px) {
 	.container-responsive {
         header.header {
@@ -926,6 +982,15 @@ $custom-file-text: (
         .launch-date {
             padding: 0.875rem 1.5rem;
             font-size: 1rem;
+        }
+        .program-wrapper {
+            .program-title {
+				padding-right: 200px;
+                h3 { font-size: 1.5rem; }
+            }
+			.btn-custom {
+				width: 170px;
+			}
         }
         .guide-wrapper {
             .guide-summary {
@@ -1007,6 +1072,30 @@ $custom-file-text: (
             padding: 1.25rem;
             h3 { font-size: 1.25rem; }
         }
+        .program-wrapper {
+			padding: 20px 0;
+            .program-title {
+				padding: 1.25rem;
+                h3 { font-size: 1.25rem; }
+            }
+			.btn-custom {
+				display: block;
+				margin-top: 0.5rem;
+				position: static;
+				.flat-btn {
+					display: inline-block;
+					background-color: transparent;
+					padding: 0;
+					position: static;
+					&:hover {
+						color: aqua;
+						.fa {
+							transform: translateX(2px);
+						}
+					}
+				}
+			}
+        }
         .examine-container {
             margin: 2rem 0;
             .document-item {
@@ -1084,6 +1173,12 @@ $custom-file-text: (
 
 @media (max-width: 419px) {
 	.container-responsive {
+        .program-wrapper {
+			.launch {
+				font-size: 1rem;
+				strong { display: block; }
+			}
+        }
         .examine-container {
             .document-ft {
                 display: block;

@@ -165,6 +165,12 @@ html, body {
 	margin-bottom: 1rem;
 }
 
+.required {
+    padding-right: 0.25rem;
+    font-weight: bold;
+    color: red;
+}
+
 /* `Index
 -----------------------------------------------------------------------------*/
 
@@ -1839,10 +1845,77 @@ table.table-score {
 	}
 }
 
-.agreement-search {
+.agreement-search, .experience-search {
     background: #fff url(../assets/bg-striped.png) left top repeat;
     margin-bottom: 2.5rem;
     padding: 1.5rem;
+	.field-menu { margin-bottom: 1.5rem; }
+	.dropdown-menu {
+		.dropdown-item {
+			padding: .315rem !important;
+			font-size: 15px !important;
+		}
+	}
+}
+
+.field-menu {
+	margin-top: -0.5rem;
+	.navbar-nav {
+		flex-direction: row;
+	}
+	.nav-item {
+		margin-right: 2rem;
+		position: relative;
+		&:after {
+			content: "";
+			background: $base_border_color;
+			width: 1px;
+			height: 1.5rem;
+			position: absolute;
+			right: -1rem;
+			top: 8px;
+		}
+		&:last-child:after {
+			content: none;
+		}
+		.nav-link {
+			color: #000;
+			&:after {
+				color: $secondary_color;
+				transition: all 0.2s ease-in-out;
+			}
+			&:hover, &:hover:after {
+				color: $link;
+			}
+		}
+		.waves-effect { overflow: visible; }
+	}
+}
+
+.continent-wrapper {
+	margin-top: 2rem;
+	.tab-content {
+		background: #fff;
+		border: 1px solid $base_border_color;
+		border-top: none;
+		margin-bottom: 1rem;
+	}
+	.country-menu {
+		li {
+			margin-bottom: 0.25rem;
+			color: #555;
+			&:first-child {
+				font-weight: bold;
+				color: #000;
+			}
+		}
+		&.has-column {
+            display: block;
+            column-count: 3;
+            column-gap: 1.875rem;
+		}
+		& + .country-menu { margin-top: 1rem; }
+	}
 }
 
 .w80 { width: 80px; }

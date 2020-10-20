@@ -1,0 +1,180 @@
+<!-- admin-page: TIGP 作業流程  -->
+
+<% content_for :replace_css do %>
+    <link rel="stylesheet" media="screen" href="../stylesheets/vendor/bootstrap/bootstrap.css">
+    <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/mdb.css">
+    <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/backend.css">
+    <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/jquery.fancybox.css">
+<% end %>
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+	<div class="row">
+	    <div class="col-8">
+            <div class="col-block">
+                <div class="block-header has-border">
+                    <h5 class="d-inline-block">大事記</h5>
+                    <div class="pull-right">
+                        <a href="#" class="add-blockhead-button">新增大事記</a>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="history-timeline">
+                        <ul class="progress-list">
+                            <li class="progress-item">
+                                <div class="progress-check">
+                                    <div class="progress-circ">100</div>
+                                    <div class="progress-brief">
+                                        <h5>大事紀分類</h5>
+                                        <p class="dateline">
+                                            <span class="date">05.22</span>
+                                            <span class="years">2020</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="progress-card">
+                                    <div class="progress-card-body">
+                                        <h4>編號三位數示範</h4>
+                                        <p>越新編號越大，最新的在上面，99 以下只是顏色示範，共 12 個顏色由 css 自動排列，另外不同事紀的 <code>data-fancybox</code> 應該各不同，說明文件請參考官網 <a href="http://fancyapps.com/fancybox/3/">http://fancyapps.com/fancybox/3/</a></p>
+                                        <div class="fancybox-wrap">
+                                            <figure>
+                                                <a data-fancybox="gallery-cat" href="../assets/fake/c01.jpg" data-caption="中文圖片描述">
+                                                    <img src="../assets/fake/c01.jpg">
+                                                </a>
+                                                <a data-fancybox="gallery-cat" href="../assets/fake/c02.jpg" data-caption="Caption for single image">
+                                                    <img src="../assets/fake/c02.jpg">
+                                                </a>
+                                                <a data-fancybox="gallery-cat" href="../assets/fake/c03.jpg" data-caption="Caption for single image">
+                                                    <img src="../assets/fake/c03.jpg">
+                                                </a>
+                                            </figure>
+                                        </div>
+                                        <div class="files-well">
+                                            <a href="#">provident.pdf</a>
+                                            <a href="#">中文字元.docx</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="progress-item">
+                                <div class="progress-check">
+                                    <div class="progress-circ">99</div>
+                                    <div class="progress-brief">
+                                        <h5>大事紀分類</h5>
+                                        <p class="dateline">
+                                            <span class="date">05.20</span>
+                                            <span class="years">2020</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="progress-card">
+                                    <div class="progress-card-body">
+                                        <h4><%= lorem_words(6) %></h4>
+                                        <p><%= lorem_paragraph %></p>
+                                        <div class="fancybox-wrap">
+                                            <figure>
+                                                <a data-fancybox="gallery-keanu" href="../assets/fake/k01.jpg">
+                                                    <img src="../assets/fake/k01.jpg">
+                                                </a>
+                                                <a data-fancybox="gallery-keanu" href="../assets/fake/k02.jpg">
+                                                    <img src="../assets/fake/k02.jpg">
+                                                </a>
+                                                <a data-fancybox="gallery-keanu" href="../assets/fake/k03.jpg">
+                                                    <img src="../assets/fake/k03.jpg">
+                                                </a>
+                                                <a data-fancybox="gallery-keanu" href="../assets/fake/k04.jpg">
+                                                    <img src="../assets/fake/k04.jpg">
+                                                </a>
+                                                <a data-fancybox="gallery-keanu" href="../assets/fake/k05.jpg">
+                                                    <img src="../assets/fake/k05.jpg">
+                                                </a>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <% (1..12).each do |n| %>
+                            <li class="progress-item">
+                                <div class="progress-check">
+                                    <div class="progress-circ"><%= n %></div>
+                                    <div class="progress-brief">
+                                        <h5>大事紀分類</h5>
+                                        <p class="dateline">
+                                            <span class="date">05.19</span>
+                                            <span class="years">2020</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="progress-card">
+                                    <div class="progress-card-body">
+                                        <h4><%= lorem_words(6) %></h4>
+                                        <p><%= lorem_paragraph %></p>
+                                        <div class="files-well">
+                                            <a href="#">provident.pdf</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="col-4">
+            <div class="col-block">
+                <div class="block-header has-border">
+                    <h5 class="d-inline-block">招生活動申請及錄取資料統計</h5>
+                </div>
+                <div class="block-content">
+					<div class="table-responsive text-nowrap">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>學程名稱</th>
+                                    <th>申請人數</th>
+                                    <th>意願錄取人數</th>
+                                    <th>最終錄取人數</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% (1..6).map do |i| %>
+                                <tr>
+                                    <td><%= lorem_sentence %></td>
+                                    <td>150</td>
+                                    <td>60</td>
+                                    <td>59</td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+					</div>
+                </div>
+            </div>
+		</div>
+	</div>
+</main>
+
+<% content_for :js do %>
+<script src="../javascripts/jquery.fancybox.min.js"></script>
+<script>
+    $(function () {
+		$('.sidebar-ctrler--label').on('click', function() {
+            $('.page').toggleClass('page-pad-left')
+        })
+    });
+    $(function() {
+        // scroll 多少開始 fixed
+        let topSpacing = 204;
+        $('.page').scroll(function() {
+            let top = $('.page').scrollTop();
+            if (top > topSpacing) {
+                $('.sticky-vertical_tabs').addClass('sticky-fixed')
+            } else {
+                $('.sticky-vertical_tabs').removeClass('sticky-fixed')
+            }
+        });
+    });
+</script>
+<% end %>

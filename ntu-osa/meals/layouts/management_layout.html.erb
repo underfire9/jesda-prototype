@@ -1,0 +1,54 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body class="management">
+    <div class="pages">
+        <div class="content">
+            <div class="content-wrapper">
+                <%= render :partial => "/partials/management_header" %>
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+	
+    <div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changePasswordLabel">變更密碼</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="oldPassword">請輸入舊密碼</label>
+                        <input type="text" class="form-control" id="oldPassword">
+                    </div>
+					<div class="form-group">
+                        <label for="newPassword">請輸入新密碼</label>
+                        <input type="text" class="form-control" id="newPassword">
+                    </div>
+					<div class="form-group">
+                        <label for="newPasswordConfirm">請再次輸入新密碼</label>
+                        <input type="text" class="form-control" id="newPasswordConfirm">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-sm btn-info">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+    <script src="../javascripts/jquery-3.3.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+    <%= yield :js %>
+</body>
+</html>

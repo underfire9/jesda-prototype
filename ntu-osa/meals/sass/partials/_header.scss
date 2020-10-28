@@ -2,6 +2,7 @@
 -----------------------------------------------------------------------------*/
 
 header.header {
+	background: $main_color;
 	margin-bottom: 3.75rem;
 	.navbar {
 		background: $main_lighten_color;
@@ -22,7 +23,7 @@ header.header {
 	}
 	.nav-item {
 		padding: 0 0.5rem 0;
-		font-size: 16px;
+		font-size: 17px;
 		position: relative;
 		&:before {
 			content: "";
@@ -42,8 +43,8 @@ header.header {
 		padding-bottom: 0;
 		height: 40px;
 		line-height: 40px;
-		color: #fff !important;
-		&:hover { color: rgba(#fff, .6) !important; }
+		color: $nav-link !important;
+		&:hover { color: $nav-link_hover !important; }
 	}
 	.navbar-toggler {
 		margin: 6px 0;
@@ -61,15 +62,29 @@ header.header {
 	.mobile-only { display: none; }
 }
 
+.navbar {
+	.dropdown-menu {
+		a {
+			display: block;
+			padding: 8px 10px;
+			font-weight: 400;
+			color: $nav-link;
+			&:hover {
+				background: $main_color;
+				color: $nav-link_hover;
+			}
+		}
+	}
+}
+
 .header-bar {
-	background: $main_darken_color;
 	border-bottom: 1px solid rgba(#000, .07);
 	font-size: 13px;
 	text-align: right;
 	#AU {
-		color: rgba(#fff, .25);
+		color: rgba(#000, .6);
 		&:hover {
-			color: rgba(#fff, .5);
+			color: rgba(#000, .8);
 		}
 	}
 }
@@ -81,7 +96,7 @@ header.header {
 		position: relative;
 		&:after {
 			content: "";
-			background: rgba(#fff, .3);
+			background: rgba(#000, .1);
 			width: 1px;
 			height: 10px;
 			position: absolute;
@@ -104,17 +119,28 @@ header.header {
 }
 
 .header-wrap {
-    background: $main_color;
 	padding: .6rem 0;
+	position: relative;
+	z-index: 0;
+	&:after {
+		content: "";
+		background: url(../assets/bg-leaf.png) -40px center no-repeat;
+		position: absolute;
+		right: 0;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		z-index: -1;
+	}
 	.container {
         display: flex;
         justify-content: space-between;
-        align-items: center;	
+        align-items: center;
 	}
 	.brands {
 		a {
             align-items: center;
-			color: #fff;
+			color: #3b464a;
             &:hover { text-decoration: none; }
 		}
         h1 { margin: 0; }
@@ -135,18 +161,17 @@ header.header {
 		height: 60px;
 	}
     .sub {
-		font-family: 'Roboto', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
         line-height: 1.2;
-		color: #fff;
+		color: #3b464a;
 		font-size: 1.25rem;
 		font-weight: bold;
         > span {
             display: block;
         }
-		.cht { font-size: 1.375rem; }
+		.cht { font-size: 1.625rem; }
 		.en {
-			font-size: 1.125rem;
-			font-weight: 300;
+			font-size: 1.0625rem;
+			font-weight: 400;
 		}
     }
 }

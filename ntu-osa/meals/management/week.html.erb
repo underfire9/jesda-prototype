@@ -1,0 +1,157 @@
+<!-- NTU-OSA: 管理專區 - 全部週次 -->
+<% content_for :replace_css do %>
+    <link rel="stylesheet" media="screen, projection" href="../stylesheets/management.css">
+<% end %>
+<div class="container">
+	<main class="main">
+		<div class="row">
+			<div class="col-md-3 sidenav">
+				<div class="sticky">
+					<ul class="collapsible collapsible-accordion menu-item">
+						<li><a href="#" class="collapsible-header waves-effect">當週檢查表</a></li>
+						<li><a href="#" class="collapsible-header waves-effect current">全部週次</a></li>
+						<li><a href="#" class="collapsible-header waves-effect">編輯個人資料</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="section-title">
+					<h3>全部週次</h3>
+				</div>
+				<div class="awell">
+					<h5>查詢年月</h5>
+					<div class="select-inline">
+                        <select class="browser-default custom-select">
+                            <option selected>請選擇年份</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+					</div>
+					<div class="select-inline">
+                        <select class="browser-default custom-select">
+                            <option selected>請選擇月份</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+					</div>
+					<button type="submit" class="btn btn-sm btn-info btn-select-submit">查詢</button>
+				</div>
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-hover table-week">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>檢測週次期間</th>
+                                <th class="text-center">總數量</th>
+                                <th class="text-center">已完成填報數</th>
+                                <th class="text-center">待填報數</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+							<% (1..5).each do |n| %>
+                            <tr>
+                                <th><%= n %></th>
+                                <td>2020/04/27 ~ 2020/05/03</td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">0</td>
+                                <td class="text-center">2</td>
+                                <td class="text-right"><a href="#" class="btn btn-xs btn-secondary">檢視</td>
+                            </tr>
+							<% end %>
+                        </tbody>
+                    </table>
+                </div>
+
+			</div>
+		</div>
+	</main>
+</div>
+
+
+<% content_for :js do %>
+<script>
+$(function () {
+	$(".sticky").sticky({
+		topSpacing: 30,
+		zIndex: 2,
+		stopper: "footer.footer",
+		minWidth: 991
+	});
+    jQuery(document).ready(function($) {
+        var alterClass = function() {
+            var ww = document.body.clientWidth;
+            if (ww < 767) {
+                $('.sticky').addClass('sticky-fix');
+            } else if (ww >= 767) {
+                $('.sticky').removeClass('sticky-fix');
+            };
+        };
+        $(window).resize(function() {
+            alterClass();
+        });
+        //Fire it when the page first loads:
+        alterClass();
+    });
+	// MDB Lightbox Init
+    $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
+	
+});
+	
+</script>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

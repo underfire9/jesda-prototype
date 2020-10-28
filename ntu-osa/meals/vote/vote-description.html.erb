@@ -1,0 +1,108 @@
+<!-- NTU-OSA: 管理專區 - 投票說明頁 -->
+<% content_for :replace_css do %>
+    <link rel="stylesheet" media="screen, projection" href="../stylesheets/management.css">
+<% end %>
+<div class="container">
+	<main class="main">
+		<div class="vote-description">
+		    <p><%= lorem_sentences(6) %></p>
+			<p><%= lorem_sentences(6) %></p>
+			<ul>
+				<% (1..5).each do |n| %>
+			    <li><%= lorem_sentences(2) %></li>
+				<% end %>
+			</ul>
+			<p><%= lorem_sentences(6) %></p>
+			<p><%= lorem_sentences(3) %></p>
+		</div>
+        <div class="vote-action">
+            <a href="#" class="btn btn-info btn-rounded">我同意，開始投票</a>
+			<a href="#" class="btn btn-light btn-rounded">我不同意，退出投票</a>
+        </div>
+	</main>
+</div>
+
+<% content_for :js do %>
+<script>
+$(function () {
+	$(".sticky").sticky({
+		topSpacing: 30,
+		zIndex: 2,
+		stopper: "footer.footer",
+		minWidth: 991
+	});
+    jQuery(document).ready(function($) {
+        var alterClass = function() {
+            var ww = document.body.clientWidth;
+            if (ww < 767) {
+                $('.sticky').addClass('sticky-fix');
+            } else if (ww >= 767) {
+                $('.sticky').removeClass('sticky-fix');
+            };
+        };
+        $(window).resize(function() {
+            alterClass();
+        });
+        //Fire it when the page first loads:
+        alterClass();
+    });
+	// MDB Lightbox Init
+    $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
+	
+});
+	
+</script>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

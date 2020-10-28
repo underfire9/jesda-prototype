@@ -1,0 +1,145 @@
+<!-- NTU-OSA: 管理專區 - 編輯個人資料 -->
+<% content_for :replace_css do %>
+    <link rel="stylesheet" media="screen, projection" href="../stylesheets/management.css">
+<% end %>
+<div class="container">
+	<main class="main">
+		<div class="row">
+			<div class="col-md-3 sidenav">
+				<div class="sticky">
+					<ul class="collapsible collapsible-accordion menu-item">
+						<li><a href="#" class="collapsible-header waves-effect">當週檢查表</a></li>
+						<li><a href="#" class="collapsible-header waves-effect">全部週次</a></li>
+						<li><a href="#" class="collapsible-header waves-effect current">編輯個人資料</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="section-title">
+					<h3>編輯個人資料</h3>
+				</div>
+                <div class="universal-wrap">
+					<div class="item">
+						<span class="lable">單位</span>
+						<span class="output"><%= lorem_words(4) %></span>
+					</div>
+					<div class="item">
+						<span class="lable">帳號</span>
+						<span class="output"><%= lorem_words(4) %></span>
+					</div>
+                </div>
+                <form>
+					<div class="row">
+						<div class="col-12 col-lg-6">
+                            <div class="form-group">
+                                <label for="personalName">姓名</label>
+                                <input type="text" class="form-control" id="personalName">
+                            </div>
+						</div>
+						<div class="col-12 col-lg-6">
+                            <div class="form-group">
+                                <label for="personalPhone">電話</label>
+                                <input type="text" class="form-control" id="personalPhone">
+                            </div>
+						</div>
+						<div class="col-12 col-lg-6">
+                            <div class="form-group">
+                                <label for="personalEmail">信箱</label>
+                                <input type="email" class="form-control" id="personalEmail">
+                            </div>
+						</div>
+					</div>
+                    <div class="form-action">
+                        <a href="#" class="btn btn-outline-info btn-rounded my-3 z-depth-0">儲存</a>
+                        <a href="#" class="btn btn-link" data-toggle="modal" data-target="#changePassword">變更密碼</a>
+                    </div>
+                </form>
+			</div>
+		</div>
+	</main>
+</div>
+
+<% content_for :js do %>
+<script>
+$(function () {
+	$(".sticky").sticky({
+		topSpacing: 30,
+		zIndex: 2,
+		stopper: "footer.footer",
+		minWidth: 991
+	});
+    jQuery(document).ready(function($) {
+        var alterClass = function() {
+            var ww = document.body.clientWidth;
+            if (ww < 767) {
+                $('.sticky').addClass('sticky-fix');
+            } else if (ww >= 767) {
+                $('.sticky').removeClass('sticky-fix');
+            };
+        };
+        $(window).resize(function() {
+            alterClass();
+        });
+        //Fire it when the page first loads:
+        alterClass();
+    });
+	// MDB Lightbox Init
+    $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
+	
+});
+	
+</script>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

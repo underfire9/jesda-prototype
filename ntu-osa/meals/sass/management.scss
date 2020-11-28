@@ -14,6 +14,48 @@ body.management-vote {
 	.beneath-inner .system-title:after {
         background: $secondary_color;
 	}
+	.language {
+		min-width: 75px;
+		text-align: right;
+		a {
+			display: inline-block;
+			color: rgba(#fff, .6);
+			&:hover { color: #fff; }
+			&.current {
+				color: rgba(#000, .7);
+				cursor: default;
+			}
+			&:last-child {
+				margin-left: 0.5rem;
+				padding-left: 0.5rem;
+				position: relative;
+				&:before {
+					content: "";
+					background: rgba(#000, .1);
+					width: 1px;
+					height: 16px;
+					position: absolute;
+					left: -2px;
+					top: 4px;
+				}
+			}
+		}
+	}
+	.vote-question {
+		border-bottom: 1px dashed $base_border_color;
+		margin-bottom: 1.5rem;
+		padding-bottom: 1.5rem;
+		.h6 {
+			margin: 2rem 0;
+			font-size: 1.125rem;
+		}
+		.question-item { margin-bottom: 1rem; }
+		.form-group { margin-bottom: 0.5rem; }
+		.label {
+			margin-bottom: 0.25rem;
+			font-weight: bold;
+		}
+	}
 }
 
 .pages { background-color: transparent; }
@@ -271,9 +313,8 @@ body.management-vote {
 	.block {
         border-bottom: 1px dashed $bg_border_color;
         margin-bottom: 1.5rem;
-        padding-bottom: 1.5rem;
+        padding-bottom: .5rem;
 		h5 { color: $secondary_color; }
-		p { margin-bottom: 0; }
 	}
     [class^="col-"]:last-child .block {
         border-bottom: none;
@@ -303,8 +344,26 @@ body.management-vote {
 	}
 }
 
+@media (max-width: 767px) {
+	.header-wrap {
+		.sub {
+			.en {
+				font-size: 1rem;
+			}
+		}
+	}
+}
+
 @media (max-width: 575px) {
-    .header-wrap { padding: 0.5rem 0; }
+    .header-wrap {
+		.h1-logo { height: 64px; }
+		padding: 0.5rem 0;
+		.sub {
+			padding-right: 1rem;
+			line-height: 1.1;
+			.cht { font-size: 1.375rem; }
+		}
+	}
     .beneath-inner {
         .account { font-size: 0.9375rem; }
         .username { display: none; }
@@ -334,6 +393,15 @@ body.management-vote {
 }
 
 @media (max-width: 480px) {
+    .header-wrap {
+		.sub {
+			.en { font-size: 0.875rem; }
+		}
+		.language {
+			min-width: 70px;
+			font-size: 0.875rem;
+		}
+	}
     .login-warpper {
         margin-top: 4rem;
         width: 340px;

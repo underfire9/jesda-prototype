@@ -5,6 +5,15 @@
     <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/mdb.css">
     <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/backend.css">
     <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/jquery.fancybox.css">
+    <!-- tree 套件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css"
+    />
+    <style>
+      .vakata-context {
+        z-index: 999 !important;
+      }
+    </style>
+    <!-- tree 套件結束 -->
 <% end %>
 
 <%= render :partial => "/partials/admin_breadcrumb" %>
@@ -30,7 +39,42 @@
                         </ul>
                     </div>
 					<div class="tree-wrapper">
-                        <div class="js-tree">tree</div>
+                        <!-- tree 套件 -->
+                        <div class="js-tree">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-success btn-sm" onclick="tree_create();">
+                                        <i class="fa fa-plus"></i>
+                                        <!-- 新增 -->
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-sm" onclick="tree_rename();">
+                                        <i class="fa fa-pencil"></i>
+                                        <!-- 重新命名 -->
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="tree_delete();">
+                                        <i class="fa fa-times"></i>
+                                        <!-- 移除 -->
+                                    </button>
+                                </div>
+                                <div class="col-md-12" style="text-align: right;">
+                                    <input type="text" value="" style="box-shadow: inset 0 0 4px #eee; width: 100%; margin: 10px 0; padding: 6px 12px; border-radius: 4px; border: 1px solid silver; font-size: 1.1em;" id="tree_q" placeholder="Search" />
+                                </div>
+                            </div>
+                            <div id="jstree_demo" class="demo">
+                                <ul>
+                                    <li data-jstree='{ "opened" : true }'>
+                                        Root node
+                                        <ul>
+                                            <li data-jstree='{ "selected" : true }'>
+                                                Child node 1
+                                            </li>
+                                            <li>Child node 2</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- tree 套件結束 -->
                     </div>
 				</div>
             </div>
@@ -136,4 +180,123 @@
         });
     });
 </script>
+
+<!-- tree 套件 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+ <script>
+   function tree_create() {
+     var ref = $("#jstree_demo").jstree(true),
+       sel = ref.get_selected();
+     // 這裡 sel 為父層(所點選) id
+     if (!sel.length) {
+       return false;
+     }
+     sel = sel[0];
+     sel = ref.create_node(sel);
+     // 這裡 sel 為子層(所新增) id
+     console.log("新增", sel);
+     if (sel) {
+       // 編輯名稱
+       ref.edit(sel);
+     }
+   }
+   function tree_rename() {
+     var ref = $("#jstree_demo").jstree(true),
+       sel = ref.get_selected();
+     if (!sel.length) {
+       return false;
+     }
+     sel = sel[0];
+     // 編輯名稱
+     ref.edit(sel);
+   }
+   function tree_delete() {
+     var ref = $("#jstree_demo").jstree(true),
+       sel = ref.get_selected();
+     if (!sel.length) {
+       return false;
+     }
+     ref.delete_node(sel);
+     console.log("刪除", sel);
+   }
+
+   $(function () {
+     var to = false;
+     $("#tree_q").keyup(function () {
+       if (to) {
+         clearTimeout(to);
+       }
+       to = setTimeout(function () {
+         var v = $("#tree_q").val();
+         $("#jstree_demo").jstree(true).search(v);
+         console.log("搜尋", v);
+       }, 250);
+     });
+     // tree init
+     $("#jstree_demo")
+       .jstree({
+         core: {
+           animation: 0,
+           check_callback: true,
+           force_text: true,
+           themes: { stripes: true },
+         },
+         types: {
+           "#": { max_children: 1, max_depth: 4, valid_children: ["root"] },
+           root: {
+             valid_children: ["default"],
+           },
+           default: { valid_children: ["default", "file"] },
+           file: { icon: "glyphicon glyphicon-file", valid_children: [] },
+         },
+         plugins: [
+           "contextmenu",
+           "dnd",
+           "search",
+           "state",
+           "types",
+           "wholerow",
+         ],
+         contextmenu: {
+           items: function ($node) {
+             var tree = $("#jstree_demo").jstree(true);
+             return {
+               Create: {
+                 separator_before: false,
+                 separator_after: false,
+                 label: "新增",
+                 action: function (obj) {
+                   tree_create();
+                 },
+               },
+               Rename: {
+                 separator_before: false,
+                 separator_after: false,
+                 label: "重新命名",
+                 action: function (obj) {
+                   tree_rename();
+                 },
+               },
+               Remove: {
+                 separator_before: false,
+                 separator_after: false,
+                 label: "移除",
+                 action: function (obj) {
+                   tree_delete();
+                 },
+               },
+             };
+           },
+         },
+       })
+       .bind("move_node.jstree", function (e, data) {
+         console.log("移動", e, data);
+       })
+       .bind("select_node.jstree", function (e, data) {
+         console.log("點選", e, data);
+       });
+   });
+ </script>
+ <!-- tree 套件結束 -->
 <% end %>

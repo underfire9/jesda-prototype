@@ -8,6 +8,100 @@
     <div class="row">
         <div class="col-12">
 			<div class="col-block mb-4">
+				<div class="block-content expansion">
+                    <div class="dt-toolbar dt-toolbar-stick">
+                        <div class="dt-toolbar-l">
+                            <div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-white" role="button"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                        <label class="custom-control-label" for="defaultUnchecked"></label>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-white" role="button"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-list" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="d-inline-block">
+                                <select class="browser-default custom-select dt-custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+							<div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-danger" role="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="dt-toolbar-r">
+                            <div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-white" role="button"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-list" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="d-inline-block">
+                                <select class="browser-default custom-select dt-custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="d-inline-block">
+                                <select class="browser-default custom-select dt-custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="dataTables_filter d-inline-block toolbar-search-wrap">
+                                <input type="search" class="toolbar-search form-control form-control-sm" placeholder="Search" aria-controls="jesdaDataTable">
+								<!-- btn-search-remove 清除按鈕在進行搜尋後才會出現 -->
+								<!-- button type="button" class="btn btn-search-remove" title="清除搜尋"><i class="fa fa-times"></i></button -->
+                            </div>
+                        </div>
+                    </div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th style="width: 50px;" class="text-center">#</th>
+								<th>Name</th>
+								<th style="width: 15%;" class="hidden-xs">Access</th>
+								<th style="width: 100px;" class="text-center">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% (1..6).map do |i| %>
+							<tr>
+								<td class="text-center"><%= i %></td>
+								<td><%= lorem_name %></td>
+								<td class="hidden-xs">
+									<% if i % 2 == 0 %>
+									<span class="label label-warning"><%= lorem_word %></span>
+									<% else %>
+									<span class="label label-primary"><%= lorem_word %></span>
+									<% end %>
+								</td>
+								<td class="text-center">
+									<div class="btn-group">
+										<button title="" data-toggle="tooltip" type="button" class="btn btn-xs btn-default" data-original-title="Edit Client"><i class="fa fa-pencil"></i></button>
+										<button title="" data-toggle="tooltip" type="button" class="btn btn-xs btn-default" data-original-title="Remove Client"><i class="fa fa-times"></i></button>
+									</div>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="col-block">
 				<div class="block-header has-border">
 					Block Expansion
 				</div>
@@ -78,8 +172,10 @@
                                     <option value="3">Three</option>
                                 </select>
                             </div>
-                            <div class="dataTables_filter d-inline-block">
-                                <input type="search" class="form-control form-control-sm" placeholder="Search" aria-controls="jesdaDataTable">
+                            <div class="dataTables_filter d-inline-block toolbar-search-wrap">
+                                <input type="search" class="toolbar-search form-control form-control-sm" placeholder="Search" aria-controls="jesdaDataTable">
+								<!-- btn-search-remove 清除按鈕在進行搜尋後才會出現 -->
+								<button type="button" class="btn btn-search-remove" title="清除搜尋"><i class="fa fa-times"></i></button>
                             </div>
 							<div class="dropdown d-inline-block">
 							    <button class="btn btn-sm btn-white dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
@@ -169,66 +265,6 @@
 							<% end %>
 						</tbody>
 					</table>
-				</div>
-			</div>
-			<div class="col-block">
-				<div class="block-header">
-					datatables toolbar html
-				</div>
-				<div class="block-content">
-                    <div class="dt-toolbar">
-                        <div class="dt-toolbar-l">
-                            <div class="btn-group btn-group-sm unshadow">
-                                <a class="btn btn-white" role="button"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                <a class="btn btn-white" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                <a class="btn btn-white" role="button">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                                        <label class="custom-control-label" for="defaultUnchecked"></label>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="btn-group btn-group-sm unshadow">
-                                <a class="btn btn-white" role="button"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-                                <a class="btn btn-white" role="button"><i class="fa fa-list" aria-hidden="true"></i></a>
-                                <a class="btn btn-white" role="button"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="d-inline-block">
-                                <select class="browser-default custom-select dt-custom-select">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="dt-toolbar-r">
-                            <div class="btn-group btn-group-sm unshadow">
-                                <a class="btn btn-white" role="button"><i class="fa fa-refresh" aria-hidden="true"></i></a>
-                                <a class="btn btn-white" role="button"><i class="fa fa-list" aria-hidden="true"></i></a>
-                                <a class="btn btn-white" role="button"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="d-inline-block">
-                                <select class="browser-default custom-select dt-custom-select">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="d-inline-block">
-                                <select class="browser-default custom-select dt-custom-select">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="dataTables_filter d-inline-block">
-                                <input type="search" class="form-control form-control-sm" placeholder="Search" aria-controls="jesdaDataTable">
-                            </div>
-                        </div>
-                    </div>
 				</div>
 			</div>
         </div>

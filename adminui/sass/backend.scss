@@ -57,11 +57,18 @@
 /* NCCU Login ---------------------------------------------------------------------------*/
 @import "widgets/nccu_login";
 
+/* NKUST Login ---------------------------------------------------------------------------*/
+@import "widgets/nkust_login";
+
+/* YunTech Login ---------------------------------------------------------------------------*/
+@import "widgets/yuntech_login";
+
 /* Jesda Workbench ---------------------------------------------------------------------------*/
 @import "widgets/jesda";
 
 body {
 	background-color: $body_background;
+	font-family: 'Roboto', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
 	font-size: 0.9375rem;
 	font-weight: 400;
 }
@@ -269,7 +276,7 @@ body {
 				border-color: #f3f3f3;
 			}
 			th {
-				padding: 1.25rem 0.625rem;
+				padding: 1rem 0.625rem;
 			}
 			th:first-child, td:first-child { padding-left: 1.25rem; }
 			th:last-child, td:last-child { padding-right: 1.25rem; }
@@ -654,6 +661,15 @@ ul.ticket-tax-list {
 			background: #feffe5;
 		}
 	}
+	&.obvious-link {
+		a {
+			color: $blue;
+			&:hover {
+				color: darken($blue, 10);
+				text-decoration: underline;
+			}
+		}
+	}
 }
 
 .table .ellipsis {
@@ -663,21 +679,37 @@ ul.ticket-tax-list {
     white-space : nowrap;
 }
 
-.add-blockhead-button {
+.blockhead-button {
 	position: relative;
 	padding-left: 1.25rem;
 	color: #333;
 	&:after {
-		content: "\f067";
 		font: normal normal normal 14px/1 FontAwesome;
-		color: #00c851;
 		position: absolute;
 		left: 0;
 		top: 3px;
 		transition: all 0.2s ease-in-out;
 	}
+	& + .blockhead-button { margin-left: 1rem; }
+}
+
+.add-blockhead-button {
+	&:after {
+		content: "\f067";
+		color: #00c851;
+	}
 	&:hover {
 		color: #00c851;
+	}
+}
+
+.export-blockhead-button {
+	&:after {
+		content: "\f08e";
+		color: $blue;
+	}
+	&:hover {
+		color: $blue;
 	}
 }
 
@@ -698,6 +730,62 @@ ul.ticket-tax-list {
 		margin-bottom: 3rem;
 		font-size: 1rem;
 		color: #888;
+	}
+}
+
+.circle-list {
+	margin-top: 1rem;
+	text-align: center;
+	li {
+		display: inline-block;
+		margin: 0 1rem;
+	}
+	.circle-item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 4rem;
+		border: 2px solid #000;
+		margin-bottom: 1rem;
+		width: 8rem;
+		height: 8rem;
+		color: #000;
+		span {
+			display: inline-block;
+			font-size: 1.75rem;
+			font-weight: 300;
+		}
+		&:hover { color: #fff; }
+	}
+	.circle-primary {
+		border-color: $blue;
+		&:hover {
+			background: $blue;
+		}
+	}
+	.circle-secondary {
+		border-color: $purple_color;
+		&:hover {
+			background: $purple_color;
+		}
+	}
+	.circle-success {
+		border-color: $green;
+		&:hover {
+			background: $green;
+		}
+	}
+	.circle-danger {
+		border-color: $red_color;
+		&:hover {
+			background: $red_color;
+		}
+	}
+	.circle-warning {
+		border-color: $orange_color;
+		&:hover {
+			background: $orange_color;
+		}
 	}
 }
 
@@ -961,7 +1049,8 @@ select.browser-default { padding-right: 1.5rem !important; }
 		padding: 5px;
 	}
 	.custom-select.dt-custom-select {
-		height: calc(2rem + 3px);
+		border-color: #e5e5e5;
+		height: calc(2rem + 1px);
 		line-height: 1.2;
 		font-size: 0.9375rem;
 		position: relative;
@@ -981,7 +1070,11 @@ select.browser-default { padding-right: 1.5rem !important; }
 			}
 		}
 	}
+	.btn { border: none !important; }
+	.btn + .btn { margin-left: -.5rem; }
 	.btn.btn-white {
+		border: 1px solid #e5e5e5 !important;
+		padding: 0.25rem 0.75rem;
 		color: #333 !important;
 		text-transform: none;
         &:active, &:focus {
@@ -995,11 +1088,36 @@ select.browser-default { padding-right: 1.5rem !important; }
 		}
 	}
 	.form-control.form-control-sm {
-		padding: 0.3rem 0.5rem;
+		border-radius: 0.25rem;
+		border-color: #e5e5e5;
+		padding: 0.25rem 0.5rem;
 		font-size: 0.9375rem;
 		line-height: 1.6;
 		position: relative;
 		top: 1px;
+	}
+	.toolbar-search-wrap {
+		position: relative;
+		.toolbar-search {
+			padding-right: 40px;
+		}
+	}
+	.btn-search-remove {
+		background-color: transparent;
+		box-shadow: none;
+		margin: 0;
+		padding: 0.25rem 0.75rem;
+		color: $red_color;
+		position: absolute;
+		right: 0;
+		top: 3px;
+		&:hover {
+			color: darken($red_color, 10);
+		}
+	}
+	&.dt-toolbar-stick {
+		border-bottom: none;
+		padding-bottom: 0;
 	}
 }
 
@@ -1613,6 +1731,43 @@ select.select-hasadd {
 	}
 }
 
+/* `WorkFlow
+-----------------------------------------------------------------------------*/
+
+.workflow-guide {
+	width: 100%;
+	.guide-item {
+		display: block;
+		margin-bottom: 1.25rem;
+		position: relative;
+		&:after {
+			content: "\f175";
+			margin-left: -6px;
+			font: normal normal normal 14px/1 FontAwesome;
+			color: #aaa;
+			position: absolute;
+			left: 50%;
+			bottom: -1.125rem;
+			z-index: 2;
+		}
+		&:last-child:after {
+			content: none;
+		}
+		.btn { margin-bottom: 0; }
+		/*
+		a {
+			display: block;
+			background: $blue;
+			padding: 1rem 1.125rem;
+			font-size: 1rem;
+			text-align: center;
+			color: #fff;
+			&:hover { background: darken($blue, 5); }
+		}
+		*/
+	}
+}
+
 /* `fancybox
 -----------------------------------------------------------------------------*/
 
@@ -1621,6 +1776,7 @@ select.select-hasadd {
 	figure {
 		a {
 			display: inline-block;
+			background-color: #eee;
 			border-radius: 0.25rem;
 			width: 320px;
 			height: 180px;
@@ -1639,6 +1795,7 @@ select.select-hasadd {
 		border-radius: 0.5rem;
 		background: #f8f8f8;
 		margin-right: 0.375rem;
+		margin-bottom: 0.5rem;
 		padding: 0.375rem 0.75rem 0.375rem 2.25rem;
 		color: #666;
 		position: relative;

@@ -4,7 +4,7 @@
 
 .nkust-login {
     background-image: radial-gradient(circle at center, #002764 0%, #131a22 50%);
-	overflow: hidden;
+	//overflow: hidden;
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -18,6 +18,7 @@
 	}
     canvas {
         position: absolute;
+		position: fixed;
         top: 50%;
         transform: translateY(-50%);
     }
@@ -40,11 +41,12 @@
 		background: #fff;
 		box-shadow: 0 -16px 8px rgba(#000, .05), 0 -24px 16px rgba(#000, .05);
 		border-radius: 50%;
+		margin-left: -53px;
 		padding: .5rem;
+		height: 106px;
 		position: absolute;
 		top: -53px;
 		left: 50%;
-		margin-left: -53px;
 		.logo__img {
 			display: inline-block;
 			width: 90px;
@@ -77,3 +79,415 @@
 		}
 	}
 }
+
+.nkust_switch-container {
+    margin: 0 auto;
+	padding: 4rem 0;
+    width: 1140px;
+    position: relative;
+    z-index: 1;
+	.nkust_logo {
+		margin-bottom: 3rem;
+		text-align: center;
+		.logo__img {
+			width: 128px;
+			height: auto;
+		}
+	}
+	.switch-wrapper {
+		background: rgba(#fff, .98);
+		border-radius: .25rem;
+		padding-bottom: 2rem;
+		.description {
+			padding: 3rem 2rem 0;
+			text-align: center;
+		}
+	}
+	.switch-head {
+		background: #fff;
+		border-radius: .25rem .25rem 0 0;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+        &:after {
+            content: "";
+            background: #000;
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(#000, .15);
+            width: 240px;
+            height: 40px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -120px;
+			z-index: -1;
+        }
+	}
+	.switch-title {
+		background: #fff;
+		border-radius: .25rem .25rem 0 0;
+		margin-bottom: 0;
+		padding: 3rem 2rem 2rem;
+		font-weight: bold;
+		color: #000;
+		position: relative;
+	}
+	.switch-list {
+		display: flex;
+		flex-wrap: wrap;
+		text-align: center;
+		li {
+			padding: 2rem;
+			width: 33.33333%;
+		}
+		.item-title {
+			margin-bottom: 1.5rem;
+			position: relative;
+			&:after {
+				content: "";
+				background: #006dac;
+				width: 1.5rem;
+				height: 1px;
+				margin-left: -0.75rem;
+				position: absolute;
+				left: 50%;
+				bottom: -0.75rem;
+			}
+		}
+		.item-description {
+			color: #888;
+		}
+		.btn {
+			background-color: rgb(0,109,172) !important;
+			margin: 0;
+		}
+	}
+}
+
+/* `NKUST Entrance
+-----------------------------------------------------------------------------*/
+
+$nkust_academy: #826c4a;
+
+.nkust-entrance {
+    .entrance-container {
+        margin: 0 auto;
+        width: 1400px;
+    }
+	.workbench-wrapper {
+		background-image: url("../assets/suspension-bridge.png");
+		background-position: center top;
+		background-size: cover;
+		position: relative;
+		overflow-x: hidden;
+		&:before, &:after {
+			content: "";
+			position: fixed;
+		}
+		&:before {
+			background: url("../assets/nkust_bridge-cloud.png") left top repeat-x;
+			width: 9126px;
+			height: 400px;
+			position: absolute;
+			top: -10px;
+			z-index: -1;
+            -webkit-animation: bridgecloud 180s infinite linear;
+            -moz-animation:    bridgecloud 180s infinite linear;
+            -o-animation:      bridgecloud 180s infinite linear;
+            animation:         bridgecloud 180s infinite linear;
+		}
+		&:after {
+			background: linear-gradient(0deg, rgba(255,211,71,1) 5%, rgba(255,254,224,1) 58%, rgba(255,254,224,1) 100%);
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: -2;
+		}
+	}
+	.workbench-header {
+		display: block;
+		margin-bottom: 3.5rem;
+		padding-top: 2rem;
+		position: relative;
+		&:after {
+			//content: "";
+			background: linear-gradient(0deg, rgba(253,247,211,0) 0%, rgba(255,254,224,1) 100%);
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			z-index: 0;
+		}
+		.entrance-container {
+			text-align: center;
+			position: relative;
+			z-index: 1;
+		}
+		.logo {
+			display: inline-block;
+			img { width: 128px; }
+		}
+		.account {
+			position: absolute;
+			top: 4.875rem;
+			right: 0;
+		}
+	}
+    .account {
+		background: rgba(#000, .5);
+		border-radius: 0.25rem;
+		padding: 0.5rem 0.5rem 0.5rem 1rem;
+        color: rgba(#fff, 1);
+        text-align: right;
+        .logout {
+            display: inline-block;
+            margin-left: 0.5rem;
+            color: rgba(#fff, 1);
+            position: relative;
+            &:after {
+                content: "";
+                background: rgba(#fff, 1);
+                width: 100%;
+                height: 1px;
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                transform-origin: 0;
+                transition: all 0.2s ease-in-out;
+            }
+            &:hover {
+				color: rgba(#fff, 1);
+                &:after {
+                    transform: scaleX(0);
+                }
+            }
+        }
+        .btn {
+			display: inline-block;
+            margin: 0;
+            margin-left: 1rem;
+			color: #fff;
+			&:hover {
+				color: rgba(#fff, 1);
+            }
+        }
+    }
+    .system-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -0.9375rem;
+        margin-right: -0.9375rem;
+        li {
+            margin: 0 0.9375rem 1.875rem;
+            width: 17.9%;
+        }
+        .card-link {
+            display: block;
+            background: #fff;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(#000, .15);
+            padding: 0 0 1.875rem;
+            position: relative;
+            min-height: 240px;
+            img {
+                display: block;
+                margin-bottom: 1rem;
+                width: 100%;
+                height: auto;
+            }
+            span {
+                display: block;
+                box-sizing: border-box;
+                padding: 0 1.875rem;
+                width: 100%;
+                text-align: center;
+            }
+            .name {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: $nkust_academy url("../assets/bg-striped.png") left top repeat;
+				border-radius: 0.25rem 0.25rem 0 0;
+                margin-bottom: 3.5rem;
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+				min-height: 104px;
+                font-size: 1.5rem;
+				color: #fff;
+				line-height: 1.2;
+                position: relative;
+                &:after {
+                    content: "";
+                    background: #f3f0ec;
+                    margin-left: -2rem;
+                    width: 4rem;
+                    height: 1px;
+                    position: absolute;
+                    left: 50%;
+                    bottom: -2rem;
+                }
+            }
+            .info {
+                color: $nkust_academy;
+            }
+            &:after {
+                content: "";
+                background: url("../assets/ribbon-orange.svg") center center no-repeat;
+                width: 24px;
+                height: 31px;
+                position: absolute;
+                top: -2px;
+                left: 6px;
+                transition: all 0.2s ease-in-out;
+                opacity: 0;
+            }
+            &:hover {
+                background: #f9f8f7;
+                box-shadow: 0 1px 1px rgba(#000, .2);
+                &:after {
+                    opacity: 1;
+                }
+            }
+        }
+        .card.disabled {
+            position: relative;
+            &:after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+            }
+            .card-link {
+				.name {
+					background: #aaa;
+				}
+				.info {
+                    color: #999;
+                }
+            }
+        }
+    }
+	.admission-index {
+		.admission-item {
+			width: 32%;
+			margin: 0 2% 2% 0;
+			&:nth-child(1n) .admission-card {
+				background: $nkust_academy;
+				.btn {
+					border-color: $nkust_academy;
+					color: $nkust_academy;
+					&:hover {
+						background: $nkust_academy;
+						color: #fff;
+					}
+				}
+			}
+			.system-title { font-size: 1.5rem; }
+			.card-bd {
+				background: linear-gradient(345deg, #fffcf5 0%, #fff 100%);
+			}
+		}
+	}
+}
+
+@media (max-width: 1919px) {
+	.nkust-entrance {
+		.admission-index {
+			.admission-item:nth-child(2n) {
+                margin-right: 2%;
+            }
+			.admission-item:nth-child(3n) {
+                margin-right: 0;
+            }
+		}
+	}
+}
+
+
+@media (max-width: 1599px) {
+    .nkust-entrance .entrance-container {
+        width: 1200px;
+    }
+    .nkust-entrance .system-list {
+        li {
+            width: 22.55%;
+        }
+    }
+}
+
+@media (max-width: 1399px) {
+    .nkust-entrance .entrance-container {
+        width: 1140px;
+    }
+    .nkust-entrance .system-list {
+        li {
+            width: 22.435%;
+        }
+    }
+}
+
+
+
+@-webkit-keyframes bridgecloud {
+  0%{
+      transform: translate3d(0, 0, 0);
+  }
+  100% {
+      transform: translate3d(-3042px, 0, 0);
+  }
+}
+
+@-moz-keyframes bridgecloud {
+  0%{
+      transform: translate3d(0, 0, 0);
+  }
+  100% {
+      transform: translate3d(-3042px, 0, 0);
+  }
+}
+
+@-o-keyframes bridgecloud {
+  0%{
+      transform: translate3d(0, 0, 0);
+  }
+  100% {
+      transform: translate3d(-3042px, 0, 0);
+  }
+}
+
+@keyframes bridgecloud {
+  0%{
+      transform: translate3d(0, 0, 0);
+  }
+  100% {
+      transform: translate3d(-3042px, 0, 0);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

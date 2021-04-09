@@ -1,0 +1,55 @@
+<!-- admin-page: 作業進度表 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h2>作業進度表</h2>
+    </div>
+    <div class="progress-timeline">
+        <ul class="progress-list">
+			<% (1..2).each do |n| %>
+            <li class="progress-item">
+                <div class="progress-check">
+                    <div class="progress-circ"><%= n %></div>
+                    <div class="progress-brief">
+                        <h5><%= lorem_words(6) %></h5>
+                        <p><%= lorem_sentence %></p>
+                    </div>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-card-body">
+                        <%= lorem_paragraph %>
+                    </div>
+                </div>
+            </li>
+			<% end %>
+        </ul>
+    </div>
+	<hr />
+	<h4 class="my-5">已完成樣式</h4>
+	<div class="progress-timeline">
+        <ul class="progress-list">
+			<% (1..12).each do |n| %>
+            <li class="progress-item checked">
+                <div class="progress-check">
+                    <div class="progress-circ"></div>
+                    <div class="progress-brief">
+                        <h5><%= lorem_words(6) %></h5>
+                        <p><%= lorem_sentence %></p>
+                    </div>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-card-body">
+                        <%= lorem_paragraph %>
+                    </div>
+                </div>
+            </li>
+			<% end %>
+        </ul>
+    </div>
+</main>
+
+
+<% content_for :js do %>
+
+<% end %>

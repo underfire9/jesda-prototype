@@ -86,11 +86,19 @@
 	<!-- SideNav -->
 	<script>
         $(document).ready(function () {
-            // SideNav Button Initialization
             $(".button-collapse").sideNav({
-				breakpoint: 1199,
-				menuWidth: 320
-			});
+                breakpoint: 1199,
+                menuWidth: 320,
+                onOpen: function(){
+                    $('#slide-out').addClass('active')
+                    setTimeout(function(){
+                        $('#sidenav-overlay').on('click',function(){
+                            $('#slide-out').removeClass('active')
+                        })
+                    },0)
+                }, 
+            });
+
             // SideNav Scrollbar Initialization
             var sideNavScrollbar = document.querySelector(".custom-scrollbar");
             var ps = new PerfectScrollbar(sideNavScrollbar);

@@ -62,7 +62,6 @@ header.header {
 		}
 	}
 	.navbar-toggler {
-		background: $main_color;
 		border-radius: 0;
 		padding: 0.625rem 0 0.625rem 4rem;
 		width: 124px;
@@ -70,7 +69,7 @@ header.header {
 		transition: width 0.2s ease-out 0.2s;
 		&:before {
 			content: "";
-			background: $main_color;
+			//background: $main_color;
 			height: 49px;
 			position: absolute;
 			right: 0;
@@ -78,9 +77,19 @@ header.header {
 			top: 0;
 			transition: all 0.2s ease-in-out;
 		}
+		&:after {
+			content: "MENU";
+			font-size: 1rem;
+			color: #666;
+			position: absolute;
+			right: 4.375rem;
+			top: 1.125rem;
+			transition: all 0.2s ease-in-out;
+			transition-delay: 0.5s;
+		}
 		.line {
 			display: inline-block;
-			border-bottom: 3px solid #fff;
+			border-bottom: 3px solid $main_color;
 			margin-top: 2px;
 			width: 60px;
 			height: 24px;
@@ -89,7 +98,7 @@ header.header {
 			transition: all 0.2s ease-in-out;
 			&:before, &:after {
 				content: "";
-				background: #fff;
+				background: $main_color;
 				height: 3px;
 				position: absolute;
 				right: 0;
@@ -102,11 +111,15 @@ header.header {
 				top: 50%;
 			}
 		}
+		&:hover:after { opacity: 0.5; }
 		&[aria-expanded="true"] {
 			padding-left: 3.75rem;
 			width: 100%;
 			&:before {
 				left: 0;
+			}
+			&:after {
+				opacity: 0;
 			}
 			.line {
 				transform-origin: right;
@@ -115,7 +128,7 @@ header.header {
 		}
 	}
 	.navbar-collapse {
-		//border-top: 1px solid $lighten_border_color;
+		transition: all 0.2s ease-in-out;
 	}
 	.container { position: relative; }
 }

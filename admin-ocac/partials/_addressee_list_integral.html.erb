@@ -1,0 +1,123 @@
+<div class="modal fade modal_addressee_table" id="modalAddresseeTable" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="previewModalLabel">寄件預覽 所有收件人</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+				<div class="integral-head">
+					<div>
+						<button type="button" class="btn btn-sm btn-secondary btn-rounded">全選</button>
+                        <div class="integral-search">
+                            <input type="search" class="form-control form-control-sm" placeholder="搜尋" aria-controls="addresseeTable">
+                        </div>
+					</div>
+					<div>
+						<span>1 - 30 共 1789 筆</span>
+						<div class="btn-group btn-group-sm d-inline-block unshadow ml-2" role="group" aria-label="pagination">
+                            <button type="button" class="btn btn-white">
+                                <i class="fa fa-chevron-left mr-0"></i>
+                            </button>
+                            <button type="button" class="btn btn-white">
+                                <i class="fa fa-chevron-right mr-0"></i>
+                            </button>
+						</div>
+					</div>
+				</div>
+				<div class="modal_addressee modal_addressee_table scrollbar-inner">
+                    <table class="table table-hover table-sm">
+                        <tbody>
+							<tr>
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="default1">
+                                        <label class="custom-control-label" for="default1"></label>
+                                    </div>
+                                </td>
+                                <td><%= zh_lorem_words(3) %></td>
+                                <td class="tmw-40"><%= lorem_sentence %></td>
+                                <td class="text-muted"></td>
+                                <td class="tmw-8">
+									<!--div class="btn-group btn-group-sm unshadow" role="group" aria-label="action button">
+                                        <button type="button" class="btn btn-white">重新寄送</button>
+                                        <button type="button" class="btn btn-white">寄給自己</button>
+									</div-->
+									<button type="button" class="btn btn-sm btn-me btn-loading">
+                                        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                           <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                                        </svg>
+									</button>
+                                </td>
+                            </tr>
+                            <% (1..5).each do |n| %>
+                            <tr>
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="default1">
+                                        <label class="custom-control-label" for="default1"></label>
+                                    </div>
+                                </td>
+                                <td><%= zh_lorem_words(3) %></td>
+                                <td class="tmw-40"><%= lorem_sentence %></td>
+                                <td class="text-muted"></td>
+                                <td class="tmw-8">
+									<button type="button" class="btn btn-sm btn-me">寄給自己</button>
+                                </td>
+                            </tr>
+                            <% end %>
+                            <% (1..2).each do |n| %>
+                            <tr>
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="default1">
+                                        <label class="custom-control-label" for="default1"></label>
+                                    </div>
+                                </td>
+                                <td><%= lorem_words(3) %></td>
+                                <td class="tmw-40"><%= lorem_sentence %></td>
+                                <td class="text-muted">已送出，送出時間2020-01-08 09:29</td>
+                                <td class="tmw-8">
+                                    <button type="button" class="btn btn-sm btn-me">寄給自己</button>
+                                </td>
+                            </tr>
+                            <% end %>
+                            <% (1..5).each do |n| %>
+                            <tr>
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="default1">
+                                        <label class="custom-control-label" for="default1"></label>
+                                    </div>
+                                </td>
+                                <td><%= zh_lorem_words(3) %></td>
+                                <td class="tmw-40"><%= lorem_sentence %></td>
+                                <td class="text-muted"></td>
+                                <td class="tmw-8">
+                                    <button type="button" class="btn btn-sm btn-me">寄給自己</button>
+                                </td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+				</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn  btn-link" data-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">確認寄送</button>
+				<button type="button" class="btn btn-success">寄送完成，成功1封、失敗0封</button>
+				<button type="button" class="btn btn-amber">重新寄送所有失敗郵件</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<script>
+    jQuery(document).ready(function(){
+        jQuery('.scrollbar-inner').scrollbar();
+    });
+</script>
+<% end %>

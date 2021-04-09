@@ -1,0 +1,131 @@
+
+
+.timeline {
+	ul, ol {
+		list-style: none;
+		margin: 0;
+		padding: 40px 0;
+		position: relative;
+	}
+	li {
+		margin-bottom:20px;
+		position: relative;
+	}
+	.card {
+		box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+		border: none;
+		border-top: 1px solid #aaa;
+	}
+	.timeline-date {
+		display: block;
+		margin-bottom: 5px;
+	}
+	.timeline-circ {
+		background: #ccc;
+		border: 3px solid #e5e5e5;
+		border-radius: 10px;
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		left: -7px;
+		top: 40%;
+		&:after {
+			content: "";
+			background: $base_border_color;
+			width: 34px;
+			height: 1px;
+			position: absolute;
+			top: 5px;
+			left: 13px;
+			opacity: 0.7;
+		}
+	}
+	li:nth-child(2n) {
+		.timeline-circ {
+			left: auto;
+			right: -9px;
+			&:after {
+				left: auto;
+				right: 13px;
+			}
+		}
+	}
+	.time-warning {
+		.timeline-circ {
+			background: $custom-warning;
+			border-color: lighten($custom-warning, 32%);
+			opacity: 0.8;
+			&:after { background: lighten($custom-warning, 15%); }
+		}
+		.card { border-color: lighten($custom-warning, 20%); }
+	}
+	.time-success {
+		.timeline-circ {
+			background: $custom-success;
+			border-color: lighten($custom-success, 32%);
+			opacity: 0.7;
+			&:after { background: lighten($custom-success, 15%); }
+		}
+		.card { border-color: lighten($custom-success, 20%); }
+	}
+	.time-danger {
+		.timeline-circ {
+			background: $custom-danger;
+			border-color: lighten($custom-danger, 32%);
+			opacity: 0.7;
+			&:after { background: lighten($custom-danger, 15%); }
+		}
+		.card { border-color: lighten($custom-danger, 20%); }
+	}
+}
+
+/* `Timeline cross
+-----------------------------------------------------------------------------*/
+
+.timeline-cross {
+	margin-bottom: 40px;
+	ul {
+		padding-left: 50%;
+		&:after {
+			content: "";
+			background: $bg_border_color;
+			width: 2px;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 50%;
+			z-index: -1;
+		}
+	}
+	li {
+		margin-bottom: 0;
+		padding-left: 40px;
+		&:nth-child(2n) {
+			margin-left: -100%;
+			padding-left: 0;
+			padding-right: 40px;
+			width: 100%;
+		}
+	}
+}
+
+/* `Block Timeline
+-----------------------------------------------------------------------------*/
+
+.block-timeline {
+	ul {
+		padding: 10px 0 0;
+	}
+	li, li:nth-child(2n) {
+		.timeline-circ {
+			display: none;
+		}
+	}
+	.card {
+		border-radius: 0;
+		box-shadow: none;
+		border-top: 0;
+		border-left: 2px solid #aaa;
+		z-index: 1;
+	}
+}

@@ -1,0 +1,49 @@
+<!-- admin-page: 報名設定 - formEditor 外框 -->
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+		<h2>報名表欄位</h2>
+		<p>設計報名人填寫的英文版的報名表單。儲存按鈕是從 <code>#form_editor</code> 硬拉上來到固定位置 <small>(    position: absolute;)</small>，wording 字數更改會讓最後更新時間字串的位置不正確，如有以上狀況請找 fire 調整 css。</p>
+    </div>
+    <div class="col-block block-tabs">
+        <ul class="nav nav-tabs nav-justified nav-registration">
+            <li class="nav-item"><a href="#" class="active" >報名表單欄位</a></li>
+            <li class="nav-item"><a href="#">初審欄位</a></li>
+            <li class="nav-item"><a href="#">複審欄位</a></li>
+			<li class="nav-item"><a href="#">錄取後欄位</a></li>
+        </ul>
+        <div class="block-content padding-off">
+            <div class="formeditor-action-wrap">
+				<div class="group-left">
+				    <span class="text-muted">最後更新時間 : 2022-05-09 12:00</span>
+				</div>
+				<div class="group-right preview-btn-group">
+                    <span class="text-preview">預覽</span>
+                    <div class="btn-group btn-group-sm btn-flex-group">
+                        <a href="#" class="btn btn-angel">
+                            <i class="fa fa-database"></i>
+                            <span>後端資料頁</span>
+                        </a>
+                        <a href="#" class="btn btn-angel">
+                            <i class="fa fa-desktop"></i>
+                            <span>前端網頁版</span>
+                        </a>
+                        <a href="#" class="btn btn-angel">
+                            <i class="fa fa-mobile"></i>
+                            <span>前端手機版</span>
+                        </a>
+                    </div>
+				</div>
+            </div>
+			<div class="formeditor-container">
+			    <div id="form_editor" data-cbdata='{"api": "http://ocac-event-registration.dev.com.tw:10000/default/field.group/form.design.api/","uid" : "1","formId" : "1","exampleId": "1","dev": true}'></div>
+			</div>
+        </div>
+    </div>
+</main>
+
+<% content_for :js do %>
+
+<% end %>

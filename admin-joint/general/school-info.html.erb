@@ -1,0 +1,136 @@
+<!-- admin-page: 學校基本資料 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h2>Basic Information</h2>
+    </div>
+	<div class="row">
+	    <div class="col-12">
+		    <div class="profile-sidebar">
+                <div class="col-block mb-20">
+                    <div class="block-content expansion pb-5">
+                        <div class="profile-avatar no-avatar">
+							<div class="scrap">
+								<div class="scrap-info">
+									<p><i class="fa fa-university"></i></p>
+									<span class="school h4">港九街坊婦女會孫方中書院</span>
+									<span class="en-school">Hong Kong and Kowloon Kaifong Women's Association Sun Fong Chung College</span>
+								</div>
+							</div>
+                        </div>
+						<div id="accordion" class="profile-side_accordion">
+                            <ul class="collapsible collapsible-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                                <li class="menu-item">
+                                    <div class="panel-heading">
+                                        <a class="btn btn-link" href="#" >About the School</a>
+                                    </div>
+                                </li>
+                                <li class="menu-item current">
+                                    <div class="panel-heading">
+                                        <a class="btn btn-link" href="#">Basic Information</a>
+                                    </div>
+                                </li>
+								<li class="menu-item">
+                                    <div class="panel-heading">
+                                        <a class="btn btn-link" href="#">History</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="profile-content">
+                <div class="col-block">
+                    <div class="block-content">
+						<div class="row">
+						    <div class="col-6">
+                                <div class="form-group">
+                                    <label for=""><span class="required">*</span>Country</label>
+									<div>
+                                        <select class="browser-default custom-select">
+                                            <option selected>Please select</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+									</div>
+                                </div>
+							</div>
+						</div>
+						<div class="row">
+						    <div class="col-6">
+                                <div class="form-group">
+                                    <label for="basic01"><span class="required">*</span>School Name in English</label>
+                                    <input type="text" class="form-control" id="basic01" placeholder="">
+                                </div>
+							</div>
+							<div class="col-6">
+                                <div class="form-group">
+                                    <label for="basic02">School Name in Chinese</label>
+                                    <input type="text" class="form-control" id="basic02" placeholder="">
+                                </div>
+							</div>
+							<div class="col-6">
+                                <div class="form-group">
+                                    <label for="basic03">School Name in Original</label>
+                                    <input type="text" class="form-control" id="basic03" placeholder="">
+                                </div>
+							</div>
+						</div>
+						<div class="row">
+						    <div class="col-6">
+                                <div class="form-group">
+                                    <label for="basic04"><span class="required">*</span>承辦人姓名</label>
+                                    <input type="text" class="form-control" id="basic04" placeholder="">
+                                </div>
+							</div>
+							<div class="col-6">
+                                <div class="form-group">
+                                    <label for="basic05"><span class="required">*</span>承辦人單位</label>
+                                    <input type="text" class="form-control" id="basic05" placeholder="">
+                                </div>
+							</div>
+							<div class="col-6">
+                                <div class="form-group">
+                                    <label for="basic06"><span class="required">*</span>承辦人職稱</label>
+                                    <input type="text" class="form-control" id="basic06" placeholder="">
+                                </div>
+							</div>
+							<div class="col-6">
+                                <div class="form-group">
+                                    <label for="basic07"><span class="required">*</span>Email</label>
+                                    <input type="text" class="form-control" id="basic07" placeholder="">
+                                </div>
+							</div>
+							<div class="col-6">
+                                <div class="form-group">
+                                    <label for="basic08"><span class="required">*</span>聯絡電話</label>
+                                    <input type="text" class="form-control" id="basic08" placeholder="">
+                                </div>
+							</div>
+						</div>
+						<div class="form-action">
+						    <button type="button" class="btn btn-primary">Save</button>
+							<button type="button" class="btn btn-link">Cancel</button>
+						</div>
+                    </div>
+                </div>
+				
+			</div>
+		</div>
+	</div>
+</main>
+
+<% content_for :js do %>
+    <script>
+		 $('.panel-collapse').on('show.bs.collapse', function() {
+			 $(this).siblings('.panel-heading').addClass('active');
+		 });
+
+		 $('.panel-collapse').on('hide.bs.collapse', function() {
+			 $(this).siblings('.panel-heading').removeClass('active');
+		 });
+    </script>
+<% end %>

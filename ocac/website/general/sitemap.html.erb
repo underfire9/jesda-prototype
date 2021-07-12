@@ -1,0 +1,63 @@
+<!-- event-page: 網站導覽 -->
+
+<main class="main pt-5">
+	<div class="container">
+		<h2 class="page-title">網站導覽</h2>
+		<p>本網站依照「無障礙網頁開發規範」原則設計，遵循無障礙網站設計之規範提供網頁導盲磚(:::)、網站導覽、鍵盤快速鍵 (Accesskey) 等設計方式。</p>
+		<ol class="general-menu">
+			<li>ALT+U：本網站上方導覽區塊</li>
+			<li>ALT+R：右方次選項連結與主題專區區塊</li>
+			<li>ALT+C：本網站首頁中間主要內容區塊，此區塊呈現各資訊網頁的選項或內容</li>
+		</ol>
+		<div class="d-inline-block mt-3">
+            <ul class="menu-item sitemap-menu">
+                <li>
+                    <a href="#">
+                        <span class="number">1</span>
+                        <span class="text">報名活動</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="number">2</span>
+                        <span class="text">歷史活動</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="number">3</span>
+                        <span class="text">場地租借表單</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="number">4</span>
+                        <span class="text">常見問題</span>
+                    </a>
+                </li>
+            </ul>
+		</div>
+    </div>
+</main>
+<a id="backtop"></a>
+
+
+<% content_for :js do %>
+	<!-- Back to top -->
+	<script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+	</script>
+<% end %>

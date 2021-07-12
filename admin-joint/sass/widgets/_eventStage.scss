@@ -1,0 +1,105 @@
+
+/* `Event stage
+-----------------------------------------------------------------------------*/
+
+.event-stage {
+    border-top: 1px solid #e0e8e8;
+    margin: -1px auto 0;
+    padding: 5rem 1.875rem 3rem;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+	&.stage-three { min-width: 640px; }
+	&.stage-four { min-width: 840px; }
+	&.stage-five { min-width: 1140px; }
+	&.reduction {
+        border-top: none;
+        margin-top: 0;
+        padding: 3rem 0;
+	}
+    .stage-list, li {
+        display: inline-block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        float: left;
+        width: 200px;
+        font-weight: 400;
+    }
+    .start-inner { position: relative; }
+    .status {
+        display: block;
+        border-radius: 20px;
+        border: 4px solid #bfbfbf;
+        margin: 0 0 12px 80px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        font-weight: 400;
+        color: #666;
+        line-height: 32px;
+        position: relative;
+        &:before, &:after {
+            content: "";
+            background: #bfbfbf;
+            width: 65px;
+            height: 4px;
+            position: absolute;
+            top: 14px;
+        }
+        &:before {
+            border-radius: 0 2px 2px 0;
+            left: -84px;
+        }
+        &:after {
+            border-radius: 2px 0 0 2px;
+            right: -84px;
+        }
+    }
+    h4 {
+        margin-bottom: 0;
+        padding: 0 0.5rem;
+        font-size: 1.125rem;
+    }
+    li {
+        &:first-child .status:before, &:last-child .status:after {
+            //content: none;
+        }
+    }
+    .active {
+        color: $light_purple;
+        .status {
+            border-color: $light_purple;
+            color: $light_purple;
+            &:before {
+                background: $light_purple;
+                background: linear-gradient(90deg, $main_color 0%, $light_purple 100%); 
+            }
+        }
+        h4 { color: $light_purple; }
+    }
+    .done {
+        color: #000;
+        .status {
+            background: $main_color;
+            border-color: $main_color;
+            color: #fff;
+            &:before, &:after {
+                background: $main_color;
+            }
+        }
+        h4 { color: $main_color; }
+    }
+    .start-date, .end-date {
+        color: #97abab;
+        position: absolute;
+        right: -1.25rem;
+        top: -1rem;
+    }
+    .start-date {
+        right: auto;
+        left: -1.25rem;
+    }
+}

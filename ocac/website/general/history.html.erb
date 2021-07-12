@@ -1,0 +1,133 @@
+<!-- event-page: 歷史活動 -->
+
+<div class="container">
+    <div class="searchbar">
+		<span class="search-label">搜尋活動</span>
+		<div class="d-inline-block">
+		    <input class="form-control" type="text" placeholder="請輸入活動關鍵字">
+		</div>
+        <div id="date-picker-example" class="d-inline-block md-form md-outline input-with-post-icon datepicker">
+            <input placeholder="選擇日期" type="text" id="example" class="form-control">
+            <i class="fa fa-calendar-o input-prefix" tabindex=0></i>
+        </div>
+		<div id="date-picker-example" class="d-inline-block md-form md-outline input-with-post-icon datepicker">
+            <input placeholder="選擇日期" type="text" id="example" class="form-control">
+            <i class="fa fa-calendar-o input-prefix" tabindex=0></i>
+        </div>
+		<button type="button" class="btn btn-md btn-default">搜尋</button>
+    </div>
+</div>
+
+<main class="main">
+	<div class="container">
+		<div class="events-list">
+		    <div class="events-list-item">
+			    <div class="item-start">
+				    <h4 class="event-name"><a href="#" title="僑務委員會109年泰汶華文教師研習班">僑務委員會109年泰汶華文教師研習班</a></h4>
+					
+					<!-- 內容描述字元長度請控制最多兩行以內 (全形 80，半形 170) -->
+					
+					<div class="event-brief">培訓內容包含「水調麵食類」、「發酵麵食類」及「酥糕漿皮類」等海外廣受歡迎之麵點專業課程，實地參訪安口食品機械有限公司，並邀請知名主廚進行經驗分享，充實的行程帶領學員...</div>
+				</div>
+				<div class="item-end">
+				    <div class="period">
+					    <span class="period-start">
+						    <span class="label">活動開始</span>
+							<span class="date">2021/06/30</span>
+						</span>
+						<span class="period-end">
+						    <span class="label">活動開始</span>
+							<span class="date">2021/06/30</span>
+						</span>
+					</div>
+					<a href="#" class="event-link" title="僑務委員會109年泰汶華文教師研習班"><i class="fa fa-chevron-right"></i></a>
+				</div>
+			</div>
+			
+			<div class="events-list-item">
+			    <div class="item-start">
+				    <h4 class="event-name"><a href="#" title="Nam ut facilisis nisl mauris vehicula fringilla risus eu iaculis in turpis mi semper finibus laoreet ac">Nam ut facilisis nisl mauris vehicula fringilla risus eu iaculis in turpis mi semper finibus laoreet ac</a></h4>
+					<div class="event-brief">
+						Eos ea non animi distinctio velit mollitia tempore esse quo distinctio ut corporis. Nemo quod modi excepturi voluptatibus magnam voluptas quidem tenetur. Sit ipsam dolorem voluptas...
+						<div class="link-tidbits"><a href="#"><i class="fa fa-camera"></i> 活動花絮</a></div>
+					</div>
+				</div>
+				<div class="item-end">
+				    <div class="period">
+					    <span class="period-start">
+						    <span class="label">Start</span>
+							<span class="date">2021/06/30</span>
+						</span>
+						<span class="period-end">
+						    <span class="label">End</span>
+							<span class="date">2021/06/30</span>
+						</span>
+					</div>
+					<a href="#" class="event-link" title="Nam ut facilisis nisl mauris vehicula fringilla risus eu iaculis in turpis mi semper finibus laoreet ac"><i class="fa fa-chevron-right"></i></a>
+				</div>
+			</div>
+			
+			<% (1..6).map do |i| %>
+			<div class="events-list-item">
+			    <div class="item-start">
+				    <h4 class="event-name"><a href="#" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></h4>
+					<div class="event-brief">Sunt rerum quo id quidem qui architecto. Sed similique perspiciatis ad aliquid atque quis. Temporibus explicabo explicabo excepturi possimus eveniet laudantium sed tenetur voluptatem...</div>
+				</div>
+				<div class="item-end">
+				    <div class="period">
+					    <span class="period-start">
+						    <span class="label">Start</span>
+							<span class="date">2021/06/30</span>
+						</span>
+						<span class="period-end">
+						    <span class="label">End</span>
+							<span class="date">2021/06/30</span>
+						</span>
+					</div>
+					<a href="#" class="event-link" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"><i class="fa fa-chevron-right"></i></a>
+				</div>
+			</div>
+			<% end %>
+			
+		</div>
+		
+        <nav class="page-navigation">
+            <ul class="pagination pg-teal justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link">1</a></li>
+                <li class="page-item active">
+                    <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link">3</a></li>
+                <li class="page-item">
+                    <a class="page-link">Next</a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</main>
+<a id="backtop"></a>
+
+
+<% content_for :js do %>
+	<!-- Back to top -->
+	<script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+	</script>
+<% end %>

@@ -1,0 +1,171 @@
+<!-- admin-page: 推薦信上傳 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+<main class="main">
+    <div class="page-header">
+        <h2>Letter of Recommendation</h2>
+    </div>
+    <div class="row">
+        <div class="col-12">
+			<div class="col-block">
+				<div class="block-content expansion">
+                    <div class="dt-toolbar dt-toolbar-stick">
+                        <div class="dt-toolbar-l">
+                            <div class="btn-group btn-group-sm unshadow">
+								<a class="btn btn-white" role="button"><i class="fa fa-file-excel-o" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="dataTables_filter d-inline-block toolbar-search-wrap">
+                                <input type="search" class="toolbar-search form-control form-control-sm" placeholder="Search" aria-controls="jesdaDataTable">
+								<!-- btn-search-remove 清除按鈕在進行搜尋後才會出現 -->
+								<!-- button type="button" class="btn btn-search-remove" title="清除搜尋"><i class="fa fa-times"></i></button -->
+                            </div>
+                            <div class="d-inline-block">
+                                <select class="browser-default custom-select dt-custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="d-inline-block">
+                                <select class="browser-default custom-select dt-custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+							<div class="btn-group btn-group-sm unshadow">
+                                <a href="#" class="btn btn-white" role="button">批次上傳</a>
+							</div>
+                        </div>
+                        <div class="dt-toolbar-r">
+							<div class="btn-group btn-group-sm unshadow">
+                                <a href="#" class="btn btn-white" role="button">推薦信範本下載</a>
+							</div>
+                        </div>
+                    </div>
+					<div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="tableUnchecked">
+                                            <label class="custom-control-label" for="tableUnchecked"></label>
+                                        </div>
+									</th>
+									<th>Account</th>
+									<th>Chinese name</th>
+									<th>English name</th>
+									<th>Apply</th>
+									<th>Department</th>
+									<th>Upload</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+								<tr>
+									<td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="tableUnchecked0">
+                                            <label class="custom-control-label" for="tableUnchecked0"></label>
+                                        </div>
+									</td>
+									<td>10800000</td>
+									<td><%= zh_lorem_name %></td>
+									<td><%= lorem_name %></td>
+                                    <td>National Taiwan University</td>
+									<td>Department of Japanese Language & Literature</td>
+									<td>
+                                        <span>Upload time: <strong class="text-secondary">2021/06/30 18:00</strong></span>
+                                        <a href="#" class="btn btn-sm btn-secondary ml-3">Edit</a>
+									</td>
+                                </tr>
+                                <% (1..7).map do |i| %>
+                                <tr>
+									<td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="tableUnchecked<%= i %>">
+                                            <label class="custom-control-label" for="tableUnchecked<%= i %>"></label>
+                                        </div>
+									</td>
+									<td>1080000<%= i %></td>
+									<td><%= zh_lorem_name %></td>
+									<td><%= lorem_name %></td>
+                                    <td>National Taiwan University</td>
+									<td>Department of Japanese Language & Literature</td>
+									<td>
+                                        <a href="#" class="btn btn-sm btn-success">Upload</a>
+									</td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal -->
+<%= render :partial => "/partials/toolbar_setting" %>
+<%= render :partial => "/partials/toolbar_output" %>
+<%= render :partial => "/partials/toolbar_sort" %>
+<%= render :partial => "/partials/toolbar_email" %>
+<%= render :partial => "/partials/toolbar_email_preview" %>
+<%= render :partial => "/partials/addressee_list" %>
+<%= render :partial => "/partials/addressee_list_integral" %>
+
+<% content_for :js do %>
+<script src="../javascripts/datatables.min.js"></script>
+<script src="../javascripts/jquery.scrollbar.min.js"></script>
+<script src="../javascripts/slidebars.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#jesdaDataTable').DataTable();
+		
+		//inbox show cc, bcc
+        $("#cc_button").click(function(){
+            $(".cc_hidden").removeClass("hidden");
+			$("#cc_button").addClass("hidden");
+        });
+		$("#bcc_button").click(function(){
+            $(".bcc_hidden").removeClass("hidden");
+			$("#bcc_button").addClass("hidden");
+        });
+    } );
+	$('.modal').appendTo("body").modal('hide');
+	
+	// select hide/show
+    $(function() {
+        $('#citizenshipselector').change(function() {
+            $('.continent').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+	
+	// jQuery scrollbar
+    jQuery(document).ready(function(){
+        jQuery('.scrollbar-inner').scrollbar();
+    });
+	
+    // Material Select Initialization
+    $(document).ready(function() {
+        $('.mdb-select').materialSelect();
+    });
+</script>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

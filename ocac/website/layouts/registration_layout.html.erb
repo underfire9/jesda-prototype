@@ -1,0 +1,32 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body class="registration_layout">
+    <div class="page">
+        <div class="page-wrapper">
+            <% if content_for? :header %>
+                <%= yield :header %>
+            <% else %>
+                <%= render :partial => "/partials/registration_header" %>
+            <% end %>
+            <div class="content-wrapper clearfix">
+                <%= yield %>
+            </div>
+        </div>
+        <%= render :partial => "/partials/registration_footer" %>
+    </div>
+	
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+    <script>
+        // Data Picker Initialization
+        $('.datepicker').datepicker();
+    </script>
+    <%= yield :js %>
+</body>
+</html>

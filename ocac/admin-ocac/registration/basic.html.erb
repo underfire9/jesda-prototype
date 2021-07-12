@@ -1,0 +1,243 @@
+<!-- admin-page: 報名設定 - 基本設定 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+		<h2>基本設定</h2>
+        <p>請設定下列各項基本設定</p>
+    </div>
+    <div class="row">
+		<div class="col-6">
+			<form class="basic-form has-bg">
+                <div class="col-block bg-transparent">
+                    <div class="block-header">
+                        <h4 class="bb-snap d-inline-block">使用語系</h4>
+                    </div>
+                    <div class="block-content">
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input l_bilingual" id="languagesBilingual" name="languageStatus">
+                                <label class="custom-control-label" for="languagesBilingual">
+                                    中英文並列，中文跟英文在同一頁面以上下方式並列。
+                                    <!-- Tooltips https://tinyurl.com/yeu3rbz5 -->
+                                    <a class="material-tooltip-main custom-tooltip" data-toggle="tooltip" title="Default tooltip"><i class="fa fa-question-circle"></i></a>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input l_localization" id="languagesLocalization" name="languageStatus">
+                                <label class="custom-control-label" for="languagesLocalization">
+                                    多國語系，請在下方勾選您想要的語系，不同語系為單獨網站。
+                                    <a class="material-tooltip-main custom-tooltip" data-toggle="tooltip" title="多國語系，請在下方勾選您想要的語系，不同語系為單獨網站。"><i class="fa fa-question-circle"></i></a>
+                                </label>
+                            </div>
+                            <div class="language-container extend-con hide">
+                                <div class="form-group mb-0">
+                                    <div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="languageTraditional">
+                                            <label class="custom-control-label" for="languageTraditional">正體中文</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="languageEnglish">
+                                            <label class="custom-control-label" for="languageEnglish">英文</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="languageJapanese">
+                                            <label class="custom-control-label" for="languageJapanese">日文</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="languageKorean">
+                                            <label class="custom-control-label" for="languageKorean">韓文</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="languageSpanish">
+                                            <label class="custom-control-label" for="languageSpanish">西班牙文</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="languagePortuguese">
+                                            <label class="custom-control-label" for="languagePortuguese">葡萄牙語</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="languageFrench">
+                                            <label class="custom-control-label" for="languageFrench">法語</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="languageGerman">
+                                            <label class="custom-control-label" for="languageGerman">德語</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-block bg-transparent">
+                    <div class="block-header">
+                        <h4 class="bb-snap d-inline-block">活動名稱</h4>
+                    </div>
+                    <div class="block-content">
+                        <div class="form-group">
+                            <label for="basic04"><span class="required">*</span>中文名稱</label>
+                            <input type="text" class="form-control" id="basic04" placeholder="請輸入">
+                        </div>
+                        <div class="form-group">
+                            <label for="basic05"><span class="required">*</span>日文名稱</label>
+                            <input type="text" class="form-control" id="basic05" placeholder="請輸入">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-block bg-transparent">
+                    <div class="block-header">
+                        <h4 class="bb-snap d-inline-block">活動網址</h4>
+                    </div>
+                    <div class="block-content">
+                        <div class="form-group mb-4">
+                            <label for="basic-url"><span class="required">*</span>請輸入您想要的網站網址</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon3">https://ocac.gov.tw/</span>
+                                </div>
+                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" />
+								<span class="status-confirm"><i class="fa fa-check-circle"></i></span>
+								
+								<!-- status-danger style 展示用請拿掉 -->
+								<span class="status-danger" style="right: 2rem;"><i class="fa fa-exclamation-circle"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+							<label for="basic-url">是否對外公開</label>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="public_yes" name="publicStatus">
+                                <label class="custom-control-label" for="public_yes">
+                                    是，報名網站在對外開放後，可在僑委會活動報名網站清單顯示。
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="public_no" name="publicStatus">
+                                <label class="custom-control-label" for="public_no">
+                                    否，只有收到報名網頁網址的人員才能查詢到網站。
+                                </label>
+                            </div>
+						</div>
+                    </div>
+                </div>
+				
+				<div class="col-block bg-transparent">
+                    <div class="block-header">
+                        <h4 class="bb-snap d-inline-block">活動聯絡資訊</h4>
+                    </div>
+                    <div class="block-content">
+						<p>各式通知信件會透過下列信箱寄送，請設定會內的電子郵件信箱。</p>
+						<div class="form-row">
+						    <div class="col-4">
+                                <div class="form-group">
+                                    <label for="basic07"><span class="required">*</span>聯絡人中文姓名</label>
+                                    <input type="text" class="form-control" id="basic07" placeholder="">
+                                </div>
+							</div>
+							<div class="col-8">
+                                <div class="form-group">
+                                    <label for="basic08"><span class="required">*</span>聯絡人英文姓名</label>
+                                    <input type="text" class="form-control" id="basic08" placeholder="">
+                                </div>
+							</div>
+						</div>
+						<div class="form-row">
+						    <div class="col-6">
+                                <div class="form-group">
+                                    <label for="basic09"><span class="required">*</span>電子郵件</label>
+                                    <input type="email" class="form-control" id="basic09" placeholder="">
+                                </div>
+							</div>
+							<div class="col-6">
+                                <div class="form-group">
+                                    <label for="basic10">聯絡電話</label>
+                                    <input type="text" class="form-control" id="basic10" placeholder="">
+                                </div>
+							</div>
+						</div>
+                    </div>
+                </div>
+				
+				<div class="col-block bg-transparent">
+                    <div class="block-header">
+                        <h4 class="bb-snap d-inline-block">協辦活動管理人員</h4>
+                    </div>
+                    <div class="block-content">
+						<p>請選擇本活動其他僑委會協辦的同仁名單，有在名單內的人員可進入系統管理活動各項資料。</p>
+                        <div class="form-group">
+                            <div class="add-select-container">
+                                <select class="browser-default custom-select">
+                                    <option selected>請選擇協辦人員</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+								<button class="btn btn-md btn-success" type="submit">加入</button>
+							</div>
+							<div class="add-select-wrap">
+							    <ul class="menu-item">
+									<% (1..2).map do |i| %>
+								    <li>
+										<span>
+											綜合規劃處 張世鈺
+											<a href="#" class="btn btn-cancel" title="移除"><i class="fa fa-times"></i></a>
+										</span>
+									</li>
+									<li>
+										<span>
+											僑民處 王建名
+											<a href="#" class="btn btn-cancel" title="移除"><i class="fa fa-times"></i></a>
+										</span>
+									</li>
+									<li>
+										<span>
+											僑教處 Scarlett Johansson
+											<a href="#" class="btn btn-cancel" title="移除"><i class="fa fa-times"></i></a>
+										</span>
+									</li>
+									<li>
+										<span>
+											綜合規劃處 Mary Jane
+											<a href="#" class="btn btn-cancel" title="移除"><i class="fa fa-times"></i></a>
+										</span>
+									</li>
+									<% end %>
+								</ul>
+							</div>
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="form-action">
+					<button class="btn btn-lg btn-primary" type="submit">儲存</button>
+				</div>
+			</form>
+		</div>
+    </div>
+</main>
+
+
+
+<% content_for :js do %>
+<script>
+    $(document).ready(function(){
+        $('.l_bilingual').click(function(){
+            if($(this).is(":checked")) {
+               $('.language-container').show();
+            } else {
+              $('.language-container').hide();   
+            }
+        });
+		$('.l_localization').click(function(){
+            if($(this).is(":checked")) {
+               $('.language-container').hide();
+            } else {
+              $('.language-container').show();   
+            }
+        });
+    });
+</script>
+<% end %>

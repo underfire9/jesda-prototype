@@ -1,0 +1,100 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/admin_head" %>
+</head>
+<body>
+    <div class="workspace" canvas="container">
+    <% if content_for? :sidebar %>
+        <%= yield :sidebar %>
+    <% else %>
+        <%= render :partial => "/partials/admin_sidebar" %>
+    <% end %>
+    <div class="page">
+        <div class="page-inner">
+            <div class="page-wrapper">
+                <% if content_for? :header %>
+                    <%= yield :header %>
+                <% else %>
+                    <%= render :partial => "/partials/admin_header" %>
+                <% end %>
+                <div class="content-wrapper clearfix">
+                    <%= yield %>
+                </div>
+            </div>
+            <!--%= render :partial => "/partials/admin_footer" %-->
+        </div>
+    </div>
+    </div>
+
+    <%= render :partial => "/partials/simpler_sidebar" %>
+	<%= render :partial => "/partials/recommendation" %>
+	<%= render :partial => "/partials/basic_edit" %>
+	<%= render :partial => "/partials/agency_pick" %>
+	
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+    <script src="../javascripts/sidenav.js"></script>
+    <script src="../javascripts/slidebars.min.js"></script>
+    <script src="../javascripts/slidebars.scripts.js"></script>
+	<script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script src="../javascripts/jquery.slimscroll.js"></script>
+	<script src="../javascripts/select2.min.js"></script>
+	<script src="../javascripts/frontend-editor/chunk-vendors.js"></script>
+    <script src="../javascripts/frontend-editor/formEditor.js"></script>
+    <script>
+		$('.datepicker').datepicker();
+		
+        $('.sidebar-scroll').slimscroll({
+            height: '100%'
+        });
+		
+		// jQuery scrollbar
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+		
+		// Tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+		
+		// Show / Hide
+        $(document).ready(function(){
+            $('.l_localization').click(function(){
+                if($(this).is(":checked")) {
+                   $('.language-container').show();
+                } else {
+                  $('.language-container').hide();   
+                }
+            });
+            $('.l_bilingual').click(function(){
+                if($(this).is(":checked")) {
+                   $('.language-container').hide();
+                } else {
+                  $('.language-container').show();   
+                }
+            });
+        });
+		
+        $(function () {
+            $("#basic21").click(function () {
+                if ($(this).is(":checked")) {
+                    $(".agency-container").show();
+                } else {
+                    $(".agency-container").hide();
+                }
+            });
+        });
+		
+		// Select2
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+    <%= yield :js %>
+</body>
+</html>

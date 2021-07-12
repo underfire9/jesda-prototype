@@ -1,0 +1,94 @@
+<!-- admin-page: 歷年申請統計資料 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h2>Archive</h2>
+    </div>
+	<div class="row">
+	    <div class="col-12">
+		    <div class="profile-sidebar">
+                <div class="col-block mb-20">
+                    <div class="block-content expansion pb-5">
+                        <div class="profile-avatar no-avatar">
+							<div class="scrap">
+								<div class="scrap-info">
+									<p><i class="fa fa-university"></i></p>
+									<span class="school h4">港九街坊婦女會孫方中書院</span>
+									<span class="en-school">Hong Kong and Kowloon Kaifong Women's Association Sun Fong Chung College</span>
+								</div>
+							</div>
+                        </div>
+						<div id="accordion" class="profile-side_accordion">
+                            <ul class="collapsible collapsible-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                                <li class="menu-item">
+                                    <div class="panel-heading">
+                                        <a class="btn btn-link" href="#" >About the School</a>
+                                    </div>
+                                </li>
+                                <li class="menu-item">
+                                    <div class="panel-heading">
+                                        <a class="btn btn-link" href="#">Basic Information</a>
+                                    </div>
+                                </li>
+								<li class="menu-item current">
+                                    <div class="panel-heading">
+                                        <a class="btn btn-link" href="#">History</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="profile-content">
+
+                <div class="col-block">
+                    <div class="block-content">
+                        <div class="table-responsive">
+                            <table class="table text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Years</th>
+                                        <th>Referrals</th>
+										<th>Complete</th>
+										<th>Admissions</th>
+										<th>No admissio</th>
+										<th>Disqualification</th>
+										<th>Report to</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+									<% (1..9).map do |i| %>
+                                    <tr>
+                                        <td>201<%= i %></td>
+                                        <td>220</td>
+                                        <td><%= i %>00</td>
+                                        <td>90</td>
+                                        <td><%= i %>20</td>
+                                        <td>5</td>
+                                        <td>96</td>
+                                    </tr>
+									<% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+				
+			</div>
+		</div>
+	</div>
+</main>
+
+<% content_for :js do %>
+    <script>
+		 $('.panel-collapse').on('show.bs.collapse', function() {
+			 $(this).siblings('.panel-heading').addClass('active');
+		 });
+
+		 $('.panel-collapse').on('hide.bs.collapse', function() {
+			 $(this).siblings('.panel-heading').removeClass('active');
+		 });
+    </script>
+<% end %>

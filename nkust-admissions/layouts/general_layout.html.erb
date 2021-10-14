@@ -1,0 +1,50 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+    <div class="pages">
+        <div class="content">
+            <div class="content-wrapper">
+                <%= render :partial => "/partials/header" %>
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+    <script src="../javascripts/jquery-3.3.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+	<script>
+        $(document).ready(function () {
+            $(".button-collapse").sideNav({
+                breakpoint: 991,
+                menuWidth: 280,
+                onOpen: function(){
+                    $('#slide-out').addClass('active')
+                    setTimeout(function(){
+                        $('#sidenav-overlay').on('click',function(){
+                            $('#slide-out').removeClass('active')
+                        })
+                    },0)
+                }, 
+            });
+
+            // SideNav Scrollbar Initialization
+            var sideNavScrollbar = document.querySelector(".custom-scrollbar");
+            var ps = new PerfectScrollbar(sideNavScrollbar);
+        });
+	</script>
+	
+    <script>
+    // Material Select Initialization
+    $(document).ready(function() {
+        $('.mdb-select').materialSelect();
+    });
+    </script>
+    <%= yield :js %>
+</body>
+</html>

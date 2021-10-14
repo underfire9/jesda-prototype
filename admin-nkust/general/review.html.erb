@@ -1,0 +1,125 @@
+<!-- admin-page: 國立高雄科技大學 - 資料複查 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h2>資料複查</h2>
+    </div>
+	<div class="row">
+	    <div class="col-6">
+			<div class="col-block">
+			    <div class="block-header bg-info lighten">
+				    <h4>學生錄取公告結果複查作業</h4>
+				</div>
+				<div class="block-content">
+				    <div class="sub-head_border">
+					    <span>系所組別</span>
+						<span class="out">電腦與通訊工程系碩士班 乙組</span>
+					</div>
+					<div class="third-head">
+						<div>
+                            <span>正取最低錄取分數</span>
+                            <span class="out">80.83</span>
+						</div>
+						<div>
+                            <span>備取最低錄取分數</span>
+                            <span class="out">76.83</span>
+						</div>
+					</div>
+					<button type="button" class="btn btn-md btn-outline-info mx-0 waves-effect">全部確認</button>
+				    <div class="table-responsive text-nowrap">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>准考證號</th>
+                                    <th>姓名</th>
+                                    <th>總成績</th>
+                                    <th>狀態</th>
+                                    <th class="text-center">排名</th>
+                                    <th>公告畫面預覽</th>
+									<th class="text-center">資料確認</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+								<% (1..6).map do |i| %>
+                                <tr>
+                                    <td>10909 智 K00<%= i %></td>
+                                    <td><%= zh_lorem_words(3) %></td>
+                                    <td>90.00</td>
+                                    <td>正取</td>
+									<td class="text-center"><%= i %></td>
+									<td><a href="#" class="table-link">預覽</a></td>
+									<td class="text-center">
+                                        <div class="custom-control custom-checkbox d-inline-block">
+                                            <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                            <label class="custom-control-label" for="defaultUnchecked"></label>
+                                        </div>
+									</td>
+                                </tr>
+								<% end %>
+                            </tbody>
+                        </table>
+					</div>
+					<a href="#" class="btn btn-primary mx-0">儲存複查結果</a>
+					<a href="#" class="btn btn-link">返回</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-6">
+			<div class="review-block">
+			    <h3 class="block-title">學生錄取結果查詢及確認入學頁面預覽</h3>
+				<div class="block-inner">
+					<div class="info-wrap">
+                        <div class="info-item">
+                            <span class="label">准考證號</span>
+                            <span class="out">10909 智 K001</span>
+                        </div>
+						<div class="info-item">
+                            <span class="label">姓名</span>
+                            <span class="out">史家蕾</span>
+                        </div>
+						<div class="info-item">
+                            <span class="label">系所組別</span>
+                            <span class="out">電腦與通訊工程系碩士班 乙組</span>
+                        </div>
+						<div class="info-item">
+                            <span class="label">錄取結果</span>
+                            <span class="out">正取</span>
+                        </div>
+						<div class="info-item">
+                            <span class="label">錄取排名</span>
+                            <span class="out">1</span>
+                        </div>
+					</div>
+					<div class="textarea-wrap">
+					    <span class="label">錄取報到說明</span>
+						<div class="textarea"><%= lorem_paragraphs(3) %></div>
+					</div>
+					<div class="form-wrap">
+					    <label>是否確認入學 ?</label>
+						<div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios" disabled />
+                                <label class="custom-control-label" for="defaultGroupExample1">是，我確定要入學</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" disabled />
+                                <label class="custom-control-label" for="defaultGroupExample2">否，我要放棄入學資格</label>
+                            </div>
+						</div>
+                        <div class="form-group">
+                            <textarea class="form-control rounded-0" id="" rows="3" placeholder="請輸入放棄原因" disabled></textarea>
+                        </div>
+						<p class="text-center mb-0">
+							<button type="button" class="btn btn-primary" disabled>送出確認入學結果</button>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<% content_for :js do %>
+<% end %>

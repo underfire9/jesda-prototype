@@ -1,0 +1,155 @@
+<!-- admin-page: 國立高雄科技大學 - 考生座位分配 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h2>考生座位分配</h2>
+		<p>分配各考科考生座位</p>
+		<p>教室寬度依據座位橫排數量決定，<code>.row-2</code> 至 <code>.row-16</code>，超過視窗寬度會出現橫軸。入口左右由 <code>.left</code> 或 <code>.right</code> 控制。dialog 範例請點第一個座位。</p>
+    </div>
+	<div class="select-bar">
+        <div class="select-inline">
+            <select class="browser-default custom-select">
+                <option selected>選擇考區</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+		</div>
+		<div class="select-inline">
+            <select class="browser-default custom-select">
+                <option selected>選擇考場</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+		</div>
+		<div class="select-inline">
+            <select class="browser-default custom-select">
+                <option selected>選擇試場</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+		</div>
+		<div class="select-inline">
+		    <button type="button" class="btn btn-md btn-primary">前往</button>
+		</div>
+    </div>
+    <div class="table-responsive">
+        <div class="classroom row-8">
+            <div class="room-hd">
+                <span class="stage">講台</span>
+				<span class="door left">入口</span>
+            </div>
+            <div class="room-bd">
+				<div class="seat" data-toggle="modal" data-target="#seatModal">
+                    <span class="tl">
+						<span>計算機概論</span>
+					</span>
+                    <span class="nb">11002工00</span>
+                </div>
+				<% (1..14).map do |i| %>
+                <div class="seat">
+                    <span class="tl">
+						<span>計算機概論計算機概論</span>
+					</span>
+                    <span class="nb">11002工00<%= i %></span>
+                </div>
+				<% end %>
+            </div>
+        </div>
+    </div>
+	<!-- .mt-3 為展示用間隔可拿掉 -->
+	<div class="table-responsive mt-3">
+        <div class="classroom row-2">
+            <div class="room-hd">
+                <span class="stage">講台</span>
+				<span class="door right">入口</span>
+            </div>
+            <div class="room-bd">
+                <div class="seat">
+                    <span class="tl">
+						<span>計算機概論計算機概論</span>
+					</span>
+                    <span class="nb">11002工001</span>
+                </div>
+				<div class="seat">
+                    <span class="tl">
+						<span>計算機概論計算機概論</span>
+					</span>
+                    <span class="nb">11002工002</span>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="table-responsive mt-3">
+        <div class="classroom row-3">
+            <div class="room-hd">
+                <span class="stage">講台</span>
+				<span class="door left">入口</span>
+            </div>
+            <div class="room-bd">
+				<% (1..2).map do |i| %>
+                <div class="seat">
+                    <span class="tl">
+						<span>計算機概論計算機概論</span>
+					</span>
+                    <span class="nb">11002工001</span>
+                </div>
+				<div class="seat">
+                    <span class="tl">
+						<span>計算機概論</span>
+					</span>
+                    <span class="nb">11002工002</span>
+                </div>
+				<div class="seat">
+                    <span class="tl">
+						<span>計算機概論計算機概論</span>
+					</span>
+                    <span class="nb">11002工001</span>
+                </div>
+				<% end %>
+            </div>
+        </div>
+    </div>
+	<div class="table-responsive mt-3">
+        <div class="classroom row-4">
+            <div class="room-hd">
+                <span class="stage">講台</span>
+				<span class="door left">入口</span>
+            </div>
+            <div class="room-bd">
+				<% (1..7).map do |i| %>
+                <div class="seat">
+                    <span class="tl">
+						<span>計算機概論</span>
+					</span>
+                    <span class="nb">11002工001</span>
+                </div>
+				<% end %>
+            </div>
+        </div>
+    </div>
+	<div class="table-responsive mt-3">
+        <div class="classroom row-5">
+            <div class="room-hd">
+                <span class="stage">講台</span>
+				<span class="door right">入口</span>
+            </div>
+            <div class="room-bd">
+				<% (1..9).map do |i| %>
+                <div class="seat">
+                    <span class="tl">
+						<span>計算機概論</span>
+					</span>
+                    <span class="nb">11002工001</span>
+                </div>
+				<% end %>
+            </div>
+        </div>
+    </div>
+</main>
+
+<% content_for :js do %>
+<% end %>

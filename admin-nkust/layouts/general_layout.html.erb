@@ -1,0 +1,257 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/admin_head" %>
+</head>
+<body>
+    <div class="workspace" canvas="container">
+    <% if content_for? :sidebar %>
+        <%= yield :sidebar %>
+    <% else %>
+        <%= render :partial => "/partials/admin_sidebar" %>
+    <% end %>
+    <div class="page">
+        <div class="page-inner">
+            <div class="page-wrapper">
+                <% if content_for? :header %>
+                    <%= yield :header %>
+                <% else %>
+                    <%= render :partial => "/partials/admin_header" %>
+                <% end %>
+                <div class="content-wrapper clearfix">
+                    <%= yield %>
+                </div>
+            </div>
+            <%= render :partial => "/partials/admin_footer" %>
+        </div>
+    </div>
+    </div>
+	
+    <!-- Modal -->
+    <div class="modal fade" id="scheduleModal01" tabindex="-1" role="dialog" aria-labelledby="scheduleModalLabel01" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scheduleModalLabel01">新增筆試日程</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">考試總天數</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                    </div>
+					<h5 class="text-secondary">第一天</h5>
+					<div class="form-group">
+                        <label for="formGroupExampleInput">總節次</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary">儲存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+    <div class="modal fade" id="scheduleModal02" tabindex="-1" role="dialog" aria-labelledby="scheduleModalLabel02" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scheduleModalLabel02">編輯筆試日程</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+					<h5 class="text-secondary">第一天</h5>
+					<div class="form-group">
+                        <label for="formGroupExampleInput">節次1</label>
+                        <div class="date_period-row only-time">
+                            <div class="col-picker">
+                                <div class="time-wrap">
+                                    <div class="col-time">
+                                        <select class="browser-default custom-select">
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-colon">:</div>
+                                    <div class="col-time">
+                                        <select class="browser-default custom-select">
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-hyphen">~</div>
+                            <div class="col-picker">
+                                <div class="time-wrap">
+                                    <div class="col-time">
+                                        <select class="browser-default custom-select">
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-colon">:</div>
+                                    <div class="col-time">
+                                        <select class="browser-default custom-select">
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					<div class="form-group">
+                        <label for="formGroupExampleInput">節次2</label>
+                        <div class="date_period-row only-time">
+                            <div class="col-picker">
+                                <div class="time-wrap">
+                                    <div class="col-time">
+                                        <select class="browser-default custom-select">
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-colon">:</div>
+                                    <div class="col-time">
+                                        <select class="browser-default custom-select">
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-hyphen">~</div>
+                            <div class="col-picker">
+                                <div class="time-wrap">
+                                    <div class="col-time">
+                                        <select class="browser-default custom-select">
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-colon">:</div>
+                                    <div class="col-time">
+                                        <select class="browser-default custom-select">
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary">儲存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+    <div class="modal fade" id="seatModal" tabindex="-1" role="dialog" aria-labelledby="seatLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="seatLabel">變更考場教室</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+					    <label>學生資訊</label>
+						<div>1102工001 史佳蕾</div>
+					</div>
+					<div class="form-group">
+					    <label>考場教室</label>
+						<div class="form-row">
+							<!-- 欄位 col-(n) 請依實際資料長度調整 -->
+						    <div class="col-5">
+                                <select class="browser-default custom-select">
+                                    <option selected>請選擇</option>
+                                    <option value="1">松山工農</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+							</div>
+							<div class="col-7">
+                                <select class="browser-default custom-select">
+                                    <option selected>請選擇</option>
+                                    <option value="1">北123(990)</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+							</div>
+						</div>
+					</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-md btn-secondary" data-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-md btn-primary">儲存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	
+	<%= render :partial => "/partials/sc_flowpath" %>
+	<%= render :partial => "/partials/sc_countersignature" %>
+    <%= render :partial => "/partials/simpler_sidebar" %>
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+    <script src="../javascripts/sidenav.js"></script>
+    <script src="../javascripts/slidebars.min.js"></script>
+    <script src="../javascripts/slidebars.scripts.js"></script>
+	<script src="../javascripts/frontend-editor/chunk-vendors.js"></script>
+    <script src="../javascripts/frontend-editor/formEditor.js"></script>
+    <script src="../javascripts/frontend-editor/webEditor.js"></script>
+    <!--
+    <script src="../javascripts/vertical-responsive-menu.js"></script>
+    -->
+    <script src="../javascripts/jquery.slimscroll.js"></script>
+    <script>
+        $('.sidebar-scroll').slimscroll({
+            height: '100%'
+        });
+		
+		$('.datepicker').datepicker();
+    </script>
+    <!--[if lt IE 10]>
+        <script src="../javascripts/jquery-placeholder-fixed.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $("input").placeholder();
+            });
+    </script>
+    <![endif]-->
+    <!--%= livereload_js if ENV["RACK_ENV"] != "production" && defined?(App)%-->
+    <%= yield :js %>
+</body>
+</html>

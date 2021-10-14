@@ -748,6 +748,23 @@ main.main {
 			font-weight: 700;
 		}
 	}
+	.output-wrap {
+		border-top: 3px double rgba($base_border_color, .75);
+		padding-top: 2rem;
+		.application-block {
+			border-bottom: 1px solid rgba(222, 226, 230, 0.7);
+			&:last-child { border-bottom: none; }
+		}
+        label {
+			margin-bottom: .25rem;
+            font-weight: 700;
+            color: #9468ff;
+        }
+        .output { color: #000; }
+		.form-group {
+			margin-bottom: 1rem;
+		}
+	}
 }
 
 .document-upload {
@@ -814,7 +831,11 @@ main.main {
 		}
 	}
 	.account-wrapper {
-		.account-nav { width: 220px; }
+		display: block;
+		.account-nav {
+			margin-bottom: 2rem;
+			width: 100%;
+		}
 	}
 }
 
@@ -891,13 +912,6 @@ main.main {
 			&:nth-child(even) { margin-right: 0; }
 		}
 	}
-	.account-wrapper {
-		display: block;
-		.account-nav {
-			margin-bottom: 2rem;
-			width: 100%;
-		}
-	}
 }
 
 @media (max-width: 767px) {
@@ -968,6 +982,11 @@ main.main {
 			}
 		}
 	}
+	.events-list-item {
+		.period-start, .period-end {
+			.label { display: block; }
+		}
+	}
 }
 
 @media (max-width: 575px) {
@@ -1018,8 +1037,16 @@ main.main {
 		}
 	}
 	.events-list-item {
+		.period {
+			display: block;
+		}
 		.period-start,
-		.period-end { flex: 0; }
+		.period-end {
+			display: block;
+			.label { display: inline-block; }
+		}
+		.period-start { border-right: none; }
+		.period-end { padding-left: 0; }
 	}
 }
 

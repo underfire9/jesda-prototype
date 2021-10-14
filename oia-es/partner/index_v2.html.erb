@@ -1,0 +1,172 @@
+<!-- OIA-ES: 姊妹校 - 承辦人登入首頁 V2  -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="partner-info partner-info-left">
+                <h4>University of California <small class="text-primary">1st Semester 2017</small></h4>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Dear Ms. May Pothongsunun,</strong> Welcome to the online system of NTU Exchange Programs! Listed below are the students from your university who have submitted the online application form for exchange at NTU. We would like to ask you to approve their nominations and application data. Thank you very much.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+		<div class="col-12">
+			<button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#basicModal">新增提名</button>
+            <main class="main-block extended">
+                <table class="table">
+                    <thead class="text-center">
+                        <tr>
+							<th></th>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Exchange Duration</th>
+                            <th>Current Degree Level</th>
+                            <th>Current Department (Institution)</th>
+                            <th>Current Academic Year</th>
+                            <th>Scholarship Nomination</th>
+                            <th>Priority Order</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..8).each do |n| %>
+                        <tr>
+							<!-- .td-action 寬度是寫死的，按紐 wording 修改要調整 css 時請找 fire-->
+                            <td class="td-action">
+							    <button type="button" class="btn btn-xs btn-outline-primary" data-toggle="modal" data-target="#basicModal">edit</button>
+								<button type="button" class="btn btn-xs btn-outline-danger">delete</button>
+							</td>
+                            <td><%= n %></td>
+                            <td>Michelle Xie ( 謝芷蔚 )</td>
+                            <td>One Semester</td>
+                            <td>Master</td>
+                            <td></td>
+							<td></td>
+                            <td>Yes</td>
+                            <td>1</td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </main>
+			<p class="text-center">
+				<button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">送出提名並發送提名通知信</button>
+			</p>
+        </div>
+	</div>
+</div>
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">提名內容</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+					<div class="col-4">
+                        <div class="form-group">
+                            <label for="chtNameInput">Name In English <span class="form-request">*</span></label>
+                            <input type="text" class="form-control" id="chtNameInput" />
+                        </div>
+					</div>
+				    <div class="col-4">
+                        <div class="form-group">
+                            <label for="enNameInput">Name In Chinese</label>
+                            <input type="text" class="form-control" id="enNameInput" />
+                        </div>
+					</div>
+					<div class="col-4">
+                        <div class="form-group">
+                            <label for="emailInput">Email <span class="form-request">*</span></label>
+                            <input type="text" class="form-control" id="emailInput" />
+                        </div>
+					</div>
+					<div class="col-4">
+                        <div class="form-group">
+                            <label for="">Current Degree Level <span class="form-request">*</span></label>
+							<div>
+                                <select class="browser-default custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+							</div>
+                        </div>
+					</div>
+					<div class="col-4">
+                        <div class="form-group">
+                            <label for="institutionInput">Current Department (Institution) <span class="form-request">*</span></label>
+                            <input type="text" class="form-control" id="institutionInput" />
+                        </div>
+					</div>
+					<div class="col-4">
+                        <div class="form-group">
+                            <label for="">Current Academic Year <span class="form-request">*</span></label>
+							<div>
+                                <select class="browser-default custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+							</div>
+                        </div>
+					</div>
+					<div class="col-4">
+                        <div class="form-group">
+                            <label>Exchange Duration <span class="form-request">*</span></label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="defaultInline1" name="exchangeDuration" />
+                                    <label class="custom-control-label" for="defaultInline1">One Semester</label>
+                                </div>
+								<div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="defaultInline2" name="exchangeDuration" />
+                                    <label class="custom-control-label" for="defaultInline2">OneYear</label>
+                                </div>
+							</div>
+                        </div>
+					</div>
+					<div class="col-4">
+                        <div class="form-group">
+                            <label>Scholarship Nomination <span class="form-request">*</span></label>
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="defaultInline3" name="scholarshipNomination" />
+                                    <label class="custom-control-label" for="defaultInline3">Yes</label>
+                                </div>
+								<div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="defaultInline4" name="scholarshipNomination" />
+                                    <label class="custom-control-label" for="defaultInline4">No</label>
+                                </div>
+							</div>
+                        </div>
+					</div>
+					<div class="col-4">
+                        <div class="form-group">
+                            <label for="scholarshipNomineeInput">Scholarship Nominee Priority Order <span class="form-request">*</span></label>
+                            <input type="text" class="form-control" id="scholarshipNomineeInput" />
+                        </div>
+					</div>
+					<div class="col-12">
+                        <div class="form-group">
+                            <label for="specialNotesInput">Special Notes</label>
+                            <textarea class="form-control rounded-0" id="specialNotesInput" rows="4"></textarea>
+                        </div>
+					</div>
+				</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

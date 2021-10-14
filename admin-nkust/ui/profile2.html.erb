@@ -1,0 +1,160 @@
+<!-- admin-page: UI / Profile 2 (no photo) -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h2>Page Title</h2>
+    </div>
+	<div class="row">
+	    <div class="col-12">
+		    <div class="profile-sidebar">
+                <div class="col-block mb-20">
+                    <div class="block-content expansion">
+                        <div class="profile-avatar no-avatar">
+							<div class="scrap">
+								<div class="scrap-info">
+									<p><i class="fa fa-university"></i></p>
+									<span class="school h4">哥倫比亞大學</span>
+									<span class="en-school">Columbia University in the City of New York</span>
+								</div>
+							</div>
+                        </div>
+						<div id="accordion" class="profile-side_accordion">
+                            <ul class="collapsible collapsible-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                                <li class="menu-item">
+                                    <div class="panel-heading">
+                                        <a class="btn btn-link" href="#">SideNav</a>
+                                    </div>
+                                </li>
+                                <li class="menu-item current has-sub">
+                                    <div class="panel-heading active" id="headingOne">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#profileOne" aria-expanded="true" aria-controls="collapseOne">SideNav</button>
+                                    </div>
+                                    <div id="profileOne" class="panel-collapse collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="panel-body">
+                                            <ul class="sub-menu">
+                                                <li><a href="#">submanu</a></li>
+                                                <li class="sub-current"><a href="#">submanu</a></li>
+                                                <li><a href="#">第二層選單</a></li>
+                                                <li><a href="#">submanu</a></li>
+                                                <li><a href="#">submanu</a></li>
+                                                <li><a href="#">submanu</a></li>
+                                                <li><a href="#">submanu</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="menu-item">
+                                    <div class="panel-heading">
+                                        <a class="btn btn-link" href="#">SideNav</a>
+                                    </div>
+                                </li>
+                                <li class="menu-item">
+                                    <div class="panel-heading">
+                                        <a class="btn btn-link" href="#" >SideNav</a>
+                                    </div>
+                                </li>
+                                <li class="menu-item">
+                                    <div class="panel-heading">
+                                        <a class="btn btn-link" href="#">SideNav</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-block">
+				    <div class="block-content">
+					    <div class="list-separated">
+							<!-- 只能三個，不能多，少於三的話要調整 css 的 justify-content -->
+						    <div class="separated-part">
+							    <span class="profile-stat-title grey-text">75</span>
+								<span class="profile-stat-text indigo-text">申請數</span>
+							</div>
+							<div class="separated-part">
+							    <span class="profile-stat-title grey-text">37</span>
+								<span class="profile-stat-text indigo-text">待處理</span>
+							</div>
+							<div class="separated-part">
+							    <span class="profile-stat-title grey-text">24</span>
+								<span class="profile-stat-text indigo-text">已完成</span>
+							</div>
+						</div>
+						<div class="summary">
+						    <h3>關於</h3>
+							<p>紐約市哥倫比亞大學，是一所坐落於美國紐約市曼哈頓上城晨邊高地的世界頂級私立研究型大學，是美洲大學協會的十四個創會成員之一，及著名體育賽事聯盟常春藤盟校的成員。</p>
+							<div class="profile-desc-link">
+							    <i class="fa fa-globe"></i>
+								<a href="https://www.columbia.edu/" target="_blank">www.columbia.edu</a>
+							</div>
+							<div class="profile-desc-link">
+							    <i class="fa fa-envelope"></i>
+								<a href="mailto: askcuit@columbia.edu">askcuit@columbia.edu</a>
+							</div>
+							<div class="profile-desc-link">
+							    <i class="fa fa-phone"></i>
+								<span class="blue-grey-text">212-854-1919</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="profile-content">
+
+                <div class="col-block mb-20">
+                    <div class="block-header has-border">
+                        <h3>block title</h3>
+                    </div>
+                    <div class="block-content">
+                        block content
+                    </div>
+                </div>
+				
+				<div class="row">
+                    <div class="col-md-6">
+                        <div class="col-block mb-20">
+                            <div class="block-header has-border">
+                                <h3>block title</h3>
+                            </div>
+                            <div class="block-content">
+                                block content
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-6">
+                        <div class="col-block mb-20">
+                            <div class="block-header has-border">
+                                <h3>block title</h3>
+                            </div>
+                            <div class="block-content">
+                                block content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="col-block mb-20">
+                    <div class="block-header has-border">
+                        <h3>block title</h3>
+                    </div>
+                    <div class="block-content">
+                        <p style="height: 700px;">block content</p>
+                    </div>
+                </div>
+
+			</div>
+		</div>
+	</div>
+</main>
+
+<% content_for :js do %>
+    <script>
+		 $('.panel-collapse').on('show.bs.collapse', function() {
+			 $(this).siblings('.panel-heading').addClass('active');
+		 });
+
+		 $('.panel-collapse').on('hide.bs.collapse', function() {
+			 $(this).siblings('.panel-heading').removeClass('active');
+		 });
+    </script>
+<% end %>

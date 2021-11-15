@@ -1,0 +1,145 @@
+<!-- admin-page: 藥害救濟基金會 - 編輯會前會資料 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+	
+    <div class="page-header">
+        <h2>編輯會前會資料</h2>
+    </div>
+	
+    <div class="col-block">
+	    <div class="block-header has-border">
+		    <h5 class="font-weight-bold">會前會基本內容</h5>
+		</div>
+		<div class="block-content">
+		    <div class="row">
+			    <div class="col-6">
+                    <div class="form-group">
+                        <label for="exampleInput_01">會前會會期</label>
+                        <input type="text" class="form-control" id="exampleInput_01">
+                    </div>
+				</div>
+				<div class="col-6">
+                    <div class="form-group">
+                        <label>召開日期時間</label>
+                        <div class="form-row">
+						    <div class="col-6">
+                                <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker my-0">
+                                    <input placeholder="選擇日期" type="text" id="example" class="form-control" />
+                                    <i class="fa fa-calendar input-prefix" tabindex="0"></i>
+                                </div>
+							</div>
+							<div class="col-6">
+                                <div class="md-form md-outline input-with-post-icon timepicker my-0" twelvehour="true">
+                                    <input type="text" id="light-version-examples" class="form-control" placeholder="選擇時間" />
+                                    <i class="fa fa-clock-o input-prefix"></i>
+                                </div>
+							</div>
+						</div>
+                    </div>
+				</div>
+				<div class="col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">備註</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" tabindex="0"></textarea>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <div class="col-block">
+	    <div class="block-header has-border">
+		    <h5 class="font-weight-bold">案例清單</h5>
+		</div>
+		<div class="block-content expansion">
+            <div class="dt-toolbar">
+                <div class="dt-toolbar-l">
+					<div class="btn-group btn-group-sm btn-separate unshadow">
+                        <a class="btn btn-primary" role="button" data-toggle="modal" data-target="#exampleModal_01">手動選取案例新增</a>
+						<a class="btn btn-danger" role="button">刪除</a>
+					    <a class="btn btn-success" role="button">案例清單匯入</a>
+                    </div>
+					<div class="d-inline-block">
+                        <input type="text" class="form-control form-control-sm" placeholder="案例編號輸入 [enter] 新增" />
+                    </div>
+                    <div class="btn-group btn-group-sm unshadow">
+                        <a class="btn btn-elegant" role="button" data-toggle="modal" data-target="#exampleModal_02">開啟批次更新</a>
+                    </div>
+                </div>
+                <div class="dt-toolbar-r">
+                    <div class="d-inline-block">
+                        <select class="browser-default custom-select dt-custom-select">
+                            <option selected>全部結果資料</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive text-nowrap">
+                <table class="table table-vertical-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                    <label class="custom-control-label" for="defaultUnchecked"></label>
+                                </div>
+							</th>
+                            <th>初主審</th>
+                            <th>載入審議後</th>
+                            <th>案例編號</th>
+                            <th>受害人姓名</th>
+                            <th>類別</th>
+                            <th>決議程序</th>
+                            <th>備註</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+						<% (1..8).map do |i| %>
+                        <tr>
+                            <td><%= i %></td>
+                            <td>
+							    <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked2">
+                                    <label class="custom-control-label" for="defaultUnchecked2"></label>
+                                </div>
+							</td>
+                            <td><button type="button" class="btn btn-sm-edit btn-primary"><i class="fa fa-pencil mr-0"></i></button></td>
+                            <td><button type="button" class="btn btn-sm-edit btn-primary"><i class="fa fa-pencil mr-0"></i></button></td>
+                            <td>899<%= i %></td>
+                            <td></td>
+                            <td>
+                                <select class="browser-default custom-select custom-select-sm">
+                                    <option selected>新審</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="browser-default custom-select custom-select-sm">
+                                    <option selected>請選擇</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </td>
+                            <td><input type="text" class="form-control" /></td>
+                        </tr>
+						<% end %>
+                    </tbody>
+                </table>
+            </div>
+			<div class="expansion-action text-center">
+				<button type="button" class="btn btn-link"><i class="fa fa-long-arrow-left"></i> 返回</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+			</div>
+		</div>
+	</div>
+</main>
+
+

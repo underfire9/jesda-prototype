@@ -1,0 +1,336 @@
+<!-- admin-page: Table / DataTables -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+<main class="main">
+    <div class="page-header">
+        <h2>DataTables</h2>
+		<p><a href="adsearch.html">Advanced search V2</a></p>
+    </div>
+    <div class="row">
+        <div class="col-12">
+			<div class="col-block mb-4">
+				<div class="block-content expansion">
+                    <div class="dt-toolbar dt-toolbar-stick">
+                        <div class="dt-toolbar-l">
+                            <div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-white" role="button"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                        <label class="custom-control-label" for="defaultUnchecked"></label>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-white" role="button"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-list" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="d-inline-block">
+                                <select class="browser-default custom-select dt-custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+							<div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-danger" role="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="dt-toolbar-r">
+                            <div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-white" role="button"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-list" aria-hidden="true"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="d-inline-block">
+                                <select class="browser-default custom-select dt-custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="d-inline-block">
+                                <select class="browser-default custom-select dt-custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="dataTables_filter d-inline-block toolbar-search-wrap">
+                                <input type="search" class="toolbar-search form-control form-control-sm" placeholder="Search" aria-controls="jesdaDataTable">
+								<!-- btn-search-remove 清除按鈕在進行搜尋後才會出現 -->
+								<!-- button type="button" class="btn btn-search-remove" title="清除搜尋"><i class="fa fa-times"></i></button -->
+                            </div>
+                        </div>
+                    </div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th style="width: 50px;" class="text-center">#</th>
+								<th>Name</th>
+								<th style="width: 15%;" class="hidden-xs">Access</th>
+								<th style="width: 100px;" class="text-center">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% (1..6).map do |i| %>
+							<tr>
+								<td class="text-center"><%= i %></td>
+								<td><%= lorem_name %></td>
+								<td class="hidden-xs">
+									<% if i % 2 == 0 %>
+									<span class="label label-warning"><%= lorem_word %></span>
+									<% else %>
+									<span class="label label-primary"><%= lorem_word %></span>
+									<% end %>
+								</td>
+								<td class="text-center">
+									<div class="btn-group">
+										<button title="" data-toggle="tooltip" type="button" class="btn btn-xs btn-default" data-original-title="Edit Client"><i class="fa fa-pencil"></i></button>
+										<button title="" data-toggle="tooltip" type="button" class="btn btn-xs btn-default" data-original-title="Remove Client"><i class="fa fa-times"></i></button>
+									</div>
+								</td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="col-block">
+				<div class="block-header has-border">
+					Block Expansion
+				</div>
+				<div class="block-content expansion">
+                    <div class="dt-toolbar">
+                        <div class="dt-toolbar-l">
+                            <div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-white" role="button" title="新增"><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-white" role="button" title="垃圾桶"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-white" role="button" title="跨頁全選">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                        <label class="custom-control-label" for="defaultUnchecked"></label>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-white" role="button" title="重新整理"><i class="fa fa-refresh"></i></a>
+                                <a class="btn btn-white" role="button" data-toggle="modal" data-target="#modalOutput" title="匯出 Excel"><i class="fa fa-sign-out"></i></a>
+                                <a class="btn btn-white" role="button" data-toggle="modal" data-target="#modalSetting" title="列表設定"><i class="fa fa-cog"></i></a>
+								<a class="btn btn-white" role="button" data-toggle="modal" data-target="#modalSort"><i class="fa fa-sort-alpha-asc"></i></a>
+								<a class="btn btn-white" role="button" data-toggle="modal" data-target="#modalEmail"><i class="fa fa-envelope-o"></i></a>
+                            </div>
+                            <div class="d-inline-block">
+                                <select class="browser-default custom-select dt-custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+							<div class="dropdown d-inline-block">
+							    <button class="btn btn-sm btn-white dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                                <div class="dropdown-menu dropdown-primary">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+							</div>
+                            <div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-white" data-toggle="collapse" href="#adSearch" role="button" aria-expanded="false" aria-controls="adSearch">進階搜尋</a>
+                            </div>
+                        </div>
+                        <div class="dt-toolbar-r">
+                            <div class="btn-group btn-group-sm unshadow">
+                                <a class="btn btn-white" role="button"><i class="fa fa-refresh"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-list"></i></a>
+                                <a class="btn btn-white" role="button"><i class="fa fa-cog"></i></a>
+                                <a class="btn btn-white" data-toggle="collapse" href="#adSearch" role="button" aria-expanded="false" aria-controls="adSearch">進階搜尋</a>
+                            </div>
+							<div class="dropdown d-inline-block">
+							    <button class="btn btn-sm btn-white dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                                <div class="dropdown-menu dropdown-primary">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+							</div>
+                            <div class="d-inline-block">
+                                <select class="browser-default custom-select dt-custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="dataTables_filter d-inline-block toolbar-search-wrap">
+                                <input type="search" class="toolbar-search form-control form-control-sm" placeholder="Search" aria-controls="jesdaDataTable">
+								<!-- btn-search-remove 清除按鈕在進行搜尋後才會出現 -->
+								<button type="button" class="btn btn-search-remove" title="清除搜尋"><i class="fa fa-times"></i></button>
+                            </div>
+							<div class="dropdown d-inline-block">
+							    <button class="btn btn-sm btn-white dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">下拉</button>
+                                <div class="dropdown-menu dropdown-primary">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+							</div>
+                        </div>
+                    </div>
+					
+					<%= render :partial => "/partials/advanced_search" %>
+					<div class="table-responsive text-nowrap">
+                        <table id="jesdaDataTable" class="table table-striped datatable">
+                            <thead>
+                                <tr>
+                                    <th>執行單位</th>
+                                    <th data-type="order_no">編號</th>
+                                    <th data-type="name">聯絡人姓名</th>
+                                    <th data-type="email">聯絡人 Email</th>
+                                    <th data-type="created_at">交件時間</th>
+                                    <th data-type="paid_at">截止時間</th>
+                                    <th>繳費方式</th>
+                                    <th>取票方式</th>
+                                    <th data-type="attendees_count">票數</th>
+                                    <th>繳費狀態</th>
+                                    <th data-type="price">金額</th>
+                                    <th>手續費</th>
+                                    <th data-type="actions" data-sortable="false" class="unvisible">動作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% (1..80).map do |i| %>
+                                    <tr>
+                                    <% if i % 4 == 0 %>
+                                    <td>校方</td>
+                                    <% else %>
+                                    <td>公關公司</td>
+                                    <% end %>
+                                    <td><a href="/"><%= i + 8000060 %></a></td>
+                                    <td><%= zh_lorem_name %></td>
+                                    <td><%= lorem_email %></td>
+                                    <td><%= lorem_date("%Y/%m/%d 00:00:00", 2015..2016) %></td>
+                                    <td><%= lorem_date("%Y/%m/%d 00:00:00", 2015..2016) %></td>
+                                    <% if i % 3 == 0 %>
+                                    <td>信用卡</td>
+                                    <% else %>
+                                    <td>現金</td>
+                                    <% end %>
+                                    <% if i % 3 == 0 %>
+                                    <td> </td>
+                                    <% else %>
+                                    <td>QRCode</td>
+                                    <% end %>
+                                    <% if i % 3 == 0 %>
+                                    <td>2</td>
+                                    <% else %>
+                                    <td>4</td>
+                                    <% end %>
+                                    <% if i % 8 == 0 %>
+                                    <td>
+                                        <span class="label label-default">部份退票</span>
+                                        <span class="label label-info">已退款</span>
+                                    </td>
+                                    <% elsif i % 4 == 0 %>
+                                    <td><span class="label label-warning">未繳費</span></td>
+                                    <% elsif i % 2 == 0 %>
+                                    <td><span class="label label-danger">未退款</span></td>
+                                    <% elsif i % 1 == 0 %>
+                                    <td><span class="label label-default">已退票</span></td>
+                                    <% end %>
+                                    <% if i % 4 == 0 %>
+                                    <td>TWD$1,600</td>
+                                    <% else %>
+                                    <td>免費</td>
+                                    <% end %>
+                                    <% if i % 4 == 0 %>
+                                    <td>TWD$24</td>
+                                    <% else %>
+                                    <td>免費</td>
+                                    <% end %>
+                                    <td><a class="btn btn-default btn-xs" href="#">明細</a></td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal -->
+<%= render :partial => "/partials/toolbar_setting" %>
+<%= render :partial => "/partials/toolbar_output" %>
+<%= render :partial => "/partials/toolbar_sort" %>
+<%= render :partial => "/partials/toolbar_email" %>
+<%= render :partial => "/partials/toolbar_email_preview" %>
+<%= render :partial => "/partials/addressee_list" %>
+<%= render :partial => "/partials/addressee_list_integral" %>
+
+<% content_for :js do %>
+<script src="../javascripts/datatables.min.js"></script>
+<script src="../javascripts/jquery.scrollbar.min.js"></script>
+<script src="../javascripts/slidebars.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#jesdaDataTable').DataTable();
+		
+		//inbox show cc, bcc
+        $("#cc_button").click(function(){
+            $(".cc_hidden").removeClass("hidden");
+			$("#cc_button").addClass("hidden");
+        });
+		$("#bcc_button").click(function(){
+            $(".bcc_hidden").removeClass("hidden");
+			$("#bcc_button").addClass("hidden");
+        });
+    } );
+	$('.modal').appendTo("body").modal('hide');
+	
+	// select hide/show
+    $(function() {
+        $('#citizenshipselector').change(function() {
+            $('.continent').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+	
+	// jQuery scrollbar
+    jQuery(document).ready(function(){
+        jQuery('.scrollbar-inner').scrollbar();
+    });
+	
+    // Material Select Initialization
+    $(document).ready(function() {
+        $('.mdb-select').materialSelect();
+    });
+</script>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

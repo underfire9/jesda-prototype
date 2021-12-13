@@ -152,6 +152,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		text-align: center;
+		justify-content: center;
 		li {
 			background: #fff;
 			border-radius: .375rem;
@@ -167,6 +168,7 @@
 		.item-title {
 			margin-bottom: 2rem;
 			font-size: 1.375rem;
+			font-weight: bold;
 			position: relative;
 			&:after {
 				content: "";
@@ -246,6 +248,8 @@
 /* `Stuff
 -----------------------------------------------------------------------------*/
 
+.col-block { background: #f6fafd !important; }
+
 .table th, .table td { font-size: 1rem !important; }
 
 .btn-table {
@@ -320,6 +324,7 @@ table.table {
 		.profile-head {
 			border-bottom: 1px solid $base_border_color;
 			padding: 20px;
+			.btn-success { background: #4878b3 !important; }
 		}
 	}
 	.detail-list,
@@ -339,6 +344,19 @@ table.table {
 			font-weight: bold;
 		}
 		.detail-info { color: #666; }
+		li:first-child {
+			display: block;
+			margin-bottom: 1.5rem;
+			text-align: center;
+			.label {
+				display: block;
+			}
+			.detail-info {
+				font-size: 1.375rem;
+				font-weight: bold;
+				color: #000;
+			}
+		}
 	}
 	.status-return {
 		display: block;
@@ -460,20 +478,6 @@ table.table {
 
 .group-lg {
 	.col-block { margin-bottom: 20px; }
-	.form-group {
-		margin-bottom: 1.5rem;
-		label { font-weight: bold; }
-		label.custom-control-label { font-weight: 400; }
-		.app-record {
-			font-size: 1rem;
-			margin: .375rem 0 0;
-			color: #593bff;
-			span {
-				display: inline-block;
-				margin-right: .75rem;
-			}
-		}
-	}
 }
 
 .item-row-wrapper {
@@ -497,15 +501,16 @@ table.table {
 	margin-left: -5px;
 	margin-right: -5px;
 	flex-wrap: wrap;
+	width: 50%;
 	.date-col {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: 30%;
+		width: 26%;
 	}
 	.date-col-sm {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: 10%;
+		width: 22%;
 	}
 }
 
@@ -526,6 +531,49 @@ table.table {
 		padding-left: 0;
 		padding-right: 0;
 	}
+}
+
+.form-table,
+.form-table td {
+	border-color: #d0d5d9;
+}
+
+.form-table {
+	margin: .3125rem 0;
+	td {
+		padding: .5rem !important;
+	}
+	.lable-th {
+		//background: #f5f7f9;
+		//background: #ecf1f5;
+		background: rgba(#000, .03);
+		width: 15%;
+	}
+	.form-td { width: 35%; }
+	label {
+		display: block;
+		margin-bottom: 0;
+		padding: 0 .5rem;
+		font-weight: bold;
+		text-align: right;
+	}
+	label.custom-control-label {
+		font-weight: 400;
+		text-align: left;
+	}
+	.custom-control {
+		label { padding: 0; }
+	}
+    .app-record {
+        font-size: 1rem;
+        margin: .375rem 0 0;
+        color: #593bff;
+        span {
+            display: inline-block;
+            margin-right: .75rem;
+        }
+    }
+	.form-control { margin-bottom: 0; }
 }
 
 /* `Case Remind
@@ -558,11 +606,11 @@ table.table {
 			margin-bottom: .25rem;
 			font-size: 1.125rem;
 			font-weight: bold;
-			opacity: .5;
-			transition: all 0.2s ease-in-out;
 		}
 		p {
 			margin-bottom: .25rem;
+			opacity: .5;
+			transition: all 0.2s ease-in-out;
 		}
 		.badge-pill {
 			background: $main_color;
@@ -575,21 +623,21 @@ table.table {
 			background: $body_background;
 			border: 1px solid rgba(#ddd, .5);
 			box-shadow: none;
-			h5 { opacity: 1; }
+			p { opacity: 1; }
 			.badge-pill { background: $red_color; }
 		}
 	}
 	li.current {
 		.remind-btn {
-			background: $main_color;
-			color: #fff;
+			background: #fff;
+			//border: 1px solid $main_color;
+			box-shadow: 0 0 2px 1px rgba($main_color ,1) inset;
 			cursor: default;
 		}
 		.badge-pill {
-			background: #fff !important;
-			color: $main_color !important;
+			background: $red_color !important;
 		}
-		h5 { opacity: 1; }
+		p { opacity: 1; }
 	}
 }
 

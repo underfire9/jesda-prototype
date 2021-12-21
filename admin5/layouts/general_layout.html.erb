@@ -27,9 +27,20 @@
         </div>
     </div>
     </div>
+	
+    <!-- Modal -->
 	<%= render :partial => "/partials/sc_flowpath" %>
 	<%= render :partial => "/partials/sc_countersignature" %>
     <%= render :partial => "/partials/simpler_sidebar" %>
+	
+    <%= render :partial => "/partials/toolbar_setting" %>
+    <%= render :partial => "/partials/toolbar_output" %>
+    <%= render :partial => "/partials/toolbar_sort" %>
+    <%= render :partial => "/partials/toolbar_email" %>
+    <%= render :partial => "/partials/toolbar_email_preview" %>
+    <%= render :partial => "/partials/addressee_list" %>
+    <%= render :partial => "/partials/addressee_list_integral" %>
+	
     <script src="../javascripts/jquery-3.4.1.min.js"></script>
     <script src="../javascripts/popper.min.js"></script>
     <script src="../javascripts/bootstrap.bundle.min.js"></script>
@@ -49,6 +60,172 @@
             height: '100%'
         });
     </script>
+	
+    <script>
+        $(function () {
+            $('.sidebar-ctrler--label').on('click', function() {
+                $('.page').toggleClass('page-pad-left')
+            })
+        });
+        $(function() {
+            // scroll 多少開始 fixed
+            let topSpacing = 204;
+            $('.page').scroll(function() {
+                let top = $('.page').scrollTop();
+                if (top > topSpacing) {
+                    $('.sticky-vertical_tabs').addClass('sticky-fixed')
+                } else {
+                    $('.sticky-vertical_tabs').removeClass('sticky-fixed')
+                }
+            });
+        });
+    </script>
+	
+	<!-- Multiple Select https://multiple-select.wenzhixin.net.cn/en/ -->
+	<script src="../javascripts/multiple-select.min"></script>
+    <script>
+        $(function() {
+            $('.multiple-select').multipleSelect()
+        })
+    </script>
+	
+	<!-- Fancybox -->
+    <script src="../javascripts/jquery.fancybox.min.js"></script>
+	
+	<!-- toolbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script src="../javascripts/slidebars.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#jesdaDataTable').DataTable();
+
+            //inbox show cc, bcc
+            $("#cc_button").click(function(){
+                $(".cc_hidden").removeClass("hidden");
+                $("#cc_button").addClass("hidden");
+            });
+            $("#bcc_button").click(function(){
+                $(".bcc_hidden").removeClass("hidden");
+                $("#bcc_button").addClass("hidden");
+            });
+        } );
+        $('.modal').appendTo("body").modal('hide');
+
+        // select hide/show
+        $(function() {
+            $('#citizenshipselector').change(function() {
+                $('.continent').hide();
+                $('#' + $(this).val()).show();
+            });
+        });
+
+        // jQuery scrollbar
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+
+    </script>
+	
+    <script src="../javascripts/Chart.js"></script>
+	<script>
+		var randomScalingFactor = function(){ return Math.round(Math.random()*80)};
+		var lineChartData = {
+			labels : ["January","February","March","April","May","June","July"],
+			datasets : [
+				{
+					label: "My First dataset",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				},
+				{
+					label: "My Second dataset",
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				}
+			]
+
+		}
+	var randomScalingFactor = function(){ return Math.round(Math.random()*80)};
+
+	var barChartData = {
+		labels : ["January","February","March","April","May","June","July"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,0.8)",
+				highlightFill : "rgba(151,187,205,0.75)",
+				highlightStroke : "rgba(151,187,205,1)",
+				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+			}
+		]
+
+	}
+
+	var pieData = [
+			{
+				value: 300,
+				color:"#F7464A",
+				highlight: "#FF5A5E",
+				label: "Red"
+			},
+			{
+				value: 50,
+				color: "#46BFBD",
+				highlight: "#5AD3D1",
+				label: "Green"
+			},
+			{
+				value: 100,
+				color: "#FDB45C",
+				highlight: "#FFC870",
+				label: "Yellow"
+			},
+			{
+				value: 40,
+				color: "#949FB1",
+				highlight: "#A8B3C5",
+				label: "Grey"
+			},
+			{
+				value: 120,
+				color: "#4D5360",
+				highlight: "#616774",
+				label: "Dark Grey"
+			}
+
+		];
+
+	window.onload = function(){
+		var ctx1 = document.getElementById("canvas").getContext("2d");
+		window.myLine = new Chart(ctx1).Line(lineChartData, {
+			responsive: true
+		});
+		var ctx2 = document.getElementById("canvasbar").getContext("2d");
+		window.myBar = new Chart(ctx2).Bar(barChartData, {
+			responsive : true
+		});
+		var ctx3 = document.getElementById("chart-area").getContext("2d");
+		window.myPie = new Chart(ctx3).Pie(pieData);
+	}
+
+	</script>
     <!--[if lt IE 10]>
         <script src="../javascripts/jquery-placeholder-fixed.js"></script>
         <script type="text/javascript">

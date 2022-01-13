@@ -41,6 +41,9 @@
     <%= render :partial => "/partials/addressee_list" %>
     <%= render :partial => "/partials/addressee_list_integral" %>
 	
+	<%= render :partial => "/partials/admin_chat" %>
+	<%= render :partial => "/partials/admin_files" %>
+	
     <script src="../javascripts/jquery-3.4.1.min.js"></script>
     <script src="../javascripts/popper.min.js"></script>
     <script src="../javascripts/bootstrap.bundle.min.js"></script>
@@ -51,6 +54,7 @@
 	<script src="../javascripts/frontend-editor/chunk-vendors.js"></script>
     <script src="../javascripts/frontend-editor/formEditor.js"></script>
     <script src="../javascripts/frontend-editor/webEditor.js"></script>
+	<script src="../javascripts/tooltipster.bundle.js"></script>
     <!--
     <script src="../javascripts/vertical-responsive-menu.js"></script>
     -->
@@ -79,7 +83,36 @@
                 }
             });
         });
+		
+		// jQuery scrollbar
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+		
+        // Tooltipster
+        $(".file_tooltip").tooltipster({
+            trigger: "click",
+			content: $('<div class="filetooltip-inner"><a href="#">下載檔案</a><a href="#">編輯說明</a><a href="#">重新命名</a><hr><a href="#">覆蓋檔案</a><a href="#">上傳新版</a><hr><a href="#">歷史紀錄</a><hr><a href="#">刪除檔案</a></div>'),
+        });
+		$(".quotation_tooltip").tooltipster({
+            trigger: "click",
+			content: $('<div class="filetooltip-inner"><a href="#">下載檔案</a><a href="#">報價明細</a><hr><a href="#">寄送客戶</a><a href="#">寄送紀錄</a><hr><a href="#">刪除檔案</a></div>'),
+        });
+		$(".row_tooltip").tooltipster({
+            trigger: "click",
+			content: $('<div class="filetooltip-inner"><a href="#">編輯</a><a href="#">刪除</a></div>'),
+        });
     </script>
+	
+	<!-- Simplelightbox https://www.jqueryscript.net/lightbox/Responsive-Touch-enabled-jQuery-Image-Lightbox-Plugin.html -->
+	<script src="../javascripts/simplelightbox/simple-lightbox.min.js"></script>
+	<script src="../javascripts/simplelightbox/simple-lightbox.legacy.min.js"></script>
+	<script src="../javascripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
+	<script>
+        var gallery = $('.chat-gallery a').simpleLightbox({
+            overlay: true,
+        });
+	</script>
 	
 	<!-- Multiple Select https://multiple-select.wenzhixin.net.cn/en/ -->
 	<script src="../javascripts/multiple-select.min"></script>
@@ -89,27 +122,22 @@
         })
     </script>
 	
-	<!-- Fancybox -->
-    <script src="../javascripts/jquery.fancybox.min.js"></script>
-	
 	<!-- toolbar -->
     <script src="../javascripts/jquery.scrollbar.min.js"></script>
     <script src="../javascripts/slidebars.js"></script>
     <script>
         $(document).ready( function () {
-            $('#jesdaDataTable').DataTable();
-
             //inbox show cc, bcc
-            $("#cc_button").click(function(){
-                $(".cc_hidden").removeClass("hidden");
-                $("#cc_button").addClass("hidden");
+            $('#cc_button').click(function(){
+                $('.cc_hidden').removeClass('hidden');
+                $('#cc_button').addClass('hidden');
             });
             $("#bcc_button").click(function(){
-                $(".bcc_hidden").removeClass("hidden");
-                $("#bcc_button").addClass("hidden");
+                $('.bcc_hidden').removeClass('hidden');
+                $('#bcc_button').addClass('hidden');
             });
         } );
-        $('.modal').appendTo("body").modal('hide');
+        $('.modal').appendTo('body').modal('hide');
 
         // select hide/show
         $(function() {
@@ -124,6 +152,14 @@
             jQuery('.scrollbar-inner').scrollbar();
         });
 
+    </script>
+	
+	<!-- DataTables -->
+    <script src="../javascripts/datatables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#jesdaDataTable').DataTable();
+        } );
     </script>
 	
     <script src="../javascripts/Chart.js"></script>

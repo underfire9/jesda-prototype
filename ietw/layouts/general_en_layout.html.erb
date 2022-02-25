@@ -1,0 +1,98 @@
+<!-- lang="en" 為 css 選擇器的依據請務必要保留 -->
+
+<% I18n.locale = "en" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head_en" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages">
+            <%= render :partial => "/partials/header_en" %>
+            <div class="content">
+                <%= yield %>
+            </div>
+			<a id="backtop"></a>
+        </div>
+        <%= render :partial => "/partials/footer_en" %>
+	</div>
+
+	<%= render :partial => "/partials/top_search_en" %>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.js"></script>
+	<script src="../javascripts/jquery.scrollbar.js"></script>
+	
+	<!-- 側欄 sidenav -->
+	<script>
+        $(document).ready(function () {
+            $("#accordian_nav a").click(function () {
+                var link = $(this);
+                var closest_ul = link.closest("ul");
+                var parallel_active_links = closest_ul.find(".active");
+                var closest_li = link.closest("li");
+                var link_status = closest_li.hasClass("active");
+                var count = 0;
+
+                closest_ul.find("ul").slideUp(function () {
+                    if (++count == closest_ul.find("ul").length) parallel_active_links.removeClass("active");
+                });
+
+                if (!link_status) {
+                    closest_li.children("ul").slideDown();
+                    closest_li.addClass("active");
+                }
+            });
+        });
+	</script>
+	
+	<!-- Back to top -->
+	<script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+	</script>
+	
+	<!-- SideNav -->
+	<script>
+        $(".sidenav-collapse").click(function () {
+            $(".sidenav").toggleClass("active");
+            $(".sidenav-overlay").toggleClass("visible");
+        });
+
+        $(".sidenav-overlay").click(function () {
+            $(".sidenav").toggleClass("active");
+            $(".sidenav-overlay").toggleClass("visible");
+        });
+	</script>
+	<script>
+        $(document).ready(function () {
+            // SideNav Scrollbar Initialization
+            var sideNavScrollbar = document.querySelector(".custom-scrollbar");
+            var ps = new PerfectScrollbar(sideNavScrollbar);
+        });
+	</script>
+	
+	<!-- jQuery Scrollbar -->
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+    </script>
+    
+    <%= yield :js %>
+</body>
+</html>

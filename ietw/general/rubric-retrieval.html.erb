@@ -1,0 +1,686 @@
+<!-- ietw: 評量規準檢索平臺 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+<div class="sidenav-overlay"></div>
+<div class="content-wrapper">
+    <div class="container">
+        <!-- 主要內容 -->
+        <main class="main-col">
+            <a accesskey="C" href="#accesskey_content" tabindex="0" title="主要內容" id="accesskey_content" class="ackey">:::</a>
+
+            <article class="page-article">
+                <div class="post-head">
+                    <div class="post-title">
+                        <img src="../assets/title_img04.png" alt="評量規準檢索平臺">
+                        <h2>評量規準檢索平臺</h2>
+                    </div>
+                </div>
+
+                <div class="post-content">
+
+                    <div class="page-content_note">
+                        <div class="wrap">
+                            <span class="icon"><img src="../assets/search_icon01.png" alt="工具包搜尋"></span>
+                            <span class="text">評量規準(rubrics)是評估學生學習表現的一組評量工具。透過業說明、尺度規劃及向度汲取與內容描述等方式，勾勒出欲測量的學習表現。可依據教育階段、評量方式及重要向度搜尋並製作符合評量活動之規準。</span>
+                        </div>
+                    </div>
+					
+					<div class="rubric-container">
+					
+                        <div class="note-wrap">
+
+                            <div class="note">
+                                <h5><strong>操作指引</strong></h5>
+								
+								<div class="note-row">
+								    <div class="list-col">
+                                        <ul class="note-list">
+                                            <li>
+                                                <div class="hd">
+                                                    <span class="label">STEP 1</span>
+                                                    <span class="title">輸入「評量規準標題」</span>
+                                                </div>
+                                                <div class="bd">
+                                                    <span class="intro">依據課程評量設計輸入評量規準標題</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="hd">
+                                                    <span class="label">STEP 2</span>
+                                                    <span class="title">選擇「評量方式」及「教育階段」</span>
+                                                </div>
+                                                <div class="bd">
+                                                    <span class="intro">透過下拉選單選擇對應之「評量方式」及「教育階段」</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="hd">
+                                                    <span class="label">STEP 3</span>
+                                                    <span class="title">選擇「向度」與「次向度」</span>
+                                                </div>
+                                                <div class="bd">
+                                                    <ol>
+                                                        <li>根據評量之學習目標選擇並新增向度，通常向度越多評分複雜度越高。</li>
+                                                        <li>向度檢索分為內容向度(內容-)及形式向度(形式-)，前者對應國際教育議題實質內涵，後者對應評量方式的重點學習表現。</li>
+                                                        <li>選定向度後，選擇次向度聚焦欲評量之學習表現，系統將自動帶出說明及表現等級說明。</li>
+                                                    </ol>
+                                                </div>
+                                            </li>
+                                        </ul>
+									</div>
+									<div class="list-col">
+                                        <ul class="note-list">
+                                            <li>
+                                                <div class="hd">
+                                                    <span class="label">STEP 4</span>
+                                                    <span class="title">編輯「表現等級名稱」及「表現等級敘述內容」</span>
+                                                </div>
+                                                <div class="bd">
+                                                    <span class="intro">可自行編輯表現等級名稱及敘述內容，符合實際教學情境。</span>
+                                                    <span class="intro"><i class="fas fa-exclamation-circle text-warning"></i> 編輯完最下方的向度條目後，請優先點選 <button class="btn btn-success btn-xs SubmitBotton" disabled="">新增此筆向度</button> 按鈕，以利資料之保存。</span>
+                                                    <span class="intro"><i class="fas fa-exclamation-circle text-warning"></i> 新增過後的條目若再度編輯，請記得按 <button class="btn btn-outline-primary btn-xs " disabled="">儲存修改</button> 按鈕，儲存修改內容。</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="hd">
+                                                    <span class="label">STEP 5</span>
+                                                    <span class="title">輸入「配分」</span>
+                                                </div>
+                                                <div class="bd">
+                                                    <span class="intro">可依據課程設計設定各面向評分比重</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="hd">
+                                                    <span class="label">STEP 6</span>
+                                                    <span class="title">完成並匯出「評量規準」</span>
+                                                </div>
+                                                <div class="bd">
+                                                    <span class="intro">完成後可點選 <button class="btn btn-xs btn-secondary" disabled="">輸出評量規準（PDF）</button> 按鈕，匯出成PDF檔案或EXCEL檔案使用。</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+									</div>
+								</div>
+								
+                            </div>
+
+                        </div>
+
+                        <div class="rubric-wrap">
+                            <form>
+                                <div class="rubric-originate">
+                                    <div class="row">
+										<div class="col-12 col-lg-6">
+                                            <div class="form-group">
+                                                <label for="inputTitle" class="form-label">評量規準標題</label>
+                                                <input type="text" class="form-control" id="inputTitle" />
+                                            </div>
+										</div>
+                                        <div class="col-6 col-lg-4">
+											<div class="form-group">
+                                                <label class="form-label">評量方式</label>
+                                                <select class="form-select" aria-label="Default select">
+                                                    <option selected>請選擇</option>
+                                                    <option value="1">研究科學報告</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+											</div>
+                                        </div>
+                                        <div class="col-6 col-lg-2">
+											<div class="form-group">
+                                                <label class="form-label">教育階段</label>
+                                                <select class="form-select" aria-label="Default select">
+                                                    <option selected>請選擇</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">高中</option>
+                                                </select>
+											</div>
+                                        </div>
+                                    </div>
+                                </div>
+								
+                                <!-- 尚未新增前第一筆 -->
+                                <!-- div class="rubric-block">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">向度</label>
+                                                <select class="form-select" aria-label="Default select">
+                                                    <option selected>請選擇</option>
+                                                    <option value="1">內容-尊重多元文化與國際理解</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">次向度</label>
+                                                <select class="form-select" aria-label="Default select">
+                                                    <option selected>請選擇</option>
+                                                    <option value="1">國U6 提出維護世界和平的行動方案並落實於日常生活中</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="describeTextarea" class="form-label">描述</label>
+                                                <textarea class="form-control" id="describeTextarea" rows="6"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="textarea-wrap">
+                                                <div class="item">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="" id="" value="1.初學者">
+                                                    </div>
+                                                    <textarea class="form-control" id="tx1"></textarea>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="" id="" value="2.學徒">
+                                                    </div>
+                                                    <textarea class="form-control" id="tx1"></textarea>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="" id="" value="3.精熟">
+                                                    </div>
+                                                    <textarea class="form-control" id="tx1"></textarea>
+                                                </div>
+                                                <div class="item">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="" id="" value="4.傑出">
+                                                    </div>
+                                                    <textarea class="form-control" id="tx1"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rubric-ft">
+                                        <div class="form-group">
+                                            <label for="inpupAllocation" class="form-label">配分</label>
+                                            <input list="number" name="h05" id="h05" placeholder="" class="form-control" size="8" autocomplete="off">
+                                            <datalist id="number">
+                                                <option value="4"> </option>
+                                                <option value="8"> </option>
+                                                <option value="12"> </option>
+                                                <option value="16"> </option>
+                                                <option value="20"> </option>
+                                                <option value="24"> </option>
+                                                <option value="28"> </option>
+                                                <option value="32"> </option>
+                                                <option value="36"> </option>
+                                                <option value="40"> </option>
+                                            </datalist>
+                                        </div>
+                                        <div class="action-wrap">
+                                            <button type="button" class="btn btn-outline-success">新增此筆向度</button>
+                                            <button type="button" class="btn btn-outline-danger">清除此筆</button>
+                                            <button type="button" class="btn btn-primary">儲存修改</button>
+                                        </div>
+                                    </div>
+                                </div-->
+								
+								<!-- 已新增資料才會進此可拖曳區塊 -->
+								<div id="rubric-list-group" class="rubric-list-group">
+
+                                    <div class="rubric-block done">
+                                        <div class="action-hd">
+											<div class="inner">
+                                                <span class="handle btn" title="拖曳調整資料排序"><i class="fas fa-arrows-alt"></i></span>
+                                                <button type="button" class="btn"><i class="fas fa-times-circle" title="刪除此筆"></i></button>
+											</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">向度</label>
+                                                    <select class="form-select" aria-label="Default select">
+                                                        <option selected>請選擇</option>
+                                                        <option value="1">內容-尊重多元文化與國際理解</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">次向度</label>
+                                                    <select class="form-select" aria-label="Default select">
+                                                        <option selected>請選擇</option>
+                                                        <option value="1">國U6 提出維護世界和平的行動方案並落實於日常生活中</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <label for="describeTextarea" class="form-label">描述</label>
+                                                    <textarea class="form-control" id="describeTextarea" rows="6"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="textarea-wrap">
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="1.初學者">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="2.學徒">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="3.精熟">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="4.傑出">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+										<div class="rubric-ft">
+                                            <div class="form-group mb-0">
+                                                <label for="inpupAllocation" class="form-label">配分</label>
+                                                <input list="number" name="h05" id="h05" placeholder="" class="form-control" size="8" autocomplete="off">
+                                                <datalist id="number">
+                                                    <option value="4"> </option>
+                                                    <option value="8"> </option>
+                                                    <option value="12"> </option>
+                                                    <option value="16"> </option>
+                                                    <option value="20"> </option>
+                                                    <option value="24"> </option>
+                                                    <option value="28"> </option>
+                                                    <option value="32"> </option>
+                                                    <option value="36"> </option>
+                                                    <option value="40"> </option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>
+									
+									<div class="rubric-block done">
+                                        <div class="action-hd">
+											<div class="inner">
+                                                <span class="handle btn" title="拖曳調整資料排序"><i class="fas fa-arrows-alt"></i></span>
+                                                <button type="button" class="btn"><i class="fas fa-times-circle" title="刪除此筆"></i></button>
+											</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">向度</label>
+                                                    <select class="form-select" aria-label="Default select">
+                                                        <option selected>請選擇</option>
+                                                        <option value="1">內容-尊重多元文化與國際理解</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">次向度</label>
+                                                    <select class="form-select" aria-label="Default select">
+                                                        <option selected>請選擇</option>
+                                                        <option value="1">國U6 提出維護世界和平的行動方案並落實於日常生活中</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <label for="describeTextarea" class="form-label">描述</label>
+                                                    <textarea class="form-control" id="describeTextarea" rows="6"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="textarea-wrap">
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="1.初學者">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="2.學徒">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="3.精熟">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="4.傑出">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="rubric-ft">
+                                            <div class="form-group mb-0">
+                                                <label for="inpupAllocation" class="form-label">配分</label>
+                                                <input list="number" name="h05" id="h05" placeholder="" class="form-control" size="8" autocomplete="off">
+                                                <datalist id="number">
+                                                    <option value="4"> </option>
+                                                    <option value="8"> </option>
+                                                    <option value="12"> </option>
+                                                    <option value="16"> </option>
+                                                    <option value="20"> </option>
+                                                    <option value="24"> </option>
+                                                    <option value="28"> </option>
+                                                    <option value="32"> </option>
+                                                    <option value="36"> </option>
+                                                    <option value="40"> </option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>
+									
+									<div class="rubric-block done">
+                                        <div class="action-hd">
+											<div class="inner">
+                                                <span class="handle btn" title="拖曳調整資料排序"><i class="fas fa-arrows-alt"></i></span>
+                                                <button type="button" class="btn"><i class="fas fa-times-circle" title="刪除此筆"></i></button>
+											</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">向度</label>
+                                                    <select class="form-select" aria-label="Default select">
+                                                        <option selected>請選擇</option>
+                                                        <option value="1">內容-尊重多元文化與國際理解</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">次向度</label>
+                                                    <select class="form-select" aria-label="Default select">
+                                                        <option selected>請選擇</option>
+                                                        <option value="1">國U6 提出維護世界和平的行動方案並落實於日常生活中</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <label for="describeTextarea" class="form-label">描述</label>
+                                                    <textarea class="form-control" id="describeTextarea" rows="6"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div class="textarea-wrap">
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="1.初學者">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="2.學徒">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="3.精熟">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                    <div class="item">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="" id="" value="4.傑出">
+                                                        </div>
+                                                        <textarea class="form-control" id="tx1"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="rubric-ft">
+                                            <div class="form-group mb-0">
+                                                <label for="inpupAllocation" class="form-label">配分</label>
+                                                <input list="number" name="h05" id="h05" placeholder="" class="form-control" size="8" autocomplete="off">
+                                                <datalist id="number">
+                                                    <option value="4"> </option>
+                                                    <option value="8"> </option>
+                                                    <option value="12"> </option>
+                                                    <option value="16"> </option>
+                                                    <option value="20"> </option>
+                                                    <option value="24"> </option>
+                                                    <option value="28"> </option>
+                                                    <option value="32"> </option>
+                                                    <option value="36"> </option>
+                                                    <option value="40"> </option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>
+
+								</div>
+								
+                                <div class="rubric-block">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">向度</label>
+                                                <select class="form-select" aria-label="Default select">
+                                                    <option selected>請選擇</option>
+                                                    <option value="1">內容-尊重多元文化與國際理解</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">次向度</label>
+                                                <select class="form-select" aria-label="Default select">
+                                                    <option selected>請選擇</option>
+                                                    <option value="1">國U6 提出維護世界和平的行動方案並落實於日常生活中</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="describeTextarea" class="form-label">描述</label>
+                                                <textarea class="form-control" id="describeTextarea" rows="6"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="textarea-wrap">
+                                                <div class="item">
+                                                    <textarea class="form-control" id="tx1"></textarea>
+                                                </div>
+                                                <div class="item">
+                                                    <textarea class="form-control" id="tx1"></textarea>
+                                                </div>
+                                                <div class="item">
+                                                    <textarea class="form-control" id="tx1"></textarea>
+                                                </div>
+                                                <div class="item">
+                                                    <textarea class="form-control" id="tx1"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rubric-ft">
+                                        <div class="form-group">
+                                            <label for="inpupAllocation" class="form-label">配分</label>
+                                            <input list="number" name="h05" id="h05" placeholder="" class="form-control" size="8" autocomplete="off">
+                                            <datalist id="number">
+                                                <option value="4"> </option>
+                                                <option value="8"> </option>
+                                                <option value="12"> </option>
+                                                <option value="16"> </option>
+                                                <option value="20"> </option>
+                                                <option value="24"> </option>
+                                                <option value="28"> </option>
+                                                <option value="32"> </option>
+                                                <option value="36"> </option>
+                                                <option value="40"> </option>
+                                            </datalist>
+                                        </div>
+                                        <div class="action-wrap">
+                                            <button type="button" class="btn btn-outline-success">新增此筆向度</button>
+                                            <button type="button" class="btn btn-outline-danger">清除此筆</button>
+                                            <button type="button" class="btn btn-primary">儲存修改</button>
+                                        </div>
+                                    </div>
+                                </div>
+								
+                            </form>
+                        </div>
+						
+						<!-- 第一筆評量新增後才出現此區塊 -->
+						<div class="rubric-output">
+							<div class="output-hd">
+							    <h4 class="output-title">評量規準標題</h4>
+								<div class="action-wrap">
+								    <button type="button" class="btn btn-sm btn-outline-primary"><i class="fas fa-file-pdf"></i> 輸出 PDF</button>
+									<button type="button" class="btn btn-sm btn-outline-primary"><i class="fas fa-file-excel"></i> 輸出 EXCEL</button>
+									<button type="button" class="btn btn-sm btn-warning"><i class="fas fa-undo-alt"></i> 重設評量規準</button>
+								</div>
+							</div>
+							<div class="output-wrap">
+								
+							    <div class="output-item">
+									<div class="row">
+									    <div class="col-lg-4">
+                                            <div class="item-hd">
+                                                <h5>尊重多元文化與國際理解</h5>
+                                                <p class="bar">國J5 尊重與欣賞世界不同文化的價值</p>
+                                                <p class="bar">除了政府之外，個人及民間組織亦可對維護世界和平作出貢獻，且能落實於日常生活中。</p>
+                                                <p>佔 <strong>20 分</strong></p>
+                                            </div>
+										</div>
+										<div class="col-lg-8">
+										    <div class="textarea-output">
+											    <div class="item">
+												    <h5>1. 初學者</h5>
+													<p>能蒐集一項個人或民間組織維護世界和平的行動方案，並說明其行動策略和貢獻。</p>
+												</div>
+												<div class="item">
+												    <h5>2. 學徒</h5>
+													<p>能蒐集個人和民間組織維護世界和平的不同行動方案，並能歸納其行動策略和貢獻。 </p>
+												</div>
+												<div class="item">
+												    <h5>3. 精熟</h5>
+													<p>能參考實際案例，規劃個人維護世界和平的行動方案。</p>
+												</div>
+												<div class="item">
+												    <h5>4. 傑出</h5>
+													<p>能參考實際案例，規劃個人維護世界和平的行動方案，並落實於日常生活。</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="output-item">
+									<div class="row">
+									    <div class="col-lg-4">
+                                            <div class="item-hd">
+                                                <h5>善盡全球公民責任</h5>
+                                                <p class="bar">國J12 探索全球議題，並構思永續發展的在地行動方案 </p>
+                                                <p class="bar">全球議題（例如：氣候變遷、疾病擴散、跨國貿易、文明衝突等），攸關全球和在地的永續發展，且可以從在地致力解決。</p>
+                                                <p>佔 <strong>40 分</strong></p>
+                                            </div>
+										</div>
+										<div class="col-lg-8">
+										    <div class="textarea-output">
+											    <div class="item">
+												    <h5>1. 初學者</h5>
+													<p>能說出某項與全球議題相關的在地現象。</p>
+												</div>
+												<div class="item">
+												    <h5>2. 學徒</h5>
+													<p>能運用課程所學步驟，解釋與全球議題相關的在地事件，並規劃探究計畫。 </p>
+												</div>
+												<div class="item">
+												    <h5>3. 精熟</h5>
+													<p>能評估與全球議題相關的在地現象，並依據探究結果，提出因應或解決方案。</p>
+												</div>
+												<div class="item">
+												    <h5>4. 傑出</h5>
+													<p>能探究評估與全球議題相關的在地現象，綜整探究結果，構思規劃符合永續發展概念的在地行動方案。</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="output-item">
+									<div class="row">
+									    <div class="col-lg-4">
+                                            <div class="item-hd">
+                                                <h5>強化國際移動力</h5>
+                                                <p class="bar">國J8 覺察外語與探究學習對國際能力養成的重要性</p>
+                                                <p class="bar">學習外國語言與進行探究學習，是參與國際互動的重要能力，也是強化國際移動力的重要基礎。</p>
+                                                <p>佔 <strong>36 分</strong></p>
+                                            </div>
+										</div>
+										<div class="col-lg-8">
+										    <div class="textarea-output">
+											    <div class="item">
+												    <h5>1. 初學者</h5>
+													<p>能接受參與國際互動的必要性。</p>
+												</div>
+												<div class="item">
+												    <h5>2. 學徒</h5>
+													<p>能注意到學習外國語言或探究學習有助參與國際互動。</p>
+												</div>
+												<div class="item">
+												    <h5>3. 精熟</h5>
+													<p>能表達學習外國語言或進行探究學習對參與國際互動的重要性。</p>
+												</div>
+												<div class="item">
+												    <h5>4. 傑出</h5>
+													<p>能認同學習外國語言或進行探究學習是參與國際互動的重要能力，並樂於持續進行學習。</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						
+					</div>
+
+                </div>
+            </article>
+
+        </main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+    <!-- Sortable JS jQuery vesion (https://github.com/SortableJS/jquery-sortablejs) -->
+    <script src="https://unpkg.com/sortablejs-make/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
+    <script>
+    $('#rubric-list-group').sortable({
+        group: 'list',
+        animation: 200,
+		handle: '.handle',
+        ghostClass: 'ghost',
+    });
+</script>
+<% end %>
+
+
+
+

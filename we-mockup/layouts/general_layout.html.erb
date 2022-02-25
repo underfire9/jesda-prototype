@@ -1,0 +1,28 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages">
+            <%= yield %>
+        </div>
+	</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.js"></script>
+	<script src="../javascripts/jquery.scrollbar.js"></script>
+
+	<!-- jQuery Scrollbar -->
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+    </script>
+	
+    <%= yield :js %>
+</body>
+</html>

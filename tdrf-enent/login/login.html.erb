@@ -1,0 +1,56 @@
+<!-- tdrf: 登入 -->
+
+<div class="container-lg">
+	<div class="login-container">
+		<h3 class="page-title">登入</h3>
+	    <div class="login-wrapper">
+            <form>
+                <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="請輸入電子信箱" />
+                <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="請輸入密碼" />
+				
+				<div class="recaptcha" id="g-recaptcha1"></div>
+
+                <div class="d-grid mt-3 mb-5">
+					<button class="btn btn-lg btn-tdrf" type="submit">登入</button>
+				</div>
+				
+                <p>
+                    <a class="forget-password" href="">忘記密碼？</a>
+                </p>
+				
+				<div class="external">
+                    <p>或使用以下方式登入</p>
+					<div class="inner">
+                        <a href="#" class="btn-social btn-g" role="button" title="Google"><i class="fab fa-google light-blue-text"></i></a>
+                        <a href="#" class="btn-social btn-f" role="button" title="Facebook"><i class="fab fa-facebook-f light-blue-text"></i></a>
+					</div>
+				</div>
+                <p>收費課程請先註冊後再報名</p>
+                <div class="two-register">
+                    <a href="#">註冊</a>
+                    <a href="#">不註冊直接報名</a>
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback"></script>
+    <script>
+        // setTimout is not necessary
+        setTimeout(function() {
+
+          $('.recaptcha').each(function() {
+            grecaptcha.render(this.id, {
+              'sitekey': '6LdVkwkUAAAAACeeETRX--v9Js0vWyjQOTIZxxeB',
+              "theme":"light"
+            });
+          });
+
+        }, 2000);
+	</script>
+<% end %>

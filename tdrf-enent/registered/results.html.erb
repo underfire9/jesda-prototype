@@ -1,0 +1,132 @@
+<!-- tdrf: 上課成果 -->
+
+<div class="title-wrapper">
+	<div class="container-lg">
+		<span class="serial-number">COURSE-00149</span>
+	    <h2><span class="date">2022/06/15</span> 專業人員/免費《110年上市後醫療器材子法規及QMS系統說明會 II》</h2>
+	</div>
+</div>
+
+<div class="container-lg">
+    <div class="dashboard-container">
+	    <%= render :partial => "/partials/dashboard-sidenav" %>
+		
+		<div id="widget-overlay"></div>
+		
+		<main class="main">
+            <button class="navbar-toggler button-widget" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                <span class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </span>
+            </button>
+            <h3 class="page-title">上課成果</h3>
+			<div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="card">
+                        <div class="card-hd">簽到</div>
+                        <div class="card-body">
+                            <h5 class="card-title">簽到時間</h5>
+                            <p class="card-text">2022-12-01 12:00</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-6 col-md-4">
+                    <div class="card">
+                        <div class="card-hd">前測</div>
+                        <div class="card-body">
+                            <h5 class="card-title">得分</h5>
+                            <p class="card-text">50</p>
+                            <a href="#" class="btn btn-outline-primary">檢視答題內容</a>
+							<a href="#" class="btn btn-outline-purple">檢視答案</a>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-6 col-md-4">
+                    <div class="card">
+                        <div class="card-hd">點名紀錄</div>
+                        <div class="card-body">
+                            <p class="card-text">第 x 節課 點名未到</p>
+                            <a href="#" class="btn btn-outline-primary">檢視點名紀錄</a>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-6 col-md-4">
+                    <div class="card">
+                        <div class="card-hd">課程影片觀看紀錄</div>
+                        <div class="card-body">
+                            <h5 class="card-title">總觀看時數</h5>
+                            <p class="card-text">120 min</p>
+							<a href="#" class="btn btn-outline-primary">檢視觀看紀錄</a>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-6 col-md-4">
+                    <div class="card">
+                        <div class="card-hd">後測</div>
+                        <div class="card-body">
+                            <h5 class="card-title">得分</h5>
+                            <p class="card-text">100</p>
+                            <a href="#" class="btn btn-outline-primary">檢視答題內容</a>
+							<a href="#" class="btn btn-outline-purple">檢視答案</a>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-6 col-md-4">
+                    <div class="card">
+                        <div class="card-hd">結訓問卷</div>
+                        <div class="card-body">
+                            <p class="card-text">已送出</p>
+                            <a href="#" class="btn btn-outline-primary">檢視結訓問卷內容</a>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="card">
+                <div class="card-hd">結訓證書</div>
+                <div class="card-body">
+					<h5 class="card-title">結訓條件</h5>
+                    <ul class="menu-item training-conditions">
+					    <li class="done">完成簽到退、點名</li>
+						<li class="done">完成前、後測</li>
+						<li class="undone">完成結訓問卷</li>
+						<li class="done">上課時數達到標準</li>
+						<li class="done">測驗分數達到標準</li>
+					</ul>
+                    <a href="#" class="btn btn-outline-primary">下載結訓證書</a>
+                </div>
+            </div>
+		</main>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>

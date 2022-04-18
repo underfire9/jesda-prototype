@@ -1,0 +1,142 @@
+<!-- tdrf: 報名表 -->
+
+<div class="title-wrapper">
+	<div class="container-lg">
+		<span class="serial-number">COURSE-00149</span>
+	    <h2><span class="date">2022/06/15</span> 專業人員/免費《110年上市後醫療器材子法規及QMS系統說明會 II》</h2>
+	</div>
+</div>
+
+<div class="container-lg">
+    <div class="dashboard-container">
+	    <%= render :partial => "/partials/dashboard-sidenav" %>
+		
+		<div id="widget-overlay"></div>
+		
+		<main class="main">
+            <button class="navbar-toggler button-widget" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                <span class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </span>
+            </button>
+            <h3 class="page-title">報名表</h3>
+            <div class="register-wrapper">
+                <fieldset disabled>
+                    <div class="form-group">
+                        <label for="exampleInputText1" class="form-label"><span class="required">*</span> 姓名</label>
+                        <input type="text" class="form-control" id="exampleInputText1" value="史嘉蕾" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="form-label"><span class="required">*</span> 電子信箱</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" value="scarlettjohansson@gmail.com" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputText2" class="form-label">連絡電話</label>
+                        <input type="text" class="form-control" id="exampleInputText2" value="0987654321" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputText4" class="form-label">現職 / 服務機構名稱</label>
+                        <input type="text" class="form-control" id="exampleInputText4" value="黑寡婦 / 漫威" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">長照人員類別</label>
+                        <div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeRadio" id="typeRadio1" />
+                                <label class="form-check-label" for="typeRadio1">
+                                    A 照顧服務人員
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeRadio" id="typeRadio2" />
+                                <label class="form-check-label" for="typeRadio2">
+                                    B 居家服務督導員
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeRadio" id="typeRadio3" checked />
+                                <label class="form-check-label" for="typeRadio3">
+                                    C 社會工作師、社會工作人員及醫事人員
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeRadio" id="typeRadio4" />
+                                <label class="form-check-label" for="typeRadio4">
+                                    D 照顧管理專員及照顧管理督導
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="typeRadio" id="typeRadio5" />
+                                <label class="form-check-label" for="typeRadio5">
+                                    E 長照服務相關計畫之人員
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputText3" class="form-label">身分證字號</label>
+                        <input type="text" class="form-control" id="exampleInputText3" value="F123456789" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label"><span class="required">*</span> 飲食</label>
+                        <div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="foodRadio" id="foodRadio1" />
+                                <label class="form-check-label" for="foodRadio1">
+                                    素
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="foodRadio" id="foodRadio2" checked />
+                                <label class="form-check-label" for="foodRadio2">
+                                    葷
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="mt-5">
+                    <a href="#" class="btn btn-light">取消報名</a>
+                </div>
+            </div>
+		</main>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>

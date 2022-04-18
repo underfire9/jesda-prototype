@@ -1,0 +1,145 @@
+<!-- tdrf: 註冊 -->
+
+<div class="container-lg">
+	<div class="account-container">
+		<h3 class="page-title">註冊</h3>
+	    <div class="register-wrapper">
+            <form>
+                <div class="form-group">
+					<label for="exampleInputEmail1" class="form-label"><span class="required">*</span> 電子信箱</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" />
+                </div>
+				
+				<div class="form-group">
+					<label for="exampleInputPassword1" class="form-label"><span class="required">*</span> 登入密碼</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" />
+                </div>
+				
+				<div class="form-group">
+					<label for="exampleInputPassword2" class="form-label"><span class="required">*</span> 再次確認密碼</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" />
+                </div>
+				
+				<div class="form-group">
+					<label for="exampleInputText1" class="form-label"><span class="required">*</span> 姓名</label>
+                    <input type="text" class="form-control" id="exampleInputText1" />
+                </div>
+				
+				<div class="form-group">
+					<label for="exampleInputText2" class="form-label"><span class="required">*</span> 連絡電話</label>
+                    <input type="text" class="form-control" id="exampleInputText2" />
+                </div>
+				
+				<div class="form-group">
+					<label for="exampleInputText3" class="form-label">身分證字號</label>
+                    <input type="text" class="form-control" id="exampleInputText3" />
+                </div>
+				
+				<div class="form-group">
+					<label class="form-label">學分類別</label>
+					<div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
+                            <label class="form-check-label" for="inlineCheckbox1">藥事人員</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" />
+                            <label class="form-check-label" for="inlineCheckbox2">護理人員</label>
+                        </div>
+						<div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
+                            <label class="form-check-label" for="inlineCheckbox3">西醫師</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" />
+                            <label class="form-check-label" for="inlineCheckbox4">醫工人員</label>
+                        </div>
+						<div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5" />
+                            <label class="form-check-label" for="inlineCheckbox5">長照人員</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6" />
+                            <label class="form-check-label" for="inlineCheckbox6">公務人員</label>
+                        </div>
+						
+					</div>
+                </div>
+				
+				<div class="form-group">
+					<label class="form-label">人員類別</label>
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="typeCheck1" />
+                            <label class="form-check-label" for="typeCheck1">
+                                醫療專業人員
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="typeCheck2" />
+                            <label class="form-check-label" for="typeCheck2">
+                                長照人員
+                            </label>
+                        </div>
+						<div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="typeCheck3" />
+                            <label class="form-check-label" for="typeCheck3">
+                                藥品/醫療器材廠商
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="typeCheck4" />
+                            <label class="form-check-label" for="typeCheck4">
+                                民眾
+                            </label>
+                        </div>
+						<div class="d-flex align-items-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="typeCheck5" />
+                                <label class="form-check-label" for="typeCheck5">
+                                    其他
+                                </label>
+                            </div>
+							<div class="ms-2"><input type="text" class="form-control" id="" placeholder="請填寫說明" /></div>
+						</div>
+					</div>
+                </div>
+				<div class="form-group my-5">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="" id="agreeCheck" />
+                        <label class="form-check-label" for="agreeCheck">
+                            我同意
+                        </label>
+                        <a href="#">個資使用同意書</a>
+                    </div>
+				</div>
+
+				<div class="recaptcha" id="g-recaptcha1"></div>
+
+                <div class="my-5">
+					<button class="btn btn-lg btn-tdrf" type="submit">確定註冊</button>
+				</div>
+            </form>
+		</div>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback"></script>
+    <script>
+        // setTimout is not necessary
+        setTimeout(function() {
+
+          $('.recaptcha').each(function() {
+            grecaptcha.render(this.id, {
+              'sitekey': '6LdVkwkUAAAAACeeETRX--v9Js0vWyjQOTIZxxeB',
+              "theme":"light"
+            });
+          });
+
+        }, 2000);
+	</script>
+<% end %>

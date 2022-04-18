@@ -1,0 +1,98 @@
+<!-- tdrf: step0 個別直接報名 -->
+
+<div class="title-wrapper">
+	<div class="container-lg">
+		<span class="serial-number">COURSE-00149</span>
+	    <h2><span class="date">2022/06/15</span> 專業人員/免費《110年上市後醫療器材子法規及QMS系統說明會 II》</h2>
+	</div>
+</div>
+
+<div class="container-lg">
+	<div class="signup-container">
+		<div class="step-wrapper">
+            <ul class="menu-item step-menu">
+                <li>
+                    <span class="num">1</span> 
+                    <span class="summary">登入資訊</span>
+                    <span class="text">填寫登入所需資訊</span>
+                </li>
+                <li class="disabled">
+                    <span class="num">2</span>
+                    <span class="summary">報名表</span>
+                    <span class="text">填寫報名表所需資訊</span>
+                </li>
+                <li class="disabled">
+                    <span class="num">3</span>
+                    <span class="summary">送出報名</span>
+                    <span class="text">確認填寫內容並送出報名</span>
+                </li>
+                <li class="disabled">
+                    <span class="num">4</span>
+                    <span class="summary">繳費</span>
+                    <span class="text">繳交課程費用</span>
+                </li>
+            </ul>
+		</div>
+        <div class="account-container">
+            <h3 class="page-title">登入資訊</h3>
+			<p><span class="required">*</span> 號為必填欄位，請確實填寫</p>
+            <div class="register-wrapper">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="form-label"><span class="required">*</span> 電子信箱</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1" class="form-label"><span class="required">*</span> 登入密碼</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword2" class="form-label"><span class="required">*</span> 再次確認密碼</label>
+                        <input type="password" class="form-control" id="exampleInputPassword2" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputText1" class="form-label"><span class="required">*</span> 姓名</label>
+                        <input type="text" class="form-control" id="exampleInputText1" />
+                    </div>
+                    <div class="form-group my-5">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="agreeCheck" />
+                            <label class="form-check-label" for="agreeCheck">
+                                我同意
+                            </label>
+                            <a href="#">個資使用同意書</a>
+                        </div>
+                    </div>
+
+                    <div class="recaptcha" id="g-recaptcha1"></div>					
+                    <div class="my-5">
+                        <a href="signup_s2.html" class="btn btn-tdrf">下一步 <i class="fas fa-long-arrow-alt-right"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback"></script>
+    <script>
+        // setTimout is not necessary
+        setTimeout(function() {
+
+          $('.recaptcha').each(function() {
+            grecaptcha.render(this.id, {
+              'sitekey': '6LdVkwkUAAAAACeeETRX--v9Js0vWyjQOTIZxxeB',
+              "theme":"light"
+            });
+          });
+
+        }, 2000);
+	</script>
+<% end %>

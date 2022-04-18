@@ -1,0 +1,71 @@
+<!-- tdrf: 點名成功 -->
+
+<div class="title-wrapper">
+	<div class="container-lg">
+		<span class="serial-number">COURSE-00149</span>
+	    <h2><span class="date">2022/06/15</span> 專業人員/免費《110年上市後醫療器材子法規及QMS系統說明會 II》</h2>
+	</div>
+</div>
+
+<div class="container-lg">
+    <div class="dashboard-container">
+	    <%= render :partial => "/partials/dashboard-sidenav" %>
+		
+		<div id="widget-overlay"></div>
+		
+		<main class="main">
+            <button class="navbar-toggler button-widget" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                <span class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </span>
+            </button>
+            <div class="roll_call-wrapper">
+				<div>
+                    <div class="success-checkmark">
+                        <div class="check-icon">
+                            <span class="icon-line line-tip"></span>
+                            <span class="icon-line line-long"></span>
+                            <div class="icon-circle"></div>
+                            <div class="icon-fix"></div>
+                        </div>
+                    </div>
+                    <div class="h3">2022-06-01 12:00</div>
+                    <div class="h2 my-4">點名成功</div>
+                    <a href="signup_s1.html" class="btn btn-dark">檢視上課成果</a>
+				</div>
+			</div>
+		</main>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>

@@ -1,0 +1,96 @@
+<!-- tdrf: 錄播串接 -->
+
+<div class="title-wrapper">
+	<div class="container-lg">
+		<span class="serial-number">COURSE-00149</span>
+	    <h2><span class="date">2022/06/15</span> 專業人員/免費《110年上市後醫療器材子法規及QMS系統說明會 II》</h2>
+	</div>
+</div>
+
+<div class="container-lg">
+    <div class="dashboard-container">
+	    <div class="sidenav offcanvas-collapse">
+			<div class="scrollbar-inner">
+                <ul class="navigation menu-item">
+                    <li><a class="nav-item" href="registration.html">報名表</a></li>
+                    <li><a class="nav-item" href="payment.html">繳費資訊、退費資訊</a></li>
+                    <li><a class="nav-item" href="pre-test.html">前測</a></li>
+                    <li>
+						<a class="nav-item" data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="true" aria-controls="collapseMenu">
+							課程 <i class="fas fa-angle-down"></i>
+						</a>
+						<div class="collapse show" id="collapseMenu">
+							<ul class="menu-item">
+								<li><a class="nav-item" href="youtube.html">第 1 節課</a></li>
+								<li class="current"><a class="nav-item" href="streaming.html">第 2 節課</a></li>
+								<li><a class="nav-item" href="live.html">第 3 節課</a></li>
+								<% (4..8).map do |i| %>
+						        <li><a class="nav-item" href="session.html">第 <%= i %> 節課</a></li>
+								<% end %>
+							</ul>
+						</div>
+					</li>
+					<li><a class="nav-item" href="post-test.html">後測</a></li>
+                    <li><a class="nav-item" href="questionnaire.html">結訓問卷</a></li>
+                    <li><a class="nav-item" href="results.html">上課成果</a></li>
+                </ul>
+			</div>
+		</div>
+		
+		<div id="widget-overlay"></div>
+		
+		<main class="main">
+            <button class="navbar-toggler button-widget" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                <span class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </span>
+            </button>
+            <h3 class="page-title">第 2 節課</h3>
+			
+			<div class="video-container mb-5">
+			    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ju6TZfiuiCY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+			
+			<div class="mb-5">
+			    <p><%= lorem_paragraph %></p>
+				<p><%= lorem_paragraph %></p>
+			</div>
+
+			<p>
+				<a href="#" class="btn btn-outline-purple"><i class="fas fa-eye"></i> 檢視上課紀錄</a>
+				<a href="#" class="btn btn-outline-primary"><i class="fas fa-cloud-download-alt"></i> 課程檔案下載</a>
+			</p>
+		</main>
+	</div>
+</div>
+
+<% content_for :js do %>
+
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>

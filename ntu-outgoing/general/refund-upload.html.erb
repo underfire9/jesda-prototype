@@ -1,0 +1,94 @@
+<!-- ntu: 退補件上傳作業 -->
+
+<%= render :partial => "/partials/title-wrapper-menu" %>
+
+<div class="container-lg">
+	<div class="dashboard-container">
+	    
+	    <div class="sidenav offcanvas-collapse">
+			<div class="scrollbar-inner">
+                <ul class="navigation menu-item">
+                    <li><a class="nav-item" href="#">檢視申請表</a></li>
+					<li><a class="nav-item current" href="#">退/補件上傳作業</a></li>
+                </ul>
+			</div>
+		</div>
+	    <div id="widget-overlay"></div>
+		
+        <main class="main">
+            <div class="page-caption">
+				<h5>注意事項</h5>
+                <ol>
+				    <li>上傳提醒：因為頁面載量限制，請<span class="text-danger">一次上傳一項資料</span>以確保上傳順利。</li>
+					<li>使用IE瀏覽器如果檔案無法上傳，請至網際網路選項將安全性調低。</li>
+					<li>確認修改完畢後，務必點選下方送出按紐。一旦按下送出便無法修改。</li>
+				</ol>
+            </div>
+            <section class="section">
+                <div class="section-title">
+                    <h4 class="title">履歷表、出國交換計畫書</h4>
+                </div>
+				<p>履歷表及出國交換計畫書兩者皆限A4兩張，以pdf檔上傳。(檔案上限1024M)</p>
+				<div class="refund-group">
+                    <div class="form-group">
+                        <p class="mb-0">
+                            <span class="text-danger fw-bold">請補件</span> 
+                            補件原因：文字不清 
+                            <a href="#" class="btn btn-review btn-outline-primary">檢視檔案</a>
+                        </p>
+                        <label class="form-label fw-bold">履歷表 <a class="format-info" href="#" title="格式參考"></a></label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
+                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">上傳</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <p class="mb-0">
+                            <span class="text-danger fw-bold">請補件</span> 
+                            補件原因：文字不清 
+                            <a href="#" class="btn btn-review btn-outline-primary">檢視檔案</a>
+                        </p>
+                        <label class="form-label fw-bold">出國交換計畫書 <a class="format-info" href="#" title="格式參考"></a></label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
+                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">上傳</button>
+                        </div>
+                    </div>
+				</div>
+            </section>
+			<div class="form-action">
+			    <button type="submit" class="btn btn-lg btn-ntu">送出</button>
+			</div>
+			
+        </main>
+	</div>
+</div>
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>

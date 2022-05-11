@@ -1,0 +1,77 @@
+<!-- ntu: 甄試成績 -->
+
+<%= render :partial => "/partials/title-wrapper-menu" %>
+
+<div class="container-lg">
+	<div class="dashboard-container">
+	    
+	    <div class="sidenav offcanvas-collapse">
+			<div class="scrollbar-inner">
+                <ul class="navigation menu-item">
+                    <li><a class="nav-item" href="#">檢視申請表</a></li>
+					<li><a class="nav-item current" href="#">甄試成績</a></li>
+                </ul>
+			</div>
+		</div>
+	    <div id="widget-overlay"></div>
+		
+        <main class="main">
+            <section class="section">
+                <div class="section-title">
+                    <h4 class="title">甄選成績</h4>
+                </div>
+				<ul class="menu-item score-list">
+				    <li>
+					    <span class="label">履歷表 (30%)</span>
+						<span class="score"><span>4.0000 (A, A, A)</span></span>
+					</li>
+					<li>
+					    <span class="label">出國交換計畫書 (30%)</span>
+						<span class="score"><span>4.3000 (A+, A+, A+)</span></span>
+					</li>
+					<li>
+					    <span class="label">學業成績表現 (40%)</span>
+						<span class="score"><span>4.2400</span></span>
+					</li>
+					<li>
+					    <span class="label">總成績</span>
+						<span class="score"><span>4.1860</span></span>
+					</li>
+					<li>
+					    <span class="label">分組排名百分比</span>
+						<span class="score"><span>50%</span></span>
+					</li>
+				</ul>
+				<p class="score-illustrate">根據111學年度（2022/2023年度）第 2 學期 出國交換學生甄選簡章第陸點評分及成績公布所列，若任2個評分相差超過3個等第差時，申請人可於系統中點選複查申請。如有複查需求，敬請於6月2日17:00完成送出，以免影響後續志願選填流程，若提交複查申請，同學申請資料將重新進入審件程序。複查完畢後，國際處海外教育股將發信至同學信箱，請靜待回覆。</p>
+            </section>
+        </main>
+	</div>
+</div>
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>

@@ -1,0 +1,128 @@
+<!-- ntu: 錄取報到上傳作業 -->
+
+<%= render :partial => "/partials/title-wrapper-menu" %>
+
+<div class="container-lg">
+	<div class="dashboard-container">
+	    
+	    <div class="sidenav offcanvas-collapse">
+			<div class="scrollbar-inner">
+                <ul class="navigation menu-item">
+                    <li><a class="nav-item" href="#">檢視申請表</a></li>
+					<li><a class="nav-item" href="#">甄試成績</a></li>
+					<li><a class="nav-item" href="#">錄取學校</a></li>
+					<li><a class="nav-item" href="#">錄取報到程序</a></li>
+					<li><a class="nav-item current" href="#">錄取報到上傳作業</a></li>
+                </ul>
+			</div>
+		</div>
+	    <div id="widget-overlay"></div>
+		
+        <main class="main">
+            <section class="section">
+                <div class="section-title">
+                    <h4 class="title">錄取資格意願</h4>
+                </div>
+				<div class="form-group">
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="willRadio" id="willConfirm">
+                            <label class="form-check-label" for="willConfirm">
+                                確認錄取資格
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="willRadio" id="willGiveUp">
+                            <label class="form-check-label" for="willGiveUp">
+                                放棄錄取資格
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="page-caption">
+                <h5>注意事項</h5>
+                <ol>
+                    <li>上傳提醒：因為頁面載量限制，請<span class="text-danger">一次上傳一項資料</span>以確保上傳順利。</li>
+                    <li>使用IE瀏覽器如果檔案無法上傳，請至網際網路選項將安全性調低。</li>
+                    <li>系統有儲存功能，檔案上傳成功後會自動存檔。</li>
+                    <li>上傳作業可分多次完成，但請留意，須完成繳費且所有應繳文件皆上傳成功，送出申請後才算報名成功。報名成功者信箱會收到 <span class="text-danger">報名完成通知信</span>。</li>
+                </ol>
+            </div>
+			
+			<section class="section">
+                <div class="section-title">
+                    <h4 class="title">交換／訪問學生計畫費繳費證明</h4>
+                </div>
+				<div class="awell">
+                    <p>請將系統自動產生之繳費單印出，完成繳費後將收據上傳。</p>
+					<div>
+						<button class="btn btn-sm btn-success" type="button"><i class="fas fa-print"></i> 列印</button>
+						<span class="d-inline-block ms-1">交換／訪問學生計畫費繳費單</span>
+					</div>
+                </div>
+				<p>限為 PDF 格式，檔案上限 1024MB，文件須為 A4 大小。</p>
+				<div class="form-group">
+					<label class="form-label fw-bold">報名費繳費收據</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control" id="inputGroupFile09" aria-describedby="inputGroupFileAddon09" aria-label="Upload" />
+                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon09">上傳</button>
+                    </div>
+				</div>
+			</section>
+			
+			<section class="section">
+                <div class="section-title">
+                    <h4 class="title">錄取資格確認暨家長／監護人同意書</h4>
+                </div>
+				<div class="awell">
+                    <p>請將系統自動產生之錄取資格確認暨家長／監護人同意書印出，完成簽章後掃描上傳。</p>
+					<div>
+						<button class="btn btn-sm btn-success" type="button"><i class="fas fa-print"></i> 列印</button>
+						<span class="d-inline-block ms-1">錄取資格確認暨家長／監護人同意書</span>
+					</div>
+                </div>
+				<p>限為 PDF 格式，檔案上限 1024MB，文件須為 A4 大小。</p>
+				<div class="form-group">
+					<label class="form-label fw-bold">報名費繳費收據</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control" id="inputGroupFile09" aria-describedby="inputGroupFileAddon09" aria-label="Upload" />
+                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon09">上傳</button>
+                    </div>
+				</div>
+			</section>
+			<div class="form-action">
+			    <button type="submit" class="btn btn-lg btn-ntu">送出</button>
+			</div>
+			<!-- 上傳完成請參考 upload-success.html -->
+        </main>
+	</div>
+</div>
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>

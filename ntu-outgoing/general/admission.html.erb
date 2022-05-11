@@ -1,0 +1,68 @@
+<!-- ntu: 錄取學校 -->
+
+<%= render :partial => "/partials/title-wrapper-menu" %>
+
+<div class="container-lg">
+	<div class="dashboard-container">
+	    
+	    <div class="sidenav offcanvas-collapse">
+			<div class="scrollbar-inner">
+                <ul class="navigation menu-item">
+                    <li><a class="nav-item" href="#">檢視申請表</a></li>
+					<li><a class="nav-item" href="#">甄試成績</a></li>
+					<li><a class="nav-item current" href="#">錄取學校</a></li>
+					<li><a class="nav-item" href="#">錄取報到程序</a></li>
+					<li><a class="nav-item" href="#">錄取報到上傳作業</a></li>
+                </ul>
+			</div>
+		</div>
+	    <div id="widget-overlay"></div>
+		
+        <main class="main">
+            <section class="section">
+                <div class="section-title">
+                    <h4 class="title">錄取學校</h4>
+                </div>
+				<div class="admission-well">
+					<div class="item">
+                        <span class="label">錄取學校</span>
+                        <div class="h5">維多利亞大學</div>
+					</div>
+					<div class="item">
+                        <span class="label">交換期間</span>
+                        <div class="h5">一學期 上學期</div>
+					</div>
+				</div>
+            </section>
+        </main>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>

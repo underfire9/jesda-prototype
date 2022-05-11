@@ -1,0 +1,127 @@
+<!-- ntu: 志願選填 / 確認 -->
+
+<%= render :partial => "/partials/title-wrapper-menu" %>
+
+<div class="container-lg">
+	<div class="dashboard-container">
+	    
+	    <div class="sidenav offcanvas-collapse">
+			<div class="scrollbar-inner">
+                <ul class="navigation menu-item">
+                    <li><a class="nav-item" href="#">檢視申請表</a></li>
+					<li><a class="nav-item" href="#">甄試成績</a></li>
+					<li><a class="nav-item current" href="#">第一次選填志願表</a></li>
+                </ul>
+			</div>
+		</div>
+	    <div id="widget-overlay"></div>
+		
+        <main class="main">
+			
+            <section class="section">
+                <div class="section-title">
+                    <h4 class="title">志願確認</h4>
+                </div>
+				<p>確認您選填的志願序正確無誤後，請按<span class="text-danger">確定送出</span>。</p>
+				<!--p>您已完成第一次志願選填，系統將自動發信至同學信箱</p-->
+				<div class="volunteer-wrapper">
+
+				    <div class="volunteer-item confirm-item">
+						<div class="order">
+					        <span class="num">1</span>
+						</div>
+						<div class="item-inner">
+							<span class="order-university">
+								<span>E0001 巴西</span>
+								<span>里約熱內盧天主教大學</span>
+							</span>
+							<span class="order-semester">
+								<span>一學期</span>
+								<span>上學期</span>
+							</span>
+						</div>
+					</div>
+					
+					<div class="volunteer-item confirm-item">
+						<div class="order">
+					        <span class="num">2</span>
+						</div>
+						<div class="item-inner">
+							<span class="order-university">
+								<span>E0002 加拿大</span>
+								<span>愛德華王子大學</span>
+							</span>
+							<span class="order-semester">
+								<span>一學年</span>
+							</span>
+						</div>
+					</div>
+					
+					<div class="volunteer-item confirm-item">
+						<div class="order">
+					        <span class="num">3</span>
+						</div>
+						<div class="item-inner">
+							<span class="order-university">
+								<span>E0003 United States of America</span>
+								<span>Columbia University</span>
+							</span>
+							<span class="order-semester">
+								<span>one academic year</span>
+							</span>
+						</div>
+					</div>
+					
+					<div class="volunteer-item confirm-item">
+						<div class="order">
+					        <span class="num">4</span>
+						</div>
+						<div class="item-inner">
+							<span class="order-university">
+								<span>E0004 United States of America</span>
+								<span>Massachusetts Institute of Technology</span>
+							</span>
+							<span class="order-semester">
+								<span>one semester</span>
+								<span>last semester</span>
+							</span>
+						</div>
+					</div>
+					
+				</div>
+            </section>
+			
+			<div class="form-action">
+			    <button type="submit" class="btn btn-lg btn-ntu">送出</button>
+			</div>
+        </main>
+	</div>
+</div>
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>

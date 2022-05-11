@@ -1,0 +1,82 @@
+<!-- ntu: 錄取報到程序 -->
+
+<%= render :partial => "/partials/title-wrapper-menu" %>
+
+<div class="container-lg">
+	<div class="dashboard-container">
+	    
+	    <div class="sidenav offcanvas-collapse">
+			<div class="scrollbar-inner">
+                <ul class="navigation menu-item">
+                    <li><a class="nav-item" href="#">檢視申請表</a></li>
+					<li><a class="nav-item" href="#">甄試成績</a></li>
+					<li><a class="nav-item" href="#">錄取學校</a></li>
+					<li><a class="nav-item current" href="#">錄取報到程序</a></li>
+					<li><a class="nav-item" href="#">錄取報到上傳作業</a></li>
+                </ul>
+			</div>
+		</div>
+	    <div id="widget-overlay"></div>
+		
+        <main class="main">
+            <section class="section">
+                <div class="section-title">
+                    <h4 class="title">錄取報到程序</h4>
+                </div>
+				<p>錄取者須於111年1月26日下午4時前上傳「錄取資格確認暨家長／監護人同意書」及「交換／訪問學生計畫費繳費收據」，以確定錄取資格，完成報到手續。<span class="text-danger">逾期未報到或資料未繳齊者，視同放棄錄取資格。</span></p>
+				<div class="awell blue p3">
+                    <h5>錄取同學報到程序</h5>
+                    <ol class="mb-4">
+                        <li>下載列印「錄取資格確認暨家長／監護人同意書」、「交換／訪問學生計畫費繳費單」。</li>
+                        <li>「錄取資格確認暨家長／監護人同意書」，須由錄取學生及家長／監護人親自簽名。</li>
+                        <li>「交換／訪問學生計畫費繳費單」，可透過ATM轉帳、網路轉帳方或至華南銀行各分行繳納，請記得保留繳費收據以便辦理報到手續。</li>
+                        <li>上傳「錄取資格確認暨家長／監護人同意書」及「交換／訪問學生計畫費繳費收據」（區域承辦人聯絡資訊詳見<a href="https://oia.ntu.edu.tw/members/overview#link_4" target="_blank">https://oia.ntu.edu.tw/members/overview#link_4</a>）</li>
+                        <li>錄取訪問學生計畫者，請留意該計畫屬自費計畫，須繳交對方學校學雜費及本校學雜費；繳交確認書前，請確實與父母溝通，並確認父母瞭解此計畫之收費情形。</li>
+                    </ol>
+                    <h5>錄取同學注意事項</h5>
+                    <ol class="mb-4">
+                        <li>「錄取資格確認暨家長／監護人同意書」一經繳交後，不得以任何理由要求撤回；若因個人因素確認要放棄錄取資格者，其所繳交之計畫費，概不退費。</li>
+                        <li>不論錄取者是否順利入學，或因未獲入學許可或簽證未通過等原因無法完成交換學生計畫者，其所繳交之計畫費，概不退費。</li>
+                        <li>錄取者皆不得要求更改分發結果，若有渠等事情發生者，其錄取資格隨即取消。 </li>
+                        <li>欲放棄錄取資格者，請於111年1月26日下午4時前，於線上系統勾選「放棄錄取資格」後按送出，以完成錄取資格放棄程序。一經送出後，不得以任何理由要求撤回。</li>
+                        <li>若於「錄取資格確認書」與「計畫費」繳交後放棄者，除因不可抗力情事，且附具體證明外，一律須繳交行政作業費新臺幣5000元整至本校校務發展基金。本罰則不適用於錄取訪問學生計畫者。</li>
+                        <li>校級與院／系／所／中心交換學生計畫限擇一辦理錄取報到程序，不得選擇同時參加或各交換一學期。</li>
+                    </ol>
+                    <h5>第二次志願選填注意事項</h5>
+                    <ol>
+                        <li>放棄第一次志願選填、經公布未錄取或未完成線上報到確認錄取資格，且未於院／系／所／中心交換學生計畫辦理錄取報到者，皆具第二次志願選填資格。只要資格條件符合該校要求，可選填原報名組別以外之學校，以30個志願數為上限。</li>
+                        <li>第二階段可開放選填之學校名額，將於111年2月9日下午4時於本處網站公告；欲參加第二次志願選填者請於111年2月14日下午4時前完成線上選填並送出。</li>
+                    </ol>
+				</div>
+            </section>
+        </main>
+	</div>
+</div>
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>

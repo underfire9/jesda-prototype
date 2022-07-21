@@ -1,0 +1,169 @@
+<!-- ntu: Facility 設施 -->
+
+<div class="container-lg">
+	<div class="main-layout">
+		<aside class="emba-aside">
+			<%= render :partial => "/partials/accordian_nav" %>
+		</aside>
+		<main class="emba-main">
+		    <h2 class="main-title">Facility</h2>
+			<p class="main_sub-title">List of the Hardware Facilities for EMBA Students</p>
+			
+			<div class="facility-wrapper">
+				<div class="wrapper-inner">
+                    <% (1..2).map do |i| %>
+                    <div class="facility-item">
+                        <div class="item-hd">
+                            <span class="room-num">206</span>
+                            <h5>EMBA Service Center</h5>
+                        </div>
+                        <ul class="menu-item">
+                            <li>
+                                <span class="label">Seats</span>
+                                <span class="output">36 people</span>
+                            </li>
+                            <li>
+                                <span class="label">Tables and Chairs</span>
+                                <span class="output">Conference Tables and Chairs</span>
+                            </li>
+                            <li>
+                                <span class="label">Access</span>
+                                <span class="output">Opens During the Service Hours</span>
+                            </li>
+                            <li>
+                                <span class="label">Appointment</span>
+                                <span class="output">x</span>
+                            </li>
+                            <li>
+                                <span class="label">Light Food Bar</span>
+                                <span class="output">v</span>
+                            </li>
+                            <li>
+                                <span class="label"><a href="#">School Wireless Network (Wi-Fi)</a></span>
+                                <span class="output">v</span>
+                            </li>
+                            <li>
+                                <span class="label">Public Wireless Network (WI-FI) for Service Center<a href="#" data-bs-toggle="tooltip" title="please contact with the information center for asking the authorization code"><i class="fas fa-info-circle"></i></a></span>
+                                <span class="output">v</span>
+                            </li>
+                            <li>
+                                <span class="label">Projector</span>
+                                <span class="output">x</span>
+                            </li>
+                            <li>
+                                <span class="label">Power</span>
+                                <span class="output">v</span>
+                            </li>
+                            <li>
+                                <span class="label">Printing Service</span>
+                                <span class="output">1 Notebook</span>
+                            </li>
+                            <li>
+                                <span class="label">Magazine Reading Area</span>
+                                <span class="output">v</span>
+                            </li>
+                            <li>
+                                <span class="label">Copying Service</span>
+                                <span class="output">v</span>
+                            </li>
+                            <li>
+                                <span class="label">Documented EMBA Dissertations</span>
+                                <span class="output">x</span>
+                            </li>
+                            <li>
+                                <span class="label">Scanning Service</span>
+                                <span class="output">v</span>
+                            </li>
+                            <li>
+                                <span class="label">Fax Service</span>
+                                <span class="output">v</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <% end %>
+					<div class="facility-item">
+                        <div class="item-hd">
+                            <span class="room-num">3F</span>
+                            <h5>Discussion Room</h5>
+                        </div>
+                        <ul class="menu-item">
+                            <li>
+                                <span class="label">Seats</span>
+                                <span class="output">6 Rooms with 10 people / each room</span>
+                            </li>
+                            <li>
+                                <span class="label">Tables and Chairs</span>
+                                <span class="output">Conference Tables for 10 People</span>
+                            </li>
+                            <li>
+                                <span class="label">Access</span>
+                                <span class="output">Swiping the Student ID</span>
+                            </li>
+                            <li>
+                                <span class="label">Appointment</span>
+                                <span class="output">Appointment is Required</span>
+                            </li>
+                            <li>
+                                <span class="label">Light Food Bar</span>
+                                <span class="output">No Eating and Drinking</span>
+                            </li>
+                            <li>
+                                <span class="label"><a href="#">School Wireless Network (Wi-Fi)</a></span>
+                                <span class="output">v</span>
+                            </li>
+                            <li>
+                                <span class="label">Public Wireless Network (WI-FI) for Service Center</span>
+                                <span class="output">x</span>
+                            </li>
+                            <li>
+                                <span class="label">Projector</span>
+                                <span class="output">v</span>
+                            </li>
+                            <li>
+                                <span class="label">Power</span>
+                                <span class="output">v</span>
+                            </li>
+                            <li>
+                                <span class="label">Printing Service</span>
+                                <span class="output">x</span>
+                            </li>
+                            <li>
+                                <span class="label">Magazine Reading Area</span>
+                                <span class="output">x</span>
+                            </li>
+                            <li>
+                                <span class="label">Copying Service</span>
+                                <span class="output">x</span>
+                            </li>
+                            <li>
+                                <span class="label">Documented EMBA Dissertations</span>
+                                <span class="output">x</span>
+                            </li>
+                            <li>
+                                <span class="label">Scanning Service</span>
+                                <span class="output">x</span>
+                            </li>
+                            <li>
+                                <span class="label">Fax Service</span>
+                                <span class="output">x</span>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+				<p class="info-note"><i class="fas fa-info-circle"></i> Regarding the access of <a href="#">School Wireless Network (Wi-Fi)</a>, please enter the account password of NTU Computer and Information Networking Center.</p>
+			</div>
+			
+			<%= render :partial => "/partials/page_share" %>
+		</main>
+	</div>
+</div>
+
+<% content_for :js do %>
+
+<!-- BS Tooltips -->
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+<% end %>
+

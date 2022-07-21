@@ -1,0 +1,832 @@
+<!-- ntu: landing page 宣傳頁 -->
+
+<div class="landing-area">
+	<div class="landing-main">
+        <div class="container">
+            <h1 class="h1-logo">
+                <span class="text-hide">National Taiwan University EMBA</span>
+            </h1>
+            <div class="propaganda">
+                <h2>Welcome to <strong>National Taiwan University <span class="main-color">EMBA</span></strong></h2>
+                <h3>We are the pioneer of EMBA education in Taiwan, with a world-class faculty that has gathered the elite from all sectors, integrating diversification and connections to the rest of the world, where our aspirations are based on a global perspective.</h3>
+            </div>
+            <div class="mouse"><span class="mouseInfinite"></span></div>
+        </div>
+        <div class="quick-link">
+            <ul class="menu-item">
+                <li><a href="#">About NTU EMBA</a></li>
+                <li><a href="#">Faculty & Administration</a></li>
+                <li><a href="#">EMBA Official Website</a></li>
+                <li><a href="#">EMBA Introduction Download</a></li>
+            </ul>
+        </div>
+        <div class="badges">
+            <span class="aapbs"><img src="../assets/aapbs@2x.png"></span>
+            <span class="aacsb"><img src="../assets/aacsb@2x.png"></span>
+        </div>
+		<span class="background"></span>
+	</div>
+    <a href="#cd-nav" class="cd-nav-trigger">
+        <span class="cd-nav-icon"></span>
+    </a>
+	<div id="cd-nav" class="cd-nav">
+		<div class="cd-navigation-wrapper">
+			<div class="scrollbar-inner">
+                <div class="cd-block">
+                    <h2>Navigation</h2>
+                    <nav>
+                        <ul class="menu-item">
+                            <li><a href="#">About NTU EMBA</a></li>
+                            <li><a href="#">Faculty & Staff</a></li>
+                            <li><a href="#">Admissions </a></li>
+                            <li><a href="#">Campus Life</a></li>
+                            <li><a href="#">Alumni</a></li>
+                            <li><a href="#">Great news</a></li>
+                            <li><a href="#">EMBA Calendar</a></li>
+                        </ul>
+                    </nav>
+                    <nav class="narrow-only">
+                        <ul class="menu-item">
+                            <li><a href="#">Faculty & Administration</a></li>
+                            <li><a href="#">EMBA Official Website</a></li>
+                            <li><a href="#">EMBA Introduction Download</a></li>
+                        </ul>
+                    </nav>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="landing-stage stage-providing">
+    <div class="container">
+	    <h2 class="stage-title">
+		    Providing you with <strong>Academic Excellence</strong>
+		</h2>
+		<div class="stage-providing-inner">
+		    <div class="providing-item">
+			    <div class="hd">6</div>
+				<div class="bd">
+				    <h3>in Far East Asia</h3>
+					<p>Top 6 in the Eduniversal Best Masters Rankings Far East Asia 2021</p>
+				</div>
+			</div>
+			<div class="providing-item">
+			    <div class="hd">68</div>
+				<div class="bd">
+				    <h3>in the world</h3>
+					<p>113th in THE World University Rankings 2022</p>
+				</div>
+			</div>
+			<div class="providing-item">
+			    <div class="hd">6</div>
+				<div class="bd">
+				    <h3>in Asia</h3>
+					<p>68th in QS World University Rankings 2022</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="landing-stage stage-eagle">
+	<div class="container">
+        <div class="col-eagle item-single">
+            <div class="eagle-item">
+                <span class="num-title">TOP 1</span>
+                <div class="desc">
+                    <p>in the development of teaching case studies for corporate development in the Greater China region, with over<span class="magic">100</span> case studies. Our staff have taken teaching to a new level of excellence.</p>
+                </div>
+                <a href="#" class="item-link">Learn more about our faculty</a>
+            </div>
+            <div class="eagle-item">
+                <span class="num-title">5</span>
+                <div class="desc">
+					<h4>Academic group</h4>
+                    <p>Our faculty is organized in Academic group, each designed for a core business discipline</p>
+                </div>
+                <a href="#" class="item-link">DISCOVER OUR GROPUP</a>
+            </div>
+        </div>
+		<div class="col-eagle align-vertical">
+            <div class="eagle-item">
+                <span class="num-title">800</span>
+                <div class="desc">
+					<h4>Students enrolled In the EMBA</h4>
+                </div>
+                <a href="#" class="item-link">LEARN MORE ABOUT OUR STUDENTS</a>
+            </div>
+			<div class="item-data">
+				<div class="doughnut-wrap">
+                    <h5>NTU EMBA master’s program</h5>
+                    <div class="doughnut-inner">
+                        <canvas id="embaChart"></canvas>
+                    </div>
+				</div>
+				<div class="doughnut-wrap">
+                    <h5>NTU-Fudan EMBA overseas program</h5>
+                    <div class="doughnut-inner">
+                        <canvas id="fudanChart"></canvas>
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-eagle align-vertical no-border">
+		    <div class="eagle-item">
+                <span class="num-title">5,000</span>
+                <div class="desc">
+					<h4>Alumni communityIn the EMBA</h4>
+                </div>
+                <a href="#" class="item-link">DISCOVER OUR ALUMNI COMMUNITY</a>
+            </div>
+			<div class="item-data">
+				<h6 class="map-subscript">National Taiwan University Alumni- Distribution of Top <strong>100</strong> Enterprises</h6>
+                <div class="map-container" id="taiwan_map">
+                    <div class="taiwan-map" ref="map">
+                        <div>
+                            <div id="map" style="height: 360px;">
+                                <svg id="svg"></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shop-list">
+                        <h1>{{ h1 }}</h1>
+                        <p v-for="company in showCompanies">{{ company }}</p>
+                        <a :href="morelink" v-if="companies.length > 3">MORE +</a>
+                    </div>
+                </div>
+			</div>
+		</div>
+		<div class="col-eagle align-vertical no-border">
+		    <div class="eagle-item">
+                <div class="desc">
+					<h4 class="mb-4">National Taiwan University EMBA Alumni Influence</h4>
+					<p>Taiwan business school for the quality of its research Among the 2,022 companies listed, listed and emerging in Taiwan in 2021, 77 will have NTU EMBA alumni as their chairman or general manager</p>
+                </div>
+            </div>
+			<div class="item-data">
+				<div class="multiple-doughnut-wrap">
+                    <div class="multiple-doughnut">
+                        <div class="main-chart">
+                            <canvas id="myChart1"></canvas>
+                        </div>
+                        <div class="sub-chart sub-chart1">
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                        <div class="sub-chart sub-chart2">
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                        <div class="sub-chart sub-chart3">
+                            <canvas id="myChart4"></canvas>
+                        </div>
+                    </div>
+					<h6>The total corporate revenue was NT$227,350,660,820, accounting for 0.86% of the national total revenue</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="landing-stage stage-highlights">
+    <div class="container">
+	    <h2 class="stage-title">
+		    Curriculum <strong>Highlights</strong>
+		</h2>
+        <div class="tabs-container">		
+            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-emba-tab" data-bs-toggle="pill" data-bs-target="#pills-emba" type="button" role="tab" aria-controls="pills-emba" aria-selected="true">NTU Executive MBA Program</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-fudan-tab" data-bs-toggle="pill" data-bs-target="#pills-fudan" type="button" role="tab" aria-controls="pills-fudan" aria-selected="false">Executive MBA Program for NTU – Fudan Joint Program</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-emba" role="tabpanel" aria-labelledby="pills-emba-tab" tabindex="0">
+                    <div class="tabs-inner">
+					    <div class="tabs-des">
+							<div class="d-inline-block">
+                                <div class="percentage">
+                                    <div class="courses">
+                                        21 <span>courses</span>
+                                    </div>
+                                    <div class="year">
+                                        1~4 <span>year</span>
+                                    </div>
+                                </div>
+							</div>
+							<p><a href="#" class="more-link">LEARN MORE <i class="fas fa-plus"></i></a></p>
+						</div>
+						<div class="tabs-carousel">
+                            <div id="carouselTaipeiControls" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="curriculum-group">
+										    <div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/line-chart.png"></span>
+												<span class="img-text">Essentials of Economics</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/line-chart1.png"></span>
+												<span class="img-text">Syllabus of Introduction to Financial Reporting and Analysis</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/customer.png"></span>
+												<span class="img-text">Introduction to Managing Cases</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/social-care.png"></span>
+												<span class="img-text">Service and Operations Management</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/idea.png"></span>
+												<span class="img-text">Entrepreneurship and Innovation Management</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/connection.png"></span>
+												<span class="img-text">Marketing Management and Customer Analysis</span>
+											</div>
+										</div>
+                                    </div>
+									<% (1..3).map do |i| %>
+                                    <div class="carousel-item">
+                                        <div class="curriculum-group">
+										    <div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/arrows.png"></span>
+												<span class="img-text">Essentials of Economics</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/balance.png"></span>
+												<span class="img-text">Financial Reporting and Analysis</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/calculator.png"></span>
+												<span class="img-text">Introduction to Managing Cases</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/computer.png"></span>
+												<span class="img-text">Service and Operations Management</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/save-money.png"></span>
+												<span class="img-text">Entrepreneurship and Innovation Management</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/pie-chart.png"></span>
+												<span class="img-text">Marketing Management and Customer Analysis</span>
+											</div>
+										</div>
+                                    </div>
+                                    <% end %>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselTaipeiControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselTaipeiControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                </div>
+                <div class="tab-pane fade" id="pills-fudan" role="tabpanel" aria-labelledby="pills-fudan-tab" tabindex="0">
+                    <div class="tabs-inner">
+					    <div class="tabs-des">
+							<div class="d-inline-block">
+                                <div class="percentage">
+                                    <div class="courses">
+                                        19 <span>courses</span>
+                                    </div>
+                                    <div class="year">
+                                        1~4 <span>year</span>
+                                    </div>
+                                </div>
+							</div>
+							<p><a href="#" class="more-link">LEARN MORE <i class="fas fa-plus"></i></a></p>
+						</div>
+						<div class="tabs-carousel">
+                            <div id="carouselFudnaControls" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="curriculum-group">
+										    <div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/line-chart.png"></span>
+												<span class="img-text">Essentials of Economics</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/line-chart1.png"></span>
+												<span class="img-text">Syllabus of Introduction to Financial Reporting and Analysis</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/customer.png"></span>
+												<span class="img-text">Introduction to Managing Cases</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/social-care.png"></span>
+												<span class="img-text">Service and Operations Management</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/idea.png"></span>
+												<span class="img-text">Entrepreneurship and Innovation Management</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/connection.png"></span>
+												<span class="img-text">Marketing Management and Customer Analysis</span>
+											</div>
+										</div>
+                                    </div>
+									<% (1..3).map do |i| %>
+                                    <div class="carousel-item">
+                                        <div class="curriculum-group">
+										    <div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/arrows.png"></span>
+												<span class="img-text">Essentials of Economics</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/balance.png"></span>
+												<span class="img-text">Financial Reporting and Analysis</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/calculator.png"></span>
+												<span class="img-text">Introduction to Managing Cases</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/computer.png"></span>
+												<span class="img-text">Service and Operations Management</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/save-money.png"></span>
+												<span class="img-text">Entrepreneurship and Innovation Management</span>
+											</div>
+											<div class="curriculum-item">
+											    <span class="img-icon"><img src="../assets/curriculum/pie-chart.png"></span>
+												<span class="img-text">Marketing Management and Customer Analysis</span>
+											</div>
+										</div>
+                                    </div>
+                                    <% end %>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselFudnaControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselFudnaControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+		<p class="info-announcement"><i class="fas fa-info"></i> The actual start of the course will be subject to the National Taiwan University EMBA announcement.</p>
+	</div>
+</div>
+
+<div class="landing-stage stage-keydates">
+    <div class="container">
+	    <h2 class="stage-title">
+		    Key <strong>Date</strong>
+		</h2>
+		<div class="keydates-wrap">
+		    <div class="program-wrap">
+			    <p class="text-des">Information Session for NTU Taipei Program</p>
+				<span class="program-label">Registration date</span>
+				<div class="period">
+				    <span class="date">
+						9/7
+					    <span class="week">Mon</span>
+					</span>
+					<span class="hyphen">-</span>
+					<span class="date">
+						9/28
+					    <span class="week">Mon</span>
+					</span>
+				</div>
+			</div>
+			<div class="program-wrap">
+			    <p class="text-des">Information Session of the NTU – Fudan Joint Program</p>
+				<span class="program-label">Registration date</span>
+				<div class="period">
+				    <span class="date">
+						6/16
+					    <span class="week">Mon</span>
+					</span>
+					<span class="hyphen">-</span>
+					<span class="date">
+						8/30
+					    <span class="week">Wed</span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="landing-stage stage-focus">
+    <div class="container">
+	    <h2 class="stage-title">
+		    <strong>Focus</strong>
+		</h2>
+        <div id="splide" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+					<% (1..3).map do |i| %>
+                    <li class="splide__slide">
+						<!-- 後台上傳請註明唯一尺寸比例 16:9 -->
+						<img src="../assets/fake/focus-01.jpg" />
+						<h5>2021 NTU famous alumni</h5>
+						<span class="category">Humanities and Arts</span>
+						<p><a href="#">Mr. JU Tzong-Ching <span>(level 91)</span></a></p>
+					</li>
+					<li class="splide__slide">
+						<img src="../assets/fake/focus-02.jpg" />
+						<h5>2019  NTU famous alumni</h5>
+						<span class="category">social service</span>
+						<p><a href="#">Mr.Tony Lin <span>(level 94)</span></a></p>
+					</li>
+					<li class="splide__slide">
+						<img src="../assets/fake/focus-03.jpg" />
+						<h5>2017 NTU Student Altruism Award and Special Award for Social Contribution</h5>
+						<p><a href="#">Mr.Lin, Huan-Po <span>(level 102)</span></a></p>
+					</li>
+					<li class="splide__slide">
+						<img src="https://placekitten.com/1600/900" />
+						<h5>2021 NTU famous alumni</h5>
+						<span class="category">Humanities and Arts</span>
+						<p><a href="#">Mr. JU Tzong-Ching <span>(level 91)</span></a></p>
+					</li>
+					<% end %>
+                </ul>
+            </div>
+        </div>
+	</div>
+</div>
+
+<div class="landing-stage stage-footer">
+    <div class="container">
+		<p class="explore-link"><a href="#">Explore More <i class="fas fa-long-arrow-alt-right"></i></a></p>
+		<div class="subordinate">
+		    <img class="ntu" src="../assets/ntu@2x.png">
+			<img class="management" src="../assets/ntu-management@2x.png">
+		</div>
+	</div>
+</div>
+
+<% content_for :js do %>
+    <script>
+        jQuery(document).ready(function($){
+            var isLateralNavAnimating = false;
+
+            //open/close lateral navigation
+            $('.cd-nav-trigger').on('click', function(event){
+                event.preventDefault();
+                //stop if nav animation is running 
+                if( !isLateralNavAnimating ) {
+                    if($(this).parents('.csstransitions').length > 0 ) isLateralNavAnimating = true; 
+
+                    $('body').toggleClass('navigation-is-open');
+                    $('.cd-navigation-wrapper').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+                        //animation is over
+                        isLateralNavAnimating = false;
+                    });
+                }
+            });
+        });
+	</script>
+
+    <!-- Jquery Scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+    jQuery(document).ready(function(){
+        jQuery('.scrollbar-inner').scrollbar();
+    });
+    </script>
+
+    <!-- Chart.js -->
+    <script src="../javascripts/chart.js"></script>
+    <script src="../javascripts/chartjs-plugin-deferred.min.js"></script>
+    <script>
+        // 註冊 chart 滾動顯示
+        Chart.register(ChartDeferred);
+
+        const data1 = {
+            // 標題
+            labels: ['Technology Manufacturing', 'science and technology service', 'Finance and Insurance Industry', 'Government Organization & Culture and Education', 'Biotechnology industry', 'General Manufacturing', 'General service industry', 'Professional Services', 'Cultural and Creative Industries', 'something else'],
+            datasets: [{
+                // 標籤
+                label: 'NTU EMBA master’s program',
+                // 資料
+                data: [22.0, 17.7, 14.0, 1.2, 12.8, 7.9, 7.3, 4.9, 5.5, 6.7],
+                // 圖表背景色
+                backgroundColor: [
+                    'rgba(255, 180, 0)',
+                    'rgba(210, 152, 13)',
+                    'rgba(165, 124, 27)',
+                    'rgba(120, 96, 40)',
+                    'rgba(54, 52, 69)',
+                    'rgba(72, 68, 110)',
+					'rgba(94, 86, 155)',
+                    'rgba(119, 107, 205)',
+                    'rgba(144, 128, 255)',
+                    'rgba(198, 156, 249)'
+                ],
+            }]
+        };
+
+        const config1 = {
+            type: 'doughnut',
+            data: data1,
+            options: {
+                // 符合響應式
+                responsive: true,
+                plugins: {
+                    // 圖例
+                    legend: {
+                        position: 'right',
+                    },
+                    // 滾動顯示參數 
+                    // 因上面已註冊事件 所以這邊移除一樣會滾到才顯示 可以調整參數
+                    deferred: {
+                        yOffset: '50%', // defer until 50% of the canvas height are inside the viewport
+                        delay: 100      // delay of 500 ms after the canvas is considered inside the viewport
+                    }
+                }
+            },
+        };
+		const data2 = {
+            // 標題
+            labels: ['Technology Manufacturing', 'science and technology service', 'Finance and Insurance Industry', 'Government Organization & Culture and Education', 'Biotechnology industry', 'General Manufacturing', 'General service industry', 'Professional Services'],
+            datasets: [{
+                // 標籤
+                label: 'NTU-Fudan EMBA overseas program',
+                // 資料
+                data: [20.0, 23.3, 6.7, 10.0, 10.0, 16.7, 6.7, 6.6],
+                // 圖表背景色
+                backgroundColor: [
+                    'rgba(255, 180, 0)',
+                    'rgba(210, 152, 13)',
+                    'rgba(165, 124, 27)',
+                    'rgba(120, 96, 40)',
+                    'rgba(54, 52, 69)',
+                    'rgba(72, 68, 110)',
+					'rgba(94, 86, 155)',
+                    'rgba(119, 107, 205)'
+                ],
+            }]
+        };
+
+        const config2 = {
+            type: 'doughnut',
+            data: data2,
+            options: {
+                // 符合響應式
+                responsive: true,
+                plugins: {
+                    // 圖例
+                    legend: {
+                        position: 'right',
+                    },
+                    // 滾動顯示參數 
+                    // 因上面已註冊事件 所以這邊移除一樣會滾到才顯示 可以調整參數
+                    deferred: {
+                        yOffset: '50%', // defer until 50% of the canvas height are inside the viewport
+                        delay: 100      // delay of 500 ms after the canvas is considered inside the viewport
+                    }
+                }
+            },
+        };
+        new Chart(
+            document.getElementById('embaChart'),
+            config1
+        );
+        new Chart(
+            document.getElementById('fudanChart'),
+            config2
+        );
+    </script>
+
+    <script>
+        // 註冊 chart 滾動顯示
+        Chart.register(ChartDeferred);
+        const main_chart_data = {
+            // 標題
+            labels: ['proportion', 'remaining'],
+            datasets: [{
+                // 標籤
+                label: 'My First Dataset',
+                // 資料
+                data: [86, 14],
+                // 圖表背景色
+                backgroundColor: [
+                    'rgb(184,146,0)',
+                    'rgb(240,220,142)',
+                    'rgb(221,175,0)',
+                    'rgb(250,222,110)',
+                ],
+            }]
+        };
+        const sub_chart_data = {
+            // 標題
+            labels: ['proportion', 'remaining'],
+            datasets: [{
+                // 標籤
+                label: 'My First Dataset',
+                // 資料
+                data: [34, 66],
+                // 圖表背景色
+                backgroundColor: [
+                    'rgb(184,146,0)',
+                    'rgb(240,220,142)',
+                    'rgb(221,175,0)',
+                    'rgb(250,222,110)',
+                ],
+            }]
+        };
+
+        const main_chart_config = {
+            type: 'doughnut',
+            data: main_chart_data,
+            options: {
+                cutout: '75%',
+                responsive: true,
+                plugins: {
+                    // 圖例
+                    legend: {
+                        display: false
+                    },
+
+                }
+            },
+        };
+        const sub_chart_config1 = {
+            type: 'doughnut',
+            data: sub_chart_data,
+            options: {
+                cutout: '68%',
+                responsive: true,
+                plugins: {
+                    // 圖例
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        position: 'bottom',
+                        text: 'Manufacturing'
+                    }
+                }
+            },
+            // 中間區塊文字
+            plugins: [{
+                beforeDraw: function (chart, a, b) {
+                    var width = chart.width,
+                        height = chart.height,
+                        ctx = chart.ctx;
+
+                    ctx.restore();
+                    var fontSize = (height / 114).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+
+                    var text = "34%",
+                        textX = Math.round((width - ctx.measureText(text).width) / 2),
+                        textY = height / 2.7;
+
+                    ctx.fillText(text, textX, textY);
+                    ctx.save();
+                }
+            }]
+        };
+        const sub_chart_config2 = {
+            type: 'doughnut',
+            data: sub_chart_data,
+            options: {
+                cutout: '68%',
+                responsive: true,
+                plugins: {
+                    // 圖例
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        position: 'bottom',
+                        text: 'Service industry'
+                    }
+                }
+            },
+            // 中間區塊文字
+            plugins: [{
+                beforeDraw: function (chart, a, b) {
+                    var width = chart.width,
+                        height = chart.height,
+                        ctx = chart.ctx;
+
+                    ctx.restore();
+                    var fontSize = (height / 114).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+
+                    var text = "31%",
+                        textX = Math.round((width - ctx.measureText(text).width) / 2),
+                        textY = height / 2.7;
+
+                    ctx.fillText(text, textX, textY);
+                    ctx.save();
+                }
+            }]
+        };
+
+        const sub_chart_config3 = {
+            type: 'doughnut',
+            data: sub_chart_data,
+            options: {
+                cutout: '68%',
+                responsive: true,
+                plugins: {
+                    // 圖例
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        position: 'bottom',
+                        text: 'Financial industry'
+                    }
+                }
+            },
+            // 中間區塊文字
+            plugins: [{
+                beforeDraw: function (chart, a, b) {
+                    var width = chart.width,
+                        height = chart.height,
+                        ctx = chart.ctx;
+
+                    ctx.restore();
+                    var fontSize = (height / 114).toFixed(2);
+                    ctx.font = fontSize + "em sans-serif";
+                    ctx.textBaseline = "middle";
+
+                    var text = "21%",
+                        textX = Math.round((width - ctx.measureText(text).width) / 2),
+                        textY = height / 2.7;
+
+                    ctx.fillText(text, textX, textY);
+                    ctx.save();
+                }
+            }]
+        };
+
+
+        new Chart(
+            document.getElementById('myChart1'),
+            main_chart_config
+        );
+        new Chart(
+            document.getElementById('myChart2'),
+            sub_chart_config1
+        );
+        new Chart(
+            document.getElementById('myChart3'),
+            sub_chart_config2
+        );
+        new Chart(
+            document.getElementById('myChart4'),
+            sub_chart_config3
+        );
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="../javascripts/taiwan_map.js"></script>
+
+    <!-- Splide -->
+    <script src="../javascripts/splide.min.js"></script>
+    <script>
+        document.addEventListener( 'DOMContentLoaded', function () {
+            new Splide( '.splide' , {
+            perPage: 3,
+			autoplay: true,
+            type: 'loop',
+            drag: true,
+            flickMaxPages: 2,
+            updateOnMove: true,
+            breakpoints: {
+              1199: {
+                perPage: 2,
+              }, 
+			  767: {
+                perPage: 1,
+              },
+            }
+        }).mount();
+
+        } );
+    </script>
+<% end %>
+

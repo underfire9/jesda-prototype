@@ -1,0 +1,142 @@
+
+<!-- ntu: 學生 - STEP3: 文件上傳 -->
+
+<div class="container-lg">
+	<div class="page-content">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+				<div class="user-wrapper">
+				    <p><i class="far fa-user-circle"></i></p>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Angela Winson
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Change password</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                        </ul>
+                    </div>
+				</div>
+		        <div class="sidenav">
+                    <ul class="navigation step-navigation menu-item">
+                        <li>
+							<a class="nav-item" href="#">
+								<span class="step-small">Step 1</span>
+								<span class="step-briefly">申請課程</span>
+							</a>
+						</li>
+                        <li>
+							<a class="nav-item" href="#">
+								<span class="step-small">Step 2</span>
+								<span class="step-briefly">申請表填寫</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item current" href="#">
+								<span class="step-small">Step 3</span>
+								<span class="step-briefly">文件上傳</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="step-small">Step 4</span>
+								<span class="step-briefly">預覽申請資料</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="step-small">Step 5</span>
+								<span class="step-briefly">繳交報名費</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="step-small">Step 6</span>
+								<span class="step-briefly">送出申請</span>
+							</a>
+						</li>
+                    </ul>
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+			<h2 class="mb-4">文件上傳</h2>
+			<div class="upload-wrapper">
+				
+				<!-- 檔案上傳後多出 .file-pill，當再次上傳時則覆蓋上一筆，點選檔名另開視窗觀看文件 -->
+			    <div class="upload-item">
+				    <h4><span class="required">*</span> 照片</h4>
+					<p><%= lorem_sentence %></p>
+					<p><a href="#">範本下載</a></p>
+                    <div class="form-group">
+                          <input class="form-control" type="file" id="photoFile">
+                    </div>
+					<div class="ft-action">
+					    <span>
+							<button type="button" class="btn btn-primary">Upload</button>
+						</span>
+					</div>
+				</div>
+				<div class="upload-item">
+				    <h4><span class="required">*</span> 請上傳您的護照</h4>
+					<p>請上傳護照掃描檔</p>
+					<p><a href="#">範本下載</a></p>
+					<div class="form-group">
+                          <input class="form-control" type="file" id="passportFile">
+                    </div>
+					<div class="ft-action">
+					    <span>
+							<button type="button" class="btn btn-primary">Upload</button>
+						</span>
+						<span>
+                            <div class="file-pill">
+                                <!-- 避免檔名過長有限制最大寬度 140px，超出時會字元會省略 -->
+                                <a href="#" target="_blank" class="filename">避免檔名過長有限制最大寬度.jpg</a>
+                                <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-action">
+				<button type="button" class="btn btn-lg btn-light">上一步</button>
+				<button type="button" class="btn btn-lg btn-light">下一步</button>
+				<span class="backhome"><a href="#" class="btn btn-lg btn-link"><i class="fas fa-long-arrow-alt-left"></i> 回首頁</a></span>
+			</div>
+		</main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>
+

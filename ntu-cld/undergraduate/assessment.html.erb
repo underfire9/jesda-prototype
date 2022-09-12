@@ -1,0 +1,100 @@
+
+<!-- ntu: 在學生 - 教學評量填寫 -->
+
+<div class="container-lg">
+	<div class="page-content">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+				<div class="user-wrapper">
+				    <p><i class="far fa-user-circle"></i></p>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Angela Winson
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Change password</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                        </ul>
+                    </div>
+				</div>
+		        <div class="sidenav">
+                    <ul class="navigation menu-item">
+                        <li><a class="nav-item" href="#">首頁</a></li>
+                        <li><a class="nav-item" href="#">報名紀錄查詢</a></li>
+						<li><a class="nav-item" href="#">繳費作業</a></li>
+                        <li><a class="nav-item" href="#">獎學金資料上傳</a></li>
+						<li><a class="nav-item" href="#">表單申請紀錄</a></li>
+                    </ul>
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+			<section class="application-section resume-section">
+				<h4 class="section-title unafter">
+                    <span>教學評量填寫</span>
+                </h4>
+				<div class="assessment-wrapper">
+					<% (1..12).map do |i| %>
+					<!-- 編號為 css 產生 -->
+                    <div class="form-group">
+						<div class="group-inner">
+                            <label class="form-label"><%= lorem_paragraph %></label>
+                            <div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="assessmentQ1" id="assessmentA01" value="option1">
+                                    <label class="form-check-label" for="assessmentA01"><%= lorem_sentence %></label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="assessmentQ1" id="assessmentA02" value="option2">
+                                    <label class="form-check-label" for="assessmentA02"><%= lorem_sentence %></label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="assessmentQ1" id="assessmentA03" value="option3">
+                                    <label class="form-check-label" for="assessmentA03"><%= lorem_sentence %></label>
+                                </div>
+                            </div>
+						</div>
+                    </div>
+					<% end %>
+				</div>
+			</section>
+            <div class="form-action">
+                <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+			</div>
+		</main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>
+

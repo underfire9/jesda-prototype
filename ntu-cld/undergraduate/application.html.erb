@@ -1,0 +1,157 @@
+
+<!-- ntu: 在學生 - 表單申請表 -->
+
+<div class="container-lg">
+	<div class="page-content">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+				<div class="user-wrapper">
+				    <p><i class="far fa-user-circle"></i></p>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Angela Winson
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Change password</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                        </ul>
+                    </div>
+				</div>
+		        <div class="sidenav">
+                    <ul class="navigation menu-item">
+                        <li><a class="nav-item" href="#">首頁</a></li>
+                        <li><a class="nav-item" href="#">報名紀錄查詢</a></li>
+						<li><a class="nav-item" href="#">繳費作業</a></li>
+                        <li><a class="nav-item" href="#">獎學金資料上傳</a></li>
+						<li><a class="nav-item current" href="#">表單申請紀錄</a></li>
+                    </ul>
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+			<h2 class="mb-4">表單申請表</h2>
+            <section class="application-section label-fwb">
+				<div class="row">
+				    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="form-label">申請人</label>
+                            <input type="text" class="form-control" value="Angela Winson" disabled>
+                        </div>
+					</div>
+					<div class="col-sm-8">
+                        <div class="form-group">
+                            <label class="form-label">申請項目</label>
+                            <div>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="1">在學證明及出席紀錄申請</option>
+                                    <option value="2">123</option>
+                                </select>
+                            </div>
+                        </div>
+					</div>
+				</div>
+                <div class="form-group">
+                    <label class="form-label">申請用途</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="applicationRadio" id="applicationRadio1" />
+                        <label class="form-check-label" for="applicationRadio1">
+                            visa application (including one copy of both the enrollment certificate and attendance record)
+                        </label>
+                    </div>
+					<div class="form-check">
+                        <input class="form-check-input" type="radio" name="applicationRadio" id="applicationRadio2" />
+                        <label class="form-check-label" for="applicationRadio2">
+                            ARC application (including 2 copies of all the enrollment certificate, attendance record and grade report of last season)
+                        </label>
+                    </div>
+					<div class="form-check">
+                        <input class="form-check-input" type="radio" name="applicationRadio" id="applicationRadio3" />
+                        <label class="form-check-label" for="applicationRadio3">
+                            ARC extension (including one copy of both the enrollment certificate and attendance record)
+                        </label>
+                    </div>
+					<div class="form-check">
+                        <input class="form-check-input" type="radio" name="applicationRadio" id="applicationRadio4" />
+                        <label class="form-check-label" for="applicationRadio4">
+                            English Enrollment Certificate
+                        </label>
+                    </div>
+					<div class="d-flex align-items-center">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="applicationRadio" id="applicationRadio5" />
+                            <label class="form-check-label" for="applicationRadio5">
+                                其他
+                            </label>
+                        </div>
+						<span class="ms-2"><input type="text" class="form-control"></span>
+					</div>
+                    <div class="notice-wrapper has-background mt-3">
+                        <h4 class="notice-title">說明</h4>
+                        <p><%= lorem_paragraph %></p>
+                    </div>
+                </div>
+				<div class="form-group">
+                    <label class="form-label">Have you already paid the tuition fee for the coming season?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paidRadio" id="paidRadio1" />
+                        <label class="form-check-label" for="paidRadio1">
+                            Yes
+                        </label>
+                    </div>
+					<div class="form-check">
+                        <input class="form-check-input" type="radio" name="paidRadio" id="paidRadio2" />
+                        <label class="form-check-label" for="paidRadio2">
+                            No (The enrollment certificate will be valid till the end of this season)
+                        </label>
+                    </div>
+					<div class="form-check">
+                        <input class="form-check-input" type="radio" name="paidRadio" id="paidRadio3" />
+                        <label class="form-check-label" for="paidRadio3">
+                            Pay tomorrow and pick up the documents at the same time After you pay the tuition fee of the coming season, your enrollment certificate will be valid for another 3 months)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="form-label">備註</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+            </section>
+			<div class="form-action">
+                <button type="submit" class="btn btn-lg btn-primary">送出申請資料</button>
+			</div>
+		</main>
+	</div>
+</div>
+
+
+<%= render :partial => "/partials/upload-history" %>
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>
+

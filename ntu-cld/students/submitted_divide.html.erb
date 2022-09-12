@@ -1,0 +1,105 @@
+
+<!-- ntu: 學生 - 已送出: 分班結果 -->
+
+<div class="container-lg">
+	<div class="page-content">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+				<div class="user-wrapper">
+				    <p><i class="far fa-user-circle"></i></p>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Angela Winson
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Change password</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                        </ul>
+                    </div>
+				</div>
+		        <div class="sidenav">
+                    <ul class="navigation menu-item">
+                        <li>
+							<a class="nav-item" href="#">瀏覽申請紀錄</a>
+						</li>
+                        <li>
+							<a class="nav-item" href="#">
+								退補件 <span class="badge rounded-pill bg-danger">1</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">繳交學費</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">註冊單填寫</a>
+						</li>
+						<li>
+							<a class="nav-item current" href="#">分班結果</a>
+						</li>
+                    </ul>
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+			<h2 class="mb-4">分班結果</h2>
+			<h4 class="fw-bold mb-4">2022 Spring Quarter (2022/06/01 ~ 2022/09/31)</h4>
+		    <div class="notice-wrapper">
+			    <h4 class="notice-title">注意事項</h4>
+				<p><%= lorem_paragraph %></p>
+				<ol>
+					<% (1..3).map do |i| %>
+				    <li><%= lorem_sentence %></li>
+					<% end %>
+				</ol>
+			</div>
+			<div class="divide-wrapper">
+                <div class="form-group">
+                    <label>您的班級</label>
+                    <p class="output">202103A05</p>
+                </div>
+                <div class="form-group">
+                    <label>上課時間</label>
+                    <p class="output">(A) 08:20-11:10</p>
+                </div>
+                <div class="form-group">
+                    <label>教材</label>
+                    <p class="output">當代中文課程(五)</p>
+                </div>
+                <div class="form-group">
+                    <label>教室</label>
+                    <p class="output">202教室</p>
+                </div>
+			</div>
+		</main>
+	</div>
+</div>
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>
+

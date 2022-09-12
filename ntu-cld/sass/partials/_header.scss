@@ -1,0 +1,170 @@
+
+/* `Header
+-----------------------------------------------------------------------------*/
+
+header.header {
+	position: relative;
+	padding-bottom: 88px;
+	overflow: hidden;
+	.header-function { text-align: end; }
+	.language {
+		a {
+			display: inline-block;
+			border-radius: 50%;
+			margin-left: .5rem;
+			padding: .5rem 1rem;
+			color: #fff;
+			&:hover {
+				color: rgba(#fff, .6);
+			}
+			&.current {
+				background: #fff;
+				color: #111;
+				cursor: default;
+			}
+		}
+	}
+}
+
+.header-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+	flex-direction: row-reverse;
+	padding-top: 40px;
+	position: relative;
+	&:after {
+		content: "";
+		background: url("../assets/bg-wave.svg");
+		background-size: cover;
+		width: 586px;
+		height: 156px;
+		position: absolute;
+		right: -120px;
+		top: 0;
+		z-index: -1;
+	}
+	.brands-link {
+		display: flex;
+		align-items: center;
+	}
+	.h1-logo {
+		display: block;
+		width: auto;
+		height: 80px;
+	}
+	.sub {
+		margin-left: 18px;
+	}
+	.h2-logo {
+		display: block;
+		width: auto;
+		height: 74px;
+	}
+}
+
+.toggler-wrap {
+	display: none;
+	padding-top: 6px;
+}
+.button-widget {
+	border: none;
+	padding: 0;
+}
+
+.hamburger {
+    .line {
+        width: 32px;
+        height: 3px;
+        background-color: #fff;
+        display: block;
+        margin: 5px auto;
+    }
+}
+
+.header-right {
+	text-align: end;
+}
+
+/* `Responsive
+-----------------------------------------------------------------------------*/
+
+@media (max-width: 1199px) {
+	header.header {
+		padding-bottom: 40px;
+		.header-function {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background: $main_color;
+			margin: 0 -12rem;
+			padding: 0 12rem;
+		}
+		.language {
+			a {
+				padding: .5rem !important;
+				&.current {
+                    background-color: transparent;
+                }
+			}
+		}
+	}
+	.header-wrap {
+		display: block;
+		padding-top: 0;
+		height: auto;
+		.brands {
+			padding: 1.25rem 0;
+		}
+		&:after { content: none; }
+	}
+	.toggler-wrap {
+		display: block;
+	}
+}
+
+@media (max-width: 991px) {
+	header.header {
+		padding-bottom: 32px;
+		.header-function {
+			margin: 0 -12px;
+			padding: 0 12px;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.header-wrap {
+		.h1-logo {
+			height: 72px;
+		}
+		.h2-logo {
+			height: 64px;
+		}
+	}
+}
+
+@media (max-width: 575px) {
+	header.header {
+		padding-bottom: 24px;
+	}
+	.header-wrap {
+		.h1-logo {
+			height: 68px;
+		}
+		.h2-logo {
+			height: 56px;
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.header-wrap {
+		.h1-logo {
+			height: 62px;
+		}
+		.h2-logo {
+			height: 37px;
+		}
+	}
+}

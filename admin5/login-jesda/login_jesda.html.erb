@@ -1,7 +1,7 @@
 <!-- admin-page: Jesda login -->
 
 <% content_for :replace_css do %>
-    <link rel="stylesheet" media="screen" href="../stylesheets/vendor/bootstrap/bootstrap.css">
+    <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/bootstrap.css">
     <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/mdb.min.css">
     <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/backend.css">
 <% end %>
@@ -15,28 +15,29 @@
             <h5>Jesda 管理系統</h5>
 		</hgroup>
         <form>
-            <div class="form-outline mb-3">
-                <input type="text" id="loginFormEmail" class="form-control" />
-                <label class="form-label" for="loginFormEmail">帳號</label>
+            <div class="form-group">
+				<label class="form-label" for="loginFormEmail">帳號</label>
+                <input type="email" id="loginFormEmail" class="form-control" />
             </div>
-			<div class="form-outline mb-3">
-                <input type="text" id="loginFormPassword" class="form-control" />
-                <label class="form-label" for="loginFormPassword">密碼</label>
+			<div class="form-group">
+				<label class="form-label" for="loginFormPassword">密碼</label>
+                <input type="password" id="loginFormPassword" class="form-control" />
+                
             </div>
-            <div class="d-flex align-items-center">
-                <div class="col-7">
-                    <div class="form-outline">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+						<label class="form-label" for="loginFormCAPTCHA">驗證碼</label>
                         <input type="text" id="loginFormCAPTCHA" class="form-control" />
-                        <label class="form-label" for="loginFormCAPTCHA">驗證碼</label>
                     </div>
                 </div>
-                <span class="col-5 input-group-addon verification ms-2">
+                <div class="col-md-6 input-group-addon verification">
                     <img src="http://nfu-map.dev.com.tw/common/captcha.image">
 					<button class="btn btn-xs btn-primary mx-0" type="button">Refresh</button>
-                </span>
+                </div>
             </div>
             <div class="text-center">
-                <button class="btn btn-outline-primary btn-rounded my-4 z-depth-0" type="submit">登入</button>
+                <button class="btn btn-lg btn-outline-primary btn-rounded my-4 z-depth-0" type="submit">登入</button>
             </div>
 			<p class="forget-password"><a href="password.html">忘記密碼?</a></p>
         </form>

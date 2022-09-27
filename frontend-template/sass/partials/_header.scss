@@ -4,7 +4,7 @@
 
 header.header {
 	position: relative;
-	margin-bottom: 2.5rem;
+	margin-bottom: 4rem;
 	.dropdown-toggle {
 		background-color: transparent;
 		border: none;
@@ -43,6 +43,17 @@ header.header {
 		padding: 1.5rem 0;
 		h2 {
 			margin-bottom: 0;
+		}
+	}
+	.btn-login {
+		margin-left: 1rem;
+		i {
+			margin-right: .25rem;
+			color: #aaa;
+			transition: all 0.2s ease-in-out
+		}
+		&:hover, &:active {
+			i { color: #333; }
 		}
 	}
 }
@@ -86,21 +97,31 @@ header.header {
 /* `Responsive
 -----------------------------------------------------------------------------*/
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
 	header.header {
 		.header-function {
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
 			border-bottom: 1px dotted $base_border_color;
 			padding: .5rem 0 .5rem;
 		}
-		.language { margin-bottom: 0; }
+		.language {
+			margin-bottom: 0;
+			display: inline-block;
+		}
+		.toggler-wrap { display: block; }
 	}
 	.header-wrap {
 		display: block;
 		height: auto;
+		.account { display: inline-block; }
 		.brands {
 			padding: 1.25rem 0;
 		}
 	}
+}
+
+@media (max-width: 991px) {
+	header.header { margin-bottom: 2.5rem; }
 }

@@ -1,48 +1,112 @@
 
+@import "widgets/variables";
+
 /* `Header
 -----------------------------------------------------------------------------*/
 
+$account_height: 83px;
+$language_height: 37px;
+
 header.header {
 	position: relative;
-	margin-bottom: 2.5rem;
+	margin-bottom: 4rem;
 	.dropdown-toggle {
 		background-color: transparent;
 		border: none;
 		padding: 0;
-	}
-	.header-function { text-align: end; }
-	.language {
-		margin-bottom: 0.5rem;
-		font-size: 0.9375rem;
-		a {
-			display: inline-block;
-			padding: 0 0.5rem;
-			position: relative;
-			color: #999;
-			&:hover { color: $main_color; }
-			&.current {
-				cursor: default;
-				color: #000;
-			}
-			&:after {
-				content: "";
-				background: #e5e5e5;
-				width: 1px;
-				height: 16px;
-				position: absolute;
-				right: -0.125rem;
-				top: 0.25rem;
-			}
-			&:last-child:after {
-				content: none;
-			}
-		}
+		transition: all 0.2s ease-in-out;
+        &:hover {
+            background: rgba(#fff, .65);
+            color: $com_color;;
+        }
 	}
 	.sys-subject {
-		background: url("../assets/dot.png") left top repeat;
-		padding: 1.5rem 0;
+		background: url("../assets/dot2.png") left top repeat;
+		.inner {
+			background: $com_color;
+			padding: 1.5rem 0 1.5rem 1.5rem;
+			position: relative;
+			&:before, &:after {
+				content: "";
+				background: $com_color url("../assets/dot.png") left top repeat;
+				width: 1.5rem;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+			}
+			&:before {
+				left: -1.5rem;
+			}
+			&:after {
+				right: -1.5rem;
+			}
+		}
 		h2 {
 			margin-bottom: 0;
+			color: #fff;
+		}
+	}
+	.dropdown-menu {
+		border-radius: 0;
+		border-color: #4d4d4d;
+	}
+}
+
+.header-right {
+	display: flex;
+	flex-direction: column;
+	background: url("../assets/dot2.png") left top repeat;
+	border-left: 1px solid rgba($base_border_color, 0);
+	border-right: 1px solid rgba($base_border_color, 0);
+	height: 120px;
+	text-align: end;
+	.language {
+		border-bottom: 1px solid rgba(#ddd, 1);
+		padding-left: $language_height + 3px;
+		height: $language_height;
+		line-height: $language_height;
+		position: relative;
+		a {
+			display: inline-block;
+			background: #4d4d4d;
+			padding: 0 1rem;
+			color: #fff;
+			position: relative;
+			&:hover { background: $com_color; }
+            &:before {
+                content: "\f57d";
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+				color: #bfbfbf;
+                position: absolute;
+                left: -28px;
+                top: 0;
+				pointer-events: none;
+            }
+		}
+	}
+	.account {
+		flex: 1;
+		.dropdown {
+			display: flex;
+			flex-direction: column;
+			height: $account_height;
+		}
+		.dropdown-toggle {
+			flex: 1;
+			text-align: end;
+			padding: 0 1rem;
+		}
+		.btn-login {
+			display: block;
+			padding: 0 1rem;
+			height: $account_height;
+			color: #111;
+			line-height: $account_height;
+			&:hover {
+				background: rgba(#fff, .5);
+				color: $com_color;;
+			}
 		}
 	}
 }
@@ -53,9 +117,6 @@ header.header {
     align-items: center;
 	flex-direction: row-reverse;
     height: 120px;
-	.account {
-		padding: 0 0.5rem;
-	}
 	.brands-link {
 		display: flex;
 		align-items: center;
@@ -79,28 +140,3 @@ header.header {
 	}
 }
 
-.header-right {
-	text-align: end;
-}
-
-/* `Responsive
------------------------------------------------------------------------------*/
-
-@media (max-width: 991px) {
-	header.header {
-		.header-function {
-			display: flex;
-			justify-content: space-between;
-			border-bottom: 1px dotted $base_border_color;
-			padding: .5rem 0 .5rem;
-		}
-		.language { margin-bottom: 0; }
-	}
-	.header-wrap {
-		display: block;
-		height: auto;
-		.brands {
-			padding: 1.25rem 0;
-		}
-	}
-}

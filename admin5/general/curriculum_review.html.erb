@@ -100,7 +100,409 @@
 				</div>
 				<div><a href="#" class="btn btn-secondary"><i class="fas fa-history"></i> 歷史資料</a></div>
 			</div>
-			<div class="stage-view">PDF 檢視文件</div>
+			<div class="stage-view">
+<form method="post" action="http://127.0.0.1:5002/common/filter/add/sender_module/workbench/sender_controller/test.api.new/pid/633cffa7db594" id="form">
+    <table class="table" style="background: rgb(255, 255, 255); width: auto; --darkreader-inline-bgimage: initial; --darkreader-inline-bgcolor: #181a1b;" data-darkreader-inline-bgimage="" data-darkreader-inline-bgcolor="">
+        <thead>
+            <tr>
+                <th colspan="2"></th>
+                <th>
+                    <select class="input-small" id="logic" name="logic">
+                        <option value="AND">AND</option>
+                        <option value="OR">OR</option>
+                    </select>
+                </th>
+                <th>
+                    <div class="input-prepend">
+                        <span class="add-on">欄位</span>
+                        <select id="field" name="field" class="input-medium">
+                            <option value="name">名稱</option>
+                            <option value="test_year">年</option>
+                            <option value="test_date">日期</option>
+                            <option value="test_date_time">日期時間</option>
+                            <option value="test_check_box&amp;test_table_test_check_box">複選項目垂直</option>
+                            <option value="test_radio&amp;test_table_test_radio">單選項目垂直</option>
+                            <option value="test_ck_editor">編輯器</option>
+                        </select>
+                    </div>
+                </th>
+                <th>
+                    <!-- operator block -->
+                    <div class="input-prepend">
+                        <span class="add-on">條件</span>
+                        <select name="operator" id="operator" class="input-small">
+                            <option value="Equal">等於</option>
+                            <option value="Contain">包含</option>
+                        </select>
+                    </div>
+                    <!-- enum -->
+                    <span id="enum" class="hide column" style="display: none;">
+                        <select name="enumValue" id="enumValue" disabled="disabled"></select>
+                    </span>
+
+                    <!-- string -->
+                    <span id="string" class="hide column" style="">
+                        <input class="span3" name="stringValue" id="stringValue" type="text" />
+                    </span>
+
+                    <!-- stringBetween -->
+                    <span id="stringBetween" class="hide column" style="display: none;">
+                        <div class="input-prepend input-append" disabled="disabled">
+                            <input class="span3" name="stringMin" id="stringMin" type="text" />
+                            <span class="add-on">到</span>
+                            <input class="span3" name="stringMax" id="stringMax" type="text" />
+                        </div>
+                    </span>
+
+                    <!-- integer -->
+                    <span id="integer" class="hide column" style="display: none;">
+                        <input class="span3" name="integerValue" id="integerValue" type="text" disabled="disabled" />
+                    </span>
+
+                    <!-- integerBetween -->
+                    <span id="integerBetween" class="hide column" style="display: none;">
+                        <div class="input-prepend input-append" disabled="disabled">
+                            <input class="span2" name="integerMin" id="integerMin" type="text" />
+                            <span class="add-on">到</span>
+                            <input class="span2" name="integerMax" id="integerMax" type="text" />
+                        </div>
+                    </span>
+
+                    <!-- date -->
+                    <span id="select" class="hide column" style="display: none;">
+                        <select id="selectValue" name="selectValue" disabled="disabled"></select>
+                    </span>
+
+                    <!-- date -->
+                    <span id="date" class="hide column" style="display: none;">
+                        <input name="dateValue" class="datepicker span3" id="dateValue" type="text" disabled="disabled" />
+                    </span>
+
+                    <!-- dateBetween -->
+                    <span id="dateBetween" class="hide column" style="display: none;">
+                        <div class="input-prepend" disabled="disabled">
+                            <span class="add-on">開始</span>
+                            <input name="dateMin" class="datepicker span2" id="dateMin" type="text" />
+                        </div>
+
+                        <div class="input-prepend" disabled="disabled">
+                            <span class="add-on">結束</span>
+                            <input name="dateMax" class="datepicker span2" id="dateMax" type="text" />
+                        </div>
+                    </span>
+
+                    <!-- datetime -->
+                    <span id="datetime" class="hide column" style="display: none;">
+                        <input name="datetimeValue" class="datepicker span2" type="text" id="datetimeValue" size="12" maxlength="10" disabled="disabled" />
+
+                        <div class="input-append" disabled="disabled">
+                            <select class="input-mini" name="datetimeHourValue" id="datetimeHourValue">
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                            </select>
+                            <span class="add-on">時</span>
+                        </div>
+
+                        <div class="input-append" disabled="disabled">
+                            <select class="input-mini" name="datetimeMinuteValue" id="datetimeMinuteValue">
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                            </select>
+                            <span class="add-on">分</span>
+                        </div>
+                    </span>
+
+                    <!-- datetimeBetween -->
+                    <span id="datetimeBetween" class="hide column" style="display: none;">
+                        <div class="input-prepend" disabled="disabled">
+                            <span class="add-on">開始</span>
+                            <input name="datetimeMin" class="datepicker span2" type="text" id="datetimeMin" size="12" maxlength="10" />
+                        </div>
+
+                        <div class="input-append" disabled="disabled">
+                            <select class="input-mini" name="datetimeHourMin" id="datetimeHourMin">
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                            </select>
+                            <span class="add-on">時</span>
+                        </div>
+
+                        <div class="input-append" disabled="disabled">
+                            <select class="input-mini" name="datetimeMinuteMin" id="datetimeMinuteMin">
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                            </select>
+                            <span class="add-on">分</span>
+                        </div>
+
+                        <div class="input-prepend" disabled="disabled">
+                            <span class="add-on">結束</span>
+                            <input name="datetimeMax" type="text" class="datepicker span2" id="datetimeMax" size="12" maxlength="10" />
+                        </div>
+
+                        <div class="input-append" disabled="disabled">
+                            <select class="input-mini" name="datetimeHourMax" id="datetimeHourMax">
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                            </select>
+                            <span class="add-on">時</span>
+                        </div>
+
+                        <div class="input-append" disabled="disabled">
+                            <select class="input-mini" name="datetimeMinuteMax" id="datetimeMinuteMax">
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                            </select>
+                            <span class="add-on">分</span>
+                        </div>
+                    </span>
+
+                    <button type="submit" class="btn" style="vertical-align: top;"><i class="icon-plus"></i>加入條件</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</form>
+
+			</div>
 		</div>
 	</div>
 	

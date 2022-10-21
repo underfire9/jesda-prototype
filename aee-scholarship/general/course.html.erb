@@ -1,0 +1,88 @@
+<!-- template: 單一節次 -->
+
+<div class="container-lg">
+	
+	<!-- 當 sidebar 需要 sticky 時 page-content 加上 .has-sticky -->
+	<div class="page-content has-sticky">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+		        <div class="sidenav">
+					
+					<!-- 因 step 有 position，當 main 高度不足時 step 會與 footer 重疊，因此需要前端協助用 js 判斷 .step-wrap 的高度後，將 min-height 塞進 .main 裡 -->
+					<div class="step-wrap side-sticky">
+                        <ul class="course-navigation menu-item">
+                            <li><a class="nav-item" href="#">報名表</a></li>
+                            <li>
+                                <a class="nav-item" data-bs-toggle="collapse" href="#collapseMenu" role="button" aria-expanded="false" aria-controls="collapseMenu">
+                                    課程 <i class="fas fa-angle-down"></i>
+                                </a>
+                                <div class="collapse" id="collapseMenu">
+                                    <ul class="menu-item">
+                                        <li><a class="nav-item" href="#">第 1 節課</a></li>
+                                        <% (2..5).map do |i| %>
+                                        <li><a class="nav-item" href="#">第 <%= i %> 節課</a></li>
+                                        <% end %>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="nav-item" href="#">問卷</a></li>
+                            <li><a class="nav-item" href="#">心得</a></li>
+							<li><a class="nav-item" href="#">活動成果查詢</a></li>
+                            <li><a class="nav-item" href="#">活動問題諮詢</a></li>
+                        </ul>
+					</div>
+					
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+			<div class="page-title">
+			    <h3>第 1 節課</h3>
+			</div>
+			<div class="mb-4">
+			    <p><%= lorem_paragraphs(4) %></p>
+			</div>
+			<div class="mb-3">
+                <h5>簽到時間</h5>
+                <p><span class="badge badge-normal rounded-pill text-bg-secondary">2000-12-01 12:00</span></p>
+			</div>
+			<div class="mb-3">
+                <h5>簽退時間</h5>
+                <p><span class="badge badge-normal rounded-pill text-bg-secondary">2022-12-01 12:00</span></p>
+			</div>
+			<div class="mb-3">
+                <h5>參與時數</h5>
+                <p><span class="badge badge-normal rounded-pill text-bg-secondary">9999 小時</span></p>
+			</div>
+			<div class="mb-3">
+                <h5>線上會議室連結</h5>
+                <p><a href="https://www.google.com.tw/">https://www.google.com.tw/</a></p>
+			</div>
+		</main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+    <script>
+        var stickEl = $('.side-sticky'),
+          stickyElTop = stickEl.offset().top;
+
+        var sticky = function(){  
+          var scrollTop = $(window).scrollTop();  
+
+          if (stickyElTop < scrollTop+20) {   
+              stickEl.addClass('is-fixed');  
+          } else {  
+              stickEl.removeClass('is-fixed');   
+          }  
+        };
+
+        $(window).scroll(function() {
+          sticky();
+        }); 
+    </script>
+<% end %>
+

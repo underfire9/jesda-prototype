@@ -136,7 +136,7 @@
 
 .notice-wrapper {
 	border-radius: .375rem;
-	background: url(../assets/dot.png) left top repeat;
+	background: #fbfdff url(../assets/dot2.png) left top repeat;
 	margin-bottom: 3rem;
 	padding: 1.25rem;
 	.notice-title { color: orangered; }
@@ -221,6 +221,26 @@ section.section {
                 left: 50%;
                 top: -1.625rem
             }
+		}
+	}
+}
+
+.roll_call-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #f9f9f9 url(../assets/bg-striped2.png) left top repeat;
+	margin: -3rem 0 3rem;
+	padding: 3rem;
+	min-height: 363px;
+	text-align: center;
+	.qrcode-wrap {
+		background: #fff;
+		padding: 4rem;
+		max-width: 480px;
+		.qrcode {
+			width: 100%;
+			height: auto;
 		}
 	}
 }
@@ -341,6 +361,13 @@ section.section {
 			.label { color: #333; }
 		}
 	}
+	&.event-dashboard {
+		.event-item {
+			&:first-child {
+				margin-left: 0 !important;
+			}
+		}
+	}
 }
 
 /* `Event page
@@ -375,7 +402,7 @@ section.section {
 		font-weight: bold;
 		position: relative;
 		&:after {
-			content: "";
+			content: none;
 			background: #e5e5e5;
 			width: 100%;
 			height: 1px;
@@ -397,9 +424,9 @@ section.section {
 			padding-bottom: .5rem;
 			padding-left: 3rem;
 			&:last-child {
-                border-bottom: none;
-                margin-bottom: 0;
-                padding-bottom: 0;
+                border-bottom: none !important;
+                margin-bottom: 0 !important;
+                padding-bottom: 0 !important;
 			}
 		}
 		span {
@@ -723,6 +750,16 @@ section.section {
 			}
 		}
 	}
+	.event-content {
+		.event-aside {
+			width: 300px;
+		}
+	}
+	.course-navigation {
+		.nav-item {
+			border-radius: 0;
+		}
+	}
 }
 
 @media (max-width: 991px) {
@@ -743,6 +780,27 @@ section.section {
 	.index-content {
 		.event-item {
 			margin-bottom: 1.5rem;
+		}
+	}
+	.event-content {
+		display: block;
+		.event-aside {
+			margin-left: 0;
+			margin-bottom: 3rem;
+			width: 100%;
+			&:after {
+				content: none;
+			}
+		}
+		.aside-title {
+			margin-left: 0;
+		}
+		.menu-item.event-detail {
+			li {
+				padding-left: 0;
+				margin-bottom: .375rem;
+				padding-bottom: .375rem;
+			}
 		}
 	}
 }
@@ -782,3 +840,10 @@ section.section {
 	}
 }
 
+@media (max-width: 575px) {
+    .roll_call-wrapper {
+        .qrcode-wrap {
+            padding: 2rem;
+        }
+    }
+}

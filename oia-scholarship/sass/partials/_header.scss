@@ -1,0 +1,142 @@
+
+@import "widgets/variables";
+
+/* `Header
+-----------------------------------------------------------------------------*/
+
+$account_height: 83px;
+$language_height: 37px;
+
+header.header {
+	position: relative;
+	margin-bottom: 4rem;
+	.dropdown-toggle {
+		background-color: transparent;
+		border: none;
+		padding: 0;
+		transition: all 0.2s ease-in-out;
+        &:hover {
+            background: rgba(#fff, .65);
+            color: $com_color;;
+        }
+	}
+	.sys-subject {
+		background: url("../assets/dot2.png") left top repeat;
+		.inner {
+			background: $com_color;
+			padding: 1.5rem 0 1.5rem 1.5rem;
+			position: relative;
+			&:before, &:after {
+				content: "";
+				background: $com_color url("../assets/dot.png") left top repeat;
+				width: 1.5rem;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+			}
+			&:before {
+				left: -1.5rem;
+			}
+			&:after {
+				right: -1.5rem;
+			}
+		}
+		h2 {
+			margin-bottom: 0;
+			color: #fff;
+		}
+	}
+	.dropdown-menu {
+		border-radius: 0;
+		border-color: #4d4d4d;
+	}
+}
+
+.header-right {
+	display: flex;
+	flex-direction: column;
+	background: url("../assets/dot2.png") left top repeat;
+	border-left: 1px solid rgba($base_border_color, 0);
+	border-right: 1px solid rgba($base_border_color, 0);
+	height: 120px;
+	text-align: end;
+	.language {
+		border-bottom: 1px solid rgba(#ddd, 1);
+		padding-left: $language_height + 3px;
+		height: $language_height;
+		line-height: $language_height;
+		position: relative;
+		a {
+			display: inline-block;
+			background: #4d4d4d;
+			padding: 0 1rem;
+			color: #fff;
+			position: relative;
+			&:hover { background: $com_color; }
+            &:before {
+                content: "\f57d";
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+				color: #bfbfbf;
+                position: absolute;
+                left: -28px;
+                top: 0;
+				pointer-events: none;
+            }
+		}
+	}
+	.account {
+		flex: 1;
+		.dropdown {
+			display: flex;
+			flex-direction: column;
+			height: $account_height;
+		}
+		.dropdown-toggle {
+			flex: 1;
+			text-align: end;
+			padding: 0 1rem;
+		}
+		.btn-login {
+			display: block;
+			padding: 0 1rem;
+			height: $account_height;
+			color: #111;
+			line-height: $account_height;
+			&:hover {
+				background: rgba(#fff, .5);
+				color: $com_color;;
+			}
+		}
+	}
+}
+
+.header-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+	flex-direction: row-reverse;
+    height: 120px;
+	.brands-link {
+		display: flex;
+		align-items: center;
+		color: #333;
+	}
+	.h1-logo {
+		display: block;
+		width: auto;
+		height: 72px;
+	}
+	.sub {
+		margin-left: 1rem;
+		span {
+			display: block;
+			font-size: 1.5rem;
+		}
+		.en {
+			font-size: 1rem;
+			line-height: 1.3;
+		}
+	}
+}
+

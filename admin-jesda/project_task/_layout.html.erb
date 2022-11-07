@@ -1,0 +1,86 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/admin_head" %>
+</head>
+<body>
+    <div class="workspace" canvas="container">
+    <% if content_for? :sidebar %>
+        <%= yield :sidebar %>
+    <% else %>
+        <%= render :partial => "/partials/admin_sidebar" %>
+    <% end %>
+    <div class="page">
+        <div class="page-inner">
+			
+            <!-- 工作任務只需在 .page-wrapper 旁加上 .page-height 即可，兩隻 full-page.css 以及 kanban.css 已整合到 .page-wrapper.page-height 之下 -->
+			<!-- 專案管理其餘頁面不要給 .page-height -->
+            <div class="page-wrapper page-height">
+                <% if content_for? :header %>
+                    <%= yield :header %>
+                <% else %>
+                    <%= render :partial => "/partials/admin_header" %>
+                <% end %>
+                <div class="content-wrapper clearfix">
+                    <%= yield %>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">國立大專院校學院承辦人教師資料管理表單產生器</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><%= zh_lorem_words(10) %></p>
+					<p><%= zh_lorem_words(8) %></p>
+					<p><%= lorem_words(20) %></p>
+					<p><%= zh_lorem_words(8) %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+    <script src="../javascripts/sidenav.js"></script>
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+	<script src="../javascripts/slidebars.min.js"></script>
+    <script src="../javascripts/slidebars.scripts.js"></script>
+	<script src="../javascripts/jquery.slimscroll.js"></script>
+	<script src="../javascripts/frontend-editor/chunk-vendors.js"></script>
+    <script src="../javascripts/frontend-editor/formEditor.js"></script>
+    <script src="../javascripts/frontend-editor/webEditor.js"></script>
+	<script src="../javascripts/tooltipster.bundle.js"></script>
+
+    <script>
+		
+        $('.sidebar-scroll').slimscroll({
+            height: '100%'
+        });
+		
+		// jQuery scrollbar
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+		
+        // Tooltips Initialization
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+	
+
+    <%= yield :js %>
+</body>
+</html>

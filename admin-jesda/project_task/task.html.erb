@@ -1,0 +1,771 @@
+<!-- admin-page: 專案事項 - 工作任務 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="project_board-wrapper">
+	    <nav class="navigation">
+		    <ul class="project-nav menu-item">
+			    <li><a href="#" class="nav-link nav-item waves-effect waves-dark">專案資料</a></li>
+				<li><a href="#" class="nav-link nav-item waves-effect waves-dark current">工作任務</a></li>
+				<li><a href="#" class="nav-link nav-item waves-effect waves-dark">會議</a></li>
+				<li><a href="#" class="nav-link nav-item waves-effect waves-dark">行事曆</a></li>
+			</ul>
+		</nav>
+		<div class="project-content">
+		    <div class="project-toolbar">
+			    <div class="tool-block">
+				    <div class="btn-group">
+					    <button class="btn btn-sm btn-primary"><i class="fa fa-plus-square-o" aria-hidden="true"></i> 新增工作</button>
+						<button class="btn btn-sm btn-secondary"><i class="fa fa-clipboard" aria-hidden="true"></i> 產生工作單</button>
+						<button class="btn btn-sm btn-info"><i class="fa fa-bar-chart" aria-hidden="true"></i> 甘特圖</button>
+					</div>
+				</div>
+				<div class="tool-block">
+				    <span class="d-inline-block">
+                        <select class="browser-default custom-select">
+                            <option selected>過濾專案人員</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+					</span>
+					<span class="d-inline-block">
+                        <select class="browser-default custom-select">
+                            <option selected>依任務分類顯示</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+					</span>
+				</div>
+				<div class="tool-block flex-grow-1">
+                    <div class="switch-wrap">
+                        <input type="checkbox" id="switch_undone" class="switch"/>
+                        <label class="label" for="switch_undone">
+						    <span>只顯示未完成</span>
+						</label>
+                    </div>
+				</div>
+			</div>
+                <div class="board-canvas">
+			    <div class="board">
+					
+					<div class="list-wrapper">
+					    <div class="task-block">
+						    <div class="task-header">
+							    <h6 class="d-inline-block">系統開發</h6>
+							</div>
+                            <div class="task-content scrollbar-inner">
+								
+                                <div class="task-content-wrapper">
+									
+									<div class="task-item">
+                                        <div class="item-hd">
+                                            <div class="task-executor">
+                                                <div class="avatar">
+                                                    <img alt="Pic" src="/assets/default.png">
+                                                </div>
+                                                <span class="name text-dark"><%= zh_lorem_name %></span>
+                                            </div>
+											<div class="hd-action">
+                                                <a href="#" class="dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                                                <div class="dropdown-menu" style="">
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-clipboard"></i> 產生派工單
+													</a>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-edit"></i> 編輯
+													</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-trash"></i> 刪除
+													</a>
+                                                </div>
+											</div>
+										</div>
+                                        <div class="item-bd">
+											<div class="item-subject">
+                                                <a class="subject-modal" data-toggle="modal" data-target="#taskModal">國立大專院校學院承辦人教師資料管理表單產生器</a>
+											</div>
+                                            <div class="form-group">
+												<label class="label">自行排單</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+										</div>
+										<div class="item-ft">
+										    <div class="ft-start">
+											    <div class="task-status">
+													<span class="status">規劃</span>
+												</div>
+											</div>
+											<div class="ft-end">
+											    <div class="task-action">
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="前置任務">
+                                                            <i class="fa fa-code-fork"></i> 2
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的功能">
+                                                            <i class="fa fa-share-alt-square"></i> 5
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的測試案例">
+                                                            <i class="fa fa-check-square"></i> 0
+                                                        </a>
+													</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+									
+									<div class="task-item pick">
+                                        <div class="item-hd">
+                                            <div class="task-executor">
+                                                <div class="avatar">
+                                                    <img alt="Pic" src="/assets/default.png">
+                                                </div>
+                                                <span class="name text-dark"><%= zh_lorem_name %></span>
+                                            </div>
+											<div class="hd-action">
+                                                <a href="#" class="dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                                                <div class="dropdown-menu" style="">
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-clipboard"></i> 產生派工單
+													</a>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-edit"></i> 編輯
+													</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-trash"></i> 刪除
+													</a>
+                                                </div>
+											</div>
+										</div>
+                                        <div class="item-bd">
+											<div class="item-subject">
+                                                <a class="subject-modal" data-toggle="modal" data-target="#taskModal">國立大專院校學院承辦人教師資料管理表單產生器</a>
+											</div>
+                                            <div class="form-group">
+												<label class="label">自行排單</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+										</div>
+										<div class="item-ft">
+										    <div class="ft-start">
+											    <div class="task-status">
+													<span class="status">等待</span>
+												</div>
+											</div>
+											<div class="ft-end">
+											    <div class="task-action">
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="前置任務">
+                                                            <i class="fa fa-code-fork"></i> 2
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的功能">
+                                                            <i class="fa fa-share-alt-square"></i> 5
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的測試案例">
+                                                            <i class="fa fa-check-square"></i> 0
+                                                        </a>
+													</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+									
+									<div class="task-item">
+                                        <div class="item-hd">
+                                            <div class="task-executor">
+                                                <div class="avatar">
+                                                    <img alt="Pic" src="/assets/default.png">
+                                                </div>
+                                                <span class="name text-dark"><%= zh_lorem_name %></span>
+                                            </div>
+											<div class="hd-action">
+                                                <a href="#" class="dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                                                <div class="dropdown-menu" style="">
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-clipboard"></i> 產生派工單
+													</a>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-edit"></i> 編輯
+													</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-trash"></i> 刪除
+													</a>
+                                                </div>
+											</div>
+										</div>
+                                        <div class="item-bd">
+											<div class="item-subject">
+                                                <a class="subject-modal">國立大專院校學院承辦人教師資料管理表單產生器</a>
+											</div>
+                                            <div class="form-group">
+												<label class="label">自行排單</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+										</div>
+										<div class="item-ft">
+										    <div class="ft-start">
+											    <div class="task-status">
+													<span class="status sl-dark">暫停</span>
+												</div>
+											</div>
+											<div class="ft-end">
+											    <div class="task-action">
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="前置任務">
+                                                            <i class="fa fa-code-fork"></i> 2
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的功能">
+                                                            <i class="fa fa-share-alt-square"></i> 5
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的測試案例">
+                                                            <i class="fa fa-check-square"></i> 0
+                                                        </a>
+													</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+									
+									<div class="task-item">
+                                        <div class="item-hd">
+                                            <div class="task-executor">
+                                                <div class="avatar">
+                                                    <img alt="Pic" src="/assets/default.png">
+                                                </div>
+                                                <span class="name text-dark"><%= zh_lorem_name %></span>
+                                            </div>
+											<div class="hd-action">
+                                                <a href="#" class="dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                                                <div class="dropdown-menu" style="">
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-clipboard"></i> 產生派工單
+													</a>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-edit"></i> 編輯
+													</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-trash"></i> 刪除
+													</a>
+                                                </div>
+											</div>
+										</div>
+                                        <div class="item-bd">
+											<div class="item-subject">
+                                                <a class="subject-modal">國立大專院校學院承辦人教師資料管理表單產生器</a>
+											</div>
+                                            <div class="form-group">
+												<label class="label">自行排單</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+										</div>
+										<div class="item-ft">
+										    <div class="ft-start">
+											    <div class="task-status">
+													<span class="status sl-black">終止</span>
+												</div>
+											</div>
+											<div class="ft-end">
+											    <div class="task-action">
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="前置任務">
+                                                            <i class="fa fa-code-fork"></i> 2
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的功能">
+                                                            <i class="fa fa-share-alt-square"></i> 5
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的測試案例">
+                                                            <i class="fa fa-check-square"></i> 0
+                                                        </a>
+													</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+									
+									<div class="task-item">
+                                        <div class="item-hd">
+                                            <div class="task-executor">
+                                                <div class="avatar">
+                                                    <img alt="Pic" src="/assets/default.png">
+                                                </div>
+                                                <span class="name text-dark"><%= zh_lorem_name %></span>
+                                            </div>
+											<div class="hd-action">
+                                                <a href="#" class="dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                                                <div class="dropdown-menu" style="">
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-clipboard"></i> 產生派工單
+													</a>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-edit"></i> 編輯
+													</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-trash"></i> 刪除
+													</a>
+                                                </div>
+											</div>
+										</div>
+                                        <div class="item-bd">
+											<div class="item-subject">
+                                                <a class="subject-modal">學院承辦人教師資料管理表單產生器</a>
+											</div>
+                                            <div class="form-group">
+												<label class="label">自行排單</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+										</div>
+										<div class="item-ft">
+										    <div class="ft-start">
+											    <div class="task-status">
+													<span class="status sl-white">結案</span>
+												</div>
+											</div>
+											<div class="ft-end">
+											    <div class="task-action">
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="前置任務">
+                                                            <i class="fa fa-code-fork"></i> 2
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的功能">
+                                                            <i class="fa fa-share-alt-square"></i> 5
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的測試案例">
+                                                            <i class="fa fa-check-square"></i> 0
+                                                        </a>
+													</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+
+                                </div>
+                            </div>
+						</div>
+					</div>
+					
+					<div class="list-wrapper">
+					    <div class="task-block">
+						    <div class="task-header">
+							    <h6 class="d-inline-block">系統需求與分析</h6>
+							</div>
+                            <div class="task-content scrollbar-inner">
+                                <div class="task-content-wrapper">
+
+                                    <div class="task-item">
+                                        <div class="item-hd">
+                                            <div class="task-executor">
+                                                <div class="avatar">
+                                                    <img alt="Pic" src="/assets/default.png">
+                                                </div>
+                                                <span class="name text-dark"><%= zh_lorem_name %></span>
+                                            </div>
+											<div class="hd-action">
+                                                <a href="#" class="dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                                                <div class="dropdown-menu" style="">
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-clipboard"></i> 產生派工單
+													</a>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-edit"></i> 編輯
+													</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-trash"></i> 刪除
+													</a>
+                                                </div>
+											</div>
+										</div>
+                                        <div class="item-bd">
+											<div class="item-subject">
+                                                <a class="subject-modal">國立大專院校學院承辦人教師資料管理表單產生器</a>
+											</div>
+                                            <div class="form-group">
+												<label class="label">自行排單</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+										</div>
+										<div class="item-ft">
+										    <div class="ft-start">
+											    <div class="task-status">
+													<span class="status sl-red">退件</span>
+												</div>
+											</div>
+											<div class="ft-end">
+											    <div class="task-action">
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="前置任務">
+                                                            <i class="fa fa-code-fork"></i> 2
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的功能">
+                                                            <i class="fa fa-share-alt-square"></i> 5
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的測試案例">
+                                                            <i class="fa fa-check-square"></i> 0
+                                                        </a>
+													</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+
+                                </div>
+                            </div>
+						</div>
+					</div>
+					
+					<div class="list-wrapper">
+					    <div class="task-block">
+						    <div class="task-header">
+							    <h6 class="d-inline-block">系統需求與分析</h6>
+							</div>
+                            <div class="task-content scrollbar-inner">
+                                <div class="task-content-wrapper">
+
+                                    <div class="task-item">
+                                        <div class="item-hd">
+                                            <div class="task-executor">
+                                                <div class="avatar">
+                                                    <img alt="Pic" src="/assets/default.png">
+                                                </div>
+                                                <span class="name text-dark"><%= zh_lorem_name %></span>
+                                            </div>
+											<div class="hd-action">
+                                                <a href="#" class="dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                                                <div class="dropdown-menu" style="">
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-clipboard"></i> 產生派工單
+													</a>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-edit"></i> 編輯
+													</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-trash"></i> 刪除
+													</a>
+                                                </div>
+											</div>
+										</div>
+                                        <div class="item-bd">
+											<div class="item-subject">
+                                                <a class="subject-modal" data-toggle="modal" data-target="#taskModal">國立大專院校學院承辦人教師資料管理表單產生器</a>
+											</div>
+                                            <div class="form-group">
+												<label class="label">自行排單</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+										</div>
+										<div class="item-ft">
+										    <div class="ft-start">
+											    <div class="task-status">
+													<span class="status sl-blue">處理中</span>
+												</div>
+											</div>
+											<div class="ft-end">
+											    <div class="task-action">
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="前置任務">
+                                                            <i class="fa fa-code-fork"></i> 2
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的功能">
+                                                            <i class="fa fa-share-alt-square"></i> 5
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的測試案例">
+                                                            <i class="fa fa-check-square"></i> 0
+                                                        </a>
+													</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+
+                                </div>
+                            </div>
+						</div>
+					</div>
+					
+					<div class="list-wrapper">
+					    <div class="task-block">
+						    <div class="task-header">
+							    <h6 class="d-inline-block">系統需求與分析</h6>
+							</div>
+                            <div class="task-content scrollbar-inner">
+                                <div class="task-content-wrapper">
+
+                                    <div class="task-item">
+                                        <div class="item-hd">
+                                            <div class="task-executor">
+                                                <div class="avatar">
+                                                    <img alt="Pic" src="/assets/default.png">
+                                                </div>
+                                                <span class="name text-dark"><%= zh_lorem_name %></span>
+                                            </div>
+											<div class="hd-action">
+                                                <a href="#" class="dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                                                <div class="dropdown-menu" style="">
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-clipboard"></i> 產生派工單
+													</a>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-edit"></i> 編輯
+													</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-trash"></i> 刪除
+													</a>
+                                                </div>
+											</div>
+										</div>
+                                        <div class="item-bd">
+											<div class="item-subject">
+                                                <a class="subject-modal" data-toggle="modal" data-target="#taskModal">國立大專院校學院承辦人教師資料管理表單產生器</a>
+											</div>
+                                            <div class="form-group">
+												<label class="label">自行排單</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+										</div>
+										<div class="item-ft">
+										    <div class="ft-start">
+											    <div class="task-status">
+													<span class="status sl-green">完成</span>
+												</div>
+											</div>
+											<div class="ft-end">
+											    <div class="task-action">
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="前置任務">
+                                                            <i class="fa fa-code-fork"></i> 2
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的功能">
+                                                            <i class="fa fa-share-alt-square"></i> 5
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的測試案例">
+                                                            <i class="fa fa-check-square"></i> 0
+                                                        </a>
+													</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+
+                                </div>
+                            </div>
+						</div>
+					</div>
+					
+					<div class="list-wrapper">
+					    <div class="task-block">
+						    <div class="task-header">
+							    <h6 class="d-inline-block">系統需求與分析</h6>
+							</div>
+                            <div class="task-content scrollbar-inner">
+                                <div class="task-content-wrapper">
+
+                                    <div class="task-item">
+                                        <div class="item-hd">
+                                            <div class="task-executor">
+                                                <div class="avatar">
+                                                    <img alt="Pic" src="/assets/default.png">
+                                                </div>
+                                                <span class="name text-dark"><%= zh_lorem_name %></span>
+                                            </div>
+											<div class="hd-action">
+                                                <a href="#" class="dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                                                <div class="dropdown-menu" style="">
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-clipboard"></i> 產生派工單
+													</a>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-edit"></i> 編輯
+													</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-trash"></i> 刪除
+													</a>
+                                                </div>
+											</div>
+										</div>
+                                        <div class="item-bd">
+											<div class="item-subject">
+                                                <a class="subject-modal" data-toggle="modal" data-target="#taskModal">國立大專院校學院承辦人教師資料管理表單產生器</a>
+											</div>
+                                            <div class="form-group">
+												<label class="label">自行排單</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+										</div>
+										<div class="item-ft">
+										    <div class="ft-start">
+											    <div class="task-status">
+													<span class="status sl-purple">跳過</span>
+												</div>
+											</div>
+											<div class="ft-end">
+											    <div class="task-action">
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="前置任務">
+                                                            <i class="fa fa-code-fork"></i> 2
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的功能">
+                                                            <i class="fa fa-share-alt-square"></i> 5
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的測試案例">
+                                                            <i class="fa fa-check-square"></i> 0
+                                                        </a>
+													</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+
+                                </div>
+                            </div>
+						</div>
+					</div>
+					
+					<div class="list-wrapper">
+					    <div class="task-block">
+						    <div class="task-header">
+							    <h6 class="d-inline-block">系統需求與分析</h6>
+							</div>
+                            <div class="task-content scrollbar-inner">
+                                <div class="task-content-wrapper">
+
+                                    <div class="task-item">
+                                        <div class="item-hd">
+                                            <div class="task-executor">
+                                                <div class="avatar">
+                                                    <img alt="Pic" src="/assets/default.png">
+                                                </div>
+                                                <span class="name text-dark"><%= zh_lorem_name %></span>
+                                            </div>
+											<div class="hd-action">
+                                                <a href="#" class="dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i></a>
+                                                <div class="dropdown-menu" style="">
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-clipboard"></i> 產生派工單
+													</a>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-edit"></i> 編輯
+													</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">
+														<i class="fa fa-trash"></i> 刪除
+													</a>
+                                                </div>
+											</div>
+										</div>
+                                        <div class="item-bd">
+											<div class="item-subject">
+                                                <a class="subject-modal" data-toggle="modal" data-target="#taskModal">國立大專院校學院承辦人教師資料管理表單產生器</a>
+											</div>
+                                            <div class="form-group">
+												<label class="label">自行排單</label>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+										</div>
+										<div class="item-ft">
+										    <div class="ft-start">
+											    <div class="task-status">
+													<span class="status sl-yellow">檢核</span>
+												</div>
+											</div>
+											<div class="ft-end">
+											    <div class="task-action">
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="前置任務">
+                                                            <i class="fa fa-code-fork"></i> 2
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的功能">
+                                                            <i class="fa fa-share-alt-square"></i> 5
+                                                        </a>
+													</span>
+													<span class="item">
+                                                        <a href="#" data-toggle="tooltip" title="關聯的測試案例">
+                                                            <i class="fa fa-check-square"></i> 0
+                                                        </a>
+													</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+
+                                </div>
+                            </div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+
+<% content_for :js do %>
+
+<% end %>

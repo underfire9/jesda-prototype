@@ -1,0 +1,168 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/admin_head" %>
+</head>
+<body>
+    <div class="workspace" canvas="container">
+    <% if content_for? :sidebar %>
+        <%= yield :sidebar %>
+    <% else %>
+        <%= render :partial => "/partials/admin_sidebar" %>
+    <% end %>
+    <div class="page">
+        <div class="page-inner">
+
+            <!-- 工作任務只需 .page-wrapper 再加上 .page-height 即可 -->
+            <div class="page-wrapper page-height">
+                <% if content_for? :header %>
+                    <%= yield :header %>
+                <% else %>
+                    <%= render :partial => "/partials/admin_header" %>
+                <% end %>
+                <div class="content-wrapper clearfix">
+                    <%= yield %>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+	<div id="mdb-lightbox-ui"></div>
+	<%= render :partial => "/partials/sc_flowpath" %>
+	<%= render :partial => "/partials/sc_countersignature" %>
+    <%= render :partial => "/partials/simpler_sidebar" %>
+	<%= render :partial => "/partials/proposal_estimate_modal" %>
+	<%= render :partial => "/partials/admin_chat" %>
+	<%= render :partial => "/partials/admin_files" %>
+	<%= render :partial => "/partials/proposal_version" %>
+	<%= render :partial => "/partials/proposal_management_newitem" %>
+	<%= render :partial => "/partials/proposal_management_evaluation" %>
+
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+    <script src="../javascripts/sidenav.js"></script>
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+	<script src="../javascripts/slidebars.min.js"></script>
+    <script src="../javascripts/slidebars.scripts.js"></script>
+	<script src="../javascripts/jquery.slimscroll.js"></script>
+	<script src="../javascripts/frontend-editor/chunk-vendors.js"></script>
+    <script src="../javascripts/frontend-editor/formEditor.js"></script>
+    <script src="../javascripts/frontend-editor/webEditor.js"></script>
+	<script src="../javascripts/tooltipster.bundle.js"></script>
+
+    <script>
+		
+        $('.sidebar-scroll').slimscroll({
+            height: '100%'
+        });
+		
+        // Data Picker Initialization
+        $('.datepicker').datepicker();
+		
+		// jQuery scrollbar
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+		
+        // Tooltips Initialization
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+		
+        // MDB Lightbox Init
+        $(function () {
+            $("#mdb-lightbox-ui").load("../mdb-addons/mdb-lightbox-ui.html");
+        });
+		
+        // Tooltipster
+        $(".file_tooltip").tooltipster({
+            trigger: "click",
+			content: $('<div class="filetooltip-inner"><a href="#">下載檔案</a><a href="#">編輯說明</a><a href="#">重新命名</a><hr><a href="#">覆蓋檔案</a><a href="#">上傳新版</a><hr><a href="#">歷史紀錄</a><hr><a href="#">刪除檔案</a></div>'),
+        });
+		$(".quotation_tooltip").tooltipster({
+            trigger: "click",
+			content: $('<div class="filetooltip-inner"><a href="#">下載檔案</a><a href="#">報價明細</a><hr><a href="#">寄送客戶</a><a href="#">寄送紀錄</a><hr><a href="#">刪除檔案</a></div>'),
+        });
+		$(".row_tooltip").tooltipster({
+            trigger: "click",
+			content: $('<div class="filetooltip-inner"><a href="#">編輯</a><a href="#">刪除</a></div>'),
+        });
+    </script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-doughnutlabel/2.0.3/chartjs-plugin-doughnutlabel.js"></script>
+    <script>
+        var BAChartDataValue = [
+            5, 
+            17, 
+        ];
+        var BAChartDataLabel = [
+            '', 
+            '', 
+        ];
+        var BAChartJobErrColors = [
+            'rgba(66, 133, 244, 1)',
+            'rgba(200, 200, 200, 1)',
+        ];
+
+        var BAChartCountTotal = 0;
+        if (BAChartDataValue.length > 0) {
+            BAChartCountTotal = BAChartDataValue.reduce(function(acc, currentVal, currentIdx, arr){
+                return acc + currentVal;
+            }, 0);
+        }
+
+        window.addEventListener('load', function(){
+            var BAChartCtx = document.getElementById('BA-chart-job-error').getContext('2d');
+            var BAChartJobErr = new Chart(BAChartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: BAChartDataLabel,
+                    datasets: [{
+                        data: BAChartDataValue,
+                        backgroundColor: BAChartJobErrColors,
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    title: {
+                        display: false,
+                    },
+                    plugins: {
+                        labels: [
+                            {
+                                render: 'label',
+                                fontColor: '#000',
+                                position: 'outside',
+								fontSize: 1,
+                            },
+                            {
+                                render: 'percentage',
+                                fontColor: '#fff',
+                            }
+                        ],
+                        doughnutlabel: {
+                            labels: [
+                                {
+                                    text: BAChartCountTotal + '%',
+                                }
+                            ]
+                        }
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+        });
+    </script>
+    <%= yield :js %>
+</body>
+</html>

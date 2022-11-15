@@ -4,9 +4,6 @@
 /* `Header
 -----------------------------------------------------------------------------*/
 
-$account_height: 83px;
-$language_height: 37px;
-
 header.header {
 	position: relative;
 	margin-bottom: 4rem;
@@ -28,7 +25,7 @@ header.header {
 			position: relative;
 			&:before, &:after {
 				content: "";
-				background: $com_color url("../assets/dot.png") left top repeat;
+				background: #333 url("../assets/dot.png") left top repeat;
 				width: 1.5rem;
 				position: absolute;
 				top: 0;
@@ -52,65 +49,6 @@ header.header {
 	}
 }
 
-.header-right {
-	display: flex;
-	flex-direction: column;
-	background: url("../assets/dot2.png") left top repeat;
-	border-left: 1px solid rgba($base_border_color, 0);
-	border-right: 1px solid rgba($base_border_color, 0);
-	height: 120px;
-	text-align: end;
-	.language {
-		border-bottom: 1px solid rgba(#ddd, 1);
-		padding-left: $language_height + 3px;
-		height: $language_height;
-		line-height: $language_height;
-		position: relative;
-		a {
-			display: inline-block;
-			background: #4d4d4d;
-			padding: 0 1rem;
-			color: #fff;
-			position: relative;
-			&:hover { background: $com_color; }
-            &:before {
-                content: "\f57d";
-                font-family: "Font Awesome 5 Free";
-                font-weight: 900;
-				color: #bfbfbf;
-                position: absolute;
-                left: -28px;
-                top: 0;
-				pointer-events: none;
-            }
-		}
-	}
-	.account {
-		flex: 1;
-		.dropdown {
-			display: flex;
-			flex-direction: column;
-			height: $account_height;
-		}
-		.dropdown-toggle {
-			flex: 1;
-			text-align: end;
-			padding: 0 1rem;
-		}
-		.btn-login {
-			display: block;
-			padding: 0 1rem;
-			height: $account_height;
-			color: #111;
-			line-height: $account_height;
-			&:hover {
-				background: rgba(#fff, .5);
-				color: $com_color;;
-			}
-		}
-	}
-}
-
 .header-wrap {
     display: flex;
     justify-content: space-between;
@@ -125,7 +63,7 @@ header.header {
 	.h1-logo {
 		display: block;
 		width: auto;
-		height: 72px;
+		height: 88px;
 	}
 	.sub {
 		margin-left: 1rem;
@@ -136,6 +74,34 @@ header.header {
 		.en {
 			font-size: 1rem;
 			line-height: 1.3;
+		}
+	}
+}
+
+.header-right {
+	text-align: end;
+	.language {
+		margin-bottom: .75rem;
+		position: relative;
+		a {
+			display: inline-block;
+			padding-left: 24px;
+			color: #999;
+			position: relative;
+            &:before {
+                content: "\f57d";
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+				color: #888;
+                position: absolute;
+                left: 0;
+                top: 0;
+				transition: all 0.2s ease-in-out;
+			}
+			&:hover {
+				color: #000;
+				&:before { color: #bfbfbf; }
+			}
 		}
 	}
 }

@@ -6269,7 +6269,7 @@ header.header .sys-subject .inner {
 }
 header.header .sys-subject .inner:before, header.header .sys-subject .inner:after {
   content: "";
-  background: #8a0c0e url("../assets/dot.png") left top repeat;
+  background: #333 url("../assets/dot.png") left top repeat;
   width: 1.5rem;
   position: absolute;
   top: 0;
@@ -6290,67 +6290,6 @@ header.header .dropdown-menu {
   border-color: #4d4d4d;
 }
 
-.header-right {
-  display: flex;
-  flex-direction: column;
-  background: url("../assets/dot2.png") left top repeat;
-  border-left: 1px solid rgba(229, 229, 229, 0);
-  border-right: 1px solid rgba(229, 229, 229, 0);
-  height: 120px;
-  text-align: end;
-}
-.header-right .language {
-  border-bottom: 1px solid #dddddd;
-  padding-left: 40px;
-  height: 37px;
-  line-height: 37px;
-  position: relative;
-}
-.header-right .language a {
-  display: inline-block;
-  background: #4d4d4d;
-  padding: 0 1rem;
-  color: #fff;
-  position: relative;
-}
-.header-right .language a:hover {
-  background: #8a0c0e;
-}
-.header-right .language a:before {
-  content: "\f57d";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  color: #bfbfbf;
-  position: absolute;
-  left: -28px;
-  top: 0;
-  pointer-events: none;
-}
-.header-right .account {
-  flex: 1;
-}
-.header-right .account .dropdown {
-  display: flex;
-  flex-direction: column;
-  height: 83px;
-}
-.header-right .account .dropdown-toggle {
-  flex: 1;
-  text-align: end;
-  padding: 0 1rem;
-}
-.header-right .account .btn-login {
-  display: block;
-  padding: 0 1rem;
-  height: 83px;
-  color: #111;
-  line-height: 83px;
-}
-.header-right .account .btn-login:hover {
-  background: rgba(255, 255, 255, 0.5);
-  color: #8a0c0e;
-}
-
 .header-wrap {
   display: flex;
   justify-content: space-between;
@@ -6366,7 +6305,7 @@ header.header .dropdown-menu {
 .header-wrap .h1-logo {
   display: block;
   width: auto;
-  height: 72px;
+  height: 88px;
 }
 .header-wrap .sub {
   margin-left: 1rem;
@@ -6378,6 +6317,36 @@ header.header .dropdown-menu {
 .header-wrap .sub .en {
   font-size: 1rem;
   line-height: 1.3;
+}
+
+.header-right {
+  text-align: end;
+}
+.header-right .language {
+  margin-bottom: .75rem;
+  position: relative;
+}
+.header-right .language a {
+  display: inline-block;
+  padding-left: 24px;
+  color: #999;
+  position: relative;
+}
+.header-right .language a:before {
+  content: "\f57d";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #888;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.2s ease-in-out;
+}
+.header-right .language a:hover {
+  color: #000;
+}
+.header-right .language a:hover:before {
+  color: #bfbfbf;
 }
 
 /* `Footer
@@ -6443,7 +6412,7 @@ body {
 }
 
 a {
-  color: #357adf;
+  color: #b78723;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
@@ -6455,7 +6424,7 @@ a:focus {
 }
 
 a:hover {
-  color: #1b56ac;
+  color: #775817;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -6527,11 +6496,11 @@ select.browser-default {
 }
 
 .normal-link {
-  color: #357adf !important;
+  color: #8a0c0e !important;
   text-decoration: underline;
 }
 .normal-link:hover {
-  color: #1f61c2 !important;
+  color: #5b0809 !important;
 }
 
 .default-radio {
@@ -6692,7 +6661,7 @@ select.browser-default {
   border-right: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   padding: 1rem 1.25rem;
-  font-size: 1.25rem;
+  font-size: 1.1875rem;
   color: #4d4d4d;
   line-height: 1.3;
   text-align: end;
@@ -6709,9 +6678,10 @@ select.browser-default {
   transform: translateX(2px);
 }
 .side-navigation .nav-item.current, .side-navigation .nav-item.current:hover {
-  background: #8a0c0e;
-  border-right-color: #8a0c0e;
+  background: #383838;
+  border-right-color: #383838;
   border-bottom: none;
+  border-radius: 3px 0 0 3px;
   color: #fff;
   cursor: default;
 }
@@ -6719,8 +6689,10 @@ select.browser-default {
   transform: translateX(0);
 }
 .side-navigation .nav-item .badge {
-  font-size: .75rem;
-  vertical-align: middle;
+  padding: 5px 10px 2px;
+  font-size: .9375rem;
+  font-weight: 400;
+  vertical-align: text-top;
 }
 
 .procedures_nav {
@@ -6897,7 +6869,6 @@ select.browser-default {
 }
 .page-content .main {
   flex: 1;
-  overflow: hidden;
 }
 .page-content.has-sticky {
   display: flow-root;
@@ -7031,121 +7002,165 @@ section.section {
   font-weight: bold;
 }
 
-/* `Agent
+/* `Customization
 -----------------------------------------------------------------------------*/
-.agent-block {
+.scholarship-list {
   display: flex;
-  align-items: center;
-  margin-bottom: 4rem;
 }
-.agent-block span {
-  margin-right: 1rem;
+.scholarship-list .menu-item {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -4%;
 }
-
-.course-list {
-  overflow: hidden;
+.scholarship-list .item-wrap {
+  margin-bottom: 2rem;
+  padding-right: 4%;
+  width: 50%;
 }
-.course-list li {
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-}
-.course-list .course-link {
-  display: block;
-  color: #524118;
-  position: relative;
-}
-.course-list .course-link:after {
-  content: "";
-  background: #ffc107;
-  width: 100%;
-  height: 1px;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  z-index: -1;
-  transition: all 0.2s ease-in-out;
-}
-.course-list .course-link span {
-  display: inline-block;
+.scholarship-list .scholarship-item {
   background: #fff;
-  padding-right: 1rem;
-  position: relative;
-  z-index: 1;
-  transition: all 0.2s ease-in-out;
-}
-.course-list .course-link:hover {
-  color: #333;
-}
-.course-list .course-link:hover:after {
-  background: #999;
-}
-.course-list .course-link:hover span {
-  padding: 0 1rem;
-  transform: translateX(24px);
-}
-
-.agent-list li {
-  border-bottom: 1px dashed #ddd;
-}
-.agent-list li:last-child {
-  border-bottom: none;
-}
-.agent-list .agent-link {
-  display: block;
-  padding: 1rem 1rem 1rem 3rem;
-  font-size: 1.125rem;
-  color: #111;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
   position: relative;
 }
-.agent-list .agent-link:before {
-  content: "\f2bd";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 400;
-  color: #bfbfbf;
+.scholarship-list .scholarship-item:after {
+  content: "";
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  height: 50px;
   position: absolute;
-  left: 1rem;
-  top: .875rem;
-  pointer-events: none;
-  transition: all 0.2s ease-in-out;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 6px;
+  z-index: -1;
 }
-.agent-list .agent-link:hover {
-  background: url("../assets/dot3.png") left top repeat;
-  color: #888;
+.scholarship-list .item-hd {
+  background: #fafafa;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 2rem 1.25rem;
+  position: relative;
 }
-.agent-list .agent-link:hover:before {
+.scholarship-list .item-hd:after {
+  content: "";
+  background: #b78723;
+  border-radius: 2px 0 0 2px;
+  width: 3px;
+  position: absolute;
+  left: -4px;
+  top: 1.75rem;
+  bottom: 1.875rem;
+}
+.scholarship-list .item-hd .title {
+  margin-bottom: 0;
+  font-size: 1.375rem;
+  font-weight: bold;
+  position: relative;
+}
+.scholarship-list .item-bd {
+  padding: .25rem 1.25rem;
+}
+.scholarship-list .info-group {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 1rem 0;
+}
+.scholarship-list .info-group .label {
+  display: block;
+  margin-bottom: .254rem;
+  font-weight: bold;
+  color: #999;
+  transition: all 0.1s ease-in-out;
+}
+.scholarship-list .info-group .info {
+  display: block;
+}
+.scholarship-list .info-group:hover .label {
   color: #111;
 }
-
-/* `Index
------------------------------------------------------------------------------*/
-.index-content {
+.scholarship-list .item-ft {
   display: flex;
-  margin-bottom: 4rem;
+  justify-content: space-between;
+  padding: 1.25rem 1.25rem;
 }
-.index-content .main {
-  flex: 1;
+.scholarship-list .item-ft .btn {
+  border-radius: 10rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.12);
 }
-.index-content .aside {
-  margin-left: 50px;
-  width: 320px;
+.scholarship-list .item-ft .btn:hover, .scholarship-list .item-ft .btn:active, .scholarship-list .item-ft .btn:focus {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.15);
 }
-.index-content .schedule-wrapper {
-  margin-top: 65px;
+.scholarship-list .btn-detail {
+  min-width: 38px;
 }
-.index-content .schedule-item {
+.scholarship-list .btn-apply {
+  background: #b78723;
+  border: 1px solid #a2771f;
+  padding: 6px 16px;
+  color: #fff;
+}
+.scholarship-list .btn-apply:hover, .scholarship-list .btn-apply:active, .scholarship-list .btn-apply:focus {
+  background: #a2771f;
+  color: #fff;
+}
+
+.award-card {
   margin-bottom: 2rem;
 }
-.index-content .schedule-item .date {
-  background: url(../assets/dot.png) left top repeat;
-  padding: 1.25rem;
-  font-family: "Roboto", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #ed6d00;
+.award-card .award-hd {
+  border-bottom: 1px solid #8a0c0e;
+  padding: 1rem 0;
 }
-.index-content .schedule-item .date i {
-  margin-right: .375rem;
-  color: #aaa;
+.award-card .award-hd h4 {
+  margin-bottom: 0;
+  font-weight: bold;
+}
+.award-card .award-date {
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 1.125rem;
+}
+.award-card .award-date span {
+  padding: 1rem 0;
+}
+.award-card .award-date span:first-child {
+  border-right: 1px solid #e5e5e5;
+  padding-right: 1rem;
+}
+.award-card .award-date span:last-child {
+  padding-left: 1rem;
+}
+.award-card .award-content {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 1rem 0;
+}
+.award-card .award-content p {
+  margin-bottom: 0;
+}
+.award-card .award-info {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.award-card .award-info span {
+  padding: 1rem 0;
+}
+.award-card .award-info .info-label {
+  padding-right: 1rem;
+}
+.award-card .award-info .info-link {
+  border-left: 1px solid #e5e5e5;
+  padding-left: 1rem;
+}
+.award-card .award-follow {
+  padding: 1rem 0;
+}
+.award-card .award-follow li {
+  margin-bottom: .75rem;
+}
+.award-card .award-follow li span {
+  display: inline-block;
+}
+.award-card .award-follow .label {
+  margin-right: 1rem;
 }
 
 /* `Upload

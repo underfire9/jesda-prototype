@@ -1,0 +1,129 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<!-- html lang 在切換語系時需要吃 "zh-TW" 或 "en"，因應字元寬度不同需要的版面調整 -->
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages">
+            <%= render :partial => "/partials/header" %>
+            <div class="content">
+                <%= yield %>
+            </div>
+			<a id="backtop"></a>
+        </div>
+        <%= render :partial => "/partials/footer" %>
+	</div>
+    <div class="modal fade top" id="frameSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-frame modal-top ntu_search" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <form class="form-inline">
+							<div class="search-wrapper">
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search" />
+                                <i class="fa fa-search" aria-hidden="true"></i>
+							</div>
+                        </form>
+                        <button type="button" class="btn btn-sm btn-link" data-dismiss="modal"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--div class="modal fade bottom modal_cookie" id="modalCookie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="true">
+        <div class="modal-dialog modal-frame modal-bottom modal-notify modal-info" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="cookie-wrap">
+                        <p class="pt-3 pr-2">This website uses cookies as well as similar tools and technologies to understand visitors' experiences. By continuing to use this website, you consent to NTU's usage of cookies and similar technologies, in accordance with the NTU Website Cookie Notice.</p>
+
+                        <a href="https://policies.google.com/technologies/cookies?hl=zh-TW" target="_blank" type="button" class="btn btn-sm btn-unique">Learn more <i class="fa fa-book ml-1"></i></a>
+                        <a type="button" class="btn-accept btn btn-sm btn-outline-unique waves-effect" data-dismiss="modal">Ok, thanks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div-->
+	
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+	
+	<!-- Sidenav Accordian -->
+	<script>
+        $(document).ready(function () {
+            $("#accordian_nav a").click(function () {
+                var link = $(this);
+                var closest_ul = link.closest("ul");
+                var parallel_active_links = closest_ul.find(".active");
+                var closest_li = link.closest("li");
+                var link_status = closest_li.hasClass("active");
+                var count = 0;
+
+                closest_ul.find("ul").slideUp(function () {
+                    if (++count == closest_ul.find("ul").length) parallel_active_links.removeClass("active");
+                });
+
+                if (!link_status) {
+                    closest_li.children("ul").slideDown();
+                    closest_li.addClass("active");
+                }
+            });
+        });
+	</script>
+	
+	<!-- Back to top -->
+	<script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+	</script>
+	
+	<!-- SideNav -->
+	<script>
+        $(document).ready(function () {
+            // SideNav Button Initialization
+            $(".button-collapse").sideNav({
+				breakpoint: 1199,
+				menuWidth: 320
+			});
+            // SideNav Scrollbar Initialization
+            var sideNavScrollbar = document.querySelector(".custom-scrollbar");
+            var ps = new PerfectScrollbar(sideNavScrollbar);
+        });
+	</script>
+	
+	<!-- Cookie Modal -->
+	<script>
+        $(window).on("load", function () {
+            if (localStorage.getItem("hakoCookiesAllowed") !== "true") {
+                $("#modalCookie").modal("show");
+            } else {
+                //alert('ls value erkannt kein modal');
+                $(".cookie-overlay").remove();
+            }
+        });
+
+        $("#btn-accept").on("click", function () {
+            localStorage.setItem("hakoCookiesAllowed", "true");
+        });
+	</script>
+    <%= yield :js %>
+</body>
+</html>

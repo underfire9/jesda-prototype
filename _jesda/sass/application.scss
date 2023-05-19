@@ -1,0 +1,198 @@
+/* design by fire */
+
+@import "base";
+
+
+/* `Stuff
+-----------------------------------------------------------------------------*/
+
+html, body {
+  width:100%;
+  height:100%;
+}
+
+.content-wrapper {
+    height:100%;
+    min-height: 100%;
+}
+
+.landing-page {
+    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(45deg, rgba(#22262b,1) 0%, rgba(#2a3642,1) 72%, rgba(#2a2e32,1) 100%);
+    background: #22262b;
+    position: relative;
+    overflow: hidden;
+}
+
+.main1 { position: relative; }
+
+.main-stage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    min-height:100%;
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.landing-background {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.homepage {
+    min-height:100%;
+}
+
+.m1_stage {
+    filter: blur(0px);
+}
+
+.jesda-logo {
+    width: 162px;
+    height: 60px;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    margin-left: -81px;
+}
+
+.st0 {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    fill: #2386d2;
+}
+.st1 {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    fill: #1768a6;
+}
+.st2 {
+    fill: #fff;
+}
+
+.st3 {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke-opacity: .03;
+}
+
+$speed: 18s;
+$wordCount: 6;
+
+.word-wrapper {
+    width: 100%;
+    .word {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        font-size: 6rem;
+        font-family: "Noto Sans TC", "Roboto", "Apple LiGothic Medium", "\5FAE\8EDF\6B63\9ED1\9AD4", Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        text-align: center;
+        //transform: translate(-50%, -50%);
+        background: -webkit-linear-gradient(0deg, #4568dc, #b06ab3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: landing-word $speed infinite ease-in-out;
+        @for $i from 0 to $wordCount {
+            &:nth-child(#{$i + 1}) {
+                animation-delay: ($speed / ($wordCount + 1) * $i) - $speed;
+            }
+        }
+    }
+}
+
+@keyframes landing-word {
+    0%,
+    5%,
+    100% {
+        filter: blur(0px);
+        opacity: 1;
+    }
+    20%,
+    80% {
+        filter: blur(1em);
+        opacity: 0;
+    }
+}
+
+.spy-nav {
+    pointer-events: all;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    margin-top: -90px;
+    li {
+        margin-bottom: 1.875rem;
+        text-align: right;
+    }
+    .spy-link {
+        display: inline-block;
+        padding: 0 1.75rem 0 0;
+        height: 32px;
+        vertical-align: middle;
+        position: relative;
+        transform: translateX(100%);
+        transition: all 0.3s ease-in-out;
+        &:after {
+            content: "";
+            width: 60px;
+            height: 32px;
+            position: absolute;
+            left: -60px;
+            top: 0;
+        }
+        img {
+            width: 32px;
+            height: 32px;
+            opacity: .25;
+            position: absolute;
+            left: -40px;
+            top: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease-in-out;
+        }
+        .spy-text {
+            display: inline-block;
+            padding-top: 6px;
+            color: rgba(#fff, .6);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            //pointer-events: none;
+        }
+        &:hover {
+            transform: translateX(0);
+            img {
+                transform: translateX(-10px);
+                opacity: .6;
+            }
+            .spy-text {
+                opacity: .6;
+            }
+        }
+    }
+}
+
+.section {
+    height: 1000px;
+}
+
+/* `Responsive
+-----------------------------------------------------------------------------*/
+
+@media (max-width: 1199px) {
+
+}
+
+

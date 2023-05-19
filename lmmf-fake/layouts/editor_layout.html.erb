@@ -1,0 +1,88 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<!-- html lang 在切換語系時需要吃 "zh-TW" 或 "en"，因應字元寬度不同需要的版面調整 -->
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+	<style>
+        [canvas=container] {
+            position: relative;
+        }	
+	</style>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages">
+            <%= render :partial => "/partials/header_editor" %>
+            <div class="content">
+                <%= yield %>
+            </div>
+        </div>
+        <%= render :partial => "/partials/footer" %>
+	</div>
+    <div class="modal fade top" id="frameSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-frame modal-top ntu_search" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <form class="form-inline">
+							<div class="search-wrapper">
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search" />
+                                <i class="fa fa-search" aria-hidden="true"></i>
+							</div>
+                        </form>
+                        <button type="button" class="btn btn-sm btn-link" data-dismiss="modal"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<%= render :partial => "/partials/simpler_sidebar" %>
+    <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="previewModalLabel">預覽</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">編輯文字</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-link" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-sm btn-primary">儲存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+	<script src="../javascripts/slidebars.min.js"></script>
+	<script src="../javascripts/slidebars.scripts.js"></script>
+    <%= yield :js %>
+</body>
+</html>

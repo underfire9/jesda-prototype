@@ -2,87 +2,767 @@
 <%= render :partial => "/partials/admin_breadcrumb" %>
 
 <main class="main">
-	
-    <div class="job-ticket-wrapper">
-		<div class="ticket-item done">
-		    <div class="item-hd">
-				<a href="#" class="item-link">
-				    <span class="h4">Debug</span>
-					<span class="bookkeeping">簿記-2022-07-17.B1.debug1</span>
-				</a>
-			</div>
-			<div class="item-bd">
-				<div class="d-flex justify-content-between align-items-center">
-					<div class="d-flex align-items-center">
-                        <div class="avatar-wrap">
-                            <div class="avatar">
-                                <img alt="Pic" src="https://avatarfiles.alphacoders.com/231/231252.jpg">
+    
+    <p>檢核表頁面，執行在前(左)，檢核、修正在後(右)，進入任務只顯示當前 <code>.current</code> 階段區塊的完整資訊。<code>.done</code> 用不到了。</p>
+    
+	<div class="job-ticket-wrapper">
+        <div>
+            <div class="ticket-item">
+                <div class="item-hd">
+                    <a href="#" class="item-link">
+                        <span class="h4">執行</span>
+                    </a>
+                </div>
+                <div class="item-bd">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar-wrap">
+                                <div class="avatar">
+                                    <img alt="Pic" src="https://avatarfiles.alphacoders.com/231/231252.jpg">
+                                </div>
+                                <div class="pl-2">
+                                    <span>史佳麗</span>
+                                    <small class="d-block text-black-50">專案部經理</small>
+                                </div>
                             </div>
-                            <div class="pl-2">
-                                <span>史佳麗</span>
-                                <small class="d-block text-black-50">專案部經理</small>
-                            </div>
-                        </div>
-                        <div class="course">
-							<div class="period">
-                                <span>2022/02/15 14:00</span>
-                                <span>2022/02/17 14:00</span>
-							</div>
-							<span class="period-total">2D</span>
-						</div>
-					</div>
-                    <div class="bd-end">
-                        <a class="btn btn-rounded btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#adminChat">
-                            <i class="fa fa-comment"></i>
-                        </a>
-                    </div>
-				</div>
-			</div>
-		</div>
-		<div class="ticket-item">
-		    <div class="item-hd">
-				<a href="#" class="item-link">
-				    <span class="h4">工作檢核</span>
-					<span class="bookkeeping">簿記-2022-07-17.B1.check1</span>
-				</a>
-			</div>
-			<div class="item-bd">
-				<div class="d-flex justify-content-between align-items-center">
-					<div class="d-flex align-items-center">
-                        <div class="avatar-wrap">
-                            <div class="avatar">
-                                <img alt="Pic" src="https://i2.wp.com/short-biography.com/wp-content/uploads/blake-lively/Blake-Ellender-Brown.jpg">
-                            </div>
-                            <div class="pl-2">
-                                <span>布蕾克</span>
-                                <small class="d-block text-black-50">副理</small>
+                            <div class="course">
+                                <div class="period">
+                                    <span>2022/02/15 14:00</span>
+                                    <span>2022/02/17 14:00</span>
+                                </div>
+                                <span class="period-total">2D</span>
                             </div>
                         </div>
-                        <div class="course">未開始</div>
-					</div>
-                    <div class="bd-end">
-						<span class="badge badge-pill badge-danger">3</span>
-                        <a class="btn btn-rounded btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#adminChat">
-                            <i class="fa fa-comment"></i>
-                        </a>
+                        <div class="bd-end">
+                            <a class="btn btn-rounded btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#adminChat">
+                                <i class="fa fa-comment"></i>
+                            </a>
+                        </div>
                     </div>
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="ticket-item">
+                <div class="item-hd">
+                    <a href="#" class="item-link">
+                        <span class="h4">檢核</span>
+                    </a>
+                </div>
+                <div class="item-bd">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar-wrap">
+                                <div class="avatar">
+                                    <img alt="Pic" src="https://i2.wp.com/short-biography.com/wp-content/uploads/blake-lively/Blake-Ellender-Brown.jpg">
+                                </div>
+                                <div class="pl-2">
+                                    <span>布蕾克</span>
+                                    <small class="d-block text-black-50">副理</small>
+                                </div>
+                            </div>
+                            <div class="course">
+                                <div class="period">
+                                    <span>2022/02/15 14:00</span>
+                                    <span>2022/02/17 14:00</span>
+                                </div>
+                                <span class="period-total">2D</span>
+                            </div>
+                        </div>
+                        <div class="bd-end">
+                            <a class="btn btn-rounded btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#adminChat">
+                                <i class="fa fa-comment"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="ticket-item">
+                <div class="item-hd">
+                    <a href="#" class="item-link">
+                        <span class="h4">修正</span>
+                    </a>
+                </div>
+                <div class="item-bd">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar-wrap">
+                                <div class="avatar">
+                                    <img alt="Pic" src="https://avatarfiles.alphacoders.com/231/231252.jpg">
+                                </div>
+                                <div class="pl-2">
+                                    <span>史佳麗</span>
+                                    <small class="d-block text-black-50">專案部經理</small>
+                                </div>
+                            </div>
+                            <div class="course">
+                                <div class="period">
+                                    <span>2022/02/15 14:00</span>
+                                    <span>2022/02/17 14:00</span>
+                                </div>
+                                <span class="period-total">2D</span>
+                            </div>
+                        </div>
+                        <div class="bd-end">
+                            <a class="btn btn-rounded btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#adminChat">
+                                <i class="fa fa-comment"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="ticket-item">
+                <div class="item-hd">
+                    <a href="#" class="item-link">
+                        <span class="h4">檢核</span>
+                    </a>
+                </div>
+                <div class="item-bd">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar-wrap">
+                                <div class="avatar">
+                                    <img alt="Pic" src="https://i2.wp.com/short-biography.com/wp-content/uploads/blake-lively/Blake-Ellender-Brown.jpg">
+                                </div>
+                                <div class="pl-2">
+                                    <span>布蕾克</span>
+                                    <small class="d-block text-black-50">副理</small>
+                                </div>
+                            </div>
+                            <div class="course">
+                                <div class="period">
+                                    <span>2022/02/15 14:00</span>
+                                    <span>2022/02/17 14:00</span>
+                                </div>
+                                <span class="period-total">2D</span>
+                            </div>
+                        </div>
+                        <div class="bd-end">
+                            <a class="btn btn-rounded btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#adminChat">
+                                <i class="fa fa-comment"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="ticket-item current">
+                <div class="item-hd">
+                    <a href="#" class="item-link">
+                        <span class="h4">修正</span>
+                        <span class="bookkeeping">陽明交大境外生獎學金申請系統.03-14.3.Q1.BUG4.21</span>
+                    </a>
+                </div>
+                <div class="item-bd">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar-wrap">
+                                <div class="avatar">
+                                    <img alt="Pic" src="https://avatarfiles.alphacoders.com/231/231252.jpg">
+                                </div>
+                                <div class="pl-2">
+                                    <span>史佳麗</span>
+                                    <small class="d-block text-black-50">專案部經理</small>
+                                </div>
+                            </div>
+                            <div class="course">
+                                <div class="period">
+                                    <span>2022/02/15 14:00</span>
+                                    <span>2022/02/17 14:00</span>
+                                </div>
+                                <span class="period-total">2D</span>
+                            </div>
+                        </div>
+                        <div class="bd-end">
+                            <a class="btn btn-rounded btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#adminChat">
+                                <i class="fa fa-comment"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-	
+
     <div class="col-block block-tabs">
+        
         <ul class="nav nav-tabs">
             <li class="nav-item"><a href="#home" class="active" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
             <li class="nav-item"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-            <li class="nav-item block-options flex"><button class="clean" title="block-options"><i class="fa fa-cog"></i></button></li>
         </ul>
-        <div class="block-content tab-content">
+        
+        <div class="block-content tab-content task-tab-content">
+            
             <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="pr-3">
+                            <div class="pt-3 mb-3">
+                                <span class="d-inline-block mr-3">國教院_教育智庫數位網站.網頁設計與切版</span>
+                                <span class="grey-text">|</span>
+                                <span class="d-inline-block font-weight-bold purple-text ml-3">網頁設計</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="h5 mb-0">ISUUE 顯示的所屬系統建立超連結，以利快速連結建置測試案例</div>
+                                <div class="matters-executor">
+                                    <div class="avatar">
+                                        <img alt="Pic" src="https://avatarfiles.alphacoders.com/231/231252.jpg">
+                                    </div>
+                                    <span class="name">史佳蕾</span>
+                                </div>
+                            </div>
+                            <div class="p-3  bg-lightgrey mb-5">
+                                <h5>箝制任務</h5>
+                                <p><%= lorem_sentences(2) %></p>
+                                <p>https://is.gd/gZfpSx</p>
+                            </div>
+
+                            <div class="task-message-wrapper">
+                                <div class="task-message-list">
+                                    <div class="message-item">
+                                        <div class="message-hd">
+                                            <div class="message-start">
+                                                <div class="matters-executor">
+                                                    <div class="avatar">
+                                                        <img alt="Pic" src="https://i2.wp.com/short-biography.com/wp-content/uploads/blake-lively/Blake-Ellender-Brown.jpg">
+                                                    </div>
+                                                    <span class="name">史佳蕾</span>
+                                                </div>
+                                                <span class="message-time"><i class="fa fa-clock-o"></i> 2023/03/25 17:25</span>
+                                            </div>
+                                            <div class="action-ft">
+                                                <div class="btn-group btn-group-xs">
+                                                    <button type="button" class="btn btn-angel waves-effect waves-light">回覆</button>
+                                                    <button type="button" class="btn btn-angel waves-effect waves-light">刪除</button>
+                                                    <button type="button" class="btn btn-angel waves-effect waves-light">編輯</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="message-bd">
+                                            <div>
+                                                <p><%= lorem_sentences(1) %></p>
+                                                <p><img class="img-fluid" src="https://otakukart.com/wp-content/uploads/2021/05/scarJo.jpg"></p>
+                                                <p><%= lorem_sentences(5) %></p>
+                                                <p><img class="img-fluid" src="https://avatarfiles.alphacoders.com/231/231252.jpg"></p>
+                                            </div>
+                                            <span class="d-block mt-1">
+                                                <span href="#" class="file-pill">
+                                                    <a href="#">
+                                                        <i class="fa fa-file-excel-o"></i>
+                                                        consequuntur.xls
+                                                    </a>
+                                                    <button class="btn btn-xs btn-danger btn-rounded unshadow" type="button" title="刪除"><i class="fa fa-times mr-0"></i></button>
+                                                </span>
+                                                <span href="#" class="file-pill">
+                                                    <a href="#">
+                                                        <i class="fa fa-file-pdf-o"></i>
+                                                        Numquam.pdf
+                                                    </a>
+                                                    <button class="btn btn-xs btn-danger btn-rounded unshadow" type="button" title="刪除"><i class="fa fa-times mr-0"></i></button>
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                        <div class="replay-wrapper">
+
+                                            <div class="message-item">
+                                                <div class="message-hd">
+                                                    <div class="message-start">
+                                                        <div class="matters-executor">
+                                                            <div class="avatar">
+                                                                <img alt="Pic" src="https://avatarfiles.alphacoders.com/231/231252.jpg">
+                                                            </div>
+                                                            <span class="name">史佳蕾</span>
+                                                        </div>
+                                                        <span class="message-time"><i class="fa fa-clock-o"></i> 2023/03/25 17:25</span>
+                                                    </div>
+                                                    <div class="action-ft">
+                                                        <div class="btn-group btn-group-xs">
+                                                            <button type="button" class="btn btn-angel waves-effect waves-light">回覆</button>
+                                                            <button type="button" class="btn btn-angel waves-effect waves-light">刪除</button>
+                                                            <button type="button" class="btn btn-angel waves-effect waves-light">編輯</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="message-bd">
+                                                    <div>
+                                                        <p><%= lorem_sentences(1) %></p>
+                                                        <p><%= lorem_sentences(5) %></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="message-item">
+                                                <div class="message-hd">
+                                                    <div class="message-start">
+                                                        <div class="matters-executor">
+                                                            <div class="avatar">
+                                                                <img alt="Pic" src="../assets/default-avatar.svg">
+                                                            </div>
+                                                            <span class="name">Someone</span>
+                                                        </div>
+                                                        <span class="message-time"><i class="fa fa-clock-o"></i> 2023/03/25 17:25</span>
+                                                    </div>
+                                                    <div class="action-ft">
+                                                        <div class="btn-group btn-group-xs">
+                                                            <button type="button" class="btn btn-angel waves-effect waves-light">回覆</button>
+                                                            <button type="button" class="btn btn-angel waves-effect waves-light">刪除</button>
+                                                            <button type="button" class="btn btn-angel waves-effect waves-light">編輯</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="message-bd">
+                                                    <div>
+                                                        <p><%= lorem_sentences(2) %></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- 針對第二層留言的回覆區塊 -->
+                                            <div class="task-message-replay">
+                                                <div class="mb-4">
+                                                    <div class="matters-executor">
+                                                        <div class="avatar">
+                                                            <img alt="Pic" src="https://avatarfiles.alphacoders.com/231/231252.jpg">
+                                                        </div>
+                                                        <span class="name">史佳蕾</span>
+                                                    </div>
+                                                    <textarea class="form-control rounded-0" id="" rows="6"></textarea>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>針對內容</label>
+                                                            <div>
+                                                                <select class="browser-default custom-select">
+                                                                    <option selected>Open this select menu</option>
+                                                                    <option value="1">One</option>
+                                                                    <option value="2">Two</option>
+                                                                    <option value="3">Three</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>相關檔案</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                                                </div>
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
+                                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                            <small id="emailHelp" class="form-text text-muted">請上傳相關檔案或圖片</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2 text-center">
+                                                    <button type="button" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        
+                                        <!-- 針對第一筆留言的回覆區塊 -->
+                                        <div class="task-message-replay">
+                                            <div class="mb-4">
+                                                <div class="matters-executor">
+                                                    <div class="avatar">
+                                                        <img alt="Pic" src="https://avatarfiles.alphacoders.com/231/231252.jpg">
+                                                    </div>
+                                                    <span class="name">史佳蕾</span>
+                                                </div>
+                                                <textarea class="form-control rounded-0" id="" rows="6"></textarea>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label>針對內容</label>
+                                                        <div>
+                                                            <select class="browser-default custom-select">
+                                                                <option selected>Open this select menu</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label>相關檔案</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                                            </div>
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
+                                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                            </div>
+                                                        </div>
+                                                        <small id="emailHelp" class="form-text text-muted">請上傳相關檔案或圖片</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2 text-center">
+                                                <button type="button" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="message-item">
+                                        <div class="message-hd">
+                                            <div class="message-start">
+                                                <div class="matters-executor">
+                                                    <div class="avatar">
+                                                        <img alt="Pic" src="../assets/default-avatar.svg">
+                                                    </div>
+                                                    <span class="name">Someone</span>
+                                                </div>
+                                                <span class="message-time"><i class="fa fa-clock-o"></i> 2023/03/25 17:25</span>
+                                            </div>
+                                            <div class="action-ft">
+                                                <div class="btn-group btn-group-xs">
+                                                    <button type="button" class="btn btn-angel waves-effect waves-light">回覆</button>
+                                                    <button type="button" class="btn btn-angel waves-effect waves-light">刪除</button>
+                                                    <button type="button" class="btn btn-angel waves-effect waves-light">編輯</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="message-bd">
+                                            <div>
+                                                <p><%= lorem_sentences(1) %></p>
+                                                <p><%= lorem_sentences(5) %></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 針對第一層最後一筆留言的回覆區塊 -->
+                                <div class="task-message-replay">
+                                    <div class="mb-4">
+                                        <div class="matters-executor">
+                                            <div class="avatar">
+                                                <img alt="Pic" src="https://avatarfiles.alphacoders.com/231/231252.jpg">
+                                            </div>
+                                            <span class="name">史佳蕾</span>
+                                        </div>
+                                        <textarea class="form-control rounded-0" id="" rows="6"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>針對內容</label>
+                                                <div>
+                                                    <select class="browser-default custom-select">
+                                                        <option selected>Open this select menu</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>相關檔案</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                                    </div>
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
+                                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                    </div>
+                                                </div>
+                                                <small id="emailHelp" class="form-text text-muted">請上傳相關檔案或圖片</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 text-center">
+                                        <button type="button" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-4 pt-3">
+                            <div class="task-state-hd">
+                                <span class="h6 font-weight-bold">項目功能</span>
+                                <span class="grey-text">預計時間</span>
+                                <span class="grey-text">完成進度</span>
+                            </div>
+                            <ul class="menu-item task-state">
+                                <li class="task-state-item">
+                                    <div class="s1">功能名稱</div>
+                                    <div class="s2">
+                                        <span class="quantity"><input class="form-control form-control-sm" type="number" min="1" max="24" step="1" value="0"></span>
+                                        <span class="quantity"><input class="form-control form-control-sm" type="number" min="1" max="60" step="1" value="0"></span>
+                                    </div>
+                                    <div class="s3">
+                                        <input type="range" class="w-range active" id="customRange1">
+                                    </div>
+                                </li>
+                                <li class="task-state-item">
+                                    <div class="s1">Architecto officiis natus</div>
+                                    <div class="s2">
+                                        <span class="quantity"><input class="form-control form-control-sm" type="number" min="1" max="24" step="1" value="0"></span>
+                                        <span class="quantity"><input class="form-control form-control-sm" type="number" min="1" max="60" step="1" value="0"></span>
+                                    </div>
+                                    <div class="s3">
+                                        <input type="range" class="w-range active" id="customRange1">
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="task-state-hd">
+                                <span class="h6 font-weight-bold">TODO</span>
+                                <span class="grey-text">預計時間</span>
+                                <span class="grey-text">完成進度</span>
+                            </div>
+                            <ul class="menu-item task-state">
+                                <li class="task-state-item">
+                                    <div class="s1">Do Something</div>
+                                    <div class="s2">
+                                        <span class="quantity"><input class="form-control form-control-sm" type="number" min="1" max="24" step="1" value="0"></span>
+                                        <span class="quantity"><input class="form-control form-control-sm" type="number" min="1" max="60" step="1" value="0"></span>
+                                    </div>
+                                    <div class="s3">
+                                        <input type="range" class="w-range active" id="customRange1">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="task-pills">
+                                <span class="badge badge-pill badge-default"><i class="fa fa-play-circle"></i> 執行中</span>
+                                <span class="badge badge-pill badge-primary">#R2.需求提出</span>
+                                <span class="badge badge-pill badge-secondary">重要：中</span>
+                                <span class="badge badge-pill badge-success">優先：中</span>
+                                <span class="badge badge-pill badge-danger">Danger</span>
+                                <span class="badge badge-pill badge-warning">Warning</span>
+                                <span class="badge badge-pill badge-info">Info</span>
+                                <span class="badge badge-pill badge-light">Light</span>
+                                <span class="badge badge-pill badge-dark">Dark</span>
+                                <span class="badge badge-pill badge-danger">壓日期 2022/02/15</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="col-block border mb-2">
+                                <div class="block-content">
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span>自行排單</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="item-status">
+                                            <span class="ticket-done"><i class="fa fa-check-circle"></i></span>
+                                            處理中
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="block-footer has-border p-2">
+                                    <button class="btn btn-sm btn-fb waves-effect waves-light" type="button" onclick="Jesda.modal('/project/task.git.log/append/modal/1/task_sn/658', 'dialogGitLogAppend', null, null, 'large', true)">新增Git紀錄</button>
+                                    <button type="button" class="btn btn-secondary btn-sm pull-right waves-effect waves-light" onclick="JdCloseTab('/project/task/tab.close')">關閉</button>
+                                    <button type="button" class="btn btn-primary btn-sm pull-right waves-effect waves-light" onclick="JdTicketStart()">開始</button>
+                                </div>
+                            </div>
+                            <div class="col-block border mb-2">
+                                <div class="block-header has-border p-2">
+                                    <div class="pull-left pt-2">工作日誌</div>
+                                </div>
+                                <div class="block-content expansion">
+                                    <div id="ticket-work-log-datatable">
+                                        <div id="datatable6420fef82c095_wrapper" class="dataTables_wrapper no-footer">
+                                            <div class="dataTables_scroll">
+                                                <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px none; width: 100%;">
+                                                    <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 639.333px; padding-right: 0px;">
+                                                        <table class="table table-striped datatable table-sm dataTable no-footer" style="margin-left: 0px; width: 639.333px;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 60px;" aria-label=""></th>
+                                                                    <th
+                                                                        class="sorting sorting_asc"
+                                                                        tabindex="0"
+                                                                        aria-controls="datatable6420fef82c095"
+                                                                        rowspan="1"
+                                                                        colspan="1"
+                                                                        style="width: 180.317px;"
+                                                                        aria-label="
+                                    開始時間        : activate to sort column descending"
+                                                                        aria-sort="ascending"
+                                                                    >
+                                                                        開始時間
+                                                                    </th>
+                                                                    <th
+                                                                        class="sorting"
+                                                                        tabindex="0"
+                                                                        aria-controls="datatable6420fef82c095"
+                                                                        rowspan="1"
+                                                                        colspan="1"
+                                                                        style="width: 180.317px;"
+                                                                        aria-label="
+                                    結束時間        : activate to sort column ascending"
+                                                                    >
+                                                                        結束時間
+                                                                    </th>
+                                                                    <th
+                                                                        class="sorting"
+                                                                        tabindex="0"
+                                                                        aria-controls="datatable6420fef82c095"
+                                                                        rowspan="1"
+                                                                        colspan="1"
+                                                                        style="width: 180.3px;"
+                                                                        aria-label="
+                                    工作時間        : activate to sort column ascending"
+                                                                    >
+                                                                        工作時間
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%; max-height: 200px;">
+                                                    <table id="datatable6420fef82c095" class="table table-striped datatable table-sm dataTable no-footer">
+                                                        <thead>
+                                                            <tr style="height: 0px;">
+                                                                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 60px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="">
+                                                                    <div class="dataTables_sizing" style="height: 0px; overflow: hidden;"></div>
+                                                                </th>
+                                                                <th
+                                                                    class="sorting sorting_asc"
+                                                                    aria-controls="datatable6420fef82c095"
+                                                                    rowspan="1"
+                                                                    colspan="1"
+                                                                    style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 180.317px;"
+                                                                    aria-label="
+                                    開始時間        : activate to sort column descending"
+                                                                    aria-sort="ascending"
+                                                                >
+                                                                    <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                                                        開始時間
+                                                                    </div>
+                                                                </th>
+                                                                <th
+                                                                    class="sorting"
+                                                                    aria-controls="datatable6420fef82c095"
+                                                                    rowspan="1"
+                                                                    colspan="1"
+                                                                    style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 180.317px;"
+                                                                    aria-label="
+                                    結束時間        : activate to sort column ascending"
+                                                                >
+                                                                    <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                                                        結束時間
+                                                                    </div>
+                                                                </th>
+                                                                <th
+                                                                    class="sorting"
+                                                                    aria-controls="datatable6420fef82c095"
+                                                                    rowspan="1"
+                                                                    colspan="1"
+                                                                    style="padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px; width: 180.3px;"
+                                                                    aria-label="
+                                    工作時間        : activate to sort column ascending"
+                                                                >
+                                                                    <div class="dataTables_sizing" style="height: 0px; overflow: hidden;">
+                                                                        工作時間
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr class="odd">
+                                                                <td colspan="4" class="dataTables_empty" valign="top">No data available in table</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            var datatable6420fef82c095;
+                                            $(function () {
+                                                datatable6420fef82c095 = $("#datatable6420fef82c095").DataTable({
+                                                    ajax: "/project/task.ticket.work.log/get.json.ajax/ticket_sn/528",
+                                                    columns: [
+                                                        {
+                                                            data: "sn",
+                                                            orderable: false,
+                                                            width: "60px",
+                                                            render: function (data) {
+                                                                return (
+                                                                    '<div class="btn-group btn-group-sm unshadow mt-1">' +
+                                                                    '<button title="編輯" data-toggle="tooltip" type="button" class="btn btn-white btn-xs waves-effect waves-light pt-1 py-0 px-2"' +
+                                                                    "onclick=\"Jesda.modal('/project/task.ticket.work.log/edit/sn/" +
+                                                                    data +
+                                                                    "', 'dialogdatatable6420fef82c095', null, null, 'large')\"" +
+                                                                    'data-original-title="Edit Client">' +
+                                                                    '<i class="fa fa-edit"></i>' +
+                                                                    "</button>" +
+                                                                    "</div>"
+                                                                );
+                                                            },
+                                                        },
+                                                        {
+                                                            data: "start_time",
+                                                        },
+                                                        {
+                                                            data: "end_time",
+                                                        },
+                                                        {
+                                                            data: "work_time",
+                                                        },
+                                                    ],
+                                                    order: [1, "asc"],
+                                                    autoWidth: false,
+                                                    searching: false,
+                                                    paging: false,
+                                                    info: false,
+                                                    fixedHeader: true,
+                                                    scrollX: true,
+                                                    scrollY: "200px",
+                                                    scrollCollapse: true,
+                                                    createdRow: function (row, data, index) {
+                                                        $("td", row).eq(0).addClass("p-0");
+                                                    },
+                                                });
+                                            });
+
+                                            $(window).resize(function () {
+                                                datatable6420fef82c095.columns.adjust();
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div role="tabpanel" class="tab-pane" id="profile">
                 <h4 class="push">Block Tabs With Options</h4>
                 <%= lorem_sentences(5) %>
             </div>
-            <div role="tabpanel" class="tab-pane" id="profile"><%= lorem_sentences(5) %></div>
         </div>
     </div>
 </main>

@@ -1,0 +1,215 @@
+<!-- template: 個人專區 - 面試作業 -->
+
+<!-- breadcrumb 麵包屑 -->
+<div class="breadcrumb-wrapper">
+    <div class="container-lg">
+        <div class="breadcrumb-inner">
+            <span class="toggler-wrap">
+                <button class="navbar-toggler button-widget" type="button" id="navbarSideCollapse" aria-label="Toggle navigation" title="展開側欄">
+                    <span class="hamburger">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </span>
+                </button>
+            </span>
+            <%= render :partial => "/partials/breadcrumb" %>
+        </div>
+    </div>
+</div>
+
+<div class="container-lg">
+	<div class="page-content">
+        
+        <aside class="aside offcanvas-collapse">
+            <div class="scrollbar-inner">
+                <div class="sidenav">
+                    <ul class="side-navigation menu-item">
+                        <li>
+                            <a class="nav-item" href="#" title="個人資料">
+                                <span class="link-inner">個人資料</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-item" href="#" title="線上課程">
+                                <span class="link-inner">線上課程</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-item" href="#" title="課程問卷">
+                                <span class="link-inner">課程問卷</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-item current" href="#" title="面試作業">
+                                <span class="link-inner">面試作業</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-item" href="#" title="火柴盒專區">
+                                <span class="link-inner">火柴盒專區</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <div id="widget-overlay"></div>
+        <main class="main">
+            
+            <div class="page-title">
+                <h3>面試作業</h3>
+            </div>
+            
+            <div class="interview-wrapper">
+                <p><%= lorem_paragraphs(1) %></p>
+                
+                <div class="interview-s1 s-wrap">
+                    <label for="" class="form-label">預約日期</label>
+                    <div>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>請選擇日期區間</option>
+                            <option value="1">2023-04-10 ~ 2023-04-16</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="interview-s2 s-wrap">
+                    <div class="interview-interval">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="interviewInterval" id="interval_1" />
+                            <label class="form-check-label" for="interval_1">
+                                2023-04-10 (一)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="interviewInterval" id="interval_2" />
+                            <label class="form-check-label" for="interval_2">
+                                2023-04-11 (二)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="interviewInterval" id="interval_3" />
+                            <label class="form-check-label" for="interval_3">
+                                2023-04-12 (三)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="interviewInterval" id="interval_4" />
+                            <label class="form-check-label" for="interval_4">
+                                2023-04-13 (四)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="interviewInterval" id="interval_5" />
+                            <label class="form-check-label" for="interval_5">
+                                2023-04-14 (五)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="interviewInterval" id="interval_6" />
+                            <label class="form-check-label" for="interval_6">
+                                2023-04-15 (六)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="interviewInterval" id="interval_7" />
+                            <label class="form-check-label" for="interval_7">
+                                2023-04-16 (日)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="interview-s3 s-wrap">
+                    <div>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>請選擇時間</option>
+                            <option value="1">10:00</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="interview-s4 s-wrap">
+                    <button type="button" class="btn btn-reserve btn-lg btn-primary">預約</button>
+                    <button type="button" class="btn btn-cancel-reserve btn-lg btn-outline-danger">取消預約</button>
+                </div>
+                
+            </div>
+            
+        </main>
+        
+	</div>
+</div>
+
+<% content_for :js do %>
+
+<!-- 面試預約區塊逐步顯示 -->
+<script>
+    // 預設只顯示 interview-s1
+    document.querySelector('.interview-s1').style.display = 'block';
+
+    // 監聽 interview-s1 內的 select 變化
+    document.querySelector('.interview-s1 select.form-select').addEventListener('change', function() {
+      // 如果選擇了某個選項
+      if (this.value !== '') {
+        // 顯示 interview-s2
+        document.querySelector('.interview-s2').style.display = 'block';
+        // 滾動到 interview-s2
+        document.querySelector('.interview-s2').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // 監聽 interview-s2 內的 radiobox 變化
+    const radioboxes = document.querySelectorAll('.interview-s2 .form-check-input');
+    radioboxes.forEach(function(radiobox) {
+      radiobox.addEventListener('change', function() {
+        // 如果有選擇
+        if (this.checked) {
+          // 顯示 interview-s3
+          document.querySelector('.interview-s3').style.display = 'block';
+          // 滾動到 interview-s3
+          document.querySelector('.interview-s3').scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // 監聽 interview-s3 內的 select 變化
+    document.querySelector('.interview-s3 select.form-select').addEventListener('change', function() {
+      // 如果選擇了某個選項
+      if (this.value !== '') {
+        // 顯示 interview-s4
+        document.querySelector('.interview-s4').style.display = 'block';
+        // 滾動到 interview-s4
+        document.querySelector('.interview-s4').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+</script>
+
+<!-- 預約按鈕 -->
+<script>
+    const reserveBtn = document.querySelector('.btn-reserve');
+    const cancelBtn = document.querySelector('.btn-cancel-reserve');
+
+    // 預設情況下隱藏取消按鈕
+    cancelBtn.style.display = 'none';
+
+    reserveBtn.addEventListener('click', function() {
+      // 顯示取消按鈕
+      cancelBtn.style.display = 'inline-block';
+      // 禁用預約按鈕
+      reserveBtn.disabled = true;
+    });
+
+    cancelBtn.addEventListener('click', function() {
+      // 隱藏取消按鈕
+      cancelBtn.style.display = 'none';
+      // 啟用預約按鈕
+      reserveBtn.disabled = false;
+    });
+</script>
+<% end %>

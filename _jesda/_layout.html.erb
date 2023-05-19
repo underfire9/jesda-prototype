@@ -1,0 +1,341 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Jesda</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen, projection" href="../stylesheets/bootstrap.css">
+<% if content_for? :replace_css %>
+    <%= yield :replace_css %>
+<% end %>
+    <link rel="stylesheet" media="screen, projection, print" href="../stylesheets/application.css">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="../favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <script src="../javascripts/modernizr.custom.26633.js"></script>
+<% if content_for? :page_styles %>
+    <%= yield :page_styles %>
+<% end %>
+<script src="../javascripts/modernizr.custom.js"></script>
+<% if content_for? :head_js %>
+    <%= yield :head_js %>
+<% end %>
+</head>
+
+<body>
+    <div class="homepage">
+        <%= yield %>
+    </div>
+
+    <script src="javascripts/jquery-3.6.0.min.js"></script>
+    <script src="javascripts/popper.min.js"></script>
+    <script src="javascripts/bootstrap.bundle.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MotionPathPlugin.min.js"></script>
+    <script>
+        window.onresize = window.onload = function () {
+            gsap.set('.m1_stage', {
+                x: '50%',
+                y: '50%',
+                opacity: 1,
+            })
+        }
+
+        gsap.timeline({
+            defaults: {
+                duration: 120
+            }
+        })
+        .from('.main1', {
+            duration: 1,
+            autoAlpha: 0,
+            ease: 'power1.inOut'
+        }, 0)
+        .fromTo('.m1_cGroup', {
+            opacity: 0,
+            //filter: "blur(4px)"
+        }, {
+            duration: 0.3,
+            opacity: 1,
+            stagger: -0.1
+        }, 0)
+        .from('.m1_cGroup', {
+            duration: 2.5,
+            scale: -0.3,
+            transformOrigin: '50% 50%',
+            stagger: -0.05,
+            ease: 'elastic'
+        }, 0)
+        .fromTo('.m1Bg', {
+            opacity: 0
+        }, {
+            duration: 1,
+            opacity: 1,
+            ease: 'power2.inOut'
+        }, 0.2)
+
+        .add('orbs', 1.2)
+        .add(function () {
+            $('.main1').on('mousemove', function (e) {
+                gsap.to(".m1_cGroup", {
+                    duration: 1,
+                    x: function (i) {
+                        const xCenter = window.innerWidth / 2;
+                        const offset = 35 * (i + 1); // 設定偏移量變數
+                        return offset * ((e.clientX - xCenter) / window.innerWidth); // 乘上變數
+                    },
+                    y: function (i) {
+                        const yCenter = window.innerHeight / 2;
+                        const offset = 20 * (i + 1); // 設定偏移量變數
+                        return offset * ((e.clientY - yCenter) / window.innerHeight); // 乘上變數
+                    },
+                    rotation: Math.random() * 0.1,
+                    overwrite: "auto",
+                });
+                gsap.to('.m1_logo', {
+                    duration: 1,
+                    x: function (i) {
+                        return (e.clientX / window.innerWidth) / (i + 1) * 20
+                    },
+                    y: function (i) {
+                        return i * -20 * (e.clientY / window.innerHeight)
+                    },
+                    rotation: Math.random() * 0.1,
+                    overwrite: 'auto'
+                });
+                gsap.to('.c1_solid, .c1_line', {
+                    duration: 1,
+                    attr: {
+                        opacity: 1.1 - 0.95 * (e.clientY / window.innerHeight)
+                    }
+                })
+                gsap.to('.m1OrbBlank', {
+                    duration: 1,
+                    opacity: 0.2 + 0.55 * (e.clientY / window.innerHeight)
+                })
+            });
+
+            $(".main1").on("click", function (e) {
+                if (gsap.getProperty(".m1_cGroup", "scale") != 1) return; //prevent overlapping bouncy tweens
+
+                // Tween path.st0's fill to white and then back to the original color
+                gsap.to("path.st1", {
+                    duration: 0.1,
+                    fill: "#fff",
+                    opacity: 0.6,
+                    ease:  Expo. easeOut,
+                    onComplete: function () {
+                        gsap.to("path.st1", {
+                            duration: 0.1,
+                            fill: "#1768a6",
+                            opacity: 1,
+                        });
+                    },
+                });
+
+                // Tween m1_cGroup elements
+                for (var i = 0; i < $(".m1_cGroup").length; i++) {
+                    gsap.fromTo(
+                        $(".m1_cGroup")[i],
+                        {
+                            transformOrigin: "50% 50%",
+                            scale: 1
+                        },
+                        {
+                            duration: 0.7 - i / 25,
+                            scale: 0.9,
+                            ease: "back.in(10)",
+                            yoyo: true,
+                            filter: "blur(8px)",
+                            repeat: 1,
+                        }
+                    );
+                }
+            });
+        }, 'orbs+=0.5')
+
+
+        .fromTo('.orb1', {
+            xPercent: -35,
+            yPercent: -5
+        }, {
+            motionPath: {
+                path: function () {
+                    return MotionPathPlugin.convertToPath('.c1_line1', false)[0]
+                },
+                start: 1.03,
+                end: 1.22
+            },
+            ease: 'none',
+            yoyo: false,
+            repeat: -1
+        }, 'orbs')
+
+        .fromTo('.orb2', {
+            xPercent: -45,
+            yPercent: -10
+        }, {
+            motionPath: {
+                path: function () {
+                    return MotionPathPlugin.convertToPath('.c1_line2', false)[0]
+                },
+                start: .5,
+                end: 1.5
+            },
+            ease: 'none',
+            yoyo: false,
+            repeat: -1
+        }, 'orbs')
+
+        .fromTo('.orb3', {
+            xPercent: -50,
+            yPercent: -15
+        }, {
+            motionPath: {
+                path: function () {
+                    return MotionPathPlugin.convertToPath('.c1_line3', false)[0]
+                },
+                start: .65,
+                end: 1.65
+            },
+            ease: 'none',
+            yoyo: false,
+            repeat: -1
+        }, 'orbs')
+
+        .fromTo('.orb3b', {
+            xPercent: -50,
+            yPercent: -25
+        }, {
+            motionPath: {
+                path: function () {
+                    return MotionPathPlugin.convertToPath('.c1_line3', false)[0]
+                },
+                start: .5,
+                end: 1.5
+            },
+            ease: 'none',
+            yoyo: false,
+            repeat: -1
+        }, 'orbs')
+
+        .fromTo('.orb3c', {
+            xPercent: -45,
+            yPercent: -45
+        }, {
+            motionPath: {
+                path: function () {
+                    return MotionPathPlugin.convertToPath('.c1_line3', false)[0]
+                },
+                start: 0.25,
+                end: 1.25
+            },
+            ease: 'none',
+            yoyo: false,
+            repeat: -1
+        }, 'orbs')
+
+        .fromTo('.orb4', {
+            xPercent: -50,
+            yPercent: -50
+        }, {
+            motionPath: {
+                path: function () {
+                    return MotionPathPlugin.convertToPath('.c1_line4', false)[0]
+                },
+                start: 0.1,
+                end: 1.1
+            },
+            ease: 'none',
+            yoyo: false,
+            repeat: -1
+        }, 'orbs')
+
+        .fromTo('.orb4b', {
+            xPercent: -50,
+            yPercent: -50
+        }, {
+            motionPath: {
+                path: function () {
+                    return MotionPathPlugin.convertToPath('.c1_line4', false)[0]
+                },
+                start: 0.8,
+                end: 1.8
+            },
+            ease: 'none',
+            yoyo: false,
+            repeat: -1
+        }, 'orbs')
+
+        .fromTo('.m1Orb', {
+            scale: 0,
+            transformOrigin: '50% 50%'
+        }, {
+            duration: 0.8,
+            scale: 1.5,
+            ease: 'back.out(3)',
+            stagger: 0.15,
+            overwrite: 'auto'
+        }, 'orbs')
+        .fromTo('.m1OrbBlank', {
+            opacity: 0
+        }, {
+            duration: 0.8,
+            opacity: function (i) {
+                return 0.2 + i / 7
+            },
+            stagger: 0.1,
+            overwrite: 'auto'
+        }, 'orbs')
+        .fromTo('.m1OrbBlank', {
+            x: function (i) {
+                return 620 - i / 4 * 380
+            },
+            transformOrigin: function (i) {
+                return -(620 - i / 4 * 380) + 'px 0px'
+            },
+            rotation: function (i) {
+                return [99, -10, 55, 110, 120][i]
+            }
+        }, {
+            rotation: '+=360',
+            yoyo: false,
+            ease: Power0.easeNone,
+            repeat: -1
+        }, 'orbs')
+        
+        .fromTo('.j-logo', {
+            xPercent: -61,
+            yPercent: -650,
+            scale: 1.2
+        }, {
+            ease: 'none',
+            yoyo: true,
+            repeat: -1
+        }, 'orbs')
+        
+        gsap.to(".blurCircle", {duration: 1, opacity: 0.1, filter: "blur(32px)"});
+        gsap.from(".word-wrapper", {duration: 2, opacity: 0});
+    </script>
+</body>
+</html>

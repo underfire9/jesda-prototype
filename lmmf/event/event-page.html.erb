@@ -1,0 +1,131 @@
+<!-- template: 活動頁 -->
+
+<!-- 活動列表及活動頁面依據接待家庭、境外學生、大專院校的不同而改變 theme，請在 .pages 加上 theme-{XXX} -->
+
+<!-- breadcrumb 麵包屑 -->
+<div class="breadcrumb-wrapper">
+    <div class="container-lg">
+        <div class="breadcrumb-inner">
+            <%= render :partial => "/partials/breadcrumb" %>
+        </div>
+    </div>
+</div>
+
+<div class="container-lg">
+	<div class="page-content page-single-column">
+        
+        <article class="event-content">
+            <div class="content-title">
+                <h2>麻省理工學院數位華語磨課師之教學設計與教材編撰</h2>
+            </div>
+            
+            <div class="post-single">
+                <div>
+                    <h3>h3 title 標題加一般段落</h3>
+                    <p><%= zh_lorem_paragraphs(3) %></p>
+
+                    <h3>UL 列表</h3>
+                    <ul>
+                        <li><%= zh_lorem_sentence %></li>
+                        <li><%= zh_lorem_sentence %></li>
+                        <li><%= zh_lorem_sentence %></li>
+                    </ul>
+
+                    <h3>OL 列表</h3>
+                    <ol>
+                        <li><%= zh_lorem_sentence %></li>
+                        <li><%= zh_lorem_sentence %></li>
+                        <li><%= zh_lorem_sentence %></li>
+                    </ol>
+
+                    <h3>大圖加段落</h3>
+                    <p>文章內圖片因應 rwd 會自動 100% 寬，當螢幕寬度變化時才能自動縮放，除非設定如下方示範的文繞圖，在外層容器加上 <code>.text-runaround</code> 或 <code>.text-runaround .right</code></p>
+                    <img src="../assets/fake/03.jpg" alt="測試" title="測試">
+                    <p><%= zh_lorem_paragraphs(5) %></p>
+
+                    <p><%= zh_lorem_paragraphs(5) %></p>
+
+                    <div class="text-runaround">
+                        <h3>文繞圖置左</h3>
+                        <img src="../assets/fake/04.jpg" alt="測試" title="測試">
+                        <p><%= zh_lorem_paragraphs(10) %></p>
+                    </div>
+
+                    <div class="text-runaround right">
+                        <img src="../assets/fake/04.jpg" alt="測試" title="測試">
+                        <p><%= zh_lorem_paragraphs(10) %></p>
+                    </div>
+
+                    <h3>table</h3>
+                    <p>文章內所有 table 須加上 <code>.table</code>，特性為寬度 100% 以及基本樣式，更多樣式請參考 <a href="https://getbootstrap.com/docs/5.3/content/tables/">Bootstrap 5</a>，另外所有 table 需在外層包一層 <code>.table-responsive</code>，可設定系統自動生或使用者自行 coding</p>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <% 5.times do %>
+                                    <th>測試用表格</th>
+                                    <% end %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 5.times do %>
+                                <tr>
+                                    <% 5.times do %>
+                                    <td><%= zh_lorem_sentence %></td>
+                                    <% end %>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3>影片</h3>
+                    <p><code>.video-wrapper</code> 為必要容器</p>
+                    <div class="video-wrapper">
+                       <iframe width="560" height="315" src="https://www.youtube.com/embed/SdR8rl-NbB4" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-return">
+                <a href="#" class="return-link" title="返回 接待家庭活動專區">
+                    <i class="fas fa-long-arrow-alt-left"></i> 返回 接待家庭活動專區
+                </a>
+            </div>
+        </article>
+        
+	</div>
+</div>
+
+<% content_for :js do %>
+    <!-- date & time picker -->
+    <script src="../javascripts/moment.min.js"></script>
+    <script src="../javascripts/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        if (/Mobi/.test(navigator.userAgent)) {
+            // if mobile device, use native pickers
+            $(".date input").attr("type", "date");
+            $(".time input").attr("type", "time");
+        } else {
+            // if desktop device, use DateTimePicker
+            $(".datepicker").datetimepicker({
+                useCurrent: false,
+                format: "DD-MMM-YYYY",
+                showTodayButton: true,
+                icons: {
+                    next: "fa fa-chevron-right",
+                    previous: "fa fa-chevron-left",
+                    today: "todayText",
+                },
+            });
+            $(".timepicker").datetimepicker({
+                format: "LT",
+                icons: {
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                },
+            });
+        }
+	</script>
+<% end %>

@@ -1,0 +1,176 @@
+<!-- template: 活動專區列表 -->
+
+<!-- 活動列表及活動頁面依據接待家庭、境外學生、大專院校的不同而改變 theme，請在 .pages 加上 theme-{XXX} -->
+
+<!-- breadcrumb 麵包屑 -->
+<div class="breadcrumb-wrapper">
+    <div class="container-lg">
+        <div class="breadcrumb-inner">
+            <%= render :partial => "/partials/breadcrumb" %>
+        </div>
+    </div>
+</div>
+
+<div class="container-lg">
+	<div class="page-content page-single-column">
+        
+        <div class="page-title">
+            <h3><span>接待家庭</span>活動專區</h3>
+        </div>
+        
+        <div class="events-list-wrapper">
+            <div class="search-bar">
+                <div class="input-wrap">
+                    <input type="text" class="form-control" id="" placeholder="請輸入活動名稱關鍵字">
+                </div>
+                <div class="input-wrap">
+                    <div class="input-group date datepicker" id="datepicker">
+                        <input class="form-control" placeholder="MM/DD/YYYY" />
+                        <span class="input-group-append input-group-addon">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="input-wrap">
+                    <div class="input-group date datepicker" id="datepicker">
+                        <input class="form-control" placeholder="MM/DD/YYYY" />
+                        <span class="input-group-append input-group-addon">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="input-search"><button type="button" class="btn btn-primary keep-all"><i class="fas fa-search"></i> 搜尋活動</button></div>
+            </div>
+            
+            <div class="events-list">
+                
+                <div class="events-list-item">
+                    <div class="item-card">
+                        <div class="item-bd">
+                            <h4>麻省理工學院數位華語磨課師之教學設計與教材編撰</h4>
+                            
+                            <!-- 後台摘要欄位請限制字數 -->
+                            <p>磨課師平台edx是由美國麻省理工學院與哈佛大學於2012年共同創建，線上開放課程造福許多人，而本次演講則邀請麻省理工學院中文項目...</p>
+                        </div>
+                        <div class="item-date">
+                            <div class="event-date">
+                                <span class="label">活動開始</span>
+                                <span class="date">2023/04/15</span>
+                            </div>
+                            <div class="event-date">
+                                <span class="label">活動結束</span>
+                                <span class="date">2023/05/30</span>
+                            </div>
+                        </div>
+                        <div class="item-ft">
+                            <a href="#" class="item-link" title="活動詳情">
+                                活動詳情 <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="events-list-item">
+                    <div class="item-card">
+                        <div class="item-bd">
+                            <h4>駐臺北以色列經濟文化辦事處來訪本院教科書研究中心</h4>
+                            <!-- 後台摘要欄位請限制字數 -->
+                            <p>為瞭解我國審定本教科書中如何編寫有關猶太大屠殺的相關內容，駐臺北以色列經濟文化辦事處於111年9月7日來訪本院教科書研究中心...</p>
+                        </div>
+                        <div class="item-date">
+                            <div class="event-date">
+                                <span class="label">活動開始</span>
+                                <span class="date">2023/04/15</span>
+                            </div>
+                            <div class="event-date">
+                                <span class="label">活動結束</span>
+                                <span class="date">2023/05/30</span>
+                            </div>
+                        </div>
+                        <div class="item-ft">
+                            <a href="#" class="item-link" title="活動詳情">
+                                活動詳情 <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <% (1..7).map do |i| %>
+                <div class="events-list-item">
+                    <div class="item-card">
+                        <div class="item-bd">
+                            <h4><%= lorem_sentence %></h4>
+                            <!-- 後台摘要欄位請限制字數 -->
+                            <p><%= lorem_sentences(2) %></p>
+                        </div>
+                        <div class="item-date">
+                            <div class="event-date">
+                                <span class="label">活動開始</span>
+                                <span class="date">2023/04/15</span>
+                            </div>
+                            <div class="event-date">
+                                <span class="label">活動結束</span>
+                                <span class="date">2023/05/30</span>
+                            </div>
+                        </div>
+                        <div class="item-ft">
+                            <a href="#" class="item-link" title="活動詳情">
+                                活動詳情 <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+                
+            </div>
+            
+            <nav aria-label="...">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+	</div>
+</div>
+
+<% content_for :js do %>
+    <!-- date & time picker -->
+    <script src="../javascripts/moment.min.js"></script>
+    <script src="../javascripts/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        if (/Mobi/.test(navigator.userAgent)) {
+            // if mobile device, use native pickers
+            $(".date input").attr("type", "date");
+            $(".time input").attr("type", "time");
+        } else {
+            // if desktop device, use DateTimePicker
+            $(".datepicker").datetimepicker({
+                useCurrent: false,
+                format: "DD-MMM-YYYY",
+                showTodayButton: true,
+                icons: {
+                    next: "fa fa-chevron-right",
+                    previous: "fa fa-chevron-left",
+                    today: "todayText",
+                },
+            });
+            $(".timepicker").datetimepicker({
+                format: "LT",
+                icons: {
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                },
+            });
+        }
+	</script>
+<% end %>

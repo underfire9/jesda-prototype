@@ -1,0 +1,105 @@
+<!-- admin-page: UI / 表單輸出純文字 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h2>表單輸出樣式</h2>
+		<p>最上層使用 <code>.form_output</code> ，輸出項目為 <code>.output-item</code>，如多項目且不想間隔太大可再多一層 <code>.sub-inner</code>，例如生日 Date of Birth</p>
+    </div>
+	<div class="row">
+		<div class="col-6">
+            <div class="form_output">
+                <div class="col-block mb-20">
+                    <div class="block-header has-border">
+                        <h3>申請狀態</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="output-item">填寫中</div>
+                    </div>
+                </div>
+                <div class="col-block mb-20">
+                    <div class="block-header has-border">
+                        <h3>Home University</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="form-group">
+                            <label>I am from</label>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="output-item">State of New York</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="output-item">United States</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="output-item">New York University</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-block mb-20">
+                    <div class="block-header has-border">
+                        <h3>Personal Information</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="form-group">
+                            <label>Full Name in English</label>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="output-item">Scarlett</div>
+                                </div>
+                                <div class="col">
+                                    <div class="output-item">Ingrid</div>
+                                </div>
+                                <div class="col">
+                                    <div class="output-item">Johansson</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Full Name in Chinese</label>
+                            <div class="output-item">史佳麗韓喬森</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <div class="output-item">
+                                <span class="sub-inner">1984</span>
+                                <span class="sub-inner">11</span>
+                                <span class="sub-inner">22</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <div class="output-item">Female</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Native Language(s)</label>
+                            <div class="output-item">English</div>
+                        </div>
+                        <div class="form-group">
+                            <label>宗教</label>
+                            <div class="output-item">無</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+		</div>
+	</div>
+</main>
+
+<% content_for :js do %>
+    <script>
+		$(document).ready(function() {
+            $('.mdb-select').material_select();
+		});
+		 $('.panel-collapse').on('show.bs.collapse', function() {
+			 $(this).siblings('.panel-heading').addClass('active');
+		 });
+
+		 $('.panel-collapse').on('hide.bs.collapse', function() {
+			 $(this).siblings('.panel-heading').removeClass('active');
+		 });
+    </script>
+<% end %>

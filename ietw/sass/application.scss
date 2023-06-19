@@ -2729,6 +2729,87 @@ $group-line: #bbb;
     }
 }
 
+/* `Navigation
+-----------------------------------------------------------------------------*/
+
+.nav-japen-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    li {
+        margin-bottom: 1.5rem;
+        width: 49%;
+    }
+    .list-item {
+        display: block;
+        background: lighten($main_color, 50);
+        border-radius: .25rem;
+        padding: 1.5rem;
+        font-size: 1.25rem;
+        color: #333;
+        position: relative;
+        transition: all 0.5s ease-in-out;
+        &:after {
+            content: "";
+            border-radius: .25rem;
+            background: $main_color;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 99%;
+            transition: all 0.5s ease-in-out;
+            z-index: 0;
+        }
+        span {
+            position: relative;
+            z-index: 1;
+        }
+        &:hover {
+            color: #fff;
+            &:after { right: 0; }
+        }
+    }
+}
+
+/* `IEG
+-----------------------------------------------------------------------------*/
+
+.ieg-wrapper {
+    padding-bottom: 2rem;
+}
+
+.ieg-county-list {
+    display: flex;
+    flex-wrap: wrap;
+    li {
+        margin-bottom: 1rem;
+        padding: 0 .5rem;
+        width: 20%;
+    }
+    a {
+        display: block;
+        background: $main_color;
+        border-radius: .25rem;
+        box-shadow: 0 4px 8px -2px rgba(#000, .4);
+        padding: 2rem;
+        max-height: 118px;
+        font-size: 1.25rem;
+        text-align: center;
+        color: #fff;
+        span {
+            display: block;
+            font-size: 1rem;
+        }
+        &:hover {
+            background: $link_hover;
+            box-shadow: 0 2px 4px -1px rgba(#000, .8);
+        }
+    }
+}
+
+
+
 /* `Stuff
 -----------------------------------------------------------------------------*/
 
@@ -3094,6 +3175,13 @@ $group-line: #bbb;
             padding: .5rem;
         }
     }
+
+    .ieg-county-list {
+        li {
+            width: 25%;
+        }
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -3195,6 +3283,13 @@ $group-line: #bbb;
             ol {
                 column-count: 2;
             }
+        }
+    }
+    .nav-japen-list {
+        display: block;
+        li {
+            margin-bottom: .75rem;
+            width: 100%;
         }
     }
 }
@@ -3337,6 +3432,12 @@ $group-line: #bbb;
         .county-cover {
             padding: 1rem;
             img { max-height: 512px; }
+        }
+    }
+    
+    .ieg-county-list {
+        li {
+            width: 33.33333%;
         }
     }
 }
@@ -3500,6 +3601,12 @@ $group-line: #bbb;
     .league-introduce {
         .avatar { width: 128px; }
     }
+    
+    .ieg-county-list {
+        li {
+            width: 50%;
+        }
+    }
 }
 
 @media (max-width: 480px) {
@@ -3642,6 +3749,14 @@ $group-line: #bbb;
 			}
 			.main-nav-inner { height: 144px; }
         }
+    }
+    .ieg-county-list {
+        li {
+            width: 100%;
+            margin-bottom: .5rem;
+            padding: 0;
+        }
+        a { padding: .5rem; }
     }
 }
 

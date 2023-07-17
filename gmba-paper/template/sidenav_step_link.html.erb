@@ -1,0 +1,86 @@
+<!-- template: template - Step (申請步驟) - link -->
+
+<div class="container-lg">
+	<div class="page-content">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+		        <div class="sidenav">
+					
+					<!-- 因 step 有 position，當 main 高度不足時 step 會與 footer 重疊，因此需要前端協助用 js 判斷 .step-wrap 的高度後，將 min-height 塞進 .main 裡 -->
+					<div class="step-wrap side-sticky">
+						<h5 class="step-h5 fw-bold text-end mb-4">申請步驟</h5>
+                        <ul class="step-navigation menu-item">
+                            <li class="done">
+                                <a class="nav-item" href="#">
+                                    <span class="step-briefly">申請課程</span>
+									<span class="step-desc">步驟簡短說明</span>
+                                </a>
+                            </li>
+							<li class="done">
+                                <a class="nav-item" href="#">
+                                    <span class="step-briefly">申請表填寫</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </a>
+                            </li>
+							<li class="current">
+                                <a class="nav-item" href="#">
+                                    <span class="step-briefly">文件上傳</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </a>
+                            </li>
+							<li>
+                                <a class="nav-item" href="#">
+                                    <span class="step-briefly">預覽申請資料</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </a>
+                            </li>
+							<li>
+                                <a class="nav-item" href="#">
+                                    <span class="step-briefly">繳交報名費</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </a>
+                            </li>
+							<li>
+                                <a class="nav-item" href="#">
+                                    <span class="step-briefly">送出申請</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </a>
+                            </li>
+                        </ul>
+					</div>
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+			<div>
+			    <% (1..10).map do |i| %>
+				<p><%= lorem_paragraphs(4) %></p>
+				<% end %>
+			</div>
+		</main>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+    <script>
+        var stickEl = $('.side-sticky'),
+          stickyElTop = stickEl.offset().top;
+
+        var sticky = function(){  
+          var scrollTop = $(window).scrollTop();  
+
+          if (stickyElTop < scrollTop+20) {   
+              stickEl.addClass('is-fixed');  
+          } else {  
+              stickEl.removeClass('is-fixed');   
+          }  
+        };
+
+        $(window).scroll(function() {
+          sticky();
+        }); 
+    </script>
+<% end %>
+

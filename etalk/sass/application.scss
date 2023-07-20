@@ -6,6 +6,9 @@
 @import "widgets/bootstrap-datetimepicker.min";
 @import "widgets/datetimepicker";
 
+/* Nav main ------------------------------------------------------------------------*/
+@import "widgets/nav-main";
+
 /* `Stuff
 -----------------------------------------------------------------------------*/
 
@@ -118,7 +121,160 @@ section.section {
     will-change: opacity;
 }
 
+/* `Index
+-----------------------------------------------------------------------------*/
 
+.main-carousel {
+    margin-bottom: 5rem;
+	.item-inner {
+		display: flex;
+		//align-items: center;
+	}
+	.item-photo {
+		width: 66.66666%;
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+	}
+	.item-text {
+		width: 33.33333%;
+        position: relative;
+        .text-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 60px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+		h2 {
+			margin-bottom: 1.75rem;
+			font-size: 4.75rem;
+			font-weight: 700;
+            line-height: 1.1;
+            color: $main_color;
+		}
+		p {
+			margin-bottom: 1.75rem;
+			font-size: 1.25rem;
+			line-height: 1.7;
+		}
+		.link-more {
+			text-transform: uppercase;
+			font-size: 1.25rem;
+			font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease-in;
+            span {
+                display: block;
+                padding-left: 92px;
+                position: relative;
+                transition: all 0.3s ease-in;
+                &:before {
+                    content: "";
+                    background: $etalk_grey;
+                    width: 72px;
+                    height: 30px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    transition: all 0.3s ease-in;
+                    transform-origin: left;
+                    transform: scaleX(0);
+                }
+            }
+            &:before, &:after {
+                content: "";
+                background: $main_color;
+                width: 72px;
+                height: 30px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                transition: all 0.3s ease-in;
+                transform-origin: left;
+            }
+            &:after {
+                background: $etalk_gold;
+                transform: scaleX(0);
+            }
+            &:hover {
+                span:before {
+                    transform: scaleX(1);
+                }
+                &:after {
+                    transform: scaleX(1);
+                    transition-delay: 0.2s;
+                }
+            }
+		}
+	}
+	.carousel-indicators {
+		left: 66.66666%;
+		right: auto;
+		bottom: 2rem;
+		margin: 0;
+		padding-left: 60px;
+		[data-bs-target] {
+			border-radius: 50%;
+			background-color: $main_color;
+			width: 16px;
+			height: 16px;
+			opacity: 0.2;
+		}
+		.active { opacity: 1; }
+        button { margin-right: .75rem; }
+	}
+    
+    .item-photo,
+    .item-text {
+        transition: transform 0.6s ease-in-out;
+    }
+    .item-photo {
+        transform: translateX(-100%);
+    }
+    .item-text {
+        transform: translateX(100%);
+    }
+    .carousel-item-prev.carousel-item-end {
+        .item-photo {
+            transform: translateX(-100%);
+            //opacity: 0;
+        }
+        .item-text {
+            transform: translateX(100%);
+            //opacity: 0;
+        } 
+    }
+    .carousel-item.active {
+        .item-photo { transform: translateX(0); }
+        .item-text {
+            transform: translateX(0);
+            transition-delay: .2s;
+        }
+    }
+    .active.carousel-item-start {
+        .item-photo {
+            transform: translateX(-100%);
+        }
+        .item-text {
+            transform: translateX(100%);
+        }
+    }
+    .carousel-item-end.active {
+        .item-photo {
+            transform: translateX(-100%);
+        }
+        .item-text {
+            transform: translateX(100%);
+        } 
+    }
+}
 
 /* `Responsive
 -----------------------------------------------------------------------------*/

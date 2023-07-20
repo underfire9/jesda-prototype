@@ -1,0 +1,45 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/navsite_head" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages">
+            <%= render :partial => "/partials/navsite_header" %>
+            <div class="content">
+                <%= yield %>
+            </div>
+			<a id="backtop"></a>
+        </div>
+        <%= render :partial => "/partials/navsite_footer" %>
+	</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.js"></script>
+
+	
+	<!-- Back to top -->
+	<script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+	</script>
+	
+    
+    <%= yield :js %>
+</body>
+</html>

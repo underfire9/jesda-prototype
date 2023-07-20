@@ -1,0 +1,448 @@
+@import "widgets/font";
+@import "vendor/font-awesome";
+
+/* Variables --------------------------------------------------------------------- */
+@import "widgets/variables";
+
+$navsite_color:            #ffc000;
+$navsite_lighten_color:    #fdd488;
+
+/* Fonts --------------------------------------------------------------------- */
+@import "widgets/font";
+
+/* Taiwan map --------------------------------------------------------------------- */
+@import "widgets/taiwan_map";
+
+/* `Base
+-----------------------------------------------------------------------------*/
+
+html, body {
+	height: 100%;
+	min-height: 100%;
+}
+
+body {
+	font-family: 'Roboto', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
+	                                                     // 微軟正黑體
+    line-height: $base_line_height;
+	font-size: $base_font_size;
+	font-weight: 400;
+	color: #333;
+}
+
+body { background: $body_background; }
+
+.workspace {
+	height: 100%;
+}
+
+.pages {
+    min-height: calc(100vh - 141px);
+    padding-bottom: 181px;
+}
+
+.text-hide {
+	display: none;
+}
+
+a {
+	color: #2e48da;
+	transition: all 0.2s ease-in-out;
+	text-decoration: none;
+	&:focus {
+		outline: none; /* for Firefox Google Chrome  */
+		behavior: expression(this.onFocus=this.blur()); /* for IE */
+	}
+}
+
+a:hover { color: darken(#2e48da, 20); }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+.menu-item, .menu-item li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.hide { display: none; }
+
+p { line-height: 1.5; }
+
+#backtop {
+    display: inline-block;
+    background-color: $navsite_color;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+	&:after {
+        content: "\f077";
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 1em;
+        line-height: 50px;
+        color: #fff;
+	}
+	&.show {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+/* `Header
+-----------------------------------------------------------------------------*/
+
+header.header {
+	position: relative;
+	.top-link {
+		font-size: .9375rem;
+		.navbar {
+			background: $navsite_color;
+			padding: 0;
+		}
+        .nav-item {
+            border-left: 1px solid #cc9a00;
+            &:first-child {
+                border-left: none; 
+            }
+            &:last-child {
+                border-right: 1px solid #cc9a00;
+            }
+        }
+		.nav-link {
+            padding: 1.25rem .825rem;
+            font-weight: bold;
+			color: #222 !important;
+			&:hover { background: rgba(#000, .1) !important; }
+		}
+		.navbar-toggler {
+			border: none;
+			border-radius: 0;
+			padding: .5rem .5rem;
+			min-height: 2.406rem;
+		}
+	}
+}
+
+.header-wrap {
+	padding: 2.5rem 0;
+    .container-inner {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: row-reverse;
+    }
+	.brands {
+		h1, h2 {
+			margin-bottom: 0;
+			line-height: 1.2;
+		}
+		h1 { font-size: 2.5rem; }
+		h2 { font-size: 1.5rem; }
+	}
+    .signboard {
+        background: $navsite_lighten_color;
+        border-radius: .5rem;
+        margin-right: 2rem;
+        padding: 1.25rem;
+        position: relative;
+        &:after {
+            content: "";
+            margin-top: -8.5px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 8.5px 0 8.5px 15px;
+            border-color: transparent transparent transparent $navsite_lighten_color;
+            position: absolute;
+            right: -15px;
+            top: 50%;
+        }
+		h3, h4 {
+			margin-bottom: 0;
+			line-height: 1.2;
+		}
+		h3 { font-size: 1.5rem; }
+		h4 { font-size: 1.25rem; }
+    }
+}
+
+/* `Footer
+-----------------------------------------------------------------------------*/
+
+footer.footer {
+	background: $navsite_color;
+    margin-top: -141px;
+	padding: 2rem 0;
+	font-size: .9375rem;
+	color: #111;
+	position: sticky;
+	top: 100vh;
+	.footer-inner {
+		display: flex;
+		justify-content: space-between;
+	}
+	address {
+		margin-bottom: 0;
+	}
+	.footer-right {
+		text-align: right;
+	}
+	.accessibility-link {
+		display: inline-block;
+		img {
+			display: block;
+			width: 9rem;
+			height: auto;
+		}
+	}
+}
+
+/* `Stuff
+-----------------------------------------------------------------------------*/
+
+.map-wrapper {
+    background: #fff2cc;
+    padding: 40px;
+    hgroup {
+        margin-bottom: 2rem;
+        text-align: center;
+        * {
+            display: inline-block;
+            margin: 0 .5rem;
+        }
+    }
+    .svg-wrap {
+        display: flex;
+        justify-content: space-around;
+        padding: 0 200px 0 50px;
+    }
+    .taiwan-map {
+        width: 66.66666%;
+        min-width: 612px;
+    }
+    .shop-list {
+        width: 33.33333%;
+    }
+}
+
+.row-wrapper {
+    margin: 0 auto;
+    width: 972px;
+}
+
+.section-title {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    &:after {
+        content: "";
+        background: #b9d4ed;
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+.page-row {
+    display: flex;
+    .sidenav {
+        width: 23.5%;
+    }
+    .main {
+        flex: 1;
+        margin-left: 40px;
+        font-size: 1.125rem;
+    }
+}
+
+.sidenav {
+    .nav-link {
+        border-radius: 0.5rem;
+        padding: 1rem;
+        font-size: 1.125rem;
+        color: #333;
+        text-align: end;
+    }
+    .nav-pills .nav-link.active,
+    .nav-pills .show > .nav-link {
+        background-color: $navsite_lighten_color;
+        color: #000;
+    }
+}
+
+.page-title {
+    margin-bottom: 2.5rem;
+    font-size: 1.875rem;
+}
+
+.amazeing-title {
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: #c82b33;
+}
+
+.lightbox-wrapper {
+    a {
+        display: inline-block;
+        margin-bottom: 1.25rem;
+    }
+}
+
+.section { margin-bottom: 3rem; }
+
+.main {
+    .customize-striped > tbody > tr:nth-of-type(odd) > * {
+        background: #f3f6fa;
+    }
+    .table { font-size: 1rem; }
+}
+
+.mobile-maparea {
+    display: none;
+    hgroup {
+        margin-bottom: 1.5rem;
+        * {
+            display: inline-block;
+            margin: 0 .5rem;
+        }
+    }
+    .area-list {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            padding: .5rem;
+            width: 33.33333%;
+        }
+        a {
+            display: block;
+            border-radius: .25rem;
+            border: 1px solid $navsite_color;
+            background: #fffaf0;
+            padding: .75rem 1.25rem;
+            font-size: 1.125rem;
+            color: #111;
+            text-align: center;
+        }
+        .en {
+            display: block;
+            font-size: 1rem;
+        }
+    }
+}
+
+/* `Responsive
+-----------------------------------------------------------------------------*/
+
+@media (max-width: 1399px) {
+    .map-wrapper .svg-wrap {
+        padding: 0;
+    }
+}
+
+@media (max-width: 1199px) {
+    .map-wrapper .svg-wrap {
+        padding: 0;
+    }
+}
+
+
+@media (max-width: 991px) {
+    .pages {
+        padding-bottom: 60px;
+        min-height: auto;
+    }
+    .map-wrapper .svg-wrap {
+        display: block;
+        .taiwan-map, .shop-list {
+            width: 100%;
+        }
+    }
+    footer.footer {
+        margin-top: 0;
+        position: relative;
+        top: auto;
+        .footer-inner {
+            display: block;
+        }
+        .footer-right {
+            margin-top: 1rem;
+            text-align: start;
+        }
+    }
+    .row-wrapper {
+        width: 100%;
+    }
+    .page-row {
+        display: block;
+        .sidenav, .main { width: 100%; }
+        .sidenav .nav-link {
+            text-align: start;
+        }
+        .main { margin-left: 0; }
+    }
+}
+
+@media (max-width: 767px) {
+    .header-wrap {
+        .container-inner { display: block; }
+        .brands {
+            margin-bottom: .5rem;
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.25rem; }
+        }
+        .signboard {
+            margin: 0;
+            &:after {
+                margin-right: -8px;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 16px 8px 0 8px;
+                border-color: $navsite_lighten_color transparent transparent transparent;
+                right: 50%;
+                top: auto;
+                bottom: -16px;
+            }
+        }
+    }
+    .map-wrapper { display: none; }
+    .mobile-maparea { display: block; }
+}
+
+@media (max-width: 639px) {
+    .mobile-maparea {
+        .area-list {
+            li {
+                width: 50%;
+            }
+        }
+    }
+}
+
+@media (max-width: 399px) {
+    .mobile-maparea {
+        .area-list {
+            li {
+                padding: .5rem 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+

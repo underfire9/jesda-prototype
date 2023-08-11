@@ -1,0 +1,198 @@
+<!-- template: 論教育 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="reveal-stand-wrapper">
+    
+    <!-- 最少六則，保持雙數 -->
+    <div class="reveal-stand-list">
+        <div class="stand-row">
+            <div class="stand-item">
+                <div class="stand-item-inner">
+                    <div class="item-content">
+                        <h3 class="item-title">素養學習是什麼？如何因應新世代的學習</h3>
+                        <ul class="menu-item item-info">
+                            <li>
+                                <span class="label">日期</span>
+                                <span class="output">112年12月25日</span>
+                            </li>
+                            <li>
+                                <span class="label">地點</span>
+                                <span class="output">國家教育研究院臺北院區十樓國際會議廳</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="item-media">
+                        <div class="media-inner">
+                            <a href="#" class="btn btn-more">more <i class="fas fa-long-arrow-alt-right"></i></a>
+                            <img src="https://picsum.photos/640/360" class="item-img" alt="{圖片描述}" />
+                        </div>
+                    </div>
+                </div>
+                <span class="icon-plus"></span>
+            </div>
+            <div class="stand-item">
+                <div class="stand-item-inner">
+                    <div class="item-content">
+                        <h3 class="item-title">國小教師需要什麼支持，才能更加落實國小科技教育及資訊教育課程？</h3>
+                        <ul class="menu-item item-info">
+                            <li>
+                                <span class="label">日期</span>
+                                <span class="output">112年12月25日</span>
+                            </li>
+                            <li>
+                                <span class="label">地點</span>
+                                <span class="output">國家教育研究院臺北院區十樓國際會議廳</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="item-media">
+                        <div class="media-inner">
+                            <a href="#" class="btn btn-more">more <i class="fas fa-long-arrow-alt-right"></i></a>
+                            <img src="https://picsum.photos/1600/900" class="item-img" alt="{圖片描述}" />
+                        </div>
+                    </div>
+                </div>
+                <span class="icon-plus"></span>
+            </div>
+        </div>
+
+        <% (1..2).map do |i| %>
+        <div class="stand-row">
+            <div class="stand-item">
+                <div class="stand-item-inner">
+                    <div class="item-content">
+                        <h3 class="item-title"><%= lorem_sentence %></h3>
+                        <ul class="menu-item item-info">
+                            <li>
+                                <span class="label">日期</span>
+                                <span class="output">112年12月25日</span>
+                            </li>
+                            <li>
+                                <span class="label">地點</span>
+                                <span class="output">國家教育研究院臺北院區十樓國際會議廳</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="item-media">
+                        <div class="media-inner">
+                            <a href="#" class="btn btn-more">more <i class="fas fa-long-arrow-alt-right"></i></a>
+                            <img src="https://placehold.co/640x360" class="item-img" alt="{圖片描述}" />
+                        </div>
+                    </div>
+                </div>
+                <span class="icon-plus"></span>
+            </div>
+            <div class="stand-item">
+                <div class="stand-item-inner">
+                    <div class="item-content">
+                        <h3 class="item-title"><%= lorem_sentence %></h3>
+                        <ul class="menu-item item-info">
+                            <li>
+                                <span class="label">日期</span>
+                                <span class="output">112年12月25日</span>
+                            </li>
+                            <li>
+                                <span class="label">地點</span>
+                                <span class="output">國家教育研究院臺北院區十樓國際會議廳</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="item-media">
+                        <div class="media-inner">
+                            <a href="#" class="btn btn-more">more <i class="fas fa-long-arrow-alt-right"></i></a>
+                            <img src="https://placehold.co/640x360" class="item-img" alt="{圖片描述}" />
+                        </div>
+                    </div>
+                </div>
+                <span class="icon-plus"></span>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    
+    <div class="link-control control-end">
+        <a href="#" class="link-more link-end" title="文章列表"><span>MORE</span></a>
+    </div>
+</div>
+
+<% content_for :js do %>
+<script>
+    // 獲取所有的 .stand-item 元素
+    const standItems = document.querySelectorAll(".stand-item");
+
+    // 定義點擊事件處理函式
+    function handleClick(event) {
+        // 如果點擊的目標是 .btn 開頭的元素，則不處理點擊事件
+        if (event.target.classList.contains("btn")) {
+            return;
+        }
+
+        // 獲取點擊的 .stand-item 元素
+        const clickedItem = event.currentTarget;
+        const standRow = clickedItem.parentElement;
+
+        // 檢查是否已經有 .active 或 .unactive 類別
+        const isActive = clickedItem.classList.contains("active");
+        const isUnactive = clickedItem.classList.contains("unactive");
+
+        // 原先 unclick 的 width 過 0.3s 後移除 width
+        const unactiveItem = document.querySelector(".unactive>.stand-item-inner");
+        setTimeout(() => {
+            unactiveItem.style.width = "auto";
+        }, 200);
+
+        // 移除所有 .stand-item 的 .active 和 .unactive 類別
+        standItems.forEach((item) => {
+            item.classList.remove("active", "unactive");
+        });
+
+        if (!isActive && !isUnactive) {
+            // 同一個 .stand-row 容器內其他 .stand-item 加上 .unactive 類別
+            standRow.querySelectorAll(".stand-item").forEach((item) => {
+                if (item !== clickedItem) {
+                    item.classList.add("unactive");
+                }
+            });
+            // 點選後才設定壓縮區塊的寬度
+            updateStandItemInnerWidth();
+
+            // 沒有 .active 和 .unactive 類別時，添加 .active 類別
+            clickedItem.classList.add("active");
+        }
+    }
+
+    // 為每個 .stand-item 元素添加點擊事件監聽器
+    standItems.forEach((item) => {
+        item.addEventListener("click", handleClick);
+    });
+
+    // 獲取所有的 .stand-item-inner 元素
+    const standItemInners = document.querySelectorAll(".stand-item-inner");
+
+    // 更新 .stand-item-inner 的寬度
+    function updateStandItemInnerWidth() {
+        const unactiveItem = document.querySelector(".unactive>.stand-item-inner");
+
+        if (unactiveItem) {
+            const itemContentWidth = unactiveItem.querySelector(".item-content").offsetWidth;
+            const itemMediaWidth = unactiveItem.querySelector(".item-media img").offsetWidth;
+            const totalWidth = itemContentWidth + itemMediaWidth;
+            unactiveItem.style.width = `${totalWidth}px`;
+        }
+    }
+    // 固定 .stand-item 高度
+    function setItemHeight() {
+        standItems.forEach((item) => {
+            item.style.height = `auto`;
+            setTimeout(() => {
+                let standItemsHeight = document.querySelector(".stand-item").offsetHeight;
+                item.style.height = `${standItemsHeight}px`;
+            }, 3000);
+        });
+    }
+    setItemHeight();
+    window.addEventListener("resize", setItemHeight);
+</script>
+<% end %>
+

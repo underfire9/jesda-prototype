@@ -1,0 +1,115 @@
+<!-- template: 創趨勢 - 列表 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<main class="main main-trends-list">
+
+    <div class="list-toolbar-wrapper trends-toolbar">
+        <div class="main-container">
+            <button type="button" class="btn btn-filter" id="filterButton"><i class="fas fa-filter"></i></button>
+            <div class="list-toolbar" id="list-toolbar">
+                <div class="toolbar-part">
+                    <select class="form-select form-select-xxxl" aria-label="選擇期數">
+                        <option selected>第 1109 期</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="toolbar-part">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-xxxl" placeholder="請輸入關鍵字" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                        <button class="btn btn-xxxl btn-white" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="trends-list-wrapper">
+        <div class="main-container">
+            <div class="trends-item">
+                <div class="item-img">
+                    <img src="http://placebeard.it/1600/900" class="img-cover" alt="{圖片描述}" />
+                </div>
+                <div class="item-info">
+                    <div class="info-content">
+                        <h3 class="trend-title">國小教師需要什麼支持，才能更加落實國小科技教育及資訊教育課程？</h3>
+
+                        <!-- 後台欄位請限制字數，全形最多 120 -->
+                        <p class="trend-brief">學生看到素養導向試題就自動投降嗎？他們是否能有效、正確的運用數學知識回答問題？是否具備良好的數學溝通與表達能力？是否能提供合理的解釋與說明？是否具有多元的問題解決能力？本文將帶你一探究竟。</p>
+                    </div>
+                    <div class="link-control control-end">
+                        <a href="trends_single.html" class="link-more sm-more link-end" title="閱覽全文"><span>MORE</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <% (1..5).map do |i| %>
+            <div class="trends-item">
+                <div class="item-img">
+                    <img src="https://placehold.co/1600x900" class="img-cover" alt="{圖片描述}" />
+                </div>
+                <div class="item-info">
+                    <div class="info-content">
+                        <h3 class="trend-title">英國中小學學校教育革新之相關計畫與策略</h3>
+
+                        <!-- 後台欄位請限制字數，全形最多 120 -->
+                        <p class="trend-brief">學生看到素養導向試題就自動投降嗎？他們是否能有效、正確的運用數學知識回答問題？是否具備良好的數學溝通與表達能力？是否能提供合理的解釋與說明？是否具有多元的問題解決能力？本文將帶你一探究竟。</p>
+                    </div>
+                    <div class="link-control control-end">
+                        <a href="trends_single.html" class="link-more sm-more link-end" title="閱覽全文"><span>MORE</span></a>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+
+</main>
+
+
+<% content_for :js do %>
+
+<!-- 分享按鈕 -->
+<script>
+  // 取得所有帶有 .item-social 這個 CSS 類別的按鈕元素
+  const buttons = document.querySelectorAll('.btn-share');
+
+  // 針對每個按鈕設置 click 事件監聽器
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // 切換 .active 這個 CSS 類別
+      button.classList.toggle('active');
+    });
+  });
+</script>
+
+<!-- Bootstrap5 Datepicker -->
+<script src="../javascripts/moment.min.js"></script>
+<script src="../javascripts/bootstrap-datetimepicker.min.js"></script>
+<script>
+    $(".datepicker").datetimepicker({
+        useCurrent: false,
+        format: "DD-MMM-YYYY",
+        showTodayButton: true,
+        icons: {
+            next: "fa fa-chevron-right",
+            previous: "fa fa-chevron-left",
+            today: "todayText",
+        },
+    });
+</script>
+
+<!-- 塞選按鈕 -->
+<script>
+    const filterButton = document.getElementById("filterButton");
+    const toolbar = document.getElementById("list-toolbar");
+
+    filterButton.addEventListener("click", () => {
+        filterButton.classList.toggle("active");
+        toolbar.classList.toggle("show");
+    });
+</script>
+<% end %>
+

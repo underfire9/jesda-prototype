@@ -1,0 +1,88 @@
+<!-- template: 暢留言 - 列表 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<main class="main main-comments-list">
+
+    <div class="list-toolbar-wrapper comments-toolbar-wrapper">
+        <div class="main-container">
+            <div class="list-toolbar comments-toolbar">
+                <div class="toolbar-part">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-xxxl" placeholder="關鍵字檢索" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                        <button class="btn btn-xxxl btn-white" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="toolbar-part comments-end">
+                    <a href="comments_form.html" class="btn btn-xxxl btn-main">
+                        <i class="fas fa-plus"></i>
+                        <span>我要留言</span>
+                    </a>
+                    
+                    <!-- 只在登入後出現 -->
+                    <div class="dropdown">
+                        <button class="btn btn-xxxl btn-user dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">修改密碼</a></li>
+                            <li><a class="dropdown-item" href="#">登出</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="comments-wrapper">
+        <div class="main-container">
+            
+            <% (1..5).map do |i| %>
+            <div class="comment-item">
+                <dl>
+                    <dt>主題</dt>
+                    <dd>歷年活動成果專區</dd>
+                    <dt>留言時間</dt>
+                    <dd>2023/07/10 19:26:32</dd>
+                    <dt>問題描述</dt>
+                    <dd>十二年國民基本教育健康與體育領域課程學習內容「DbIV-3 性別多樣性的了解與尊重。」與「多元性別」、 「性別多樣性」概念的異同為何？</dd>
+                    <dt>回覆</dt>
+                    <dd>為達成領域內科目名稱的一致性，並深化「綜合活動」學習歷程的體驗、省思、實踐、創新等統整學習，第四學習階段將九年一 貫課綱中的童軍活動、輔導活動、家政活動等科目之「活動」二字刪除，內容符合體驗、省思、創新，改稱家政、童軍、輔導，與高 中科目名稱相呼應；同時將團體活動之內涵改列入校訂課程實施，並避免與十二年國教第五學習階段之「團體活動時間」（原綜合活動科）之名稱混淆。</dd>
+                </dl>
+            </div>
+            <% end %>
+
+            <div class="comment-item">
+                <dl>
+                    <dt>主題</dt>
+                    <dd>歷年活動成果專區</dd>
+                    <dt>留言時間</dt>
+                    <dd>2023/07/10 19:26:32</dd>
+                    <dt>問題描述</dt>
+                    <dd>留言者設定不公開</dd>
+                    <dt>回覆</dt>
+                    <dd><span>待回覆...</span></dd>
+                </dl>
+            </div>
+            
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item"><a class="page-link" href="#">上一頁</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">下一頁</a></li>
+                </ul>
+            </nav>
+            
+        </div>
+    </div>
+
+</main>
+
+
+<% content_for :js do %>
+
+
+<% end %>
+

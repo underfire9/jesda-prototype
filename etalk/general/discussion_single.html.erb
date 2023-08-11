@@ -1,0 +1,82 @@
+<!-- template: 論教育 - 單篇 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<main class="main">
+
+    <div class="main-head">
+        <div class="main-container">
+            <div class="head-media">
+                <div class="video-wrapper">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/jxehp43WAX0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        
+        <div class="head-introduce">
+            <div class="introduce-title">
+                <h3 class="fw-bold">第一場次</h3>
+                <ul class="menu-item action-options">
+                    <li>
+                        <a title="分享" class="btn-action btn-share"><i class="fas fa-share-alt"></i></a>
+                        <div class="social-share">
+                            <a href="#" class="item-social" title="{連結名稱}"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="item-social" title="{連結名稱}"><i class="fab fa-line"></i></a>
+                            <a href="#" class="item-social" title="{連結名稱}"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="item-social" title="{連結名稱}"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </li>
+                    <li><a href="#" title="列印" class="btn-action"><i class="fas fa-print"></i></a></li>
+                </ul>
+            </div>
+            <div class="introduce-inner">
+                <div class="summary subtopic">什麼是「素養導向」的課程與教學？「素養導向」的教學與評量有別於以往較不同的是什麼？</div>
+                <div class="detail">
+                    <ul class="menu-item participate">
+                        <li>【學校代表】黃偉立 臺中文華高中校長</li>
+                        <li>【學校代表】蔡哲銘 北市陽明高中校長</li>
+                        <li>【教師代表】鄭敬儀 高中優質化計畫辦公室/前新北市課程督學（退休）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <article class="article">
+            <% (1..5).map do |i| %>
+            <p><%= zh_lorem_paragraphs(3) %></p>
+            <% end %>
+            <div class="creativecommons-wrap">
+                <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="創用 CC 授權條款" style="border-width: 0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+                <span>本著作係採用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">創用 CC 姓名標示 4.0 國際 授權條款</a>授權.</span>
+            </div>
+        </article>
+        
+        <div class="link-control">
+            <a href="#" class="link-more link-back" title="回上一頁"><span>回上一頁</span></a>
+        </div>
+    </div>
+    
+    
+</main>
+
+
+<% content_for :js do %>
+
+<!-- 分享按鈕 -->
+<script>
+  // 取得所有帶有 .item-social 這個 CSS 類別的按鈕元素
+  const buttons = document.querySelectorAll('.btn-share');
+
+  // 針對每個按鈕設置 click 事件監聽器
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // 切換 .active 這個 CSS 類別
+      button.classList.toggle('active');
+    });
+  });
+</script>
+<% end %>
+

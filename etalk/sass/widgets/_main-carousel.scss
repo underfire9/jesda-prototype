@@ -1,0 +1,245 @@
+
+// `Carousel
+
+.main-carousel {
+    margin-bottom: 6.25rem;
+    margin-bottom: calc(1.75rem + 3.5vw);
+    
+    // `重設時間
+    .carousel-item,
+    .carousel-fade .active.carousel-item-start,
+    .carousel-fade .active.carousel-item-end {
+        transition: opacity .8s ease-in-out;
+    }
+	.item-inner {
+		display: flex;
+	}
+	.item-photo {
+		width: 66.66666%;
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+	}
+	.item-text {
+		width: 33.33333%;
+        position: relative;
+        .text-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 60px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .text-position { margin-top: -3rem; }
+		h2 {
+			margin-bottom: 1.75rem;
+			font-size: 4.75rem;
+			font-weight: 500;
+            line-height: 1.1;
+            color: $main_color;
+		}
+		p {
+			margin-bottom: 1.75rem;
+            font-size: calc(1rem + 0.390625vw);
+			font-size: 1.25rem;
+			line-height: 1.7;
+		}
+	}
+	.carousel-indicators {
+		left: 66.66666%;
+		right: auto;
+		bottom: 0;
+		margin: 0;
+		padding-left: 60px;
+		[data-bs-target] {
+			border-radius: 50%;
+			background-color: $main_color;
+			width: 16px;
+			height: 16px;
+			opacity: 0.2;
+		}
+		.active { opacity: 1; }
+        button { margin-right: .75rem; }
+	}
+    
+    
+    // `特效
+    .item-photo,
+    .item-text {
+        transition: transform .6s ease-in-out;
+    }
+
+    .item-photo {
+        transform: translateY(10%);
+    }
+    .item-text {
+        transform: translateY(10%);
+    }
+    .carousel-item-prev.carousel-item-end {
+        .item-photo {
+            transform: translateY(10%);
+        }
+        .item-text {
+            transform: translateY(10%);
+        } 
+    }
+    .carousel-item.active {
+        .item-photo {
+            transform: translateY(0);
+        }
+        .item-text {
+            transform: translateY(0);
+            transition-delay: .2s;
+        }
+    }
+    .active.carousel-item-start {
+        .item-photo {
+            transform: translateY(10%);
+        }
+        .item-text {
+            transform: translateY(10%);
+        }
+    }
+    .carousel-item-end.active {
+        .item-photo {
+            transform: translateY(10%);
+        }
+        .item-text {
+            transform: translateY(10%);
+        } 
+    }
+    
+    
+
+    .carousel-item.carousel-item-next.carousel-item-start,
+    .carousel-item-prev.carousel-item-end {
+        opacity: 0;
+    }
+    
+    .carousel-item.active.carousel-item-start {
+        opacity: 0;
+    }
+    
+    
+    
+    /*
+    .item-photo {
+        transform: translateX(-100%);
+    }
+    .item-text {
+        transform: translateX(100%);
+    }
+    .carousel-item-prev.carousel-item-end {
+        .item-photo {
+            transform: translateX(-100%);
+            //opacity: 0;
+        }
+        .item-text {
+            transform: translateX(100%);
+            //opacity: 0;
+        } 
+    }
+    .carousel-item.active {
+        .item-photo { transform: translateX(0); }
+        .item-text {
+            transform: translateX(0);
+            transition-delay: .1s;
+        }
+    }
+    .active.carousel-item-start {
+        .item-photo {
+            transform: translateX(-100%);
+        }
+        .item-text {
+            transform: translateX(100%);
+        }
+    }
+    .carousel-item-end.active {
+        .item-photo {
+            transform: translateX(-100%);
+        }
+        .item-text {
+            transform: translateX(100%);
+        } 
+    }
+    */
+}
+
+/* `Responsive
+-----------------------------------------------------------------------------*/
+
+@media (max-width: 1920px) {
+    .main-carousel .item-text h2 {
+        font-size: calc(2rem + 2vw);
+    }
+}
+
+@media (max-width: 1599px) {
+    .main-carousel {
+        .item-inner {
+            display: block;
+            position: relative;
+        }
+        .item-photo,
+        .item-text { width: 100%; }
+        .item-text {
+            .text-inner {
+                position: static;
+                padding-left: 0;
+            }
+            .text-position {
+                margin-top: 0;
+                padding: 40px 0 80px;
+            }
+        }
+        .carousel-indicators {
+            padding-left: 0;
+            left: 0;
+            right: 0;
+            bottom: 20px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .main-carousel {
+        .item-text {
+            h2 { margin-bottom: 1rem; }
+            p { font-size: 1.125rem; }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

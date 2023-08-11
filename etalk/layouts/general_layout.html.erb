@@ -11,10 +11,13 @@
             <div class="content">
                 <%= yield %>
             </div>
-            <a id="backtop"></a>
+            <a id="backtop" title="回到頁首"></a>
         </div>
 		<%= render :partial => "/partials/footer" %>
 	</div>
+    
+    <!-- offcanvas-search -->
+    <%= render :partial => "/partials/offcanvas-search" %>
 	
     <script src="../javascripts/jquery-3.6.0.min.js"></script>
     <script src="../javascripts/popper.min.js"></script>
@@ -63,7 +66,16 @@
             $(".offcanvas-collapse").removeClass("open");
         });
 	</script>
-	
+    
+    <!-- Gallery background-image -->
+	<script>
+        let galleryLinks = document.querySelectorAll('.gallery-link')
+
+        galleryLinks.forEach(item=>{
+          let imgSrc = item.querySelector('img').src
+          item.style.backgroundImage = `url(${imgSrc})`;
+        })
+    </script>
     <%= yield :js %>
 </body>
 </html>

@@ -1,0 +1,140 @@
+<!-- template: 論教育 - 列表 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<main class="main main-list-wrapper">
+
+        <div class="main-container">
+            
+            <div class="list-toolbar-wrapper">
+                <button type="button" class="btn btn-filter" id="filterButton"><i class="fas fa-filter"></i></button>
+                <div class="list-toolbar" id="list-toolbar">
+                    <div class="toolbar-part">
+                        <select class="form-select form-select-xxxl" aria-label="選擇類別">
+                            <option selected>全部類別</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="toolbar-part d-flex">
+                        <div class="form-group">
+                            <div class="input-group date datepicker">
+                                <input class="form-control form-control-xxxl" placeholder="開始日期" />
+                                <span class="input-group-append input-group-addon">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group date datepicker">
+                                <input class="form-control form-control-xxxl" placeholder="結束日期" />
+                                <span class="input-group-append input-group-addon">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="toolbar-part flex-fill">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-xxxl" placeholder="請輸入關鍵字" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                            <button class="btn btn-xxxl btn-gold" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-wrapper">     
+                <div class="table-responsive">     
+                    <table class="table list-table align-middle">
+                        <thead>
+                            <tr>
+                                <th>主題</th>
+                                <th>地點</th>
+                                <th>日期</th>
+                                <th class="text-nowrap text-center">場次</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% (1..4).map do |i| %>
+                            <tr>
+                                <td>
+                                    <a href="#" title="{連結名稱}"><%= zh_lorem_sentence %></a>
+                                </td>
+                                <td class="text-nowrap">國家教育研究院</td>
+                                <td class="text-nowrap">2023-09-30</td>
+                                <td class="text-center">3</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" title="{連結名稱}"><%= zh_lorem_sentence %></a>
+                                </td>
+                                <td class="text-nowrap">台北市士林區至善路二段221號</td>
+                                <td class="text-nowrap">2023-09-30</td>
+                                <td class="text-center">2</td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item"><a class="page-link" href="#">上一頁</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">下一頁</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+        </div>
+
+</main>
+
+
+<% content_for :js do %>
+
+<!-- 分享按鈕 -->
+<script>
+  // 取得所有帶有 .item-social 這個 CSS 類別的按鈕元素
+  const buttons = document.querySelectorAll('.btn-share');
+
+  // 針對每個按鈕設置 click 事件監聽器
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // 切換 .active 這個 CSS 類別
+      button.classList.toggle('active');
+    });
+  });
+</script>
+
+<!-- Bootstrap5 Datepicker -->
+<script src="../javascripts/moment.min.js"></script>
+<script src="../javascripts/bootstrap-datetimepicker.min.js"></script>
+<script>
+    $(".datepicker").datetimepicker({
+        useCurrent: false,
+        format: "DD-MMM-YYYY",
+        showTodayButton: true,
+        icons: {
+            next: "fa fa-chevron-right",
+            previous: "fa fa-chevron-left",
+            today: "todayText",
+        },
+    });
+</script>
+
+<!-- 塞選按鈕 -->
+<script>
+    const filterButton = document.getElementById("filterButton");
+    const toolbar = document.getElementById("list-toolbar");
+
+    filterButton.addEventListener("click", () => {
+        filterButton.classList.toggle("active");
+        toolbar.classList.toggle("show");
+    });
+</script>
+<% end %>
+

@@ -13,6 +13,7 @@
     }
 	.item-inner {
 		display: flex;
+        justify-content: space-between;
 	}
 	.item-photo {
 		width: 66.66666%;
@@ -23,7 +24,8 @@
 		}
 	}
 	.item-text {
-		width: 33.33333%;
+		width: 33.33334%;
+        flex-grow: 1;
         position: relative;
         .text-inner {
             display: flex;
@@ -54,7 +56,7 @@
 	.carousel-indicators {
 		left: 66.66666%;
 		right: auto;
-		bottom: 0;
+		bottom: 1.5rem;
 		margin: 0;
 		padding-left: 60px;
 		[data-bs-target] {
@@ -68,8 +70,110 @@
         button { margin-right: .75rem; }
 	}
     
-    
     // `特效
+    
+    .carousel-inner { background: $main_color; }
+    
+    .item-photo,
+    .item-text {
+        transition: transform .6s cubic-bezier(.29,.27,.43,.98);
+        &:after {
+            content: "";
+            background: $main_color;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            transition: transform .4s ease-in-out;
+            transform-origin: center top;
+            transform: scaleY(0);
+        }
+    }
+
+    .item-photo {
+        transform: translateY(0%);
+        background: $body_background;
+        img {
+            transform: translateY(10%);
+            transition: transform .4s cubic-bezier(.29,.27,.43,.98);
+            transition-delay: .1s;
+        }
+    }
+    .item-text {
+        transform: translateY(0%);
+        background: $body_background;
+        &:after { background: $main_color; }
+        .text-position {
+            transform: translateY(10%);
+            transition: transform .4s cubic-bezier(.29,.27,.43,.98);
+            transition-delay: .3s;
+        }
+    }
+    
+    .carousel-item-next.carousel-item-start,
+    .carousel-item-prev.carousel-item-end {
+        .item-photo {
+            transform: translateY(0%);
+            &:after { transform: scaleY(1); }
+        }
+        .item-text {
+            transform: translateY(0%);
+            &:after { transform: scaleY(1); }
+        } 
+    }
+    .carousel-item.active {
+        .item-photo {
+            transform: translateY(0);
+            &:after {
+                transform: scaleY(0);
+            }
+            img { transform: translateY(0%); }
+        }
+        .item-text {
+            transform: translateY(0);
+            //transition-delay: .2s;
+            &:after {
+                transition-delay: .2s;
+                transform: scaleY(0);
+            }
+            .text-position { transform: translateY(0%); }
+        }
+    }
+    .active.carousel-item-start {
+        .item-photo {
+            transform: translateY(0%);
+            &:after { transform: scaleY(1); }
+        }
+        .item-text {
+            transform: translateY(0%);
+            &:after { transform: scaleY(1); }
+        }
+    }
+    .carousel-item-end.active {
+        .item-photo {
+            transform: translateY(0%);
+            &:after { transform: scaleY(1); }
+        }
+        .item-text {
+            transform: translateY(0%);
+            &:after { transform: scaleY(1); }
+        } 
+    }
+    
+    
+
+    .carousel-item.carousel-item-next.carousel-item-start,
+    .carousel-item-prev.carousel-item-end {
+        opacity: 0;
+    }
+    
+    .carousel-item.active.carousel-item-start {
+        opacity: 0;
+    }
+    
+    
+    /* `特效 1
     .item-photo,
     .item-text {
         transition: transform .6s ease-in-out;
@@ -125,10 +229,10 @@
     .carousel-item.active.carousel-item-start {
         opacity: 0;
     }
+    */
     
     
-    
-    /*
+    /* 特效 2
     .item-photo {
         transform: translateX(-100%);
     }
@@ -171,6 +275,12 @@
     */
 }
 
+@-moz-document url-prefix() {
+    .main-carousel .item-text {
+        right: -1px;
+    }
+}
+
 /* `Responsive
 -----------------------------------------------------------------------------*/
 
@@ -196,6 +306,9 @@
             .text-position {
                 margin-top: 0;
                 padding: 40px 0 80px;
+            }
+            &:after {
+                transform-origin: center top;
             }
         }
         .carousel-indicators {

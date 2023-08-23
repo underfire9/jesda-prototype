@@ -1,0 +1,55 @@
+<!-- template: 關於本站 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<!-- footer 隱私權、資安、宣告等等皆可使用此樣板，標題很長的不行 -->
+<main class="main main-article">
+
+    <div class="article-wrapper">
+        <div class="main-container">
+            <div class="article-head">
+                <h3 class="article-title">關於本站</h3>
+                <span class="action-wrap">
+                    <ul class="menu-item action-options">
+                        <li>
+                            <a title="分享" class="btn-action btn-share"><i class="fas fa-share-alt"></i></a>
+                            <div class="social-share">
+                                <a href="#" class="item-social" title="{連結名稱}"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="item-social" title="{連結名稱}"><i class="fab fa-line"></i></a>
+                                <a href="#" class="item-social" title="{連結名稱}"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="item-social" title="{連結名稱}"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </li>
+                        <li><a href="#" title="列印" class="btn-action"><i class="fas fa-print"></i></a></li>
+                    </ul>
+                </span>
+            </div>
+            <article class="article-content">
+                <% (1..4).map do |i| %>
+                <p><%= lorem_paragraphs(3) %></p>
+                <% end %>
+            </article>
+        </div>
+    </div>
+
+</main>
+
+
+<% content_for :js do %>
+
+<!-- 分享按鈕 -->
+<script>
+  // 取得所有帶有 .item-social 這個 CSS 類別的按鈕元素
+  const buttons = document.querySelectorAll('.btn-share');
+
+  // 針對每個按鈕設置 click 事件監聽器
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // 切換 .active 這個 CSS 類別
+      button.classList.toggle('active');
+    });
+  });
+</script>
+
+<% end %>
+

@@ -20,6 +20,9 @@
 /* jQuery AudioPlayer ------------------------------------------------------------------------*/
 @import "widgets/audioplayer";
 
+/* Loader & tabs ------------------------------------------------------------------------*/
+@import "widgets/loader";
+
 /* `Stuff
 -----------------------------------------------------------------------------*/
 
@@ -268,7 +271,7 @@
 
 .landing-navigation {
     border-bottom: 1px solid $etalk_gold;
-    margin: 0 -60px;
+    //margin: 0 -60px;
     position: relative;
     top: 1px;
     .main-link {
@@ -455,6 +458,12 @@
     }
 }
 
+.content.tab-content {
+    & > #index.tab-pane {
+        margin: 0 -60px;
+    }
+}
+
 /* `Discussion
 -----------------------------------------------------------------------------*/
 
@@ -471,7 +480,7 @@
         margin-bottom: 2px;
         width: calc(50% - 1px);
         position: relative;
-        transition: all 0.2s ease-in-out;
+        transition: all 0.3s ease-in-out;
         overflow: hidden;
         &:first-child { margin-right: 2px; }
     }
@@ -1349,8 +1358,9 @@
     height: 120px;
     &:not(.audioplayer-playing) {
         .audioplayer-playpause {
+            background: $main_color;
             border-color: $main_color;
-            a { border-left-color: $main_color; }
+            a { border-left-color: #fff; }
         }
     }
     .audioplayer-volume-adjust div div { background-color: $main_color; }
@@ -1874,20 +1884,24 @@ $spacing_height: 4rem;
         padding: 40px;
         width: 35%;
         .title {
-            font-size: calc(1.75rem + .5vw);
+            font-size: calc(1.25rem + 1vw);
+            font-weight: 500;
         }
     }
     
     .info-menu {
         li {
-            margin-bottom: .5rem;
+            margin-bottom: .625rem;
+            position: relative;
+            font-size: 1.188rem;
             &:last-child { margin-bottom: 0; }
-            .label, .output { display: block; }
         }
+        .label, .output { display: block; }
         .label {
             font-size: 1rem;
             line-height: 1.2;
         }
+        .output { font-weight: 300; }
     }
     .exhibition-link {
         display: block;
@@ -1902,7 +1916,7 @@ $spacing_height: 4rem;
                 }
             }
             .inner-wrapper {
-                transform: translateY(-2px);
+                transform: translateY(-3px);
                 box-shadow: 0 12px 28px rgba(#000, .3);
             }
             img { transform: scale(1.1, 1.1); }

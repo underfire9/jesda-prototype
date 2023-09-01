@@ -1,0 +1,182 @@
+<!-- admin-page: Vertical Tabs - Sticky -->
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+	
+    <div class="page-header">
+        <h2>Sticky Vertical Tabs</h2>
+		<p>tabs 寬度固定</p>
+    </div>
+	
+	<div class="sticky-tabs-wrapper">
+        <div class="sticky-vertical_tabs">
+            <ul class="nav nav-tabs vertical-tabs" id="verticalTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="example_1-tab" data-bs-toggle="tab" href="#example_1" role="tab" aria-controls="example_1" aria-selected="true">
+                        tab1
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="example_2-tab" data-bs-toggle="tab" href="#example_2" role="tab" aria-controls="example_2" aria-selected="false">
+                        大事記
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="example_3-tab" data-bs-toggle="tab" href="#example_3" role="tab" aria-controls="example_3" aria-selected="false">
+                        中文字元長度測試十三個字元
+                    </a>
+                </li>
+            </ul>
+        </div>
+		<div class="sticky-content-container">
+            <div class="tab-content vertical-tabs-content" id="verticalTabContent">
+				<div class="tab-pane fade show active" id="example_1" role="tabpanel" aria-labelledby="example_1-tab">
+                    <div class="col-block">
+                        <div class="block-header has-border">
+                            <h5 class="d-inline-block">Block Title</h5>
+                        </div>
+                        <div class="block-content">
+							<p><%= lorem_paragraphs(5) %></p>
+                            <p><%= lorem_paragraphs(10) %></p>
+							<p><%= lorem_paragraph %></p>
+							<p><%= lorem_paragraphs(5) %></p>
+                            <p><%= lorem_paragraphs(3) %></p>
+                        </div>
+                    </div>
+                </div>
+				
+			    <div class="tab-pane fade" id="example_2" role="tabpanel" aria-labelledby="example_2-tab">
+                    <div class="col-block">
+                        <div class="block-header has-border">
+                            <h5 class="d-inline-block">大事記</h5>
+							<div class="float-end">
+								<a href="#" class="export-blockhead-button blockhead-button">匯出大事記</a>
+							    <a href="#" class="add-blockhead-button blockhead-button">新增大事記</a>
+							</div>
+                        </div>
+                        <div class="block-content">
+                            <div class="history-timeline">
+                                <ul class="progress-list">
+                                    <li class="progress-item">
+                                        <div class="progress-check">
+                                            <div class="progress-circ">100</div>
+                                            <div class="progress-brief">
+                                                <h5>大事紀分類</h5>
+                                                <p class="dateline">
+                                                    <span class="date">05.22</span>
+                                                    <span class="years">2020</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="progress-card">
+                                            <div class="progress-card-body">
+                                                <h4>編號三位數示範</h4>
+												<p>越新編號越大，最新的在上面，99 以下只是顏色示範，共 12 個顏色由 css 自動排列</p>
+												<p>另外不同事紀圖片應有各自群組，麻煩前端協助<a href="https://www.jqueryscript.net/lightbox/Responsive-Touch-enabled-jQuery-Image-Lightbox-Plugin.html">jQuery Simple Lightbox</a></p>
+                                                <div class="sl-wrap">
+                                                    <figure>
+                                                        <a href="../assets/fake/c01.jpg" title="中文圖片描述">
+                                                            <img src="../assets/fake/c01.jpg">
+                                                        </a>
+                                                        <a href="../assets/fake/c02.jpg" title="Caption for single image">
+                                                            <img src="../assets/fake/c02.jpg">
+                                                        </a>
+                                                        <a href="../assets/fake/c03.jpg" title="Caption for single image">
+                                                            <img src="../assets/fake/c03.jpg">
+                                                        </a>
+                                                    </figure>
+                                                </div>
+                                                <div class="files-well">
+                                                    <a href="#">provident.pdf</a>
+                                                    <a href="#">中文字元.docx</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+									<li class="progress-item">
+                                        <div class="progress-check">
+                                            <div class="progress-circ">99</div>
+                                            <div class="progress-brief">
+                                                <h5>大事紀分類</h5>
+                                                <p class="dateline">
+                                                    <span class="date">05.20</span>
+                                                    <span class="years">2020</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="progress-card">
+                                            <div class="progress-card-body">
+                                                <h4><%= lorem_words(6) %></h4>
+                                                <p><%= lorem_paragraph %></p>
+                                                <div class="sl-wrap">
+                                                    <figure>
+                                                        <a href="../assets/fake/k01.jpg">
+                                                            <img src="../assets/fake/k01.jpg">
+                                                        </a>
+                                                        <a href="../assets/fake/k02.jpg">
+                                                            <img src="../assets/fake/k02.jpg">
+                                                        </a>
+                                                        <a href="../assets/fake/k03.jpg">
+                                                            <img src="../assets/fake/k03.jpg">
+                                                        </a>
+                                                        <a href="../assets/fake/k04.jpg">
+                                                            <img src="../assets/fake/k04.jpg">
+                                                        </a>
+                                                        <a href="../assets/fake/k05.jpg">
+                                                            <img src="../assets/fake/k05.jpg">
+                                                        </a>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <% (1..12).each do |n| %>
+                                    <li class="progress-item">
+                                        <div class="progress-check">
+                                            <div class="progress-circ"><%= n %></div>
+                                            <div class="progress-brief">
+                                                <h5>大事紀分類</h5>
+                                                <p class="dateline">
+                                                    <span class="date">05.19</span>
+                                                    <span class="years">2020</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="progress-card">
+                                            <div class="progress-card-body">
+                                                <h4><%= lorem_words(6) %></h4>
+                                                <p><%= lorem_paragraph %></p>
+                                                <div class="files-well">
+                                                    <a href="#">provident.pdf</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <% end %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+
+                <div class="tab-pane fade" id="example_3" role="tabpanel" aria-labelledby="example_3-tab">
+                    <div class="col-block">
+                        <div class="block-header has-border">
+                            <h5 class="d-inline-block">Block Title</h5>
+                        </div>
+                        <div class="block-content">
+                            123
+                        </div>
+                    </div>
+				</div>
+            </div>
+		</div>
+	</div>
+</main>
+
+<% content_for :js do %>
+    
+<% end %>

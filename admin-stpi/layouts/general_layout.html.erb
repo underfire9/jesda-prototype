@@ -1,0 +1,313 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/admin_head" %>
+</head>
+<body>
+    <div class="workspace" canvas="container">
+    <% if content_for? :sidebar %>
+        <%= yield :sidebar %>
+    <% else %>
+        <%= render :partial => "/partials/admin_sidebar" %>
+    <% end %>
+    <div class="page">
+        <div class="page-inner">
+            <div class="page-wrapper">
+                <% if content_for? :header %>
+                    <%= yield :header %>
+                <% else %>
+                    <%= render :partial => "/partials/admin_header" %>
+                <% end %>
+                <div class="content-wrapper clearfix">
+                    <%= yield %>
+                </div>
+            </div>
+            <%= render :partial => "/partials/admin_footer" %>
+        </div>
+    </div>
+    </div>
+	
+    <!-- Modal -->
+	<%= render :partial => "/partials/sc_flowpath" %>
+	<%= render :partial => "/partials/sc_countersignature" %>
+    <%= render :partial => "/partials/simpler_sidebar" %>
+	
+    <%= render :partial => "/partials/toolbar_setting" %>
+    <%= render :partial => "/partials/toolbar_output" %>
+    <%= render :partial => "/partials/toolbar_sort" %>
+    <%= render :partial => "/partials/toolbar_email" %>
+    <%= render :partial => "/partials/toolbar_email_preview" %>
+    <%= render :partial => "/partials/addressee_list" %>
+    <%= render :partial => "/partials/addressee_list_integral" %>
+	
+	<%= render :partial => "/partials/admin_chat" %>
+	<%= render :partial => "/partials/admin_files" %>
+	
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.js"></script>
+    <script src="../javascripts/bootstrap-select.min.js"></script>
+    <script src="../javascripts/sidenav.js"></script>
+    <script src="../javascripts/slidebars.min.js"></script>
+    <script src="../javascripts/slidebars.scripts.js"></script>
+	<script src="../javascripts/frontend-editor/chunk-vendors.js"></script>
+    <script src="../javascripts/frontend-editor/formEditor.js"></script>
+    <script src="../javascripts/frontend-editor/webEditor.js"></script>
+	<script src="../javascripts/tooltipster.bundle.js"></script>
+    <!--
+    <script src="../javascripts/vertical-responsive-menu.js"></script>
+    -->
+    <script src="../javascripts/jquery.slimscroll.js"></script>
+    <script>
+        $('.sidebar-scroll').slimscroll({
+            height: '100%'
+        });
+    </script>
+	
+    <script>
+        $(function () {
+            $('.sidebar-ctrler--label').on('click', function() {
+                $('.page').toggleClass('page-pad-left')
+            })
+        });
+        $(function() {
+            // scroll 多少開始 fixed
+            let topSpacing = 204;
+            $('.page').scroll(function() {
+                let top = $('.page').scrollTop();
+                if (top > topSpacing) {
+                    $('.sticky-vertical_tabs').addClass('sticky-fixed')
+                } else {
+                    $('.sticky-vertical_tabs').removeClass('sticky-fixed')
+                }
+            });
+        });
+		
+		// jQuery scrollbar
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+		
+        // Tooltipster
+        $(".file_tooltip").tooltipster({
+            trigger: "click",
+			content: $('<div class="filetooltip-inner"><a href="#">下載檔案</a><a href="#">編輯說明</a><a href="#">重新命名</a><hr><a href="#">覆蓋檔案</a><a href="#">上傳新版</a><hr><a href="#">歷史紀錄</a><hr><a href="#">刪除檔案</a></div>'),
+        });
+		$(".quotation_tooltip").tooltipster({
+            trigger: "click",
+			content: $('<div class="filetooltip-inner"><a href="#">下載檔案</a><a href="#">報價明細</a><hr><a href="#">寄送客戶</a><a href="#">寄送紀錄</a><hr><a href="#">刪除檔案</a></div>'),
+        });
+		$(".row_tooltip").tooltipster({
+            trigger: "click",
+			content: $('<div class="filetooltip-inner"><a href="#">編輯</a><a href="#">刪除</a></div>'),
+        });
+    </script>
+	
+	<!-- Simplelightbox https://www.jqueryscript.net/lightbox/Responsive-Touch-enabled-jQuery-Image-Lightbox-Plugin.html -->
+	<script src="../javascripts/simplelightbox/simple-lightbox.min.js"></script>
+	<script src="../javascripts/simplelightbox/simple-lightbox.legacy.min.js"></script>
+	<script src="../javascripts/simplelightbox/simple-lightbox.jquery.min.js"></script>
+	<script>
+        var gallery = $('.chat-gallery a').simpleLightbox({
+            overlay: true,
+        });
+	</script>
+	
+	<script>
+        var gallery = $('.sl-wrap a').simpleLightbox({
+            overlay: true,
+        });
+	</script>
+	
+	<!-- Multiple Select https://multiple-select.wenzhixin.net.cn/en/ -->
+	<script src="../javascripts/multiple-select.min"></script>
+    <script>
+        $(function() {
+            $('.multiple-select').multipleSelect()
+        })
+    </script>
+	
+	<!-- toolbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script src="../javascripts/slidebars.js"></script>
+    <script>
+        $(document).ready( function () {
+            //inbox show cc, bcc
+            $('#cc_button').click(function(){
+                $('.cc_hidden').removeClass('hidden');
+                $('#cc_button').addClass('hidden');
+            });
+            $("#bcc_button").click(function(){
+                $('.bcc_hidden').removeClass('hidden');
+                $('#bcc_button').addClass('hidden');
+            });
+        } );
+        $('.modal').appendTo('body').modal('hide');
+
+        // select hide/show
+        $(function() {
+            $('#citizenshipselector').change(function() {
+                $('.continent').hide();
+                $('#' + $(this).val()).show();
+            });
+        });
+
+        // jQuery scrollbar
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+
+    </script>
+	
+	<!-- DataTables -->
+    <script src="../javascripts/datatables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#jesdaDataTable').DataTable();
+        } );
+    </script>
+	
+    <script src="../javascripts/Chart.js"></script>
+	<script>
+		var randomScalingFactor = function(){ return Math.round(Math.random()*80)};
+		var lineChartData = {
+			labels : ["January","February","March","April","May","June","July"],
+			datasets : [
+				{
+					label: "My First dataset",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				},
+				{
+					label: "My Second dataset",
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				}
+			]
+
+		}
+	var randomScalingFactor = function(){ return Math.round(Math.random()*80)};
+
+	var barChartData = {
+		labels : ["January","February","March","April","May","June","July"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,0.8)",
+				highlightFill : "rgba(151,187,205,0.75)",
+				highlightStroke : "rgba(151,187,205,1)",
+				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+			}
+		]
+
+	}
+
+	var pieData = [
+			{
+				value: 300,
+				color:"#F7464A",
+				highlight: "#FF5A5E",
+				label: "Red"
+			},
+			{
+				value: 50,
+				color: "#46BFBD",
+				highlight: "#5AD3D1",
+				label: "Green"
+			},
+			{
+				value: 100,
+				color: "#FDB45C",
+				highlight: "#FFC870",
+				label: "Yellow"
+			},
+			{
+				value: 40,
+				color: "#949FB1",
+				highlight: "#A8B3C5",
+				label: "Grey"
+			},
+			{
+				value: 120,
+				color: "#4D5360",
+				highlight: "#616774",
+				label: "Dark Grey"
+			}
+
+		];
+
+	window.onload = function(){
+		var ctx1 = document.getElementById("canvas").getContext("2d");
+		window.myLine = new Chart(ctx1).Line(lineChartData, {
+			responsive: true
+		});
+		var ctx2 = document.getElementById("canvasbar").getContext("2d");
+		window.myBar = new Chart(ctx2).Bar(barChartData, {
+			responsive : true
+		});
+		var ctx3 = document.getElementById("chart-area").getContext("2d");
+		window.myPie = new Chart(ctx3).Pie(pieData);
+	}
+
+	</script>
+
+    <!-- date & time picker -->
+    <script src="../javascripts/moment.min.js"></script>
+    <script src="../javascripts/bootstrap-datetimepicker.min.js"></script>
+    <script>
+        if (/Mobi/.test(navigator.userAgent)) {
+            // if mobile device, use native pickers
+            $(".date input").attr("type", "date");
+            $(".time input").attr("type", "time");
+        } else {
+            // if desktop device, use DateTimePicker
+            $("#datepicker").datetimepicker({
+                useCurrent: false,
+                format: "DD-MMM-YYYY",
+                showTodayButton: true,
+                icons: {
+                    next: "fa fa-chevron-right",
+                    previous: "fa fa-chevron-left",
+                    today: "todayText",
+                },
+            });
+            $("#timepicker").datetimepicker({
+                format: "LT",
+                icons: {
+                    up: "fa fa-chevron-up",
+                    down: "fa fa-chevron-down",
+                },
+            });
+        }
+    </script>
+    
+    <script src="../javascripts/select2.full.js"></script>
+    <script>
+    $( '#single-select-field' ).select2( {
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+    } );
+    </script>
+    <!--%= livereload_js if ENV["RACK_ENV"] != "production" && defined?(App)%-->
+    <%= yield :js %>
+</body>
+</html>

@@ -8,7 +8,7 @@
 	<div class="workspace" canvas="container">
         <div class="pages general-pages">
             <%= render :partial => "/partials/header" %>
-            <div class="content">
+            <div class="content tab-content">
                 <%= yield %>
             </div>
             <a id="backtop" title="回到頁首"></a>
@@ -76,6 +76,55 @@
           item.style.backgroundImage = `url(${imgSrc})`;
         })
     </script>
+    
+    <!-- Tab change url & Loader -->
+    <script>
+      var hash = window.location.hash;
+      var $loader = document.querySelector(".loader");
+      //  畫面 loading 完成 移除 loader
+      window.onload = function () {
+        $loader.classList.remove("loader--active");
+      };
+
+      $(".nav-item,.menu__item")
+        .find("a")
+        .each(function (key, value) {
+          var tabTrigger = new bootstrap.Tab($(value));
+          if (hash === $(value).attr("href")) {
+            tabTrigger.show();
+          }
+
+          $(value).click(function (e) {
+            e.preventDefault();
+            history.pushState(null, null, $(this).attr("href"));
+            // 動畫
+            $loader.classList.add("loader--active");
+            window.setTimeout(function () {
+              tabTrigger.show();
+              $loader.classList.remove("loader--active");
+            }, 1500);
+          });
+        });
+
+      // 首頁
+      if (hash == "") {
+        $(".brands > a").each((key, value) => {
+          var tabTrigger = new bootstrap.Tab($(value));
+          tabTrigger.show();
+        });
+      }
+
+      // 手機版選單 點選關閉選單
+      $(".menu__item")
+        .find("a")
+        .each(function (key, value) {
+          $(value).click(function (e) {
+            $("#main-navigation-toggle").prop("checked", false);
+          });
+        });
+    </script>
+    
+
     
     <%= yield :js %>
 </body>

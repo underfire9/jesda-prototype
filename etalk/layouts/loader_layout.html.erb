@@ -1,0 +1,140 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages general-pages">
+            <%= render :partial => "/partials/header_loader" %>
+            <div class="content tab-content">
+                <%= yield %>
+            </div>
+            <a id="backtop" title="回到頁首"></a>
+        </div>
+		<%= render :partial => "/partials/footer" %>
+	</div>
+    
+    <!-- pg -->
+    <div class="loader loader--active">
+        <div class="loader__tile"></div>
+        <div class="loader__tile"></div>
+        <div class="loader__tile"></div>
+        <div class="loader__tile"></div>
+        <div class="loader__tile"></div>
+    </div>
+    
+    <!-- offcanvas-search -->
+    <%= render :partial => "/partials/offcanvas-search" %>
+	
+    <script src="../javascripts/jquery-3.6.0.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.js"></script>
+    
+    <!-- Back to top -->
+    <script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+    </script>
+	
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+    
+    <!-- Gallery background-image -->
+	<script>
+        let galleryLinks = document.querySelectorAll('.gallery-link')
+
+        galleryLinks.forEach(item=>{
+          let imgSrc = item.querySelector('img').src
+          item.style.backgroundImage = `url(${imgSrc})`;
+        })
+    </script>
+    
+    <!-- Tab change url & Loader -->
+    <script>
+        var hash = window.location.hash;
+        var $loader = document.querySelector(".loader");
+        //  畫面 loading 完成 移除 loader
+        window.onload = function () {
+            $loader.classList.remove("loader--active");
+        };
+
+        $(".nav-item,.menu__item,.exhibition-list-wrapper")
+            .find("a")
+            .each(function (key, value) {
+                if (hash === $(value).attr("href")) {
+                    var tabTrigger = $($(value).attr("href"));
+                    tabTrigger.addClass('active')
+                } else if (hash == '') {
+                    $('#index').addClass('active')
+                }
+
+                $(value).click(function (e) {
+                    e.preventDefault();
+                    history.pushState(null, null, $(this).attr("href"));
+                    // 動畫
+                    $loader.classList.add("loader--active");
+                    window.setTimeout(function () {
+                        var tabTrigger = $($(value).attr("href") == '#' ? "#index" : $(value).attr("href"));
+                        // 移除所有 active
+                        $('.tab-pane').removeClass('active')
+                        // 所點選頁面加上 active
+                        tabTrigger.addClass('active')
+                        $loader.classList.remove("loader--active");
+                    }, 1500);
+                });
+            });
+
+
+
+        // 手機版選單 點選關閉選單
+        $(".menu__item")
+            .find("a")
+            .each(function (key, value) {
+                $(value).click(function (e) {
+                    $("#main-navigation-toggle").prop("checked", false);
+                });
+            });
+    </script>
+    
+
+    
+    <%= yield :js %>
+</body>
+</html>

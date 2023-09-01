@@ -1,0 +1,150 @@
+<!-- admin-page: ChatGpt 摘要 -->
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+
+	<div class="sticky-tabs-wrapper">
+        <div class="sticky-vertical_tabs">
+            <ul class="nav nav-tabs vertical-tabs" id="verticalTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="example_1-tab" data-bs-toggle="tab" href="#example_1" role="tab" aria-controls="example_1" aria-selected="true">
+                        Business Plan 中文 prompt
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="example_2-tab" data-bs-toggle="tab" href="#example_2" role="tab" aria-controls="example_2" aria-selected="false">
+                        功能2
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="example_3-tab" data-bs-toggle="tab" href="#example_3" role="tab" aria-controls="example_3" aria-selected="false">
+                        字長度中文字元測試十四個字元
+                    </a>
+                </li>
+            </ul>
+        </div>
+		<div class="sticky-content-container">
+            <div class="tab-content vertical-tabs-content" id="verticalTabContent">
+				<div class="tab-pane fade show active" id="example_1" role="tabpanel" aria-labelledby="example_1-tab">
+                    <div class="col-block">
+                        <div class="block-content">
+                            
+                            <div class="d-flex align-items-center mt-3 mb-5">
+                                <div class="me-2">
+                                    <label for="exampleInput1" class="form-label mb-0">功能名稱</label>
+                                </div>
+                                <div class="me-2 w-25">
+                                    <input type="text" class="form-control" id="exampleInput1">
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary">儲存</button>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-lg btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fas fa-plus"></i> 新增
+                                </button>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-lg table-bordered table-hover align-middle">
+                                    <thead class="text-nowrap">
+                                        <tr>
+                                            <th>序號</th>
+                                            <th>接續</th>
+                                            <th>啟用</th>
+                                            <th>題目/標題</th>
+                                            <th>執行 prompt</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td></td>
+                                            <td>是</td>
+                                            <td>題目文字描述1</td>
+                                            <td width="50%">#zh-tw 請將[ {{中文摘要}} or {{英文摘要}} or {{專利摘要}} ]製作成一份[中文]的[Business Plan]，須包含[Technical Description 技術描述]、[Innovation 創新點]、[Potential Applications 潛在應用]、[Pain Points 關鍵痛點]、[Competent Product List 競爭產品列表]、[Competitive Analysis 競品分析]、[Competitive Analysis 競爭產品的量化數據比較]、[Market Analysis 市場分析]、[Target Market 目標市場]、[Industry Chain 產品鏈]、[Upstream 上游]、[Midstream 中游]、[Downstream 下游]、[Market risk assessment 風險評估]共14個項目。</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm unshadow">
+                                                    <button title="" data-toggle="tooltip" type="button" class="btn btn-xs btn-white" data-original-title="Edit Client"><i class="fas fa-pencil-alt"></i></button>
+                                                    <button title="" data-toggle="tooltip" type="button" class="btn btn-xs btn-white" data-original-title="Remove Client"><i class="fa fa-times"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <% (2..6).map do |i| %>
+                                        <tr>
+                                            <td><%= i %></td>
+                                            <td></td>
+                                            <td>是</td>
+                                            <td>題目文字描述1</td>
+                                            <td width="50%">根據[技術描述],寫出[技術描述]並列出[創新點].標題[技術描述]..</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm unshadow">
+                                                    <button title="" data-toggle="tooltip" type="button" class="btn btn-xs btn-white" data-original-title="Edit Client"><i class="fas fa-pencil-alt"></i></button>
+                                                    <button title="" data-toggle="tooltip" type="button" class="btn btn-xs btn-white" data-original-title="Remove Client"><i class="fa fa-times"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <% end %>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+				
+			    <div class="tab-pane fade" id="example_2" role="tabpanel" aria-labelledby="example_2-tab">
+                    <div class="col-block">
+                        <div class="block-header has-border">
+                            <h5 class="d-inline-block">Block Title</h5>
+                        </div>
+                        <div class="block-content">
+                            ...
+                        </div>
+                    </div>
+				</div>
+
+                <div class="tab-pane fade" id="example_3" role="tabpanel" aria-labelledby="example_3-tab">
+                    <div class="col-block">
+                        <div class="block-header has-border">
+                            <h5 class="d-inline-block">Block Title</h5>
+                        </div>
+                        <div class="block-content">
+                            123
+                        </div>
+                    </div>
+				</div>
+            </div>
+		</div>
+	</div>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">設定</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+    
+<% end %>

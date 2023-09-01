@@ -7,7 +7,7 @@ header.header {
     .nav {
         .link-span {
             display: inline-block;
-            padding: 0 1.5rem;
+            padding: 0 1.625rem;
             position: relative;
             &:after {
                 content: "";
@@ -25,6 +25,7 @@ header.header {
         }
         a {
             display: block;
+            padding: 1.5rem 0;
             font-size: 1.375rem;
             font-weight: 300;
             color: #777;
@@ -52,13 +53,15 @@ header.header {
             &:after {
                 content: "";
                 background: $etalk_grey;
+                margin-top: -24px;
                 height: 48px;
                 width: 1px;
                 position: absolute;
                 left: 50%;
-                top: -.5rem;   
+                top: 0;   
             }
         }
+        .brands a { padding: 0; }
     }
 }
 
@@ -142,6 +145,24 @@ header.header {
     }
 }
 
+
+
+.header-wrap { display: block; }
+
+.header-right {
+    .nav {
+        width: 100%;
+        position: relative;
+        .nav-item, .search-item {
+            display: flex;
+            align-items: center;
+        }
+        .brands { flex-grow: 1; }
+    }
+}
+
+
+
 /* `Responsive
 -----------------------------------------------------------------------------*/
 
@@ -156,8 +177,18 @@ header.header {
 
 @media (max-width: 1599px) {
     .header-right {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         .mobile-only { display: block; }
-        .nav { display: none; }
+        .nav {
+            .nav-item,
+            .search-item { display: none; }
+            .brands {
+                display: block;
+                flex-grow: 0;
+            }
+        }
     }
 }
 

@@ -1,0 +1,83 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/exhibition_head" %>
+</head>
+<body>
+	<div class="workspace">
+        <%= yield %>
+	</div>
+    
+    <!-- pg -->
+    <div class="loader loader--active">
+        <div class="loader__tile"></div>
+        <div class="loader__tile"></div>
+        <div class="loader__tile"></div>
+        <div class="loader__tile"></div>
+        <div class="loader__tile"></div>
+    </div>
+	
+    <script src="../javascripts/jquery-3.6.0.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.js"></script>
+    
+    <!-- Back to top -->
+    <script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+    </script>
+    
+    <!-- Tab change url & Loader -->
+    <script>
+        var hash = window.location.hash;
+        var $loader = document.querySelector(".loader");
+        //  畫面 loading 完成 移除 loader
+        window.onload = function () {
+            $loader.classList.remove("loader--active");
+        };
+
+        $(".header")
+            .find("a")
+            .each(function (key, value) {
+                if (hash === $(value).attr("href")) {
+                    var tabTrigger = $($(value).attr("href"));
+                    tabTrigger.addClass('active')
+                } else if (hash == '') {
+                    $('#index').addClass('active')
+                }
+
+                $(value).click(function (e) {
+                    e.preventDefault();
+                    history.pushState(null, null, $(this).attr("href"));
+                    // 動畫
+                    $loader.classList.add("loader--active");
+                    window.setTimeout(function () {
+                        var tabTrigger = $($(value).attr("href") == '#' ? "#index" : $(value).attr("href"));
+                        // 移除所有 active
+                        $('.tab-pane').removeClass('active')
+                        // 所點選頁面加上 active
+                        tabTrigger.addClass('active')
+                        $loader.classList.remove("loader--active");
+                    }, 1500);
+                });
+            });
+    </script>
+    
+
+    
+    <%= yield :js %>
+</body>
+</html>

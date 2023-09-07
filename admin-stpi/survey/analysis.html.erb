@@ -1,0 +1,188 @@
+<!-- admin-page: 前端 - 個人技術資訊瀏覽 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+	<div class="clearfix">
+        <div class="profile-sidebar">
+            <div class="col-block">
+                <div class="block-content expansion">
+                    <div class="profile-avatar pt-3">
+                        <div class="scrap">
+                            <div class="scrap-name">
+                                <span class="h4">黃良得</span>
+                                <span class="h6">Huang Lean-Teik</span>
+                            </div>
+                            <div class="scrap-info">
+                                <span class="school">教授</span>
+                                <span class="department">台灣大學農業化學系(所)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-4 pt-4">
+                        <span>合作專長：</span>
+                        <div class="mt-2 mb-3">
+                            <ul class="menu-item">
+                                <li>天然物生物技術</li>
+                                <li>生物資源利用</li>
+                                <li>保健品開發與品質管制</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="profile-content">
+
+            <ul class="nav nav-tabs nav-tabs-transparent" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="ta1-tab" data-bs-toggle="tab" data-bs-target="#ta1-tab-pane" type="button" role="tab" aria-controls="ta1-tab-pane" aria-selected="true">技術領域分析圖表</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ta2-tab" data-bs-toggle="tab" data-bs-target="#ta2-tab-pane" type="button" role="tab" aria-controls="ta2-tab-pane" aria-selected="false">核心技術</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                
+                <div class="tab-pane fade show active" id="ta1-tab-pane" role="tabpanel" aria-labelledby="ta1-tab" tabindex="0">
+                    <div class="d-flex">
+                        
+                        <!-- 寬度為 inline css，若有需要調整請直接修改 -->
+                        <div class="visualdata-wrapper" style="width: 480px;">
+                            <div class="col-block">
+                                <div class="block-header has-border">
+                                    <h3>技術領域分析</h3>
+                                </div>
+                                <div class="block-content">
+                                    <div class="mb-5">Donut</div>
+                                    <div>Words cloud</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-grow-1">
+                            <div class="col-block">
+                                <div class="block-header has-border">
+                                    <h3>相同研究領域發明人</h3>
+                                </div>
+                                <div class="block-content">
+                                    <table class="table table-hover align-middle">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>姓名</th>
+                                                <th>學校</th>
+                                                <th>現職單位</th>
+                                                <th>職稱</th>
+                                                <th>技術專長</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><a href="#" class="btn btn-sm btn-light">開啟分頁</a></td>
+                                                <td class="text-nowrap">王曉輝</td>
+                                                <td class="text-nowrap">義守大學</td>
+                                                <td class="text-nowrap">國際企業經營系</td>
+                                                <td class="text-nowrap">助理教授</td>
+                                                <td>分子遺傳；分子病毒學</td>
+                                            </tr>
+                                            <% (1..5).map do |i| %>
+                                            <tr>
+                                                <td><a href="#" class="btn btn-sm btn-light">開啟分頁</a></td>
+                                                <td class="text-nowrap">王曉輝<%= i %></td>
+                                                <td class="text-nowrap">義守大學</td>
+                                                <td class="text-nowrap">國際企業經營系</td>
+                                                <td class="text-nowrap">助理教授</td>
+                                                <td>藝術創作理論研究；繪畫、絹印版畫、裝置與雕塑創作；資本主義；德勒茲；機器；媚俗；前衛精神；藝術生產</td>
+                                            </tr>
+                                            <% end %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="ta2-tab-pane" role="tabpanel" aria-labelledby="ta2-tab" tabindex="0">
+                    <div class="col-block">
+                        <div class="block-content">
+                            <div class="d-flex align-items-center py-4">
+                                <span class="fw-bold">IPC權重階層切換</span>
+                                <span class="ps-3">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <table class="table table-striped align-middle">
+                                <thead class="text-nowrap">
+                                    <tr>
+                                        <th>核心技術/IPC</th>
+                                        <th>核心技術/IPC說明</th>
+                                        <th>權重</th>
+                                        <th>篇數</th>
+                                        <th>台灣專利</th>
+                                        <th>學術文獻</th>
+                                        <th>政府補助計畫</th>
+                                        <th>全球專利</th>
+                                        <th>更多</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% (1..20).map do |i| %>
+                                    <tr>
+                                        <td>C05G</td>
+                                        <td>園藝；蔬菜、花卉、稻、果樹、葡萄、啤酒花或海菜之栽培；林業；澆水（水果、蔬菜、啤酒花等類作物之採摘見A01D46/00；利用組織培養技術之植物再生見A01H4/00；洋蔥或花球莖之去頂或剝皮裝置見A23N15/08；繁殖單細胞藻類植物見C12N1/12；植物細胞培養見C12N5/00）</td>
+                                        <td>2.83</td>
+                                        <td>6</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>6</td>
+                                        <td>0</td>
+                                        <td>
+                                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                                <a href="#" class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">技術群列表</a>
+                                                <a href="#" class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">分析圖表</a>
+                                                <a href="#" class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">IPC技術權重排行</a>
+                                            </div>
+                                        </td>
+                                    </tr>                                    
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>            
+            
+		</div>
+	</div>
+</main>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">H01L 包含技術列表</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<% end %>

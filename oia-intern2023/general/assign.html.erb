@@ -1,0 +1,97 @@
+<!-- template: 配分登錄 -->
+
+<div class="container-lg">
+	<div class="page-content">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+				<!--div class="user-wrapper">
+				    <p><i class="far fa-user-circle"></i></p>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Angela Winson
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Change password</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                        </ul>
+                    </div>
+				</div-->
+		        <div class="sidenav">
+                    <ul class="side-navigation menu-item">
+                        <li>
+							<a class="nav-item" href="#">
+							    <span class="link-inner">申請資料瀏覽</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">補件作業</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item current" href="#">
+								<span class="link-inner">配分登錄</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">申請結果公告</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">實習心得上傳</span>
+							</a>
+						</li>
+                    </ul>
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+            <div class="page-title">
+			    <h3>配分登錄</h3>
+			</div>
+			<div class="d-flex justify-content-between mb-3">
+			    <div>可登錄時間：2022-12-01 12:00 ~ 2022-12-31 00:00</div>
+				<span class="fw-bold">可配分總分：120</span>
+			</div>
+			<hr>
+			<div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr class="text-nowrap">
+                            <th>志願</th>
+                            <th>機構</th>
+							<th>導師</th>
+							<th>職缺</th>
+							<th>配分</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+						<% (1..6).map do |i| %>
+                        <tr>
+                            <th class="text-center"><%= i %></th>
+                            <td><%= lorem_words(7) %></td>
+                            <td class="text-nowrap"><%= zh_lorem_name %>導師</td>
+							<td><%= lorem_words(3) %>職缺<%= i %></td>
+							<td><input class="form-control form-control-sm" type="text"></td>
+                        </tr>
+						<% end %>
+                    </tbody>
+                </table>
+			</div>
+            <div class="text-end fw-bold mt-3">合計：10</div>
+			<div class="form-action">
+			    <button type="submit" class="btn btn-lg btn-primary">Submin</button>
+			</div>
+		</main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+
+<% end %>
+

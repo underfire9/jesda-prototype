@@ -9,12 +9,24 @@
             <button type="button" class="btn btn-filter" id="filterButton"><i class="fas fa-filter"></i></button>
             <div class="list-toolbar" id="list-toolbar">
                 <div class="toolbar-part">
-                    <select class="form-select form-select-xxxl" aria-label="選擇期數">
-                        <option selected>第 1109 期</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                    <div class="select-wrap">
+                        <div class="years-wrap">
+                            <select class="form-select years-select form-select-xxxl" aria-label="選擇年度">
+                                <option selected>選擇年度</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="period-wrap">
+                            <select class="form-select period-select form-select-xxxl" aria-label="選擇期數" disabled>
+                                <option selected>選擇期數</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="toolbar-part">
                     <div class="input-group">
@@ -110,6 +122,29 @@
         filterButton.classList.toggle("active");
         toolbar.classList.toggle("show");
     });
+</script>
+
+<!-- select -->
+<script>
+// 獲取年度選擇框和期數選擇框
+const yearsSelect = document.querySelector(".years-select");
+const periodWrap = document.querySelector(".period-wrap");
+
+// 監聽年度選擇框的變化事件
+yearsSelect.addEventListener("change", function () {
+    // 檢查所選值
+    if (yearsSelect.value !== "選擇年度") {
+        // 如果選擇的值不是預設值，則顯示期數選擇框
+        periodWrap.style.display = "block";
+        // 啟用期數選擇框
+        periodWrap.querySelector(".period-select").removeAttribute("disabled");
+    } else {
+        // 如果選擇的值是預設值，則隱藏期數選擇框並禁用它
+        periodWrap.style.display = "none";
+        periodWrap.querySelector(".period-select").setAttribute("disabled", "disabled");
+    }
+});
+
 </script>
 <% end %>
 

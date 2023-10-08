@@ -577,46 +577,47 @@
 <script src="../javascripts/ScrollTrigger.min.js"></script>
 
 <script>
-    gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger);
 
     // 捲動時圖片漸漸放大，最大 scale(1.1)
-    gsap.to('.theme_two .element-cover .img-cover', {
+    gsap.to(".theme_two .element-cover .img-cover", {
         scrollTrigger: {
-            trigger: '.theme_two .element-cover .img-cover',
+            trigger: ".theme_two .element-cover .img-cover",
             scrub: true,
         },
         scale: 1.1,
-    })
+    });
 
     // 背後的線條 .element-cover:after 起始 scalex{0}，捲到定位時展開 scalex{1}
     gsap.to(".theme_two .element-cover", {
         scrollTrigger: ".theme_two .element-cover",
-        "--myScale": 1,
+        "--myScaleCover": 1,
         duration: 6,
     });
 
     // .cover-square:after 圖在左或右正方形封面背後的線條與封面相同
-    const cover_square = gsap.utils.toArray('.theme_two .element-img-direction.cover-square')
+    const cover_square = gsap.utils.toArray(".theme_two .element-img-direction.cover-square");
     cover_square.forEach((element, i) => {
         gsap.to(element, {
-            "--myScale": 1,
+            scrollTrigger: element,
+            "--myScaleImg": 1,
             duration: 6,
-        })
+        });
     });
 
     // .element-section-gsap 區塊起始 translatey(-20px) opacity: 0，捲到定位時 translatey(0) opacity: 1
-    const element_section = gsap.utils.toArray('.theme_two .element-section-gsap')
+    const element_section = gsap.utils.toArray(".theme_two .element-section-gsap");
     element_section.forEach((element, i) => {
         gsap.to(element, {
             opacity: 1,
             duration: 1,
             y: 0,
-            scrollTrigger: element
-        })
+            scrollTrigger: element,
+        });
     });
 
     // 系統相關文章每個 li 同上，捲到定位時 translatey(0) opacity: 1，延遲時間依序遞增
-    const article_list = gsap.utils.toArray('.theme_two .element-article-list .article-list-menu li')
+    const article_list = gsap.utils.toArray(".theme_two .element-article-list .article-list-menu li");
     article_list.forEach((element, i) => {
         gsap.to(element, {
             opacity: 1,
@@ -624,11 +625,11 @@
             y: 0,
             delay: 0.25 * (i + 1),
             scrollTrigger: element,
-        })
+        });
     });
 
     // 圖文群組 .element-group-item 內的 .section-row 起始 translatey(-20px) opacity: 0，捲到定位時 translatey(0) opacity: 1，延遲時間依序遞增
-    const section_row = gsap.utils.toArray('.theme_two .element-group-item .section-row')
+    const section_row = gsap.utils.toArray(".theme_two .element-group-item .section-row");
     section_row.forEach((element, i) => {
         gsap.to(element, {
             opacity: 1,
@@ -636,20 +637,20 @@
             y: 0,
             delay: 0.25 * (i + 1),
             scrollTrigger: element,
-        })
+        });
     });
 
     // 圖在左或右內的 .cover-wrap 與 .element-content 同上，兩個區塊需有延遲 .1s
-    const cover_wrap = gsap.utils.toArray('.theme_two .element-img-direction .cover-wrap')
+    const cover_wrap = gsap.utils.toArray(".theme_two .element-img-direction .cover-wrap");
     cover_wrap.forEach((element, i) => {
         gsap.to(element, {
             opacity: 1,
             duration: 1,
             y: 0,
             scrollTrigger: element,
-        })
+        });
     });
-    const element_content = gsap.utils.toArray('.theme_two .element-img-direction .element-content')
+    const element_content = gsap.utils.toArray(".theme_two .element-img-direction .element-content");
     element_content.forEach((element, i) => {
         gsap.to(element, {
             opacity: 1,
@@ -657,7 +658,7 @@
             y: 0,
             delay: .3,
             scrollTrigger: element,
-        })
+        });
     });
 </script>
 
@@ -702,7 +703,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <script>
     const carouselEtalkCaptionsElement = document.querySelector('#carouselEtalkCaptions')
     const carousel = new bootstrap.Carousel(carouselEtalkCaptionsElement, {
-        interval: 90000
+        interval: 9000
     })
 </script>
 

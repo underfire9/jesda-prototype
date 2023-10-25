@@ -2,6 +2,7 @@
 
 @import "base";
 @import "widgets/sidenav";
+@import "partials/header";
 
 /* DateTimepicker ------------------------------------------------------------------------*/
 @import "widgets/bootstrap-datetimepicker.min";
@@ -9,6 +10,11 @@
 
 /* `Stuff
 -----------------------------------------------------------------------------*/
+
+.container-lg {
+    min-width: 1320px;
+    width: 1320px;
+}
 
 #backtop {
     display: inline-block;
@@ -207,6 +213,73 @@ section.section {
 /* `Index
 -----------------------------------------------------------------------------*/
 
+.announcement-wrapper {
+    .wrapper-ft {
+        text-align: end;
+    }
+    .link-more {
+        display: inline-block;
+        padding-right: 92px;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #222;
+        position: relative;
+        &:before, &:after {
+            content: "";
+            width: 72px;
+            height: 32px;
+            position: absolute;
+            right: 0;
+            top: -2px;
+            transition: all 0.2s ease-in-out;
+        }
+        &:before {
+            background: #222;
+            z-index: 0;
+        }
+        &:after {
+            background: $main_color;
+            transform-origin: center right;
+            z-index: 1;
+        }
+        &:hover {
+            color: $main_color;
+            &:after {
+                transform:scaleX(0);
+            }
+        }
+    }
+}
+
+.announcement-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .list-item {
+        border-bottom: 1px dashed #b3b5b7;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        width: 48%;
+    }
+    .list-hd {
+        margin-bottom: .75rem;
+        span { display: inline-block; }
+    }
+    .pin {
+        margin-right: 1.25rem;
+        font-size: 1.125rem;
+        color: #e65b5b;
+    }
+    h4 {
+        font-size: 1.375rem;
+    }
+    .item-link {
+        display: block;
+        color: #222;
+        &:hover { color: $main_color; }
+    }
+}
+
 .index-content {
 	display: flex;
 	margin-bottom: 4rem;
@@ -235,6 +308,43 @@ section.section {
 			}
 		}
 	}
+    .announcement-list {
+        display: block;
+        .list-item {
+            margin-bottom: 1.25rem;
+            padding-bottom: 1.25rem;
+            width: 100%;
+        }
+    }
+}
+
+.project-data {
+    border-radius: 5px;
+    background: #f7f7f7;
+    h4 {
+        margin-bottom: 0;
+        padding: 1.5rem;
+    }
+    li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #e5e5e5;
+        padding: .75rem 1.5rem;
+        &:last-child { border-bottom: 0; }
+    }
+}
+
+.narrow-wrapper {
+    width: 65%;
+}
+
+.report-table {
+    .form-control-sm {
+        width: 72px;
+        & + .form-control-sm { margin-top: .25rem; }
+    }
+    th, td { font-size: .9375rem; }
 }
 
 /* `Upload
@@ -338,74 +448,5 @@ section.section {
 /* `Responsive
 -----------------------------------------------------------------------------*/
 
-@media (max-width: 1199px) {
-    .offcanvas-collapse {
-        width: $aside_width;
-        min-width: $aside_width;
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: -$aside_width;
-        overflow-y: auto;
-        visibility: hidden;
-        background-color: #fff;
-        transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
-        z-index: 1040;
-    }
-    .offcanvas-collapse.open {
-        visibility: visible;
-        transform: translateX(100%);
-        & + #widget-overlay { display: block; }
-    }
-	.procedures_nav,
-	.step-wrap {
-		width: auto;
-		position: static;
-	}
-	.procedures_nav-hd,
-	.procedures_nav-ft,
-	.step-navigation {
-		margin: 0 1rem;
-	}
-	.procedures_nav-hd { margin-top: 1rem; }
-	.step-wrap .step-h5 {
-		margin: 1rem;
-	}
-	.page-content {
-		&.has-sticky {
-			.main { margin-left: 0; }
-			.aside {
-				float: none;
-				position: fixed;
-			}
-		}
-	}
-}
 
-@media (max-width: 991px) {
-    .index-content {
-        display: block;
-        .aside {
-			margin-left: 0;
-            width: 100%;
-        }
-        .schedule-wrapper {
-            margin-top: 3rem;
-        }
-    }
-}
-
-@media (max-width: 680px) {
-	.upload-wrapper {
-		display: block;
-		.upload-item {
-			border-radius: .25rem;
-			border: 1px dotted #ddd;
-            margin-right: 0;
-			margin-bottom: 1.5rem;
-			padding: 1.25rem;
-            width: 100%;
-		}
-	}
-}
 

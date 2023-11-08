@@ -1,8 +1,16 @@
 <!-- template: 論教育 -->
-    
+
 <%= render :partial => "/partials/breadcrumb" %>
 
-<div class="reveal-stand-wrapper">
+<!-- 熱門文章 Switch -->
+<div class="hot-switch-wrapper">
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="hotSwitch" />
+        <label class="form-check-label" for="hotSwitch">熱門 <i class="fas fa-sort-amount-up"></i></label>
+    </div>
+</div>
+
+<div class="reveal-stand-wrapper" id="maincontent">
 
     <!-- 最少六則，保持雙數 -->
     <div class="reveal-stand-list">
@@ -13,19 +21,26 @@
                         <h3 class="item-title">素養學習是什麼？如何因應新世代的學習</h3>
                         <ul class="menu-item item-info">
                             <li>
-                                <span class="label">日期</span>
+                                <span class="label">活動日期</span>
                                 <span class="output">112年12月25日</span>
                             </li>
                             <li>
-                                <span class="label">地點</span>
-                                <span class="output">國家教育研究院臺北院區十樓國際會議廳</span>
+                                <span class="label">主辦單位</span>
+                                <span class="output">國家教育研究院</span>
+                            </li>
+                            <li>
+                                <span class="label">活動場次</span>
+                                <span class="output">3</span>
                             </li>
                         </ul>
                     </div>
                     <div class="item-media">
                         <div class="media-inner">
                             <a href="discussion_sessions.html" class="btn btn-more">more <i class="fas fa-long-arrow-alt-right"></i></a>
-                            <img src="https://picsum.photos/640/360" class="item-img" alt="{圖片描述}" />
+                            <!-- youtube -->
+                            <div class="item-img video-container">
+                                <iframe width="100%" src="https://www.youtube.com/embed/HFILwnVvH2o" frameborder="0" allowfullscreen></iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -37,12 +52,16 @@
                         <h3 class="item-title">國小教師需要什麼支持，才能更加落實國小科技教育及資訊教育課程？</h3>
                         <ul class="menu-item item-info">
                             <li>
-                                <span class="label">日期</span>
+                                <span class="label">活動日期</span>
                                 <span class="output">112年12月25日</span>
                             </li>
                             <li>
-                                <span class="label">地點</span>
-                                <span class="output">國家教育研究院臺北院區十樓國際會議廳</span>
+                                <span class="label">主辦單位</span>
+                                <span class="output">教育部</span>
+                            </li>
+                            <li>
+                                <span class="label">活動場次</span>
+                                <span class="output">999</span>
                             </li>
                         </ul>
                     </div>
@@ -65,12 +84,16 @@
                         <h3 class="item-title"><%= lorem_sentence %></h3>
                         <ul class="menu-item item-info">
                             <li>
-                                <span class="label">日期</span>
+                                <span class="label">活動日期</span>
                                 <span class="output">112年12月25日</span>
                             </li>
                             <li>
-                                <span class="label">地點</span>
-                                <span class="output">國家教育研究院臺北院區十樓國際會議廳</span>
+                                <span class="label">主辦單位</span>
+                                <span class="output">國立台灣大學</span>
+                            </li>
+                            <li>
+                                <span class="label">活動場次</span>
+                                <span class="output">5</span>
                             </li>
                         </ul>
                     </div>
@@ -89,12 +112,16 @@
                         <h3 class="item-title"><%= lorem_sentence %></h3>
                         <ul class="menu-item item-info">
                             <li>
-                                <span class="label">日期</span>
+                                <span class="label">活動日期</span>
                                 <span class="output">112年12月25日</span>
                             </li>
                             <li>
-                                <span class="label">地點</span>
-                                <span class="output">國家教育研究院臺北院區十樓國際會議廳</span>
+                                <span class="label">主辦單位</span>
+                                <span class="output">國家教育研究院</span>
+                            </li>
+                            <li>
+                                <span class="label">活動場次</span>
+                                <span class="output">4</span>
                             </li>
                         </ul>
                     </div>
@@ -193,6 +220,24 @@
     }
     setItemHeight();
     window.addEventListener("resize", setItemHeight);
+</script>
+
+<!-- Stand 影片 -->
+<script>
+    // 使用 jQuery 設定 iframe 為 16:9
+    function setVideoHeight() {
+        var mediaInner = $(".media-inner");
+        var iframe = $(".video-container iframe");
+        var windowHeight = (iframe.width() * 9) / 16;
+        iframe.height(windowHeight);
+        mediaInner.height(windowHeight);
+    }
+
+    // 初始化時設定高度
+    setVideoHeight();
+
+    // 視窗大小變化時重新計算高度
+    $(window).resize(setVideoHeight);
 </script>
 <% end %>
 

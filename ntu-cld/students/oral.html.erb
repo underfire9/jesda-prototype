@@ -1,0 +1,87 @@
+<!-- ntu: 口試時間列表範本 -->
+
+<div class="container-lg">
+	<div class="page-content">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+				<div class="user-wrapper">
+				    <p><i class="far fa-user-circle"></i></p>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Angela Winson
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Change password</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                        </ul>
+                    </div>
+				</div>
+		        <div class="sidenav">
+                    <ul class="navigation menu-item">
+                        <li><a class="nav-item" href="#">Home</a></li>
+                        <li><a class="nav-item current" href="#">Registration Records</a></li>
+                    </ul>
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+            <section class="lessons-section">
+                <h4 class="section-title">
+                    <span>口試時間選擇</span>
+                </h4>
+                <div class="notice-wrapper has-background">
+                    <p>Facilis consequatur id facere eius et ut. enim maxime amet ut natus dolor tempore tempora architecto quaerat. in non voluptates non et nostrum et non earum ab in. quam quae est sequi laboriosam debitis doloremque ut sunt et</p>
+                </div>
+                <h5 class="mb-3">選擇日期區間</h5>
+                <p>...</p>
+                <div class="oral-interval-wrapper">
+                    <h5 class="mb-3">2023-06-05</h5>
+                    <ul class="menu-item oral-interval-list">
+                        <% (1..22).map do |i| %>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadio" id="flexRadio<%= i %>" />
+                                <label class="form-check-label" for="flexRadio<%= i %>">
+                                    0<%= i %>:00 - 0<%= i %>:15
+                                </label>
+                            </div>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+            </section>
+		</main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <!-- sidenav open -->
+	<script>
+        (function () {
+          'use strict'
+
+          document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+            document.querySelector('.offcanvas-collapse').classList.toggle('open')
+          })
+        })()
+	</script>
+
+    <!-- sidenav close -->
+    <script>
+        $("#widget-overlay").click(function(){
+            $(".offcanvas-collapse").removeClass("open");
+        });
+	</script>
+<% end %>
+

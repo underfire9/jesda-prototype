@@ -2,7 +2,7 @@
 
 <%= render :partial => "/partials/breadcrumb" %>
 
-<main class="main main-list-wrapper">
+<main class="main main-list-wrapper" id="maincontent">
 
         <div class="main-container">
             <div class="list-toolbar-wrapper">
@@ -11,27 +11,14 @@
                     <div class="toolbar-part">
                         <select class="form-select form-select-xxxl" aria-label="選擇類別">
                             <option selected>全部類別</option>
-                            <option value="1">One</option>
+                            <option value="1">熱門</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                         </select>
                     </div>
-                    <div class="toolbar-part d-flex">
+                    <div class="toolbar-part">
                         <div class="form-group">
-                            <div class="input-group date datepicker">
-                                <input class="form-control form-control-xxxl" placeholder="開始日期" />
-                                <span class="input-group-append input-group-addon">
-                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group date datepicker">
-                                <input class="form-control form-control-xxxl" placeholder="結束日期" />
-                                <span class="input-group-append input-group-addon">
-                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                                </span>
-                            </div>
+                            <input id="date-range" class="form-control form-control-xxxl form-date-range" value="" placeholder="選擇日期區間" />
                         </div>
                     </div>
                     <div class="toolbar-part flex-fill">
@@ -42,6 +29,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="table-wrapper">     
                 <div class="table-responsive">     
                     <table class="table list-table align-middle">
@@ -132,22 +120,6 @@
   });
 </script>
 
-<!-- Bootstrap5 Datepicker -->
-<script src="../javascripts/moment.min.js"></script>
-<script src="../javascripts/bootstrap-datetimepicker.min.js"></script>
-<script>
-    $(".datepicker").datetimepicker({
-        useCurrent: false,
-        format: "DD-MMM-YYYY",
-        showTodayButton: true,
-        icons: {
-            next: "fa fa-chevron-right",
-            previous: "fa fa-chevron-left",
-            today: "todayText",
-        },
-    });
-</script>
-
 <!-- 塞選按鈕 -->
 <script>
     const filterButton = document.getElementById("filterButton");
@@ -157,6 +129,59 @@
         filterButton.classList.toggle("active");
         toolbar.classList.toggle("show");
     });
+</script>
+
+<!-- 日期範圍 -->
+<script src="../javascripts/moment.min.js"></script>
+<script src="../javascripts/jquery.daterangepicker.js"></script>
+<script>
+$.dateRangePickerLanguages['custom'] =
+{
+    'selected': '已選擇：',
+    'days': '天',
+    'apply': '關閉',
+    'week-1' : '一',
+    'week-2' : '二',
+    'week-3' : '三',
+    'week-4' : '四',
+    'week-5' : '五',
+    'week-6' : '六',
+    'week-7' : '日',
+    'month-name': ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+    'shortcuts' : '快速選擇',
+    'past': '過去',
+    '7days' : '7天',
+    '14days' : '14天',
+    '30days' : '30天',
+    'next' : '未來',
+    'next-week' : '週',
+    'next-month' : '月',
+    'next-year' : '年',
+    'previous' : '過去',
+    'prev-week' : '週',
+    'prev-month' : '一個月',
+    'prev-quarter' : '季',
+    'prev-year' : '一年',
+    'less-than' : '日期範圍應該超過 %d 天',
+    'more-than' : '日期範圍應該少於 %d 天',
+    'default-more' : '請選擇超過 %d 天的日期範圍',
+    'default-less' : '請選擇少於 %d 天的日期範圍',
+    'default-range' : '請選擇 %d 至 %d 天的日期範圍',
+    'default-default': '請選擇日期範圍'
+};
+$('#date-range').dateRangePicker(
+{
+    language: 'custom',
+    separator: ' 至 ',
+    showShortcuts: true,
+	shortcuts: 
+	{
+		//'prev-days': [1,3,5,7],
+		//'next-days': [3,5,7],
+		'prev' : ['month','year'],
+		//'next' : ['month','year']
+	},
+});
 </script>
 <% end %>
 

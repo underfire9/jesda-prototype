@@ -1,0 +1,105 @@
+<!-- template: 各校簡章辦法 -->
+
+<div class="container-lg">
+	<div class="page-content" id="maincontent">
+        <div class="section-title">
+            <h4>各校簡章辦法</h4>
+        </div>
+        <ul class="nav nav-tabs plan-tabs" id="planTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="plan1-tab" data-bs-toggle="tab" data-bs-target="#plan1-tab-pane" type="button" role="tab" aria-controls="plan1-tab-pane" aria-selected="true">學海飛颺</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="plan2-tab" data-bs-toggle="tab" data-bs-target="#plan2-tab-pane" type="button" role="tab" aria-controls="plan2-tab-pane" aria-selected="false">學海惜珠</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="plan3-tab" data-bs-toggle="tab" data-bs-target="#plan3-tab-pane" type="button" role="tab" aria-controls="plan3-tab-pane" aria-selected="false">學海築夢</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="plan4-tab" data-bs-toggle="tab" data-bs-target="#plan4-tab-pane" type="button" role="tab" aria-controls="plan4-tab-pane" aria-selected="false">新南向</button>
+            </li>
+        </ul>
+        <div class="tab-content pt-5" id="planTabContent">
+
+            <div class="tab-pane fade show active" id="plan1-tab-pane" role="tabpanel" aria-labelledby="plan1-tab" tabindex="0">
+                
+                <div class="d-flex align-items-center mb-5">
+                    <label class="select2-label">學校選項</label>
+                    <div class="px-2 select2-wrap">
+                        <select class="form-select" id="single-select-field" data-placeholder="請選擇學校">
+                            <option></option>
+                            <option>Reactive</option>
+                            <option>Solution</option>
+                            <option>Conglomeration</option>
+                            <option>Algoritm</option>
+                            <option>Holistic</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary">搜尋</button>
+                        <button type="button" class="btn btn-light">清除</button>
+                    </div>
+                </div>
+                
+                <ul class="menu-item general-menu-item plan-menu-item">
+                    <li>
+                        <span class="label"><span>中信學校財團法人中信金融管理學院</span> / <span>學海飛颺</span></span>
+                        <h5><a href="#" title="{連結名稱}" class="item-link">112年逢甲大學學海飛颺簡章辦法</a></h5>
+                    </li>
+                    <% (1..10).map do |i| %>
+                    <li>
+                        <span class="label"><span>國立中山大學</span> / <span>學海飛颺</span></span>
+                        <h5><a href="#" title="{連結名稱}" class="item-link">112年中信學校財團法人中信金融管理學院學海飛颺簡章辦法</a></h5>
+                    </li>
+                    <% end %>
+                    <li>
+                        <span class="label"><span>文藻學校財團法人文藻外語大學</span> / <span>學海飛颺</span></span>
+                        <h5><a href="#" title="{連結名稱}" class="item-link">112年文藻學校財團法人文藻外語大學學海飛颺簡章辦法</a></h5>
+                    </li>
+                </ul>
+                
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-end align-items-center">
+                        <li class="page-item me-3">符合條件有 115 筆</li>
+                        <li class="page-item disabled">
+                            <a class="page-link" title="上一頁">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item" aria-current="page">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" title="下一頁">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="tab-pane fade" id="plan2-tab-pane" role="tabpanel" aria-labelledby="plan2-tab" tabindex="0">plan2</div>
+
+            <div class="tab-pane fade" id="plan3-tab-pane" role="tabpanel" aria-labelledby="plan3-tab" tabindex="0">plan3</div>
+
+            <div class="tab-pane fade" id="plan4-tab-pane" role="tabpanel" aria-labelledby="plan4-tab" tabindex="0">plan4</div>
+        </div>
+
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+    <script src="../javascripts/select2.full.min.js"></script>
+    <script>
+        $("#single-select-field").select2({
+            theme: "bootstrap-5",
+            width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
+            placeholder: $(this).data("placeholder"),
+        });
+    </script>
+<% end %>
+

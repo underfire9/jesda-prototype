@@ -1563,7 +1563,10 @@
         .audioplayer-playpause {
             background: $main_color;
             border-color: $main_color;
-            a { border-left-color: #fff; }
+            a {
+                border-left-color: #fff;
+                &:focus { border-left-color: #ff7dec; }
+            }
         }
     }
     .audioplayer-volume-adjust div div { background-color: $main_color; }
@@ -1576,11 +1579,22 @@
         border-color: $etalk_gold;
         a { border-left-color: #fff; }
     }
+    &:not(.audioplayer-playing) .audioplayer-playpause:focus {
+        background: $etalk_gold;
+        border-color: $etalk_gold;
+        a { border-left-color: #fff; }
+    }
     .audioplayer-playpause {
         &:focus {
             box-shadow: 0 0 0 4px rgba(#dca1ff, 1);
         }
     }
+}
+
+.audioplayer-volume-button a:focus {
+    background-color: #a946e5 !important;
+    &:before { border-right-color: #a946e5 !important; }
+    &:after { border-color: #a946e5 !important; }
 }
 
 .biography-wrapper {

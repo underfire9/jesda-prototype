@@ -2,7 +2,6 @@
 @import "widgets/font";
 @import "vendor/font-awesome";
 @import "widgets/variables";
-@import "partials/footer";
 
 /* Loader ------------------------------------------------------------------------*/
 @import "widgets/loader";
@@ -28,6 +27,17 @@ body {
 	font-size: 1.188rem;
 	font-weight: 400;
 	color: $base_font_color;
+}
+
+#gotocenter {
+    padding: 0.5rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    &:focus {
+        background: #32657f;
+        color: #fff;
+    }
 }
 
 .workspace {
@@ -141,6 +151,7 @@ body {
     .link-control {
         display: inline-block;
         .link-more {
+            display: inline-block;
             text-transform: uppercase;
             font-size: 1.25rem;
             font-weight: 500;
@@ -172,7 +183,7 @@ body {
                 height: 30px;
                 position: absolute;
                 left: 0;
-                top: -3px;
+                top: 0;
                 transition: all 0.3s ease-in;
                 transform-origin: left;
             }
@@ -189,6 +200,10 @@ body {
                     transform: scaleX(1);
                     transition-delay: 0.2s;
                 }
+            }
+            &:focus {
+                background: $main_color;
+                color: #fff;
             }
         }
     }
@@ -220,6 +235,7 @@ $header-width: 160px;
             width: 74px;
             height: auto;
         }
+        &:focus { box-shadow: 0 0 0 4px rgba($main_color, 1); }
     }
     .social-media {
         .menu-item {
@@ -267,6 +283,7 @@ $header-width: 160px;
                     color: #fff;
                 }
             }
+            &:focus { box-shadow: 0 0 0 4px rgba($main_color, 1); }
         }
     }
     
@@ -475,6 +492,10 @@ $header-width: 160px;
                     }
                 }
             }
+            &:focus {
+                background: $main_color;
+                color: #fff;
+            }
         }
         .img-wrap {
             display: block;
@@ -550,7 +571,8 @@ $header-width: 160px;
                 padding-right: 0;
                 padding-left: 0;
             }
-            &:hover {
+            &:hover,
+            &:focus {
                 color: #fff;
                 &:after {
                     transform: scaleY(1);
@@ -662,7 +684,8 @@ $header-width: 160px;
                 flex-direction: row;
             }
         }
-        &:hover {
+        &:hover,
+        &:focus {
             color: #fff;
             .symbol { transform: rotate(45deg); }
             .element-description {
@@ -701,7 +724,10 @@ $header-width: 160px;
             .audioplayer-playpause {
                 background: $main_color;
                 border-color: $main_color;
-                a { border-left-color: #fff; }
+                a {
+                    border-left-color: #fff;
+                    &:focus { border-left-color: #ff7dec; }
+                }
             }
         }
         .audioplayer-volume-adjust div div { background-color: $main_color; }
@@ -714,6 +740,22 @@ $header-width: 160px;
             border-color: $etalk_gold;
             a { border-left-color: #fff; }
         }
+        &:not(.audioplayer-playing) .audioplayer-playpause:focus {
+            background: $etalk_gold;
+            border-color: $etalk_gold;
+            a { border-left-color: #fff; }
+        }
+        .audioplayer-playpause {
+            &:focus {
+                box-shadow: 0 0 0 4px rgba(#dca1ff, 1);
+            }
+        }
+    }
+    
+    .audioplayer-volume-button a:focus {
+        background-color: #a946e5 !important;
+        &:before { border-right-color: #a946e5 !important; }
+        &:after { border-color: #a946e5 !important; }
     }
     
     // link
@@ -742,6 +784,10 @@ $header-width: 160px;
                 left: 0;
                 top: 0;
             }
+            &:focus {
+                background: $main_color;
+                color: #fff;
+            }
         }
     }
     
@@ -763,7 +809,8 @@ $header-width: 160px;
             padding: 10px 24px 8px;
             font-weight: 300;
             color: #111;
-            &:hover {
+            &:hover,
+            &:focus {
                 background: $main_color;
                 border-color: $main_color;
                 color: #fff;
@@ -787,6 +834,7 @@ $header-width: 160px;
     
 }
 
+@import "partials/footer";
 
 /* `Responsive
 -----------------------------------------------------------------------------*/

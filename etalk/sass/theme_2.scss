@@ -2,7 +2,6 @@
 @import "widgets/font";
 @import "vendor/font-awesome";
 @import "widgets/variables";
-@import "partials/footer";
 
 /* Loader ------------------------------------------------------------------------*/
 @import "widgets/loader";
@@ -31,6 +30,17 @@ body {
 	font-size: 1.188rem;
 	font-weight: 400;
 	color: #333;
+}
+
+#gotocenter {
+    padding: 0.5rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    &:focus {
+        background: #32657f;
+        color: #fff;
+    }
 }
 
 .workspace {
@@ -191,6 +201,16 @@ body {
                     transform: scale(1.375) translateX(2px);
                 }
             }
+            &:focus {
+                color: $main_color;
+                &:before {
+                    background: rgba($main_color, 1);
+                    border-color: $main_color;
+                }
+                .link-arrow {
+                    color: #fff;
+                }
+            }
         }
     }
 }
@@ -218,6 +238,11 @@ $theme2_border_color: #dcdcdc;
             width: 64px;
             height: auto;
         }
+        &:focus {
+            border-radius: 0.25rem;
+            background: #000;
+            box-shadow: 0 0 0 4px rgba(#000, 1);
+        }
     }
     .social-media {
         li {
@@ -226,31 +251,42 @@ $theme2_border_color: #dcdcdc;
         }
         a {
             display: block;
+            width: 52px;
+            height: 52px;
             padding: .75rem 1rem;
             color: #7b7b7b;
+            text-align: center;
             i { font-size: 1.25rem; }
             &.share-email {
-                &:hover {
+                &:hover,
+                &:focus {
                     color: $etalk_gold;
                 }
             }
             &.share-line {
-                &:hover {
+                &:hover,
+                &:focus {
                     color: #06c755;
                 }
             }
             &.share-twitter {
-                &:hover {
+                &:hover,
+                &:focus {
                     color: #1da1f2;
                 }
             }
             &.share-facebook {
-                &:hover {
+                &:hover,
+                &:focus {
                     color: #4267b2;
                 }
             }
             &:hover {
                 background: #fff !important;
+            }
+            &:focus {
+                border-radius: .375rem;
+                border: 1px solid $main_color;
             }
         }
     }
@@ -480,6 +516,19 @@ $theme2_border_color: #dcdcdc;
                     fill: $main_color;
                 }
             }
+            &:focus {
+                background: $main_color;
+                .img-wrap {
+                    .img-cover {
+                        transform-origin: center center;
+                        transform: scale(1.1, 1.1);
+                    }
+                }
+                .h5 { color: #fff; }
+                .bi-arrow-right {
+                    fill: #fff;
+                }
+            }
         }
         .img-wrap {
             display: block;
@@ -635,6 +684,14 @@ $theme2_border_color: #dcdcdc;
                                 transition-delay: .2s;
                             }
                         }
+                        &:focus {
+                            color: #fff;
+                            &:before {
+                                background-color: $main_color;
+                                border-color: $main_color;
+                                transition-delay: .2s;
+                            }
+                        }
                     }
                 }
             }
@@ -690,7 +747,8 @@ $theme2_border_color: #dcdcdc;
                 flex-direction: row;
             }
         }
-        &:hover {
+        &:hover,
+        &:focus {
             background: $main_color;
             color: #fff;
             .img-wrap {
@@ -726,7 +784,10 @@ $theme2_border_color: #dcdcdc;
             .audioplayer-playpause {
                 background: $main_color;
                 border-color: $main_color;
-                a { border-left-color: #fff; }
+                a {
+                    border-left-color: #fff;
+                    &:focus { border-left-color: #ff7dec; }
+                }
             }
         }
         .audioplayer-volume-adjust div div { background-color: $main_color; }
@@ -739,11 +800,27 @@ $theme2_border_color: #dcdcdc;
             border-color: $etalk_gold;
             a { border-left-color: #fff; }
         }
+        &:not(.audioplayer-playing) .audioplayer-playpause:focus {
+            background: $etalk_gold;
+            border-color: $etalk_gold;
+            a { border-left-color: #fff; }
+        }
+        .audioplayer-playpause {
+            &:focus {
+                box-shadow: 0 0 0 4px rgba(#dca1ff, 1);
+            }
+        }
     }
     .audioplayer-bar-played::after {
         background-color: $main_color;
     }
     .audioplayer:not(.audioplayer-playing) .audioplayer-bar-played::after { border-color: $main_color; }
+    
+    .audioplayer-volume-button a:focus {
+        background-color: #a946e5 !important;
+        &:before { border-right-color: #a946e5 !important; }
+        &:after { border-color: #a946e5 !important; }
+    }
     
     // link
     
@@ -794,6 +871,10 @@ $theme2_border_color: #dcdcdc;
                 left: 0;
                 top: 8px;
             }
+            &:focus {
+                background: $main_color;
+                color: #fff;
+            }
         }
     }
     
@@ -817,7 +898,8 @@ $theme2_border_color: #dcdcdc;
             padding: 10px 24px 8px;
             font-weight: 300;
             color: #111;
-            &:hover {
+            &:hover,
+            &:focus {
                 background: $main_color;
                 border-color: $main_color;
                 color: #fff;
@@ -960,6 +1042,8 @@ $theme2_border_color: #dcdcdc;
     }
     
 }
+
+@import "partials/footer";
 
 /* `Responsive
 -----------------------------------------------------------------------------*/

@@ -276,7 +276,7 @@
         <!-- 最少六則，保持雙數 -->
         <div class="reveal-stand-list">
             <div class="stand-row">
-                <div class="stand-item">
+                <div class="stand-item" tabindex="0">
                     <div class="stand-item-inner">
                         <div class="item-content">
                             <h3 class="item-title">素養學習是什麼？如何因應新世代的學習</h3>
@@ -297,14 +297,19 @@
                         </div>
                         <div class="item-media">
                             <div class="media-inner">
-                                <a href="discussion_sessions.html" class="btn btn-more">more <i class="fas fa-long-arrow-alt-right"></i></a>
-                                <img src="https://picsum.photos/640/360" class="item-img" alt="{圖片描述}" />
+                                <a href="discussion_sessions.html" class="btn btn-more" tabindex="-1">more <i class="fas fa-long-arrow-alt-right"></i></a>
+
+                                <!-- youtube -->
+                                <!-- 站內影片同樣需用 iframe 包起來 -->
+                                <div class="item-img video-container">
+                                    <iframe width="100%" src="https://www.youtube.com/embed/HFILwnVvH2o" frameborder="0" allowfullscreen tabindex="-1"></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <span class="icon-plus"></span>
                 </div>
-                <div class="stand-item">
+                <div class="stand-item" tabindex="0">
                     <div class="stand-item-inner">
                         <div class="item-content">
                             <h3 class="item-title">國小教師需要什麼支持，才能更加落實國小科技教育及資訊教育課程？</h3>
@@ -325,7 +330,7 @@
                         </div>
                         <div class="item-media">
                             <div class="media-inner">
-                                <a href="discussion_sessions.html" class="btn btn-more">more <i class="fas fa-long-arrow-alt-right"></i></a>
+                                <a href="discussion_sessions.html" class="btn btn-more" tabindex="-1">more <i class="fas fa-long-arrow-alt-right"></i></a>
                                 <img src="https://picsum.photos/1600/900" class="item-img" alt="{圖片描述}" />
                             </div>
                         </div>
@@ -336,7 +341,7 @@
 
             <% (1..2).map do |i| %>
             <div class="stand-row">
-                <div class="stand-item">
+                <div class="stand-item" tabindex="0">
                     <div class="stand-item-inner">
                         <div class="item-content">
                             <h3 class="item-title"><%= lorem_sentence %></h3>
@@ -357,14 +362,14 @@
                         </div>
                         <div class="item-media">
                             <div class="media-inner">
-                                <a href="discussion_sessions.html" class="btn btn-more">more <i class="fas fa-long-arrow-alt-right"></i></a>
+                                <a href="discussion_sessions.html" class="btn btn-more" tabindex="-1">more <i class="fas fa-long-arrow-alt-right"></i></a>
                                 <img src="https://placehold.co/640x360" class="item-img" alt="{圖片描述}" />
                             </div>
                         </div>
                     </div>
                     <span class="icon-plus"></span>
                 </div>
-                <div class="stand-item">
+                <div class="stand-item" tabindex="0">
                     <div class="stand-item-inner">
                         <div class="item-content">
                             <h3 class="item-title"><%= lorem_sentence %></h3>
@@ -385,7 +390,7 @@
                         </div>
                         <div class="item-media">
                             <div class="media-inner">
-                                <a href="discussion_sessions.html" class="btn btn-more">more <i class="fas fa-long-arrow-alt-right"></i></a>
+                                <a href="discussion_sessions.html" class="btn btn-more" tabindex="-1">more <i class="fas fa-long-arrow-alt-right"></i></a>
                                 <img src="https://placehold.co/640x360" class="item-img" alt="{圖片描述}" />
                             </div>
                         </div>
@@ -1271,7 +1276,7 @@
 
         if (unactiveItem) {
             const itemContentWidth = unactiveItem.querySelector(".item-content").offsetWidth;
-            const itemMediaWidth = unactiveItem.querySelector(".item-media img").offsetWidth;
+            const itemMediaWidth = unactiveItem.querySelector(".item-media .item-img").offsetWidth;
             const totalWidth = itemContentWidth + itemMediaWidth;
             unactiveItem.style.width = `${totalWidth}px`;
         }

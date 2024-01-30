@@ -1,0 +1,476 @@
+<!-- template: step1_申請實習機構及職缺 -->
+
+<div class="container-lg">
+	
+	<!-- 當 sidebar 需要 sticky 時 page-content 加上 .has-sticky -->
+	<div class="page-content has-sticky">
+        
+	    <aside class="aside">
+			<div class="scrollbar-inner">
+				
+		        <div class="sidenav procedures_nav side-sticky">
+					<div class="procedures_nav-hd text-end mb-4">
+                        
+                        <!-- 請將規劃原本的 "申請程序" 改為 "申請流程" -->
+					    <h5 class="fw-bold">申請流程</h5>
+					</div>
+                    
+                    <!-- 就兩個步驟不需要給 step1，step2 -->
+                    <ul class="side-navigation menu-item">
+                        <li>
+							<a class="nav-item current done" href="#">
+							    <span class="link-inner">申請實習機構及職缺</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">共通繳交文件上傳</span>
+							</a>
+						</li>
+                    </ul>
+                    <div class="procedures_nav-ft">
+                        <a href="" class="btn btn-lg btn-block btn-primary">預覽送出</a>
+                        <ul class="form-text mt-3">
+                            <li>實習機構皆為臺灣引路人計畫所屬參加企業，學生參與本實習計畫，皆需經由此申請系統提出申請，並須由主辦單位及實習單位同意並確定後，才能前往實習。</li>
+                            <li><span class="text-danger">本次實習申請截止日，請依各企業各職缺公告之截止日為準</span>，逾期不受理。</li>
+                        </ul>
+                    </div>
+				</div>
+			</div>
+		</aside>
+        
+		<main class="main">
+			<div class="page-title">
+			    <h3>申請實習機構及職缺</h3>
+			</div>
+            <div class="notice-wrapper">
+                <p class="mb-0">自定義文字說明區塊</p>
+            </div>
+            
+            <div class="mb-5">
+                <p>選擇職位最少 1 個、最多 10 個</p>
+                <div class="d-flex align-items-center mb-2">
+                    <div class="flex-grow-1 me-2 fw-bold">依機構選職缺</div>
+                    <div class="w-40 me-2">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="w-40 me-2">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div><button type="button" class="btn btn-primary">加入</button></div>
+                </div>
+                
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1 me-2 fw-bold">依職缺選機構</div>
+                    <div class="w-40 me-2">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="w-40 me-2">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div><button type="button" class="btn btn-primary">加入</button></div>
+                </div>
+            </div>
+            
+            
+            <!-- 職缺 item -->
+            <% (1..2).map do |i| %>
+            <div class="vacancies-wrapper">
+                <div class="vacancies-hd">
+                    <span class="label">職缺<%= i %></span>
+                    <span class="output"><%= lorem_words(6) %></span>
+                    <span class="btn-position">
+                        <button type="button" class="btn btn-sm btn-danger" title="刪除"><i class="fas fa-times"></i></button>
+                    </span>
+                </div>
+                <ul class="menu-item info-menu">
+                    <li><span>職缺：5</span></li>
+                    <li><span>實習區間：YYYY-MM-DD 至 YYYY-MM-DD</span></li>
+                    <li><span>履歷投遞起証時間：YYYY-MM-DD 至 YYYY-MM-DD</span></li>
+                    <li><span>公告入學時間：YYYY-MM-DD</span></li>
+                    <li><span>繳交文件：匯入的說明文字</span></li>
+                </ul>
+                
+                <div class="upload-wrapper fluid-wrapper mb-5">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="formFile" class="form-label fw-bold"><span class="required">*</span> 額外繳交文件</label>
+                                <input class="form-control" type="file" id="formFile">
+                            </div>
+                            <div class="ft-action">
+                                <div class="file-pill ms-0 me-2">
+                                    <!-- 避免檔名過長有限制最大寬度 140px，超出時會字元會省略 -->
+                                    <a href="#" target="_blank" class="filename" title="預覽">避免檔名過長有限制最大寬度.jpg</a>
+                                    <button type="button" class="btn btn-sm btn-rounded btn-dark" title="刪除">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="formFile" class="form-label fw-bold"><span class="required">*</span> 履歷表</label>
+                                <input class="form-control" type="file" id="formFile">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-title">
+                    <h4>新增推薦人及發送推薦信</h4>
+                </div>
+                
+                <div class="notice-wrapper notice-white mb-3">
+                    自定義文字說明區塊
+                </div>
+                
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#recommenderModal">
+                    <i class="fas fa-plus me-1"></i> 新增推薦人
+                </button>
+                
+                <table class="table align-middle mt-3">
+                    <thead>
+                        <tr>
+                            <th>推薦人姓名</th>
+                            <th>Email</th>
+                            <th>服務機關與部門</th>
+                            <th class="text-end">發送通知時間</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..3).map do |i| %>
+                        <tr>
+                            <td><%= zh_lorem_name %></td>
+                            <td><%= zh_lorem_email %></td>
+                            <td>臺灣大學 <%= lorem_word %>系</td>
+                            <td class="text-end">
+                                <div class="table-action">
+                                    <button type="button" class="btn btn-sm btn-info btn-send" onclick="toggleDisplay(this)">發送通知</button>
+                                    <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#recommenderModal">編輯</button>
+                                    <button type="button" class="btn btn-sm btn-danger">刪除</button>
+                                </div>
+                                <div class="send-time">2024/01/27 14:20</div>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <% end %>
+            
+            <div class="identity-wrapper">
+                <h3>申請人符合之身分別</h3>
+                <div class="notice-wrapper notice-white">
+                    請選擇身分別後填寫對應的資料，若無則可跳過此步驟
+                </div>
+                <div class="identity-list">
+                    
+                    <div class="item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="identityCheck01" onchange="toggleItemForm(this)" />
+                            <label class="form-check-label fw-bold" for="identityCheck01">
+                                本校校學士
+                            </label>
+                        </div>
+                        <div class="item-form">
+                            <div class="form-group">
+                                <label class="form-label fw-bold"><span class="required">*</span> 學年期</label>
+                                <div class="semester-wrap d-flex align-items-center">
+                                    <span class="me-2">
+                                        <input type="text" class="form-control" id="">
+                                    </span>
+                                    <span>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>選擇學期</option>
+                                            <option value="1">上學期</option>
+                                            <option value="2">下學期</option>
+                                        </select>
+                                    </span>
+                                    <span class="px-2">~</span>
+                                    <span class="me-2">
+                                        <input type="text" class="form-control" id="">
+                                    </span>
+                                    <span>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>選擇學期</option>
+                                            <option value="1">上學期</option>
+                                            <option value="2">下學期</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="upload-wrapper">
+                                <div class="form-group">
+                                    <label for="formFile" class="form-label fw-bold"><span class="required">*</span> 申請通過畫面或其他相關佐證資料</label>
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+                                <div class="ft-action">
+                                    <div class="file-pill ms-0">
+                                        <a href="#" target="_blank" class="filename" title="預覽">檔名很長很長很長很長但沒有限制寬度.pdf</a>
+                                        <button type="button" class="btn btn-sm btn-rounded btn-dark" title="刪除">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="identityCheck02" onchange="toggleItemForm(this)" />
+                            <label class="form-check-label fw-bold" for="identityCheck02">
+                                具有社團幹部經驗
+                            </label>
+                        </div>
+                        <div class="item-form">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold"><span class="required">*</span> 日期</label>
+                                <div class="semester-wrap d-flex align-items-center">
+                                    <span>
+                                        <div class="form-group mb-0">
+                                            <input type="date" class="form-control" id="start1" name="trip-start1" value="2024-01-20" min="2024-01-01" max="2024-12-31" />
+                                        </div>
+                                    </span>
+                                    <span class="px-2">~</span>
+                                    <span>
+                                        <div class="form-group mb-0">
+                                            <input type="date" class="form-control" id="end1" name="trip-end1" value="2024-01-20" min="2024-01-01" max="2024-12-31" />
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="upload-wrapper">
+                                <div class="form-group">
+                                    <label for="formFile" class="form-label fw-bold"><span class="required">*</span> 申請通過畫面或其他相關佐證資料</label>
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+                                <div class="ft-action">
+                                    <div class="file-pill ms-0">
+                                        <a href="#" target="_blank" class="filename" title="預覽">檔名很長很長很長很長但沒有限制寬度.pdf</a>
+                                        <button type="button" class="btn btn-sm btn-rounded btn-dark" title="刪除">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="identityCheck03" onchange="toggleItemForm(this)" />
+                            <label class="form-check-label fw-bold" for="identityCheck03">
+                                曾參與過實習企業說明會
+                            </label>
+                        </div>
+                        <div class="item-form">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>活動名稱</th>
+                                        <th>活動日期</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>實習企業說明會</td>
+                                        <td>2024/02/21</td>
+                                    </tr>
+                                    <tr>
+                                        <td>微學分課程</td>
+                                        <td>2024/03/21</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+                
+            <div class="form-action">
+                <button type="button" class="btn btn-lg btn-primary">儲存</button>
+				<button type="button" class="btn btn-lg btn-light">下一步</button>
+			</div>
+		</main>
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="recommenderModal" tabindex="-1" aria-labelledby="recommenderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="recommenderModalLabel">線上推薦人設定</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="" class="form-label">
+                        <span class="required">*</span> 職缺
+                    </label>
+                    <div>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="recommenderInput1" class="form-label">
+                                <span class="required">*</span> 中文名稱
+                            </label>
+                            <input type="text" class="form-control" id="recommenderInput1">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="recommenderInput2" class="form-label">
+                                <span class="required">*</span> 英文姓名
+                            </label>
+                            <input type="text" class="form-control" id="recommenderInput2">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="recommenderInput3" class="form-label">
+                                <span class="required">*</span> 服務機關與部門
+                            </label>
+                            <input type="text" class="form-control" id="recommenderInput3">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="recommenderInput4" class="form-label">
+                                <span class="required">*</span> 服務機關電話(分機)
+                            </label>
+                            <input type="text" class="form-control" id="recommenderInput4">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="recommenderInput5" class="form-label">
+                                <span class="required">*</span> 職稱
+                            </label>
+                            <input type="text" class="form-control" id="recommenderInput5">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="recommenderInput6" class="form-label">
+                                <span class="required">*</span> 聯絡信箱
+                            </label>
+                            <input type="email" class="form-control" id="recommenderInput6">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="recommenderTextarea" class="form-label">
+                        <span class="required">*</span> 參加實習原因與目標
+                    </label>
+                    <textarea class="form-control" id="recommenderTextarea" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<!-- checkbox show & hide -->
+<script>
+    function toggleItemForm(checkbox) {
+        var itemForm = checkbox.closest(".item").querySelector(".item-form");
+        itemForm.style.display = checkbox.checked ? "block" : "none";
+    }
+</script>
+
+<!-- 發送通知 button -->
+<script>
+    function toggleDisplay(button) {
+        var tableAction = button.closest(".table-action");
+        var sendTime = tableAction.nextElementSibling; // 下一個元素就是 .send-time
+
+        // 切換顯示狀態
+        tableAction.style.display = "none";
+        sendTime.style.display = "inline-block";
+    }
+</script>
+
+<!-- sticky -->
+<script>
+    var stickEl = $('.side-sticky'),
+      stickyElTop = stickEl.offset().top;
+
+    var sticky = function(){  
+      var scrollTop = $(window).scrollTop();  
+
+      if (stickyElTop < scrollTop+20) {   
+          stickEl.addClass('is-fixed');  
+      } else {  
+          stickEl.removeClass('is-fixed');   
+      }  
+    };
+
+    $(window).scroll(function() {
+      sticky();
+    }); 
+</script>
+
+<!-- 監看 .aside 高度 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 獲取 .aside 和 .main 元素
+    var asideElement = document.querySelector('.aside');
+    var mainElement = document.querySelector('.main');
+
+    // 檢查是否找到了 .aside 和 .main
+    if (asideElement && mainElement) {
+        // 監聽窗口大小變化事件
+        window.addEventListener('resize', function() {
+            // 獲取 .aside 的內容高度
+            var asideContentHeight = asideElement.scrollHeight;
+
+            // 設置 .main 的最小高度
+            mainElement.style.minHeight = asideContentHeight + 'px';
+        });
+
+        // 在窗口加載時觸發一次，以確保最小高度正確設置
+        window.dispatchEvent(new Event('resize'));
+    }
+});
+</script>
+<% end %>
+

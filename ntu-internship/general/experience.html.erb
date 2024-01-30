@@ -1,0 +1,177 @@
+<!-- template: 實習總心得線上填報 -->
+
+<div class="container-lg">
+	<div class="page-content">
+	    <aside class="aside">
+			<div class="scrollbar-inner">
+		        <div class="sidenav">
+                    <ul class="side-navigation menu-item">
+                        <li>
+							<a class="nav-item" href="#">
+							    <span class="link-inner">申請紀錄</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">補件作業</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">推薦進度查詢</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">錄取結果查詢</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">實習每週心得上傳 (1/5)</span>
+							</a>
+						</li>
+                        <li>
+							<a class="nav-item current" href="#">
+								<span class="link-inner">實習總心得線上填報</span>
+							</a>
+						</li>
+                        <li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">問卷填寫</span>
+							</a>
+						</li>
+                    </ul>
+				</div>
+			</div>
+		</aside>
+		<main class="main">
+            
+            <div class="page-title">
+			    <h3>實習總心得線上填報</h3>
+			</div>
+            
+            <h5>開放填寫時間：YYYY-MM-DD(週) 00:00~ YYYY-MM-DD(週) 23:59</h5>
+            
+            <section class="section mt-5">
+                <div class="section-title">
+                    <h4>總心得填寫</h4>
+                </div>
+                <div class="notice-wrapper notice-white">
+                    自訂文字說明區塊
+                </div>
+                <div class="form-group">
+                    <label for="experienceTextarea" class="form-label"><span class="required">*</span> 心得內容</label>
+                    <textarea class="form-control" id="experienceTextarea" rows="8"></textarea>
+                </div>
+            </section>
+            
+            <section class="section mt-5">
+                <div class="section-title">
+                    <h4>心得分享大頭照</h4>
+                </div>
+                
+                <!-- 後台請提供正方形相片裁切工具 -->
+                
+                <div class="avatar-wrapper avatar-square">
+                    <div class="inner">
+                        <div class="avatar">
+                            <img class="profile-pic" src="../assets/default-avatar.svg" />
+                        </div>
+                        <div class="p-image">
+                            <i class="fa fa-camera upload-button"></i>
+                            <input class="file-upload" type="file" accept="image/*" />
+                        </div>
+                    </div>
+                    <div class="form-text">請上傳正方形大頭照，解析度最小 256px</div>
+                </div>
+            </section>
+            
+            <section class="section mt-5">
+                <div class="section-title">
+                    <h4>實習生活照片</h4>
+                </div>
+                <p>至少上傳 1 張最多 3 張，比例 16: 9，解析度最小 800px * 450px</p>
+                
+                <!-- 後台請提供 16:9 比例的相片裁切工具 -->
+                <!-- 刪除按鈕應該在上傳之後才出現，麻煩工程師協助 -->
+                <div class="row">
+                    <div class="col-4">
+                        <div class="internship-photo">
+                            
+                            <!-- 上傳後相片占用 .img-placeholder -->
+                            <div class="img-placeholder">
+                                <img class="d-block w-100" src="https://placekitten.com/800/450" />
+                            </div>
+                            <button type="button" class="btn btn-sm btn-danger rounded-0" title="刪除"><i class="fas fa-times"></i></button>
+                            <div>
+                                <input class="form-control rounded-0" type="file" id="formFile1" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="internship-photo">
+                            <div class="img-placeholder"></div>
+                            <button type="button" class="btn btn-sm btn-danger rounded-0" title="刪除"><i class="fas fa-times"></i></button>
+                            <div>
+                                <input class="form-control rounded-0" type="file" id="formFile2" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="internship-photo">
+                            <div class="img-placeholder"></div>
+                            <button type="button" class="btn btn-sm btn-danger rounded-0" title="刪除"><i class="fas fa-times"></i></button>
+                            <div>
+                                <input class="form-control rounded-0" type="file" id="formFile3" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+			<div class="form-action">
+                <button type="submit" class="btn btn-lg btn-primary px-5">提交</button>
+			</div>
+            
+            <!-- 提交後 button disabled 並出現完成時間 -->
+            <div class="form-action">
+                <button type="submit" class="btn btn-lg btn-primary px-5" disabled>提交</button>
+                <p class="mt-2">完成送出時間 YYYY/04/15 16:23</p>
+			</div
+            
+		</main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+$(document).ready(function() {
+
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+
+    $(".file-upload").on('change', function(){
+        readURL(this);
+    });
+    
+    $(".upload-button").on('click', function() {
+       $(".file-upload").click();
+    });
+});
+</script>
+<% end %>
+

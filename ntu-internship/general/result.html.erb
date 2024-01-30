@@ -1,0 +1,204 @@
+<!-- template: 錄取結果查詢 -->
+
+<div class="container-lg">
+	<div class="page-content">
+	    <aside class="aside">
+			<div class="scrollbar-inner">
+		        <div class="sidenav">
+                    <ul class="side-navigation menu-item">
+                        <li>
+							<a class="nav-item" href="#">
+							    <span class="link-inner">申請紀錄</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">補件作業</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">推薦進度查詢</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item current" href="#">
+								<span class="link-inner">錄取結果查詢</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">實習每週心得上傳 (1/5)</span>
+							</a>
+						</li>
+                        <li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">實習總心得線上填報</span>
+							</a>
+						</li>
+                        <li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">問卷填寫</span>
+							</a>
+						</li>
+                    </ul>
+				</div>
+			</div>
+		</aside>
+		<main class="main">
+            
+            <div class="page-title">
+			    <h3>申請結果公告</h3>
+			</div>
+            
+            <div class="notice-wrapper notice-white">
+                <p>謝謝您申請國立臺灣大學，有關您本次申請的系所錄取情形如下表所示。</p>
+                <p>注意事項：</p>
+            </div>
+            
+            <table class="table table-hover align-middle bg-transparent">
+                <thead>
+                    <tr>
+                        <th class="text-center">職缺</th>
+                        <th>實習機構</th>
+                        <th>職位錄取結果公佈時間</th>
+                        <th>選擇參加實習期限</th>
+                        <th>錄取結果</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% (1..4).map do |i| %>
+                    <tr>
+                        <th class="text-center"><%= i %></th>
+                        <td>
+                            <span class="d-block">應用工程</span>
+                            <span class="d-block">加速臂實習生</span>
+                        </td>
+                        <td>YYYY-MM-DD HH:mm</td>
+                        <td>YYYY-MM-DD HH:mm</td>
+                        <td>媒介合中</td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            
+            <section class="section mt-5">
+                <div class="section-title">
+                    <h4>請選擇決定參加實習機構的職缺項目</h4>
+                </div>
+                <p class="text-danger">請注意，您只能選擇一個已錄取的職務，一旦選擇確認後，無法再進行修改完成。此步驟後，您可以執行【錄取承諾書套印】並在承諾書上簽名後上傳並提交您的調查結果。</p>
+                
+                <div class="pick-wrapper dashed-wrapper">
+                    <div class="d-flex">
+                        <span class="flex-fill">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </span>
+                        <span class="ms-2"><button type="button" class="btn btn-success btn-confirm">選擇確認</button></span>
+                        <span class="ms-2"><button type="button" class="btn btn-danger btn-abnegation">我要放棄</button></span>
+                    </div>
+                </div>
+                
+                <div class="abnegation-wrapper dashed-wrapper">
+                    <h4 class="fw-bold">您已放棄本次實習資格</h4>
+                    <span>放棄時間：2024-02-28 12:00</span>
+                    <div class="mt-5 text-center">
+                        <button type="submit" class="btn btn-lg btn-primary px-5">提交</button>
+                    </div>
+                </div>
+                
+                <div class="confirm-wrapper dashed-wrapper">
+                    <h4 class="fw-bold">已選擇職缺：AppWorks Accelerator Arm Intern</h4>
+                    <span>確認時間：2024-02-28 12:00</span>
+                    <button type="button" class="btn btn-link btn-revise"><i class="fas fa-wrench"></i> 修改參加實習機構</button>
+                    
+                    <div class="my-3">
+                        <button type="button" class="btn btn-dark btn-rounded">已獲同意書套印</button>
+                        <span class="d-inline-block ms-2">請執行套印確認資料內容正確後簽章掃描上傳</span>
+                    </div>
+                    
+                    <div class="upload-wrapper">
+                        <div class="item">
+                            <span class="label h5">同意書上傳</span>
+                            <div class="form-group">
+                                  <input class="form-control" type="file" id="passportFile">
+                            </div>
+                            <div class="ft-action">
+                                <span>
+                                    <button type="button" class="btn btn-secondary">上傳</button>
+                                </span>
+                                <span>
+                                    <button type="button" class="btn btn-secondary">預覽</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="aim-wrapper">
+                        <label class="form-label">實習學分課程加入意願回覆</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                我同意承辦單位將參加暑期或學期間的實習學分課程
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                我不同意承辦單位將我參加暑期或學期間的實習學分課程
+                            </label>
+                        </div>
+                        <p class="form-text">參加本實習計劃，主辦單位將自動於選課系統中，將錄取為實習生的學生加入「實習學分課程」內，學生可在實習結束後獲得學分</p>
+                    </div>
+                    
+                    <div class="mt-5 text-center">
+                        <button type="submit" class="btn btn-lg btn-primary px-5">提交</button>
+                    </div>
+                </div>
+                
+            </section>
+
+		</main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var pickWrapper = document.querySelector(".pick-wrapper");
+    var confirmWrapper = document.querySelector(".confirm-wrapper");
+    var abnegationWrapper = document.querySelector(".abnegation-wrapper");
+
+    var btnConfirm = document.querySelector(".btn-confirm");
+    var btnRevise = document.querySelector(".btn-revise");
+    var btnAbnegation = document.querySelector(".btn-abnegation");
+
+    btnConfirm.addEventListener("click", function () {
+        pickWrapper.style.display = "none";
+        confirmWrapper.style.display = "block";
+        abnegationWrapper.style.display = "none";
+    });
+
+    btnRevise.addEventListener("click", function () {
+        pickWrapper.style.display = "block";
+        confirmWrapper.style.display = "none";
+        abnegationWrapper.style.display = "none";
+    });
+
+    btnAbnegation.addEventListener("click", function () {
+        pickWrapper.style.display = "none";
+        confirmWrapper.style.display = "none";
+        abnegationWrapper.style.display = "block";
+    });
+});
+</script>
+
+<% end %>
+

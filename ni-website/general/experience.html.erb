@@ -1,0 +1,88 @@
+<!-- template: 實習心得 - 單篇 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="page-content" id="maincontent">
+    <div class="container-xl">
+        <div class="experience-info-wrapper">
+            <aside class="aside">
+                <div class="profile">
+                    <div class="avatar">
+
+                        <!-- 後台請註明：圖檔比例為正方形，e.g. 1024 x 1024 (px)，最小解析度 512 x 512 (px) -->
+                        <!-- 後台圖檔上傳時請提供相片裁切工具並維持正方形比例 -->
+                        <img src="https://i.pravatar.cc/512?img=48" class="d-block w-100" alt="..." />
+
+                    </div>
+                    <span class="author"><%= zh_lorem_name %></span>
+                </div>
+            </aside>
+            <main class="main">
+                <div class="e-row-wrapper">
+                    <div class="e-row">
+                        <a href="#" class="partner-flex" title="{連結名稱}">
+                            <div class="logo-wrap">
+                                <img class="partner-logo" src="../assets/partner/db_schenker.png" alt="德鐵信可">
+                            </div>
+                            <div class="detail-group">
+                                <span class="label">實習機構</span>
+                                <h3>德鐵信可</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="e-row">
+                        <div class="date">
+                            <span class="label">分享日期</span>
+                            <span class="output">2024-03-21 12:00</span>
+                        </div>
+                    </div>
+                    <div class="e-row">
+                        <div class="experience-output">
+                            <p><%= zh_lorem_paragraphs(2) %></p>
+                            <p><%= zh_lorem_paragraphs(4) %></p>
+                            <p><%= zh_lorem_paragraphs(2) %></p>
+                            <p><%= zh_lorem_paragraphs(2) %></p>
+                        </div>
+                    </div>
+                    <div class="e-row">
+                        <ul class="menu-item photo-gallery">
+                            <li>
+                                <!-- 後台請註明：圖檔比例為 16:9，e.g. 1920 x 1080 (px)，最小解析度 1200 x 675 (px) -->
+                                <!-- 後台圖檔上傳時請提供相片裁切工具並維持寬高比 16:9 -->
+                                <a href="https://picsum.photos/1900/1080" data-lightbox="example-gallery" class="gallery-link" data-title="{圖片描述}">
+                                    <img src="https://picsum.photos/1900/1080" alt="{圖片描述}" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://picsum.photos/1600/900" data-lightbox="example-gallery" class="gallery-link" data-title="{圖片描述}">
+                                    <img src="https://picsum.photos/1600/900" alt="{圖片描述}" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://picsum.photos/1200/675" data-lightbox="example-gallery" class="gallery-link" data-title="{圖片描述}">
+                                    <img src="https://picsum.photos/1200/675" alt="{圖片描述}" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="page-control">
+                    <a href="#" class="back"><i class="fas fa-long-arrow-alt-left"></i> 回列表</a>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<!-- Lightbox2 -->
+<script src="../javascripts/lightbox.min.js"></script>
+<script>
+    lightbox.option({
+      'resizeDuration': 300
+    })
+</script>
+
+<% end %>
+

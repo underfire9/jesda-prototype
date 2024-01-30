@@ -1,0 +1,191 @@
+<!-- template: 文件上傳 (橫式) -->
+
+<div class="container-lg">
+	<div class="page-content has-sticky">
+	    <aside class="aside">
+			<div class="scrollbar-inner">
+		        <div class="sidenav">
+					
+					<!-- 因 step 有 position，當 main 高度不足時 step 會與 footer 重疊，因此需要前端協助用 js 判斷 .step-wrap 的高度後，將 min-height 塞進 .main 裡 -->
+					<div class="step-wrap side-sticky">
+						<h5 class="step-h5 fw-bold text-end mb-4">申請步驟</h5>
+                        <ul class="step-navigation menu-item">
+                            <li class="done">
+                                <span class="nav-item">
+                                    <span class="step-briefly">申請課程</span>
+									<span class="step-desc">步驟簡短說明</span>
+                                </span>
+                            </li>
+							<li class="done">
+                                <span class="nav-item">
+                                    <span class="step-briefly">申請表填寫</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </span>
+                            </li>
+							<li class="current">
+                                <span class="nav-item">
+                                    <span class="step-briefly">文件上傳</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </span>
+                            </li>
+							<li>
+                                <span class="nav-item">
+                                    <span class="step-briefly">預覽申請資料</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </span>
+                            </li>
+							<li>
+                                <span class="nav-item">
+                                    <span class="step-briefly">繳交報名費</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </span>
+                            </li>
+							<li>
+                                <span class="nav-item">
+                                    <span class="step-briefly">送出申請</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </span>
+                            </li>
+                        </ul>
+					</div>
+					
+				</div>
+			</div>
+		</aside>
+		<main class="main">
+			<div class="page-title">
+			    <h3>頁面標題</h3>
+			</div>
+			<section class="section">
+                <div class="section-title">
+                    <h4>區塊標題</h4>
+                </div>
+                <div class="notice-wrapper">
+                    <h4 class="notice-title">注意事項</h4>
+                    <p>表單或文件上傳若每個欄位項目皆為必填可在說明中註明，不需要在每個項目前加 <span class="required">*</span></p>
+					<p><%= lorem_paragraph %></p>
+                    <ol>
+                        <% (1..3).map do |i| %>
+                        <li><%= lorem_sentence %></li>
+                        <% end %>
+                    </ol>
+                </div>
+                <div class="upload-wrapper fluid-wrapper">
+                    <!-- 檔案上傳後多出 .file-pill，當再次上傳時則覆蓋上一筆，點選檔名另開視窗觀看文件 -->
+                    <div class="upload-item">
+                        <h4>Head-shot Photo</h4>
+                        <p><%= lorem_paragraph %></p>
+                        <p><a href="#">範本下載</a></p>
+                        <div class="form-group">
+                              <input class="form-control" type="file" id="photoFile">
+                        </div>
+                        <div class="ft-action">
+                            <span>
+                                <button type="button" class="btn btn-secondary">Upload</button>
+                            </span>
+                            <span>
+                                <div class="file-pill">
+                                    <!-- 避免檔名過長有限制最大寬度 140px，超出時會字元會省略，但切記標籤加上 title -->
+                                    <a href="#" target="_blank" class="filename" title="避免檔名過長有限制最大寬度.jpg">避免檔名過長有限制最大寬度.jpg</a>
+                                    <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="upload-item">
+                        <h4>Student ID Card (Front)</h4>
+                        <p><%= lorem_sentence %></p>
+                        <p><a href="#">範本下載</a></p>
+                        <div class="form-group">
+                              <input class="form-control" type="file" id="passportFile">
+                        </div>
+                        <div class="ft-action">
+                            <span>
+                                <button type="button" class="btn btn-secondary">Upload</button>
+                            </span>
+                            <span>
+                                <div class="file-pill">
+                                    <!-- 檔名若不需要連結，將 a 改為 span 即可 -->
+                                    <span class="filename" title="file_name.jpg">file_name.jpg</span>
+                                    <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="upload-item">
+                        <h4>Alien Resident Certificate</h4>
+                        <p><%= lorem_paragraph %></p>
+                        <p><a href="#">範本下載</a></p>
+                        <div class="form-group">
+                              <input class="form-control" type="file" id="passportFile">
+                        </div>
+                        <div class="ft-action">
+                            <span>
+                                <button type="button" class="btn btn-secondary">Upload</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+			</section>
+			
+			<section class="section">
+                <div class="section-title">
+                    <h4>Department Recommendation</h4>
+                </div>
+                <div class="upload-wrapper fluid-wrapper">
+                    <!-- 檔案上傳後多出 .file-pill，當再次上傳時則覆蓋上一筆，點選檔名另開視窗觀看文件 -->
+                    <div class="upload-item">
+                        <h4>Letter Form</h4>
+                        <p><%= lorem_paragraph %></p>
+                        <p><a href="#">範本下載</a></p>
+                        <div class="form-group">
+                              <input class="form-control" type="file" id="photoFile">
+                        </div>
+                        <div class="ft-action">
+                            <span>
+                                <button type="button" class="btn btn-secondary">Upload</button>
+                            </span>
+                            <span>
+                                <div class="file-pill">
+                                    <!-- 避免檔名過長有限制最大寬度 140px，超出時會字元會省略 -->
+                                    <a href="#" target="_blank" class="filename" title="file_name.jpg">file_name.jpg</a>
+                                    <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+			</section>
+
+		</main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+    <script>
+        var stickEl = $('.side-sticky'),
+          stickyElTop = stickEl.offset().top;
+
+        var sticky = function(){  
+          var scrollTop = $(window).scrollTop();  
+
+          if (stickyElTop < scrollTop+20) {   
+              stickEl.addClass('is-fixed');  
+          } else {  
+              stickEl.removeClass('is-fixed');   
+          }  
+        };
+
+        $(window).scroll(function() {
+          sticky();
+        }); 
+    </script>
+<% end %>

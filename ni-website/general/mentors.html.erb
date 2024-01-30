@@ -1,0 +1,120 @@
+<!-- template: 導師列表 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="page-content" id="maincontent">
+    <div class="container-xl">
+        <div class="section-title">
+            <h3>企業導師<i></i><i></i></h3>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="請輸入關鍵字" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                    <i class="fas fa-search"></i>
+                    <span class="sr-only">搜尋</span>
+                </button>
+            </div>
+        </div>
+        <div class="mentor-list-wrapper">
+            <ul class="mentor-list menu-item">
+                <li class="mentor-item">
+                    <a href="#" class="link-mentor" title="{連結名稱}">
+                        <span class="avatar">
+                            <img src="https://i.pravatar.cc/512?img=1" class="d-block w-100" alt="..." />
+                        </span>
+                        <div class="link-ft">
+                            <span class="mentor_name">
+                                <span class="ch"><%= zh_lorem_name %></span>
+                                <span class="en"><%= lorem_name %></span>
+                            </span>
+                            <span class="mentor_title">自動化測試開發工程師</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="mentor-item">
+                    <a href="#" class="link-mentor" title="{連結名稱}">
+                        <span class="avatar">
+                            <img src="https://i.pravatar.cc/512?img=2" class="d-block w-100" alt="..." />
+                        </span>
+                        <div class="link-ft">
+                            <span class="mentor_name">
+                                <span class="ch"><%= zh_lorem_name %></span>
+                                <span class="en"><%= lorem_name %></span>
+                            </span>
+                            <span class="mentor_title">自動化測試</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="mentor-item">
+                    <a href="#" class="link-mentor" title="{連結名稱}">
+                        <span class="avatar">
+                            <img src="https://i.pravatar.cc/512?img=3" class="d-block w-100" alt="..." />
+                        </span>
+                        <div class="link-ft">
+                            <span class="mentor_name">
+                                <span class="ch"><%= zh_lorem_name %></span>
+                                <span class="en"><%= lorem_name %></span>
+                            </span>
+                            <span class="mentor_title">執行長</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="mentor-item">
+                    <a href="#" class="link-mentor" title="{連結名稱}">
+                        <span class="avatar">
+                            <img src="https://i.pravatar.cc/512?img=4" class="d-block w-100" alt="..." />
+                        </span>
+                        <div class="link-ft">
+                            <span class="mentor_name">
+                                <span class="ch"><%= zh_lorem_name %></span>
+                                <span class="en"><%= lorem_name %></span>
+                            </span>
+                            <span class="mentor_title">開發工程師</span>
+                        </div>
+                    </a>
+                </li>
+                <% (10..48).map do |i| %>
+                <li class="mentor-item">
+                    <a href="#" class="link-mentor" title="{連結名稱}">
+                        <span class="avatar">
+                            <img src="https://i.pravatar.cc/512?img=<%= i %>" class="d-block w-100" alt="..." />
+                        </span>
+                        <div class="link-ft">
+                            <span class="mentor_name">
+                                <span class="ch"><%= zh_lorem_name %></span>
+                                <span class="en"><%= lorem_name %></span>
+                            </span>
+                            <span class="mentor_title">測試開發工程師</span>
+                        </div>
+                    </a>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<script src="../javascripts/gsap.min.js"></script>
+<script src="../javascripts/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// 所有的 .mentor-item
+const items = document.querySelectorAll('.mentor-item');
+
+// 設定 ScrollTrigger
+items.forEach((item, index) => {
+    gsap.from(item, {
+        opacity: 0,
+        y: 50,
+        scrollTrigger: {
+            trigger: item,
+            start: 'top bottom', // 觸發的位置
+            toggleActions: 'play pause resume pause', // 播放和返回時的動作
+        },
+        delay: index * 0.02,
+    });
+});
+</script>
+<% end %>
+

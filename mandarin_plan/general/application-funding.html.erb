@@ -1,0 +1,328 @@
+<!-- template: 申請 - 經費規劃 -->
+
+<div class="container-lg">
+	<div class="page-content d-block">
+        <div class="project-title">
+            <h3><span>112年教育部補助大學校院推動臺灣優華語計畫申請表</span></h3>
+        </div>
+        <div class="mb-8">
+            <div class="section-title">
+                <h4>行政費</h4>
+            </div>
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">合作校數總計</th>
+                        <th scope="col">學校申請行政費</th>
+                        <th class="text-end" scope="col">行政費上限</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr class="bg-light">
+                        <td class="text-center">4</td>
+                        <td class="text-center">
+                            <input type="text" class="form-control w-auto">
+                        </td>
+                        <td class="text-end">1,950,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        
+        
+        <div class="mb-8">
+            <div class="section-title">
+                <h4>選送華語教學人員</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="text-center">期數</th>
+                            <th>合作學校</th>
+                            <th>選送人員類別</th>
+                            <th class="text-center">人數</th>
+                            <th class="text-center">月數</th>
+                            <th class="text-center">單價(美元)</th>
+                            <th class="text-center">生活補助費(A)</th>
+                            <th class="text-center">機票費標準(美元)</th>
+                            <th class="text-center">機票費(B)</th>
+                            <th class="text-center">教材教具費(C)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..7).map do |i| %>
+                        <tr>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#schoolModal">編輯</a>
+                                <a href="#" class="btn btn-sm btn-outline-danger">刪除</a>
+                            </td>
+                            <td class="text-center">1</td>
+                            <td>路易斯安那傑為大學</td>
+                            <td>華教</td>
+                            <td class="text-center">1</td>
+                            <td class="text-center">12</td>
+                            <td class="text-center">1,200</td>
+                            <td class="text-center">475,200</td>
+                            <td class="text-center">1,530</td>
+                            <td class="text-center">50,490</td>
+                            <td class="text-center">50,490</td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+                <div class="account-wrapper">
+                    <h5>交換外語教學助理生活補助+機票費(D) =</h5>
+                    <h5>小計 (E=A+B+C+D)： 2,294,820</h5>
+                </div>
+            </div>
+            <div class="text-end">
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#teacherModal"><i class="fas fa-plus"></i> 新增一筆華師紀錄</button>
+            </div>
+        </div>
+        
+        <div class="mb-8">
+            <div class="section-title">
+                <h4>臺灣優華語獎學金</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>類別</th>
+                            <th class="text-center">人數(A)</th>
+                            <th class="text-center">月數</th>
+                            <th class="text-center">單價</th>
+                            <th class="text-center">合計</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..2).map do |i| %>
+                        <tr>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#schoolModal">編輯</a>
+                                <a href="#" class="btn btn-sm btn-outline-danger">刪除</a>
+                            </td>
+                            <td>短期華語文研習團</td>
+                            <td class="text-center">3</td>
+                            <td class="text-center">12</td>
+                            <td class="text-center">25,000</td>
+                            <td class="text-center">900,000</td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+                <div class="account-wrapper">
+                    <h5>小計 (F)：  1,260,000</h5>
+                </div>
+            </div>
+            <div class="text-end">
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#scholarshipModal"><i class="fas fa-plus"></i> 新增一筆獎學金</button>
+            </div>
+        </div>
+        
+        <div class="mb-8">
+            <div class="section-title">
+                <h4>ACTEL</h4>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="d-flex align-items-center">
+                        <label for="scholarshipInput1" class="form-label me-4 mb-0">ACTEL參展機票費(G)</label>
+                        <input type="text" class="form-control w-auto flex-grow-1" id="scholarshipInput1" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex align-items-center">
+                        <label for="scholarshipInput2" class="form-label me-4 mb-0">ACTEL參展差旅費(H)</label>
+                        <input type="text" class="form-control w-auto flex-grow-1" id="scholarshipInput2" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-8">
+            <div class="section-title">
+                <h4>海外華語教學中心</h4>
+            </div>
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>合作學校名稱</th>
+                        <th>學校編列經費</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% (1..2).map do |i| %>
+                    <tr>
+                        <td>喬治華盛頓大學</td>
+                        <td><input type="text" class="form-control w-auto"</td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="form-action">
+            <button type="button" class="btn btn-lg btn-primary">儲存</button>
+            <button type="button" class="btn btn-lg btn-primary">儲存並往下一作業 <i class="fas fa-long-arrow-alt-right"></i></button>
+            <span class="backhome"><a href="#" class="btn btn-lg btn-link"><i class="fas fa-long-arrow-alt-left"></i> 回申請首頁</a></span>
+        </div>
+        
+	</div>
+</div>
+
+
+<!-- Teacher Modal -->
+<div class="modal fade" id="teacherModal" tabindex="-1" aria-labelledby="teacherModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="teacherModalLabel">新增選送華語教學人員</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label">選擇合作學校</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label">選送人員類別</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                    <label class="form-check-label" for="inlineRadio1">華教</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                    <label class="form-check-label" for="inlineRadio2">華助</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="d-flex">
+                                <div class="me-2">
+                                    <label for="teacherModal1" class="form-label">人數 (A1)</label>
+                                    <input type="text" class="form-control" id="teacherModal1" />
+                                </div>
+                                <div class="me-2">
+                                    <label for="teacherModal2" class="form-label">月數 (A2)</label>
+                                    <input type="text" class="form-control" id="teacherModal2" />
+                                </div>
+                                <div class="me-2">
+                                    <label for="teacherModal3" class="form-label">單價(美元) (A3)</label>
+                                    <input type="text" class="form-control" id="teacherModal3" />
+                                </div>
+                                <div style="width: 50%;">
+                                    <label for="teacherModal4" class="form-label">生活補助費 (A) = (A1*A2 * A3)* 匯率</label>
+                                    <input type="text" class="form-control" id="teacherModal4" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="teacherModal5" class="form-label">機票費標準(美元)(B1)</label>
+                            <input type="text" class="form-control" id="teacherModal5" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="teacherModal6" class="form-label">機票費(B) = (B1 * A1) * 匯率</label>
+                            <input type="text" class="form-control" id="teacherModal6" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="teacherModal7" class="form-label">教材教具費 (C) (A1 * 300) * 匯率</label>
+                            <input type="text" class="form-control" id="teacherModal7" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scholarship Modal -->
+<div class="modal fade" id="scholarshipModal" tabindex="-1" aria-labelledby="scholarshipModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="scholarshipModalLabel">新增選送華語教學人員</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label">選送人員類別</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                    <label class="form-check-label" for="inlineRadio1">優華語獎學金</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                    <label class="form-check-label" for="inlineRadio2">短期華語文研習團</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="d-flex">
+                                <div class="me-2">
+                                    <label for="teacherModal1" class="form-label">人數 (A1)</label>
+                                    <input type="text" class="form-control" id="teacherModal1" />
+                                </div>
+                                <div class="me-2">
+                                    <label for="teacherModal2" class="form-label">月數 (A2)</label>
+                                    <input type="text" class="form-control" id="teacherModal2" />
+                                </div>
+                                <div class="me-2">
+                                    <label for="teacherModal3" class="form-label">單價(臺幣) (A3)</label>
+                                    <input type="text" class="form-control" id="teacherModal3" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="teacherModal5" class="form-label">合計金額 (A) = (A1*A2 * A3)</label>
+                            <input type="text" class="form-control" id="teacherModal5" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+<% end %>

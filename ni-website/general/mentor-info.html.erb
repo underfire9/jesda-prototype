@@ -1,0 +1,140 @@
+<!-- template: 導師簡介 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="page-content" id="maincontent">
+    <div class="container-xl">
+        <div class="mentor-info-wrapper general-info-wrapper">
+            <aside class="aside sticky">
+                <div class="mentor-item">
+                    <span class="avatar">
+                        <img src="https://i.pravatar.cc/512?img=8" class="d-block w-100" alt="..." />
+                    </span>
+                    <div class="link-ft">
+                        <span class="mentor_name">
+                            <span class="ch"><%= zh_lorem_name %></span>
+                            <span class="en"><%= lorem_name %></span>
+                        </span>
+                        <span class="mentor_title">測試開發工程師</span>
+                    </div>
+                    <a href="#" class="expand-partner" title="{連結名稱}">
+                        <span class="name">輝瑞大藥廠</span>
+                        <span class="logo">
+                            <img class="partner-logo" src="../assets/partner/pfizer.png" alt="輝瑞大藥廠">
+                        </span>
+                    </a>
+                </div>
+            </aside>
+            
+            <main class="row-main">
+                
+                <div class="section-wrapper">
+                    
+                    <!-- 個人簡介 -->
+                    <section class="content-section">
+                        <div class="section-hd">
+                            <h3 class="hd-title">個人簡介</h3>
+                        </div>
+                        <div class="section-bd">
+                            <% (1..4).map do |i| %>
+                            <p><%= zh_lorem_paragraphs(2) %></p>
+                            <% end %>
+                        </div>
+                    </section>
+
+                    <!-- 工作經驗及獎項 -->
+                    <section class="content-section">
+                        <div class="section-hd">
+                            <h3 class="hd-title">工作經驗及獎項</h3>
+                        </div>
+                        <div class="section-bd">
+                            <ul class="general-list">
+                                <li>國立臺灣大學國際學院 副院長 (2022 - present)</li>
+                                <li>國立臺灣大學光電工程學研究所 特聘教授 (2017 - 2020)</li>
+                                <li>駐美國休士頓臺北經濟文化辦事處 科技組組長 (2020 - 2022)</li>
+                                <li>國立臺灣大學光電工程學研究所 副教授 (2015 - 2016)</li>
+                                <li>
+                                    國立臺灣大學光電工程學研究所
+                                    <ul class="general-list">
+                                        <li>駐美國休士頓臺北經濟文化辦事處 (2020 - 2022)</li>
+                                        <li>駐美國紐約臺北經濟文化辦事處 (2020 - 2022)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <!-- 學歷 -->
+                    <section class="content-section">
+                        <div class="section-hd">
+                            <h3 class="hd-title">學歷</h3>
+                        </div>
+                        <div class="section-bd">
+                            <ul class="general-list">
+                                <li>美國德州大學 (奧斯汀校區) 土木建築環境工程 博士</li>
+                                <li>美國密西根大學 (安娜堡校區) 土木環境工程 碩士</li>
+                                <li>國立臺灣大學生態環境系統工程學系 學士</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <!-- 教學語言 -->
+                    <section class="content-section">
+                        <div class="section-hd">
+                            <h3 class="hd-title">教學語言</h3>
+                        </div>
+                        <div class="section-bd">
+                            <ul class="general-list">
+                                <li>Mandarin</li>
+                                <li>English</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                </div>
+                
+                <div class="page-control">
+                    <a href="#" class="back"><i class="fas fa-long-arrow-alt-left"></i> 回列表</a>
+                </div>
+                
+            </main>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<!-- aside sticky -->
+<script>
+$(document).ready(function () {
+    console.log("document ready!");
+
+    var $sticky = $(".sticky");
+    var $stickyrStopper = $(".sticky-stopper");
+    if (!!$sticky.offset()) {
+        // make sure ".sticky" element exists
+
+        var generalSidebarHeight = $sticky.innerHeight();
+        var stickyTop = $sticky.offset().top;
+        var stickOffset = 0;
+        var stickyStopperPosition = $stickyrStopper.offset().top;
+        var stopPoint = stickyStopperPosition - generalSidebarHeight - stickOffset;
+        var diff = stopPoint + stickOffset;
+
+        $(window).scroll(function () {
+            // scroll event
+            var windowTop = $(window).scrollTop(); // returns number
+
+            if (stopPoint < windowTop) {
+                $sticky.css({ position: "absolute", top: diff });
+            } else if (stickyTop < windowTop + stickOffset) {
+                $sticky.css({ position: "fixed", top: stickOffset });
+            } else {
+                $sticky.css({ position: "absolute", top: "initial" });
+            }
+        });
+    }
+});
+</script>
+<% end %>
+

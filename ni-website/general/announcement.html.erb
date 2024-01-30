@@ -1,0 +1,112 @@
+<!-- template: 消息公告 - 單篇 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="page-content" id="maincontent">
+    <div class="container-xl">
+        <article class="article">
+            <div class="article-head">
+                <h3 class="article-title">引路人計畫是讓有經驗的前輩像師徒一般實際帶領同學</h3>
+                <ul class="menu-item action-options">
+                    <li>
+                        <a title="分享" class="btn-action btn-share" tabindex="0"><i class="fas fa-share-alt"></i></a>
+                        <div class="social-share">
+                            <a href="#" class="item-social" title="{連結名稱}" tabindex="-1"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="item-social" title="{連結名稱}" tabindex="-1"><i class="fab fa-line"></i></a>
+                            <a href="#" class="item-social" title="{連結名稱}" tabindex="-1"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="item-social" title="{連結名稱}" tabindex="-1"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </li>
+                    <li><a href="#" title="列印" class="btn-action"><i class="fas fa-print"></i></a></li>
+                </ul>
+            </div>
+            <div class="posted">
+                
+                <div>
+                    <h2>h2 title 標題加一般段落</h2>
+                    <p><%= zh_lorem_paragraphs(5) %></p>
+                    <h3>h3 title 標題加一般段落</h3>
+                    <p><%= zh_lorem_paragraphs(5) %></p>
+
+                    <h3>UL 列表</h3>
+                    <ul>
+                        <li><%= zh_lorem_sentence %></li>
+                        <li><%= zh_lorem_sentence %></li>
+                        <li><%= zh_lorem_sentence %></li>
+                    </ul>
+
+                    <h3>OL 列表</h3>
+                    <ol>
+                        <li><%= zh_lorem_sentence %></li>
+                        <li><%= zh_lorem_sentence %></li>
+                        <li><%= zh_lorem_sentence %></li>
+                    </ol>
+
+                    <img src="../assets/fake/03.jpg" alt="測試">
+                    <p><%= zh_lorem_paragraphs(5) %></p>
+
+                    <p><%= zh_lorem_paragraphs(5) %></p>
+
+                    <h3>關於 table</h3>
+                    <p>文章內 table 須加上 <code>.table</code>另外所有 table 需在外層包一層 <code>.table-responsive</code></p>
+
+                    <h3>表格內容不斷行</h3>
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <% 5.times do %>
+                                    <th>測試用表格</th>
+                                    <% end %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 5.times do %>
+                                <tr>
+                                    <% 5.times do %>
+                                    <td><%= zh_lorem_sentence %></td>
+                                    <% end %>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <section class="content-section">
+                    <div class="section-hd">
+                        <h3 class="hd-title">附加檔案下載</h3>
+                    </div>
+                    <div class="section-bd">
+                        <a href="#" class="link-download" title="{連結名稱}">Marketing Communications</a>
+                        <a href="#" class="link-download" title="{連結名稱}">Administrative</a>
+                        <a href="#" class="link-download" title="{連結名稱}">Support</a>
+                    </div>
+                </section>
+                
+                <div class="page-control">
+                    <a href="#" class="back"><i class="fas fa-long-arrow-alt-left"></i> 回列表</a>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<!-- 分享按鈕 -->
+<script>
+  // 取得所有帶有 .item-social 這個 CSS 類別的按鈕元素
+  const buttons = document.querySelectorAll('.btn-share');
+
+  // 針對每個按鈕設置 click 事件監聽器
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // 切換 .active 這個 CSS 類別
+      button.classList.toggle('active');
+    });
+  });
+</script>
+
+<% end %>
+

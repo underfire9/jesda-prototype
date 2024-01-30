@@ -1,0 +1,119 @@
+<!-- template: 常見問題 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="page-content" id="maincontent">
+  
+    <div class="customized-wrapper qa--wrapper">
+
+        <section class="content-section">
+            
+            <!-- 注意常見問題的 .container 是放在 section 內 -->
+            <div class="container-xl">
+                
+                <div class="section-hd">
+                    <h3 class="hd-title">實習須知 QA</h3>
+                </div>
+                <div class="qa-item">
+                    <h4>參加臺灣引路人計畫的義務與注意事項</h4>
+                    <div class="qa-answer">
+                        <p>參加臺灣引路人計畫的學生，需協助配合以下事項</p>
+                        <ol>
+                            <li>請務必詳閱並遵守參加臺灣引路人之規則與申請流程，並儘全力配合。</li>
+                            <li>參與本專案之申請者，若於申請過程中或錄取後，出現無法取得聯繫、中途放棄、未出席相關活動、錄取後放棄等情形或有不合理之情事，將自動取消申請者或錄取者的參加資格，申請者或錄取者不得有任何疑義或申訴。</li>
+                            <li>收到職涯中心寄送之錄取通知，務必在3天內回覆確認是否參加，未回覆者，視同放棄。</li>
+                            <li>需同意分享實習之心得，並需參加職涯中心辦理的實習後分享會及宣傳行銷活動。</li>
+                        </ol>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </section>
+
+        <section class="content-section">
+            <div class="container-xl">
+                <div class="section-hd">
+                    <h3 class="hd-title">點數制 QA</h3>
+                </div>
+                <div class="qa-item">
+                    <h4>點數制是什麼？一定要集點嗎？</h4>
+                    <div class="qa-answer">
+                        <p>點數制可做為實習申請優先推薦的參考，點數的累積來源為「身分類別」與「活動參與」二類，透過此機制，希望鼓勵學生具下方身分別，或曾參與下方活動的學生，踴躍參加臺灣引路人，亦鼓勵學生多多參與校內活動。</p>
+                        <ol>
+                            <li>
+                                身分類別集點，具以下身分者，每符合一種類別，即可獲得1點，點數可累積。
+                                <ul>
+                                    <li>本校校學士</li>
+                                    <li>具有社團幹部經驗</li>
+                                    <li>具有商業競賽經驗</li>
+                                    <li>blah blah blah blah blah blah</li>
+                                </ul>
+                            </li>
+                            <li>
+                                活動參與集點
+                                <ul>
+                                    <li>企業說明會</li>
+                                    <li>企業參訪</li>
+                                    <li>微學分課程</li>
+                                    <li>blah blah blah blah blah blah</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <% (4..10).map do |i| %>
+        <section class="content-section">
+            <div class="container-xl">
+                <div class="section-hd">
+                    <h3 class="hd-title"><%= zh_lorem_words(5) %> QA</h3>
+                </div>
+                <div class="qa-item">
+                    <h4><%= zh_lorem_sentence %></h4>
+                    <div class="qa-answer">
+                        <p><%= zh_lorem_sentence %></p>
+                        <ol>
+                            <li><%= zh_lorem_sentence %></li>
+                            <li><%= zh_lorem_sentence %></li>
+                            <li><%= zh_lorem_sentence %></li>
+                            <li><%= zh_lorem_sentence %></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <% end %>
+
+    </div>
+        
+</div>
+
+
+<% content_for :js do %>
+<script src="../javascripts/gsap.min.js"></script>
+<script src="../javascripts/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// 所有的 section
+const section = document.querySelectorAll('.content-section');
+
+// 設定 ScrollTrigger
+section.forEach((section, index) => {
+    gsap.from(section, {
+        opacity: 0,
+        y: 20,
+        scrollTrigger: {
+            trigger: section,
+            start: 'top bottom', // 觸發的位置
+            toggleActions: 'play pause resume pause', // 播放和返回時的動作
+        },
+        delay: index * 0.05,
+    });
+});
+</script>
+<% end %>
+

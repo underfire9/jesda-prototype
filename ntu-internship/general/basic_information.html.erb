@@ -1,0 +1,159 @@
+<!-- template: 基本資料填寫 -->
+
+<div class="container-lg">
+	<div class="page-content">
+		<main class="main">
+			<div class="page-title">
+			    <h3>個人基本資料填寫</h3>
+			</div>
+			
+			<section class="section">
+                <div class="section-title">
+                    <h4>個人資料</h4>
+                </div>
+                <div class="notice-wrapper notice-white">
+                    <p>自定義文字說明區塊</p>
+					<p><%= lorem_paragraph %></p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label">姓名</label>
+                            <input class="form-control" type="text" value="王曉輝" aria-label="姓名" disabled readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">學號</label>
+                            <input class="form-control" type="text" value="S1000025" aria-label="學號" disabled readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">電話</label>
+                            <input class="form-control" type="text" value="022323233" aria-label="電話" disabled readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">姓名</label>
+                            <input class="form-control" type="text" value="王曉輝" aria-label="姓名" disabled readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">學號</label>
+                            <input class="form-control" type="text" value="S1000025" aria-label="學號" disabled readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">學號</label>
+                            <input class="form-control" type="text" value="S1000025" aria-label="學號" disabled readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">電話</label>
+                            <input class="form-control" type="text" value="022323233" aria-label="電話" disabled readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">年級</label>
+                            <input class="form-control" type="text" value="二年級" aria-label="年級" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="avatar-wrapper">
+                            <div class="inner">
+                                <div class="avatar">
+                                    <img class="profile-pic" src="../assets/default-avatar.svg" />
+                                </div>
+                                <div class="p-image">
+                                    <i class="fa fa-camera upload-button"></i>
+                                    <input class="file-upload" type="file" accept="image/*" />
+                                </div>
+                            </div>
+                            <div class="form-text">最近兩個月內二吋正面半身脫帽照片乙張，上傳檔案大小限制 3mb，僅接受 jpg 或 png 檔案類型。</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInput01" class="form-label">常用手機號碼</label>
+                            <input id="exampleInput01" class="form-control" type="text" aria-label="常用手機號碼">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInput02" class="form-label">常用 Email</label>
+                            <input id="exampleInput02" class="form-control" type="email" aria-label="常用email">
+                        </div>
+                    </div>
+                </div>
+			</section>
+            
+            <section class="section">
+                <div class="section-title">
+                    <h4>緊急聯絡人</h4>
+                </div>
+                <div class="notice-wrapper notice-white">
+                    <p>自定義文字說明區塊</p>
+					<p><%= lorem_paragraph %></p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="exampleInput03" class="form-label">姓名</label>
+                            <input id="exampleInput03" class="form-control" type="text" aria-label="姓名">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="exampleInput04" class="form-label">關係</label>
+                            <input id="exampleInput04" class="form-control" type="text" aria-label="關係">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="exampleInput05" class="form-label">電話</label>
+                            <input id="exampleInput05" class="form-control" type="text" aria-label="電話">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="exampleInput06" class="form-label">手機號碼</label>
+                            <input id="exampleInput06" class="form-control" type="text" aria-label="手機號碼">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="exampleInput07" class="form-label">email</label>
+                            <input id="exampleInput07" class="form-control" type="email" aria-label="email">
+                        </div>
+                    </div>
+                </div>
+			</section>
+			
+			<div class="form-action">
+                <button type="button" class="btn btn-lg btn-primary">完成登錄</button>
+			</div>
+
+		</main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+$(document).ready(function() {
+
+    
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+
+    $(".file-upload").on('change', function(){
+        readURL(this);
+    });
+    
+    $(".upload-button").on('click', function() {
+       $(".file-upload").click();
+    });
+});
+</script>
+<% end %>

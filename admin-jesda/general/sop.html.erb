@@ -1,0 +1,61 @@
+<!-- admin-page: 預覽SOP說明 -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="col-block block-tabs">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a href="#home" class="active" aria-controls="home" role="tab" data-toggle="tab">基本資料</a></li>
+            <li class="nav-item"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">作業及檢核</a></li>
+            <li class="nav-item"><a href="#ex-sop" aria-controls="ex-sop" role="tab" data-toggle="tab">預覽SOP說明</a></li>
+        </ul>
+        <div class="block-content tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <h4 class="push">Block Tabs With Options</h4>
+                Quibusdam et tempora eius dolorem et possimus iure eligendi accusantium et ipsum tempora ducimus nihil. Impedit aliquam aut recusandae quia deserunt voluptas officiis est natus et eveniet vitae sint. Non eaque aut omnis. Deserunt aperiam porro cumque accusamus veritatis vitae ipsa et ut qui officia ut. Illum vero non necessitatibus ea voluptatem rem sint quis assumenda
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">Odio id voluptatem odit quia nulla nihil ut iusto odio debitis. Dolor harum sint eum enim dolor est molestiae quidem quisquam quibusdam. Voluptas eos quos sint unde aut eligendi dolor labore ex. Dolores sapiente dignissimos voluptatibus esse ducimus veniam assumenda exercitationem qui repellat pariatur saepe. Possimus nostrum consectetur quis necessitatibus</div>
+            
+            <div role="tabpanel" class="tab-pane" id="ex-sop">
+                
+                <div class="mb-4 w-50">
+                    <select class="custom-select">
+                        <option selected>請選擇SOP</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                
+                <h5>專案增修(擴充)</h5>
+                <div class="mb-4"><p>this is 專案增修(擴充)的說明</p></div>
+                
+                <div class="row">
+                    <div class="col-3">
+                        <h4>處理SOP</h4>
+                        <div id="list-example" class="list-group">
+                            <% (1..20).map do |i| %>
+                            <a class="list-group-item list-group-item-action py-2" href="#list-item-<%= i %>">Test Item <%= i %></a>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        
+                        <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example mt-4">
+                            
+                            <% (1..20).map do |i| %>
+                            <h4 id="list-item-<%= i %>">Item <%= i %></h4>
+                            <p><%= lorem_paragraphs(3) %></p>
+                            <% end %>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<% content_for :js do %>
+
+<% end %>

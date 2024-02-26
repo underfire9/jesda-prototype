@@ -6714,7 +6714,6 @@ header.site-header .header-function {
   text-align: end;
 }
 header.site-header .language {
-  margin-bottom: 0.5rem;
   min-width: 100px;
   font-size: 0.9375rem;
   text-align: end;
@@ -6820,35 +6819,48 @@ header.site-header .site-nav .nav-link.active {
 /* `Responsive
 -----------------------------------------------------------------------------*/
 @media (max-width: 1199px) {
-  header.header .header-function {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px dotted #e5e5e5;
-    padding: .5rem 0 .5rem;
+  header.site-header .site-nav .navbar {
+    padding: .5rem 0;
   }
-  header.header .language {
-    margin-bottom: 0;
-    display: inline-block;
+  header.site-header .site-nav .nav-item:last-child {
+    margin-left: 0;
   }
-  header.header .toggler-wrap {
-    display: block;
-  }
-
-  .header-wrap {
-    display: block;
-    height: auto;
-  }
-  .header-wrap .account {
-    display: inline-block;
-  }
-  .header-wrap .brands {
-    padding: 1.25rem 0;
+  header.site-header .site-nav .nav-link {
+    border-radius: .375rem;
+    padding: .75rem;
   }
 }
-@media (max-width: 991px) {
-  header.header {
-    margin-bottom: 2.5rem;
+@media (max-width: 768px) {
+  header.site-header .header-wrap {
+    height: 96px;
+  }
+  header.site-header .header-wrap .h1-logo {
+    height: 64px;
+  }
+  header.site-header .header-wrap .sub h2 {
+    font-size: 1.375rem;
+  }
+  header.site-header .header-wrap .sub .en {
+    font-size: .9375rem;
+  }
+}
+@media (max-width: 680px) {
+  header.site-header .header-wrap .sub h2 {
+    font-size: 1.25rem;
+  }
+  header.site-header .header-wrap .sub .en {
+    font-size: .875rem;
+  }
+}
+@media (max-width: 480px) {
+  header.site-header .header-wrap .h1-logo {
+    display: none;
+  }
+  header.site-header .header-wrap .sub h2 {
+    font-size: 1.063rem;
+  }
+  header.site-header .header-wrap .sub .en {
+    font-size: .75rem;
   }
 }
 /* DateTimepicker ------------------------------------------------------------------------*/
@@ -7603,6 +7615,69 @@ section.section {
   will-change: opacity;
 }
 
+.searchbar {
+  margin-bottom: 2rem;
+}
+.searchbar .inner {
+  display: flex;
+}
+.searchbar .wrap {
+  margin-right: .5rem;
+}
+.searchbar .wrap:last-child {
+  margin-right: 0;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 3%;
+}
+.cards-wrapper .item-card {
+  border-radius: .375rem;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 3%;
+  padding: 1.25rem 1.25rem 4rem;
+  width: calc(33.33333% - 2%);
+  position: relative;
+}
+.cards-wrapper .condition {
+  margin-bottom: .25rem;
+}
+.cards-wrapper .condition .badge {
+  font-weight: 400;
+}
+.cards-wrapper .name {
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 1rem;
+  font-size: 1.188rem;
+  font-weight: bold;
+  line-height: 1.3;
+}
+.cards-wrapper .department {
+  padding: 1rem 0;
+  font-size: 1.063rem;
+  line-height: 1.4;
+}
+.cards-wrapper .ft {
+  border-top: 1px solid #e5e5e5;
+  padding: 1rem 1.25rem;
+  text-align: end;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hgroup {
+  margin-bottom: calc(1.5rem + 1.5vw);
+}
+.hgroup h5 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #777;
+}
+
 /* `login
 -----------------------------------------------------------------------------*/
 .login-wrapper {
@@ -7879,6 +7954,13 @@ section.section {
     padding-bottom: 1.5rem;
     width: 100%;
   }
+
+  .cards-wrapper {
+    grid-gap: 4%;
+  }
+  .cards-wrapper .item-card {
+    width: 48%;
+  }
 }
 @media (max-width: 991px) {
   .index-content {
@@ -7914,6 +7996,28 @@ section.section {
   }
   .announcement-list h4 {
     font-size: 1.125rem;
+  }
+}
+@media (max-width: 639px) {
+  .searchbar {
+    margin-bottom: 1.5rem;
+  }
+  .searchbar .inner {
+    flex-wrap: wrap;
+  }
+  .searchbar .wrap:first-child {
+    margin: 0 0 .5rem 0;
+    width: 100%;
+  }
+  .searchbar .wrap-input {
+    flex-grow: 1;
+  }
+
+  .cards-wrapper {
+    grid-gap: 0;
+  }
+  .cards-wrapper .item-card {
+    width: 100%;
   }
 }
 

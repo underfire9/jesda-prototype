@@ -1,0 +1,205 @@
+<!-- admin-page: SOP -->
+
+<div class="sop-container">
+    <div class="sop-head">
+        <h2 class="fw-bold">新專案</h2>
+        <p>全新專案開發流程</p>
+    </div>
+    <div class="container-inner">
+        
+        <aside class="aside">
+            <div class="scrollbar-inner aside-scrollbar">
+                <div id="navbar-sop" class="list-group">
+                    <% (1..24).map do |i| %>
+                    <a class="list-group-item" href="#list-item-<%= i %>"><%= lorem_words(4) %></a>
+                    <% end %>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="main">
+            <div data-spy="scroll" data-target="#navbar-sop" data-offset="0" class="scrollspy">
+                
+                <div class="scrollspy-inner">
+
+                    <section class="section">
+                        <h4 id="list-item-1">撰寫專案管理計畫書</h4>
+                        <div class="inner">
+                            <h6 class="fw-bold"><i class="fa fa-user-o mr-1"></i> 專案經理</h6>
+                            <div class="charge">
+                                <ol>
+                                    <li><%= lorem_sentence %></li>
+                                    <li><%= lorem_sentence %></li>
+                                    <li><%= lorem_sentence %></li>
+                                </ol>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>檢核人員</th>
+                                        <th>項目 </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>專案稽核人員 </td>
+                                        <td><a href="#" data-toggle="modal" data-target="#basicExampleModal">專案管理計畫書檢核表</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    
+                    <% (2..24).map do |i| %>
+                    <section class="section">
+                        <h4 id="list-item-<%= i %>"><%= lorem_words(5) %></h4>
+                        <div class="inner">
+                            <h6 class="fw-bold"><i class="fa fa-user-o mr-1"></i> 系統架構工程師</h6>
+                            <div class="charge"><%= lorem_sentences(2) %></div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>檢核人員</th>
+                                        <th>項目 </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><%= lorem_words(3) %> </td>
+                                        <td><a href="#" data-toggle="modal" data-target="#basicExampleModal"><%= lorem_words(5) %></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><%= lorem_words(3) %> </td>
+                                        <td><a href="#" data-toggle="modal" data-target="#basicExampleModal"><%= lorem_words(5) %></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <% end %>
+                    
+                </div>
+                
+            </div>
+        </main>
+        
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="col-3 mb-0">
+                        <div class="form-group">
+                            <label>檢核表種類</label>
+                            <div class="form-control">系統安裝</div>
+                        </div>
+                    </div>
+                    <div class="col-7 mb-0">
+                        <div class="form-group">
+                            <label>檢核表名稱</label>
+                            <div class="form-control">Apache 安裝檢核表</div>
+                        </div>
+                    </div>
+                    <div class="col-2 mb-0">
+                        <div class="form-group">
+                            <label>檢核表版本</label>
+                            <div class="form-control" type="number" readonly="1">1</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>說明</label>
+                    <textarea class="form-control rounded-0" id="" rows="2"></textarea>
+                </div>
+                <table class="table table-bordered table-sm">
+                    <thead class="thead-light">
+                        <tr>
+                            <th style="width: 6%;">項次</th>
+                            <th style="width: 10%;">統計代碼</th>
+                            <th>項目</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-primary">
+                            <td colspan="3">1. Apache 紀錄格式及保留天數</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1.1</td>
+                            <td>設定log 格式為 LogFormat "%h %l %u %t \"%r\" %&gt;s %O \"%{Referer}i\" \"%{User-Agent}i\" %D" combined</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>1.2</td>
+                            <td>設定log 保留天數超過GCB 建議13週以上</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>1.3</td>
+                            <td>設定log rotation防止單一紀錄檔案過大</td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td colspan="3">2. Apache 載入模組最佳化</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2.1</td>
+                            <td>停用 WebDAV 模組: mod_dav.so，mod_dav_fs.so(GCB建議)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2.2</td>
+                            <td>停用Status模組: mod_status.so (GCB建議)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>2.3</td>
+                            <td>停用Autoindex模組: mod_autoindex.so(GCB建議)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>2.4</td>
+                            <td>停用Proxy模組(GCB建議)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>2.5</td>
+                            <td>停用User Directories模組: mod_userdir.so(GCB建議)</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>2.6</td>
+                            <td>停用Info模組: mod_info.so(GCB建議)</td>
+                        </tr>
+                        <tr class="table-primary">
+                            <td colspan="3">3. 注意事項</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>3.1</td>
+                            <td>TRACY上正式機要閉此功能</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+
+<% end %>

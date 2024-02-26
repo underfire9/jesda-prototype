@@ -1,0 +1,185 @@
+<!-- admin-page: demo / table -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+<main class="main">
+    <div class="col-block mb-4">
+        <div class="block-content expansion">
+            <div class="dt-toolbar">
+                <div class="dt-toolbar-l">
+                    <div class="btn-group btn-group-sm unshadow">
+                        <a class="btn btn-white" role="button"><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-white" role="button"><i class="fa fa-times"></i></a>
+                        <a class="btn btn-white" role="button"><input type="checkbox" id=""></a>
+                    </div>
+                    <div class="btn-group btn-group-sm unshadow">
+                        <a class="btn btn-white" role="button"><i class="fas fa-sync-alt"></i></a>
+                        <a class="btn btn-white" role="button"><i class="fa fa-list"></i></a>
+                        <a class="btn btn-white" role="button"><i class="fa fa-cog"></i></a>
+                    </div>
+                    <div class="d-inline-block">
+                        <select class="form-select dt-form-select">
+                            <option selected="">Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="btn-group btn-group-sm unshadow">
+                        <a class="btn btn-danger" role="button"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                </div>
+                <div class="dt-toolbar-r">
+                    <div class="btn-group btn-group-sm unshadow">
+                        <a class="btn btn-white" role="button"><i class="fas fa-sync-alt"></i></a>
+                        <a class="btn btn-white" role="button"><i class="fa fa-list"></i></a>
+                        <a class="btn btn-white" role="button"><i class="fa fa-cog"></i></a>
+                    </div>
+                    <div class="d-inline-block">
+                        <select class="form-select dt-form-select">
+                            <option selected="">Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="d-inline-block">
+                        <select class="form-select dt-form-select">
+                            <option selected="">Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="dataTables_filter d-inline-block toolbar-search-wrap">
+                        <input type="search" class="toolbar-search form-control form-control-sm" placeholder="Search" aria-controls="jesdaDataTable">
+                        <!-- btn-search-remove 清除按鈕在進行搜尋後才會出現 -->
+                        <!-- button type="button" class="btn btn-search-remove" title="清除搜尋"><i class="fa fa-times"></i></button -->
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-sm table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th><input class="form-check-input" type="checkbox"></th>
+                            <th>編輯</th>
+                            <th>姓名</th>
+                            <th>代表機構 </th>
+                            <th>單位</th>
+                            <th>職稱</th>
+                            <th>OIA最後修改時間</th>
+                            <th>OIA最後修改</th>
+                            <th>院系最後修改時間</th>
+                            <th>院系最後修改</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% (1..20).map do |i| %>
+                        <tr>
+                            <td class="text-center"><%= i %></td>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td>
+                                <button type="button" class="btn btn-xs btn-white"><i class="fas fa-pencil-alt"></i></button>
+                            </td>
+                            <td><%= lorem_name %></td>
+                            <td><%= lorem_words(3) %></td>
+                            <td><%= lorem_words(6) %></td>
+                            <td><%= lorem_words(3) %></td>
+                            <td>2023-08-09 <%= i %>:04</td>
+                            <td><%= lorem_name %></td>
+                            <td>2023-08-09 <%= i %>:04</td>
+                            <td><%= zh_lorem_name %></td>
+                        </tr>
+                        <% end %>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-between align-items-center p-3">
+                <div>
+                    <span id="checkedCount">選取 <strong>0</strong> 筆,</span>
+                    <span class="pr10">共 9919 筆</span>
+                </div>
+                <div>
+                    <nav>
+                        <ul class="pagination pg-blue mb-0">
+                            <!--First-->
+                            <li class="page-item disabled">
+                                <a class="page-link waves-effect waves-effect">
+                                    First
+                                </a>
+                            </li>
+
+                            <!--Arrow left-->
+                            <li class="page-item disabled">
+                                <a class="page-link waves-effect waves-effect" aria-label="Previous" href="javascript:void(0)">
+                                    <span aria-hidden="true">«</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+
+                            <!--Numbers-->
+                                        <li class="page-item active">
+                                    <a class="page-link waves-effect waves-effect" href="/ipd/vip.people/list/pid/65bb3fe82e5f5/order/name/desc/0/page/1">
+                                        1                </a>
+                                </li>
+                                        <li class="page-item ">
+                                    <a class="page-link waves-effect waves-effect" href="/ipd/vip.people/list/pid/65bb3fe82e5f5/order/name/desc/0/page/2">
+                                        2                </a>
+                                </li>
+                                        <li class="page-item ">
+                                    <a class="page-link waves-effect waves-effect" href="/ipd/vip.people/list/pid/65bb3fe82e5f5/order/name/desc/0/page/3">
+                                        3                </a>
+                                </li>
+                                        <li class="page-item ">
+                                    <a class="page-link waves-effect waves-effect" href="/ipd/vip.people/list/pid/65bb3fe82e5f5/order/name/desc/0/page/4">
+                                        4                </a>
+                                </li>
+                                        <li class="page-item ">
+                                    <a class="page-link waves-effect waves-effect" href="/ipd/vip.people/list/pid/65bb3fe82e5f5/order/name/desc/0/page/5">
+                                        5                </a>
+                                </li>
+
+                            <!--Arrow right-->
+                            <li class="page-item ">
+                                <a class="page-link waves-effect waves-effect" aria-label="Next" href="/ipd/vip.people/list/pid/65bb3fe82e5f5/order/name/desc/0/page/2">
+                                    <span aria-hidden="true">»</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+
+                            <!--First-->
+                            <li class="page-item ">
+                                <a class="page-link waves-effect waves-effect" href="/ipd/vip.people/list/pid/65bb3fe82e5f5/order/name/desc/0/page/662">
+                                    Last
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div>
+                    <select class="form-select">
+                        <option value="10">10</option>
+                        <option value="15" selected="selected">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="150">150</option>
+                        <option value="200">200</option>
+                        <option value="300">300</option>
+                        <option value="400">400</option>
+                        <option value="500">500</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<% content_for :js do %>
+
+<% end %>

@@ -1,0 +1,113 @@
+<!-- template: UI - Step (申請步驟) -->
+
+<div class="container-lg">
+	
+	<!-- 當 sidebar 需要 sticky 時 page-content 加上 .has-sticky -->
+	<div class="page-content has-sticky">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+		        <div class="sidenav">
+
+					<div class="step-wrap side-sticky">
+						<h5 class="step-h5 fw-bold text-end mb-4">申請步驟</h5>
+                        <ul class="step-navigation menu-item">
+                            <li class="done">
+                                <span class="nav-item">
+                                    <span class="step-briefly">申請課程</span>
+									<span class="step-desc">步驟簡短說明</span>
+                                </span>
+                            </li>
+							<li class="done">
+                                <span class="nav-item">
+                                    <span class="step-briefly">申請表填寫</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </span>
+                            </li>
+							<li class="current">
+                                <span class="nav-item">
+                                    <span class="step-briefly">文件上傳</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </span>
+                            </li>
+							<li>
+                                <span class="nav-item">
+                                    <span class="step-briefly">預覽申請資料</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </span>
+                            </li>
+							<li>
+                                <span class="nav-item">
+                                    <span class="step-briefly">繳交報名費</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </span>
+                            </li>
+							<li>
+                                <span class="nav-item">
+                                    <span class="step-briefly">送出申請</span>
+									<span class="step-desc"><%= lorem_words(3) %></span>
+                                </span>
+                            </li>
+                        </ul>
+					</div>
+					
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+			<div>
+			    <% (1..10).map do |i| %>
+				<p><%= lorem_paragraphs(4) %></p>
+				<% end %>
+			</div>
+		</main>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+    var stickEl = $('.side-sticky'),
+      stickyElTop = stickEl.offset().top;
+
+    var sticky = function(){  
+      var scrollTop = $(window).scrollTop();  
+
+      if (stickyElTop < scrollTop+20) {   
+          stickEl.addClass('is-fixed');  
+      } else {  
+          stickEl.removeClass('is-fixed');   
+      }  
+    };
+
+    $(window).scroll(function() {
+      sticky();
+    }); 
+</script>
+
+<!-- 監看 .aside 高度 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 獲取 .aside 和 .main 元素
+    var asideElement = document.querySelector('.aside');
+    var mainElement = document.querySelector('.main');
+
+    // 檢查是否找到了 .aside 和 .main
+    if (asideElement && mainElement) {
+        // 監聽窗口大小變化事件
+        window.addEventListener('resize', function() {
+            // 獲取 .aside 的內容高度
+            var asideContentHeight = asideElement.scrollHeight;
+
+            // 設置 .main 的最小高度
+            mainElement.style.minHeight = asideContentHeight + 'px';
+        });
+
+        // 在窗口加載時觸發一次，以確保最小高度正確設置
+        window.dispatchEvent(new Event('resize'));
+    }
+});
+</script>
+<% end %>
+

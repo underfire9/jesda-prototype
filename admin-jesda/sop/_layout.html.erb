@@ -1,0 +1,34 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/admin_head" %>
+</head>
+<body class="height-layout">
+    <%= yield %>
+	
+    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.min.js"></script>
+    <script src="../javascripts/mdb.min.js"></script>
+    <script src="../javascripts/sidenav.js"></script>
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+	<script src="../javascripts/slidebars.min.js"></script>
+    <script src="../javascripts/slidebars.scripts.js"></script>
+	<script src="../javascripts/jquery.slimscroll.js"></script>
+
+    <script>
+        $('.sidebar-scroll').slimscroll({
+            height: '100%'
+        });
+		
+		// jQuery scrollbar
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+    </script>
+	
+
+    <%= yield :js %>
+</body>
+</html>

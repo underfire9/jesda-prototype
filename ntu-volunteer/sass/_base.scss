@@ -1,0 +1,239 @@
+
+@import "widgets/font";
+@import "vendor/font-awesome";
+@import "widgets/variables";
+@import "partials/header";
+@import "partials/footer";
+
+/* `Base
+-----------------------------------------------------------------------------*/
+
+html {
+	height: 100%;
+	min-height: 100%;
+}
+
+body {
+    height: 100%;
+	font-family: 'Roboto', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
+	                                                     // 微軟正黑體
+    line-height: 1.5;
+	font-size: 1rem;
+	font-weight: 400;
+	color: $base_font_color;
+}
+
+a {
+	color: $link;
+	text-decoration: none;
+	transition: all 0.2s ease-in-out;
+	&:focus {
+		outline: none; /* for Firefox Google Chrome  */
+		behavior: expression(this.onFocus=this.blur()); /* for IE */
+	}
+}
+
+a:hover { color: $link_hover; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+.form-control::placeholder {
+    color: #999;
+}
+
+.menu-item, .menu-item li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.form-group { margin-bottom: 1rem; }
+
+.hide, .text-hide { display: none; }
+
+p { line-height: 1.7; }
+
+.hr-lg { margin: 2.5rem 0; }
+
+.un-shadows { box-shadow: none; }
+
+select.browser-default {
+	border-radius: 0.25rem;
+	border: 1px solid #ced4da;
+	box-shadow: none;
+	width: 100%;
+	font-family: 'Roboto', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
+	font-size: 1rem;
+	color: #333;
+	height: calc(2.3125rem);
+}
+
+.table {
+	.btn { margin: 0; }
+	.highlight {
+		td { background-color: #fffde7; }
+	}
+	td { font-weight: 400; }
+}
+
+.keep-all { word-break: keep-all; }
+
+@media (max-width: 575px) {
+	.keep-all { word-break: normal; }
+}
+
+.form-control { font-size: 1rem; }
+
+.normal-link {
+	color: $main_color !important;
+	text-decoration: underline;
+	&:hover { color: darken($main_color, 10) !important; }
+}
+
+.default-radio {
+	position: static !important;
+	pointer-events: auto !important;
+	opacity: 1 !important;
+}
+
+/* `Bootstrap Overwrite
+-----------------------------------------------------------------------------*/
+
+.btn {
+	box-shadow: 0 1px 2px rgba(#000, .05), 0 3px 6px rgba(#000, .08);
+	&:hover { box-shadow: 0 1px 2px rgba(#000, .04); }
+	&.btn-link, 
+	&.btn-light,
+	&.btn-outline-primary,
+	&.btn-outline-secondary,
+	&.btn-outline-success,
+	&.btn-outline-danger,
+	&.btn-outline-warning,
+	&.btn-outline-info,
+	&.btn-outline-light,
+	&.btn-outline-dark,
+	&.btn-outline-third {
+		box-shadow: none;
+	}
+}
+
+.btn.btn-lg { font-size: 1.125rem; }
+
+.btn-block {
+	display: block;
+	width: 100%;
+}
+
+.btn-rounded { border-radius: 10rem; }
+
+.btn.btn-xs {
+	border-radius: 0.2rem;
+	padding: 0.375rem 0.5rem 0.35rem;
+	font-size: 0.9375rem;
+	text-transform: none;
+	line-height: 1.2;
+	word-break: keep-all;
+}
+
+.btn-primary {
+	background-color: $primary-color;
+	border-color: $primary-color;
+	&:hover, &:active, &:focus {
+		background-color: darken($primary-color, 10) !important;
+		border-color: darken($primary-color, 10) !important;
+	}
+}
+
+.btn-outline-primary {
+	border-color: $primary-color;
+	color: $primary-color;
+	&:hover, &:active, &:focus {
+		background-color: $primary-color !important;
+		border-color: $primary-color !important;
+		color: #fff;
+	}
+}
+
+.btn-success {
+	background-color: $success-color;
+	border-color: $success-color;
+	&:hover, &:active, &:focus {
+		background-color: darken($success-color, 10) !important;
+		border-color: darken($success-color, 10) !important;
+	}
+}
+
+.btn-outline-success {
+	border-color: $success-color;
+	color: $success-color;
+	&:hover, &:active, &:focus {
+		background-color: $success-color !important;
+		border-color: $success-color !important;
+		color: #fff;
+	}
+}
+
+.btn-warning {
+	background-color: $warning-color;
+	border-color: $warning-color;
+	color: #fff;
+	&:hover, &:active, &:focus {
+		background-color: darken($warning-color, 10) !important;
+		border-color: darken($warning-color, 10) !important;
+		color: #fff !important;
+	}
+}
+
+.btn-outline-warning {
+	border-color: $warning-color;
+	color: $warning-color;
+	&:hover, &:active, &:focus {
+		background-color: $warning-color !important;
+		border-color: $warning-color !important;
+		color: #fff !important;
+	}
+}
+
+.btn-info {
+	background-color: $info-color;
+	border-color: $info-color;
+	color: #fff;
+	&:hover, &:active, &:focus {
+		background-color: darken($info-color, 10) !important;
+		border-color: darken($info-color, 10) !important;
+		color: #fff !important;
+	}
+}
+
+.btn-outline-info {
+	border-color: $info-color;
+	color: $info-color;
+	&:hover, &:active, &:focus {
+		background-color: $info-color !important;
+		border-color: $info-color !important;
+		color: #fff !important;
+	}
+}
+
+.btn-third {
+	background-color: $third-color;
+	border-color: $third-color;
+	color: #fff;
+	&:hover, &:active, &:focus {
+		background-color: darken($third-color, 10) !important;
+		border-color: darken($third-color, 10) !important;
+		color: #fff !important;
+	}
+}
+
+.btn-outline-third {
+	border-color: $third-color;
+	color: $third-color;
+	&:hover, &:active, &:focus {
+		background-color: $third-color !important;
+		border-color: $third-color !important;
+		color: #fff !important;
+	}
+}

@@ -845,6 +845,47 @@ article.article {
     }
 }
 
+.step-application {
+    .menu-item { counter-reset: steps; }
+    li {
+        display: flex;
+        border-bottom: 1px dashed #cfd6d9;
+        align-items: center;
+        margin-bottom: .75rem;
+        padding-bottom: .75rem;
+        &:last-child { border-bottom: none; }
+    }
+    .number {
+        margin-right: 1rem;
+        min-width: 4rem;
+        height: 4rem;
+        counter-increment: steps;
+        position: relative;
+        z-index: 1;
+        &:before, &:after {
+            min-width: 4rem;
+            height: 4rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        &:before {
+            content: "Step " counter(steps);
+            font-family: 'Roboto', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            text-align: center;
+            line-height: 4rem;
+        }
+        &:after {
+            content: "";
+            background: $main_color;
+            z-index: -1;
+        }
+    }
+}
+
 /* `Slick
 -----------------------------------------------------------------------------*/
 

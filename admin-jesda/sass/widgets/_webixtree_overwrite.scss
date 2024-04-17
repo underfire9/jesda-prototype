@@ -1,0 +1,78 @@
+
+/* `Webix Tree overwrite
+-----------------------------------------------------------------------------*/
+
+$treeSquare: 48px;
+
+.webixtree-bar {
+    .webix_view {
+        border-width: 0 !important;
+        width: 100% !important;
+    }
+    .webix_tree_leaves {
+        display: block !important;
+        padding: 0 !important;
+        .webix_tree_leaves {
+            margin-left: $treeSquare;
+        }
+    }
+    .webix_tree_item {
+        display: flex;
+        align-items: center;
+        background: #eaeff2;
+        margin-bottom: 1px;
+        height: $treeSquare;
+        line-height: 20px;
+        white-space: pre-wrap;
+        span {
+            padding-left: 20px;
+            font-size: 18px;
+        }
+        &.webix_selected {
+            background-color: #f0f3ff;
+            .webix_tree_open, .webix_tree_close {
+                background-color: #222a2e;
+            }
+            .webix_tree_file { background-color: #dee4e8; }
+            span { padding-left: 20px; }
+        }
+    }
+    .webix_tree_folder, .webix_tree_folder_open { display: none; }
+    .webix_tree_open, .webix_tree_close, .webix_tree_file {
+        display: block;
+        background: #222a2e;
+        width: $treeSquare;
+        height: $treeSquare;
+    }
+    .webix_tree_open, .webix_tree_close, .webix_tree_file {
+        &:before {
+            display: block;
+            content: "\f107";
+            margin-left: 0;
+            width: $treeSquare;
+            height: $treeSquare;
+            font-family: "FontAwesome";
+            text-align: center;
+            line-height: 48px;
+            font-size: 24px;
+            transform-origin: center center;
+            transition: all 0.2s ease-in-out;
+        }
+    }
+    .webix_tree_close {
+        &:before {
+            transform: rotate(-90deg);
+        }
+    }
+    .webix_tree_file {
+        background: #dee4e8;
+        margin: 0;
+        &:before {
+            content: "\f19c";
+            color: #484e51;
+            font-size: 14px;
+        }
+        & + span { font-size: 16px; }
+    }
+    .webix_tree_none { display: none; }
+}

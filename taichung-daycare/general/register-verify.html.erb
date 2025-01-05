@@ -1,0 +1,158 @@
+<!-- template: 登記報名 - 申請人驗證 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="container-lg">
+	<div class="page-content d-block">
+        
+        <!--div class="page-title">
+            <h3>選擇托育機構</h3>
+        </div-->
+        
+        <div class="step-wrapper">
+            <div class="scrollbar-inner">
+                <ul class="step-menu menu-item">
+                    <li class="step-item current">
+                        <span class="number">1</span>
+                        <span class="description">申請人驗證</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">2</span>
+                        <span class="description">申請表</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">3</span>
+                        <span class="description">選擇托育機構</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">4</span>
+                        <span class="description">選擇身分別</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">5</span>
+                        <span class="description">上傳佐證資料</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">6</span>
+                        <span class="description">送出申請</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="notice-wrapper">
+            <p>為確保於本服務網登錄之機關APP資料正確性，凡後續APP資料有更新者，請機關承辦人登入服務網會員專區進行修正。</p>
+            <p>若APP經機關確認辦理下架，則請承辦人提供相關佐證資料(如公告下架資訊或函文等截圖)寄至本服務網客服信箱，將由本服務網專人聯繫協助辦理。</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="form-group">
+                    <label for="applicantEmail" class="form-label">申請人 Email</label>
+                    <input type="email" class="form-control" id="applicantEmail" placeholder="name@example.com" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="form-group">
+                    <label for="applicantPhone" class="form-label">申請人手機號碼</label>
+                    <input type="text" class="form-control" id="applicantPhone" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <div class="form-group">
+                    <label for="loginInput4" class="form-label">圖形驗證碼</label>
+                    <div class="d-flex align-items-center">
+                        <span class="me-1"><input type="text" style="width: 128px;" class="form-control" id="loginInput4" /></span>
+                        <span class="me-1"><img class="captcha" src="https://files.axshare.com/gsc/3YT57R/14/d7/eb/14d7ebb9be7443a3b5b8b56528c094bb/images/%E7%94%B3%E8%AB%8B%E4%BA%BA%E9%A9%97%E8%AD%89/u42.png?pageId=6c93e736-7191-41ab-82b6-4d6d31c15387" /></span>
+                        <span  class="btn-group">
+                            <button class="btn btn-xs btn-outline-primary" type="button"><i class="fas fa-sync-alt"></i></button>
+                            <button class="btn btn-xs btn-outline-primary" type="button"><i class="fas fa-microphone"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 按鈕 click 後的行為缺少 input 欄位檢查邏輯，這裡只展示規劃中的表單動作 -->
+        <div class="mb-4">
+            <button class="btn btn-primary btn-verification" type="button">發送一次性驗證碼</button>
+        </div>
+        
+        <div class="verification-code">
+            <label for="exampleFormControlInput3" class="form-label">驗證碼</label>
+            <div class="d-flex align-items-center">
+                <div>
+                    <input type="text" class="form-control form-code" id="exampleFormControlInput3" placeholder="請輸入六位數驗證碼" />
+                </div>
+                <div class="ms-3">剩餘時間 : <span class="sec-countdown fw-bold">299</span> 秒</div>
+            </div>
+        </div>
+        
+        <div class="form-action">
+            <button type="button" class="btn btn-lg btn-light">下一步</button>
+        </div>
+        
+	</div>
+</div>
+
+<% content_for :js do %>
+
+<!-- mobile 視窗指定卷軸位置 -->
+<script>
+$(document).ready(function() {
+    // 判斷是否為小視窗
+    if ($(window).width() <= 768) {
+        // 設定橫向卷軸到指定的 .current 元素位置
+        var currentItem = $('.step-item.current');
+        if (currentItem.length) {
+            var scrollPosition = currentItem.position().left;
+            $('.scrollbar-inner').scrollLeft(scrollPosition);
+        }
+    }
+});
+</script>
+
+<!-- .btn-verification 動作 -->
+<script>
+$(document).ready(function() {
+    $('.btn-verification').click(function() {
+        setTimeout(function() {
+            // 1. #applicantEmail, #applicantPhone 加上 disabled 以及 readonly
+            $('#applicantEmail, #applicantPhone').attr({
+                'disabled': true,
+                'readonly': true
+            });
+
+            // 2. .btn-verification 字樣改成 "重新發送一次性驗證碼"
+            $('.btn-verification').text('重新發送一次性驗證碼');
+
+            // 3. .verification-code 加上 .verification-show
+            $('.verification-code').addClass('verification-show');
+
+            // 4. .sec-countdown 從 299sec 開始倒數
+            var countdown = 299;
+            var countdownInterval = setInterval(function() {
+                $('.sec-countdown').text(countdown);
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                } else {
+                    countdown--;
+                }
+            }, 1000);
+
+        }, 300); // 延遲 0.3 秒
+    });
+});
+</script>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+<!-- ietw: 明信片交流活動專區 - 製作明信片 -->
+
+<div class="content-wrapper">
+    <div class="container-xl">
+        
+        <div class="page-row">
+            <aside class="sidenav">
+                <a accesskey="L" href="#accesskey_left_nav" tabindex="0" title="左側目錄" id="accesskey_left_nav" class="ackey d-block">:::</a>
+                
+                <ul class="nav-pills menu-item">
+                    <li><a href="#" class="nav-link" title="{連結名稱}">明信片展示牆</a></li>
+                    <li><a href="#" class="nav-link" title="{連結名稱}">活動介紹</a></li>
+                    <li><a href="#" class="nav-link active" title="{連結名稱}">製作明信片</a></li>
+                </ul>
+                
+            </aside>
+            
+            <main class="main">
+                <a accesskey="C" href="#accesskey_content" tabindex="0" title="主要內容" id="accesskey_content" class="ackey">:::</a>
+                
+                <div class="making-postcard">
+                    
+                    <p class="mb-3">操作說明文案？</p>
+                    
+                    <div class="mb-4">
+                        <div class="upload-button-wrapper">
+                            <span class="label">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"
+                                        />
+                                    </svg>
+                                </span>
+                                <span>上傳照片</span>
+                            </span>
+                            <input type="file" name="upload" id="uploadPhoto" class="upload-box" placeholder="上傳照片" />
+                        </div>
+                    </div>
+                    
+                    <!-- 麻煩前端協助字元計算 -->
+                    <div class="mb-3">
+                        <p class="mb-2">輸入框的說明文案，讓使用者明白這是幹嘛的，並要註明文字位置與實際輸出可能不同。</p>
+                        <textarea class="form-control" id="" rows="4" placeholder="上限 150 個字"></textarea>
+                        <div class="text-end mt-1">
+                            <span class="form-text me-1">還剩</span>
+                            <span class="count">150</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-2">
+                        <div class="btn-group" role="group" aria-label="選擇相框">
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+                            <label class="btn btn-outline-dark" for="btnradio1">相框樣式 1</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+                            <label class="btn btn-outline-dark" for="btnradio2">相框樣式 2</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                            <label class="btn btn-outline-dark" for="btnradio3">相框樣式 3</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
+                            <label class="btn btn-outline-dark" for="btnradio4">相框樣式 4</label>
+                        </div>
+                    </div>
+                    
+                    <div class="maker-wrapper">
+                        <div class="photo-frame">
+                            <span class="frame-inner frame-one">
+                                <img src="../assets/frame01.svg" alt="相框1">
+                            </span>
+                            <span class="frame-inner frame-two">
+                                <img src="../assets/frame02.svg" alt="相框1">
+                            </span>
+                            <span class="frame-inner frame-three">
+                                <img src="../assets/frame03.svg" alt="相框1">
+                            </span>
+                            <span class="frame-inner frame-four">
+                                <img src="../assets/frame04.svg" alt="相框1">
+                            </span>
+                        </div>
+                        <div class="photo-bd"></div>
+                    </div>
+                    
+                    <div class="photo-text">字數統計器是一個即時統計字數的線上工具。這個字數統計工具可以作為一個字數計算機，計算一份文稿中的文字、英文單字和段落的數量。它也可以作為一個字元計數器工具來統計字元總數，包括標點符號，數字，符號等。此外這個字數統計機還提供了字數計算詳細，字數統計器包含十二種訊息供有特定詳細要求的朋友使用，一百五字。</div>
+                    
+                    <div class="operate-action">
+                        <span>
+                            <button type="button" class="btn btn-lg btn-secondary">修改</button>
+                        </span>
+                        <span>
+                            <button type="button" class="btn btn-lg btn-light">清空</button>
+                            <button type="button" class="btn btn-lg btn-primary">發布並下載</button>
+                        </span>
+                    </div>
+                    
+                </div>
+                
+                <div class="mobile-note">
+                    製作明信片不適合在手機上操作，請改用平板或電腦。
+                </div>
+                
+            </main>
+		</div>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const frameOne = document.querySelector(".frame-one");
+    const frameTwo = document.querySelector(".frame-two");
+    const frameThree = document.querySelector(".frame-three");
+    const frameFour = document.querySelector(".frame-four");
+
+    const frames = [frameOne, frameTwo, frameThree, frameFour];
+
+    // 隱藏所有 frame
+    function hideAllFrames() {
+        frames.forEach(frame => {
+            frame.style.display = "none";
+        });
+    }
+
+    // 根據選擇的按鈕顯示對應 frame
+    document.querySelectorAll('input[name="btnradio"]').forEach((radio, index) => {
+        radio.addEventListener("change", function() {
+            hideAllFrames();
+            frames[index].style.display = "block";
+        });
+    });
+
+    // 初始化顯示第一個相框
+    hideAllFrames();
+    frameOne.style.display = "block";
+});
+</script>
+
+<% end %>
+
+
+
+

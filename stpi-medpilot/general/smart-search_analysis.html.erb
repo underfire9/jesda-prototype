@@ -1,0 +1,166 @@
+<!-- template: smart search - Analysis (Step 2) -->
+
+<div class="breadcrumb-container">
+    <div class="container-lg">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+<div class="container-lg">
+    <main class="main">
+        
+        <div class="step-bar four-step">
+            <ul>
+                <li class="done">
+                    <span>
+                        <span class="step">1</span>
+                        <h4>Description</h4>
+                    </span>
+                </li>
+                <li class="active">
+                    <span>
+                        <span class="step">2</span>
+                        <h4>Analysis</h4>
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <span class="step">3</span>
+                        <h4>Classification</h4>
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <span class="step">4</span>
+                        <h4>Product List</h4>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        
+        <h3 class="text-center">Title：Zeta Cranial Navigation System (Zns131-Us)</h3>
+        
+        <section class="section">
+            <div class="section-title">
+                <h4>Improving AI Results</h4>
+            </div>
+            
+            <!-- 以下 textarea 需要的行數起始值請視資料多寡自行調整 -->
+            
+            <div class="mb-4">
+                <label class="form-label fw-bold" for="exampleTextarea01">Determine if your product meets the definition of a medical device</label>
+                <textarea class="form-control" id="exampleTextarea01" rows="6" value="Disabled readonly" disabled readonly>
+123
+                </textarea>
+            </div>
+            
+            <div class="mb-4">
+                <label class="form-label fw-bold" for="exampleTextarea02">Potential Applications</label>
+                <textarea class="form-control" id="exampleTextarea02" rows="6" value="Disabled readonly" disabled readonly>
+123
+                </textarea>
+            </div>
+            
+            <div class="mb-4">
+                <label class="form-label fw-bold" for="exampleTextarea03">Benchmark Product</label>
+                <textarea class="form-control" id="exampleTextarea03" rows="6" value="Disabled readonly" disabled readonly>
+123
+                </textarea>
+            </div>
+            
+            
+            <!-- 再次點選按鈕恢復不可編輯狀態的 js 寫不出來，煩請工程師協助 -->
+            <div class="mb-4 textarea-edit">
+                <label class="form-label fw-bold" for="exampleTextarea04">Device description </label>
+                <textarea class="form-control editable" id="exampleTextarea04" rows="6" disabled readonly>
+123
+                </textarea>
+                <button type="button" class="btn btn-rounded btn-light btn-edit" title="edit"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            
+            <div class="mb-4 textarea-edit">
+                <label class="form-label fw-bold" for="exampleTextarea05">Indications for Use </label>
+                <textarea class="form-control editable" id="exampleTextarea05" rows="6" disabled readonly>
+123
+                </textarea>
+                <button type="button" class="btn btn-rounded btn-light btn-edit" title="edit"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            
+            <div class="mb-4">
+                <label class="form-label fw-bold">Please choose to generate online or create a schedule</label>
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioOptions" id="radio1" value="option1" />
+                        <label class="form-check-label" for="radio1">Online instant generation (can be completed in about 2-3 minutes)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioOptions" id="radio2" value="option2" />
+                        <label class="form-check-label" for="radio2">Scheduled generation (no need to wait, the system will notify you and bring the results into the system field after generation)</label>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="form-action">
+                <a href="#" class="btn btn-lg btn-light btn-back">
+                    <i class="fas fa-long-arrow-alt-left"></i> Back
+                </a>
+                <button type="button" class="btn btn-lg btn-primary">GenAi</button>
+            </div>
+            
+            <!-- 排程按鈕 -->
+            <!--div class="form-action">
+                <button type="button" class="btn btn-lg btn-outline-primary">Schedule created</button>
+                <button type="button" class="btn btn-lg btn-outline-danger">Cancel scheduled</button>
+            </div-->
+            
+        </section>
+        
+    </main>
+</div>
+
+
+<% content_for :js do %>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 取得所有 .textarea-edit 元素
+    const textareaEdits = document.querySelectorAll('.textarea-edit');
+
+    textareaEdits.forEach(textareaEdit => {
+        // 為每個 .textarea-edit 元素中的按鈕添加點擊事件監聽器
+        const btnEdit = textareaEdit.querySelector('.btn-edit');
+        const textarea = textareaEdit.querySelector('.editable');
+
+        // 初始狀態為不可編輯
+        let isEditable = false;
+
+        btnEdit.addEventListener('click', function() {
+            if (!isEditable) {
+                // 移除 textarea 的 disabled 和 readonly 屬性
+                textarea.disabled = false;
+                textarea.readOnly = false;
+                // 給按鈕添加 disabled 屬性
+                btnEdit.disabled = true;
+            } else {
+                // 添加 textarea 的 disabled 和 readonly 屬性
+                textarea.disabled = true;
+                textarea.readOnly = true;
+                // 移除按鈕的 disabled 屬性
+                btnEdit.disabled = false;
+            }
+            // 切換狀態
+            isEditable = !isEditable;
+        });
+    });
+});
+
+</script>
+<% end %>
+

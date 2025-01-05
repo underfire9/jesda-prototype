@@ -1,0 +1,286 @@
+<!-- template: 出國: 學生 - 申請表填寫 個人資料 -->
+
+<div class="workspace" canvas="container">
+    <div class="pages general-pages">
+        
+        <%= render :partial => "/partials/header-outgoing" %>
+        
+        <div class="content">
+            <div class="container-lg">
+                <div class="page-content has-sticky">
+                    
+                    <%= render :partial => "/partials/outgoing-app-sidebar" %>
+                    
+                    <main class="main">
+                        
+                        <!-- 規劃中很多欄位給了必填，包含 readonly，因為不知道正確性所以都沒給 *，需要的話請參考第一個 -->
+                        
+                        <section class="section mt-0">
+                            <div class="section-title">
+                                <h4>個人資料</h4>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">中文姓名</label>
+                                        <input class="form-control" type="text" value="妮可基嫚" disabled readonly>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">英文姓</label>
+                                        <input class="form-control" type="text" value="Kidman" disabled readonly>
+                                        <div class="form-text">與護照相同</div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">英文名</label>
+                                        <input class="form-control" type="text" value="Nicole" disabled readonly>
+                                        <div class="form-text">與護照相同</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth" class="form-label">生日</label>
+                                        <input type="date" class="form-control" id="dateOfBirth" name="trip-start1" value="2006-01-01" min="2000-01-01" max="2010-12-31">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="form-label">國籍</label>
+                                        <select class="form-select" id="single-select-field" data-placeholder="請選擇國家">
+                                            <option></option>
+                                            <option>Reactive</option>
+                                            <option>Solution</option>
+                                            <option>Conglomeration</option>
+                                            <option>Algoritm</option>
+                                            <option>Holistic</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="form-label">性別</label>
+                                        <div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="msMale" value="option1" checked>
+                                                <label class="form-check-label" for="msMale">男</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="msFemale" value="option2">
+                                                <label class="form-check-label" for="msFemale">女</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="ms-wrapper">
+                                        <div class="form-group">
+                                            <label class="form-label">兵役狀態</label>
+                                            <div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                    <label class="form-check-label" for="inlineRadio1">役男</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                    <label class="form-check-label" for="inlineRadio2">免役</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                    <label class="form-check-label" for="inlineRadio2">役畢</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label">雙重國籍</label>
+                                        <div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">否</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">是</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">NTU信箱</label>
+                                        <input class="form-control" type="text" value="N12345@ntu.edu.tw" disabled readonly>
+                                    </div>
+                                </div>
+                                
+                                <!-- 輸入備用信箱後認證 js 不會寫，麻煩工程師協助 -->
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="outgoingInput01" class="form-label">備用信箱</label>
+                                        <input id="outgoingInput01" class="form-control" type="email">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">備用信箱認證</label>
+                                        <div>
+                                            <span>已寄出認證信</span>
+                                            <button type="button" class="btn btn-light" disabled>寄送認證通知信</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="outgoingInput02" class="form-label">手機號碼</label>
+                                        <input id="outgoingInput02" class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="form-label">中、低收入戶</label>
+                                        <div class="mt-1">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineOptions01" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">否</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineOptions01" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">是</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        <label class="form-label">住家地址</label>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <input class="form-control" type="text" placeholder="郵遞區號">
+                                            </div>
+                                            <div class="col-9">
+                                                <input class="form-control" type="text" placeholder="地址">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">住家電話</label>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input class="form-control" type="text" placeholder="區碼">
+                                            </div>
+                                            <div class="col-8">
+                                                <input class="form-control" type="text" placeholder="電話號碼">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label">戶籍地址</label>
+                                        <div class="mb-2 form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                                            <label class="form-check-label" for="exampleCheck1">與住家地址相同</label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <input class="form-control" type="text" placeholder="郵遞區號">
+                                            </div>
+                                            <div class="col-10">
+                                                <input class="form-control" type="text" placeholder="地址">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">緊急連絡人</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" type="text" placeholder="姓名">
+                                            </div>
+                                            <div class="col-6">
+                                                <input class="form-control" type="text" placeholder="關係">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label">緊急連絡人電話</label>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input class="form-control" type="text" placeholder="區碼">
+                                            </div>
+                                            <div class="col-8">
+                                                <input class="form-control" type="text" placeholder="電話號碼">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label class="form-label" for="phoneInput">緊急連絡人手機</label>
+                                        <input id="phoneInput" class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <div class="form-action">
+                            <button type="submit" class="btn btn-lg btn-primary">儲存</button>
+                            <span class="has-history"><button type="button" class="btn btn-lg btn-light">下一步 <i class="fas fa-chevron-right"></i></button></span>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <a id="backtop"></a>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<% content_for :js do %>
+
+<!-- Select2 + bootstrap theme -->
+<script src="../../javascripts/select2.full.min.js"></script>
+<script type="text/javascript">
+$( '#single-select-field' ).select2( {
+    theme: "bootstrap-5",
+    width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+    placeholder: $( this ).data( 'placeholder' ),
+} );
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const msMale = document.getElementById('msMale');
+    const msFemale = document.getElementById('msFemale');
+    const msWrapper = document.querySelector('.ms-wrapper');
+
+    // 函數用於切換 .ms-wrapper 的顯示/隱藏
+    function toggleMsWrapper() {
+        if (msMale.checked) {
+            msWrapper.style.display = 'block';
+        } else if (msFemale.checked) {
+            msWrapper.style.display = 'none';
+        }
+    }
+
+    // 監聽 radio 按鈕的變化事件
+    msMale.addEventListener('change', toggleMsWrapper);
+    msFemale.addEventListener('change', toggleMsWrapper);
+
+    // 初始化設定
+    toggleMsWrapper();
+});
+
+</script>
+
+<% end %>

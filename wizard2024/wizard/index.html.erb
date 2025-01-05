@@ -1,0 +1,83 @@
+<!-- template: Wizard -->
+
+<div class="wizard-container">
+	<div class="wizard-head">
+        <div class="head-satrt">
+            <div class="logo">
+                <img src="../assets/logo-dark.svg">
+            </div>
+            <div class="system-title">Jesda Wizard 2024</div>
+        </div>
+        <div class="head-end">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">工具</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">設定</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="wizard-body">
+        <div class="wizard-sidebar">
+            <div class="sidebar-hd">
+                <div class="d-flex">
+                    <span class="me-2">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-title="新增 Table">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </span>
+                    <span>
+                        <div class="input-group">
+                            <input type="text" class="form-control" />
+                            <button class="btn btn-dark" type="button"><i class="fas fa-search"></i></button>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="sidebar-bd">
+                <div class="scrollbar-inner">
+                    <ul class="wizard-nav menu-item">
+                        <% (1..30).map do |i| %>
+                        <li>
+                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="<%= lorem_word %>_<%= lorem_word %>_<%= lorem_word %>"><%= lorem_word %>_<%= lorem_word %>_<%= lorem_word %></a>
+                        </li>
+                        <li>
+                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="<%= lorem_word %>_<%= lorem_word %>_<%= lorem_word %>_<%= lorem_word %>"><%= lorem_word %>_<%= lorem_word %>_<%= lorem_word %>_<%= lorem_word %></a>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="scrollbar-inner">
+                <div class="content-inner">
+                    <% (1..5).map do |i| %>
+                    <p><%= lorem_paragraphs(10) %></p>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+<script>
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+    
+<% end %>
+

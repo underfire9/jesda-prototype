@@ -1,0 +1,90 @@
+<!-- template: 來校: 學生 - nationality -->
+
+<div class="workspace" canvas="container">
+    <div class="pages general-pages">
+        
+        <%= render :partial => "/partials/header-incoming" %>
+        
+        <div class="content">
+            <div class="container-lg">
+                <div class="page-content has-sticky">
+                    
+                    <%= render :partial => "/partials/incoming-app-sidebar" %>
+                    
+                    <main class="main">
+                        <div class="page-title">
+                            <h3>Nationality</h3>
+                        </div>
+                        <div class="mb-3">
+                            NTU does not accept exchange students with only Taiwan (R.O.C.) passport. If you have dual nationalities, please make sure you fill in the necessary information of both nationalities. If you are from Mainland China, please fill in additional information for the application of Entry Permit to Taiwan.
+                        </div>
+                        
+                        <!-- 所有欄位都是必填不用再給 .required -->
+                        
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label class="form-label">Nationality</label>
+                                    <select class="form-select" id="single-select-field" data-placeholder="Select Country">
+                                        <option></option>
+                                        <option>Reactive</option>
+                                        <option>Solution</option>
+                                        <option>Conglomeration</option>
+                                        <option>Algoritm</option>
+                                        <option>Holistic</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label for="exampleInput21" class="form-label">Passport number</label>
+                                    <input id="exampleInput21" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Do you have a Taiwan passport?</label>
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Yes，The Taiwanese passport number：
+                                        </label>
+                                        <div class="w-50 mt-1"><input class="form-control" type="text"></div>
+                                        <div class="form-text mb-2">Note: Students only holding Taiwanese passport are not qualified in the incoming exchange program</div>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked="">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-action">
+                            <button type="submit" class="btn btn-lg btn-primary">Save</button>
+                            <span class="has-history"><button type="button" class="btn btn-lg btn-light">Next <i class="fas fa-chevron-right"></i></button></span>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <a id="backtop"></a>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<% content_for :js do %>
+
+<!-- Select2 + bootstrap theme -->
+<script src="../../javascripts/select2.full.min.js"></script>
+<script type="text/javascript">
+$( '#single-select-field' ).select2( {
+    theme: "bootstrap-5",
+    width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+    placeholder: $( this ).data( 'placeholder' ),
+} );
+</script>
+
+<% end %>

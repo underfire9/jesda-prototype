@@ -1,0 +1,93 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body class="outgoing-body">
+	<%= yield %>
+	
+    <script src="../../javascripts/jquery-3.7.1.min.js"></script>
+    <script src="../../javascripts/popper.min.js"></script>
+    <script src="../../javascripts/bootstrap.bundle.min.js"></script>
+    
+    <!-- Back to top -->
+    <script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+    </script>
+	
+    <!-- sidebar sticky -->
+    <script>
+        var stickEl = $('.side-sticky'),
+          stickyElTop = stickEl.offset().top;
+
+        var sticky = function(){  
+          var scrollTop = $(window).scrollTop();  
+
+          if (stickyElTop < scrollTop+20) {   
+              stickEl.addClass('is-fixed');  
+          } else {  
+              stickEl.removeClass('is-fixed');   
+          }  
+        };
+
+        $(window).scroll(function() {
+          sticky();
+        }); 
+    </script>
+
+    <!-- 監看 .aside 高度 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 獲取 .aside 和 .main 元素
+            var asideElement = document.querySelector('.aside');
+            var mainElement = document.querySelector('.main');
+
+            // 檢查是否找到了 .aside 和 .main
+            if (asideElement && mainElement) {
+                // 監聽窗口大小變化事件
+                window.addEventListener('resize', function() {
+                    // 獲取 .aside 的內容高度
+                    var asideContentHeight = asideElement.scrollHeight;
+
+                    // 設置 .main 的最小高度
+                    mainElement.style.minHeight = asideContentHeight + 'px';
+                });
+
+                // 在窗口加載時觸發一次，以確保最小高度正確設置
+                window.dispatchEvent(new Event('resize'));
+            }
+        });
+    </script>
+    
+    <!-- Submitted -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnSubmit = document.querySelector('.btn-submit');
+            const actionSubmitted = document.querySelector('.action-submitted');
+
+            btnSubmit.addEventListener('click', function() {
+                // 給 .btn-submit 增加 class name .submitted
+                btnSubmit.classList.add('submitted');
+                // 給 .action-submitted 增加 class name .show
+                actionSubmitted.classList.add('show');
+            });
+        });
+    </script>
+    
+    <%= yield :js %>
+</body>
+</html>

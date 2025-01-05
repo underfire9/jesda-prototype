@@ -1,0 +1,175 @@
+<!-- admin-page: 特製元件 -->
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h1>客製化元件</h1>
+        <p>元件部分沒有設定與上下區塊的間距，有需要時需另外加上，請參考 <a href="https://getbootstrap.com/docs/5.3/utilities/spacing/#margin-and-padding">Bootstrap Margin and padding</a></p>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="col-block">
+                <div class="block-header has-border"><h5>橫向資訊區塊</h5></div>
+                <div class="block-content">
+                    <p>範例有加上 <code>py-4</code></p>
+                    
+                    <!-- 元件 -->
+                    <div class="horizontal-info py-4">
+                        <ul class="menu-item">
+                            <li>
+                                <span class="label">教師編號</span>
+                                <span class="output">EA1234</span>
+                            </li>
+                            <li>
+                                <span class="label">姓名</span>
+                                <span class="output">弓長張</span>
+                            </li>
+                            <li>
+                                <span class="label">學院</span>
+                                <span class="output">工程學院</span>
+                            </li>
+                            <li>
+                                <span class="label">系所</span>
+                                <span class="output">機械與電腦輔助工程系</span>
+                            </li>
+                            <li>
+                                <span class="label">Email</span>
+                                <span class="output">abcdef@email.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 元件結束 -->  
+                
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="col-block">
+                <div class="block-header has-border"><h5>有連結 Step</h5></div>
+                <div class="block-content">
+                    <p>範例有加上 <code>my-4</code></p>
+                    <p>有連結，數量超過視窗寬度出現 scrollbar</p>
+                    
+                    <!-- 元件 -->
+                    <div class="log-step my-4">
+                        
+                        <!-- 數量超過視窗寬度出現 scrollbar -->
+                        <div class="scrollbar-inner">
+                            
+                            <ul class="menu-item">
+                                <li>
+                                    
+                                    <!-- a counseling-link -->
+                                    <a href="#" class="counseling-link">
+                                        <span class="step"><i></i></span>
+                                        <span class="type">電話紀錄</span>
+                                        <span class="date">2024-10-12</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="counseling-link">
+                                        <span class="step"><i></i></span>
+                                        <span class="type">郵件紀錄</span>
+                                        <span class="date">2024-11-12</span>
+                                    </a>
+                                </li>
+                                <% (1..4).map do |i| %>
+                                <li>
+                                    <a href="#" class="counseling-link">
+                                        <span class="step"><i></i></span>
+                                        <span class="type">會議紀錄</span>
+                                        <span class="date">2024-12-01</span>
+                                    </a>
+                                </li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 元件結束 -->
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="col-block">
+                <div class="block-header has-border"><h5>純文字 Step</h5></div>
+                <div class="block-content">
+                    <p>範例有加上 <code>py-4</code></p>
+                    <p>純文字資訊，item 寬度固定，數量超出區塊寬度會破版。只有 check，需要其他樣式再呼叫 fire。</p>
+                    
+                    <!-- 元件 -->
+                    <div class="log-step py-4">
+                        <ul class="menu-item">
+
+                            <!-- li item-step -->
+                            <li class="item-step">
+                                <span class="step"><i></i></span>
+                                <span class="type">送出申請</span>
+                                <span class="date">2024-10-12 12:00</span>
+                                <span class="name"><%= zh_lorem_name %></span>
+                            </li>
+                            <li class="item-step">
+                                <span class="step"><i></i></span>
+                                <span class="type">初審通過</span>
+                                <span class="date">2024-10-12 12:00</span>
+                                <span class="name"><%= lorem_name %></span>
+                            </li>
+                            <li class="item-step">
+                                <span class="step"><i></i></span>
+                                <span class="type">複審通過</span>
+                                <span class="date">2024-10-12 12:00</span>
+                                <span class="name"><%= zh_lorem_name %></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 元件結束 -->
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="col-block">
+                <div class="block-header has-border"><h5>檔案上傳</h5></div>
+                <div class="block-content">
+
+                    <div class="upload-wrapper fluid-wrapper">
+                        <div class="upload-item">
+                            <h5 class="mb-3"><%= lorem_words(4) %></h5>
+                            <div class="form-group input-group">
+                                  <input class="form-control" type="file" id="photoFile">
+                                  <button class="btn btn-secondary" type="button" id="button-addon2">上傳</button>
+                            </div>
+                            <div class="ft-action">
+                                <span>
+                                    <div class="file-pill">
+                                        <!-- 避免檔名過長有限制最大寬度 160px，超出時會字元會省略，但切記標籤加上 title -->
+                                        <a href="#" target="_blank" class="filename" title="避免檔名過長有限制最大寬度.jpg">避免檔名過長有限制最大寬度.jpg</a>
+                                        <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </span>
+                                <span class="last-date">最後更新時間 : 2024-08-02 12:00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="upload-item">
+                            <h5 class="mb-3"><%= lorem_words(6) %></h5>
+                            <div class="form-group input-group">
+                                  <input class="form-control" type="file" id="photoFile">
+                                  <button class="btn btn-secondary" type="button" id="button-addon2">上傳</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<% content_for :js do %>
+
+<% end %>
+

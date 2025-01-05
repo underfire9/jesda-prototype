@@ -1,0 +1,121 @@
+<!-- template: 資料庫系統使用單位查詢 -->
+
+<div class="container-lg">
+    <div class="section-title">
+        <h3>資料庫系統使用統計列表</h3>
+    </div>
+    
+    <div class="institution-filter-wrap">
+        <div class="wrap">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>2024</option>
+              <option value="1">2023</option>
+              <option value="2">2022</option>
+              <option value="3">2021</option>
+            </select>
+        </div>
+        
+        <div class="wrap">
+            <select class="form-select" aria-label="Default select example">
+              <option value="0" selected>依使用單位查詢</option>
+              <option value="1">依資料庫查詢</option>
+            </select>
+        </div>
+
+        <!-- .wrap 請根據最長字串調整 width -->
+        <div class="wrap" style="width: 30%;">
+            <select class="form-select" id="single-select-optgroup-field" data-placeholder="請選擇資料庫">
+                <option></option>
+                <optgroup label="系統名稱 <%= lorem_words(2) %>">
+                    <option>資料庫名稱 <%= lorem_words(2) %></option>
+                    <option>資料庫名稱 <%= lorem_words(4) %></option>
+                    <option>資料庫名稱 <%= lorem_words(3) %></option>
+                </optgroup>
+                <optgroup label="系統名稱 <%= lorem_words(2) %>">
+                    <option>資料庫名稱 <%= lorem_words(2) %></option>
+                    <option>資料庫名稱 <%= lorem_words(4) %></option>
+                </optgroup>
+            </select>
+        </div>
+
+        <span>
+            <button type="button" class="btn btn-primary">查詢</button>
+        </span>
+    </div>
+    
+    <div class="institution-list-wrapper">
+        <ul class="menu-item institution-list">
+            <% (1..6).map do |i| %>
+            <li><span class="inner-span">CINAHL Collection</span></li>
+            <li><span class="inner-span">Communication & Mass Media Complete</span></li>
+            <li><span class="inner-span">EconLit</span></li>
+            <li><span class="inner-span">Education Research Complete</span></li>
+            <li><span class="inner-span">Library Literature and Information Science Full Text (H.W. Wilson)</span></li>
+            <% end %>
+        </ul>
+    </div>
+    
+</div>
+
+<% content_for :js do %>
+
+<!-- Select2 + bootstrap theme -->
+<script src="../javascripts/select2.full.min.js"></script>
+<script>
+    $( '#select-field' ).select2( {
+        theme: 'bootstrap-5'
+    } );
+
+    $( '#single-select-optgroup-field' ).select2( {
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+    } );
+</script>
+
+<script>
+$(document).ready(function() {
+    // 函數來設置每個 .inner-span 的高度
+    function setInnerSpanHeight() {
+        var maxHeight = 0;
+
+        // 遍歷每個 .inner-span 並計算最大高度
+        $('.institution-list li .inner-span').each(function() {
+            var currentHeight = $(this).outerHeight(); // 使用 outerHeight 確保包括 padding
+            if (currentHeight > maxHeight) {
+                maxHeight = currentHeight;
+            }
+        });
+
+        // 設置每個 .inner-span 的高度
+        $('.institution-list li .inner-span').each(function() {
+            $(this).css('height', maxHeight + 'px');
+        });
+    }
+
+    // 初始設置高度
+    setInnerSpanHeight();
+
+    // 當窗口大小改變時重新計算高度
+    $(window).resize(function() {
+        // 清除之前設置的高度，重新計算
+        $('.institution-list li .inner-span').css('height', 'auto');
+        setInnerSpanHeight();
+    });
+});
+</script>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+

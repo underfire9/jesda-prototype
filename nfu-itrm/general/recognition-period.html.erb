@@ -1,0 +1,159 @@
+<!-- template: 成果認定 - 選擇研習期間 -->
+
+<div class="container-lg">
+    <nav class="nav-breadcrumb" aria-label="breadcrumb">
+        <div class="container-lg">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">首頁</a></li>
+                <li class="breadcrumb-item active" aria-current="page">申請成果認定</li>
+            </ol>
+        </div>
+    </nav>
+
+	<div class="page-content d-block">
+        
+        <div class="step-wrapper">
+            <div class="scrollbar-inner">
+                <ul class="step-menu menu-item">
+                    <li class="step-item done">
+                        <span class="number">1</span>
+                        <span class="description">填寫申請表</span>
+                    </li>
+                    <li class="step-item current">
+                        <span class="number">2</span>
+                        <span class="description">選擇研習期間</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">3</span>
+                        <span class="description">上傳附件</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">4</span>
+                        <span class="description">送出申請</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="basic-notice">
+            <p><%= lorem_paragraph %></p>
+            <p><%= lorem_paragraph %></p>
+        </div>
+        
+        <section class="section">
+            <div class="section-title">
+                <h4>形式一：教師至合作機構或產業實地服務或研究</h4>
+            </div>
+            <div class="form-group">
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheck01" />
+                        <label class="form-check-label" for="formCheck01">
+                            2024-01-01 ~ 2024-08-01 <%= zh_lorem_words(12) %>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheck02" />
+                        <label class="form-check-label" for="formCheck02">
+                            2025-01-01 ~ 2025-08-01 <%= zh_lorem_words(16) %>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="section-title">
+                <h4>形式二：教師至合作機構或產業進行產學合作計畫案</h4>
+            </div>
+            
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>計畫核定編號</th>
+                            <th>計畫名稱</th>
+                            <th>計畫起訖日期</th>
+                            <th class="text-center">累計期間</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..3).map do |i| %>
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="formCheck1<%= i %>" />
+                                    <label class="form-check-label" for="formCheck1<%= i %>"></label>
+                                </div>
+                            </td>
+                            <td>11<%= i %>--AZ-59</td>
+                            <td><%= zh_lorem_words(20) %></td>
+                            <td>2021/01/01 ~ 2021/12/31</td>
+                            <td class="text-center">12 月</td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="section-title">
+                <h4>形式三：教師參與學校與合作機構或產業共同規劃辦理之深度實務研習</h4>
+            </div>
+            <div class="form-group">
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheck03" />
+                        <label class="form-check-label" for="formCheck03">
+                            2024-01-01 ~ 2024-08-01 <%= zh_lorem_words(15) %>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="formCheck04" />
+                        <label class="form-check-label" for="formCheck04">
+                            2025-01-01 ~ 2025-08-01 <%= zh_lorem_words(17) %>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="form-action">
+            <button type="button" class="btn btn-lg btn-light">上一步</button>
+            <button type="button" class="btn btn-lg btn-primary">儲存</button>
+            <button type="button" class="btn btn-lg btn-light">下一步</button>
+        </div>
+        
+	</div>
+</div>
+
+<% content_for :js do %>
+
+<!-- mobile 視窗指定卷軸位置 -->
+<script>
+$(document).ready(function() {
+    // 判斷是否為小視窗
+    if ($(window).width() <= 768) {
+        // 設定橫向卷軸到指定的 .current 元素位置
+        var currentItem = $('.step-item.current');
+        if (currentItem.length) {
+            var scrollPosition = currentItem.position().left;
+            $('.scrollbar-inner').scrollLeft(scrollPosition);
+        }
+    }
+});
+</script>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+

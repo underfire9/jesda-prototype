@@ -1,0 +1,69 @@
+<!-- template: 出國: 學生 - 退補件上傳 -->
+
+<div class="workspace" canvas="container">
+    <div class="pages general-pages">
+        
+        <%= render :partial => "/partials/header-outgoing" %>
+        
+        <div class="content">
+            <div class="container-lg">
+                <div class="page-content has-sticky">
+                    
+                    <%= render :partial => "/partials/outgoing-result-sidebar" %>
+                    
+                    <main class="main">
+                        <div class="page-title">
+                            <h3>退補件上傳</h3>
+                        </div>
+                        
+                        <section class="section">
+                            <div class="section-title">
+                                <h4>申請文件電子檔上傳</h4>
+                            </div>
+                            
+                            <div class="upload-wrapper fluid-wrapper">
+                                <!-- 檔案上傳後多出 .file-pill，當再次上傳時則覆蓋上一筆，點選檔名另開視窗觀看文件 -->
+                                
+                                <% (1..2).map do |i| %>
+                                <div class="upload-item">
+                                    <h4><%= zh_lorem_words(4) %></h4>
+                                    <p class="text-danger"><%= zh_lorem_paragraph %></p>
+                                    <p><a href="#" class="btn btn-link"><i class="far fa-file-alt"></i> 範本下載</a></p>
+                                    <p class="form-text">檔案格式限制：pdf，檔案大小限制：10mb</p>
+                                    <div class="form-group">
+                                          <input class="form-control" type="file" id="photoFile">
+                                    </div>
+                                    <div class="ft-action">
+                                        <span>
+                                            <button type="button" class="btn btn-secondary">上傳</button>
+                                        </span>
+                                        <span>
+                                            <div class="file-pill">
+                                                <!-- 避免檔名過長有限制最大寬度 140px，超出時會字元會省略，但切記標籤加上 title -->
+                                                <a href="#" target="_blank" class="filename" title="避免檔名過長有限制最大寬度.jpg">避免檔名過長有限制最大寬度.jpg</a>
+                                                <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <% end %>
+                            </div>
+                        </section>
+                        
+                        <div class="form-action">
+                            <button type="submit" class="btn btn-lg btn-primary">送出</button>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <a id="backtop"></a>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<% content_for :js do %>
+
+<% end %>

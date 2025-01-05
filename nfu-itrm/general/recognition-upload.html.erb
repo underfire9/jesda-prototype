@@ -1,0 +1,159 @@
+<!-- template: 成果認定 - 上傳附件 -->
+
+<div class="container-lg">
+    <%= render :partial => "/partials/breadcrumb" %>
+
+	<div class="page-content d-block">
+        
+        <div class="step-wrapper">
+            <div class="scrollbar-inner">
+                <ul class="step-menu menu-item">
+                    <li class="step-item done">
+                        <span class="number">1</span>
+                        <span class="description">填寫申請表</span>
+                    </li>
+                    <li class="step-item done">
+                        <span class="number">2</span>
+                        <span class="description">選擇研習期間</span>
+                    </li>
+                    <li class="step-item current">
+                        <span class="number">3</span>
+                        <span class="description">上傳附件</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">4</span>
+                        <span class="description">送出申請</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="basic-notice">
+            <p><%= lorem_paragraph %></p>
+            <p><%= lorem_paragraph %></p>
+        </div>
+        
+        <section class="section">
+            <div class="section-title">
+                <h4>形式一：教師至合作機構或產業實地服務或研究</h4>
+            </div>
+            <div class="upload-wrapper register-upload">
+                <div class="upload-item">
+                    <div class="item-bd">
+                        <h5 class="mb-3">2024-01-01 ~ 2024-08-01 <%= zh_lorem_words(12) %></h5>
+                        <h4>執行成果報告書</h4>
+                        <div class="action-group">
+                            <div class="input-chip">
+                                <input class="form-control" type="file" id="fileInput1">
+                            </div>
+                            <div class="btn-chip">
+                                <span><button type="button" class="btn btn-secondary">上傳</button></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 上傳檔案前沒有 .ft-action -->
+                    <div class="ft-action">
+                        <span>
+                            <div class="file-pill">
+                                <!-- 避免檔名過長有限制最大寬度 192px，超出時會字元會省略 -->
+                                <a href="#" target="_blank" class="filename" title="避免檔名過長有限制最大寬度.jpg" title="{連結名稱}">避免檔名過長有限制最大寬度.jpg</a>
+                                <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </span>
+                        <span class="last-time">最後更新時間 : 2024-08-02 12:00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="section-title">
+                <h4>形式二：教師至合作機構或產業進行產學合作計畫案</h4>
+            </div>
+            <h5 class="mb-3">校內計畫編號校內計畫編號 / 產學計畫案名稱產學計畫案名稱</h5>
+            <ul class="menu-item upload-file-list">
+                <% (1..2).map do |i| %>
+                <li><a href="#" class="files-link"><%= zh_lorem_words(9) %>.pdf</a></li>
+                <li><a href="#" class="files-link"><%= zh_lorem_words(7) %>.pdf</a></li>
+                <li><a href="#" class="files-link"><%= zh_lorem_words(11) %>.pdf</a></li>
+                <% end %>
+                <li><a href="#" class="files-link"><%= zh_lorem_words(8) %>.pdf</a></li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <div class="section-title">
+                <h4>形式三：教師參與學校與合作機構或產業共同規劃辦理之深度實務研習</h4>
+            </div>
+            <div class="upload-wrapper register-upload">
+                <div class="upload-item">
+                    <div class="item-bd">
+                        <h5 class="mb-3">2024-01-01 ~ 2024-08-01 <%= zh_lorem_words(12) %></h5>
+                        <h4>研習證明</h4>
+                        <div class="action-group">
+                            <div class="input-chip">
+                                <input class="form-control" type="file" id="fileInput1">
+                            </div>
+                            <div class="btn-chip">
+                                <span><button type="button" class="btn btn-secondary">上傳</button></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 上傳檔案前沒有 .ft-action -->
+                    <div class="ft-action">
+                        <span>
+                            <div class="file-pill">
+                                <!-- 避免檔名過長有限制最大寬度 192px，超出時會字元會省略 -->
+                                <a href="#" target="_blank" class="filename" title="避免檔名過長有限制最大寬度.jpg" title="{連結名稱}">避免檔名過長有限制最大寬度.jpg</a>
+                                <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </span>
+                        <span class="last-time">最後更新時間 : 2024-08-02 12:00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="form-action">
+            <button type="button" class="btn btn-lg btn-light">上一步</button>
+            <button type="button" class="btn btn-lg btn-primary">儲存</button>
+            <button type="button" class="btn btn-lg btn-light">下一步</button>
+        </div>
+        
+	</div>
+</div>
+
+<% content_for :js do %>
+
+<!-- mobile 視窗指定卷軸位置 -->
+<script>
+$(document).ready(function() {
+    // 判斷是否為小視窗
+    if ($(window).width() <= 768) {
+        // 設定橫向卷軸到指定的 .current 元素位置
+        var currentItem = $('.step-item.current');
+        if (currentItem.length) {
+            var scrollPosition = currentItem.position().left;
+            $('.scrollbar-inner').scrollLeft(scrollPosition);
+        }
+    }
+});
+</script>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+

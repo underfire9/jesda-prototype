@@ -1,0 +1,164 @@
+<!-- template: 單位基本資訊 -->
+
+<div class="container-lg">
+    <section class="section">
+        <div class="section-title">
+            <h3>單位基本資訊</h3>
+        </div>
+        <div class="section-inner mb-5">
+            <div class="information-wrap">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="formInput1" class="form-label">單位名稱(中)</label>
+                            <input type="text" class="form-control" id="formInput1" value="國立成功大學" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="formInput2" class="form-label">單位名稱(英)</label>
+                            <input type="text" class="form-control" id="formInput2" value="Cheng Kung, University" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formInput3" class="form-label">單位網址</label>
+                            <input type="text" class="form-control" id="formInput3" value="https://www.lib.ncku.edu.tw/">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formInput4" class="form-label">地址(中文)</label>
+                            <input type="text" class="form-control" id="formInput4">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formInput5" class="form-label">地址(英文)</label>
+                            <input type="text" class="form-control" id="formInput5">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formInput5" class="form-label">系統使用IP白名單設定</label>
+                            <span class="d-block mt-1">140.127.*.*,140.128.*.*,123.51.254.184~123.51.254.195</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="formInput6" class="form-label">單位主管姓名</label>
+                            <input type="text" class="form-control" id="formInput6" value="史家蕾">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="formInput7" class="form-label">單位主管 Email</label>
+                            <input type="email" class="form-control" id="formInput7">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="formInput8" class="form-label">單位主管電話</label>
+                            <input type="text" class="form-control" id="formInput8">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="movement-wrap">
+                <a href="#" class="btn btn-dark btn-rounded">申請單位名稱及IP異動</a>
+            </div>
+        </div>
+        
+        <div>
+            <div class="block-title">
+                <h4>訂購聯絡人名單</h4>
+            </div>
+            <div class="d-flex align-items-center my-4">
+                <div class="pe-4">
+                    <a href="#" class="btn btn-success btn-rounded">新增訂購聯絡人</a>
+                    <button type="button" class="btn btn-outline-danger btn-rounded">刪除</button>
+                </div>
+                <span class="form-text">各單位之會員單位聯絡人僅可新增一位「訂購調查聯絡人」，若本單位需要第2位以上請請聯繫系統管理員新增</span>
+            </div>
+            
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault"></label>
+                            </div>
+                        </th>
+                        <th></th>
+                        <th>姓名</th>
+                        <th>帳號</th>
+                        <th>帳號角色</th>
+                        <th>E-mail</th>
+                        <th>建立人員</th>
+                        <th class="text-end">最後修改時間</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% (1..6).map do |i| %>
+                    <tr>
+                        <td><%= i %></td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-light" title="編輯"><i class="fas fa-pen"></i></a>
+                        </td>
+                        <td><%= lorem_name %></td>
+                        <td><%= lorem_word %></td>
+                        <td>會員單位聯絡人</td>
+                        <td><%= lorem_word %>@<%= lorem_word %>.com.tw</td>
+                        <td><%= lorem_word %></td>
+                        <td class="text-end">2024-10-11 14:20</td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-survey btn-lg btn-primary px-5">儲存</button>
+            
+            <div class="form-action">
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn-confirm btn btn-lg btn-primary btn-rounded px-5">單位資訊內容確認無誤</button>
+                    <span class="btn-confirm-disabled btn btn-lg btn-outline-secondary btn-rounded px-5 disabled text-black">最後儲存時間：2024-08-25 12:53</span>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+</div>
+
+<% content_for :js do %>
+
+<script>
+    $(document).ready(function() {
+        $('.btn-confirm').click(function() {
+            $(this).hide(); // 隱藏 .btn-confirm
+            $('.btn-confirm-disabled').show(); // 顯示 .btn-confirm-disabled
+        });
+    });
+</script>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+

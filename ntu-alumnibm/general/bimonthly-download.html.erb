@@ -1,0 +1,98 @@
+<!-- template: 下載專區 -->
+
+<!-- 麵包屑 -->
+<nav aria-label="breadcrumb" class="nav-breadcrumb">
+    <div class="container-lg">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" title="{連結名稱}">首頁</a></li>
+            <li class="breadcrumb-item"><a href="#" title="{連結名稱}">雙月刊</a></li>
+            <li class="breadcrumb-item active" aria-current="page">第 152 期校友雙月刊</li>
+        </ol>
+    </div>
+</nav>
+
+<div class="container-lg">
+    
+    <div class="bimonthly-wrapper">
+        
+        <h3 class="page-heading"><span>雙月刊下載專區</span></h3>
+        
+        <div class="filter-bar">
+            <div class="select-condition">
+                
+                <!-- select 選擇年份後出現月份 -->
+                <div class="select-wrap select-years">
+                    <select class="form-select" aria-label="請選擇年度">
+                        <option selected>請選擇年度</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="select-wrap select-month">
+                    <select class="form-select" aria-label="請選擇月份">
+                        <option selected>請選擇月份</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-wrap">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="請輸入關鍵字" aria-label="請輸入關鍵字" aria-describedby="button-search2" />
+                    <button class="btn btn-secondary" type="button" id="button-search2"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <ul class="menu-item bimonthly-list bimonthly-download">
+            
+            <% (51..62).map do |i| %>
+            <li class="item-bimonthly">
+                <a class="item-link" href="#" title="下載 {第152期校友雙月刊}">
+                    <span class="date">2024-01</span>
+                    <span class="title">第 1<%= i %> 期校友雙月刊</span>
+                </a>
+            </li>
+            <% end %>
+            
+        </ul>
+        
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <li class="page-item disabled">
+                    <a class="page-link">上一頁</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">下一頁</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<% content_for :js do %>
+
+<!-- select 選擇年份後出現月份 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const selectYears = document.querySelector('.select-years select');
+    const selectMonth = document.querySelector('.select-month');
+
+    selectYears.addEventListener('change', function() {
+        const selectedYear = this.value;
+        if (selectedYear !== '請選擇年度') {
+            selectMonth.style.display = 'block';
+        } else {
+            selectMonth.style.display = 'none';
+        }
+    });
+});
+</script>
+<% end %>
+

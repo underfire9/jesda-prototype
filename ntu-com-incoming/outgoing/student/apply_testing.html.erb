@@ -1,0 +1,867 @@
+<!-- template: 出國: 學生 - 各項成績與語言檢定 -->
+
+<div class="workspace" canvas="container">
+    <div class="pages general-pages">
+        
+        <%= render :partial => "/partials/header-outgoing" %>
+        
+        <div class="content">
+            <div class="container-lg">
+                <div class="page-content has-sticky">
+                    
+                    <%= render :partial => "/partials/outgoing-app-sidebar" %>
+                    
+                    <!-- 因為有隱藏區塊，js 給 main 最小高度後導致跟 footer 之間距離過大，此頁面請將 "監看 .aside 高度" js 拿掉 -->
+                    <main class="main">
+                        
+                        <!-- 只有第一筆 section 需要給 .mt-0 -->
+                        <section class="section mt-0">
+                            <div class="section-title">
+                                <h4>上一學年成績</h4>
+                            </div>
+                            <p><span class="fw-bold">班級人數</span> 與 <span class="fw-bold">全班排名百分比%</span> 碩士生為非必填。</p>
+                            
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label class="form-label">學年</label>
+                                        <input class="form-control" type="text" value="113" disabled readonly>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="exInput01" class="form-label">名次排名</label>
+                                        <input id="exInput01"  class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="exInput02" class="form-label">班級人數</label>
+                                        <input id="exInput02" class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label class="form-label">全班排名百分比%</label>
+                                        <input class="form-control" type="text" value="50" disabled readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="section">
+                            <div class="section-title">
+                                <h4>各學期 GPA 成績</h4>
+                            </div>
+                            <p>若無碩士成績，GPA請填寫大學總成績</p>
+                            <div class="gpa-history-wrapper">
+                                <ul class="menu-item">
+                                    <% (1..2).map do |i| %>
+                                    <li>
+                                        <div class="me-3">
+                                            <label class="form-label">學年期別</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="exInput03" class="form-label">GPA</label>
+                                            <input id="exInput03" class="form-control" type="text">
+                                        </div>
+                                    </li>
+                                    <% end %>
+                                </ul>
+                                <div class="pt-2">
+                                    <button type="button" class="btn btn-outline-success btn-rounded"><i class="fas fa-plus"></i> 新增一筆 GPA 輸入</button>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="pe-3">
+                                    <div class="form-group">
+                                        <label class="form-label">歷年平均 GPA</label>
+                                        <input class="form-control" type="text" value="999" disabled readonly>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-group">
+                                        <label for="exInput04" class="form-label">歷年成績有幾個不及格科目</label>
+                                        <input type="number" id="exInput04" class="form-control" name="number21" min="1" max="100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">學士學位與哪些領域相關</label>
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1" />
+                                        <label class="form-check-label" for="radioDefault1">
+                                            Business (e.g. Accounting, Finance, Information Management, Marketing, etc.)
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" />
+                                        <label class="form-check-label" for="radioDefault2">
+                                            Economics
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault3" />
+                                        <label class="form-check-label" for="radioDefault3">
+                                            以上皆非
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="section">
+                            <div class="section-title">
+                                <h4>中文語文能力</h4>
+                            </div>
+                            <div class="form-group pt-2">
+                                <div class="d-flex">
+                                    <span class="fw-bold pe-5 ps-1">聽：</span>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions" id="chtRadio1" value="option1" />
+                                            <label class="form-check-label" for="chtRadio1">精通</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions" id="chtRadio2" value="option2" />
+                                            <label class="form-check-label" for="chtRadio2">流利</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions" id="chtRadio3" value="option3" />
+                                            <label class="form-check-label" for="chtRadio3">尚可</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions" id="chtRadio4" value="option4" />
+                                            <label class="form-check-label" for="chtRadio4">無法溝通</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <span class="fw-bold pe-5 ps-1">說：</span>
+                                    <div class="">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions2" id="chtRadio5" value="option1" />
+                                            <label class="form-check-label" for="chtRadio5">精通</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions2" id="chtRadio6" value="option2" />
+                                            <label class="form-check-label" for="chtRadio6">流利</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions2" id="chtRadio7" value="option3" />
+                                            <label class="form-check-label" for="chtRadio7">尚可</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions2" id="chtRadio8" value="option4" />
+                                            <label class="form-check-label" for="chtRadio8">無法溝通</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <span class="fw-bold pe-5 ps-1">讀：</span>
+                                    <div class="">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions3" id="chtRadio9" value="option1" />
+                                            <label class="form-check-label" for="chtRadio9">精通</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions3" id="chtRadio10" value="option2" />
+                                            <label class="form-check-label" for="chtRadio10">流利</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions3" id="chtRadio11" value="option3" />
+                                            <label class="form-check-label" for="chtRadio11">尚可</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions3" id="chtRadio12" value="option4" />
+                                            <label class="form-check-label" for="chtRadio12">無法溝通</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <span class="fw-bold pe-5 ps-1">寫：</span>
+                                    <div class="">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions4" id="chtRadio13" value="option1" />
+                                            <label class="form-check-label" for="chtRadio13">精通</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions4" id="chtRadio14" value="option2" />
+                                            <label class="form-check-label" for="chtRadio14">流利</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions4" id="chtRadio15" value="option3" />
+                                            <label class="form-check-label" for="chtRadio15">尚可</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="chtOptions4" id="chtRadio16" value="option4" />
+                                            <label class="form-check-label" for="chtRadio16">無法溝通</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="section">
+                            <div class="section-title">
+                                <h4>語文能力證明</h4>
+                            </div>
+                            
+                            <!-- 各語言勾選後的能力證明區塊 show/hide js 麻煩工程師處理 -->
+                            <div class="form-group mb-5">
+                                <div class="d-flex">
+                                    <div class="pt-2">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lanCheckbox1" value="option1" />
+                                            <label class="form-check-label" for="lanCheckbox1">英語</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lanCheckbox2" value="option2" />
+                                            <label class="form-check-label" for="lanCheckbox2">日語</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lanCheckbox3" value="option3" />
+                                            <label class="form-check-label" for="lanCheckbox3">德語</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lanCheckbox4" value="option4" />
+                                            <label class="form-check-label" for="lanCheckbox4">西班牙語</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lanCheckbox5" value="option5" />
+                                            <label class="form-check-label" for="lanCheckbox5">韓語</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lanCheckbox6" value="option6" />
+                                            <label class="form-check-label" for="lanCheckbox6">葡萄牙語</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lanCheckbox7" value="option7" />
+                                            <label class="form-check-label" for="lanCheckbox7">俄語</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lanCheckbox8" value="option8" />
+                                            <label class="form-check-label" for="lanCheckbox8">義大利語</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lanCheckbox9" value="option9" />
+                                            <label class="form-check-label" for="lanCheckbox9">法語</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="lanCheckbox10" value="option10" />
+                                            <label class="form-check-label" for="lanCheckbox10">華語</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="prove-wrapper">
+                                <h5 class="fw-bold"><span>英語能力證明</span></h5>
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="enToelfProve" />
+                                        <label class="form-check-label fw-bold" for="enToelfProve">TOEFL iBT</label>
+                                    </div>
+                                    <div class="entoelf-wrapper pb-4">
+                                        <div class="five-col mt-2">
+                                            <div class="form-group">
+                                                <label for="enInput01" class="form-label">讀</label>
+                                                <input type="number" id="enInput01" class="form-control" name="number01" min="1" max="30">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="enInput02" class="form-label">聽</label>
+                                                <input type="number" id="enInput02" class="form-control" name="number02" min="1" max="30">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="enInput03" class="form-label">說</label>
+                                                <input type="number" id="enInput03" class="form-control" name="number03" min="1" max="30">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="enInput04" class="form-label">寫</label>
+                                                <input type="number" id="enInput04" class="form-control" name="number04" min="1" max="30">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="enInput05" class="form-label">總分</label>
+                                                <input type="text" id="enInput05" class="form-control" disabled readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">測試日期</label>
+                                                    <div class="d-flex">
+                                                        <div class="flex-grow-1 me-2">
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>選擇年度</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>選擇月份</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">是否為 Home Edition</label>
+                                                    <div class="mt-1">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="heRadio" id="heYes" value="option1">
+                                                            <label class="form-check-label" for="heYes">是</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="heRadio" id="heNo" value="option2">
+                                                            <label class="form-check-label" for="heNo">否</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-secondary">不得填入 My Best Scores，相關介紹請參考美國 <a href="#">ETS 官網</a></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="enIeltsProve" />
+                                        <label class="form-check-label fw-bold" for="enIeltsProve">IELTS (Academic)</label>
+                                    </div>
+                                    <div class="enIelts-wrapper pb-4">
+                                        <div class="five-col mt-2">
+                                            <div class="form-group">
+                                                <label for="enInput06" class="form-label">讀</label>
+                                                <input type="number" id="enInput06" class="form-control" name="number06" min="1" max="30">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="enInput07" class="form-label">聽</label>
+                                                <input type="number" id="enInput07" class="form-control" name="number07" min="1" max="30">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="enInput08" class="form-label">說</label>
+                                                <input type="number" id="enInput08" class="form-control" name="number08" min="1" max="30">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="enInput09" class="form-label">寫</label>
+                                                <input type="number" id="enInput09" class="form-control" name="number09" min="1" max="30">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="enInput10" class="form-label">總分</label>
+                                                <input type="text" id="enInput10" class="form-control" disabled readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group mb-0">
+                                                    <label class="form-label">測試日期</label>
+                                                    <div class="d-flex">
+                                                        <div class="flex-grow-1 me-2">
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>選擇年度</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>選擇月份</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="prove-wrapper">
+                                <h5 class="fw-bold"><span>日語能力證明</span></h5>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div>
+                                            <label class="form-label">通過日語檢定</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <label class="form-label">測試日期</label>
+                                            <div class="d-flex">
+                                                <div class="flex-grow-1 me-2">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇年度</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇月份</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="prove-wrapper">
+                                <h5 class="fw-bold"><span>德語能力證明</span></h5>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div>
+                                            <label class="form-label">通過德語檢定</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div>
+                                            <label class="form-label">級數</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <label class="form-label">測試日期</label>
+                                            <div class="d-flex">
+                                                <div class="flex-grow-1 me-2">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇年度</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇月份</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="prove-wrapper">
+                                <h5 class="fw-bold"><span>法語能力證明</span></h5>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div>
+                                            <label class="form-label">通過法語檢定</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div>
+                                            <label class="form-label">級數</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <label class="form-label">測試日期</label>
+                                            <div class="d-flex">
+                                                <div class="flex-grow-1 me-2">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇年度</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇月份</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="prove-wrapper">
+                                <h5 class="fw-bold"><span>西班牙語能力證明</span></h5>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div>
+                                            <label class="form-label">通過西班牙語檢定</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div>
+                                            <label class="form-label">級數</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <label class="form-label">測試日期</label>
+                                            <div class="d-flex">
+                                                <div class="flex-grow-1 me-2">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇年度</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇月份</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 韓語 -->
+                            <div class="prove-wrapper">
+                                <h5 class="fw-bold"><span>韓語能力證明</span></h5>
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="topikProve" />
+                                        <label class="form-check-label fw-bold" for="topikProve">通過韓語 (TOPIK) 檢定</label>
+                                    </div>
+                                    <div class="topikProve-wrapper pb-4 mt-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">級數</label>
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇年度</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">測試日期</label>
+                                                    <div class="d-flex">
+                                                        <div class="flex-grow-1 me-2">
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>選擇年度</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>選擇月份</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="klptProve" />
+                                        <label class="form-check-label fw-bold" for="klptProve">通過韓語 (KLPT) 檢定</label>
+                                    </div>
+                                    <div class="klptProve-wrapper pb-4 mt-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group mb-0">
+                                                    <label class="form-label">測試日期</label>
+                                                    <div class="d-flex">
+                                                        <div class="flex-grow-1 me-2">
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>選擇年度</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <select class="form-select" aria-label="Default select example">
+                                                                <option selected>選擇月份</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="prove-wrapper">
+                                <h5 class="fw-bold"><span>葡萄牙語能力證明</span></h5>
+                                <div>
+                                    <label class="form-label" for="portugueseInput">具葡萄牙語能力證明</label>
+                                    <input id="portugueseInput" class="form-control" type="text">
+                                    <div class="form-text">請說明所具證明</div>
+                                </div>
+                            </div>
+                            
+                            <div class="prove-wrapper">
+                                <h5 class="fw-bold"><span>俄語能力證明</span></h5>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div>
+                                            <label class="form-label">通過俄語 (TORFL) 檢定</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <label class="form-label">測試日期</label>
+                                            <div class="d-flex">
+                                                <div class="flex-grow-1 me-2">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇年度</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>選擇月份</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="prove-wrapper">
+                                <h5 class="fw-bold"><span>義大利語能力證明</span></h5>
+                                <div>
+                                    <label class="form-label" for="italianInput">具義大利語能力證明</label>
+                                    <input id="italianInput" class="form-control" type="text">
+                                    <div class="form-text">請說明所具證明</div>
+                                </div>
+                            </div>
+                            
+                            <div class="prove-wrapper">
+                                <h5 class="fw-bold"><span>其他</span></h5>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                                    <label class="form-check-label" for="exampleCheck1">學士或碩士學位於英語系國家取得者，得免附英語能力證明</label>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <div class="form-action">
+                            <span class="backhome"><button type="button" class="btn btn-lg btn-light"><i class="fas fa-chevron-left"></i> 上一步</button></span>
+                            <button type="submit" class="btn btn-lg btn-primary">儲存</button>
+                            <span class="has-history"><button type="button" class="btn btn-lg btn-light">下一步 <i class="fas fa-chevron-right"></i></button></span>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <a id="backtop"></a>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<% content_for :js do %>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const enToelfProve = document.getElementById('enToelfProve');
+    const enToelfWrapper = document.querySelector('.entoelf-wrapper');
+
+    // 函數用於切換 .entoelf-wrapper 的顯示/隱藏
+    function toggleEnToelfWrapper() {
+        if (enToelfProve.checked) {
+            enToelfWrapper.style.display = 'block';
+        } else {
+            enToelfWrapper.style.display = 'none';
+        }
+    }
+
+    // 監聽 checkbox 的變化事件
+    enToelfProve.addEventListener('change', toggleEnToelfWrapper);
+
+    // 初始化設定
+    toggleEnToelfWrapper();
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const enIeltsProve = document.getElementById('enIeltsProve');
+    const enIeltsWrapper = document.querySelector('.enIelts-wrapper');
+
+    // 函數用於切換 .enIelts-wrapper 的顯示/隱藏
+    function toggleEnIeltsWrapper() {
+        if (enIeltsProve.checked) {
+            enIeltsWrapper.style.display = 'block';
+        } else {
+            enIeltsWrapper.style.display = 'none';
+        }
+    }
+
+    // 監聽 checkbox 的變化事件
+    enIeltsProve.addEventListener('change', toggleEnIeltsWrapper);
+
+    // 初始化設定
+    toggleEnIeltsWrapper();
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const topikProve = document.getElementById('topikProve');
+    const topikProveWrapper = document.querySelector('.topikProve-wrapper');
+
+    // 函數用於切換 .topikProve-wrapper 的顯示/隱藏
+    function toggleTopikProveWrapper() {
+        if (topikProve.checked) {
+            topikProveWrapper.style.display = 'block';
+        } else {
+            topikProveWrapper.style.display = 'none';
+        }
+    }
+
+    // 監聽 checkbox 的變化事件
+    topikProve.addEventListener('change', toggleTopikProveWrapper);
+
+    // 初始化設定
+    toggleTopikProveWrapper();
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const klptProve = document.getElementById('klptProve');
+    const klptProveWrapper = document.querySelector('.klptProve-wrapper');
+
+    // 函數用於切換 .klptProve-wrapper 的顯示/隱藏
+    function toggleKlptProveWrapper() {
+        if (klptProve.checked) {
+            klptProveWrapper.style.display = 'block';
+        } else {
+            klptProveWrapper.style.display = 'none';
+        }
+    }
+
+    // 監聽 checkbox 的變化事件
+    klptProve.addEventListener('change', toggleKlptProveWrapper);
+
+    // 初始化設定
+    toggleKlptProveWrapper();
+});
+</script>
+
+<% end %>

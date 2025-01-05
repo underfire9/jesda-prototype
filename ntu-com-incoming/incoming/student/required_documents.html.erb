@@ -1,0 +1,139 @@
+<!-- template: 來校: 學生 - required documents -->
+
+<div class="workspace" canvas="container">
+    <div class="pages general-pages">
+        
+        <%= render :partial => "/partials/header-incoming" %>
+        
+        <div class="content">
+            <div class="container-lg">
+                <div class="page-content has-sticky">
+                    
+                    <%= render :partial => "/partials/incoming-app-sidebar" %>
+                    
+                    <main class="main">
+                        <div class="page-title">
+                            <h3>Required documents</h3>
+                        </div>
+                        <div class="mb-3">
+                            <h5 class="fw-medium">Passport size photo in digital format</h5>
+                            <p class="mb-0">Passport size photo will be used for your NTU student ID card.</p>
+                            <ol>
+                                <li>Please upload a formal photo with clear facial features using a white background</li>
+                                <li>JPG file only with resolution > 320 dpi</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="avatar-wrapper">
+                            <div class="inner">
+                                <div class="avatar">
+                                    <img class="profile-pic" src="../../assets/default.png" />
+                                </div>
+                                <div class="p-image">
+                                    <i class="fa fa-camera upload-button"></i>
+                                    <input class="file-upload" type="file" accept="image/*" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="upload-wrapper fluid-wrapper">
+                            <div class="upload-item">
+                                <h5 class="fw-medium">Official Transcript of Academic Records</h5>
+                                <div class="form-group">
+                                      <input class="form-control" type="file" id="academicRecords">
+                                </div>
+                                <div class="ft-action">
+                                    <span>
+                                        <button type="button" class="btn btn-secondary">Upload</button>
+                                    </span>
+                                    <span>
+                                        <div class="file-pill">
+                                            <a href="#" target="_blank" class="filename" title="避免檔名過長有限制最大寬度.jpg">避免檔名過長有限制最大寬度.jpg</a>
+                                            <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="upload-item">
+                                <h5 class="fw-medium">Curriculum Vitae</h5>
+                                <p>English version,PDFfile only, other  formats are not accepted</p>
+                                <div class="form-group">
+                                      <input class="form-control" type="file" id="curriculumVitae">
+                                </div>
+                                <div class="ft-action">
+                                    <span>
+                                        <button type="button" class="btn btn-secondary">Upload</button>
+                                    </span>
+                                    <span>
+                                        <div class="file-pill">
+                                            <span class="filename" title="file_name.jpg">file_name.jpg</span>
+                                            <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="upload-item">
+                                <h5 class="fw-medium">Passport</h5>
+                                <ol>
+                                    <li>Upload thepage Showing Name and Date of Birth.</li>
+                                    <li>Make sure your passport is valid for at least 6 months after entering Taiwan.</li>
+                                </ol>
+                                <div class="form-group">
+                                      <input class="form-control" type="file" id="passportFile">
+                                </div>
+                                <div class="ft-action">
+                                    <span>
+                                        <button type="button" class="btn btn-secondary">Upload</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-action">
+                            <button type="submit" class="btn btn-lg btn-primary">Save</button>
+                            <button type="submit" class="btn btn-lg btn-dark">View and Submit</button>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <a id="backtop"></a>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<% content_for :js do %>
+
+<!-- 上傳頭像 -->
+<script>
+$(document).ready(function() {
+
+    
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+
+    $(".file-upload").on('change', function(){
+        readURL(this);
+    });
+    
+    $(".upload-button").on('click', function() {
+       $(".file-upload").click();
+    });
+});
+</script>
+
+<% end %>

@@ -1,0 +1,62 @@
+<!-- template: 來校: 學生 - 聲明 -->
+
+<div class="workspace" canvas="container">
+    <div class="pages general-pages">
+        
+        <%= render :partial => "/partials/header-incoming" %>
+        
+        <div class="content">
+            <div class="container-lg">
+                <div class="page-title">
+                    <h3>Declaration</h3>
+                </div>
+                <div class="bg-light p-3 mb-4">
+                    <h5>Applicant’s Declaration</h5>
+                    <ol>
+                        <li>I have read and understood the application procedure, and I declare that the information I have supplied is correct and complete. I understand that National Taiwan University reserves the right to withdraw offers made, should any information in this application prove to be false.</li>
+                        <li>I recognize that it is my responsibility to conform to all University regulations if I am accepted to National Taiwan University.</li>
+                    </ol>
+                </div>
+                <p><%= lorem_sentences(2) %></p>
+                <ol class="mb-2">
+                    <% (1..5).map do |i| %>
+                    <li><%= lorem_sentence %></li>
+                    <% end %>
+                    <li>
+                        <%= lorem_sentence %>
+                        <% (1..6).map do |i| %>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                            <label class="form-check-label" for="flexCheckDefault">
+                                <%= lorem_sentence %>
+                            </label>
+                        </div>
+                        <% end %>
+                        <p class="mt-2"><%= lorem_paragraph %></p>
+                        <p><%= lorem_paragraph %></p>
+                        <p><%= lorem_paragraph %></p>
+                    </li>
+                    <li>
+                        <p class="mb-1"><%= lorem_sentence %> <a href="#" class="btn btn-link">Download Template</a></p>
+                        <div class="d-flex">
+                            <span><input class="form-control" type="file" id="photoFile"></span>
+                        </div>
+                    </li>
+                </ol>
+                <div class="mt-5 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                    <label class="form-check-label" for="exampleCheck1"><%= lorem_paragraph %></label>
+                </div>
+                <div class="form-action">
+                    <button type="submit" class="btn btn-lg btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+        <a id="backtop"></a>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<% content_for :js do %>
+
+<% end %>

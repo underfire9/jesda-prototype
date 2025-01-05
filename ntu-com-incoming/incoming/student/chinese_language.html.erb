@@ -1,0 +1,102 @@
+<!-- template: 來校: 學生 - chinese language proficiency -->
+
+<div class="workspace" canvas="container">
+    <div class="pages general-pages">
+        
+        <%= render :partial => "/partials/header-incoming" %>
+        
+        <div class="content">
+            <div class="container-lg">
+                <div class="page-content has-sticky">
+                    
+                    <%= render :partial => "/partials/incoming-app-sidebar" %>
+                    
+                    <main class="main">
+                        <div class="page-title">
+                            <h3>Chinese Language Proficiency</h3>
+                        </div>
+                        <div class="mb-3">
+                            NTU offers free Chinese courses (without extra fees) for exchange students.  If you are interested in learning Chinese during your exchange period, please help us fill in a short survey, in order to help us understand your learning background.
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Do you plan to enroll in General Chinese Courses at NTU?</label>
+                            <div class="mt-1">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="coursesYes" value="option1">
+                                    <label class="form-check-label" for="coursesYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="coursesNo" value="option2">
+                                    <label class="form-check-label" for="coursesNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chinese-courses-wrapper">
+                            <div class="form-group">
+                                <label class="form-label">a. Is any part of your ethnic background Chinese?</label>
+                                <div class="mt-1">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="backgroundYes" value="option1">
+                                        <label class="form-check-label" for="backgroundYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="backgroundNo" value="option2">
+                                        <label class="form-check-label" for="backgroundNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">b. Have you ever studied Chinese in school?</label>
+                                <div class="mt-1">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="studiedYes" value="option1">
+                                        <label class="form-check-label" for="studiedYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="studiedNo" value="option2">
+                                        <label class="form-check-label" for="studiedNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-action">
+                            <button type="submit" class="btn btn-lg btn-primary">Save</button>
+                            <span class="has-history"><button type="button" class="btn btn-lg btn-light">Next <i class="fas fa-chevron-right"></i></button></span>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <a id="backtop"></a>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<% content_for :js do %>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const coursesYes = document.getElementById('coursesYes');
+            const coursesNo = document.getElementById('coursesNo');
+            const chineseCoursesWrapper = document.querySelector('.chinese-courses-wrapper');
+
+            // 函數用於切換 .chinese-courses-wrapper 的顯示/隱藏
+            function toggleChineseCoursesWrapper() {
+                if (coursesYes.checked) {
+                    chineseCoursesWrapper.style.display = 'block';
+                } else {
+                    chineseCoursesWrapper.style.display = 'none';
+                }
+            }
+
+            // 監聽 radio 按鈕的變化事件
+            coursesYes.addEventListener('change', toggleChineseCoursesWrapper);
+            coursesNo.addEventListener('change', toggleChineseCoursesWrapper);
+
+            // 初始化設定
+            toggleChineseCoursesWrapper();
+        });
+    </script>
+<% end %>

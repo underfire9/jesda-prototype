@@ -1,0 +1,445 @@
+<!-- admin-page: 虎科 UI - 深耕服務 申請表 -->
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    
+    <!-- 整個 layer 用了絕對位置與動態高度，在 .main 之內除了 .sales-layer 之外不得再加任何內容 -->
+    <!-- 同上理由，.outer-header, .stage-head, .nav-main 都是固定高度，不要加入會增加高度的內容 -->
+    
+    <div class="sales-layer">
+        <div class="sales-wrapper">
+            
+            <div class="worklist-bar vertical-stepbar">
+                <div class="scrollbar-inner">
+                    <div class="stepbar-inner">
+                    
+                        <ul class="menu-item">
+                            <li class="item-step">
+                                <span class="step"><i></i></span>
+                                <span class="type">送出申請</span>
+                                <span class="date">2024-10-12 12:00</span>
+                                <span class="name"><%= zh_lorem_name %></span>
+                            </li>
+                            <li class="item-step">
+                                <span class="step"><i></i></span>
+                                <span class="type">初審通過</span>
+                                <span class="date">2024-10-12 12:00</span>
+                                <span class="name"><%= lorem_name %></span>
+                            </li>
+                            <% (1..12).map do |i| %>
+                            <li class="item-step">
+                                <span class="step"><i></i></span>
+                                <span class="type">複審通過</span>
+                                <span class="date">2024-10-12 12:00</span>
+                                <span class="name"><%= zh_lorem_name %></span>
+                            </li>
+                            <% end %>
+                        </ul>
+                    
+                    </div>
+                </div>
+            </div>
+            
+            <!-- main stage -->
+            <div class="sales-stage">
+                
+                <!-- outer header -->
+                <div class="outer-header">
+                    <div class="outer-start">
+                        <button type="button" class="btn btn-outline btn-null" title="返回"><i class="fas fa-long-arrow-alt-left"></i></button>
+                        <a href="#" target="_blank" class="btn btn-outline btn-null" title="在新視窗中開啟"><i class="far fa-window-maximize"></i></a>
+                    </div>
+                </div>
+                
+                <!-- stage head -->
+                <div class="stage-head">
+                    <div class="head-start">
+                        <h5><%= lorem_words(6) %></h5>
+                    </div>
+                    <div class="head-end">
+                        <div class="details-group">
+                            <div class="item-detail text-end">
+                                <span class="d-block describe"><%= lorem_words(6) %></span>
+                                <span class="d-block describe"><%= lorem_words(4) %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="nav nav-pills nav-main" id="salesTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-s1" data-bs-toggle="tab" data-bs-target="#tab-s1-pane" type="button" role="tab" aria-controls="tab-s1-pane" aria-selected="true">總覽</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="tab-s2" data-bs-toggle="tab" data-bs-target="#tab-s2-pane" type="button" role="tab" aria-controls="tab-s2-pane" aria-selected="false">申請表</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-s3" data-bs-toggle="tab" data-bs-target="#tab-s3-pane" type="button" role="tab" aria-controls="tab-s3-pane" aria-selected="false">聘任單位審查</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-s4" data-bs-toggle="tab" data-bs-target="#tab-s4-pane" type="button" role="tab" aria-controls="tab-s4-pane" aria-selected="false">校級承辦審查</button>
+                    </li>
+                </ul>
+                <div class="tab-content tab-content-main" id="salesTabContent">
+
+                    <div class="tab-pane fade show" id="tab-s1-pane" role="tabpanel" aria-labelledby="tab-s1" tabindex="0">
+                        <div class="scrollbar-inner">
+                            總覽
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show active" id="tab-s2-pane" role="tabpanel" aria-labelledby="tab-s2" tabindex="0">
+                        <div class="scrollbar-inner">
+                            
+                            <div class="col-block">
+                                <div class="block-header has-border"><h5 class="fw-bold">申請人</h5></div>
+                                <div class="block-content">
+                                    
+                                    <div class="horizontal-info">
+                                        <ul class="menu-item">
+                                            <li>
+                                                <span class="label">主聘單位</span>
+                                                <span class="output">機械與電腦輔助工程系</span>
+                                            </li>
+                                            <li>
+                                                <span class="label">教師姓名</span>
+                                                <span class="output"><%= lorem_name %></span>
+                                            </li>
+                                            <li>
+                                                <span class="label">聯絡電話</span>
+                                                <span class="output">0912345678</span>
+                                            </li>
+                                            <li>
+                                                <span class="label">Email</span>
+                                                <span class="output">abcdef@email.com</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-block">
+                                <div class="block-header has-border"><h5 class="fw-bold">執行期程</h5></div>
+                                <div class="block-content">
+                                    
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-2">
+                                            <input type="date" class="form-control" id="hangUpForm2" name="trip-start2" value="2024-01-20" min="2024-01-01" max="2024-12-31">
+                                        </div>
+                                        <div class="me-2"> - </div>
+                                        <div class="me-2">
+                                            <input type="date" class="form-control" id="hangUpForm2" name="trip-start2" value="2024-01-20" min="2024-01-01" max="2024-12-31">
+                                        </div>
+                                        <div class="fw-bold ms-4 text-body-secondary">總計：365 日</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-block">
+                                <div class="block-header has-border"><h5 class="fw-bold">實地服務或研究機構簡介</h5></div>
+                                <div class="block-content">
+                                    
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label class="form-label" for="inputEx01">機構名稱</label>
+                                                <input type="text" class="form-control" id="inputEx01">
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="form-group">
+                                                <label class="form-label" for="inputEx02">地址</label>
+                                                <input type="text" class="form-control" id="inputEx02">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label class="form-label" for="inputEx03">聯絡人</label>
+                                                <input type="text" class="form-control" id="inputEx03">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label class="form-label" for="inputEx04">聯絡電話</label>
+                                                <input type="text" class="form-control" id="inputEx04">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-block">
+                                <div class="block-header has-border"><h5 class="fw-bold">機構簡介</h5></div>
+                                <div class="block-content">
+                                    
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label class="form-label" for="inputEx05">資本額</label>
+                                                <input type="text" class="form-control" id="inputEx05">
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group">
+                                                <label class="form-label" for="inputEx06">員工人數</label>
+                                                <input type="text" class="form-control" id="inputEx06">
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-group">
+                                                <label class="form-label" for="inputEx07">營業範圍</label>
+                                                <input type="text" class="form-control" id="inputEx07">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="inputEx08" class="form-label">產學合作現況與需求</label>
+                                                <textarea class="form-control" id="inputEx08" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="inputEx09" class="form-label">參與研習服務之動機</label>
+                                                <textarea class="form-control" id="inputEx09" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-block">
+                                <div class="block-header has-border"><h5 class="fw-bold">實地服務或研究主題</h5></div>
+                                <div class="block-content">
+                                    
+                                    <div class="form-group">
+                                        <label for="inputEx10" class="form-label">主題</label>
+                                        <input type="text" class="form-control w-50" id="inputEx10">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">深耕服務領域</label>
+                                        <div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx01" value="option1" />
+                                                <label class="form-check-label" for="checkboxEx01">教育</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx02" value="option2" />
+                                                <label class="form-check-label" for="checkboxEx02">藝術及人文</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx03" value="option3" />
+                                                <label class="form-check-label" for="checkboxEx03">社會科學、新聞學及圖書資訊</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx04" value="option4" />
+                                                <label class="form-check-label" for="checkboxEx04">商業、管理及法律</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx05" value="option5" />
+                                                <label class="form-check-label" for="checkboxEx05">自然科學、數學及統計</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx06" value="option6" />
+                                                <label class="form-check-label" for="checkboxEx06">資訊通訊科技</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx07" value="option7" />
+                                                <label class="form-check-label" for="checkboxEx07">工程、製造及營造</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx08" value="option8" />
+                                                <label class="form-check-label" for="checkboxEx08">農業、林業、漁業及獸醫</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx09" value="option9" />
+                                                <label class="form-check-label" for="checkboxEx09">醫藥衛生及社會福利</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx10" value="option10" />
+                                                <label class="form-check-label" for="checkboxEx10">服務</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="checkboxEx11" value="option11" />
+                                                <label class="form-check-label" for="checkboxEx11">其它</label>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-block">
+                                <div class="block-header has-border"><h5 class="fw-bold">實地服務或研究預期效益</h5></div>
+                                <div class="block-content">
+                                    <p>請依據實地深耕服務或研究情形擇合適項目填寫，至少填寫一項成效。預期成效數請輸入<span class="text-danger">數字</span>，預期成效內容 <span class="text-danger">上限 30 字</span>。</p>
+                                    <h4 class="fw-bold text-danger-emphasis my-4">量化成效</h4>
+                                    <h5 class="my-4 text-dark-emphasis">實務教學</h5>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="form-label">製作教材數</label>
+                                                <div class="d-flex">
+                                                    <span class="me-2" style="width: 128px;"><input type="text" class="form-control" id="" placeholder="預期成效數"></span>
+                                                    <span class="flex-grow-1"><input type="text" class="form-control" id="" placeholder="預期成效內容"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="form-label">開授相關課程數</label>
+                                                <div class="d-flex">
+                                                    <span class="me-2" style="width: 128px;"><input type="text" class="form-control" id="" placeholder="預期成效數"></span>
+                                                    <span class="flex-grow-1"><input type="text" class="form-control" id="" placeholder="預期成效內容"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% (1..6).map do |i| %>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="form-label">指導專題學生數</label>
+                                                <div class="d-flex">
+                                                    <span class="me-2" style="width: 128px;"><input type="text" class="form-control" id="" placeholder="預期成效數"></span>
+                                                    <span class="flex-grow-1"><input type="text" class="form-control" id="" placeholder="預期成效內容"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% end %>
+                                    </div>
+                                    
+                                    <h5 class="my-4 text-dark-emphasis">產業發展</h5>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="form-label">產學合作簽約數</label>
+                                                <div class="d-flex">
+                                                    <span class="me-2" style="width: 128px;"><input type="text" class="form-control" id="" placeholder="預期成效數"></span>
+                                                    <span class="flex-grow-1"><input type="text" class="form-control" id="" placeholder="預期成效內容"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="form-label">協助產業參與相關競賽或展覽</label>
+                                                <div class="d-flex">
+                                                    <span class="me-2" style="width: 128px;"><input type="text" class="form-control" id="" placeholder="預期成效數"></span>
+                                                    <span class="flex-grow-1"><input type="text" class="form-control" id="" placeholder="預期成效內容"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% (1..6).map do |i| %>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="form-label">協助產業技術升級</label>
+                                                <div class="d-flex">
+                                                    <span class="me-2" style="width: 128px;"><input type="text" class="form-control" id="" placeholder="預期成效數"></span>
+                                                    <span class="flex-grow-1"><input type="text" class="form-control" id="" placeholder="預期成效內容"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% end %>
+                                    </div>
+                                    
+                                    <h4 class="fw-bold text-danger-emphasis my-4">質化成效</h4>
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="inputEx08" rows="3" placeholder="請簡述深耕服務產業研習或研究預期成效，上限 200 字"></textarea>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-block">
+                                <div class="block-header has-border"><h5 class="fw-bold">檔案上傳</h5></div>
+                                <div class="block-content">
+                                    
+                                    <div class="upload-wrapper fluid-wrapper">
+                                        
+                                        <div class="row">
+                                            <div class="col-6">
+                                                
+                                                <!-- 檔案上傳後多出 .file-pill，當再次上傳時則覆蓋上一筆，點選檔名另開視窗觀看文件 -->
+                                                <div class="upload-item">
+                                                    <h5 class="mb-3">實地深耕服務或研究規劃內容</h5>
+                                                    <div class="form-group input-group">
+                                                          <input class="form-control" type="file" id="photoFile">
+                                                          <button class="btn btn-secondary" type="button" id="button-addon2">上傳</button>
+                                                    </div>
+                                                    <div class="ft-action">
+                                                        <span>
+                                                            <div class="file-pill">
+                                                                <!-- 避免檔名過長有限制最大寬度 160px，超出時會字元會省略，但切記標籤加上 title -->
+                                                                <a href="#" target="_blank" class="filename" title="避免檔名過長有限制最大寬度.jpg">避免檔名過長有限制最大寬度.jpg</a>
+                                                                <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                                                    <i class="fas fa-times"></i>
+                                                                </button>
+                                                            </div>
+                                                        </span>
+                                                        <span class="last-date">最後更新時間 : 2024-08-02 12:00</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-6">
+                                                
+                                                <!-- 檔案上傳後多出 .file-pill，當再次上傳時則覆蓋上一筆，點選檔名另開視窗觀看文件 -->
+                                                <div class="upload-item">
+                                                    <h5 class="mb-3">教師至合作機構或產業實地服務或研究契約</h5>
+                                                    <div class="form-group input-group">
+                                                          <input class="form-control" type="file" id="photoFile">
+                                                          <button class="btn btn-secondary" type="button" id="button-addon2">上傳</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-block">
+                                <div class="block-header has-border"><h5 class="fw-bold">電子簽名</h5></div>
+                                <div class="block-content">
+                                    
+                                    <div class="d-flex align-items-center py-4">
+                                        <span>
+                                            <button type="button" class="btn btn-outline-primary btn-rounded">檢視電子簽名</button>
+                                        </span>
+                                        <span class="ms-4">最後更新：2022-01-01 12:00 <%= lorem_name %></span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane fade" id="tab-s3-pane" role="tabpanel" aria-labelledby="tab-s3" tabindex="0">
+                        <div class="scrollbar-inner">
+                            聘任單位審查
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab-s4-pane" role="tabpanel" aria-labelledby="tab-s4" tabindex="0">
+                        <div class="scrollbar-inner">
+                            校級承辦審查
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</main>
+
+<% content_for :js do %>
+
+<% end %>
+

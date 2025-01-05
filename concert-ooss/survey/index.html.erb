@@ -1,0 +1,204 @@
+<!-- template: 線上訂購調查 (首頁) -->
+
+<div class="container-lg">
+    <section class="section">
+        <div class="section-title">
+            <h3>訂購調查</h3>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="form-label"><span class="required">*</span>本年度訂購調查</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                            <label class="form-check-label" for="inlineRadio1">參加訂購</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                            <label class="form-check-label" for="inlineRadio2">全部不訂購</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" />
+                            <label class="form-check-label" for="inlineRadio3">無法於截止日前回覆</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="formInput1" class="form-label">無法於截止日前回覆原因</label>
+                    <input type="text" class="form-control" id="formInput1" />
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="hangUpForm1" class="form-label">可以回覆日期</label>
+                        <input type="date" class="form-control" id="hangUpForm1" name="trip-start1" value="2024-01-20" min="2024-01-01" max="2024-12-31">
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-survey btn-lg btn-primary px-5">儲存</button>
+                    <span class="text-secondary ms-4">最後儲存時間：2024-08-25 12:53</span>
+                </div>
+            </div>
+            <div class="col-4 offset-2">
+                <p class="text-end">
+                    <button type="button" class="btn btn-lg btn-secondary btn-rounded" data-bs-toggle="modal" data-bs-target="#notificationModal">告知函</button>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-system">
+        <div class="section-title">
+            <h3>選擇訂購系統</h3>
+        </div>
+        <div class="system-wrap">
+            <div class="filter-wrap">
+                <div class="wrap-start">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>全部類別</option>
+                      <option value="1">類別名稱 <%= lorem_words(2) %></option>
+                      <option value="2">類別名稱 <%= lorem_words(2) %></option>
+                      <option value="3">類別名稱 <%= lorem_words(2) %></option>
+                    </select>
+                </div>
+                
+                <!-- .wrap-end 請根據最長字串調整 width -->
+                <div class="wrap-end" style="width: 30%;">
+                    <select class="form-select" id="single-select-optgroup-field" data-placeholder="請選擇資料庫">
+                        <option></option>
+                        <optgroup label="系統名稱 <%= lorem_words(2) %>">
+                            <option>資料庫名稱 <%= lorem_words(2) %></option>
+                            <option>資料庫名稱 <%= lorem_words(4) %></option>
+                            <option>資料庫名稱 <%= lorem_words(3) %></option>
+                        </optgroup>
+                        <optgroup label="系統名稱 <%= lorem_words(2) %>">
+                            <option>資料庫名稱 <%= lorem_words(2) %></option>
+                            <option>資料庫名稱 <%= lorem_words(4) %></option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <ul class="menu-item system-list">
+                <li>
+                    <a class="list-card" href="#">
+                        <span class="system-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/BioOne_Logo_white.svg">
+                        </span>
+                        <span class="system-name">AAAS/Science</span>
+                        <span class="system-info">資料庫類型數量：999</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="list-card" href="#">
+                        <span class="system-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/ASTM_logo.svg">
+                        </span>
+                        <span class="system-name">ASTM</span>
+                        <span class="system-info">全文資料庫：999</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="list-card" href="#">
+                        <span class="system-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/1920px-Wikipedia-logo-v2.svg.png">
+                        </span>
+                        <span class="system-name">AAAS/Science</span>
+                        <span class="system-info">資料庫類型數量：999</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="list-card" href="#">
+                        <span class="system-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Disney%2B_2024.svg/2560px-Disney%2B_2024.svg.png">
+                        </span>
+                        <span class="system-name">AAAS/Science</span>
+                        <span class="system-info">資料庫類型數量：999</span>
+                    </a>
+                </li>
+                <% (1..21).map do |i| %>
+                <li>
+                    <a class="list-card" href="#">
+                        <span class="system-logo">
+                            <img src="../assets/fake/Science_Logo.jpg">
+                        </span>
+                        <span class="system-name">AAAS/Science</span>
+                        <span class="system-info">資料庫類型數量：999</span>
+                    </a>
+                </li>
+                <% end %>
+            </ul>
+            
+            <nav aria-label="...">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item disabled">
+                        <a class="page-link">上一頁</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">下一頁</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-2" id="notificationModalLabel">告知函</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <% (1..6).map do |i| %>
+                <p><%= lorem_paragraphs(4) %></p>
+                <% end %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-secondary" data-bs-dismiss="modal">確認</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<!-- 告知函 modal 預設 show -->
+<script type="text/javascript">
+    $(window).on('load', function() {
+        $('#notificationModal').modal('show');
+    });
+</script>
+
+<!-- Select2 + bootstrap theme -->
+<script src="../javascripts/select2.full.min.js"></script>
+<script type="text/javascript">
+    $( '#select-field' ).select2( {
+        theme: 'bootstrap-5'
+    } );
+
+    $( '#single-select-optgroup-field' ).select2( {
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+    } );
+</script>
+
+<!-- section-system show -->
+<script>
+    document.querySelector('.btn-survey').addEventListener('click', function() {
+        const sectionSystem = document.querySelector('.section-system');
+        sectionSystem.classList.add('show');
+    });
+</script>
+
+<% end %>
+

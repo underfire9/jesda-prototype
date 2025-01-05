@@ -1,0 +1,146 @@
+<!-- template: Portal -->
+
+<div class="portal-container">
+    <div class="portal-start">
+        <hgroup>
+            <h1>大專校院境外學生輔導人員<span>資訊交流暨境外學生諮詢平臺</span></h1>
+            <h2>Network for International Student Advisors</h2>
+        </hgroup>
+        <h3>
+            <span class="text-hide">NISA</span>
+            <img alt="NISA Logo" class="nisa-logo" src="../assets/h1-logo.svg">
+        </h3>
+        
+        <div class="carousel-wrapper">
+            <div id="carouselQuotes2" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <p class="quotes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras est mauris, cursus lobortis efficitur eget</p>
+                        <span class="author"><span>Vivamus pharetra</span></span>
+                    </div>
+                    <div class="carousel-item">
+                        <p class="quotes">Nullam ut enim vitae sapien maximus consectetur et et augue. In nec tempor risus. In at mauris et sapien ornare congue ac posuere turpis. Orci varius natoque</p>
+                        <span class="author"><span>Donec gravida</span></span>
+                    </div>
+                    <div class="carousel-item">
+                        <p class="quotes">Aenean metus augue, imperdiet eu dolor non, pellentesque pretium enim. Suspendisse et elit vestibulum, ullamcorper quam eu</p>
+                        <span class="author"><span>Cras viverra cursus</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portal-end">
+        <ul class="menu-item portal-group">
+            <li class="portal-item">
+                <a href="#" class="item-link" title="{連結名稱}">
+                    <img alt="{圖片描述}" class="img-portal" src="../assets/fake/03.jpg">
+                    <h4>
+                        輔導人員
+                        <small>Student Advisors</small>
+                    </h4>
+                </a>
+            </li>
+            <li class="portal-item">
+                <a href="#" class="item-link" title="{連結名稱}">
+                    <img alt="{圖片描述}" class="img-portal" src="../assets/fake/04.jpg">
+                    <h4>
+                        境外學生
+                        <small>Overseas Students</small>
+                    </h4>
+                </a>
+            </li>
+            <li class="portal-item">
+                <a href="#" class="item-link" title="{連結名稱}">
+                    <img alt="{圖片描述}" class="img-portal" src="../assets/fake/05.jpg">
+                    <h4>
+                        訪客
+                        <small>Visitors</small>
+                    </h4>
+                </a>
+            </li>
+            <li class="portal-item">
+                <a href="#" class="item-link" title="{連結名稱}">
+                    <img alt="{圖片描述}" class="img-portal" src="../assets/fake/06.jpg">
+                    <h4>
+                        接待家庭
+                        <small>Host Family Program</small>
+                    </h4>
+                </a>
+            </li>
+            <li class="portal-item">
+                <a href="#" class="item-link" title="{連結名稱}">
+                    <img alt="{圖片描述}" class="img-portal" src="../assets/fake/07.jpg">
+                    <h4>境外學生諮詢</h3>
+                </a>
+            </li>
+            <li class="portal-item">
+                <a href="#" class="item-link" title="{連結名稱}">
+                    <img alt="{圖片描述}" class="img-portal" src="../assets/fake/promo-1.jpg">
+                    <h4>Inquiry Service for <span>Overseas Students</span></h3>
+                </a>
+            </li>
+            <li class="portal-item">
+                <a href="#" class="item-link" title="{連結名稱}">
+                    <img alt="{圖片描述}" class="img-portal" src="../assets/fake/promo-2.jpg">
+                    <h4>Dịch vụ tư vấn cho <span>sinh viên nước ngoài</span></h3>
+                </a>
+            </li>
+            <li class="portal-item">
+                <a href="#" class="item-link" title="{連結名稱}">
+                    <img alt="{圖片描述}" class="img-portal" src="../assets/fake/promo-3.jpg">
+                    <h4>Layanan Konsultasi <span>Siswa Luar Wilayah</span></h3>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="carousel-wrapper mobile-only">
+        <div id="carouselQuotes" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <p class="quotes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras est mauris, cursus lobortis efficitur eget</p>
+                    <span class="author"><span>Vivamus pharetra</span></span>
+                </div>
+                <div class="carousel-item">
+                    <p class="quotes">Nullam ut enim vitae sapien maximus consectetur et et augue. In nec tempor risus. In at mauris et sapien ornare congue ac posuere turpis. Orci varius natoque</p>
+                    <span class="author"><span>Donec gravida</span></span>
+                </div>
+                <div class="carousel-item">
+                    <p class="quotes">Aenean metus augue, imperdiet eu dolor non, pellentesque pretium enim. Suspendisse et elit vestibulum, ullamcorper quam eu</p>
+                    <span class="author"><span>Cras viverra cursus</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const portalItems = document.querySelectorAll('.portal-item');
+
+    portalItems.forEach(function(item) {
+        const img = item.querySelector('.img-portal');
+        const link = item.querySelector('.item-link');
+        const imgSrc = img.getAttribute('src');
+        
+        link.style.backgroundImage = `url(${imgSrc})`;
+        link.style.backgroundSize = 'cover'; // Optional: to cover the whole link area
+        link.style.backgroundPosition = 'center'; // Optional: to center the image
+    });
+});
+</script>
+
+<script>
+const myCarouselElement = document.querySelector('#carouselQuotes')
+
+const carousel = new bootstrap.Carousel(myCarouselElement, {
+    interval: 60000,
+})
+</script>
+<% end %>
+

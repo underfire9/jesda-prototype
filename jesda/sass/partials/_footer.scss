@@ -3,81 +3,142 @@
 -----------------------------------------------------------------------------*/
 
 footer.footer {
-	color: #999;
-	.footer-inner {
-		display: flex;
-		justify-content: space-between;
-		border-top: 1px dashed #ddd;
-		padding: 60px 0;
-	}
-	.block-transition {
-		display: flex;
-		width: 66.66666%;
-		.ft-block { width: 50%; }
-	}
-	.menu-item.contact {
-		margin-bottom: 26px;
-		li {
-			margin-bottom: .25rem;
-			padding-left: 30px;
-			position: relative;
-		}
-		.fas {
-			width: 16px;
-			text-align: center;
-			font-size: 14px;
-			color: #ccc;
-			position: absolute;
-			left: 0;
-			top: 5px;
-			top: 5px;
-		}
-	}
-	.end-content {
-		width: 33.33333%;
-		text-align: end;
-	}
-	a {
-		color: #000;
-		&:hover {
-			color: $link;
-		}
-	}
+    color: #5e6466;
+    .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        padding: 7.5rem 0 10rem;
+        position: relative;
+        &:after {
+            content: "";
+            background: #c0c7ca;
+            width: 15rem;
+            height: 1px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+    .footer-start {
+        display: flex;
+        .start-left { margin-right: 9rem; }
+        h2 {
+            margin-bottom: 2.75rem;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: $base_font_color;
+        }
+    }
+    .info-menu {
+        li {
+            margin-bottom: .375rem;
+            font-size: 1.063rem;
+        }
+        i {
+            margin-right: 1.5rem;
+            color: #a3a8a9;
+        }
+    }
+    .footer-end {
+        display: flex;
+        align-items: flex-end;
+        text-align: end;
+    }
+    .link-menu {
+        position: absolute;
+        right: 0;
+        li {
+            display: inline-block;
+            margin-left: 2.5rem;
+            font-weight: 300;
+            &:first-child { margin-left: 0rem; }
+        }
+        .login {
+            display: inline-block;
+            padding-left: 1.75rem;
+            position: relative;
+            &:after {
+                content: "";
+                background: $base_font_color;
+                width: 1rem;
+                height: 1px;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transition: all 0.2s ease-in-out;
+            }
+            &:hover {
+                &:after {
+                    background: $main_color;
+                    left: .25rem;
+                }
+            }
+        }
+    }
+    address {
+        margin-bottom: 0;
+        font-weight: 300;
+    }
+    a {
+        color: $base_font_color;
+        &:hover { color: $main_color; }
+    }
 }
 
 /* `Responsive
 -----------------------------------------------------------------------------*/
 
+@media (max-width: 1399px) {
+    footer.footer {
+        .footer-inner {
+            padding: calc(3rem + 5vw) 0 calc(3.5rem + 5vw);
+        }
+        .footer-start {
+            .start-left { margin-right: 4rem; }
+        }
+    }
+}
+
 @media (max-width: 1199px) {
-	footer.footer {
-		.block-transition,
-		.end-content {
-			width: 50%;
-		}
-		.block-transition {
-			.ft-block { width: 90%; }
-		}
-	}
+    footer.footer {
+        .footer-start {
+            display: block;
+            .start-left { margin: 0 0 calc(1rem + 1vw) 0; }
+            h2 {
+                margin-bottom: calc(1.25rem + 1.5vw);
+                font-size: calc(1rem + .625vw);
+            }
+        }
+    }
 }
 
-@media (max-width: 767px) {
-	footer.footer {
-		.footer-inner {
-			display: block;
-		}
-		.block-transition,
-		.end-content {
-			width: 100%;
-		}
-		.ft-block { width: 100% !important; }
-		.end-content { text-align: start; }
-	}
+@media (max-width: 679px) {
+    footer.footer {
+        .footer-inner {
+            display: block;
+        }
+        .footer-end {
+            margin-top: calc(1.25rem + 1.5vw);
+            text-align: start;
+        }
+        .end-top { margin-bottom: 1rem; }
+        .info-menu {
+            font-size: 1rem;
+            i { margin-right: .75rem; }
+        }
+        .link-menu {
+            margin-bottom: 2.5rem;
+            position: static;
+            right: auto;
+        }
+    }
 }
 
-
-
-
-
-
-
-
+@media (max-width: 474px) {
+    footer.footer {
+        font-size: .9375rem;
+        .info-menu li {
+            font-size: .9375rem;
+        }
+    }
+}

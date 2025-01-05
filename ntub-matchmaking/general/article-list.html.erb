@@ -1,0 +1,87 @@
+<!-- template: 訊息公告 - 列表 -->
+
+<!-- 支援 rwd 緣故，使用者使用 table 時，請在 table 外層自動加上 <div class="table-responsive text-nowrap"> 容器 -->
+
+<div class="container-lg">
+    <div class="page-content d-block">
+        
+        <div class="page-title">
+            <h2>最新消息</h2>
+            <!--h2>教師可申請計畫</h2-->
+            <!--h2>企業可申請計畫</h2-->
+        </div>
+        
+        <div class="filter-bar">
+            <div class="bar-start">
+                <div class="start-group">
+                    <input type="date" class="form-control" id="hangUpForm1" name="trip-start1" value="2024-01-20" min="2024-01-01" max="2024-12-31">
+                </div>
+                <span class="px-3">-</span>
+                <div class="start-group">
+                    <input type="date" class="form-control" id="hangUpForm2" name="trip-start2" value="2024-01-20" min="2024-01-01" max="2024-12-31">
+                </div>
+            </div>
+            <div class="bar-end ps-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="關鍵字檢索" aria-describedby="button-addon2">
+                    <button class="btn btn-secondary" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="article-list-wrapper">
+            <ul class="menu-item">
+                <li>
+                    <a class="article-link" href="#">
+                        <span class="title">訊息公告文字標題川普要台灣繳保護費英追風者</span>
+                        <span class="date">2024-11-15</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="article-link" href="#">
+                        <span class="title">北商會計資訊系再傳捷報大學部學生考上會計師</span>
+                        <span class="date">2024-11-14</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="article-link" href="#">
+                        <span class="title">國立臺北商業大學國際行銷學院應用外語系專任/專案教師(英文)</span>
+                        <span class="date">2024-11-13</span>
+                    </a>
+                </li>
+                <% (1..7).map do |i| %>
+                <li>
+                    <a class="article-link" href="#">
+                        <span class="title"><%= lorem_sentence %></span>
+                        <span class="date">2024-11-12</span>
+                    </a>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+        
+        <nav aria-label="...">
+            <ul class="pagination justify-content-end">
+                <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+        
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+<% end %>
+

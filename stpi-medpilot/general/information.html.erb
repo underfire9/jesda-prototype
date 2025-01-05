@@ -1,0 +1,166 @@
+<!-- template: Information -->
+
+<div class="container-lg">
+    <main class="main">
+        <section class="section">
+            <div class="section-title">
+                <h4>Information</h4>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="exampleInput01">Email</label>
+                        <input type="email" class="form-control" id="exampleInput01" value="suchart@aa.com.tw" disabled readonly>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="exampleInput02">Name</label>
+                        <input type="text" class="form-control" id="exampleInput02">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="exampleInput03">Country</label>
+                        <input type="text" class="form-control" id="exampleInput03">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            
+            <div class="section-title">
+                <h4>Questionnaire</h4>
+            </div>
+            
+            <h5>Please fill in the information below to help us serve you better</h5>
+            <p>To better understand your needs, please take a few minutes to fill out the following information:</p>
+            
+            <div class="mb-5">
+                <label class="form-label fw-bold">What kind of work do you do:</label>
+                <% (1..12).map do |i| %>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault<%= i %>" />
+                    <label class="form-check-label" for="flexCheckDefault<%= i %>">
+                        <%= lorem_sentence %>
+                    </label>
+                </div>
+                <% end %>
+                <textarea class="form-control mt-3" id="" rows="4" placeholder="<%= lorem_sentence %>"></textarea>
+            </div>
+            
+            <div class="mb-5">
+                <label class="form-label fw-bold">Please select a medical device category</label>
+                <div class="mb-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="MedicalEquipment" value="option1" checked />
+                        <label class="form-check-label" for="MedicalEquipment">Medical equipment</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="MedicalOthers" value="option2" />
+                        <label class="form-check-label" for="MedicalOthers">Others</label>
+                    </div>
+                </div>
+
+                <div class="medical-select equipment-wrap">
+                    <div class="row">
+                        <% (1..16).map do |i| %>
+                        <div class="col-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheck<%= i %>" />
+                                <label class="form-check-label" for="flexCheck<%= i %>">
+                                    <%= lorem_words(4) %>
+                                </label>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+
+                <div class="medical-select others-wrap">
+                    <div class="row">
+                        <% (1..6).map do |i| %>
+                        <div class="col-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheck0<%= i %>" />
+                                <label class="form-check-label" for="flexCheck0<%= i %>">
+                                    <%= lorem_words(4) %>
+                                </label>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="mb-5">
+                <label class="form-label fw-bold">預期使用目的</label>
+                <% (1..7).map do |i| %>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault<%= i %>" />
+                    <label class="form-check-label" for="flexCheckDefault<%= i %>">
+                        <%= lorem_sentence %>
+                    </label>
+                </div>
+                <% end %>
+                <textarea class="form-control mt-3" id="" rows="4" placeholder="<%= lorem_sentence %>"></textarea>
+            </div>
+            
+            <div class="mb-5">
+                <label class="form-label fw-bold">註冊目的</label>
+                <% (1..7).map do |i| %>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault<%= i %>" />
+                    <label class="form-check-label" for="flexCheckDefault<%= i %>">
+                        <%= lorem_sentence %>
+                    </label>
+                </div>
+                <% end %>
+                <textarea class="form-control mt-3" id="" rows="4" placeholder="<%= lorem_sentence %>"></textarea>
+            </div>
+            
+            <div class="form-action">
+                <button type="button" class="btn btn-lg btn-primary px-5">Save</button>
+                <span class="updated">last updated 2024-08-23 18:22</span>
+            </div>
+            
+        </section>
+    </main>
+</div>
+
+
+<% content_for :js do %>
+
+<!-- medical select show/hide -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const medicalEquipmentRadio = document.getElementById('MedicalEquipment');
+    const medicalOthersRadio = document.getElementById('MedicalOthers');
+    const equipmentWrap = document.querySelector('.equipment-wrap');
+    const othersWrap = document.querySelector('.others-wrap');
+
+    function toggleVisibility() {
+        if (medicalEquipmentRadio.checked) {
+            equipmentWrap.style.display = 'block';
+            othersWrap.style.display = 'none';
+        } else if (medicalOthersRadio.checked) {
+            equipmentWrap.style.display = 'none';
+            othersWrap.style.display = 'block';
+        }
+    }
+
+    // 預設隱藏 .others-wrap
+    othersWrap.style.display = 'none';
+
+    // 為 radio 按鈕添加 change 事件監聽器
+    medicalEquipmentRadio.addEventListener('change', toggleVisibility);
+    medicalOthersRadio.addEventListener('change', toggleVisibility);
+
+    // 初始檢查一次以確保正確顯示初始狀態
+    toggleVisibility();
+});
+</script>
+<% end %>
+

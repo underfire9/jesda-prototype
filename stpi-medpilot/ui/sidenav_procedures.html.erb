@@ -1,0 +1,99 @@
+<!-- template: UI - Procedures Nav (申請程序) -->
+
+<div class="container-lg">
+	
+	<!-- 當 sidebar 需要 sticky 時 page-content 加上 .has-sticky -->
+	<div class="page-content has-sticky">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+
+		        <div class="sidenav procedures_nav side-sticky">
+					<div class="procedures_nav-hd text-end mb-4">
+					    <h5 class="fw-bold">申請程序</h5>
+					</div>
+                    <ul class="side-navigation menu-item">
+                        <li>
+							<a class="nav-item done" href="#">
+							    <span class="link-inner">基本資料填寫</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item current done" href="#">
+								<span class="link-inner">檔案上傳</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">志願填寫</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">Lorem ipsum</span>
+							</a>
+						</li>
+                    </ul>
+                    <div class="procedures_nav-ft">
+                        <a href="" class="btn btn-lg btn-block btn-primary">預覽送出</a>
+                        <p class="form-text text-end mt-3">所填申請資訊可於申請截止前修改，一旦「送出申請」後則無法修改。</p>
+                    </div>
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+			<div>
+			    <% (1..10).map do |i| %>
+				<p><%= lorem_paragraphs(4) %></p>
+				<% end %>
+			</div>
+		</main>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+<script>
+    var stickEl = $('.side-sticky'),
+      stickyElTop = stickEl.offset().top;
+
+    var sticky = function(){  
+      var scrollTop = $(window).scrollTop();  
+
+      if (stickyElTop < scrollTop+20) {   
+          stickEl.addClass('is-fixed');  
+      } else {  
+          stickEl.removeClass('is-fixed');   
+      }  
+    };
+
+    $(window).scroll(function() {
+      sticky();
+    }); 
+</script>
+
+<!-- 監看 .aside 高度 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 獲取 .aside 和 .main 元素
+    var asideElement = document.querySelector('.aside');
+    var mainElement = document.querySelector('.main');
+
+    // 檢查是否找到了 .aside 和 .main
+    if (asideElement && mainElement) {
+        // 監聽窗口大小變化事件
+        window.addEventListener('resize', function() {
+            // 獲取 .aside 的內容高度
+            var asideContentHeight = asideElement.scrollHeight;
+
+            // 設置 .main 的最小高度
+            mainElement.style.minHeight = asideContentHeight + 'px';
+        });
+
+        // 在窗口加載時觸發一次，以確保最小高度正確設置
+        window.dispatchEvent(new Event('resize'));
+    }
+});
+</script>
+<% end %>
+

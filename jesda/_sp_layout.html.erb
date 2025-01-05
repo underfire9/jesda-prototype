@@ -2,55 +2,69 @@
 <!doctype html>
 <html lang="<%= I18n.locale %>" class="no-js">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Jesda</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen, projection" href="stylesheets/bootstrap.css">
-<% if content_for? :replace_css %>
-    <%= yield :replace_css %>
-<% end %>
-    <link rel="stylesheet" media="screen, projection, print" href="stylesheets/application.css">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="../favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="../favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="../favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="../favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="../favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="../favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="../favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-    <link rel="manifest" href="../favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-
-    <script src="javascripts/modernizr.custom.26633.js"></script>
-<% if content_for? :page_styles %>
-    <%= yield :page_styles %>
-<% end %>
-<script src="javascripts/modernizr.custom.js"></script>
-<% if content_for? :head_js %>
-    <%= yield :head_js %>
-<% end %>
+    <%= render :partial => "/partials/head" %>
 </head>
 
 <body>
+    
+    <header class="header">
+        <a href="#panel-landing" class="header-logo">
+            <svg x="0px" y="0px" viewBox="0 0 448 480" xml:space="preserve">
+                <g>
+                    <g>
+                        <path
+                            class="darktheme"
+                            d="M288,0v64l0,0v178c0,45.2-64,70-64,70s-64-24.8-64-70V96H96v148c0,90.4,128,136,128,136s128-45.6,128-136V64
+                        h32v187c0,114.4-160,165-160,165S64,366.4,64,252V64h128v175c0,22.6,32,37,32,37s32-14.4,32-37V64V0H0v256c0,160,224,224,224,224
+                        s224-64,224-224V0H288z"
+                        />
+                    </g>
+                </g>
+            </svg>
+        </a>
+        <nav class="main-nav">
+            <ul class="menu-item nav-menu">
+                <li>
+                    <a class="item-link" href="general/about.html">
+                        <span class="text-span">關於我們</span>
+                        <span class="separation"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="item-link" href="general/service.html">
+                        <span class="text-span">服務流程</span>
+                        <span class="separation"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="item-link" href="general/case.html">
+                        <span class="text-span">案例經驗</span>
+                        <span class="separation"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="side-nav">
+            <ul class="menu-item">
+                <li><a href="#panel-customized" class="spy-customized">客製化系統最佳合作夥伴</a></li>
+                <li><a href="#panel-case" class="spy-case">案例</a></li>
+                <li><a href="#panel-iso" class="spy-iso">ISO 27001</a></li>
+            </ul>
+        </nav>
+        <a href="general/contact.html" class="btn-contact"><span><img src="assets/contact.svg"></span></a>
+    </header>
+    
     <div class="content">
-        <section class="panel-section landing-section">
+        
+        <!-- landing -->
+        <section id="panel-landing" class="panel-section landing-section fullpage-section">
             <div class="landing-wrapper">
-                <div class="bottom-stage">
-                    <span class="tiny-mouse">
-                        <span class="mouseInfinite"></span>
-                    </span>
-                </div>
                 <div id="landing">
-
+                    <div class="landing-layer bottom-stage r0">
+                        <span class="tiny-mouse">
+                            <span class="mouseInfinite"></span>
+                        </span>
+                    </div>
                     <div class="landing-layer layer-cloud">
                         <div class="cloud-wrapper">
                             <div class="cloud-group group-right">
@@ -63,18 +77,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="landing-layer gradually-layer r14">
-                        <img class="img-fluid" src="assets/r1.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r13">
-                        <img class="img-fluid" src="assets/r2.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r12">
-                        <img class="img-fluid" src="assets/r3.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r11">
-                        <img class="img-fluid" src="assets/r4.svg">
-                    </div>
+                    <div class="landing-layer gradually-layer r14"></div>
+                    <div class="landing-layer gradually-layer r13"></div>
+                    <div class="landing-layer gradually-layer r12"></div>
+                    <div class="landing-layer gradually-layer r11"></div>
                     <div class="landing-layer r0">
                         <div class="landing-main">
                             <div class="main-stage">
@@ -82,7 +88,7 @@
                                     <img class="logo-v gsap-logo" src="assets/logo-v.svg">
                                     <h5 class="slogan gsap-slogan">我們提供更安心的網路系統開發</h5>
                                 </div>
-                                <div class="carousel-stage">
+                                <!--div class="carousel-stage">
                                     <div class="vertical carousel slide" data-bs-ride="carousel">
                                         <div class="carousel-inner">
                                             <div class="carousel-item active" data-bs-interval="3000">
@@ -105,46 +111,165 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div-->
                             </div>
                         </div>
                     </div>
-                    <div class="landing-layer gradually-layer r10">
-                        <img class="img-fluid" src="assets/r5.svg">
+                    <div class="landing-layer gradually-layer r10"></div>
+                    <div class="landing-layer gradually-layer r9"></div>
+                    <div class="landing-layer gradually-layer r8"></div>
+                    <div class="landing-layer gradually-layer r7"></div>
+                    <div class="landing-layer gradually-layer r6"></div>
+                    <div class="landing-layer gradually-layer r5"></div>
+                    <div class="landing-layer gradually-layer r4"></div>
+                    <div class="landing-layer gradually-layer r3"></div>
+                    <div class="landing-layer gradually-layer r2"></div>
+                    <div class="landing-layer gradually-layer r1"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- customized -->
+        <section id="panel-customized" class="panel-section panel-customized fullpage-section">
+            <div class="container-xl">
+                <div class="panel-inner">
+                    <div class="ssdlc">
+                        <img src="assets/ssdlc.svg">
                     </div>
-                    <div class="landing-layer gradually-layer r9">
-                        <img class="img-fluid" src="assets/r6.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r8">
-                        <img class="img-fluid" src="assets/r7.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r7">
-                        <img class="img-fluid" src="assets/r8.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r6">
-                        <img class="img-fluid" src="assets/r9.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r5">
-                        <img class="img-fluid" src="assets/r10.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r4">
-                        <img class="img-fluid" src="assets/r11.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r3">
-                        <img class="img-fluid" src="assets/r12.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r2">
-                        <img class="img-fluid" src="assets/r13.svg">
-                    </div>
-                    <div class="landing-layer gradually-layer r1">
-                        <img class="img-fluid" src="assets/r14.svg">
+                    <div class="copywriting">
+                        <h2>客製化系統最佳合作夥伴</h2>
+                        <p>捷思達有多年的客製化系統開發及維護經驗，擁有各類經驗豐富的專業人員，能配合各領域專家，開發出符合客戶需求的系統，並提供長期維護及服務支援，透過系統化方式執行及管理整個軟體生命週期，提供客戶最安心可靠的系統開發營運服務。</p>
+                        <a href="#" class="btn-more"><span>了解更多</span></a>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="panel-section general-section">
-            <div style="height: 300vh;">test</div>
+        
+        <!-- case -->
+        <section id="panel-case" class="panel-section panel-case fullpage-section panel-dark">
+            <div class="container-xl">
+                <div class="panel-inner">
+                    <div>
+                        <div class="panel-title">
+                            <h2>案例</h2>
+                        </div>
+                        <div id="case-display" class="case-display">
+                            <a href="general/case.html" class="case-item">
+                                <div class="item-inner">
+                                    <img src="assets/icon/search.svg">
+                                    <h5>申請審查</h5>
+                                    <p>在手不滿謝您為也過我的時候較可愛跟邊的人</p>
+                                </div>
+                            </a>
+                            <a href="general/case.html" class="case-item">
+                                <div class="item-inner">
+                                    <img src="assets/icon/globe.svg">
+                                    <h5>國際交流</h5>
+                                    <p>可選擇任一字體進入觀看的時候較可愛跟邊的人</p>
+                                </div>
+                            </a>
+                            <a href="general/case.html" class="case-item">
+                                <div class="item-inner">
+                                    <img src="assets/icon/paperclip.svg">
+                                    <h5>校務行政</h5>
+                                    <p>點選想用的字型並可依需求選擇想要的字型樣式</p>
+                                </div>
+                            </a>
+                            <a href="general/case.html" class="case-item">
+                                <div class="item-inner">
+                                    <img src="assets/icon/piechart.svg">
+                                    <h5>職能分析</h5>
+                                    <p>列表內選一個你喜歡的字體</p>
+                                </div>
+                            </a>
+                            <a href="general/case.html" class="case-item">
+                                <div class="item-inner">
+                                    <img src="assets/icon/clipboard.svg">
+                                    <h5>招生考試</h5>
+                                    <p>為也過我的時在手不滿謝您候較跟邊</p>
+                                </div>
+                            </a>
+                            <a href="general/case.html" class="case-item">
+                                <div class="item-inner">
+                                    <img src="assets/icon/ribbon.svg">
+                                    <h5>獎補助金</h5>
+                                    <p>字體進入觀看 可選擇任一的字體將想</p>
+                                </div>
+                            </a>
+                            <a href="general/case.html" class="case-item">
+                                <div class="item-inner">
+                                    <img class="icon-chip" src="assets/icon/chip.svg">
+                                    <h5>AI 應用</h5>
+                                    <p>選擇想要的字型樣式點</p>
+                                </div>
+                            </a>
+                            <a href="general/case.html" class="case-item">
+                                <div class="item-inner">
+                                    <img src="assets/icon/browser.svg">
+                                    <h5>電子表單</h5>
+                                    <p>列表內選一個你喜歡的字體用的字型並可依需求</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+        
+        <!-- iso -->
+        <section id="panel-iso" class="panel-section panel-iso fullpage-section">
+            
+            <div class="panel-inner">
+                <div class="iso-wrap">
+                    <div class="container-xl">
+                        <div class="iso-inner">
+                            <span>
+                                <img class="logo-iso" src="assets/iso.png">
+                            </span>
+                            <div class="copywriting">
+                                <h3>通過 ISO 27001 國際標準認證</h3>
+                                <p>NF EN ISO/IEC 27001:2023  /  ISO/IEC 27001:2022<br>資訊安全管理系統</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-wrap">
+                    <footer class="footer">
+                        <div class="container-xl">
+                            <div class="footer-inner">
+                                <ul class="link-menu menu-item">
+                                    <li><a href="general/policy.html">資訊安全政策</a></li>
+                                    <li><a href="#" class="login">客戶登入</a></li>
+                                </ul>
+                                <div class="footer-start">
+                                    <div class="start-left">
+                                        <h2>捷思達數位開發</h2>
+                                        <ul class="info-menu menu-item">
+                                            <li><i class="fas fa-map-marker"></i>新北市永和區中和路 343 號 14 樓之 3</li>
+                                            <li><i class="fas fa-map-marker"></i>台南市永康區中華路 1 之 150 號 24 樓 A 室</li>
+                                        </ul>
+                                    </div>
+                                    <div class="start-right">
+                                        <p>服務時間  09:00 - 180:00</p>
+                                        <ul class="info-menu menu-item">
+                                            <li><i class="fas fa-phone-alt"></i></i>02-29205589</li>
+                                            <li><i class="fas fa-fax"></i>02-29205689</li>
+                                            <li><i class="fas fa-envelope"></i><a href="mailto:jesda@jesda.com.tw">jesda@jesda.com.tw</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="footer-end">
+                                    <div class="end-bottom">
+                                        <address>© Jesda</address>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </section>
+        
     </div>
     
     <script src="javascripts/jquery-3.6.0.min.js"></script>
@@ -161,36 +286,43 @@
     <script>
     $(document).ready(function() {
         $('body').mousemove(function(event) {
-            cx = Math.ceil($('body').width() * 0.2);
-            cy = Math.ceil($('body').height() * 0.5);
-            dx = event.pageX - cx;
-            dy = event.pageY - cy;
+            // 將頁面中心點設置為新的視覺焦點
+            var cx = Math.ceil($('body').width() / 2);
+            var cy = Math.ceil($('body').height() / 2);
 
-            tiltx = (dy / cy);
-            tilty = - (dx / cx);
-            radius = Math.sqrt(Math.pow(tiltx,2) + Math.pow(tilty,2));
-            degree = (radius * 2);
-            TweenLite.set("#landing", {transform:'rotate3d(' + tiltx + ', ' + tilty + ', 0, ' + degree + 'deg)'});
+            // 以新的視覺焦點計算偏移量
+            var dx = event.pageX - cx;
+            var dy = event.pageY - cy;
+
+            // 計算旋轉角度
+            var tiltx = (dy / cy) * 0.15; // 調整垂直偏移量
+            var tilty = -(dx / cx) * 0.2; // 調整水平偏移量
+            var radius = Math.sqrt(Math.pow(tiltx, 2) + Math.pow(tilty, 2));
+            var degree = (radius * 20); // 增加旋轉度數，使效果更明顯
+
+            // 設置旋轉效果
+            TweenLite.set("#landing", {
+                transform: 'rotate3d(' + tiltx + ', ' + tilty + ', 0, ' + degree + 'deg)'
+            });
         });
-    });  
+    });
     </script>
     
     <!-- lading -->
     <script>
-        gsap.to(".gradually-layer", {duration: .5, y:-20, stagger: 0.1, opacity: 1});
-        gsap.to(".gsap-logo", {duration: 1, y:40, opacity: 1});
-        gsap.to(".gsap-slogan", {duration: 1, opacity: 1});
-        gsap.to(".carousel-stage", {duration: 1, y:-20, opacity: 1});
-        gsap.to(".layer-cloud", {duration: 1, y:20, opacity: 1});
+    gsap.to(".gradually-layer", {duration: .5, y:-20, stagger: 0.1, opacity: 1});
+    gsap.to(".gsap-logo", {duration: 1, y:40, opacity: 1});
+    gsap.to(".gsap-slogan", {duration: 1, opacity: 1});
+    gsap.to(".bottom-stage", {duration: 1, y:20, opacity: 1});
+    gsap.to(".layer-cloud", {duration: 1, y:20, opacity: 1});
     </script>
     
     <!-- Full page scroll -->
     <script>
-
         gsap.registerPlugin(ScrollTrigger);
         gsap.registerPlugin(ScrollToPlugin);
 
-        let sections = gsap.utils.toArray(".panel-section");
+        let sections = gsap.utils.toArray(".fullpage-section");
 
         function goToSection(i) {
             gsap.to(window, {
@@ -199,27 +331,106 @@
             });
         }
 
-        ScrollTrigger.defaults({
-            // markers: true
+        function setupFullPageScroll() {
+            if (window.innerWidth >= 1200) {
+                sections.forEach((eachPanel, i) => {
+                    ScrollTrigger.create({
+                        trigger: eachPanel,
+                        onEnter: () => goToSection(i),
+                    });
+
+                    ScrollTrigger.create({
+                        trigger: eachPanel,
+                        start: "bottom bottom",
+                        onEnterBack: () => goToSection(i),
+                    });
+                });
+            } else {
+                ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            }
+        }
+
+        // Initial setup
+        setupFullPageScroll();
+
+        // Re-setup on window resize
+        window.addEventListener("resize", () => {
+            setupFullPageScroll();
         });
-
-        sections.forEach((eachPanel, i) => {
-            // const mainAnim = gsap.timeline({ paused: true });
-
-            ScrollTrigger.create({
-                trigger: eachPanel,
-                onEnter: () => goToSection(i),
-            });
-
-            ScrollTrigger.create({
-                trigger: eachPanel,
-                start: "bottom bottom",
-                onEnterBack: () => goToSection(i),
-            });
-        });
-
     </script>
     
+    <!-- scrollspy -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const sections = [
+            { panel: '.panel-customized', spy: '.spy-customized' },
+            { panel: '.panel-case', spy: '.spy-case' },
+            { panel: '.panel-iso', spy: '.spy-iso' }
+        ];
+
+        sections.forEach((section) => {
+            ScrollTrigger.create({
+                trigger: section.panel,
+                start: "top center",
+                end: "bottom center",
+                onEnter: () => {
+                    document.querySelector(section.spy).classList.add('active');
+                },
+                onLeave: () => {
+                    document.querySelector(section.spy).classList.remove('active');
+                },
+                onEnterBack: () => {
+                    document.querySelector(section.spy).classList.add('active');
+                },
+                onLeaveBack: () => {
+                    document.querySelector(section.spy).classList.remove('active');
+                }
+            });
+        });
+
+        ScrollTrigger.create({
+            trigger: '.panel-dark',
+            start: "top center",
+            end: "bottom center",
+            onEnter: () => document.querySelector('.header').classList.add('header-dark'),
+            onLeave: () => document.querySelector('.header').classList.remove('header-dark'),
+            onEnterBack: () => document.querySelector('.header').classList.add('header-dark'),
+            onLeaveBack: () => document.querySelector('.header').classList.remove('header-dark')
+        });
+
+    // 預設隱藏 .header-logo
+    const headerLogo = document.querySelector('.header-logo');
+    headerLogo.style.opacity = '0';
+
+    // 創建 ScrollTrigger
+    ScrollTrigger.create({
+        trigger: '.landing-section',
+        start: "top top+=1",  // 開始觸發時，進入到 landing-section 就隱藏
+        end: "bottom top+=1", // 結束觸發時，離開 landing-section 就顯示
+        onEnter: () => gsap.to(headerLogo, {opacity: 0, duration: 0.5}),
+        onLeave: () => gsap.to(headerLogo, {opacity: 1, duration: 0.5}),
+        onEnterBack: () => gsap.to(headerLogo, {opacity: 0, duration: 0.5}),
+        onLeaveBack: () => gsap.to(headerLogo, {opacity: 1, duration: 0.5})
+    });
+
+    });
+    </script>
     
+    <!-- hover effect -->
+    <script>
+    document.getElementById("case-display").onmousemove = e => {
+      for(const card of document.getElementsByClassName("case-item")) {
+        const rect = card.getBoundingClientRect(),
+              x = e.clientX - rect.left,
+              y = e.clientY - rect.top;
+
+        card.style.setProperty("--mouse-x", `${x}px`);
+        card.style.setProperty("--mouse-y", `${y}px`);
+      };
+    }
+    </script>
+
 </body>
 </html>

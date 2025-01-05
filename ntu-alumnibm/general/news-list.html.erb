@@ -1,0 +1,107 @@
+<!-- template: 最新消息列表 -->
+
+<!-- 麵包屑 -->
+<nav aria-label="breadcrumb" class="nav-breadcrumb">
+    <div class="container-lg">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#" title="{連結名稱}">首頁</a></li>
+            <li class="breadcrumb-item"><a href="#" title="{連結名稱}">雙月刊</a></li>
+            <li class="breadcrumb-item active" aria-current="page">第 152 期校友雙月刊</li>
+        </ol>
+    </div>
+</nav>
+
+<div class="container-lg">
+    
+    <div class="news-wrapper">
+        
+        <h3 class="page-heading"><span>最新消息</span></h3>
+        
+        <div class="filter-bar">
+            <div class="input-wrap">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="請輸入關鍵字" aria-label="請輸入關鍵字" aria-describedby="button-search2" />
+                    <button class="btn btn-secondary" type="button" id="button-search2"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <ul class="menu-item news-list">
+            
+            <% (11..19).map do |i| %>
+            <li class="item-news">
+                <a class="item-link" href="#" title="{連結名稱}">
+                    
+                    <!-- 輪撥後台上傳圖片請註明最低解析度 800 * 450 -->
+                    <!-- 圖片裁切寬高比例請給 16:9 -->
+                    <span class="img-wrap">
+                        <span class="wrap-inner">
+                            <img src="https://placehold.co/800x450" alt="{圖片描述}" />
+                        </span>
+                    </span>
+                    <span class="detail">
+                        <span class="date">2024-05-<%= i %></span>
+                        <span class="title">臺大傑出校友個別推薦說明</span>
+                        
+                        <!-- 後台請註明並限制 32 個字元 -->
+                        <span class="intro">臺大傑出校友遴選委員會邀請您推薦心目中的傑出校友，參與今年傑出校友的遴選。相關資訊如下</span>
+                    </span>
+                </a>
+            </li>
+            <% end %>
+            
+            <li class="item-news">
+                <a class="item-link" href="#" title="{連結名稱}">
+                    
+                    <!-- 輪撥後台上傳圖片請註明最低解析度 800 * 450 -->
+                    <!-- 圖片裁切寬高比例請給 16:9 -->
+                    <span class="img-wrap">
+                        <img src="https://placehold.co/800x450" alt="{圖片描述}" />
+                    </span>
+                    <span class="detail">
+                        <span class="date">2024-05-20</span>
+                        <span class="title">臺中市國立臺灣大學校友會戀戀南洋小琉球之旅三日遊</span>
+                        
+                        <!-- 後台請註明並限制 32 個字元 -->
+                        <span class="intro">臺大傑出校友遴選委員會邀請您推薦心目中的傑出校友，參與今年傑出校友的遴選。相關資訊如下</span>
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+        
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <li class="page-item disabled">
+                    <a class="page-link">上一頁</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">下一頁</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+
+<% content_for :js do %>
+
+<!-- 限制 34 個字元 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const intros = document.querySelectorAll('.news-list .intro');
+    
+    intros.forEach(intro => {
+        const text = intro.textContent.trim();
+        if (text.length > 34) {
+            intro.textContent = text.slice(0, 34) + ' ..';
+        }
+    });
+});
+</script>
+<% end %>
+

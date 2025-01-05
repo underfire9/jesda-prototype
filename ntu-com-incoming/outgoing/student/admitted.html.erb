@@ -1,0 +1,180 @@
+<!-- template: 出國: 學生 - 錄取報到 (包含第二次錄取) -->
+
+<div class="workspace" canvas="container">
+    <div class="pages general-pages">
+        
+        <%= render :partial => "/partials/header-outgoing" %>
+        
+        <div class="content">
+            <div class="container-lg">
+                <div class="page-content has-sticky">
+                    
+                    <%= render :partial => "/partials/outgoing-result-sidebar" %>
+                    
+                    <main class="main">
+                        <div class="page-title">
+                            <h3>錄取報到</h3>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="form-label">錄取學校</label>
+                                    <div class="fw-bold" style="color: #6d11f5;">英國 聖安德魯斯大學</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="form-label">交換期間</label>
+                                    <div class="fw-bold" style="color: #6d11f5;">上學期</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <section class="section">
+                            <div class="section-title">
+                                <h4>錄取報到程序</h4>
+                            </div>
+                            <div>
+                                <h5><%= lorem_sentence %></h5>
+                                <p><%= lorem_paragraph %></p>
+                                <ol>
+                                    <% (1..6).map do |i| %>
+                                    <li><%= lorem_sentence %></li>
+                                    <% end %>
+                                </ol>
+                                <p><%= lorem_paragraph %></p>
+                            </div>
+                            
+                        </section>
+                        
+                        <section class="section">
+                            <div class="section-title">
+                                <h4>錄取資格意願</h4>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="admissionConfirmation" value="option1" />
+                                    <label class="form-check-label" for="admissionConfirmation">確認錄取資格</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="admissionGiveup" value="option2" />
+                                    <label class="form-check-label" for="admissionGiveup">放棄錄取資格</label>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <div class="confirmation-wrapper">
+                            <button type="button" class="btn btn-outline-primary btn-rounded">錄取確認書列印</button>
+                            <section class="section">
+                                <div class="section-title">
+                                    <h4>上傳錄取繳交資料</h4>
+                                </div>
+                                <div class="upload-wrapper fluid-wrapper">
+                                    
+                                    <!-- 操作相關邏輯 js 麻煩工程師協助 -->
+                                    <div class="upload-item">
+                                        <h4>計畫費繳費單</h4>
+                                        <p><%= zh_lorem_paragraph %></p>
+                                        <p class="form-text">檔案格式限制：pdf，檔案大小限制：10mb</p>
+                                        <div class="ft-action">
+                                            <span>
+                                                <div class="file-pill ms-0">
+                                                    <!-- 避免檔名過長有限制最大寬度 140px，超出時會字元會省略，但切記標籤加上 title -->
+                                                    <a href="#" target="_blank" class="filename" title="避免檔名過長有限制最大寬度.jpg">避免檔名過長有限制最大寬度.jpg</a>
+                                                    <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="upload-item">
+                                        <h4>姊妹校錄取文件1</h4>
+                                        <p><%= zh_lorem_paragraph %></p>
+                                        <p class="form-text">檔案格式限制：pdf，檔案大小限制：10mb</p>
+                                        <div class="form-group">
+                                              <input class="form-control" type="file" id="photoFile">
+                                        </div>
+                                        <div class="ft-action">
+                                            <span>
+                                                <button type="button" class="btn btn-secondary">上傳</button>
+                                            </span>
+                                            <span>
+                                                <div class="file-pill">
+                                                    <!-- 避免檔名過長有限制最大寬度 140px，超出時會字元會省略，但切記標籤加上 title -->
+                                                    <a href="#" target="_blank" class="filename" title="避免檔名過長有限制最大寬度.jpg">避免檔名過長有限制最大寬度.jpg</a>
+                                                    <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </section>
+                        </div>
+
+                        <div class="giveup-wrapper">
+                            <section class="section">
+                                <div class="section-title">
+                                    <h4>放棄錄取資格</h4>
+                                </div>
+                                <div class="mb-4 form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                                    <label class="form-check-label" for="exampleCheck1">我同意放棄錄取資格</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1" class="form-label">放棄原因說明</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                            </section>
+                        </div>
+                        
+                        <div class="form-action">
+                            <button type="submit" class="btn btn-lg btn-primary">錄取資格確認</button>
+                        </div>
+                        
+                    </main>
+                </div>
+            </div>
+        </div>
+        <a id="backtop"></a>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<% content_for :js do %>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const admissionConfirmation = document.getElementById('admissionConfirmation');
+    const admissionGiveup = document.getElementById('admissionGiveup');
+    const confirmationWrapper = document.querySelector('.confirmation-wrapper');
+    const giveupWrapper = document.querySelector('.giveup-wrapper');
+
+    // 函數用於切換 .confirmation-wrapper 和 .giveup-wrapper 的顯示/隱藏
+    function toggleAdmissionOptions() {
+        if (admissionConfirmation.checked) {
+            confirmationWrapper.style.display = 'block';
+            giveupWrapper.style.display = 'none';
+        } else if (admissionGiveup.checked) {
+            giveupWrapper.style.display = 'block';
+            confirmationWrapper.style.display = 'none';
+        }
+    }
+
+    // 監聽 radio 按鈕的變化事件
+    admissionConfirmation.addEventListener('change', toggleAdmissionOptions);
+    admissionGiveup.addEventListener('change', toggleAdmissionOptions);
+
+    // 初始化設定
+    toggleAdmissionOptions();
+});
+
+</script>
+
+<% end %>
+

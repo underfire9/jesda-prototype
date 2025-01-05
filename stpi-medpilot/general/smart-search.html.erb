@@ -1,0 +1,106 @@
+<!-- template: smart search -->
+
+<div class="breadcrumb-container">
+    <div class="container-lg">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+<div class="container-lg">
+    <main class="main">
+        
+        <div class="smart-search-container">
+            
+            <div class="search-bar">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Smart Search" aria-label="Smart Search" aria-describedby="button-addon2" />
+                    <button class="btn btn-secondary" type="button" id="button-addon2">Add New Project</button>
+                </div>
+                <div class="switch-wrap">
+                    <button class="btn btn-secondary current" type="button" id="button-grid"><i class="fas fa-th-large"></i></button>
+                    <button class="btn btn-secondary" type="button" id="button-list"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+
+            <div class="search-list">
+
+                <div class="list-head">
+                    <div class="list-tr">
+                        <div class="list-th th-title">Title</div>
+                        <div class="list-th th-date">Date</div>
+                        <div class="list-th th-action"></div>
+                    </div>
+                </div>
+
+                <div class="search-list-bd">
+                    <% (1..12).map do |i| %>
+                    <div class="list-item">
+                        <div class="inner">
+                            <div class="list-title search-list-td">
+                                <span class="lable">Title</span>
+                                <span class="output">Zeta Cranial Navigation System (Zns131-Us)</span>
+                            </div>
+                            <div class="list-date search-list-td">
+                                <span class="lable">Date</span>
+                                <span class="output">2024/04/20</span>
+                            </div>
+                            <div class="list-action search-list-td">
+                                <button type="button" class="btn btn-sm btn-outline-primary">Open</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+
+            </div>
+            
+            <nav aria-label="...">
+                <ul class="pagination justify-content-end mt-4">
+                    <li class="page-item disabled">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+        
+    </main>
+    
+</div>
+
+<% content_for :js do %>
+
+<!-- grid & list switch -->
+<script>
+    $(document).ready(function() {
+        $('#button-list').click(function() {
+            $(this).addClass('current');
+            $('#button-grid').removeClass('current');
+            $('.search-list').addClass('table-list');
+        });
+
+        $('#button-grid').click(function() {
+            $(this).addClass('current');
+            $('#button-list').removeClass('current');
+            $('.search-list').removeClass('table-list');
+        });
+    });
+</script>
+<% end %>
+

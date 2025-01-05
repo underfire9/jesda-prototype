@@ -1,0 +1,182 @@
+<!-- template: 報到意願回覆 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="container-lg">
+	<div class="page-content d-block">
+        
+        <div class="page-title">
+            <h3>報到意願回覆</h3>
+        </div>
+        
+        <hgroup class="mb-3">
+            <h3 class="fw-bold">恭喜您錄取</h3>
+            <h4>臺中市公設民營東區大智國小托嬰中心</h4>
+        </hgroup>
+        <p>請於 <strong class="text-danger">2024-08-23 12:00</strong> 前回覆您的報到意願</p>
+        
+        <div class="child-info">
+            <div class="info-item">
+                <div class="form-group">
+                    <label class="form-label">報名序號</label>
+                    <div>20250010003</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="form-group">
+                    <label class="form-label">幼兒姓名</label>
+                    <div><%= zh_lorem_name %></div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="form-group">
+                    <label class="form-label">身分證字號</label>
+                    <div>B123456789</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="form-group">
+                    <label class="form-label">生日</label>
+                    <div>110-10-10</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="willingness-controller">
+            <button type="button" class="btn-checkin btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkinModal">同意報到</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#giveUpModal">放棄報到</button>
+        </div>
+        
+        <!-- 操作流程 - modal 按鈕 click 後才進行接下來的表單動作 -->
+        <div class="checkin-wrapper">
+            <div class="form-group">
+                <label class="form-label">報到地點</label>
+                <div class="h5">臺中市公設民營東區大智國小托嬰中心</div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">預計報到期限</label>
+                <div class="h5">2022-12-12</div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">預計入托日</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                        <label class="form-check-label" for="inlineRadio1">2022-12-12</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                        <label class="form-check-label" for="inlineRadio2">2022-12-12</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" />
+                        <label class="form-check-label" for="inlineRadio3">2022-12-12</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-confirm btn-primary">送出</button>
+            
+            <div class="deed-wrap">
+                <div class="wrap-inner">請下載 <a href="#" title="托育契約檔案"><i class="far fa-file-alt"></i> 托育契約檔案</a> 自行印出後簽名，帶至托嬰中心完成報到手續</div>
+            </div>
+        </div>
+        
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="checkinModal" tabindex="-1" aria-labelledby="checkinModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="checkinModalLabel">同意報到</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                您選擇的報到意願為 <strong>"同意報到"</strong> ，是否確認送出 ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-confirm btn-primary">送出</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="giveUpModal" tabindex="-1" aria-labelledby="giveUpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="giveUpModalLabel">放棄報名</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>您選擇了 "<strong class="text-danger">放棄報名</strong>"，是否確認送出？</p>
+                <div class="form-group">
+                    <label class="form-label">請選擇放棄原因</label>
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                入托其他托嬰中心或托育家園
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                報名或備取其他托嬰中心或托育家園
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" />
+                            <label class="form-check-label" for="flexRadioDefault3">
+                                其他
+                            </label>
+                        </div>
+                        <div class="check-reason ps-4">
+                            <input type="text" class="form-control" id="" placeholder="請輸入其他原因">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sign-wrap">
+                    <label class="form-label">請在下方方框空白處以滑鼠簽名</label>
+                    <textarea class="form-control" rows="4"></textarea>
+                    <button type="button" class="btn btn-sm btn-outline-dark btn-rounded">清空</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-cancel btn-primary">送出</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<script>
+$(document).ready(function() {
+    $('.btn-confirm').click(function() {
+        $('.checkin-wrapper').addClass('show');
+        $('.willingness-controller').addClass('hide');
+    });
+    
+    $('.btn-cancel').click(function() {
+        $('.willingness-controller').addClass('hide');
+    });
+});
+</script>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+

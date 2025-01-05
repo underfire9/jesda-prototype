@@ -1,0 +1,124 @@
+<!-- template: 來校: 學生 - accommodation -->
+
+<div class="workspace" canvas="container">
+    <div class="pages general-pages">
+        
+        <%= render :partial => "/partials/header-incoming" %>
+        
+        <div class="content">
+            <div class="container-lg">
+                <div class="page-content has-sticky">
+                    
+                    <%= render :partial => "/partials/incoming-app-sidebar" %>
+                    
+                    <main class="main">
+                        <div class="page-title">
+                            <h3>On-campus Accommodation</h3>
+                        </div>
+                        <div class="mb-3">
+                            There is no guaranteed housing for all  students. Please take this information into consideration when applying to the exchange program. The result will be announced one and half month prior to  the orientaiton week of the program.
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Do you wish to apply for the on-campus dormitory?</label>
+                            <div class="mt-1">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="dormitoryYes" value="option1">
+                                    <label class="form-check-label" for="dormitoryYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="dormitoryNo" value="option2">
+                                    <label class="form-check-label" for="dormitoryNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dormitory-yes-wrapper">
+                            <div>
+                                <label class="form-label">Please choose your order of preference on the following options:</label>
+                                <div class="form-group">
+                                    <label class="form-label fw-normal">1st Choice</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label fw-normal">2nd Choice</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label fw-normal">3rd Choice</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label fw-normal">4th Choice</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label fw-normal">5th Choice</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-action">
+                            <button type="submit" class="btn btn-lg btn-primary">Save</button>
+                            <span class="has-history"><button type="button" class="btn btn-lg btn-light">Next <i class="fas fa-chevron-right"></i></button></span>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <a id="backtop"></a>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<% content_for :js do %>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dormitoryYes = document.getElementById('dormitoryYes');
+            const dormitoryNo = document.getElementById('dormitoryNo');
+            const dormitoryYesWrapper = document.querySelector('.dormitory-yes-wrapper');
+
+            // 函數用於切換 .dormitory-yes-wrapper 的顯示/隱藏
+            function toggleDormitoryYesWrapper() {
+                if (dormitoryYes.checked) {
+                    dormitoryYesWrapper.style.display = 'block';
+                } else {
+                    dormitoryYesWrapper.style.display = 'none';
+                }
+            }
+
+            // 監聽 radio 按鈕的變化事件
+            dormitoryYes.addEventListener('change', toggleDormitoryYesWrapper);
+            dormitoryNo.addEventListener('change', toggleDormitoryYesWrapper);
+
+            // 初始化設定
+            toggleDormitoryYesWrapper();
+        });
+    </script>
+<% end %>

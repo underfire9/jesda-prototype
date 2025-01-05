@@ -1,0 +1,193 @@
+<!-- template: 關於 NISA -->
+
+<div class="container-lg">
+	<div class="page-content">
+	    <aside class="aside offcanvas-collapse">
+			<div class="scrollbar-inner">
+				<!--div class="user-wrapper">
+				    <p><i class="far fa-user-circle"></i></p>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Angela Winson
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Change password</a></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                        </ul>
+                    </div>
+				</div-->
+		        <div class="sidenav">
+                    <ul class="side-navigation menu-item side-sticky">
+                        <li>
+							<a class="nav-item" href="#">
+							    <span class="link-inner">計畫介紹</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-item current" href="#">
+								<span class="link-inner">計畫成員</span>
+							</a>
+						</li>
+                    </ul>
+				</div>
+			</div>
+		</aside>
+		<div id="widget-overlay"></div>
+		<main class="main">
+			<div class="pages-title">
+                <h3><span>計畫成員</span></h3>
+            </div>
+            
+            <div class="mb-4">
+                <h5 class="mb-4">
+                    計畫指導單位：教育部
+                    <small class="d-block">Supervisor: Ministry of Education</small>
+                </h5>
+                <h5>計畫主持人：葉俊良 教授</h5>
+                <div>Principal Investigator: Prof. Chun-Liang Yeh</div>
+                <div>Phone: (04)2451-7250 # 2485</div>
+                <div>Email: clyeh@fcu.edu.tw</div>
+            </div>
+            
+            <!-- 下方 table 建議作法，在視窗縮小後 (ex. 1199px) 再給 .text-nowrap -->
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>計畫助理<small class="d-block">Name</small></th>
+                            <th>工作執掌<small class="d-block">Job Dutie</small></th>
+                            <th>聯絡方式<small class="d-block">Contact</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..2).map do |i| %>
+                        <tr>
+                            <td><%= zh_lorem_name %></td>
+                            <td>
+                                <ul>
+                                    <% (1..3).map do |i| %>
+                                    <li><%= lorem_sentence %></li>
+                                    <% end %>
+                                </ul>
+                            </td>
+                            <td>
+                                <span class="d-block">Phone: (04)2451-7250 # 2485</span>
+                                <span class="d-block">Email: <%= lorem_email %></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><%= lorem_name %></td>
+                            <td>
+                                <ul>
+                                    <% (1..3).map do |i| %>
+                                    <li><%= lorem_sentence %></li>
+                                    <% end %>
+                                </ul>
+                            </td>
+                            <td>
+                                <span class="d-block">Phone: (04)2451-7250 # 2485</span>
+                                <span class="d-block">Email: <%= lorem_email %></span>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>計畫助理<small class="d-block">Name</small></th>
+                            <th>工作執掌<small class="d-block">Job Dutie</small></th>
+                            <th>聯絡方式<small class="d-block">Contact</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..2).map do |i| %>
+                        <tr>
+                            <td><%= zh_lorem_name %></td>
+                            <td>
+                                <ul>
+                                    <% (1..3).map do |i| %>
+                                    <li><%= lorem_sentence %></li>
+                                    <% end %>
+                                </ul>
+                            </td>
+                            <td>
+                                <span class="d-block">Phone: (04)2451-7250 # 2485</span>
+                                <span class="d-block">Email: <%= lorem_email %></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><%= lorem_name %></td>
+                            <td>
+                                <ul>
+                                    <% (1..3).map do |i| %>
+                                    <li><%= lorem_sentence %></li>
+                                    <% end %>
+                                </ul>
+                            </td>
+                            <td>
+                                <span class="d-block">Phone: (04)2451-7250 # 2485</span>
+                                <span class="d-block">Email: <%= lorem_email %></span>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+
+            </div>
+            
+		</main>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+<script>
+    var stickEl = $('.side-sticky'),
+      stickyElTop = stickEl.offset().top;
+
+    var sticky = function(){  
+      var scrollTop = $(window).scrollTop();  
+
+      if (stickyElTop < scrollTop+20) {   
+          stickEl.addClass('is-fixed');  
+      } else {  
+          stickEl.removeClass('is-fixed');   
+      }  
+    };
+
+    $(window).scroll(function() {
+      sticky();
+    }); 
+</script>
+
+<!-- 監看 .aside 高度 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 獲取 .aside 和 .main 元素
+    var asideElement = document.querySelector('.aside');
+    var mainElement = document.querySelector('.main');
+
+    // 檢查是否找到了 .aside 和 .main
+    if (asideElement && mainElement) {
+        // 監聽窗口大小變化事件
+        window.addEventListener('resize', function() {
+            // 獲取 .aside 的內容高度
+            var asideContentHeight = asideElement.scrollHeight;
+
+            // 設置 .main 的最小高度
+            mainElement.style.minHeight = asideContentHeight + 'px';
+        });
+
+        // 在窗口加載時觸發一次，以確保最小高度正確設置
+        window.dispatchEvent(new Event('resize'));
+    }
+});
+</script>
+<% end %>
+
+

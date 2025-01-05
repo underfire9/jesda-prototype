@@ -1,0 +1,288 @@
+
+/* `橫向資訊區塊
+-----------------------------------------------------------------------------*/
+
+.horizontal-info {
+    .menu-item {
+        display: flex;
+        grid-gap: 4rem;
+        li {
+            padding: .25rem 0;
+            position: relative;
+            &:after {
+                content: "";
+                background: #e2e6ea;
+                width: 1px;
+                position: absolute;
+                right: -2rem;
+                top: 0;
+                bottom: 0;
+            }
+            &:last-child:after { content: none; }
+            span {
+                display: block;
+                &.label {margin-bottom: .25rem;
+                    font-size: 1.125rem;
+                    color: #5d636a;
+                }
+                &.output {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
+/* `紀錄歷程步驟 - 有連結與純文字兩種類別
+-----------------------------------------------------------------------------*/
+
+.log-step {
+    .menu-item {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1rem;
+    }
+    .counseling-link {
+        display: block;
+        text-align: center;
+        color: #212121;
+        span {
+            display: block;
+            transition: all 0.1s ease-in-out;
+            line-height: 1.3;
+        }
+        .step {
+            margin-bottom: 1rem;
+            padding: 0 3rem;
+            position: relative;
+            &:before, &:after {
+                content: "";
+                background: #9400d3;
+                width: 50%;
+                height: 1px;
+                position: absolute;
+                top: 0.875rem;
+            }
+            &:before {
+                left: 0;
+            }
+            &:after {
+                right: 0;
+            }
+            i {
+                display: block;
+                border-radius: 50%;
+                background: #fff;
+                border: 4px solid #9400d3;
+                margin: 0 auto;
+                width: 1.75rem;
+                height: 1.75rem;
+                position: relative;
+                z-index: 1;
+                transition: all 0.1s ease-in-out;
+            }
+        }
+        .type { font-weight: 700; }
+        .date {
+            font-size: .875rem;
+            color: #888;
+        }
+        
+        &:hover {
+            color: #222;
+            .step {
+                &:before { background: linear-gradient(-90deg, rgba(38,134,99,1) 0%, rgba(148,0,211,1) 100%); }
+                &:after { background: linear-gradient(90deg, rgba(38,134,99,1) 0%, rgba(148,0,211,1) 100%); }
+                i { border-color: #268663; }
+            }
+            .date { color: #111; }
+        }
+    }
+    
+    .item-step {
+        display: block;
+        text-align: center;
+        span {
+            display: block;
+            line-height: 1.3;
+        }
+        .step {
+            margin-bottom: 1rem;
+            padding: 0 5rem;
+            position: relative;
+            &:before, &:after {
+                content: "";
+                background: #28a409;
+                width: 50%;
+                height: 1px;
+                position: absolute;
+                top: 0.875rem;
+            }
+            &:before {
+                left: 0;
+            }
+            &:after {
+                right: 0;
+            }
+            i {
+                display: block;
+                border-radius: 50%;
+                background: #fff;
+                border: 4px solid #28a409;
+                margin: 0 auto;
+                width: 2.5rem;
+                height: 2.5rem;
+                position: relative;
+                z-index: 1;
+                &:after {
+                    content: "\f00c";
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                    text-align: center;
+                    line-height: 2rem;
+                    width: 2rem;
+                    height: 2rem;
+                    position: absolute;
+                    left: -2px;
+                    top: 0;
+                }
+            }
+        }
+        .type {
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+        .date {
+            margin-bottom: .25rem;
+            font-size: .875rem;
+            color: #888;
+        }
+    }
+    
+    
+    li:first-child {
+         .step {
+            &:before { content: none !important; }
+        }
+    }
+    li:last-child {
+         .step {
+            &:after { content: none !important; }
+        }
+    }
+}
+
+/* `Upload
+-----------------------------------------------------------------------------*/
+
+.upload-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	.upload-item {
+		margin-bottom: 3rem;
+		margin-right: 4%;
+		width: 48%;
+		&:nth-child(even) {
+			margin-right: 0;
+		}
+	}
+	.upload-ft {
+		display: flex;
+		justify-content: space-between;
+		.ft-left {
+			display: flex;
+			align-items: center;
+		}
+	}
+	.ft-action {
+		display: flex;
+		align-items: center;
+        .last-date {
+            margin-left: 1rem;
+            font-size: .9375rem;
+            color: #777;
+        }
+	}
+	.file-pill {
+		border-radius: 5rem;
+		border: 1px solid $base_border_color;
+		padding: .25rem 2.25rem .25rem 1rem;
+		height: 32px;
+		position: relative;
+		.filename {
+			display: inline-block;
+            max-width: 160px;
+            overflow : hidden;
+            text-overflow : ellipsis;
+            white-space : nowrap;
+        }
+		.btn {
+            background: #e1b1ba;
+			box-shadow: none;
+            border-color: #e1b1ba;
+			margin-left: .5rem;
+			padding: 0 0.375rem;
+			position: absolute;
+			right: .25rem;
+			top: .25rem;
+			&:hover, &:active {
+				background: #dc3545;
+				border-color: #dc3545;
+			}
+			&:focus {
+				background: #dc3545;
+				border-color: #dc3545;
+				box-shadow: 0 0 0 0.25rem rgba(#dc3545, .5);
+			}
+		}
+	}
+	&.fluid-wrapper {
+		display: block;
+		.upload-item {
+			margin-right: 0;
+			margin-bottom: 0;
+            padding: 1.5rem 0;
+			width: 100%;
+		}
+	}
+	.additional-info {
+		color: #df3c3c;
+	}
+	.upload-ft {
+		display: flex;
+		justify-content: space-between;
+		.ft-left {
+			display: flex;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

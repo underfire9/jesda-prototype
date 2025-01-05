@@ -1,0 +1,57 @@
+<!-- template: 抽籤作業 - 各身分別抽籤 (候補) -->
+
+<div class="container-lg">
+    
+    <div class="content-head">
+        <h1>
+            臺中市公設民營東區大智慧國小托嬰中心
+            <span>抽籤作業</span>
+        </h1>
+    </div>
+    
+    <div class="content-body">
+        <h4 class="fw-bold text-center mb-4">候補順位</h4>
+        <ul class="menu-item menu-date">
+            <li>
+                <span class="label">抽籤人數</span>
+                <span class="output">40 人</span>
+            </li>
+        </ul>
+        
+        <div class="submit-controller">
+            <button type="button" class="btn btn-xl btn-primary btn-start">開始抽籤</button>
+        </div>
+        
+        <div class="result-wrapper">
+            <ul class="menu-item menu-result">
+                <% (1..40).map do |i| %>
+                <li>
+                    <span class="label">113001000<%= i %></span>
+                    <span class="output">候補 <%= i %></span>
+                </li>
+                <% end %>
+            </ul>
+            
+            <button type="button" class="btn btn-xl btn-dark">結果統計</button>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<% content_for :js do %>
+
+<script>
+$(document).ready(function() {
+    $('.btn-start').click(function() {
+        setTimeout(function() {
+            $('.result-wrapper').addClass('show');
+            $('.submit-controller').addClass('hide');
+        }, 500); // 延遲 0.5 秒
+    });
+});
+</script>
+
+<% end %>
+

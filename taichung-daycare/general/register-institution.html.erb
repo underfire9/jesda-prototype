@@ -1,0 +1,140 @@
+<!-- template: 登記報名 - 選擇托育機構 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="container-lg">
+	<div class="page-content d-block">
+        
+        <!--div class="page-title">
+            <h3>選擇托育機構</h3>
+        </div-->
+        
+        <div class="step-wrapper">
+            <div class="scrollbar-inner">
+                <ul class="step-menu menu-item">
+                    <li class="step-item done">
+                        <span class="number">1</span>
+                        <span class="description">申請人驗證</span>
+                    </li>
+                    <li class="step-item done">
+                        <span class="number">2</span>
+                        <span class="description">申請表</span>
+                    </li>
+                    <li class="step-item current">
+                        <span class="number">3</span>
+                        <span class="description">選擇托育機構</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">4</span>
+                        <span class="description">選擇身分別</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">5</span>
+                        <span class="description">上傳佐證資料</span>
+                    </li>
+                    <li class="step-item">
+                        <span class="number">6</span>
+                        <span class="description">送出申請</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="notice-wrapper">
+            <p><%= lorem_paragraph %></p>
+            <p><%= lorem_paragraph %></p>
+        </div>
+        
+        <div class="mb-2">
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <div class="mb-2">
+                        <select class="form-select" aria-label="請選擇區域">
+                            <option selected>請選擇區域</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-5">
+                    <div class="mb-2">
+                        <select class="form-select" aria-label="請選擇托育機構">
+                            <option selected>請選擇托育機構</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-3">
+                    <div class="mb-2">
+                        <button type="button" class="btn btn-outline-warning"><i class="fas fa-plus"></i> 加入</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="institution-group">
+            <div class="item-institution">
+                <span>臺中市公設民營東區大智國小托嬰中心</span>
+                <button type="button" class="btn" title="移除"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="item-institution">
+                <span>文采永定托嬰中心</span>
+                <button type="button" class="btn" title="移除"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="item-institution">
+                <span>艾樂比新民托嬰中心</span>
+                <button type="button" class="btn" title="移除"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            最高可報名 :
+            <span class="fw-bold">3</span>
+            間，您已選擇 :
+            <span class="fw-bold">1</span>
+            間，尚可報名 :
+            <span class="fw-bold">2</span>
+            間
+        </div>
+
+        
+        <div class="form-action">
+            <button type="button" class="btn btn-lg btn-light">上一步</button>
+            <button type="button" class="btn btn-lg btn-primary">儲存</button>
+            <button type="button" class="btn btn-lg btn-light">下一步</button>
+        </div>
+        
+	</div>
+</div>
+
+<% content_for :js do %>
+
+<!-- mobile 視窗指定卷軸位置 -->
+<script>
+$(document).ready(function() {
+    // 判斷是否為小視窗
+    if ($(window).width() <= 768) {
+        // 設定橫向卷軸到指定的 .current 元素位置
+        var currentItem = $('.step-item.current');
+        if (currentItem.length) {
+            var scrollPosition = currentItem.position().left;
+            $('.scrollbar-inner').scrollLeft(scrollPosition);
+        }
+    }
+});
+</script>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+

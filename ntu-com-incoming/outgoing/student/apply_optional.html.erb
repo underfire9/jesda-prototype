@@ -1,0 +1,97 @@
+<!-- template: 出國: 學生 - 線上選填志願 -->
+
+<div class="workspace" canvas="container">
+    <div class="pages general-pages">
+        
+        <%= render :partial => "/partials/header-outgoing" %>
+        
+        <div class="content">
+            <div class="container-lg">
+                <div class="page-content has-sticky">
+                    
+                    <%= render :partial => "/partials/outgoing-app-sidebar" %>
+                    
+                    <main class="main">
+                        
+                        <section class="section mt-0">
+                            <div class="section-title">
+                                <h4>線上選填志願</h4>
+                            </div>
+                            
+                            <div class="optional-wrapper">
+                                <div class="optional-item optional-head">
+                                    <div class="item-order">志願序</div>
+                                    <div class="item-nation">國家</div>
+                                    <div class="item-school">學校</div>
+                                    <div class="item-semester">交換學期</div>
+                                </div>
+                                <div class="optional-dragarea">
+                                    
+                                    <!-- select2 bootstrap theme 多筆 select 不會寫，煩請工程師協助 -->
+                                    <!-- 原始版本樣式不符，請使用 select2 + bootstrap theme -->
+                                    <% (1..30).map do |i| %>
+                                    <div class="optional-item">
+                                        <div class="item-order">
+                                            <span><%= i %></span>
+                                        </div>
+                                        <div class="item-nation">
+                                            <select class="form-select" id="single-select-field" data-placeholder="請選擇國家">
+                                                <option></option>
+                                                <option>Reactive</option>
+                                                <option>Solution</option>
+                                                <option>Conglomeration</option>
+                                                <option>Algoritm</option>
+                                                <option>Holistic</option>
+                                            </select>
+                                        </div>
+                                        <div class="item-school">
+                                            <select class="form-select" id="single-select-field" data-placeholder="請選擇學校">
+                                                <option></option>
+                                                <option>Reactive</option>
+                                                <option>Solution</option>
+                                                <option>Conglomeration</option>
+                                                <option>Algoritm</option>
+                                                <option>Holistic</option>
+                                            </select>
+                                        </div>
+                                        <div class="item-semester">
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <div class="form-action">
+                            <span class="backhome"><button type="button" class="btn btn-lg btn-light"><i class="fas fa-chevron-left"></i> 上一步</button></span>
+                            <button type="submit" class="btn btn-lg btn-primary">儲存</button>
+                            <span class="has-history"><button type="button" class="btn btn-lg btn-light">下一步 <i class="fas fa-chevron-right"></i></button></span>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <a id="backtop"></a>
+    </div>
+    <%= render :partial => "/partials/footer" %>
+</div>
+
+<% content_for :js do %>
+
+<!-- Select2 + bootstrap theme -->
+<script src="../../javascripts/select2.full.min.js"></script>
+<script type="text/javascript">
+$( '#single-select-field' ).select2( {
+    theme: "bootstrap-5",
+    width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+    placeholder: $( this ).data( 'placeholder' ),
+} );
+</script>
+
+<% end %>

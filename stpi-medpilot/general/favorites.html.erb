@@ -1,0 +1,272 @@
+<!-- template: Favorites -->
+
+<div class="breadcrumb-container">
+    <div class="container-lg">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+<div class="container-lg">
+    <div class="favorites-wrapper">
+        <div class="side-folder">
+            <h5 class="mb-4">收藏資料</h5>
+            <div class="operate-hd">
+                <span>
+                    <button type="button" class="btn btn-sm btn-success"><i class="fas fa-plus"></i> New Folder</button>
+                </span>
+                <span>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="switchComplete" />
+                        <label class="form-check-label" for="switchComplete">Complete</label>
+                    </div>
+                </span>
+            </div>
+            <div class="folder-list">
+                <div class="scrollbar-inner">
+                    <div class="item-folder selected">
+                        <ul class="menu-item">
+                            <li class="title">
+                                <span class="label">Title</span>
+                                <span class="output">Clearpointer</span>
+                            </li>
+                            <li class="amount">
+                                <span class="label">Amount</span>
+                                <span class="output">15</span>
+                            </li>
+                            <li class="products">
+                                <span class="label">Related products</span>
+                                <span class="output">999</span>
+                            </li>
+                            <li class="companies">
+                                <span class="label">Related companies</span>
+                                <span class="output">9999</span>
+                            </li>
+                            <li class="date">
+                                <span class="label">Date</span>
+                                <span class="output">2024-08-23 18:22</span>
+                            </li>
+                        </ul>
+                        <div class="delete">
+                            <button type="button" class="btn btn-delete" data-bs-toggle="tooltip" data-bs-title="Delete"><i class="fas fa-times"></i></button>
+                        </div>
+                        <button type="button" class="btn btn-open" title="Open"></button>
+                    </div>
+                    
+                    <% (1..6).map do |i| %>
+                    <div class="item-folder">
+                        <ul class="menu-item">
+                            <li class="title">
+                                <span class="label">Title</span>
+                                <span class="output"><%= lorem_words(3) %></span>
+                            </li>
+                            <li class="amount">
+                                <span class="label">Amount</span>
+                                <span class="output">15</span>
+                            </li>
+                            <li class="products">
+                                <span class="label">Related products</span>
+                                <span class="output">999</span>
+                            </li>
+                            <li class="companies">
+                                <span class="label">Related companies</span>
+                                <span class="output">9999</span>
+                            </li>
+                            <li class="date">
+                                <span class="label">Date</span>
+                                <span class="output">2024-08-23 18:22</span>
+                            </li>
+                        </ul>
+                        <div class="delete">
+                            <button type="button" class="btn btn-delete" data-bs-toggle="tooltip" data-bs-title="Delete"><i class="fas fa-times"></i></button>
+                        </div>
+                        <button type="button" class="btn btn-open" title="Open"></button>
+                    </div>
+                    <% end %>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="favorites-content">
+            <h5 class="mb-4">Clearpointer</h5>
+            
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings-tab-pane" type="button" role="tab" aria-controls="settings-tab-pane" aria-selected="true">Folder Settings</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list-tab-pane" type="button" role="tab" aria-controls="list-tab-pane" aria-selected="false">Product List <span class="badge text-bg-secondary">4</span></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="codes-tab" data-bs-toggle="tab" data-bs-target="#codes-tab-pane" type="button" role="tab" aria-controls="codes-tab-pane" aria-selected="false">Related product codes <span class="badge text-bg-secondary">999</span></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="companies-tab" data-bs-toggle="tab" data-bs-target="#companies-tab-pane" type="button" role="tab" aria-controls="companies-tab-pane" aria-selected="false">Related companies <span class="badge text-bg-secondary">1</span></button>
+                </li>
+            </ul>
+            <div class="tab-content" id="favoritesTabContent">
+                <div class="tab-pane fade show active" id="settings-tab-pane" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="exampleInput01">Folder title</label>
+                        <input type="text" class="form-control" id="exampleInput01" value="Clearpointer">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="exampleTextarea01">Folder title</label>
+                        <textarea class="form-control" id="exampleTextarea01" rows="8"></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="list-tab-pane" role="tabpanel" aria-labelledby="list-tab" tabindex="0">
+                    <div class="table-responsive">
+                        <table class="table align-middle text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Device Name</th>
+                                    <th>Applicant</th>
+                                    <th class="text-center">510(K) Number</th>
+                                    <th class="text-center">Device Class</th>
+                                    <th>Decision Date</th>
+                                    <th class="text-end">Reguration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% (1..6).map do |i| %>
+                                <tr>
+                                    <td><button type="button" class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-times"></i></button></td>
+                                    <td><a href="#">Clearpointer Optical Navigation Wand</a></td>
+                                    <td>ClearPoint Neuro Inc.</td>
+                                    <td class="text-center">K233155</td>
+                                    <td class="text-center">2</td>
+                                    <td>04/19/2023</td>
+                                    <td class="text-end">882 4560</td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="codes-tab-pane" role="tabpanel" aria-labelledby="codes-tab" tabindex="0">
+                    <div class="table-responsive">
+                        <table class="table align-middle text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Device Class</th>
+                                    <th>Product Code</th>
+                                    <th>Description</th>
+                                    <th>Regulation</th>
+                                    <th>Medical Specialty</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% (1..6).map do |i| %>
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td><a href="#">ONA</a></td>
+                                    <td>Computer Assisted Hair Harvesting System</td>
+                                    <td>882.4560<br>Stereotaxic instrument.</td>
+                                    <td>882<br>Neurological Devices</td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="companies-tab-pane" role="tabpanel" aria-labelledby="companies-tab" tabindex="0">
+                    <table class="table align-middle text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Applicant Name</th>
+                                <th class="text-center">產品數量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% (1..6).map do |i| %>
+                            <tr>
+                                <th><%= i %></th>
+                                <td><a href="#">ClearPoint Neuro Inc.</a></td>
+                                <td class="text-center">20</td>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+
+<!-- Complete -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const switchComplete = document.getElementById('switchComplete');
+    const itemFolders = document.querySelectorAll('.item-folder');
+
+    // 初始化隱藏 .amount、.products、.companies
+    function setInitialVisibility() {
+        itemFolders.forEach(item => {
+            item.querySelector('.amount').style.display = 'none';
+            item.querySelector('.products').style.display = 'none';
+            item.querySelector('.companies').style.display = 'none';
+        });
+    }
+
+    // 根據 switch 的狀態設置可見性
+    function toggleVisibility() {
+        const displayStyle = switchComplete.checked ? 'block' : 'none';
+        itemFolders.forEach(item => {
+            item.querySelector('.amount').style.display = displayStyle;
+            item.querySelector('.products').style.display = displayStyle;
+            item.querySelector('.companies').style.display = displayStyle;
+        });
+    }
+
+    // 設置 .btn-open 的點擊事件
+    function setButtonClickEvent() {
+        itemFolders.forEach(itemFolder => {
+            const btnOpen = itemFolder.querySelector('.btn-open');
+
+            btnOpen.addEventListener('click', function() {
+                // 移除所有 .item-folder 的 .selected class
+                itemFolders.forEach(folder => {
+                    folder.classList.remove('selected');
+                });
+
+                // 給當前點擊的 .item-folder 添加 .selected class
+                itemFolder.classList.add('selected');
+            });
+        });
+    }
+
+    // 初始化
+    setInitialVisibility();
+    setButtonClickEvent();
+
+    // 監聽 switch 的 change 事件
+    switchComplete.addEventListener('change', toggleVisibility);
+});
+</script>
+
+<!-- Tooltips -->
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+
+<% end %>
+

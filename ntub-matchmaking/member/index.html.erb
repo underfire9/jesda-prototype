@@ -1,0 +1,76 @@
+<!-- template: 填報系統 - 首頁 -->
+
+<div class="container-lg">
+    
+    <div class="home-apply home-fillin slide-animation">
+        <a href="#" class="btn-fillin"><span>開始申請</span></a>
+    </div>
+    
+    <div class="home-history">
+        <div class="section-title">
+            <h3>申請紀錄瀏覽</h3>
+        </div>
+        
+        <div class="filter-bar">
+            <div class="start-group">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>全部</option>
+                    <option value="1">2024</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="start-group">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>申請狀態</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="start-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="申請序號" aria-describedby="button-addon2">
+                    <button class="btn btn-secondary" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-responsive text-nowrap">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>申請序號</th>
+                        <th>狀態</th>
+                        <th>產學合作需求主題</th>
+                        <th>需求領域背景</th>
+                        <th>屬意合作教師系所</th>
+                        <th>屬意合作教師姓名</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% (1..5).map do |i| %>
+                    <tr>
+                        <td><button type="button" class="btn btn-sm btn-outline-primary btn-rounded">瀏覽</button></td>
+                        <td>ABCD0000<%= i %></td>
+                        <td>申請中</td>
+                        <td><%= lorem_words(5) %></td>
+                        <td><%= lorem_words(5) %></td>
+                        <td>生物環境系統工程學系</td>
+                        <td><%= zh_lorem_name %></td>
+                        <td><button type="button" class="btn btn-sm btn-outline-danger btn-rounded">取消</button></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table> 
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+
+<% end %>
+

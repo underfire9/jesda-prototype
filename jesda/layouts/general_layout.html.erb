@@ -1,0 +1,145 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head_page" %>
+</head>
+
+<body>
+    <%= yield %>
+    <%= render :partial => "/partials/footer" %>
+    
+    <script src="../javascripts/jquery-3.6.0.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.js"></script>
+    
+    <!-- gsap -->
+    <script src="../javascripts/gsap.min.js"></script>
+    <script src="../javascripts/TweenMax.min.js"></script>
+    <script src="../javascripts/ScrollTrigger.min.js"></script>
+    <script src="../javascripts/ScrollToPlugin.min.js"></script>
+    
+    <script>
+        document.addEventListener('mousemove', function(event) {
+            const bodyWidth = document.body.offsetWidth;
+            const mouseX = event.clientX;
+            const maxTranslate = bodyWidth * 0.005;
+
+            // Calculate translate values for each building
+            let translateX1 = (mouseX / bodyWidth - 0.5) * 2 * maxTranslate * 0.33; // 33% of max
+            let translateX2 = (mouseX / bodyWidth - 0.5) * 2 * maxTranslate * 0.66; // 66% of max
+            let translateX3 = (mouseX / bodyWidth - 0.5) * 2 * maxTranslate; // 100% of max
+
+            gsap.to('.building1', {
+                x: translateX1,
+                duration: 0.2
+            });
+            gsap.to('.building2', {
+                x: translateX2,
+                duration: 0.2
+            });
+            gsap.to('.building3', {
+                x: translateX3,
+                duration: 0.2
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const classGroups = [
+                ['st1', 'st2'],
+                ['st3', 'st4'],
+                ['st5', 'st6'],
+                ['st7', 'st8'],
+                ['st9', 'st10']
+            ];
+
+            // 隨機選擇一組 class
+            function getRandomClassGroup() {
+                const randomIndex = Math.floor(Math.random() * classGroups.length);
+                return classGroups.splice(randomIndex, 1)[0];
+            }
+
+            // 分配隨機選擇的 class 給每個 building 的 path
+            const buildings = document.querySelectorAll('.building span svg');
+
+            buildings.forEach(building => {
+                const paths = building.querySelectorAll('path');
+                const [class1, class2] = getRandomClassGroup();
+                paths[0].setAttribute('class', `st ${class1}`);
+                paths[1].setAttribute('class', `st ${class2}`);
+            });
+        });
+    </script>
+    
+    <!-- isotope -->
+    <script src="../javascripts/isotope.pkgd.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $(".filter-grid").isotope({
+            itemSelector: ".grid-item",
+        });
+
+        // filter items on button click
+        $(".filter-button-group").on("click", "li", function () {
+            var filterValue = $(this).attr("data-filter");
+            $(".filter-grid").isotope({ filter: filterValue });
+            $(".filter-button-group li").removeClass("active");
+            $(this).addClass("active");
+        });
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const gridItems = document.querySelectorAll('.grid-item');
+
+        // 找到最高的 .grid-item 高度
+        let maxHeight = 0;
+        gridItems.forEach(item => {
+            const itemHeight = item.offsetHeight;
+            if (itemHeight > maxHeight) {
+                maxHeight = itemHeight;
+            }
+        });
+
+        function setGridItemsHeight() {
+            if (window.innerWidth < 479) {
+                // 視窗小於 479px 時，移除高度設定
+                gridItems.forEach(item => {
+                    item.style.height = '';
+                });
+            } else {
+                // 視窗大於等於 479px 時，設置所有 .grid-item 的高度為最高高度
+                gridItems.forEach(item => {
+                    item.style.height = `${maxHeight}px`;
+                });
+            }
+        }
+
+        // 初始化設定高度
+        setGridItemsHeight();
+
+        // 監聽視窗大小變化
+        window.addEventListener('resize', setGridItemsHeight);
+    });
+    </script>
+    
+    <!-- tooltips -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+    
+    <!-- scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+		// jQuery scrollbar
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-macosx').scrollbar();
+        });
+    </script>
+</body>
+</html>

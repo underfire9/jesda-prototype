@@ -1,0 +1,120 @@
+<!-- template: 候補名單 -->
+
+<%= render :partial => "/partials/breadcrumb" %>
+
+<div class="container-lg">
+	<div class="page-content d-block">
+        
+        <div class="page-title">
+            <h3>候補名單</h3>
+        </div>
+        
+        <p>
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                身分別說明
+            </button>
+        </p>
+        
+        <!-- th, td 的 text-align 是用 nth-child 控制，欄位若有改變請找 fire 調整樣式 -->
+        <div class="institution-list-wrapper alternate-list-wrapper">
+            <div class="list-table">
+                <div class="list-row list-thead">
+                    <span class="list-th">候補順位</span>
+                    <span class="list-th">報名序號</span>
+                    <span class="list-th">兒童姓名</span>
+                    <span class="list-th">出生年月日</span>
+                    <span class="list-th">家長姓名</span>
+                    <span class="list-th">報名日期</span>
+                    <span class="list-th">身分資格</span>
+                </div>
+
+                <% (1..12).map do |i| %>
+                <div class="list-row list-item">
+                    <div class="list-td">
+                        <span class="list-label">候補順位</span>
+                        <span class="list-data"><%= i %></span>
+                    </div>
+                    <div class="list-td">
+                        <span class="list-label">報名序號</span>
+                        <span class="list-data">11301000<%= i %></span>
+                    </div>
+                    <div class="list-td">
+                        <span class="list-label">兒童姓名</span>
+                        <span class="list-data"><%= zh_lorem_name %></span>
+                    </div>
+                    <div class="list-td">
+                        <span class="list-label">出生年月日</span>
+                        <span class="list-data">110/11/25</span>
+                    </div>
+                    <div class="list-td">
+                        <span class="list-label">家長姓名</span>
+                        <span class="list-data"><%= zh_lorem_name %></span>
+                    </div>
+                    <div class="list-td">
+                        <span class="list-label">報名日期</span>
+                        <span class="list-data">112/05/05</span>
+                    </div>
+                    <div class="list-td">
+                        <span class="list-label">身分資格</span>
+                        <span class="list-data">A</span>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+            
+            <div class="page-controller">
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item disabled">
+                            <a class="page-link" title="{連結名稱}">上一頁</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#" title="{連結名稱}">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#" title="{連結名稱}">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#" title="{連結名稱}">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" title="{連結名稱}">下一頁</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="goback">
+                    <button type="button" class="btn btn-light"><i class="fas fa-long-arrow-alt-left"></i> 返回托育機構一覽表</button>
+                </div>
+            </div>
+        </div>
+        
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">身分別說明</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+

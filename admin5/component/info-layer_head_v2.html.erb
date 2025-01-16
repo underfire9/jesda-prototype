@@ -1,0 +1,278 @@
+<!-- admin-page: info head v2 -->
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    
+    <!-- 整個 layer 用了絕對位置與動態高度，在 .main 之內除了 .sales-layer 之外不得再加任何內容 -->
+    <!-- 同上理由，.outer-header, .stage-head, .nav-main 都是固定高度，不要加入會增加高度的內容 -->
+    
+    <div class="sales-layer">
+        <div class="sales-wrapper">
+            
+            <!-- main stage -->
+            <div class="sales-stage">
+                
+                <!-- outer header -->
+                <div class="outer-header">
+                    <div class="outer-start">
+                        <button type="button" class="btn btn-outline btn-null" title="返回"><i class="fas fa-long-arrow-alt-left"></i></button>
+                        <a href="#" target="_blank" class="btn btn-outline btn-null" title="在新視窗中開啟"><i class="far fa-window-maximize"></i></a>
+                        <button type="button" class="btn btn-outline btn-null" title="儲存"><i class="fas fa-save"></i></button>
+                        <button type="button" class="btn btn-outline btn-null" title="刪除"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline" title="儲存"><i class="fa fa-floppy-o"></i> 儲存</button>
+                        <button type="button" class="btn btn-outline" title="刪除"><i class="fa fa-trash-o"></i> 刪除</button>
+                        <button type="button" class="btn btn-outline" title="授與資格"><i class="fa fa-check-circle-o"></i> 授與資格</button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline dropdown-toggle" type="button" data-bs-toggle="dropdown" title="更多選項" aria-expanded="false"><i class="fa fa-ban"></i> 取消資格</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-outline" title="指派"><i class="fa fa-address-book-o"></i> 指派</button>
+                    </div>
+                </div>
+                
+                <!-- stage head -->
+                <div class="stage-head">
+                    <div class="head-start">
+                        <div class="avatar-wrap">
+                            <div class="info">
+                                <span class="name">
+                                    生物產業傳播暨發展學系
+                                    <span class="ps2 fw-bold">茱莉亞羅勃茲</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="head-end">
+                        <div class="details-group">
+                            <div class="item-detail">
+                                <span class="describe">認定輪次</span>
+                                <span class="label">2022-12-12 ~ 2022-12-12</span>
+                            </div>
+                            <div class="item-detail">
+                                <span class="describe">認定日數</span>
+                                <span class="label">120日</span>
+                            </div>
+                            <div class="item-detail">
+                                <span class="describe">申請日期</span>
+                                <span class="label">2022-12-12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-light border-bottom">
+                    <div class="log-step pt-3">
+                        <ul class="menu-item justify-content-start">
+
+                            <!-- li item-step -->
+                            <li class="item-step">
+                                <span class="step"><i></i></span>
+                                <div class="d-flex px-4">
+                                    <span class="me-2">送出申請</span>
+                                    <span class="me-2">2022-01-01 12:00</span>
+                                    <span><%= zh_lorem_name %></span>
+                                </div>
+                            </li>
+                            <li class="item-step">
+                                <span class="step px-2"><i></i></span>
+                                <div class="d-flex px-4">
+                                    <span class="me-2">初審通過</span>
+                                    <span class="me-2">2022-01-01 12:00</span>
+                                    <span><%= zh_lorem_name %></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- tabs -->
+                <ul class="nav nav-pills nav-main" id="salesTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="tab-s1" data-bs-toggle="tab" data-bs-target="#tab-s1-pane" type="button" role="tab" aria-controls="tab-s1-pane" aria-selected="true">總覽</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-s2" data-bs-toggle="tab" data-bs-target="#tab-s2-pane" type="button" role="tab" aria-controls="tab-s2-pane" aria-selected="false">教師輪次</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-s3" data-bs-toggle="tab" data-bs-target="#tab-s3-pane" type="button" role="tab" aria-controls="tab-s3-pane" aria-selected="false">研習申請紀錄</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-s4" data-bs-toggle="tab" data-bs-target="#tab-s4-pane" type="button" role="tab" aria-controls="tab-s4-pane" aria-selected="false">成果認定申請紀錄</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-s5" data-bs-toggle="tab" data-bs-target="#tab-s5-pane" type="button" role="tab" aria-controls="tab-s4-pane" aria-selected="false">通知紀錄</button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content tab-content-main" id="salesTabContent">
+
+                    <div class="tab-pane fade show active" id="tab-s1-pane" role="tabpanel" aria-labelledby="tab-s1" tabindex="0">
+                        <div class="scrollbar-inner">
+                            <div class="row">
+                            <div class="col-4">
+                                <div class="col-block">
+                                    <div class="block-header has-border"><h5>基本資料</h5></div>
+                                    <div class="block-content">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <span class="form-label">教師編號</span>
+                                                    <span class="d-block">EA1234</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <span class="form-label">聘任單位</span>
+                                                    <span class="d-block">機械與電腦輔助工程系</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <span class="form-label">姓名</span>
+                                                    <span class="d-block"><%= lorem_name %></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="mb-3">
+                                                    <span class="form-label">Email</span>
+                                                    <span class="d-block"><%= lorem_email %></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-block">
+                                    <div class="block-header has-border"><h5>教師輪次</h5></div>
+                                    <div class="block-content">
+                                        <table class="table align-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>編輯</th>
+                                                    <th>起始日期</th>
+                                                    <th>結束日期</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% (1..6).map do |i| %>
+                                                <tr>
+                                                    <td><%= i %></td>
+                                                    <td><button type="button" class="btn btn-sm btn-outline-primary btn-rounded" data-mdb-ripple-color="dark"><i class="fas fa-pen"></i></button></td>
+                                                    <td>2024-11-0<%= i %></td>
+                                                    <td>2024-12-2<%= i %></td>
+                                                </tr>
+                                                <% end %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-8">
+                                
+                                <div class="col-block">
+                                    <div class="block-header has-border"><h5>研習申請紀錄</h5></div>
+                                    <div class="block-content">
+                                        <table class="table align-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>編輯</th>
+                                                    <th>申請序號</th>
+                                                    <th>申請主題</th>
+                                                    <th>申請送出時間</th>
+                                                    <th>聘任單位審查狀態</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% (1..6).map do |i| %>
+                                                <tr>
+                                                    <td><%= i %></td>
+                                                    <td><button type="button" class="btn btn-sm btn-outline-primary btn-rounded" data-mdb-ripple-color="dark"><i class="fas fa-pen"></i></button></td>
+                                                    <td>abcd0001</td>
+                                                    <td><%= lorem_words(5) %></td>
+                                                    <td>2024-11-02 08:00</td>
+                                                    <td>初審通過</td>
+                                                </tr>
+                                                <% end %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-block">
+                                    <div class="block-header has-border"><h5>成果認定申請紀錄</h5></div>
+                                    <div class="block-content">
+                                        <table class="table align-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>編輯</th>
+                                                    <th>申請序號</th>
+                                                    <th>申請送出時間</th>
+                                                    <th>認定日/月數</th>
+                                                    <th>聘任單位審查狀態</th>
+                                                    <th>複審狀態</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% (1..6).map do |i| %>
+                                                <tr>
+                                                    <td><%= i %></td>
+                                                    <td><button type="button" class="btn btn-sm btn-outline-primary btn-rounded" data-mdb-ripple-color="dark"><i class="fas fa-pen"></i></button></td>
+                                                    <td>abcd0001</td>
+                                                    <td>2024-11-02 08:00</td>
+                                                    <td>365</td>
+                                                    <td>初審通過</td>
+                                                    <td>複審通過</td>
+                                                </tr>
+                                                <% end %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab-s2-pane" role="tabpanel" aria-labelledby="tab-s2" tabindex="0">
+                        <div class="scrollbar-inner">
+                            教師輪次
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab-s3-pane" role="tabpanel" aria-labelledby="tab-s3" tabindex="0">
+                        <div class="scrollbar-inner">
+                            研習申請紀錄
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab-s4-pane" role="tabpanel" aria-labelledby="tab-s4" tabindex="0">
+                        <div class="scrollbar-inner">
+                            成果認定申請紀錄
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab-s5-pane" role="tabpanel" aria-labelledby="tab-s5" tabindex="0">
+                        <div class="scrollbar-inner">
+                            通知紀錄
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</main>
+
+<% content_for :js do %>
+
+<% end %>
+

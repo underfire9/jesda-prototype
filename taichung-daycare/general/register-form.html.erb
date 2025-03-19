@@ -231,8 +231,26 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="formInput06" class="form-label">申請人與幼兒關係 <span class="required">*</span></label>
-                        <input type="text" class="form-control" id="formInput06" placeholder="請輸入"/>
+                        <label class="form-label">申請人與幼兒關係 <span class="required">*</span></label>
+                        <div>
+                            <select class="form-select" aria-label="申請人與幼兒關係">
+                                <option selected>請選擇</option>
+                                <option value="applicant-father">父</option>
+                                <option value="applicant-mother">母</option>
+                                <option value="applicant-guardian">監護人</option>
+                                <option value="applicant-other">其他</option>
+                            </select>
+                        </div>
+
+                        <!-- 預設隱藏，選擇 applicant-other 出現 -->
+                        <div class="row applicant-relation">
+                            <div class="col-xl-8 col-md-6 mt-3">
+                                <input type="text" class="form-control" id="" placeholder="請輸入關係"/>
+                            </div>
+                            <div class="col-xl-4 col-md-6 mt-3">
+                                <button type="button" class="btn btn-block btn-outline-primary" data-bs-toggle="modal" data-bs-target="#applicantAttorney">上傳委託書</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -276,8 +294,26 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="formInput11" class="form-label">第二位聯絡人與幼兒關係 <span class="required">*</span></label>
-                        <input type="text" class="form-control" id="formInput11" placeholder="請輸入"/>
+                        <label class="form-label">第二位聯絡人與幼兒關係 <span class="required">*</span></label>
+                        <div>
+                            <select class="form-select" aria-label="申請人與幼兒關係">
+                                <option selected>請選擇</option>
+                                <option value="second-father">父</option>
+                                <option value="second-mother">母</option>
+                                <option value="second-guardian">監護人</option>
+                                <option value="second-other">其他</option>
+                            </select>
+                        </div>
+
+                        <!-- 預設隱藏，選擇 second-other 出現 -->
+                        <div class="row second-relation">
+                            <div class="col-xl-8 col-md-6 mt-3">
+                                <input type="text" class="form-control" id="" placeholder="請輸入關係"/>
+                            </div>
+                            <div class="col-xl-4 col-md-6 mt-3">
+                                <button type="button" class="btn btn-block btn-outline-primary" data-bs-toggle="modal" data-bs-target="#secondAttorney">上傳委託書</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -355,6 +391,61 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="applicantAttorney" tabindex="-1" aria-labelledby="applicantAttorneyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="applicantAttorneyModalLabel">上傳委託書</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input class="form-control" type="file" id="formFile" />
+                </div>
+
+                <!-- 檔案上傳後顯示，js 麻煩出程師協助 -->
+                <div class="mb-3">
+                    <button type="button" class="btn btn-rounded btn-danger" title="刪除檔案"><i class="fas fa-times"></i> 刪除檔案</button>
+                </div>
+                <a href="#">下載委託書範本</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="secondAttorney" tabindex="-1" aria-labelledby="secondAttorneyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="secondAttorneyModalLabel">上傳委託書</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input class="form-control" type="file" id="formFile" />
+                </div>
+
+                <!-- 檔案上傳後顯示，js 麻煩出程師協助 -->
+                <div class="mb-3">
+                    <button type="button" class="btn btn-rounded btn-danger" title="刪除檔案"><i class="fas fa-times"></i> 刪除檔案</button>
+                </div>
+                <a href="#">下載委託書範本</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <% content_for :js do %>
 
 <!-- mobile 視窗指定卷軸位置 -->
@@ -371,7 +462,6 @@ $(document).ready(function() {
     }
 });
 </script>
-
 <% end %>
 
 

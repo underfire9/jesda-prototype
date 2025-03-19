@@ -1,0 +1,102 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages general-pages">
+            <div class="content">
+                <%= yield %>
+            </div>
+            <a id="backtop"></a>
+        </div>
+		<%= render :partial => "/partials/footer" %>
+	</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl search-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="searchModalLabel">搜尋</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="請輸入關鍵字" aria-label="請輸入關鍵字" aria-describedby="button-search" />
+                        <button class="btn btn-main btn-lg" type="button" id="button-search"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../javascripts/jquery-3.7.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.min.js"></script>
+    
+    <!-- Back to top -->
+    <script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+    </script>
+	
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <script>
+    // offcanvas
+    document.addEventListener("DOMContentLoaded", function () {
+        const btnOffcanvas = document.querySelector(".btn-offcanvas");
+
+        if (btnOffcanvas) {
+            btnOffcanvas.addEventListener("click", function () {
+                btnOffcanvas.classList.toggle("open");
+            });
+        }
+    });
+    </script>
+
+    <script>
+    // Add classes to #offcanvasTop when the window width is less than 1200px
+    document.addEventListener("DOMContentLoaded", function () {
+        const offcanvasTop = document.querySelector("#offcanvasTop");
+    
+        function updateOffcanvasClasses() {
+            if (window.innerWidth < 1200) {
+                offcanvasTop.classList.add("offcanvas", "offcanvas-top");
+            } else {
+                offcanvasTop.classList.remove("offcanvas", "offcanvas-top");
+            }
+        }
+    
+        // Initial check
+        updateOffcanvasClasses();
+    
+        // Update on window resize
+        window.addEventListener("resize", updateOffcanvasClasses);
+    });    
+    </script>
+	
+    <%= yield :js %>
+</body>
+</html>

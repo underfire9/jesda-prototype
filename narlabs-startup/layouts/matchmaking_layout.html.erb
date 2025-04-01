@@ -1,0 +1,112 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+	<div class="workspace matchmaking-workspace" canvas="container">
+        <div class="pages general-pages">
+            <%= render :partial => "/partials/header-matchmaking" %>
+            <div class="content">
+                <%= yield %>
+            </div>
+            <a id="backtop"></a>
+        </div>
+		<%= render :partial => "/partials/footer-matchmaking" %>
+	</div>
+	
+    <script src="../javascripts/jquery-3.7.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.min.js"></script>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="mdWarningBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="mdWarningBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>為避免操作錯誤，媒合功能不提供行動裝置介面，請使用電腦瀏覽器進行操作。</p>
+                    <a href="#" class="md-back">回產學媒合</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to top -->
+    <script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+    </script>
+	
+    <!-- sidenav scrollbar -->
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.scrollbar-inner').scrollbar();
+        });
+	</script>
+
+    <script>
+    // bootstrap 5 dropdown hover
+    document.addEventListener("DOMContentLoaded", function(){
+        // make it as accordion for smaller screens
+        if (window.innerWidth > 992) {
+            document.querySelectorAll('.navigation-bar .nav-item').forEach(function(everyitem){
+                everyitem.addEventListener('mouseover', function(e){
+                    let el_link = this.querySelector('a[data-bs-toggle]');
+                    if(el_link != null){
+                        let nextEl = el_link.nextElementSibling;
+                        el_link.classList.add('show');
+                        nextEl.classList.add('show');
+                    }
+        
+                });
+                everyitem.addEventListener('mouseleave', function(e){
+                    let el_link = this.querySelector('a[data-bs-toggle]');
+        
+                    if(el_link != null){
+                        let nextEl = el_link.nextElementSibling;
+                        el_link.classList.remove('show');
+                        nextEl.classList.remove('show');
+                    }
+                })
+            });
+        }
+        // end if innerWidth
+    });
+    </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 判斷是否為行動裝置
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) {
+            var modal = document.getElementById('mdWarningBackdrop');
+            if (modal) {
+                modal.classList.add('show');
+                modal.style.display = 'block'; // 顯示 modal
+            }
+
+            var workspace = document.querySelector('.matchmaking-workspace');
+            if (workspace) {
+                workspace.style.display = 'none'; // 隱藏 .matchmaking-workspace
+            }
+        }
+    });
+    </script>
+	
+    <%= yield :js %>
+</body>
+</html>

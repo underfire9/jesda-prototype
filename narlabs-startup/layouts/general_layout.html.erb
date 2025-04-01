@@ -65,37 +65,33 @@
 	</script>
 
     <script>
-    // offcanvas
-    document.addEventListener("DOMContentLoaded", function () {
-        const btnOffcanvas = document.querySelector(".btn-offcanvas");
-
-        if (btnOffcanvas) {
-            btnOffcanvas.addEventListener("click", function () {
-                btnOffcanvas.classList.toggle("open");
+    // bootstrap 5 dropdown hover
+    document.addEventListener("DOMContentLoaded", function(){
+        // make it as accordion for smaller screens
+        if (window.innerWidth > 992) {
+            document.querySelectorAll('.navigation-bar .nav-item').forEach(function(everyitem){
+                everyitem.addEventListener('mouseover', function(e){
+                    let el_link = this.querySelector('a[data-bs-toggle]');
+                    if(el_link != null){
+                        let nextEl = el_link.nextElementSibling;
+                        el_link.classList.add('show');
+                        nextEl.classList.add('show');
+                    }
+        
+                });
+                everyitem.addEventListener('mouseleave', function(e){
+                    let el_link = this.querySelector('a[data-bs-toggle]');
+        
+                    if(el_link != null){
+                        let nextEl = el_link.nextElementSibling;
+                        el_link.classList.remove('show');
+                        nextEl.classList.remove('show');
+                    }
+                })
             });
         }
+        // end if innerWidth
     });
-    </script>
-
-    <script>
-    // Add classes to #offcanvasTop when the window width is less than 1200px
-    document.addEventListener("DOMContentLoaded", function () {
-        const offcanvasTop = document.querySelector("#offcanvasTop");
-    
-        function updateOffcanvasClasses() {
-            if (window.innerWidth < 1200) {
-                offcanvasTop.classList.add("offcanvas", "offcanvas-top");
-            } else {
-                offcanvasTop.classList.remove("offcanvas", "offcanvas-top");
-            }
-        }
-    
-        // Initial check
-        updateOffcanvasClasses();
-    
-        // Update on window resize
-        window.addEventListener("resize", updateOffcanvasClasses);
-    });    
     </script>
 	
     <%= yield :js %>

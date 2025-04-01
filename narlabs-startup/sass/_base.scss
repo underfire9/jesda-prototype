@@ -8,17 +8,12 @@
 /* `Base
 -----------------------------------------------------------------------------*/
 
-html {
-	height: 100%;
-	min-height: 100%;
-}
-
 body {
     background: $body_background;
 	font-family: 'Roboto', 'Noto Sans TC', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
     line-height: 1.5;
 	font-size: 1rem;
-	font-weight: 400;
+	font-weight: 300;
 	color: $base_font_color;
 }
 
@@ -27,20 +22,26 @@ a {
 	text-decoration: none;
 	transition: all 0.2s ease-in-out;
 	&:focus {
-		outline: none; /* for Firefox Google Chrome  */
-		behavior: expression(this.onFocus=this.blur()); /* for IE */
+		outline: none;
+	}
+	&:hover {
+		color: $link_hover;
 	}
 }
 
-a:hover { color: $link_hover; }
-
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 400;
+    font-weight: 500;
 }
 
-.form-control::placeholder {
+.form-control {
+	font-size: 1rem;
 	font-weight: 300;
-    color: #999;
+	&::placeholder {
+		color: #999;
+	}
+	&:disabled {
+		background: #f2f5f5;
+	}
 }
 
 .menu-item, .menu-item li {
@@ -49,15 +50,13 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 0;
 }
 
-.form-group { margin-bottom: 1rem; }
+.form-group { margin-bottom: calc(1.25rem + .75vw); }
 
 .hide, .text-hide { display: none; }
 
 p { line-height: 1.7; }
 
 .hr-lg { margin: 2.5rem 0; }
-
-.un-shadows { box-shadow: none; }
 
 select.browser-default {
 	border-radius: 0.25rem;
@@ -66,44 +65,33 @@ select.browser-default {
 	width: 100%;
 	font-family: 'Roboto', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
 	font-size: 1rem;
-	color: #333;
+	color: #2F3038;
 	height: calc(2.3125rem);
 }
 
+.form-select {
+	font-weight: 300;
+	&:disabled {
+		background: #f2f5f5;
+	}
+}
+
 .table {
+	th { font-weight: 400; }
 	.btn { margin: 0; }
 	.highlight {
 		td { background-color: #fffde7; }
 	}
-	td { font-weight: 400; }
-}
-
-.keep-all { word-break: keep-all; }
-
-@media (max-width: 575px) {
-	.keep-all { word-break: normal; }
-}
-
-.form-control { font-size: 1rem; }
-
-.normal-link {
-	color: $main_color !important;
-	text-decoration: underline;
-	&:hover { color: darken($main_color, 10) !important; }
-}
-
-.default-radio {
-	position: static !important;
-	pointer-events: auto !important;
-	opacity: 1 !important;
 }
 
 /* `Bootstrap Overwrite
 -----------------------------------------------------------------------------*/
 
 .btn {
-	box-shadow: 0 1px 2px rgba(#000, .05), 0 3px 6px rgba(#000, .08);
-	&:hover { box-shadow: 0 1px 2px rgba(#000, .04); }
+	box-shadow: none;
+	&:hover {
+		box-shadow: none;
+	}
 	&.btn-link, 
 	&.btn-light,
 	&.btn-outline-primary,

@@ -1,0 +1,136 @@
+<!-- template: 影音課程列表 -->
+
+<div class="container-lg">
+    <div class="video-container">
+
+        <div class="container-header">
+            <div class="filterbar btn-group">
+                <button type="button" class="btn all selected" data-filter="all">全部</button>
+                <button type="button" class="btn category_1" data-filter="category_1">課程</button>
+                <button type="button" class="btn category_2" data-filter="category_2">成功案例分享</button>
+                <button type="button" class="btn category_3" data-filter="category_3">資源介紹</button>
+            </div>
+            <div class="searchbar">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="請輸入關鍵字" aria-label="請輸入關鍵字" aria-describedby="button-search">
+                    <button class="btn btn-outline-secondary" type="button" id="button-search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                    </button>           
+                </div>
+            </div>
+        </div>
+
+        <div class="video-list-wrapper">
+
+            <% (1..5).map do |i| %>
+            <div class="video-item category_1" data-category="category_1">
+                <a href="#">
+                    <span class="video-cover">
+                        <img src="https://img.youtube.com/vi/jZiZs8cZAKU/maxresdefault.jpg">
+                    </span>
+                    <div class="video-info">
+                        <div class="info-hd">
+                            <span>共 3 單元</span>
+                            <span>1236 次</span>
+                        </div>
+                        <h5 class="video-title">FITI核心課程 從技術找應用工業品案例介紹</h5>
+
+                        <!-- 已做 js 字元限制 -->
+                        <p class="video-description">本課程專為對科技新創與商業模式感興趣的學員設計，提供從 市場分析、創業策略到數位轉型的全面學習內容。我們將透過具體案例探討如何建立競爭優勢，並有效運用科技推動企業成長。</p>
+                        <div class="info-ft">
+                            <span class="video-type">課程</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="video-item category_2" data-category="category_2">
+                <a href="#">
+                    <span class="video-cover">
+                        <img src="https://img.youtube.com/vi/P4oOR4frV_4/maxresdefault.jpg">
+                    </span>
+                    <div class="video-info">
+                        <div class="info-hd">
+                            <span>共 3 單元</span>
+                            <span>1236 次</span>
+                        </div>
+                        <h5 class="video-title">How to Build a Stopwatch with HTML, CSS, and JavaScript</h5>
+                        <p class="video-description">本課程專為對科技新創與商業模式感興趣的學員設計，提供從 市場分析、創業策略到數位轉型的全面學習內容。我們將透過具體案例探討如何建立競爭優勢，並有效運用科技推動企業成長。</p>
+                        <div class="info-ft">
+                            <span class="video-type">成功案例分享</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="video-item category_3" data-category="category_3">
+                <a href="#">
+                    <span class="video-cover">
+                        <img src="https://img.youtube.com/vi/OjEg0IBR_ak/maxresdefault.jpg">
+                    </span>
+                    <div class="video-info">
+                        <div class="info-hd">
+                            <span>共 3 單元</span>
+                            <span>1236 次</span>
+                        </div>
+                        <h5 class="video-title">從技術找應用工業品案例介紹</h5>
+                        <p class="video-description">本課程專為對科技新創與商業模式感興趣的學員設計，提供從 市場分析、創業策略到數位轉型的全面學習內容。我們將透過具體案例探討如何建立競爭優勢，並有效運用科技推動企業成長。</p>
+                        <div class="info-ft">
+                            <span class="video-type">資源介紹</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% end %>
+
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<script>
+    // 字元限制
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.video-description').forEach(function(description) {
+            const maxLength = 48;
+            if (description.textContent.length > maxLength) {
+                description.textContent = description.textContent.slice(0, maxLength) + '...';
+            }
+        });
+    });
+</script>
+
+<script>
+    // 影音課程列表篩選
+    $(function () {
+        var $btn = $(".filterbar [data-filter]"),
+            $list = $(".video-list-wrapper [data-category]");
+
+        $btn.on("click", function () {
+            var $btnCat = $(this).attr("data-filter");
+
+            // 移除其他按鈕的 .selected，並在當前按鈕新增 .selected
+            $btn.removeClass("selected");
+            $(this).addClass("selected");
+
+            $list.removeClass("is-animate");
+
+            if ($btnCat == "all") {
+                $list.show().addClass("is-animate");
+            } else {
+                $list
+                    .hide()
+                    .removeClass("is-animate")
+                    .filter('[data-category = "' + $btnCat + '"]')
+                    .show()
+                    .addClass("is-animate");
+            }
+            return false;
+        });
+    });
+</script>
+<% end %>
+

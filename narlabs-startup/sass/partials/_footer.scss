@@ -3,45 +3,87 @@
 -----------------------------------------------------------------------------*/
 
 footer.footer {
-	color: #999;
+	padding: calc(3.5rem + 4vw) 0;
+	color: #686E6F;
+	position: relative;
 	.footer-inner {
 		display: flex;
 		justify-content: space-between;
-		border-top: 1px dashed #ddd;
-		padding: 60px 0;
+		position: relative;
+		z-index: 1;
 	}
 	.block-transition {
 		display: flex;
-		width: 66.66666%;
-		.ft-block { width: 50%; }
+	}
+	.stpi-logo {
+		margin-right: 8rem;
+		img {
+			width: 330px;
+			height: auto;
+		}
 	}
 	.menu-item.contact {
 		margin-bottom: 26px;
 		li {
-			margin-bottom: .25rem;
-			padding-left: 30px;
+			border-bottom: 1px dashed #ccc;
+			margin-bottom: .5rem;
+			padding-bottom: .5rem;
 			position: relative;
+			&:last-child { border-bottom: 0; }
 		}
-		.fas {
-			width: 16px;
-			text-align: center;
-			font-size: 14px;
-			color: #ccc;
+		span {
 			position: absolute;
-			left: 0;
-			top: 5px;
-			top: 5px;
+			left: -36px;
+			top: 0;
+		}
+		a {
+			color: #686E6F;
+			&:hover { color: $main_color; }
 		}
 	}
-	.end-content {
-		width: 33.33333%;
-		text-align: end;
-	}
-	a {
-		color: #000;
-		&:hover {
-			color: $link;
+	.ft-link {
+		display: flex;
+		li:first-child {
+			margin-right: 2rem;
+			position: relative;
+			&::after {
+				content: '';
+				position: absolute;
+				right: -1rem;
+				top: 0;
+				width: 1px;
+				height: 1.25rem;
+				background: #ddd;
+			}
 		}
+	}
+	.copyright {
+		margin-bottom: 0;
+		font-size: .813rem;
+		position: absolute;
+		right: 0;
+		bottom: -5rem;
+	}
+	&::before, &::after {
+		content: '';
+		background-size: cover;
+		position: absolute;
+		bottom: 0;
+		pointer-events: none;
+	}
+	&::before {
+		background-image: url('../assets/ft-cloud-l.svg');
+		background-position: left bottom;
+		left: 0;
+		width: 508px;
+		height: 238px;
+	}
+	&::after {
+		background-image: url('../assets/ft-cloud-r.svg');
+		background-position: right bottom;
+		right: 0;
+		width: 630px;
+		height: 286px;
 	}
 }
 
@@ -50,27 +92,52 @@ footer.footer {
 
 @media (max-width: 1199px) {
 	footer.footer {
-		.block-transition,
-		.end-content {
-			width: 50%;
+		.stpi-logo {
+			margin-right: calc(4rem + 2vw);
+			img { width: 256px; }
 		}
-		.block-transition {
-			.ft-block { width: 90%; }
+		.ft-link {
+			display: block;
+			text-align: end;
+			li:first-child {
+				margin-right: 0;
+				margin-bottom: .75rem;
+				&::after { display: none; }
+			}
 		}
 	}
 }
 
 @media (max-width: 767px) {
 	footer.footer {
-		.footer-inner {
+		.footer-inner, .block-transition {
 			display: block;
 		}
-		.block-transition,
-		.end-content {
-			width: 100%;
+		.menu-item.contact {
+			display: inline-block;
 		}
-		.ft-block { width: 100% !important; }
-		.end-content { text-align: start; }
+		.stpi-logo {
+			margin-right: 0;
+			margin-bottom: 2rem;
+		}
+		.ft-link {
+			margin-bottom: 2rem;
+			text-align: start;
+			li:first-child {
+				margin-bottom: .375rem;
+			}
+		}
+		.copyright {
+			position: static;
+		}
+		&::before {
+			width: 320px;
+			height: 150px;
+		}
+		&::after {
+			width: 320px;
+			height: 145px;
+		}
 	}
 }
 

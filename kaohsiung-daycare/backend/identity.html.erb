@@ -1,0 +1,62 @@
+<!-- template: 抽籤作業 - 各身分別抽籤 -->
+
+<div class="container-lg">
+    
+    <div class="content-head">
+        <h1>
+            高雄市公設民營東區大智國小托嬰中心
+            <span>抽籤作業</span>
+        </h1>
+    </div>
+    
+    <div class="content-body">
+        <h4 class="drawlots-h4">第一順位 優先序 1</h4>
+        <p class="fw-bold text-center mb-4">低收入戶、中低收入戶、本局服務中之脆弱家庭、兒童保護個案、特殊境遇家庭>
+        <ul class="menu-item menu-date">
+            <li>
+                <span class="label">剩餘名額</span>
+                <span class="output">100 人</span>
+            </li>
+            <li>
+                <span class="label">抽籤人數</span>
+                <span class="output">6 人</span>
+            </li>
+        </ul>
+        
+        <div class="submit-controller">
+            <button type="button" class="btn btn-xl btn-primary btn-start">開始抽籤</button>
+        </div>
+        
+        <div class="result-wrapper">
+            <ul class="menu-item menu-result">
+                <% (1..6).map do |i| %>
+                <li>
+                    <span class="label">113001000<%= i %></span>
+                    <span class="output">錄取</span>
+                </li>
+                <% end %>
+            </ul>
+            
+            <button type="button" class="btn btn-xl btn-dark">下一個身分別</button>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<% content_for :js do %>
+
+<script>
+$(document).ready(function() {
+    $('.btn-start').click(function() {
+        setTimeout(function() {
+            $('.result-wrapper').addClass('show');
+            $('.submit-controller').addClass('hide');
+        }, 500); // 延遲 0.5 秒
+    });
+});
+</script>
+
+<% end %>
+

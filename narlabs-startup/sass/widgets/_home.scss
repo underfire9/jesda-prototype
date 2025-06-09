@@ -15,6 +15,7 @@
 		display: block;
 		height: 100vh;
 	}
+	.web-image, .mobile-image { display: none; }
 	.scroll-wrap {
 		background:rgba(#fff, .1);
 		height: 2rem;
@@ -528,16 +529,16 @@
     }
 }
 
-.sponsor-container {
+.moneymaker-container {
 	.container-title {
 		text-align: center;
 	}
-	.sponsor-wrapper {
+	.moneymaker-wrapper {
 		display: flex;
 		flex-wrap: wrap;
 		grid-gap: 8%;
 	}
-	.sponsor-card {
+	.moneymaker-card {
 		border-radius: 2rem;
 		background: #fff;
 		margin-bottom: 4rem;
@@ -548,7 +549,7 @@
 			height: auto;
 		}
 	}
-	.sponsor-link {
+	.moneymaker-link {
 		display: block;
 		background: #fff;
 		aspect-ratio: 4 / 3;
@@ -570,6 +571,16 @@
 				opacity: 1;
 			}
 		}
+	}
+}
+
+.under-construction {
+	text-align: center;
+	span { display: block; }
+	.info-text {
+		margin-bottom: calc(1rem + .75vw);
+		font-size: calc(1rem + .25vw);
+		color: #372860;
 	}
 }
 
@@ -1303,4 +1314,35 @@
     .carousel-item.active.carousel-item-start {
         transform: scale(0);
     }
+}
+
+.resource-modal {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	ul, li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	a {
+		display: inline-block;
+		padding-left: 3rem;
+		position: relative;
+		&:after {
+			content: "";
+			background: $main_color;
+			width: 2rem;
+			height: 1px;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform-origin: right center;
+			transition: all 0.2s ease-in-out;
+		}
+		&:hover {
+			&:after {
+				transform: scaleX(.5);
+			}
+		}
+	}
 }

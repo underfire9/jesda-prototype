@@ -1,4 +1,4 @@
-<!-- template: 績效 - 基本資料 -->
+<!-- template: 績效 - 績效基本資料 -->
 
 <div class="container-lg">
     <div class="project-title performance-title">
@@ -18,7 +18,7 @@
                     <ul class="side-navigation menu-item">
                         <li>
 							<a class="nav-item current" href="#">
-							    <span class="link-inner">基本資料</span>
+							    <span class="link-inner">績效基本資料</span>
 							</a>
 						</li>
 						<li>
@@ -28,7 +28,12 @@
 						</li>
 						<li>
 							<a class="nav-item" href="#">
-								<span class="link-inner">優華語獎學金生研習情形</span>
+								<span class="link-inner">獎學金生研習情形</span>
+							</a>
+						</li>
+                        <li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">短期華語文研習團</span>
 							</a>
 						</li>
 						<li>
@@ -38,7 +43,7 @@
 						</li>
 						<li>
 							<a class="nav-item" href="#">
-								<span class="link-inner">推廣華語文測驗</a></span>
+								<span class="link-inner">其他必辦項目辦理情形</a></span>
 							</a>
 						</li>
                     </ul>
@@ -54,11 +59,21 @@
                 <div class="section-title">
                     <h4>填報人員資訊</h4>
                 </div>
+                <div class="mb-4">
+                    <button type="button" class="btn btn-rounded btn-dark">載入上一季資料</button>
+                </div>
                 <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
+                    <div class="col-12">
+                        <div class="form-group w-50">
                             <label for="performanceBasic1" class="form-label">填表人姓名</label>
-                            <input type="text" class="form-control" id="performanceBasic1" value="張三丰" disabled readonly />
+                            <div>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="col-6">
@@ -70,25 +85,72 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="performanceBasic3" class="form-label">填表人所屬單位</label>
-                            <input type="text" class="form-control" id="performanceBasic3" />
+                            <input type="text" class="form-control" id="performanceBasic3" value="車諾比烏克蘭北部基輔州城市" disabled readonly />
                         </div>
                     </div>
                 </div>
             </div>
             <div>
                 <div class="section-title">
-                    <h4>填報內容</h4>
+                    <h4>合約相關文件內容</h4>
                 </div>
+
+                <!-- 如修改 ID memorandumYes，記得同步下方 js 控制 .memorandum-wrap show/hide 部分 -->
                 <div class="form-group">
                     <label class="form-label">是否已與合作國外學校簽訂合作備忘錄</label>
                     <div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-                            <label class="form-check-label" for="inlineRadio1">是</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="memorandumYes" value="option1" />
+                            <label class="form-check-label" for="memorandumYes">是</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
-                            <label class="form-check-label" for="inlineRadio2">否</label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="memorandumNo" value="option2" />
+                            <label class="form-check-label" for="memorandumNo">否</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="memorandum-wrap">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="performanceBasic4" class="form-label"><span class="required">*</span>請上傳合作備忘錄電子檔案</label>
+                                <input class="form-control" type="file" id="performanceBasic4">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="performanceBasic5" class="form-label"><span class="required">*</span>合作備忘錄簽訂效期</label>
+                                <input type="date" class="form-control" id="performanceBasic5" name="" value="2025-06-20" min="2025-06-01" max="2025-12-31">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="performanceBasic6" class="form-label">說明</label>
+                                <input class="form-control" type="text" id="performanceBasic6">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="form-label">是否已合作終止</label>
+
+                                <!-- 如修改 ID cooperateYes，記得同步下方 js 控制 .cooperate-file show/hide 部分 -->
+                                <div>
+                                    <div class="d-inline-block pt-2">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="cooperateNo" value="option2" />
+                                            <label class="form-check-label" for="cooperateNo">否</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="cooperateYes" value="option1" />
+                                            <label class="form-check-label" for="cooperateYes">是</label>
+                                        </div>
+                                    </div>
+                                    <div class="cooperate-file w-auto">
+                                        <input class="form-control" type="file" id="">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -103,5 +165,25 @@
 
 
 <% content_for :js do %>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Memorandum show/hide
+    function toggleMemorandumWrap() {
+        var show = document.getElementById('memorandumYes').checked;
+        document.querySelector('.memorandum-wrap').style.display = show ? '' : 'none';
+    }
+    document.getElementById('memorandumYes').addEventListener('change', toggleMemorandumWrap);
+    document.getElementById('memorandumNo').addEventListener('change', toggleMemorandumWrap);
+    toggleMemorandumWrap();
 
+    // Cooperate file show/hide
+    function toggleCooperateFile() {
+        var show = document.getElementById('cooperateYes').checked;
+        document.querySelector('.cooperate-file').style.display = show ? 'inline-block' : 'none';
+    }
+    document.getElementById('cooperateYes').addEventListener('change', toggleCooperateFile);
+    document.getElementById('cooperateNo').addEventListener('change', toggleCooperateFile);
+    toggleCooperateFile();
+});
+</script>
 <% end %>

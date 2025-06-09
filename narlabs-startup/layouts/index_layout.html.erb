@@ -91,6 +91,32 @@
     });
     </script>
 
+    <!-- Header nav -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function toggleOffcanvasClasses() {
+                const headerNav = document.querySelector(".header-nav");
+                if (window.innerWidth < 1199) {
+                    headerNav.classList.add("offcanvas", "offcanvas-top");
+                } else {
+                    headerNav.classList.remove("offcanvas", "offcanvas-top");
+                }
+            }
+
+            // Initial check
+            toggleOffcanvasClasses();
+
+            // Add event listener for window resize
+            window.addEventListener("resize", toggleOffcanvasClasses);
+
+            // Add .open class on .btn-offcanvas click
+            const btnOffcanvas = document.querySelector(".btn-offcanvas");
+            btnOffcanvas.addEventListener("click", function () {
+                btnOffcanvas.classList.toggle("open");
+            });
+        });
+    </script>
+
     <%= yield :js %>
 </body>
 </html>

@@ -74,8 +74,8 @@
                 <div class="map-content">
 
                     <div class="map-button">
-                        <a href="#" class="map-link" title="產學技轉輔助"><span>產學技轉輔助</span></a>
-                        <a href="#" class="map-link" title="國際加速器及參展"><span>國際加速器及參展</span></a>
+                        <a href="#" class="map-link" data-bs-toggle="modal" data-bs-target="#roadModal007" title="產學技轉輔助"><span>產學技轉輔助</span></a>
+                        <a href="#" class="map-link" data-bs-toggle="modal" data-bs-target="#roadModal007" title="國際加速器及參展"><span>國際加速器及參展</span></a>
                     </div>
 
                     <div class="map-rocket">
@@ -250,7 +250,7 @@
                     </div>
 
                     <div class="test-wrap">
-                        <a href="#" class="map-link test-link" title="檢驗試製">
+                        <a href="#" class="map-link test-link" data-bs-toggle="modal" data-bs-target="#roadModal007" title="檢驗試製">
                             <span>
                                 檢驗試製
                                 <svg width="20" height="28" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -514,20 +514,45 @@
     </div>
 </div>
 
-<div class="index-container sponsor-container">
+<div class="index-container moneymaker-container">
     <div class="container-lg">
         <div class="inner-wrapper">
             <div class="container-title">
                 <h3>贊助企業</hjson>
             </div>
-            <div class="sponsor-wrapper">
+            <div class="moneymaker-wrapper">
                 <% (1..6).map do |i| %>
-                <div class="sponsor-card">
-                    <a href="#" class="sponsor-link" title="Fake title">
+                <div class="moneymaker-card">
+                    <a href="#" class="moneymaker-link" title="Fake title">
                         <img src="https://placehold.co/640x480/FFFFFF/666666/png" />
                     </a>
                 </div>
                 <% end %>
+            </div>
+            <div class="under-construction">
+                <span class="info-text">建置中</span>
+                <span class="ufo"><img src="../assets/ufo.svg" /></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="roadModal007" tabindex="-1" aria-labelledby="roadModal007Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="roadModal007Label">檢驗試製</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body resource-modal">
+                <ul>
+                    <li><a href="#">儀器設備之元件製造、測量、校正與生醫貴重儀器使用租借服務</a></li>
+                    <li><a href="#">電路設計及下線服務、半導體製程服務、量測及檢測分析服務</a></li>
+                    <li><a href="#">提供實驗動物服務、動物試驗技術服務、相關檢測服務</a></li>
+                    <li><a href="#">生醫商品化中心(BMCC)</a></li>
+                    <li><a href="#">快速審查臨床試驗計畫(Fast track)</a></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -824,8 +849,16 @@
         });
     </script>
 
-    
-    
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const moneymakerCards = document.querySelectorAll(".moneymaker-card");
+        const underConstruction = document.querySelector(".under-construction");
+
+        if (underConstruction) {
+            underConstruction.style.display = moneymakerCards.length === 0 ? "block" : "none";
+        }
+    });
+    </script>
 <% end %>
 
 

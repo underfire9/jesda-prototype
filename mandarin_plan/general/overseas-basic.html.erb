@@ -1,4 +1,4 @@
-<!-- template: 海外教學中心績效 - 基本資料 -->
+<!-- template: 海外教學中心績效 - 績效回報內容 -->
 
 <div class="container-lg">
     <div class="project-title performance-title">
@@ -9,44 +9,51 @@
 <div class="container-lg">
 	<div class="page-content d-block">
         <div class="overseas-basic">
-            <div class="mb-5">
-                <label class="form-label fw-bold h5">是否已於合作學校完成海外華語教學中心掛牌</label>
-                <div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="hangUpOptions" id="hangUpRadio1" value="option1" />
-                        <label class="form-check-label" for="hangUpRadio1">是</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="hangUpOptions" id="hangUpRadio2" value="option2" />
-                        <label class="form-check-label" for="hangUpRadio2">否</label>
-                    </div>
+            <div class="head-question">
+                <label class="form-label fw-bold h5 mb-3">是否已於合作學校完成海外華語教學中心掛牌</label>
+                <div class="form-check form-switch listing-switch form-switch-lg">
+
+                    <!-- 下方區塊顯示或隱藏由 #listingChecked 控制，如有修改 ID 請同步下方 js-->
+                    <input class="form-check-input" type="checkbox" id="listingChecked" checked />
+                    <label class="form-check-label" for="listingChecked">是</label>
                 </div>
             </div>
+
 
             <div class="affirmative-gearing">
                 <div class="row mb-4">
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="hangUpForm1" class="form-label">掛牌時間</label>
-                            <input type="date" class="form-control" id="hangUpForm1" name="trip-start1" value="2024-01-20" min="2024-01-01" max="2024-12-31" />
+                            <label for="formFile" class="form-label">海外教學中心掛牌照片</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="formFile" class="form-label">已上傳範例</label>
+                            <div class="upload-wrapper pt-1">
+                                <div class="file-pill ms-0">
+                                    <!-- 選擇檔案即上傳，省略點擊按鈕動作 -->
+                                    <!-- 點擊 <a> 可預覽 -->
+                                    <!-- 避免檔名過長有限制最大寬度 240px，超出時會字元會省略，切記標籤加上 title -->
+                                    <a href="#" target="_blank" class="filename" title="避免檔名過長有限制最大寬度.jpg">避免檔名過長有限制最大寬度避免檔名過長有限制最大寬度.jpg</a>
+                                    <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="mb-4">
-                            <label for="hangUpForm2" class="form-label">海外華語教學中心的中文名稱</label>
-                            <input type="text" class="form-control" id="hangUpForm2" />
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-4">
-                            <label for="hangUpForm3" class="form-label">海外華語教學中心的英文名稱</label>
-                            <input type="text" class="form-control" id="hangUpForm3" />
+                            <label for="affirmativeForm1" class="form-label">海外華語教學中心的英文名稱</label>
+                            <input class="form-control" type="text" id="affirmativeForm1">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="mb-4">
                             <label class="form-label">是否派員至海外華語教學中心</label>
-                            <div>
+                            <div class="pt-2">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="hangUpPersonnel" id="personnelRadio1" value="option1" />
                                     <label class="form-check-label" for="personnelRadio1">是</label>
@@ -62,21 +69,17 @@
                 
                 <div class="mb-8">
                     <div class="section-title">
-                        <h4>海外華語教學中心主要負責人</h4>
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <span><label class="form-label mb-0 me-3" for="principalForm">負責人人數</label></span>
-                        <span><input type="number" min="1" max="100" class="form-control" id="principalForm" /></span>
+                        <h4>海外華語教學中心人員</h4>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover text-nowrap text-center align-middle">
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>負責人姓名</th>
+                                    <th>人員姓名</th>
                                     <th>所屬單位</th>
-                                    <th>原聘職稱</th>
-                                    <th>中心職稱</th>
+                                    <th>人員職稱</th>
+                                    <th>聘任期間</th>
                                     <th>國籍</th>
                                     <th>社會性別</th>
                                 </tr>
@@ -84,69 +87,345 @@
                             <tbody>
                                 <% (1..4).map do |i| %>
                                 <tr>
-                                    <td><a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#scholarshipModal">編輯</a></td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#recruitmentModal">編輯</a></td>
                                     <td><%= zh_lorem_name %></td>
                                     <td>臺灣</td>
                                     <td>華語教師</td>
-                                    <td>華語教師</td>
+                                    <td>
+                                        2025/01 - 2025/12
+                                    </td>
                                     <td>臺灣</td>
                                     <td>男</td>
                                 </tr>
                                 <% end %>
                             </tbody>
                         </table>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#recruitmentModal"><i class="fas fa-plus"></i> 新增一筆</button>
                     </div>
                 </div>
                 
-                <div>
+                <div class="mb-8">
                     <div class="section-title">
-                        <h4>海外華語教學中心專案人員</h4>
+                        <h4>海外華語教學中心執行情況</h4>
                     </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <span><label class="form-label mb-0 me-3" for="projectForm">人數</label></span>
-                        <span><input type="number" min="1" max="100" class="form-control" id="projectForm" /></span>
+                    <h5 class="section-sub-title">人員聘用</h5>
+                    <div class="row mb-4">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label">兼任主任</label>
+                                <input type="text" class="form-control" id="" disabled readonly />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label">專案經理</label>
+                                <input type="text" class="form-control" id="" disabled readonly />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label">專任行政助理(國內)</label>
+                                <input type="text" class="form-control" id="" disabled readonly />
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label">兼任行政助理</label>
+                                <input type="text" class="form-control" id="" disabled readonly />
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="form-group">
+                                <label for="somethingForm01" class="form-label">統計說明</label>
+                                <input type="text" class="form-control" id="somethingForm01" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover text-nowrap text-center align-middle">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>負責人姓名</th>
-                                    <th>所屬單位</th>
-                                    <th>原聘職稱</th>
-                                    <th>中心職稱</th>
-                                    <th>國籍</th>
-                                    <th>社會性別</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% (1..4).map do |i| %>
-                                <tr>
-                                    <td><a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#scholarshipModal">編輯</a></td>
-                                    <td><%= zh_lorem_name %></td>
-                                    <td>臺灣</td>
-                                    <td>華語教師</td>
-                                    <td>華語教師</td>
-                                    <td>臺灣</td>
-                                    <td>男</td>
-                                </tr>
-                                <% end %>
-                            </tbody>
-                        </table>
+
+                    <h5 class="section-sub-title">掌握鄰近中小學華語教學需求</h5>
+                    <div class="section-sub-wrapper">
+                        <div class="wrap-item">
+                            <div class="item-title">蒐集鄰近有開設華語課程學校名單</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked01" checked />
+                                        <label class="form-check-label" for="somethingChecked01">已辦理</label>
+                                    </div>
+                                </div>
+                                <div class="me-5">
+                                    <div>
+                                        <span>統計</span>
+                                        <input type="text" style="width:120px;" class="form-control d-inline-block mx-2" id="" />
+                                        <span>所</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <textarea class="form-control" id="" rows="1" placeholder="統計說明"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wrap-item">
+                            <div class="item-title">拜會主流學校華語教師</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked02" checked />
+                                        <label class="form-check-label" for="somethingChecked02">已辦理</label>
+                                    </div>
+                                </div>
+                                <div class="me-5">
+                                    <div>
+                                        <span>統計</span>
+                                        <input type="text" style="width:120px;" class="form-control d-inline-block mx-2" id="" />
+                                        <span>所</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <textarea class="form-control" id="" rows="1" placeholder="統計說明"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wrap-item">
+                            <div class="item-title">介紹教育部及學校教學資源</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked03" checked />
+                                        <label class="form-check-label" for="somethingChecked03">已辦理</label>
+                                    </div>
+                                </div>
+                                <div class="me-5">
+                                    <div>
+                                        <span>統計</span>
+                                        <input type="text" style="width:120px;" class="form-control d-inline-block mx-2" id="" />
+                                        <span>所</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <textarea class="form-control" id="" rows="1" placeholder="統計說明"></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <h5 class="section-sub-title">參與當地中文教師協會、僑委會中文學校網絡</h5>
+                    <div class="section-sub-wrapper">
+                        <div class="wrap-item">
+                            <div class="item-title">參與當地中文教師協會、僑委會中文學校網絡</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked04" checked />
+                                        <label class="form-check-label" for="somethingChecked04">已辦理</label>
+                                    </div>
+                                </div>
+                                <div class="me-5">
+                                    <div>
+                                        <span>統計</span>
+                                        <input type="text" style="width:120px;" class="form-control d-inline-block mx-2" id="" />
+                                        <span>所</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <textarea class="form-control" id="" rows="1" placeholder="統計說明"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="section-sub-title">辦理華語教師研習及教學工作坊，邀請鄰近中小學、僑委會華語教師及我國赴外華師參加，並請臺灣華語教育資源中心及駐組協助宣傳</h5>
+                    <div class="section-sub-wrapper">
+                        <div class="wrap-item">
+                            <div class="item-title">教師研習工作坊</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked05" checked />
+                                        <label class="form-check-label" for="somethingChecked05">已辦理</label>
+                                    </div>
+                                </div>
+                                <div class="me-5">
+                                    <div>
+                                        <span>統計</span>
+                                        <input type="text" style="width:120px;" class="form-control d-inline-block mx-2" id="" />
+                                        <span>所</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <textarea class="form-control" id="" rows="1" placeholder="統計說明"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrap-item">
+                            <div class="item-title">教學工作坊</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked06" checked />
+                                        <label class="form-check-label" for="somethingChecked06">已辦理</label>
+                                    </div>
+                                </div>
+                                <div class="me-5">
+                                    <div>
+                                        <span>統計</span>
+                                        <input type="text" style="width:120px;" class="form-control d-inline-block mx-2" id="" />
+                                        <span>所</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <textarea class="form-control" id="" rows="1" placeholder="統計說明"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="section-sub-title">針對鄰近社群辦理華語課程、體驗活動或臺灣文化講座(可包含當地企業、社區圖書館、藝文單位、中小學)</h5>
+                    <div class="section-sub-wrapper">
+                        <div class="wrap-item">
+                            <div class="item-title">針對鄰近社群辦理華語課程、體驗活動或臺灣文化講座</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked07" checked />
+                                        <label class="form-check-label" for="somethingChecked07">已辦理</label>
+                                    </div>
+                                </div>
+                                <div class="me-5">
+                                    <div>
+                                        <span>統計</span>
+                                        <input type="text" style="width:120px;" class="form-control d-inline-block mx-2" id="" />
+                                        <span>所</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <textarea class="form-control" id="" rows="1" placeholder="統計說明"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="section-sub-title">籌組各項研習團</h5>
+                    <div class="section-sub-wrapper">
+                        <div class="wrap-item">
+                            <div class="item-title">大學或中小學華語教師來臺研習培訓團</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked08" checked />
+                                        <label class="form-check-label" for="somethingChecked08">已辦理</label>
+                                    </div>
+                                </div>
+                                <div class="me-5">
+                                    <div>
+                                        <span>統計</span>
+                                        <input type="text" style="width:120px;" class="form-control d-inline-block mx-2" id="" />
+                                        <span>所</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <textarea class="form-control" id="" rows="1" placeholder="統計說明"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrap-item">
+                            <div class="item-title">短期華語文研習團</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked09" checked />
+                                        <label class="form-check-label" for="somethingChecked09">已辦理</label>
+                                    </div>
+                                </div>
+                                <div class="me-5">
+                                    <div>
+                                        <span>統計</span>
+                                        <input type="text" style="width:120px;" class="form-control d-inline-block mx-2" id="" />
+                                        <span>所</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <textarea class="form-control" id="" rows="1" placeholder="統計說明"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="section-sub-title">辦理說明會(介紹我國獎學金、華測、華語教學資源等訊息)</h5>
+                    <div class="section-sub-wrapper">
+                        <div class="wrap-item">
+                            <div class="item-title">辦理說明會</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked10" checked />
+                                        <label class="form-check-label" for="somethingChecked10">已辦理</label>
+                                    </div>
+                                </div>
+                                <div class="me-5">
+                                    <div>
+                                        <span>統計</span>
+                                        <input type="text" style="width:120px;" class="form-control d-inline-block mx-2" id="" />
+                                        <span>所</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <textarea class="form-control" id="" rows="1" placeholder="統計說明"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="section-sub-title">辦理性別平等與性騷擾防治等審查措施</h5>
+                    <div class="section-sub-wrapper">
+                        <div class="wrap-item">
+                            <div class="item-title">辦理性別平等與性騷擾防治等審查措施</div>
+                            <div class="d-flex">
+                                <div class="me-5">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" id="somethingChecked11" checked />
+                                        <label class="form-check-label" for="somethingChecked11">已辦理</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <div class="section-title">
+                        <h4>活動照片</h4>
+                    </div>
+
+                    <div class="upload-photo-wrapper">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="multiplePhoto">選擇照片</label>
+                                <input type="file" class="form-control-file" id="multiplePhoto" name="multiplePhoto" required multiple>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div id="image-container"></div>
                 </div>
                 
                 <div class="form-action">
                     <button type="submit" class="btn btn-lg btn-primary">儲存</button>
+                    <button type="submit" class="btn btn-lg btn-dark">送出本季績效回報</button>
                 </div>
             </div>
-            
+
+
             <div class="negate-gearing">
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="hangUpFormNo" class="form-label">預計掛牌時間</label>
-                            <input type="date" class="form-control" id="hangUpFormNo" name="trip-start1" value="2024-01-20" min="2024-01-01" max="2024-12-31" />
+                            <input type="date" class="form-control" id="hangUpFormNo" name="trip-start1" value="2025-06-20" min="2025-01-01" max="2026-12-31" />
                         </div>
                     </div>
                 </div>
@@ -158,34 +437,169 @@
 	</div>
 </div>
 
+<!-- Scholarship Student Modal -->
+<div class="modal fade" id="recruitmentModal" tabindex="-1" aria-labelledby="recruitmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="recruitmentModalLabel">人員聘用</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
+                <div class="mb-4">
+                    <label for="recruitmentForm1" class="form-label">人員姓名</label>
+                    <div class="form-check form-check-inline ms-3">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
+                        <label class="form-check-label" for="inlineCheckbox1">主要負責人</label>
+                    </div>
+                    <input type="text" class="form-control" id="recruitmentForm1" />
+                </div>
+                <div class="mb-4">
+                    <label for="recruitmentForm2" class="form-label">所屬單位</label>
+                    <input type="text" class="form-control" id="recruitmentForm2" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">人員職稱</label>
+                    <div>
+                        <select class="form-select">
+                            <option selected>請選擇</option>
+                            <option value="1">華語教師</option>
+                            <option value="2">行政人員</option>
+                            <option value="3">其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">聘任期間</label>
+                    <div class="d-flex align-items-center">
+                        <span class="w-auto"><input type="text" class="form-control" id="" /></span>
+                        <span class="mx-2">年</span>
+                        <span class="w-auto"><input type="text" class="form-control" id="" /></span>
+                        <span class="mx-2">月</span>
+                        <span class="mx-2">至</span>
+                        <span class="w-auto"><input type="text" class="form-control" id="" /></span>
+                        <span class="mx-2">年</span>
+                        <span class="w-auto"><input type="text" class="form-control" id="" /></span>
+                        <span class="mx-2">月</span>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="recruitmentForm3" class="form-label">國籍</label>
+                    <input type="text" class="form-control" id="recruitmentForm3" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label"><span class="required">*</span>社會性別</label>
+                    <div class="pt-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="genderOptions" id="genderRadio1" value="option1">
+                            <label class="form-check-label" for="genderRadio1">男性</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="genderOptions" id="genderRadio2" value="option2">
+                            <label class="form-check-label" for="genderRadio2">女性</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="genderOptions" id="genderRadio3" value="option3">
+                            <label class="form-check-label" for="genderRadio3">其他</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <% content_for :js do %>
+
+<!-- show/hide -->
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // 取得 radio 按鈕元素
-        var hangUpRadioButtons = document.querySelectorAll('input[name="hangUpOptions"]');
+document.addEventListener('DOMContentLoaded', function() {
+    const listingSwitch = document.getElementById('listingChecked');
+    const affirmativeGearing = document.querySelector('.affirmative-gearing');
+    const negateGearing = document.querySelector('.negate-gearing');
 
-        // 取得 .affirmative-gearing 和 .negate-gearing 元素
-        var affirmativeGearing = document.querySelector('.affirmative-gearing');
-        var negateGearing = document.querySelector('.negate-gearing');
+    function toggleGearing() {
+        if (listingSwitch.checked) {
+            affirmativeGearing.style.display = '';
+            negateGearing.style.display = 'none';
+        } else {
+            affirmativeGearing.style.display = 'none';
+            negateGearing.style.display = '';
+        }
+    }
 
-        // 添加事件監聽器
-        hangUpRadioButtons.forEach(function(hangUpRadioButton) {
-            hangUpRadioButton.addEventListener('change', function() {
-                // 檢查選中的 radio 按鈕的值
-                if (hangUpRadioButton.value === 'option1') {
-                    // 顯示 .affirmative-gearing，隱藏 .negate-gearing
-                    affirmativeGearing.style.display = 'block';
-                    negateGearing.style.display = 'none';
-                } else {
-                    // 顯示 .negate-gearing，隱藏 .affirmative-gearing
-                    negateGearing.style.display = 'block';
-                    affirmativeGearing.style.display = 'none';
-                }
-            });
-        });
-    });
+    listingSwitch.addEventListener('change', toggleGearing);
+    toggleGearing();
+});
 </script>
 
+<!-- multiple photo upload -->
+<script>
+window.addEventListener("DOMContentLoaded", function () {
+    const inputFile = document.querySelector('.upload-photo-wrapper input[type="file"]');
+    const container = document.getElementById("image-container");
+    const MAX_IMAGES = 6;
+    let selectedFiles = [];
+
+    inputFile.addEventListener("change", function () {
+        let files = Array.from(this.files);
+        // 合併已選和新選的檔案
+        let totalFiles = selectedFiles.concat(files);
+        // 只取前六張
+        if (totalFiles.length > MAX_IMAGES) {
+            totalFiles = totalFiles.slice(0, MAX_IMAGES);
+        }
+        selectedFiles = totalFiles;
+        renderImages();
+        updateInputFiles();
+        toggleInput();
+        // 清空 input 以便可重複選同一檔案
+        inputFile.value = "";
+    });
+
+    function renderImages() {
+        container.innerHTML = "";
+        selectedFiles.forEach((file, idx) => {
+            const wrapper = document.createElement("div");
+            wrapper.classList.add("image-wrapper");
+
+            const img = document.createElement("img");
+            img.classList.add("image-preview");
+            img.src = URL.createObjectURL(file);
+            img.onload = () => URL.revokeObjectURL(img.src);
+
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.classList.add("close-btn");
+            btn.innerHTML = '<i class="fas fa-times"></i>';
+            btn.addEventListener("click", function () {
+                selectedFiles.splice(idx, 1);
+                updateInputFiles();
+                renderImages();
+                toggleInput();
+            });
+
+            wrapper.appendChild(btn);
+            wrapper.appendChild(img);
+            container.appendChild(wrapper);
+        });
+    }
+
+    function updateInputFiles() {
+        const dt = new DataTransfer();
+        selectedFiles.forEach(f => dt.items.add(f));
+        inputFile.files = dt.files;
+    }
+
+    function toggleInput() {
+        inputFile.disabled = selectedFiles.length >= MAX_IMAGES;
+    }
+});
+</script>
 <% end %>

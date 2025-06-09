@@ -15,11 +15,7 @@
         </div>
 		<%= render :partial => "/partials/footer" %>
 	</div>
-	
-    <script src="../javascripts/jquery-3.7.1.min.js"></script>
-    <script src="../javascripts/popper.min.js"></script>
-    <script src="../javascripts/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Modal -->
     <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl search-modal">
@@ -37,6 +33,10 @@
             </div>
         </div>
     </div>
+	
+    <script src="../javascripts/jquery-3.7.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.min.js"></script>
 
     <!-- Back to top -->
     <script>
@@ -94,6 +94,31 @@
     });
     </script>
 	
+    <!-- Header nav -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function toggleOffcanvasClasses() {
+                const headerNav = document.querySelector(".header-nav");
+                if (window.innerWidth < 1199) {
+                    headerNav.classList.add("offcanvas", "offcanvas-top");
+                } else {
+                    headerNav.classList.remove("offcanvas", "offcanvas-top");
+                }
+            }
+
+            // Initial check
+            toggleOffcanvasClasses();
+
+            // Add event listener for window resize
+            window.addEventListener("resize", toggleOffcanvasClasses);
+
+            // Add .open class on .btn-offcanvas click
+            const btnOffcanvas = document.querySelector(".btn-offcanvas");
+            btnOffcanvas.addEventListener("click", function () {
+                btnOffcanvas.classList.toggle("open");
+            });
+        });
+    </script>
     <%= yield :js %>
 </body>
 </html>

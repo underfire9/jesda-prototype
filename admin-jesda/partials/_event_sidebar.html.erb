@@ -1,25 +1,43 @@
 <input type="checkbox" class="sr-only sidebar-ctrler" id="v-nav-secondary" checked>
 <div class="vertical_nav sidebar sidebar--secondary event-sidebar">
     <div class="sidebar__header media">
-        <div class="media-left"></div>
+        <div class="media-start">
+            <div class="media-start-inner">
+                <a class="head-back" href="#" title="回列表"><i class="fa fa-long-arrow-left"></i></a>
+
+                <!-- 左側第一層選單名稱 -->
+                <span>系統列表</span>
+            </div>
+        </div>
         <div class="media-body media-middle text-right">
             <label class="sidebar-ctrler--label" for="v-nav-secondary"><i class="fa fa-ellipsis-v"></i></label>
         </div>
     </div>
     <div class="menu">
         <div class="sidebar-scroll">
-            <ul class="nav">
-                <li class="">
-                    <a class="waves-effect" href="###">
-                        <i class="fa fa-globe" title="Globe"></i>
-                        <span class="menu-label">Globe</span>
+            <ul class="nav nav-secondary">
+                <li class="has-sub active">
+                    <a class="nav-ctrler waves-effect" href="###">
+                        <i class="fa fa-file-text-o" title="基本資料"></i>
+                        <span class="menu-label">基本資料</span>
+                        <i class="fa fa-angle-left leftNavIcon"></i>
                     </a>
+                    <ul>
+                        <li><a class="waves-effect current" href="../table/style.html">基本資料</a></li>
+                        <li><a class="waves-effect" href="../table/datatables.html">版本紀錄</a></li>
+                    </ul>
                 </li>
-                <li class="">
-                    <a class="waves-effect" href="###">
-                        <i class="fa fa-anchor" title="anchor"></i>
-                        <span class="menu-label">Anchor</span>
+                <li class="has-sub">
+                    <a class="nav-ctrler waves-effect" href="###">
+                        <i class="fa fa-cogs" title="功能架構"></i>
+                        <span class="menu-label">功能架構</span>
+                        <i class="fa fa-angle-left leftNavIcon"></i>
                     </a>
+                    <ul>
+                        <li><a class="waves-effect" href="../table/style.html">123</a></li>
+                        <li><a class="waves-effect" href="../table/datatables.html">456</a></li>
+                        <li><a class="waves-effect" href="../table/datatables.html">789</a></li>
+                    </ul>
                 </li>
                 <li class="">
                     <a class="waves-effect" href="###">
@@ -43,3 +61,25 @@
         </div>
     </div>
 </div>
+
+<% content_for :js do %>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hasSubItems = document.querySelectorAll('.nav-secondary .has-sub');
+
+            hasSubItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    // 移除其他 .has-sub 的 .active
+                    hasSubItems.forEach(subItem => {
+                        if (subItem !== item) {
+                            subItem.classList.remove('active');
+                        }
+                    });
+
+                    // 切換當前點擊的 .has-sub 的 .active
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+<% end %>

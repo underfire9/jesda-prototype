@@ -1,0 +1,67 @@
+<!-- template: 技術需求者 - 商化技術洽詢申請 -->
+
+<!-- 產學媒合所有頁面都沒有 breadcrumb 麵包屑 -->
+
+<div class="container-fixed">
+    <div class="matchmaking-container commercial-container">
+        <ul class="nav matchmaking-nav-sheet" id="commercializationTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="sheet-link active" id="inquiry-tab" data-bs-toggle="tab" data-bs-target="#inquiry-tab-pane" type="button" role="tab" aria-controls="inquiry-tab-pane" aria-selected="true">商化技術洽詢</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="sheet-link" id="announcement-tab" data-bs-toggle="tab" data-bs-target="#announcement-tab-pane" type="button" role="tab" aria-controls="announcement-tab-pane" aria-selected="false">商化技術公告表</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="commercializationTabContent">
+            <div class="tab-pane fade show active" id="inquiry-tab-pane" role="tabpanel" aria-labelledby="inquiry-tab" tabindex="0">
+                <%= render :partial => "/partials/inquiry-form" %>
+            </div>
+            <div class="tab-pane fade" id="announcement-tab-pane" role="tabpanel" aria-labelledby="announcement-tab" tabindex="0">
+                <%= render :partial => "/partials/commercial-form" %>
+            </div>
+        </div>
+        
+        <div class="form-action">
+            <a href="needers-commercialization-home.html" class="turnback">
+                <svg width="72" height="48" viewBox="0 0 72 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.99951 24H64" stroke="#CEDADA" stroke-linecap="round"></path>
+                <path d="M13 29.5L7.99951 24L13 18.5" stroke="#00b9c6" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <span>回列表</span>
+            </a>
+            <button type="submit" class="btn btn-lg btn-outline-secondary me-1">暫存</button>
+            <button type="submit" class="btn btn-lg btn-main px-4">送出申請</button>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const applicationSelect = document.querySelector('.select-application');
+        const companyApplication = document.querySelector('.company-application');
+        const personalApplication = document.querySelector('.personal-application');
+        const companySelect = document.querySelector('.select-application-company');
+
+        function toggleApplication() {
+            if (applicationSelect.value === 'companyApplication') {
+                companyApplication.style.display = 'block';
+                personalApplication.style.display = 'none';
+                companySelect.style.display = 'block';
+            } else if (applicationSelect.value === 'personalApplication') {
+                companyApplication.style.display = 'none';
+                personalApplication.style.display = 'block';
+                companySelect.style.display = 'none';
+            }
+        }
+
+        // Initialize visibility on page load
+        toggleApplication();
+
+        // Add event listener for changes
+        applicationSelect.addEventListener('change', toggleApplication);
+    });
+</script>
+<% end %>
+

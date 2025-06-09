@@ -18,7 +18,7 @@
                     <ul class="side-navigation menu-item">
                         <li>
 							<a class="nav-item" href="#">
-							    <span class="link-inner">基本資料</span>
+							    <span class="link-inner">績效基本資料</span>
 							</a>
 						</li>
 						<li>
@@ -28,7 +28,12 @@
 						</li>
 						<li>
 							<a class="nav-item" href="#">
-								<span class="link-inner">優華語獎學金生研習情形</span>
+								<span class="link-inner">獎學金生研習情形</span>
+							</a>
+						</li>
+                        <li>
+							<a class="nav-item" href="#">
+								<span class="link-inner">短期華語文研習團</span>
 							</a>
 						</li>
 						<li>
@@ -38,7 +43,7 @@
 						</li>
 						<li>
 							<a class="nav-item" href="#">
-								<span class="link-inner">推廣華語文測驗</span>
+								<span class="link-inner">其他必辦項目辦理情形</a></span>
 							</a>
 						</li>
                     </ul>
@@ -51,13 +56,15 @@
 		<main class="main">
             <div class="mb-8">
                 <div class="section-title">
-                    <h4>前一季總優華語獎學金生人數</h4>
+                    <h4>前一季總大手攜小手辦理情形</h4>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover text-nowrap align-middle">
                         <thead>
                             <tr>
                                 <th>模式</th>
+                                <th>教育體制</th>
+                                <th>合作方式</th>
                                 <th>中小學全名</th>
                                 <th class="text-center">是否簽訂合作<br>協議或備忘錄</th>
                                 <th class="text-center">參加前<br>培訓時數</th>
@@ -66,25 +73,15 @@
                                 <th class="text-center">中小學<br>受惠人次</th>
                                 <th>交流期間</th>
                                 <th>執行頻率</th>
-                                <th class="text-center">參與獎學金生<br>薪資標準</th>
+                                <th class="text-center">參與獎學金<br>生薪資標準</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>學伴制度</td>
-                                <td>米爾頓中學</td>
-                                <td class="text-center">否</td>
-                                <td class="text-center">820</td>
-                                <td>國教署</td>
-                                <td class="text-center">8888</td>
-                                <td class="text-center">666</td>
-                                <td>2024-05-01 ~<br>2024-08-01</td>
-                                <td><%= zh_lorem_words(10) %></td>
-                                <td class="text-center">120,000</td>
-                            </tr>
                             <% (1..3).map do |i| %>
                             <tr>
-                                <td>赴合作學校擔任教學助理</td>
+                                <td>學伴制度</td>
+                                <td><%= zh_lorem_sentence %></td>
+                                <td><%= zh_lorem_sentence %></td>
                                 <td>安多佛菲利普中學</td>
                                 <td class="text-center">是</td>
                                 <td class="text-center">120</td>
@@ -102,7 +99,7 @@
             </div>
             <div>
                 <div class="section-title">
-                    <h4>本季新增優華語獎學金生人數</h4>
+                    <h4>本季新增大手攜小手辦理人數</h4>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover text-nowrap align-middle">
@@ -110,6 +107,8 @@
                             <tr>
                                 <th></th>
                                 <th>模式</th>
+                                <th>教育體制</th>
+                                <th>合作方式</th>
                                 <th>中小學全名</th>
                                 <th class="text-center">是否簽訂合作<br>協議或備忘錄</th>
                                 <th class="text-center">參加前<br>培訓時數</th>
@@ -122,22 +121,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#companionModal">編輯</a>
-                                    <a href="#" class="btn btn-sm btn-outline-danger">刪除</a>
-                                </td>
-                                <td>學伴制度</td>
-                                <td>米爾頓中學</td>
-                                <td class="text-center">否</td>
-                                <td class="text-center">820</td>
-                                <td>國教署</td>
-                                <td class="text-center">8888</td>
-                                <td class="text-center">666</td>
-                                <td>2024-05-01 ~<br>2024-08-01</td>
-                                <td><%= zh_lorem_words(10) %></td>
-                                <td class="text-center">120,000</td>
-                            </tr>
                             <% (1..3).map do |i| %>
                             <tr>
                                 <td>
@@ -145,6 +128,8 @@
                                     <a href="#" class="btn btn-sm btn-outline-danger">刪除</a>
                                 </td>
                                 <td>赴合作學校擔任教學助理</td>
+                                <td><%= zh_lorem_sentence %></td>
+                                <td><%= zh_lorem_sentence %></td>
                                 <td>安多佛菲利普中學</td>
                                 <td class="text-center">是</td>
                                 <td class="text-center">120</td>
@@ -180,7 +165,7 @@
                     
                     <div class="col-6">
                         <div class="mb-4">
-                            <label class="form-label">大手攜小手模式</label>
+                            <label class="form-label"><span class="required">*</span>大手攜小手模式</label>
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
@@ -189,17 +174,53 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="col-6">
+                        <div class="mb-4">
+                            <label class="form-label">教育體制</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="other">其他</option>
+                            </select>
+
+                            <!-- 區塊預設隱藏，當 select 選擇值等於 other 時才會秀，若改變 value 名稱請一併調整下方 js -->
+                            <div class="modal-other-wrap pt-2">
+                                <input type="text" class="form-control" placeholder="請填寫" id="" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="mb-4">
+                            <label class="form-label">合作方式</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">國教署「協助公立國民中小學引進部分工時外籍英語教學助理計畫」（ELTA計畫）</option>
+
+                                <!-- 區塊預設隱藏，當 select 選擇值等於 other 時才會秀，若改變 value 名稱請一併調整下方 js -->
+                                <option value="other">其他</option>
+                            </select>
+                            <div class="modal-other-wrap pt-2">
+                                <input type="text" class="form-control" placeholder="請填寫" id="" />
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="col-6">
                         <div class="mb-4">
-                            <label for="companionForm1" class="form-label">合作大手攜小手之中小學全名</label>
+                            <label for="companionForm1" class="form-label"><span class="required">*</span>合作大手攜小手之中小學全名</label>
                             <input type="text" class="form-control" id="companionForm1" />
                         </div>
                     </div>
                     
                     <div class="col-6">
                         <div class="mb-4">
-                            <label class="form-label">是否與合作學校/單位簽訂合作協議或備忘錄</label>
+                            <label class="form-label"><span class="required">*</span>是否與合作學校/單位簽訂合作協議或備忘錄</label>
                             <div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="memorandumOptions" id="memorandumRadio1" value="option1" />
@@ -215,14 +236,14 @@
                     
                     <div class="col-6">
                         <div class="mb-4">
-                            <label for="companionForm2" class="form-label">參加小手攜小手前培訓時數</label>
+                            <label for="companionForm2" class="form-label"><span class="required">*</span>參加小手攜小手前培訓時數</label>
                             <input type="text" class="form-control" id="companionForm2" />
                         </div>
                     </div>
                     
                     <div class="col-6">
                         <div class="mb-4">
-                            <label class="form-label">辦理培訓之單位名稱</label>
+                            <label class="form-label"><span class="required">*</span>辦理培訓之單位名稱</label>
                             <select class="form-select" aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
@@ -231,26 +252,24 @@
                             </select>
                         </div>
                     </div>
-                </div>
-                
-                <div class="row">
+
                     <div class="col-6">
                         <div class="mb-4">
-                            <label for="companionForm3" class="form-label">參與之獎學金生人次</label>
+                            <label for="companionForm3" class="form-label"><span class="required">*</span>參與之獎學金生人次</label>
                             <input type="text" class="form-control" id="companionForm3" />
                         </div>
                     </div>
                     
                     <div class="col-6">
                         <div class="mb-4">
-                            <label for="companionForm4" class="form-label">中小學受惠人次</label>
+                            <label for="companionForm4" class="form-label"><span class="required">*</span>中小學受惠人次</label>
                             <input type="text" class="form-control" id="companionForm4" />
                         </div>
                     </div>
                     
                     <div class="col-6">
                         <div class="mb-4">
-                            <label class="form-label">交流期間</label>
+                            <label class="form-label"><span class="required">*</span>交流期間</label>
                             <div class="d-flex align-items-center">
                                 <span class="flex-grow-1">
                                     <div>
@@ -269,13 +288,13 @@
                     
                     <div class="col-12">
                         <div class="mb-4">
-                            <label class="form-label">執行大手攜小手頻率</label>
+                            <label class="form-label"><span class="required">*</span>執行大手攜小手頻率</label>
                             <div class="d-flex align-items-center">
-                                <span>每個月</span>
+                                <span>每季</span>
                                 <span class="px-2">
                                     <input type="text" class="form-control" id="" />
                                 </span>
-                                <span>次，每次</span>
+                                <span>次，每場次</span>
                                 <span class="px-2">
                                     <input type="text" class="form-control" id="" />
                                 </span>
@@ -302,5 +321,25 @@
 </div>
 
 <% content_for :js do %>
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.form-select').forEach(function(select) {
+    select.addEventListener('change', function() {
+      var wrap = this.closest('.mb-4').querySelector('.modal-other-wrap');
+      if (wrap) {
+        if (this.value === 'other') {
+          wrap.style.display = 'block';
+        } else {
+          wrap.style.display = 'none';
+        }
+      }
+    });
+    // 頁面載入時也要判斷一次
+    var wrap = select.closest('.mb-4').querySelector('.modal-other-wrap');
+    if (wrap) {
+      wrap.style.display = (select.value === 'other') ? 'block' : 'none';
+    }
+  });
+});
+</script>
 <% end %>

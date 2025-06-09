@@ -1,28 +1,39 @@
 <!-- template: 技術需求者首頁 -->
 
+<!-- 產學媒合所有頁面都沒有 breadcrumb 麵包屑 -->
+
 <div class="container-fixed">
     <div class="matchmaking-container has-side-container">
         <aside class="side-container">
-            <a href="#" class="turnback">
-                <svg width="72" height="48" viewBox="0 0 72 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.99951 24H64" stroke="#CEDADA" stroke-linecap="round"></path>
-                <path d="M13 29.5L7.99951 24L13 18.5" stroke="#00AFC5" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <span>產學媒合</span>
-            </a>
             <div class="side-container-title">技術需求者</div>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">技術媒合需求管理</a>
+            <ul class="sidenav menu-item">
+                <li>
+                    <a class="item-link active" href="needers-home.html">技術媒合需求管理</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">商化技術洽詢管理</a>
+                <li>
+                    <a class="item-link" href="needers-commercialization-home.html">商化技術洽詢管理</a>
                 </li>
             </ul>
+            <span class="side-turnback">
+                <a href="../matchmaking-home/index.html" class="turnback">
+                    <svg width="72" height="48" viewBox="0 0 72 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.99951 24H64" stroke="#CEDADA" stroke-linecap="round"></path>
+                    <path d="M13 29.5L7.99951 24L13 18.5" stroke="#00AFC5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <span>產學媒合</span>
+                </a>
+            </span>
         </aside>
 
         <main class="main">
-            <h4>已提出申請紀錄</h4>
+            <div class="route-promote">
+                <div>
+                    <h2>技術需求找專家</h2>
+                    <p>運用資料庫結合AI技術，將您的技術需求，精準媒合專家學者，為您找到最適合的解決方案。</p>
+                </div>
+                <span><a href="needers-application.html" class="btn btn-lg btn-rounded btn-main px-5">我要提出技術需求</a></span>
+            </div>
+            <h4 class="mb-5">已提出申請紀錄</h4>
             <div class="list-filter">
                 <div>
                     <select class="form-select" aria-label="Default select example">
@@ -48,26 +59,50 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-hover align-middle">
+            <table class="table table-lg table-hover align-middle demand-table">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>技術主題</th>
-                        <th>申請日期</th>
-                        <th>辦理進度</th>
+                        <th class="text-nowrap">申請日期</th>
+                        <th class="text-nowrap">辦理進度</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% (1..6).map do |i| %>
+                    <% (1..2).map do |i| %>
                     <tr>
                         <td><%= i %></td>
                         <td>提升微創手術用內視鏡輔助器械的視野穩定性與影像清晰度技術</td>
-                        <td>114-01-01</td>
-                        <td>專家合作確認中</td>
-                        <td><a href="#" class="btn btn-sm btn-outline-primary btn-rounded">合作確認</a></td>
+                        <td class="text-nowrap">114-01-01</td>
+                        <td class="text-nowrap">專家合作確認中</td>
+                        <td class="text-nowrap"><a href="needers-step2.html" class="btn btn-sm btn-outline-main btn-rounded">合作確認</a></td>
                     </tr>
                     <% end %>
+                    <tr>
+                        <td>3</td>
+                        <td>智能感測與影像重建技術在內視鏡輔助器械中之應用開發</td>
+                        <td class="text-nowrap">114-01-01</td>
+                        <td class="text-nowrap">專家合作確認中</td>
+                        <td><a href="needers-view.html" class="btn btn-sm btn-outline-dark btn-rounded">檢視</a></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>智能感測與影像重建技術在內視鏡輔助器械中之應用開發提升微創手術用內視鏡輔助器械的視野穩定性與影像清晰度技術</td>
+                        <td>114-01-01</td>
+                        <td class="text-nowrap">專家合作確認中</td>
+                        <td><a href="needers-step1.html" class="btn btn-sm btn-outline-third btn-rounded">回覆意願</a></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>智能感測與影像重建技術在內視鏡輔助器械中之應用開發</td>
+                        <td class="text-nowrap">114-01-01</td>
+                        <td class="text-nowrap">暫存</td>
+                        <td class="text-nowrap">
+                            <a href="needers-application.html" class="btn btn-sm btn-outline-primary btn-rounded">編輯</a>
+                            <button type="button" class="btn btn-sm btn-outline-danger btn-rounded">刪除</button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </main>

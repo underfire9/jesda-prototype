@@ -65,33 +65,53 @@
 	</script>
 
     <script>
-    // bootstrap 5 dropdown hover
-    document.addEventListener("DOMContentLoaded", function(){
-        // make it as accordion for smaller screens
-        if (window.innerWidth > 992) {
-            document.querySelectorAll('.navigation-bar .nav-item').forEach(function(everyitem){
-                everyitem.addEventListener('mouseover', function(e){
-                    let el_link = this.querySelector('a[data-bs-toggle]');
+        // bootstrap 5 dropdown hover and click
+        document.addEventListener("DOMContentLoaded", function(){
+            // make it as accordion for smaller screens
+            if (window.innerWidth > 992) {
+                document.querySelectorAll('.navigation-bar .nav-item').forEach(function(everyitem){
+                    // Hover
+                    everyitem.addEventListener('mouseover', function(e){
+                        let el_link = this.querySelector('a[data-bs-toggle]');
+                        if(el_link != null){
+                            let nextEl = el_link.nextElementSibling;
+                            el_link.classList.add('show');
+                            nextEl.classList.add('show');
+                        }
+                    });
+                    everyitem.addEventListener('mouseleave', function(e){
+                        let el_link = this.querySelector('a[data-bs-toggle]');
+                        if(el_link != null){
+                            let nextEl = el_link.nextElementSibling;
+                            el_link.classList.remove('show');
+                            nextEl.classList.remove('show');
+                        }
+                    });
+                    // Click
+                    let el_link = everyitem.querySelector('a[data-bs-toggle]');
                     if(el_link != null){
-                        let nextEl = el_link.nextElementSibling;
-                        el_link.classList.add('show');
-                        nextEl.classList.add('show');
+                        el_link.addEventListener('click', function(e){
+                            e.preventDefault();
+                            let nextEl = el_link.nextElementSibling;
+                            let isShown = nextEl.classList.contains('show');
+                            // Hide all other dropdowns
+                            document.querySelectorAll('.navigation-bar .dropdown-menu.show').forEach(function(menu){
+                                menu.classList.remove('show');
+                            });
+                            document.querySelectorAll('.navigation-bar a[data-bs-toggle].show').forEach(function(link){
+                                link.classList.remove('show');
+                            });
+                            // Toggle current
+                            if(!isShown){
+                                el_link.classList.add('show');
+                                nextEl.classList.add('show');
+                            }
+                        });
                     }
-        
                 });
-                everyitem.addEventListener('mouseleave', function(e){
-                    let el_link = this.querySelector('a[data-bs-toggle]');
-        
-                    if(el_link != null){
-                        let nextEl = el_link.nextElementSibling;
-                        el_link.classList.remove('show');
-                        nextEl.classList.remove('show');
-                    }
-                })
-            });
-        }
-        // end if innerWidth
-    });
+            }
+            // end if innerWidth
+        });
     </script>
 	
     <%= yield :js %>

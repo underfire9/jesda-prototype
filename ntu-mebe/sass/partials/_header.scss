@@ -1,0 +1,506 @@
+
+/* `Header
+-----------------------------------------------------------------------------*/
+
+header.header {
+	position: relative;
+	margin-bottom: 4rem;
+	.header-wrap {
+		padding-bottom: .75rem;
+		position: relative;
+	}
+	.header-right {
+		padding-top: 2px;
+		font-size: .9375rem;
+		text-align: end;
+		a {
+			display: inline-block;
+			padding: 0 0.5rem;
+			color: #fff;
+			&:hover { opacity: .65; }
+			&.language {
+				margin-bottom: 0.5rem;
+				i {
+					margin-right: .125rem;
+					opacity: .5;
+				}
+			}
+		}
+	}
+	.header-links {
+		display: inline-block;
+	}
+
+	.wrap-inner {
+		display: flex;
+		justify-content: space-between;
+		padding-top: 20px;
+	}
+
+	.brands-link {
+		display: flex;
+		align-items: center;
+		color: #fff;
+		&:hover {
+			.sub { opacity: .8; }
+		}
+	}
+	.h1-logo {
+		display: block;
+		width: auto;
+		height: 72px;
+	}
+	.logo {
+		.text-hide {
+			margin-top: 0;
+			width: 0;
+			height: 0;
+			overflow: hidden;
+			text-indent: -9999px;
+		}
+	}
+	.sub {
+		margin-left: 1rem;
+		transition: all 0.2s ease-in-out;
+		.ch, .en {
+			display: block;
+			text-shadow: 0 0 2px rgba(0, 0, 0, .1);
+		}
+		.ch {
+			font-size: 1.25rem;
+			line-height: 1.3;
+			font-weight: bold;
+			span {
+				display: inline-block;
+				margin-left: 0.25rem;
+				font-weight: 400;
+			}
+		}
+		.en {
+			font-size: 0.813rem;
+			line-height: 1.3;
+			font-weight: 400;
+			opacity: .85;
+			span {
+				display: block;
+			}
+		}
+	}
+
+	.nav-container {
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		border-bottom: 1px solid $base_border_color;
+	}
+	.navigation-bar {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.dropdown-menu {
+			border-radius: 0 0 .5rem .5rem;
+			border-top: none;
+		}
+	}
+    .header-nav {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		.dropdown-toggle:after {
+			margin-left: 0;
+			vertical-align: none;
+			border: none;
+		}
+	}
+	.nav-item.mobile-only {
+		display: none;
+	}
+	.nav-link {
+		display: block;
+		align-content: center;
+		padding: 12px 12px;
+		font-size: 1.125rem;
+		font-weight: 500;
+		color: #4f4a43;
+		position: relative;
+		&:hover {
+			color: $main_color;
+		}
+		&.current {
+			color: $main_color;
+			cursor: default;
+		}
+	}
+
+	.toggler-wrap {
+		display: none;
+		margin-left: 2rem;
+	}
+}
+
+.btn-offcanvas {
+	box-shadow: none !important;
+	border-radius: 0;
+    width: 48px;
+    height: 45px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+	span {
+		display: block;
+		position: absolute;
+		height: 3px;
+		width: 100%;
+		background: #fff;
+		border-radius: 1px;
+		opacity: 1;
+		left: 0;
+		transform: rotate(0deg);
+		transform-origin: center center;
+		transition: 0.25s ease-in-out;
+		&:nth-child(1) {
+			top: 8px;
+		}
+		&:nth-child(2) {
+			top: 21px;
+		}
+		&:nth-child(3) {
+			top: 21px;
+			opacity: 0;
+		}
+		&:nth-child(4) {
+			top: 34px;
+		}
+	}
+	&.open span:nth-child(1) {
+		transform: rotate(45deg);
+		top: 21px;
+	}
+	&.open span:nth-child(2) {
+		transform: rotate(-45deg);
+	}
+	&.open span:nth-child(3) {
+		transform: rotate(45deg);
+	}
+	&.open span:nth-child(4) {
+		transform: rotate(-45deg);
+		top: 21px;
+	}
+}
+
+.homepage {
+	header.header {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		z-index: 2;
+		.header-wrap {
+			background: transparent;
+			box-shadow: none !important;
+		}
+		.nav-container {
+			box-shadow: none !important;
+			border-bottom: none;
+		}
+		.nav-link {
+			color: #fff;
+			&:hover {
+				color: $main_color;
+			}
+		}
+		&::after {
+			content: "";
+			height: 200px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			background: linear-gradient(0deg, rgba(#111111, 0) 0%, rgba(#111111, 1) 100%), linear-gradient(0deg, rgba(#111111, 0) 0%, rgba(#111111, 1) 100%), linear-gradient(0deg, rgba(#111111, 0) 0%, rgba(#111111, 1) 100%);
+			z-index: 0;
+		}
+		.language, .brands-link, .header-links {
+			position: relative;
+			z-index: 1;
+		}
+		.header-nav {
+			position: relative;
+			z-index: 1041;
+		}
+		.dropdown-menu {
+			border-radius: .5rem;
+			border: none;
+		}
+	}
+	.waves-container { display: none; }
+}
+
+/* `Wave
+-----------------------------------------------------------------------------*/
+
+.wave-content {
+    background-color: $wave-4-color;
+    color: $wave-2-color;
+    padding: 3em;
+    text-align: center;
+}
+
+.waves-container {
+    background-color: $wave-container-background-color;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	z-index: -1;
+}
+
+.waves {
+    margin-bottom: -5px;
+    width: 100%;
+    height: $wave-set-height;
+    .wave-1 {
+        transform: translateX(50%);
+    }
+    .wave-2 {
+        transform: translateX(90%);
+    }
+
+    .wave-3 {
+        transform: translateX(25%);
+    }
+    .wave-4 {
+        transform: translateX(0%);
+    }
+
+    .wave-1 {
+        fill: $wave-1-color;
+    }
+
+    .wave-2 {
+        fill: $wave-2-color;
+    }
+    .wave-3 {
+        fill: $wave-3-color;
+    }
+    .wave-4 {
+        fill: $wave-4-color;
+    }
+    &.animated {
+        //reuse a single element, or a group of elements defined with the <g> element  of the svg
+        .wave-1-container {
+            animation-delay: -1s;
+            animation: infinite-wave $wave-animation-speed ease-in-out infinite;
+            animation-duration: calc($wave-animation-speed * 2.5);
+            > use {
+                &.wave-1 {
+                    animation-delay: -1s;
+                    animation: bobbing-wave 3s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+                }
+            }
+        }
+        .wave-2-container {
+            animation-delay: -2s;
+            animation: infinite-wave $wave-animation-speed linear infinite;
+            animation-duration: calc($wave-animation-speed * 1);
+            > use {
+                &.wave-2 {
+                    animation-delay: -2s;
+                    animation: bobbing-wave 3s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+                }
+            }
+        }
+        .wave-3-container {
+            animation-delay: -4s;
+            animation: infinite-wave $wave-animation-speed linear infinite;
+            animation-duration: calc($wave-animation-speed * 1.5);
+            > use {
+                &.wave-3 {
+                    animation-delay: 1.5s;
+                    animation: bobbing-wave 4s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+                }
+            }
+        }
+        .wave-4-container {
+            animation-delay: -4s;
+            animation: infinite-wave $wave-animation-speed linear infinite;
+            animation-duration: calc($wave-animation-speed * 1.5);
+        }
+
+        .wave-set > use {
+            animation: infinite-wave $wave-animation-speed linear infinite;
+            //ensure you're using the parent selector with > use or it won't work eg: &.wave-1 not .wave-1
+            //updated to offset wave timing
+            &.wave-1 {
+                animation-delay: -1s;
+                animation-duration: calc($wave-animation-speed * 2.5);
+            }
+
+            &.wave-2 {
+                animation-delay: -2s;
+                animation-duration: calc($wave-animation-speed * 1);
+            }
+
+            &.wave-3 {
+                animation-delay: -4s;
+                animation-duration: calc($wave-animation-speed * 1.5);
+            }
+            &.wave-1 {
+                animation-delay: -5s;
+                animation-duration: calc($wave-animation-speed * 2);
+            }
+        }
+    }
+}
+
+@keyframes infinite-wave {
+    0% {
+        transform: translate(-90px, 0%);
+		filter: blur(1px);
+    }
+
+	50% {
+        transform: translate(85px, 0%);
+		filter: blur(3px);
+    }
+
+    100% {
+        transform: translate(85px, 0%);
+		filter: blur(2px);
+    }
+}
+//might not be able to get this to work...
+@keyframes bobbing-wave {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(0.75rem);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 768px) {
+	.waves { height: calc(#{ $wave-set-height } * 1.5); }
+}
+
+@media (min-width: 1280px) {
+	.waves { height: calc(#{ $wave-set-height } * 2); }
+}
+
+
+/* `Responsive
+-----------------------------------------------------------------------------*/
+
+@media (max-width: 991px) {
+	header.header {
+		.header-wrap {
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+		.header-links {
+			display: none;
+		}
+		.sub {
+			.ch {
+				font-size: 1rem;
+			}
+			.en {
+				font-size: .688rem;
+			}
+		}
+		.wrap-inner {
+			align-items: center;
+			padding-top: .75rem;
+		}
+		.h1-logo {
+			height: 56px;
+		}
+
+		.toggler-wrap {
+			display: inline-block;
+			z-index: 1054;
+			position: relative;
+		}
+		.offcanvas.offcanvas-top {
+			align-items: center;
+			justify-content: center;
+			background: linear-gradient(35deg, rgba(#3f2a0f, .9) 0%, rgba(#6b4008, 1) 100%);
+			
+			backdrop-filter: blur(3px);
+			border-radius: 24px;
+			width: auto;
+			height: auto;
+			top: .5rem;
+			bottom: .5rem;
+			left: .5rem;
+			right: .5rem;
+		}
+		.navigation-bar {
+			flex-direction: column;
+			margin: 0 auto;
+			padding: 0 1.25rem;
+			max-width: 320px;
+			width: 100%;
+			.dropdown-menu {
+				border-radius: .5rem;
+				border: none;
+			}
+		}
+		.nav-link {
+			padding: 8px 0;
+			font-size: calc(1rem + 0.2vw);
+			color: rgba(#fff, .7);
+			height: auto;
+			&.current {
+				color: $main_color;
+			}
+			&:hover {
+				color: #fff;
+			}
+		}
+		.nav-item {
+			display: block;
+			width: 100%;
+			text-align: center;
+			&.mobile-only {
+				display: block;
+				font-weight: 400;
+			}
+		}
+		.dropdown-menu {
+			border-radius: 16px;;
+			transform: translate3d(60px, 0, 0px) !important;
+		}
+	}
+	.homepage {
+		header.header {
+			&::after {
+				content: "";
+				height: 120px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				background: linear-gradient(0deg, rgba(#111111, 0) 0%, rgba(#111111, 1) 100%), linear-gradient(0deg, rgba(#111111, 0) 0%, rgba(#111111, 1) 100%), linear-gradient(0deg, rgba(#111111, 0) 0%, rgba(#111111, 1) 100%);
+				z-index: 0;
+			}
+		}
+		.header-nav {
+			position: fixed !important;
+			z-index: 1;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	header.header {
+		.sub {
+			display: none;
+		}
+		.h1-logo {
+			height: 48px;
+		}
+	}
+
+}

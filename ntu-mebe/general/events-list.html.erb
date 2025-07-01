@@ -1,0 +1,91 @@
+<!-- template: 活動剪影列表 -->
+<!-- 沒有、不需要麵包屑 -->
+
+
+<!--
+後台需要欄位
+1. 封面照片上傳，需提供 16:9 裁切工具，並請註明上傳最小尺寸 800 x 450，舊照片轉移不需要另外裁切直接丟進來就好
+2. 活動名稱 (input)
+3. 活動日期 (datepicker)
+4. 活動地點 (input)
+5. 活動內容 (編輯器)
+6. 活動照片 (可上傳多張照片，不需要裁切工具)
+-->
+
+<div class="container">
+    <main class="main-content">
+        <div class="page-title">
+            <h2>活動剪影</h2>
+        </div>
+
+        <div>
+            <ul class="events-list menu-item">
+                <li class="event-item-wrapper">
+                    <span class="cover">
+
+                        <!-- 後台上傳請提供 16:9 裁切工具，並請註明上傳最小尺寸 800 x 450 -->
+                        <!-- 舊照片轉移不需要另外裁切直接丟進來就好 -->
+                        <img class="event-cover" src="https://picsum.photos/800/640">
+                    </span>
+
+                    <div class="item-content">
+                        <h5 class="event-title">國家講座系列 前瞻教育研究法工作坊</h5>
+                        <div class="detail">
+                            <span class="label">活動日期</span>
+                            <span class="output">2025-11-03 至 2025-11-05</span>
+                        </div>
+                        <div class="detail">
+                            <span class="label">活動地點</span>
+                            <span class="output">紐約、紐哈芬、波士頓</span>
+                        </div>
+                        <div class="actions">
+                            <a class="btn-more" href="#"><span>MORE <i class="fas fa-long-arrow-alt-right"></i></span></a>
+                        </div>
+                    </div>
+                </li>
+
+                <% (1..9).map do |i| %>
+                <li class="event-item-wrapper">
+                    <span class="cover">
+
+                        <!-- 後台上傳請提供 16:9 裁切工具，並請註明上傳最小尺寸 800 x 450 -->
+                        <!-- 舊照片轉移不需要另外裁切直接丟進來就好 -->
+                        <img class="event-cover" src="https://picsum.photos/800/4<%= i %>0">
+                    </span>
+
+                    <div class="item-content">
+                        <h5 class="event-title"><%= zh_lorem_sentence %></h5>
+                        <div class="detail">
+                            <span class="label">活動日期</span>
+                            <span class="output">2025-11-03 至 2025-11-05</span>
+                        </div>
+                        <div class="detail">
+                            <span class="label">活動地點</span>
+                            <span class="output">台大醫學院 202 講堂</span>
+                        </div>
+                        <div class="actions">
+                            <a class="btn-more" href="#"><span>MORE <i class="fas fa-long-arrow-alt-right"></i></span></a>
+                        </div>
+                    </div>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+    </main>
+</div>
+
+<%= render :partial => "/partials/related_links" %>
+
+<% content_for :js do %>
+
+<script>
+    // 將 .event-cover 圖片轉換為背景圖片
+    document.querySelectorAll('.event-cover').forEach(function(img) {
+        var cover = img.parentElement;
+        cover.style.backgroundImage = 'url(' + img.src + ')';
+        img.style.display = 'none';
+    });
+</script>
+
+<% end %>
+

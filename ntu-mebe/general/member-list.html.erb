@@ -1,0 +1,126 @@
+<!-- template: 成員介紹 (列表) -->
+<!-- 沒有、不需要麵包屑 -->
+
+<!--
+人員職掌後台需要欄位，依職務不同必填欄位也不同，這部分給 SA 處理
+1. 照片上傳，需提供正方形裁切工具，並請註明上傳最小尺寸 512 x 512 (現有資料轉移時照片需重新裁切上傳)
+2. 中文姓名、英文姓名、職稱、電話、電話分機、電子郵件
+3. 現任職務、經歷、研究領域、學術榮譽、教授課程、著作目錄
+4. 臺大學術典藏(連結)
+-->
+
+<div class="container">
+    <main class="main-content">
+        <div class="page-title">
+            <h2>教師</h2>
+        </div>
+
+        <!-- 所長區塊獨立 -->
+        <ul class="member-list menu-item">
+            <li class="member-item">
+                <span class="photo">
+
+                    <!-- 後台上傳請提供正方形裁切工具，並請註明上傳最小尺寸 512 x 512 -->
+                    <img src="https://i.pravatar.cc/512?img=10">
+                </span>
+                <div class="item-content">
+                    <h4 class="name">陳慧玲 <small class="en-name">Huey-Ling Chen</small></h4>
+                    <h5 class="position">教授兼科主任及研究所所長</h5>
+                    <div class="phone">
+                        <span class="label">電話</span>
+                        <span class="number">02-23123456</span>
+                        <span class="extension">271722</span>
+                    </div>
+                    <div class="email">
+                        <span class="label">Email</span>
+                        <span class="output"><a href="mailto:hueyling@ntu.edu.tw">hueyling@ntu.edu.tw</a></span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-primary" href="#">詳細資料</a>
+                        <a class="btn btn-ntus" href="#">臺大學術典藏</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <!-- 教授、副教授、助理教授 -->
+        <ul class="member-list menu-item">
+            <% (1..2).map do |i| %>
+            <li class="member-item">
+                <span class="photo">
+
+                    <!-- 後台上傳請提供正方形裁切工具，並請註明上傳最小尺寸 512 x 512 -->
+                    <img src="https://i.pravatar.cc/512?img=1<%= i %>">
+                </span>
+                <div class="item-content">
+                    <h4 class="name"><%= zh_lorem_name %> <small class="en-name"><%= lorem_name %></small></h4>
+                    <h5 class="position">教授</h5>
+                    <div class="phone">
+                        <span class="label">電話</span>
+                        <span class="number">02-23123456</span>
+                        <span class="extension">271722</span>
+                    </div>
+                    <div class="email">
+                        <span class="label">Email</span>
+                        <span class="output"><a href="mailto:hueyling@ntu.edu.tw">hueyling@ntu.edu.tw</a></span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-primary" href="#">詳細資料</a>
+                        <a class="btn btn-ntus" href="#">臺大學術典藏</a>
+                    </div>
+                </div>
+            </li>
+            <% end %>
+        </ul>
+
+        <!-- 行政人員、研究生範例 -->
+        <ul class="member-list menu-item">
+            <li class="member-item">
+                <span class="photo">
+
+                    <!-- 後台上傳請提供正方形裁切工具，並請註明上傳最小尺寸 512 x 512 -->
+                    <img src="https://i.pravatar.cc/512?img=17">
+                </span>
+                <div class="item-content">
+                    <h4 class="name"><%= zh_lorem_name %></h4>
+                    <h5 class="position">約聘幹事</h5>
+                    <div class="phone">
+                        <span class="label">電話</span>
+                        <span class="number">02-23123456</span>
+                        <span class="extension">288050</span>
+                    </div>
+                    <div class="email">
+                        <span class="label">Email</span>
+                        <span class="output"><a href="mailto:pclin62@ntu.edu.tw">pclin62@ntu.edu.tw</a></span>
+                    </div>
+                </div>
+            </li>
+
+            <% (1..4).map do |i| %>
+            <li class="member-item">
+                <span class="photo">
+
+                    <!-- 後台上傳請提供正方形裁切工具，並請註明上傳最小尺寸 512 x 512 -->
+                    <img src="https://i.pravatar.cc/512?img=2<%= i %>">
+                </span>
+                <div class="item-content">
+                    <h4 class="name"><%= zh_lorem_name %></h4>
+                    <h5 class="position">研究生</h5>
+                    <div class="email">
+                        <span class="label">Email</span>
+                        <span class="output"><a href="mailto:R10457002@ntu.edu.tw">R10457002@ntu.edu.tw</a></span>
+                    </div>
+                </div>
+            </li>
+            <% end %>
+        </ul>
+
+    </main>
+</div>
+
+<%= render :partial => "/partials/related_links" %>
+
+<% content_for :js do %>
+
+<% end %>
+

@@ -1,0 +1,54 @@
+<!-- template: 榮譽榜 -->
+<!-- 沒有、不需要麵包屑 -->
+
+<div class="container">
+    <main class="main-content">
+        <div class="page-title">
+            <h2>榮譽榜</h2>
+        </div>
+
+        <ul class="honor-list menu-item">
+            <% (1..8).map do |i| %>
+            <li class="honor-item">
+                <span class="honor-photo">
+
+                    <!-- 後台上傳請提供正方形裁切工具，並請註明上傳最小尺寸 256 x 256 -->
+                    <img src="https://i.pravatar.cc/256?img=1<%= i %>">
+                </span>
+                <div class="item-content">
+                    <h5 class="honor-name"><%= lorem_name %></h5>
+
+                    <!-- 前期需求沒給資料格式，後台請給 textarea 不要給編輯器！並註明最多 90 個字元 -->
+                    <p class="honor-description"><%= lorem_sentences(3) %></p>
+                </div>
+            </li>
+            <% end %>
+        </ul>
+        <nav class="mt-5">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <a href="#" class="page-link"><i class="fas fa-angle-double-left"></i></a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="#" aria-current="page">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </main>
+</div>
+
+<%= render :partial => "/partials/related_links" %>
+
+<% content_for :js do %>
+
+<% end %>
+

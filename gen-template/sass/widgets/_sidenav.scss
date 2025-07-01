@@ -1,0 +1,156 @@
+
+/* `Aside
+-----------------------------------------------------------------------------*/
+
+.aside {
+	width: $aside_width;
+	min-width: $aside_width;
+	height: 100%;
+	position: relative;
+}
+
+.side-navigation {
+	li {
+		&:last-child .nav-item { border-bottom: none; }
+	}
+	.nav-item {
+		display: block;
+		border-right: 1px solid $base_border_color;
+		border-bottom: 1px solid $base_border_color;
+		padding: 1rem 1.25rem;
+		font-size: 1.25rem;
+		line-height: 1.3;
+		text-align: end;
+		position: relative;
+		.link-inner {
+			display: block;
+			transition: all 0.2s ease-in-out;
+		}
+		&:hover {
+			background: url(../assets/dot.png) left top repeat;
+			.link-inner { transform: translateX(2px); }
+		}
+		&.current, &.current:hover {
+			background: $main_color;
+			border-right-color: $main_color;
+			border-bottom: none;
+			color: #fff;
+			cursor: default;
+		}
+		&.current:hover .link-inner { transform: translateX(0); }
+		.badge {
+			font-size: .75rem;
+			vertical-align: middle;
+		}
+	}
+}
+
+.procedures_nav {
+	width: $aside_width;
+	.nav-item {
+		color: #111;
+		padding-right: 3rem;
+		&:after {
+			content: "\f06a";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+			color: #ddd;
+			position: absolute;
+			right: 1rem;
+			top: 1rem;
+		}
+		&.done {
+			&:after {
+                content: "\f058";
+                color: $success-color;
+			}
+		}
+		&.current, &.current:hover {
+			background: #3f6297;
+			border-right-color: #3f6297;
+		}
+	}
+	.procedures_nav-ft {
+		margin-top: 1.5rem;
+	}
+}
+
+.step-navigation {
+	text-align: end;
+	li {
+		border-bottom: 1px dashed $base_border_color;
+		counter-increment: step-counter;
+		position: relative;
+		&:last-child { border-bottom: none; }
+		span {
+			display: block;
+		}
+		&:before {
+			content: counter(step-counter);
+            font-weight: bold;
+            font-size: 1.375rem;
+			position: absolute;
+			right: 0;
+			top: 1.125rem;
+			--size: 36px;
+            line-height: var(--size);
+            width: var(--size);
+            height: var(--size);
+			border-radius: 50%;
+			border: 1px solid #ddd;
+			text-align: center;
+			pointer-events: none;
+		}
+		&.done:before {
+			content: "\f00c";
+			font-family: "Font Awesome 5 Free";
+			font-weight: 900;
+			font-size: 1rem;
+			color: #fff;
+			background: $success-color;
+			border-color: $success-color;
+		}
+		&.current:before {
+			color: #fff;
+			background: #555;
+			border-color: #555;
+		}
+	}
+	.step-briefly {
+		font-size: 1.125rem;
+	}
+	.step-desc {
+		font-size: .875rem;
+		color: #888;
+		transition: all 0.2s ease-in-out;
+	}
+	.nav-item {
+		display: block;
+		padding: .875rem 3.5rem .875rem 1.25rem;
+		&:hover {
+			.step-desc { color: #000; }
+		}
+	}
+}
+
+.toggler-wrap {
+	display: none;
+}
+
+.button-widget {
+	border: none;
+	padding: 0;
+}
+
+.hamburger {
+    .line {
+        width: 32px;
+        height: 3px;
+        background-color: #333;
+        display: block;
+        margin: 5px auto;
+		&:last-child {
+			margin-bottom: 0;
+		}
+    }
+}

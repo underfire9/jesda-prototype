@@ -1,0 +1,108 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages homepage">
+            <div class="content">
+                <%= yield %>
+            </div>
+            <a id="backtop"></a>
+        </div>
+		<%= render :partial => "/partials/footer" %>
+	</div>
+	
+    <script src="../javascripts/jquery-3.7.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.min.js"></script>
+    
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
+    <script>
+        $(function() {
+
+            // Back to top button functionality
+            var btn = $('#backtop');
+
+            $(window).on('scroll', function() {
+                btn.toggleClass('show', $(window).scrollTop() > 600);
+            });
+
+            btn.on('click', function(e) {
+                e.preventDefault();
+                $('html, body').animate({scrollTop: 0}, 300);
+            });
+
+            // Initialize custom scrollbar for sidenav
+            $('.scrollbar-inner').scrollbar();
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 選取所有 dropdown
+            document.querySelectorAll('.header-nav .dropdown').forEach(function (dropdown) {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const menu = dropdown.querySelector('.dropdown-menu');
+
+                // 滑鼠移入時展開
+                dropdown.addEventListener('mouseenter', function () {
+                    toggle.classList.add('show');
+                    menu.classList.add('show');
+                    toggle.setAttribute('aria-expanded', 'true');
+                });
+                // 滑鼠移出時收起
+                dropdown.addEventListener('mouseleave', function () {
+                    toggle.classList.remove('show');
+                    menu.classList.remove('show');
+                    toggle.setAttribute('aria-expanded', 'false');
+                });
+                // 點擊時切換展開/收起
+                toggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const isShown = menu.classList.contains('show');
+                    if (isShown) {
+                        toggle.classList.remove('show');
+                        menu.classList.remove('show');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    } else {
+                        toggle.classList.add('show');
+                        menu.classList.add('show');
+                        toggle.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Header nav -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function toggleOffcanvasClasses() {
+                const headerNav = document.querySelector(".header-nav");
+                if (window.innerWidth < 991) {
+                    headerNav.classList.add("offcanvas", "offcanvas-top");
+                } else {
+                    headerNav.classList.remove("offcanvas", "offcanvas-top");
+                }
+            }
+
+            // Initial check
+            toggleOffcanvasClasses();
+
+            // Add event listener for window resize
+            window.addEventListener("resize", toggleOffcanvasClasses);
+
+            // Add .open class on .btn-offcanvas click
+            const btnOffcanvas = document.querySelector(".btn-offcanvas");
+            btnOffcanvas.addEventListener("click", function () {
+                btnOffcanvas.classList.toggle("open");
+            });
+        });
+    </script>
+	
+    <%= yield :js %>
+</body>
+</html>

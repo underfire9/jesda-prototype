@@ -1,0 +1,83 @@
+<!-- template: 活動剪影 -->
+<!-- 沒有、不需要麵包屑 -->
+
+
+<!--
+後台需要欄位
+1. 封面照片上傳，需提供 16:9 裁切工具，並請註明上傳最小尺寸 800 x 450，舊照片轉移不需要另外裁切直接丟進來就好
+2. 活動名稱 (input)
+3. 活動日期 (datepicker)
+4. 活動地點 (input)
+5. 活動內容 (編輯器)
+6. 活動照片 (可上傳多張照片，不需要裁切工具)
+-->
+
+<div class="container">
+    <main class="main-content">
+        <div class="event-item-wrapper event-page">
+            <div class="item-cover">
+                <span class="cover">
+
+                    <!-- 後台上傳請提供 16:9 裁切工具，並請註明上傳最小尺寸 800 x 450 -->
+                    <!-- 舊照片轉移不需要另外裁切直接丟進來就好 -->
+                    <img class="event-cover" src="https://picsum.photos/800/450">
+                </span>
+            </div>
+            <div class="item-content">
+                <h2 class="event-title">國家講座系列 前瞻教育研究法工作坊</h2>
+                <div class="detail">
+                    <span class="label">活動日期</span>
+                    <span class="output">2025-11-03 至 2025-11-05</span>
+                </div>
+                <div class="detail">
+                    <span class="label">活動地點</span>
+                    <span class="output">紐約、紐哈芬、波士頓</span>
+                </div>
+            </div>
+        </div>
+        <div class="event-introduce">
+            <h5>活動內容</h5>
+            <p>本所成立迄今已兩年,第一屆研究生已順利產出許多的研究成果,為落實研究生 的持續學習,並拓展學術研究之國際視野,落實終身學習之深度與廣度,因此訂定本計畫, 結合國際事務中心與景福基金會之力量,結合國際醫學教育一流學府以及海外校友前輩先進, 共同營造醫學人文之持續培養的環境,建構醫學教育的研究及國際溝通交流平台,讓本所師生不論時地,都能持續浸潤在人文薰陶的氛圍下,同時融合海外校友傳承之經驗,相信能夠孕育出兼具本土化以及國際觀的本所特有風格!</p>
+        </div>
+        <div class="event-introduce">
+            <h5>照片分享</h5>
+            <div class="lightbox-row">
+                <% (1..9).map do |i| %>
+                <a href="../assets/fake/carousel-<%= i %>.jpg" data-toggle="lightbox" data-gallery="example-gallery" data-size="fullscreen" class="lightbox-item">
+                    <img src="../assets/fake/carousel-<%= i %>.jpg" class="img-fluid">
+                </a>
+                <% end %>
+            </div>
+            
+        </div>
+        <div class="content-foot">
+            <span><a href="#" class="btn btn-light"><i class="fas fa-long-arrow-alt-left"></i> 回列表</a></span>
+        </div>
+    </main>
+</div>
+
+<%= render :partial => "/partials/related_links" %>
+
+<% content_for :js do %>
+
+<script>
+    // 將 .event-cover 圖片轉換為背景圖片
+    document.querySelectorAll('.event-cover').forEach(function(img) {
+        var cover = img.parentElement;
+        cover.style.backgroundImage = 'url(' + img.src + ')';
+        img.style.display = 'none';
+    });
+</script>
+
+<script src="../javascripts/bs5-lightbox-min.js"></script>
+<script>
+document.querySelectorAll('.lightbox-item').forEach(function(item) {
+    var img = item.querySelector('img');
+    if (img) {
+        item.style.backgroundImage = 'url(' + img.src + ')';
+        img.style.display = 'none';
+    }
+});
+</script>
+<% end %>
+

@@ -1,0 +1,88 @@
+<!-- template: 連帶保證人 - 登入 -->
+
+<div class="container-lg">
+	<div class="login-wrapper">
+		<div class="login-card">
+		    <div class="card-hd">
+			    <h3>計畫合約連帶保證人登入</h3>
+			</div>
+			<div class="card-bd">
+                <div class="form-group">
+                    <label class="form-label">您的姓名</label>
+                    <div class="fw-bold"><%= zh_lorem_name %></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">電子信箱</label>
+                    <div class="fw-bold"><%= lorem_email %></div>
+                </div>
+                <div class="form-group">
+                    <label for="loginInput4" class="form-label">驗證碼</label>
+                    <div class="d-flex align-items-center">
+                        <span class="me-1"><input type="text" class="form-control" id="loginInput4" /></span>
+                        <span class="me-1"><img class="captcha" src="http://nfu-map.dev.com.tw/common/captcha.image" /></span>
+                        <span>
+                            <button class="btn btn-xs btn-outline-primary" type="button"><i class="fas fa-sync-alt"></i></button>
+                        </span>
+                    </div>
+                </div>
+			</div>
+            <div class="mt-4">
+
+                <!-- 相關 script 在底下 -->
+                <button class="btn btn-dark btn-otp" type="submit">發送一次性驗證碼</button>
+            </div>
+            <div class="otp-wrapper">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="me-2"><input type="text" class="form-control" id="" placeholder="請輸入 6 位數驗證碼" /></div>
+                    <div>剩餘時間 : <span class="remaining-sec text-danger">299</span> 秒</div>
+                </div>
+                <button class="btn btn-primary" type="submit">送出</button>
+            </div>
+		</div>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+$(function() {
+    var countdownInterval; // 存儲倒數計時器
+
+    // 一次性驗證碼按鈕點擊事件
+    $('.btn-otp').on('click', function() {
+        // 清除之前的計時器（如果存在）
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
+        
+        // 顯示 OTP 輸入區塊
+        $('.otp-wrapper').show();
+        // 改變按鈕文字
+        $(this).text('重新發送一次性驗證碼');
+        // 重新啟動倒數計時
+        startCountdown(299);
+    });
+
+    // 倒數計時函數
+    function startCountdown(seconds) {
+        var remainingSec = seconds;
+        // 立即更新顯示
+        $('.remaining-sec').text(remainingSec);
+        
+        countdownInterval = setInterval(function() {
+            remainingSec--;
+            if (remainingSec <= 0) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+                $('.remaining-sec').text('0');
+                return;
+            }
+            $('.remaining-sec').text(remainingSec);
+        }, 1000);
+    }
+});
+</script>
+<% end %>
+

@@ -1,0 +1,198 @@
+<!-- template: 技術需求者 - 申請表 - 上傳資料 -->
+
+<!-- 產學媒合所有頁面都沒有 breadcrumb 麵包屑 -->
+
+<div class="container-fixed">
+    <div class="matchmaking-container commercial-container">
+        <div class="page-title">
+            <h2>未知</h2>
+        </div>
+
+        <div class="mb-5">
+            說明文案 <%= lorem_paragraph %>
+        </div>
+
+        <div class="form-section">
+            <div class="form-section-title">
+                <h4>參考文件</h4>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="mb-4">
+                        <input class="form-control" type="file" id="">
+                    </div>
+
+                    <!-- 未上傳前不會出現此區塊 -->
+                    <div class="upload-document-item">
+                        <span>filename.pdf</span>
+                        <button type="button" class="btn btn-delete text-danger" title="刪除">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="form-section-title">
+                <h4>參考圖片</h4>
+            </div>
+            <p>圖片不限尺寸，上傳預覽以及刪除已寫好</p>
+            <div class="image-upload-wrapper">
+
+                <% (1..5).map do |i| %>
+                <div class="box">
+                    <button type="button" class="btn btn-danger btn-remove" title="移除"><i class="fas fa-times"></i></button>
+                    <div class="js--image-preview"></div>
+                    <div class="upload-options">
+                        <label>
+                            <input type="file" class="image-upload" accept="image/*" />
+                        </label>
+                    </div>
+                </div>
+                <% end %>
+
+            </div>
+        </div>
+
+        <div class="form-action">
+            <a href="provider-home.html" class="turnback turnback-orange">
+                <svg width="72" height="48" viewBox="0 0 72 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.99951 24H64" stroke="#CEDADA" stroke-linecap="round"></path>
+                <path d="M13 29.5L7.99951 24L13 18.5" stroke="#f0851c" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <span>取消回列表</span>
+            </a>
+            <button type="submit" class="btn btn-lg btn-outline-secondary me-1">暫存</button>
+            <button type="submit" class="btn btn-lg btn-main px-4">送出申請</button>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.refer-img').forEach(function(container) {
+        var img = container.querySelector('img');
+        if (img) {
+            container.style.background = `center/cover no-repeat url('${img.src}')`;
+            img.style.display = 'none';
+        }
+    });
+});
+</script>
+
+<script>
+ // Image Upload & Preview
+function initImageUpload(box) {
+    let uploadField = box.querySelector(".image-upload");
+    let removeBtn = box.querySelector(".btn-remove");
+    let thumb = box.querySelector(".js--image-preview");
+
+    // 初始時隱藏移除按鈕
+    if (removeBtn) {
+        removeBtn.style.display = "none";
+    }
+
+    uploadField.addEventListener("change", getFile);
+
+    function getFile(e) {
+        let file = e.currentTarget.files[0];
+        checkType(file);
+    }
+
+    function previewImage(file) {
+        let reader = new FileReader();
+
+        reader.onload = function () {
+            thumb.style.backgroundImage = "url(" + reader.result + ")";
+            // 上傳後顯示移除按鈕
+            if (removeBtn) {
+                removeBtn.style.display = "";
+            }
+        };
+        reader.readAsDataURL(file);
+        thumb.className += " js--no-default";
+    }
+
+    function checkType(file) {
+        let imageType = /image.*/;
+        if (!file.type.match(imageType)) {
+            throw "Datei ist kein Bild";
+        } else if (!file) {
+            throw "Kein Bild gewählt";
+        } else {
+            previewImage(file);
+        }
+    }
+
+    // 點擊移除按鈕時，清空預覽與 input
+    if (removeBtn) {
+        removeBtn.addEventListener("click", function () {
+            thumb.style.backgroundImage = "";
+            uploadField.value = "";
+            removeBtn.style.display = "none";
+            thumb.className = "js--image-preview";
+        });
+    }
+}
+
+// initialize box-scope
+var boxes = document.querySelectorAll(".box");
+
+for (let i = 0; i < boxes.length; i++) {
+    let box = boxes[i];
+    initDropEffect(box);
+    initImageUpload(box);
+}
+
+/// drop-effect
+function initDropEffect(box) {
+    let area, drop, areaWidth, areaHeight, maxDistance, dropWidth, dropHeight, x, y;
+
+    // get clickable area for drop effect
+    area = box.querySelector(".js--image-preview");
+    area.addEventListener("click", fireRipple);
+
+    function fireRipple(e) {
+        area = e.currentTarget;
+        // create drop
+        if (!drop) {
+            drop = document.createElement("span");
+            drop.className = "drop";
+            this.appendChild(drop);
+        }
+        // reset animate class
+        drop.className = "drop";
+
+        // calculate dimensions of area (longest side)
+        areaWidth = getComputedStyle(this, null).getPropertyValue("width");
+        areaHeight = getComputedStyle(this, null).getPropertyValue("height");
+        maxDistance = Math.max(parseInt(areaWidth, 10), parseInt(areaHeight, 10));
+
+        // set drop dimensions to fill area
+        drop.style.width = maxDistance + "px";
+        drop.style.height = maxDistance + "px";
+
+        // calculate dimensions of drop
+        dropWidth = getComputedStyle(this, null).getPropertyValue("width");
+        dropHeight = getComputedStyle(this, null).getPropertyValue("height");
+
+        // calculate relative coordinates of click
+        // logic: click coordinates relative to page - parent's position relative to page - half of self height/width to make it controllable from the center
+        x = e.pageX - this.offsetLeft - parseInt(dropWidth, 10) / 2;
+        y = e.pageY - this.offsetTop - parseInt(dropHeight, 10) / 2 - 30;
+
+        // position drop and animate
+        drop.style.top = y + "px";
+        drop.style.left = x + "px";
+        drop.className += " animate";
+        e.stopPropagation();
+    }
+}
+</script>
+<% end %>
+

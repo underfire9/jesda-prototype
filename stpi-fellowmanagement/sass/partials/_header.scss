@@ -1,0 +1,119 @@
+
+/* `Header
+-----------------------------------------------------------------------------*/
+
+header.header {
+	position: relative;
+	margin-bottom: 6rem;
+	.header-function { text-align: end; }
+	&:after {
+		content: "";
+		background: url("../assets/bg-header.svg") repeat top left;
+		position: absolute;
+		top: -156px;
+		left: 0;
+		right: 0;
+		height: 206px;
+	}
+	.account {
+		padding-top: .875rem;
+	}
+	.dropdown-toggle {
+		display: flex;
+		align-items: center;
+		background-color: transparent;
+		border: none;
+		padding: 0;
+		transition: all 0.2s ease-in-out;
+		i {
+			margin-right: .5rem;
+			font-size: 1.25rem;
+			color: $main_second_color;
+		}
+		&:hover, &.show {
+			color: $main_second_color;
+		}
+	}
+	.h1-logo {
+		display: block;
+		width: auto;
+		height: 28px;
+		filter: grayscale(0%);
+		transition: all 0.2s ease-in-out;
+	}
+	.brands-link {
+		display: flex;
+		align-items: center;
+		&:hover {
+			.h1-logo {
+				filter: grayscale(100%);
+			}
+		}
+	}
+	.logo {
+		.text-hide {
+			display: none;
+			margin-top: 0;
+			width: 0;
+			height: 0;
+			overflow: hidden;
+			text-indent: -9999px;
+		}
+	}
+	.sub {
+		margin-left: 1.25rem;
+		padding-top: 6px;
+		display: block;
+		font-size: 1.75rem;
+		font-weight: 700;
+	}
+}
+
+.header-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+	padding-top: 72px;
+}
+
+.header-right {
+	text-align: end;
+}
+
+/* `Responsive
+-----------------------------------------------------------------------------*/
+
+@media (max-width: 767px) {
+	header.header {
+		margin-bottom: calc(3rem + 3vw);
+		.account {
+			padding-top: .5rem;
+		}
+		&:after {
+			top: -172px;
+		}
+		.h1-logo {
+			height: 20px;
+		}
+		.sub {
+			margin-left: .75rem;
+			font-size: 1.375rem;
+		}
+	}
+	.header-wrap {
+		padding-top: 48px;
+	}
+}
+
+@media (max-width: 479px) {
+	header.header {
+		.account {
+			span {
+				display: none;
+			}
+		}
+		.sub {
+			font-size: 1.25rem;
+		}
+	}
+}

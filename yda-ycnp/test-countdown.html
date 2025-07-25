@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒數計時器測試</title>
+    <link href="stylesheets/application.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .countdown-wrapper {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+        }
+        .clock-item {
+            text-align: center;
+            margin: 0 1rem;
+        }
+        .clock-canvas {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            position: relative;
+            background-color: rgba(0, 123, 191, 0.1);
+            border-radius: 50%;
+        }
+        .text {
+            margin-top: 1rem;
+        }
+        .val {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            display: block;
+        }
+        .type-time {
+            font-size: 1rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>倒數計時器測試頁面</h1>
+    
+    <div class="test-section">
+        <h2>年度申請倒數</h2>
+        <div class="countdown-wrapper">
+            <!-- days -->
+            <div class="clock-item clock-days countdown-time-value">
+                <div class="wrap">
+                    <div class="inner">
+                        <div id="canvas_days" class="clock-canvas"></div>
+                        <div class="text">
+                            <span class="val">0</span>
+                            <span class="type-days type-time">天</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- hours -->
+            <div class="clock-item clock-hours countdown-time-value">
+                <div class="wrap">
+                    <div class="inner">
+                        <div id="canvas_hours" class="clock-canvas"></div>
+                        <div class="text">
+                            <span class="val">0</span>
+                            <span class="type-hours type-time">時</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- minutes -->
+            <div class="clock-item clock-minutes countdown-time-value">
+                <div class="wrap">
+                    <div class="inner">
+                        <div id="canvas_minutes" class="clock-canvas"></div>
+                        <div class="text">
+                            <span class="val">0</span>
+                            <span class="type-minutes type-time">分</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- seconds -->
+            <div class="clock-item clock-seconds countdown-time-value">
+                <div class="wrap">
+                    <div class="inner">
+                        <div id="canvas_seconds" class="clock-canvas"></div>
+                        <div class="text">
+                            <span class="val">0</span>
+                            <span class="type-seconds type-time">秒</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h3>目標日期：2025年12月31日 23:59:59</h3>
+        <p>如果倒數計時器正常運作，您應該會看到數字每秒更新，並且圓形進度條會顯示進度。</p>
+    </div>
+
+    <script src="javascripts/jquery-latest.min.js"></script>
+    <script src="javascripts/countdown-timer.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log('jQuery version:', $.fn.jquery);
+            
+            // 設定倒數計時的目標日期 (2025年12月31日 23:59:59)
+            var targetDate = new Date("2025-12-31 23:59:59").getTime();
+            
+            console.log('Target date:', new Date(targetDate));
+            console.log('Current date:', new Date());
+            
+            $(".countdown-wrapper").countdownTimer({
+                targetDate: targetDate,
+                selectors: {
+                    days: '.clock-days .val',
+                    hours: '.clock-hours .val',
+                    minutes: '.clock-minutes .val',
+                    seconds: '.clock-seconds .val'
+                },
+                onComplete: function() {
+                    console.log("倒數計時結束！");
+                    alert("年度申請時間已結束！");
+                }
+            });
+            
+            // 添加圓形進度條效果
+            function drawCircle(canvas, percentage, color) {
+                if (!canvas) return;
+                
+                var ctx = canvas.getContext('2d');
+                var rect = canvas.getBoundingClientRect();
+                var size = Math.min(rect.width, rect.height);
+                canvas.width = size;
+                canvas.height = size;
+                
+                var centerX = size / 2;
+                var centerY = size / 2;
+                var radius = (size / 2) - 10;
+                
+                // 清除畫布
+                ctx.clearRect(0, 0, size, size);
+                
+                // 繪製背景圓圈
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.lineWidth = 6;
+                ctx.stroke();
+                
+                // 繪製進度圓弧
+                if (percentage > 0) {
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, radius, -Math.PI / 2, (-Math.PI / 2) + (2 * Math.PI * percentage));
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = 6;
+                    ctx.stroke();
+                }
+            }
+            
+            // 初始化 canvas 元素
+            $('.clock-canvas').each(function() {
+                var $container = $(this);
+                var canvas = document.createElement('canvas');
+                
+                // 設定 canvas 尺寸
+                canvas.width = 120;
+                canvas.height = 120;
+                canvas.style.position = 'absolute';
+                canvas.style.top = '0';
+                canvas.style.left = '0';
+                canvas.style.width = '100%';
+                canvas.style.height = '100%';
+                
+                $container.append(canvas);
+            });
+            
+            // 立即繪製一次背景圓圈
+            setTimeout(function() {
+                var secondsCanvas = $('#canvas_seconds canvas')[0];
+                var minutesCanvas = $('#canvas_minutes canvas')[0];
+                var hoursCanvas = $('#canvas_hours canvas')[0];
+                var daysCanvas = $('#canvas_days canvas')[0];
+                
+                drawCircle(secondsCanvas, 1, '#7995D5');
+                drawCircle(minutesCanvas, 1, '#ACC742');
+                drawCircle(hoursCanvas, 1, '#ECEFCB');
+                drawCircle(daysCanvas, 1, '#FF9900');
+            }, 100);
+            
+            // 每秒更新圓形進度
+            function updateCircles() {
+                var now = new Date().getTime();
+                var distance = targetDate - now;
+                
+                if (distance > 0) {
+                    var totalSeconds = Math.floor(distance / 1000);
+                    var seconds = totalSeconds % 60;
+                    var minutes = Math.floor(totalSeconds / 60) % 60;
+                    var hours = Math.floor(totalSeconds / 3600) % 24;
+                    var days = Math.floor(totalSeconds / (3600 * 24));
+                    
+                    // 更新圓形進度
+                    var secondsCanvas = $('#canvas_seconds canvas')[0];
+                    var minutesCanvas = $('#canvas_minutes canvas')[0];
+                    var hoursCanvas = $('#canvas_hours canvas')[0];
+                    var daysCanvas = $('#canvas_days canvas')[0];
+                    
+                    drawCircle(secondsCanvas, (60 - seconds) / 60, '#7995D5');
+                    drawCircle(minutesCanvas, (60 - minutes) / 60, '#ACC742');
+                    drawCircle(hoursCanvas, (24 - hours) / 24, '#ECEFCB');
+                    
+                    // 計算天數的進度百分比 (假設最大365天為100%)
+                    var maxDays = 365;
+                    var dayProgress = Math.min((maxDays - days) / maxDays, 1);
+                    drawCircle(daysCanvas, dayProgress, '#FF9900');
+                }
+            }
+            
+            // 立即更新一次，然後每秒更新
+            updateCircles();
+            setInterval(updateCircles, 1000);
+        });
+    </script>
+</body>
+</html>

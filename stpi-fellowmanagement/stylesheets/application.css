@@ -6434,6 +6434,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   color: #363333;
+  height: 100%;
 }
 
 a {
@@ -7264,21 +7265,29 @@ section.section {
   text-align: center;
   color: #333;
 }
-.signature-option span {
+.signature-option .logo {
   display: block;
-  margin-bottom: 2rem;
-}
-.signature-option img {
-  height: auto;
+  background-size: cover;
+  margin: 0 auto 2rem;
+  width: 128px;
+  height: 128px;
   transform-origin: center center;
   transition: all 0.2s ease-in-out;
+  opacity: .7;
 }
 .signature-option:hover {
   background: #f5f8f8;
   color: #0C6170;
 }
-.signature-option:hover img {
+.signature-option:hover .logo {
   transform: scale(1.03);
+  opacity: .9;
+}
+.signature-option.signature-insert .logo {
+  background-image: url(../assets/insert-card.png);
+}
+.signature-option.signature-mobile .logo {
+  background-image: url(../assets/mobile-card.png);
 }
 
 .signature-file-link {
@@ -7328,6 +7337,21 @@ section.section {
   height: 360px;
   border: 1px solid #e5e5e5;
   border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.sign-container .canvas {
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.sign-container .sign-actions {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
 .sign-container .qrcode-wrapper {
   width: 320px;
@@ -7336,6 +7360,22 @@ section.section {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.otp-verify {
+  width: 50%;
+}
+
+.sign-mobile-container {
+  padding: .75rem;
+  height: 100%;
+}
+.sign-mobile-container .sign-wrapper {
+  margin-right: 0;
+  height: 100%;
+}
+.sign-mobile-container .sign-board {
+  height: calc(100% - 128px);
 }
 
 /* `Step
@@ -7423,6 +7463,10 @@ section.section {
 
 .step-menu.four-step .step-item {
   width: 20%;
+}
+
+.step-menu.six-step .step-item {
+  width: 16.67%;
 }
 
 /* `Upload
@@ -7625,6 +7669,24 @@ section.section {
 
   .step-menu.four-step .step-item {
     width: 25%;
+  }
+
+  .step-menu.six-step .step-item {
+    width: 33.33333%;
+    display: none;
+  }
+  .step-menu.six-step .step-item.current {
+    display: block;
+  }
+  .step-menu.six-step .step-item.current:before {
+    background: linear-gradient(90deg, white 0%, #37beb0 100%);
+  }
+  .step-menu.six-step .step-item.current + .step-item {
+    display: block;
+  }
+
+  .otp-verify {
+    width: 100%;
   }
 }
 @media (max-width: 679px) {

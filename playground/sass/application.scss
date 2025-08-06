@@ -1,0 +1,43 @@
+/* design by fire */
+
+@import "base";
+
+
+/* `Playground
+-----------------------------------------------------------------------------*/
+
+$oval_height: 3rem;
+$playground_bg: #ddd;
+
+.playground-container {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 10rem 0;
+}
+
+.playground {
+	padding: $oval_height 0;
+	position: relative;
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: $oval_height;
+		background: $playground_bg;
+	}
+	&::before {
+		clip-path: ellipse(50% $oval_height at top center);
+		bottom: 0;
+	}
+	&::after {
+		clip-path: ellipse(50% $oval_height at bottom center);
+		top: 0;
+	}
+}
+
+.playground-body {
+	background: $playground_bg;
+	padding: 2rem;
+}

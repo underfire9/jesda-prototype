@@ -1,16 +1,16 @@
-<!-- template: 電子簽章 - 簽署身分驗證 -->
+<!-- template: 電子簽章 - OTP身分驗證 -->
 
 <div class="container-lg">
 
     <div class="step-wrapper">
-        <ul class="step-menu four-step menu-item">
+        <ul class="step-menu six-step menu-item">
             <li class="step-item done">
                 <span class="number">1</span>
                 <span class="description">個資聲明與使用條款</span>
             </li>
             <li class="step-item current">
                 <span class="number">2</span>
-                <span class="description">簽署身分驗證</span>
+                <span class="description">OTP身分驗證</span>
             </li>
             <li class="step-item">
                 <span class="number">3</span>
@@ -19,6 +19,14 @@
             <li class="step-item">
                 <span class="number">4</span>
                 <span class="description">電子簽名</span>
+            </li>
+            <li class="step-item">
+                <span class="number">5</span>
+                <span class="description">憑證簽署</span>
+            </li>
+            <li class="step-item">
+                <span class="number">6</span>
+                <span class="description">簽署完成</span>
             </li>
         </ul>
     </div>
@@ -29,16 +37,35 @@
     </div>
 
     <div class="signature-wrapper">
-        <h6 class="mb-5 text-center fw-bold text-secondary">請選擇驗證方式</h6>
+        <h4 class="fw-bold mb-4">OTP 身分驗證</h4>
+        <div class="otp-verify">
+            <div class="form-group">
+                <label for="exampleFormControlInput1" class="form-label">驗證信箱</label>
+                <div><%= lorem_email %></div>
+            </div>
+            <div class="form-group">
+                <label for="loginInput4" class="form-label">驗證碼</label>
+                <div class="d-flex align-items-center">
+                    <span class="me-1"><input type="text" class="form-control" id="loginInput4" /></span>
+                    <span class="me-1"><img class="captcha" src="http://nfu-map.dev.com.tw/common/captcha.image" /></span>
+                    <span>
+                        <button class="btn btn-xs btn-outline-primary" type="button"><i class="fas fa-sync-alt"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4">
 
-        <div class="row">
-
-            <!-- 未來擴增依數量修改 col-(6, 4, 3)，並根據 logo 形狀大小給適當的寬度 -->
-            <div class="col-md-12 mb-3">
-                <a href="#" class="signature-option">
-                    <span class="logo"><img src="../assets/logo-fido.png" style="width:128px;"></span>
-                    <h4>行動自然人憑證</h4>
-                </a>
+            <!-- 相關 script 在底下 -->
+            <button class="btn btn-dark btn-otp" type="submit">發送一次性驗證碼</button>
+        </div>
+        <div class="otp-wrapper">
+            <div class="d-flex align-items-center mb-2">
+                <div class="me-2"><input type="text" class="form-control" id="" placeholder="請輸入 6 位數驗證碼" /></div>
+                <div>剩餘時間 : <span class="remaining-sec text-danger">299</span> 秒</div>
+            </div>
+            <div class="form-action">
+                <button type="submit" class="btn btn-lg btn-primary">下一步</button>
             </div>
         </div>
     </div>
@@ -48,6 +75,44 @@
 
 
 <% content_for :js do %>
+<script>
+$(function() {
+    var countdownInterval; // 存儲倒數計時器
 
+    // 一次性驗證碼按鈕點擊事件
+    $('.btn-otp').on('click', function() {
+        // 清除之前的計時器（如果存在）
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+        }
+        
+        // 顯示 OTP 輸入區塊
+        $('.otp-wrapper').show();
+        // 改變按鈕文字
+        $(this).text('重新發送一次性驗證碼');
+        // 重新啟動倒數計時
+        startCountdown(299);
+    });
+
+    // 倒數計時函數
+    function startCountdown(seconds) {
+        var remainingSec = seconds;
+        // 立即更新顯示
+        $('.remaining-sec').text(remainingSec);
+        
+        countdownInterval = setInterval(function() {
+            remainingSec--;
+            if (remainingSec <= 0) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+                $('.remaining-sec').text('0');
+                return;
+            }
+            $('.remaining-sec').text(remainingSec);
+        }, 1000);
+    }
+});
+</script>
 <% end %>
 

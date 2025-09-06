@@ -1,0 +1,65 @@
+<!-- template: 申請 - 匯款帳號設定 -->
+
+<div class="container-lg">
+	<div class="registration-wrapper">
+        <h3 class="mb-5">匯款帳號設定</h3>
+        <div class="form-group">
+            <label for="exampleForm01" class="form-label">戶名</label>
+            <div class="fw-bold"><%= zh_lorem_name %></div>
+        </div>
+		<div class="row">
+		    <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">銀行代號</label>
+                    <select class="form-select" id="remittance-bank" data-placeholder="請選擇銀行">
+                        <option></option>
+                        <option>Reactive</option>
+                        <option>Solution</option>
+                        <option>Conglomeration</option>
+                        <option>Algoritm</option>
+                        <option>Holistic</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label">分行代號</label>
+                    <select class="form-select" id="remittance-branch" data-placeholder="請選擇分行">
+                        <option></option>
+                        <option>Reactive</option>
+                        <option>Solution</option>
+                        <option>Conglomeration</option>
+                        <option>Algoritm</option>
+                        <option>Holistic</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="exampleForm03" class="form-label">匯款帳戶</label>
+                    <input type="text" class="form-control" id="exampleForm03" />
+                </div>
+            </div>
+		</div>
+        <div class="form-action">
+            <button type="submit" class="btn btn-lg btn-primary">儲存</button>
+        </div>
+	</div>
+</div>
+
+
+
+<% content_for :js do %>
+<script src="../javascripts/select2.min.js"></script>
+<script>
+$( '#remittance-bank, #remittance-branch' ).select2({
+    theme: "bootstrap-5",
+    width: function() {
+        return $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style';
+    },
+    placeholder: function() {
+        return $(this).data('placeholder');
+    }
+});
+</script>
+<% end %>

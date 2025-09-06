@@ -102,6 +102,53 @@
 	</div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade show" id="statementModal" tabindex="-1" aria-labelledby="statementModalLabel" aria-modal="true" style="display: block; background: rgba(0,0,0,0.5); position: fixed; inset: 0; z-index: 1050;">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="statementModalLabel">系統聲明</h1>
+            </div>
+            <div class="modal-body">
+                <div class="statement-content">
+                    <h5 class="mb-3"><%= zh_lorem_name %>老師，您好：</h5>
+                    <p>依據「技術及職業教育法」、「技專校院教師進行產業研習或研究實施辦法」及本校「教師進行產業研習或研究實施辦法」，教授專業科目或技術科目教師、專業及技術人員或專業及技術教師（以下簡稱教師），每任教滿六年為一週期，應至與本校合作機構或與任教領域有關之產業，進行至少半年以上與專業或技術有關之研習或研究。</p>
+                    <p>因該法（即「技專校院教師進行產業研習或研究實施辦法」）係於104年11月20日起發生效力，若為該日期前到職者，第1週期執行期程為104年11月20日至110月11月19日，依此循序計算六年為一週期；若為104年11月20日後到職者，第1週期執行期程係自到職日起，循序計算六年為一週期。</p>
+                    <p>經查您的到職日為OOO年OO月OO日，適用相關規定後符合之執行期程為OOO年OO月OO日至OOO年OO月OO日，依此循序計算六年週期。提醒您應按時於當週期內完成法定事項，避免因違反相關規定以致自身權益受損。</p>
+                    <p>如有需校內外產學媒合者，請逕洽辦理單位：</p>
+                    <ol>
+                        <li>校內產學媒合管道：本校產學合作及服務處之數位產學媒合平台：<a href="https://diac.nfu.edu.tw/" target="_blank">https://diac.nfu.edu.tw/</a>， 以結合教師專長技術協助與廠商媒合。</li>
+                        <li>教育部促進產學連結合作育才平臺核定之研習課程：網址：<a href="https://iac.twaea.org.tw/iacp/" target="_blank">https://iac.twaea.org.tw/iacp/</a></li>
+                    </ol>
+                    <p>業務承辦單位將定期追蹤及輔導未完成認列之教師，未盡事宜悉依前述法規之規定辦理。</p>
+                </div>
+
+                <div class="signature-wrapper">
+                    <p class="fw-bold">請在下方方框空白處以滑鼠簽名</p>
+                    <div class="signature-pad">
+                        <button type="button" class="btn btn-outline-dark btn-sm">清空</button>
+                    </div>
+                    <div class="text-center mt-2">
+
+                        <!-- 關閉視窗不應該存在，只是為了在現階段能關閉 modal -->
+                        <button type="button" class="btn btn-lg btn-secondary" data-bs-dismiss="modal" onclick="document.getElementById('statementModal').style.display='none'; document.getElementById('statementModal').classList.remove('show');">關閉</button>
+                        <button type="button" class="btn btn-lg btn-primary">送出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  // Show modal on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('statementModal');
+    modal.style.display = 'block';
+    modal.classList.add('show');
+    modal.setAttribute('aria-modal', 'true');
+    modal.removeAttribute('aria-hidden');
+  });
+</script>
 
 
 <% content_for :js do %>

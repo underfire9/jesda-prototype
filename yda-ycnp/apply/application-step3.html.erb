@@ -1,0 +1,113 @@
+<!-- template: 申請 - 上傳繳交文件 -->
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="application-process">
+            <aside class="process-step">
+                <div class="process-step-inner">
+                    <ul class="process-step-list menu-item">
+                        <li>
+                            <!-- 當前頁面要給 .current -->
+                            <button type="button" class="step-button btn done">填寫申請表</button>
+                        </li>
+                        <li>
+                            <button type="button" class="step-button btn done">企劃書撰寫</button>
+                        </li>
+                        <li>
+                            <button type="button" class="step-button btn current">上傳繳交文件</button>
+                        </li>
+                    </ul>
+                    <div class="process-step-note">
+                        所有資料欄位皆為必填除非另有標註
+                    </div>
+
+                    <!-- 所有步驟完成後拿掉 disabled -->
+                    <button type="button" class="btn btn-rounded btn-block btn-lg btn-main">預覽後送出申請</button>
+                </div>
+            </aside>
+            <main class="process-content">
+                <div class="guarantee-wrapper">
+                    <div class="notice-wrapper application-upload-notice">
+                        <h5>教育部青年發展署青年生涯領航計畫 參與切結書</h5>
+                        <p>本人申請教育部青年發展署青年生涯領航計畫，本人確定所填資料及相關附件均屬事實，嗣後如經查，發現有不實情事，本人願負一切法律責任，並繳回已領取獎勵金，特此切結，絕無異議。另，本人同意於申請審查通過後，依教育部青年發展署青年生涯領航計畫相關規定辦理，參與並完成計畫。</p>
+                        <h5>個人資料授權/取得使用同意書/著作權使用授權同意書</h5>
+                        <p>為辦理/參加教育部青年發展署青年生涯領航計畫之各項行政業務需要，本人同意提供貴署相關執行人員就著作權與個人資料授權予貴署使用，授權內容說明如下：</p>
+                        <ol class="mb-0">
+                            <li>個人資料之特定使用：
+                                <p>本人同意貴署使用姓名、身分證字號、出生年月日、電話（手機）、地址、E-mail等資料，惟僅限使用於計畫執行必要之範圍內。本人個資將採取安全妥適之保護措施，非經本人同意或法律規定外，不揭露於第三者或散佈，所有資料除領取獎金者依檔案法及經費核銷等相關規定歸檔外，將會在計畫執行結束後三個月刪除。</p>
+                            </li>
+                            <li>著作財產權之授權標的與聲明：
+                                <ul>
+                                    <li>授權內容：
+                                        <p>執行計畫相關內容，於非營利用途範圍內無償授權予本署，日後不限次數、年限、地區、方式、媒體、載體及無償利用，進行數位化、重製等加值流程後收錄於資料庫，以電子形式透過單機、網路或其他公開傳輸方編製於網站內容，以提供讀者進行瀏覽、列印等，並同意對本署不行使著作人格權，且同意本署為推動相關業務需要，授權第三人為上述之利用。</p>
+                                    </li>
+                                    <li>著作權聲明：
+                                        <p class="mb-0">本授權內容為非專屬授權，著作人仍擁有上述著作之著作權。立書人擔保就本著作有授權利用之權利，並擔保本著作無不法侵害他人著作權或權利之情事。</p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="text-center">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input form-check-input-lg" type="checkbox" value="" id="checkDefault" />
+                            <label class="form-check-label" for="checkDefault">
+                                我同意
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <h5 class="text-danger">注意事項</h5>
+                    <ul>
+                        <li>請確認文件四角完整顯示，避免裁切資訊。</li>
+                        <li>所有文件除特別規定者，須以 pdf、jpg 或 png 格式上傳。</li>
+                    </ul>
+                </div>
+
+                <div class="application-upload-wrapper">
+                    <div class="upload-item">
+                        <h4>公職人員及關係人身分關係揭露表</h4>
+                        <p>依公職人員利益衝突迴避法第 14 條第 2 項前段規定，公職人員或其關係人申請計畫或交易行為前，應主動據實表明身分關係。</p>
+                        <p><a href="#"><i class="far fa-file me-2"></i> 範本下載</a></p>
+                        <div class="upload-file">
+                            <input class="form-control w-auto" type="file" id="uploadFile1" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-action">
+                    <button type="button" class="btn btn-lg btn-step step-previous"><span>上一步</span></button>
+                    <button type="button" class="btn btn-lg btn-dark px-5">儲存</button>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- Sticky Step -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var nav = document.querySelector('.process-step-inner');
+    var navOffset = nav.getBoundingClientRect().top + window.pageYOffset;
+
+    function onScroll() {
+        if (window.pageYOffset > navOffset) {
+            nav.style.position = 'fixed';
+            nav.style.top = '0';
+            nav.style.zIndex = '1000';
+            nav.style.width = nav.offsetWidth + 'px';
+        } else {
+            nav.style.position = '';
+            nav.style.top = '';
+            nav.style.zIndex = '';
+            nav.style.width = '';
+        }
+    }
+
+    window.addEventListener('scroll', onScroll);
+});
+</script>
+<% end %>

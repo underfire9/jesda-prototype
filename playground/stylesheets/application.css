@@ -6290,36 +6290,155 @@ p {
 
 /* `Playground
 -----------------------------------------------------------------------------*/
+html, body, .workspace {
+  height: 100%;
+}
+
 .playground-container {
-  width: 1200px;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
-  padding: 10rem 0;
+  padding: 0;
 }
 
 .playground {
-  padding: 3rem 0;
+  margin-bottom: 0;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
-.playground::before, .playground::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 3rem;
-  background: #ddd;
-}
-.playground::before {
-  clip-path: ellipse(50% 3rem at top center);
-  bottom: 0;
-}
-.playground::after {
-  clip-path: ellipse(50% 3rem at bottom center);
-  top: 0;
+
+:root {
+  --wave-container-background-color: #343434;
+  --wave-1-color: #7d42f3;
+  --wave-2-color: #682cde;
+  --wave-3-color: #4b3ab9;
+  --wave-4-color: white;
+  --wave-set-height: 5em;
+  --wave-animation-speed: 5s;
 }
 
-.playground-body {
-  background: #ddd;
-  padding: 2rem;
+.content {
+  background-color: var(--wave-4-color);
+  color: var(--wave-2-color);
+  padding: 3em;
+  text-align: center;
+}
+
+.waves-container {
+  padding-top: 5em;
+  background-color: var(--wave-container-background-color);
+}
+
+.waves {
+  margin-bottom: -5px;
+  width: 100%;
+  height: var(--wave-set-height);
+}
+@media (min-width: 768px) {
+  .waves {
+    height: calc(var(--wave-set-height) * 1.5);
+  }
+}
+@media (min-width: 1280px) {
+  .waves {
+    height: calc(var(--wave-set-height) * 2);
+  }
+}
+.waves .wave-1 {
+  transform: translateX(50%);
+}
+.waves .wave-2 {
+  transform: translateX(90%);
+}
+.waves .wave-3 {
+  transform: translateX(25%);
+}
+.waves .wave-4 {
+  transform: translateX(0%);
+}
+.waves .wave-1 {
+  fill: var(--wave-1-color);
+}
+.waves .wave-2 {
+  fill: var(--wave-2-color);
+}
+.waves .wave-3 {
+  fill: var(--wave-3-color);
+}
+.waves .wave-4 {
+  fill: var(--wave-4-color);
+}
+.waves.animated .wave-1-container {
+  animation-delay: -1s;
+  animation: infinite-wave var(--wave-animation-speed) ease-in-out infinite;
+  animation-duration: calc(var(--wave-animation-speed) * 2.5);
+}
+.waves.animated .wave-1-container > use.wave-1 {
+  animation-delay: -1s;
+  animation: bobbing-wave 3s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+}
+.waves.animated .wave-2-container {
+  animation-delay: -2s;
+  animation: infinite-wave var(--wave-animation-speed) linear infinite;
+  animation-duration: calc(var(--wave-animation-speed) * 1);
+}
+.waves.animated .wave-2-container > use.wave-2 {
+  animation-delay: -2s;
+  animation: bobbing-wave 3s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+}
+.waves.animated .wave-3-container {
+  animation-delay: -4s;
+  animation: infinite-wave var(--wave-animation-speed) linear infinite;
+  animation-duration: calc(var(--wave-animation-speed) * 1.5);
+}
+.waves.animated .wave-3-container > use.wave-3 {
+  animation-delay: 1.5s;
+  animation: bobbing-wave 4s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+}
+.waves.animated .wave-4-container {
+  animation-delay: -4s;
+  animation: infinite-wave var(--wave-animation-speed) linear infinite;
+  animation-duration: calc(var(--wave-animation-speed) * 1.5);
+}
+.waves.animated .wave-set > use {
+  animation: infinite-wave var(--wave-animation-speed) linear infinite;
+}
+.waves.animated .wave-set > use.wave-1 {
+  animation-delay: -1s;
+  animation-duration: calc(var(--wave-animation-speed) * 2.5);
+}
+.waves.animated .wave-set > use.wave-2 {
+  animation-delay: -2s;
+  animation-duration: calc(var(--wave-animation-speed) * 1);
+}
+.waves.animated .wave-set > use.wave-3 {
+  animation-delay: -4s;
+  animation-duration: calc(var(--wave-animation-speed) * 1.5);
+}
+.waves.animated .wave-set > use.wave-1 {
+  animation-delay: -5s;
+  animation-duration: calc(var(--wave-animation-speed) * 2);
+}
+
+@keyframes infinite-wave {
+  0% {
+    transform: translate(-90px, 0%);
+  }
+  100% {
+    transform: translate(85px, 0%);
+  }
+}
+@keyframes bobbing-wave {
+  0% {
+    transform: translatey(0);
+  }
+  50% {
+    transform: translatey(0.75rem);
+  }
+  100% {
+    transform: translatey(0);
+  }
 }
 
 /*# sourceMappingURL=application.css.map */

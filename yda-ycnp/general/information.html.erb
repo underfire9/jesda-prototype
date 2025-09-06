@@ -1,0 +1,231 @@
+<!-- template: 申請資訊 -->
+
+<div class="information-container">
+    <div class="container-lg">
+        <div class="hero-content">
+            <a href="#C" title="中央內容區塊" id="AC" accesskey="C" name="C" style="">:::</a>
+            <div class="hero-head">
+                <div class="page-head">
+                    <div class="page-title">
+                        <h3>申請資訊</h3>
+                    </div>
+                    <div class="page-tools">
+                        <ul class="menu-item action-options">
+                            <li>
+                                <a href="#" title="分享到 Facebook" class="btn-action"><img src="../assets/facebook_b.png" alt="Facebook"></a>
+                            </li>
+                            <li>
+                                <a href="#" title="分享到 Line" class="btn-action"><img src="../assets/line_b.png" alt="Line"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-action" title="列印本頁面" onclick="window.print(); return false;"><img src="../assets/printer_b.png" alt="列印"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-bd">
+                <div class="index-countdown">
+                    <div class="container-lg">
+                        <div class="countdown-wrapper">
+                            <!-- days -->
+                            <div class="clock-item clock-days countdown-time-value">
+                                <div class="wrap">
+                                    <div class="inner">
+                                        <div id="canvas_days" class="clock-canvas"></div>
+                                        <div class="text">
+                                            <p class="val">0</p>
+                                            <p class="type-days type-time">天</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- hours -->
+                            <div class="clock-item clock-hours countdown-time-value">
+                                <div class="wrap">
+                                    <div class="inner">
+                                        <div id="canvas_hours" class="clock-canvas"></div>
+                                        <div class="text">
+                                            <p class="val">0</p>
+                                            <p class="type-hours type-time">時</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- minutes -->
+                            <div class="clock-item clock-minutes countdown-time-value">
+                                <div class="wrap">
+                                    <div class="inner">
+                                        <div id="canvas_minutes" class="clock-canvas"></div>
+                                        <div class="text">
+                                            <p class="val">0</p>
+                                            <p class="type-minutes type-time">分</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- seconds -->
+                            <div class="clock-item clock-seconds countdown-time-value">
+                                <div class="wrap">
+                                    <div class="inner">
+                                        <div id="canvas_seconds" class="clock-canvas"></div>
+                                        <div class="text">
+                                            <p class="val">0</p>
+                                            <p class="type-seconds type-time">秒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="h1 fw-normal">115 年度青年生涯領航計畫將於 114 年 11 月 1 日開放申請！</h2>
+                <div class="hero-text">
+                    <p>你準備好用兩年時間，走一條屬於自己的路，探索生涯方向，培養未來競爭力了嗎？</p>
+                    <p>青年生涯領航計畫，歡迎每一位想要實作學習、認識世界、鍛鍊自己、累積實力的你，加入行列！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="information-hero">
+        <div id="wavesBG" class="h-100"></div>
+    </div>
+</div>
+<div class="customization-container">
+    <div class="container-lg">content text</div>
+</div>
+
+
+<% content_for :js do %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+<script>
+VANTA.WAVES({
+    el: "#wavesBG",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    color: 0x84afa6,
+    shininess: 74.00,
+    waveHeight: 21.00,
+    waveSpeed: 0.6,
+    zoom: 1.25
+})
+</script>
+
+<script src="../javascripts/countdown-timer.js"></script>
+
+<script>
+$(document).ready(function () {
+    // 設定倒數計時的目標日期 (2025年12月31日 23:59:59)
+    var targetDate = new Date("2025-12-31 23:59:59").getTime();
+    
+    $(".countdown-wrapper").countdownTimer({
+        targetDate: targetDate,
+        selectors: {
+            days: '.clock-days .val',
+            hours: '.clock-hours .val',
+            minutes: '.clock-minutes .val',
+            seconds: '.clock-seconds .val'
+        },
+        onComplete: function() {
+            console.log("倒數計時結束！");
+            alert("年度申請時間已結束！");
+        }
+    });
+    
+    // 添加圓形進度條效果 (可選)
+    function drawCircle(canvas, percentage, color) {
+        if (!canvas) return;
+        
+        var ctx = canvas.getContext('2d');
+        var centerX = canvas.width / 2;
+        var centerY = canvas.height / 2;
+        var radius = Math.min(centerX, centerY) - 10;
+        
+        // 清除畫布
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // 繪製背景圓圈
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+        ctx.strokeStyle = 'rgba(140, 140, 140, 0.2)';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        
+        // 繪製進度圓弧 (只有當進度大於 0 時才繪製) - 順時鐘方向
+        if (percentage > 0) {
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, -Math.PI / 2, (-Math.PI / 2) + (2 * Math.PI * percentage), false);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 4;
+            ctx.stroke();
+        }
+    }
+    
+    // 初始化 canvas 元素
+    $('.clock-canvas').each(function() {
+        var $container = $(this);
+        var canvas = document.createElement('canvas');
+        
+        // 設定 canvas 尺寸以適應容器
+        var containerWidth = $container.width() || 120;
+        canvas.width = containerWidth;
+        canvas.height = containerWidth;
+        
+        $container.append(canvas);
+    });
+    
+    // 立即繪製一次背景圓圈
+    setTimeout(function() {
+        var secondsCanvas = $('#canvas_seconds canvas')[0];
+        var minutesCanvas = $('#canvas_minutes canvas')[0];
+        var hoursCanvas = $('#canvas_hours canvas')[0];
+        var daysCanvas = $('#canvas_days canvas')[0];
+        
+        if (secondsCanvas) drawCircle(secondsCanvas, 1, '#098A8A');
+        if (minutesCanvas) drawCircle(minutesCanvas, 1, '#098A8A');
+        if (hoursCanvas) drawCircle(hoursCanvas, 1, '#098A8A');
+        if (daysCanvas) drawCircle(daysCanvas, 1, '#098A8A');
+    }, 100);
+    
+    // 每秒更新圓形進度
+    setInterval(function() {
+        var now = new Date().getTime();
+        var distance = targetDate - now;
+        
+        if (distance > 0) {
+            var totalSeconds = Math.floor(distance / 1000);
+            var seconds = totalSeconds % 60;
+            var minutes = Math.floor(totalSeconds / 60) % 60;
+            var hours = Math.floor(totalSeconds / 3600) % 24;
+            var days = Math.floor(totalSeconds / (3600 * 24));
+            
+            // 更新圓形進度
+            var secondsCanvas = $('#canvas_seconds canvas')[0];
+            var minutesCanvas = $('#canvas_minutes canvas')[0];
+            var hoursCanvas = $('#canvas_hours canvas')[0];
+            var daysCanvas = $('#canvas_days canvas')[0];
+
+            if (secondsCanvas) drawCircle(secondsCanvas, (60 - seconds) / 60, '#0FB500');
+            if (minutesCanvas) drawCircle(minutesCanvas, (60 - minutes) / 60, '#000DFF');
+            if (hoursCanvas) drawCircle(hoursCanvas, (24 - hours) / 24, '#E000DD');
+            if (daysCanvas) {
+                // 計算天數的進度百分比 (假設最大365天為100%)
+                var maxDays = 365;
+                var dayProgress = Math.min((maxDays - days) / maxDays, 1);
+                drawCircle(daysCanvas, dayProgress, '#FF8000');
+            }
+        }
+    }, 1000);
+});
+</script>
+<% end %>
+

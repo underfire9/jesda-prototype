@@ -1,0 +1,128 @@
+<!-- template: 關於計畫 / 認識青領 -->
+
+<div class="container-lg">
+    <div class="page-content about-content">
+        <aside class="aside about-aside" aria-label="關於計畫子選單">
+            <ul class="about-nav menu-item">
+                <li><a href="about-understanding.html" class="nav-link current" title="認識青領">認識青領</a></li>
+                <li><a href="about-background.html" class="nav-link" title="計畫背景">計畫背景</a></li>
+                <li><a href="about-highlights.html" class="nav-link" title="核心亮點">核心亮點</a></li>
+            </ul>
+        </aside>
+        <main class="main">
+            <a href="#C" title="中央內容區塊" id="AC" accesskey="C" name="C" style="">:::</a>
+            <div class="page-head">
+                <div class="page-title">
+                    <h3>認識青領</h3>
+                </div>
+                <div class="page-tools">
+                    <ul class="menu-item action-options">
+                        <li>
+                            <a href="#" title="分享到 Facebook" class="btn-action"><img src="../assets/facebook_b.png" alt="Facebook"></a>
+                        </li>
+                        <li>
+                            <a href="#" title="分享到 Line" class="btn-action"><img src="../assets/line_b.png" alt="Line"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn-action" title="列印本頁面" onclick="window.print(); return false;"><img src="../assets/printer_b.png" alt="列印"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="about-banner content-banner">
+                <div class="copywrite">
+                    升學職涯不設限<br>探索體驗是關鍵
+                </div>
+                <div class="banner-hero signs-hero">
+                    <img class="" src="../assets/signs.svg" alt="指示牌">
+                </div>
+            </div>
+            <div class="article-content about-understanding">
+                <p>面對快速變動的社會環境與就業趨勢，教育部青年發展署推動「青年生涯領航計畫（簡稱青領計畫）」，鼓勵高中職應屆畢業青年，從傳統升學路徑中抽身，投入為期兩年的探索歷程。</p>
+                <p>青年可根據個人興趣、目標與節奏，自主提企劃，透過職場體驗、創業見習、志願服務、國內外壯遊等多元形式，在真實世界的挑戰及洗禮下，累積AI時代無法被取代的能—自我覺察、跨域溝通、獨立思考與面對不確定的韌性。</p>
+                <p>歡迎每位心中有方向、有疑問、有渴望的青年，加入這段為人生定錨的深度旅程！</p>
+                <div class="dl-wrap">
+                    <span>下載</span>
+                    <a href="#" class="dl-link" title="下載{115 年度青年生涯領航計畫}">115 年度青年生涯領航計畫</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+// Sticky Navigation
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var nav = document.querySelector('.about-nav');
+    var navOffset = nav.getBoundingClientRect().top + window.pageYOffset;
+
+    function onScroll() {
+        if (window.pageYOffset > navOffset) {
+            nav.style.position = 'fixed';
+            nav.style.top = '0';
+            nav.style.zIndex = '1000';
+            nav.style.width = nav.offsetWidth + 'px';
+        } else {
+            nav.style.position = '';
+            nav.style.top = '';
+            nav.style.zIndex = '';
+            nav.style.width = '';
+        }
+    }
+
+    window.addEventListener('scroll', onScroll);
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var banner = document.querySelector('.about-banner');
+    var copywrite = document.querySelector('.copywrite');
+    var hero = document.querySelector('.banner-hero');
+
+    if (banner && copywrite && hero) {
+        banner.addEventListener('mousemove', function(e) {
+            var rect = banner.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var xPercent = (x / rect.width - 0.5) * 2; // -1 ~ 1
+            var yPercent = (y / rect.height - 0.5) * 2;
+
+            // 2D movement
+            gsap.to(copywrite, {
+                x: xPercent * 15,
+                y: yPercent * 5,
+                duration: 0.4,
+                ease: "power2.out"
+            });
+            gsap.to(hero, {
+                x: xPercent * 10,
+                y: yPercent * 3,
+                duration: 0.4,
+                ease: "power2.out"
+            });
+
+            // 3D effect for banner-hero
+            gsap.to(hero, {
+                rotateY: xPercent * 10,
+                rotateX: -yPercent * 5,
+                transformPerspective: 1000,
+                duration: 0.4,
+                ease: "power2.out"
+            });
+        });
+
+        banner.addEventListener('mouseleave', function() {
+            gsap.to(copywrite, { x: 0, y: 0, duration: 0.5, ease: "power2.out" });
+            gsap.to(hero, { x: 0, y: 0, rotateY: 0, rotateX: 0, duration: 0.5, ease: "power2.out" });
+        });
+    }
+});
+</script>
+<% end %>
+

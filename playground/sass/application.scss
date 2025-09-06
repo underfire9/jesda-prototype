@@ -6,38 +6,180 @@
 /* `Playground
 -----------------------------------------------------------------------------*/
 
-$oval_height: 3rem;
-$playground_bg: #ddd;
+html, body, .workspace {
+	height: 100%;
+}
 
 .playground-container {
-	width: 1200px;
+	width: 100%;
+	height: 100%;
 	margin: 0 auto;
-	padding: 10rem 0;
+	padding: 0;
 }
 
 .playground {
-	padding: $oval_height 0;
+	margin-bottom: 0;
+	width: 100%;
+	height: 100%;
 	position: relative;
-	&::before,
-	&::after {
-		content: "";
-		position: absolute;
-		left: 0;
-		width: 100%;
-		height: $oval_height;
-		background: $playground_bg;
+}
+
+
+//three start
+
+:root {
+	--wave-container-background-color: #343434;
+	--wave-1-color: #7d42f3;
+	--wave-2-color: #682cde;
+	--wave-3-color: #4b3ab9;
+	--wave-4-color: white;
+
+	--wave-set-height: 5em;
+	//seed value gets multiplied per wave so that there's variation in speed
+	--wave-animation-speed: 5s;
+}
+
+.content {
+	background-color: var(--wave-4-color);
+	color: var(--wave-2-color);
+	padding: 3em;
+	text-align: center;
+}
+.waves-container {
+	padding-top: 5em;
+	background-color: var(--wave-container-background-color);
+}
+
+.waves {
+	margin-bottom: -5px;
+	width: 100%;
+	height: var(--wave-set-height);
+
+	@media (min-width: 768px) {
+		height: calc(var(--wave-set-height) * 1.5);
 	}
-	&::before {
-		clip-path: ellipse(50% $oval_height at top center);
-		bottom: 0;
+
+	@media (min-width: 1280px) {
+		height: calc(var(--wave-set-height) * 2);
 	}
-	&::after {
-		clip-path: ellipse(50% $oval_height at bottom center);
-		top: 0;
+	.wave-1 {
+		transform: translateX(50%);
+	}
+	.wave-2 {
+		transform: translateX(90%);
+	}
+	
+	.wave-3 {
+		transform: translateX(25%);
+	}
+	.wave-4 {
+		transform: translateX(0%);
+	}
+	
+	.wave-1 {
+		fill: var(--wave-1-color);
+	}
+
+	.wave-2 {
+		fill: var(--wave-2-color);
+	}
+	.wave-3 {
+		fill: var(--wave-3-color);
+	}
+	.wave-4 {
+		fill: var(--wave-4-color);
+	}
+	&.animated {
+		//reuse a single element, or a group of elements defined with the <g> element  of the svg
+		.wave-1-container {
+				animation-delay: -1s;
+				animation: infinite-wave var(--wave-animation-speed) ease-in-out infinite;
+				animation-duration: calc(var(--wave-animation-speed) * 2.5);
+				> use {
+				&.wave-1 {
+					animation-delay: -1s;
+					animation: bobbing-wave 3s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+				}
+			}
+		}
+		.wave-2-container {
+				animation-delay: -2s;
+				animation: infinite-wave var(--wave-animation-speed) linear infinite;
+				animation-duration: calc(var(--wave-animation-speed) * 1);
+			> use {
+				&.wave-2 {
+					animation-delay: -2s;
+					animation: bobbing-wave 3s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+
+				}
+			}
+		}	
+		.wave-3-container {
+				animation-delay: -4s;
+				animation: infinite-wave var(--wave-animation-speed) linear infinite;
+				animation-duration: calc(var(--wave-animation-speed) * 1.5);
+			> use {
+				&.wave-3 {
+					animation-delay: 1.5s;
+					animation: bobbing-wave 4s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+
+				}
+			}
+		}				
+		.wave-4-container {
+				animation-delay: -4s;
+				animation: infinite-wave var(--wave-animation-speed) linear infinite;
+				animation-duration: calc(var(--wave-animation-speed) * 1.5);
+		}
+		
+		
+		.wave-set > use {
+			animation: infinite-wave var(--wave-animation-speed) linear infinite;
+			//ensure you're using the parent selector with > use or it won't work eg: &.wave-1 not .wave-1
+			//updated to offset wave timing 
+			&.wave-1 {
+				animation-delay: -1s;
+				animation-duration: calc(var(--wave-animation-speed) * 2.5);
+			}
+
+
+			&.wave-2 {
+				animation-delay: -2s;
+				animation-duration: calc(var(--wave-animation-speed) * 1);
+			}
+
+			&.wave-3 {
+				animation-delay: -4s;
+				animation-duration: calc(var(--wave-animation-speed) * 1.5);
+			}
+			&.wave-1 {
+				animation-delay: -5s;
+				animation-duration: calc(var(--wave-animation-speed) * 2);
+			}
+		}
+
 	}
 }
 
-.playground-body {
-	background: $playground_bg;
-	padding: 2rem;
+
+@keyframes infinite-wave {
+	0% {
+		transform: translate(-90px, 0%);
+	}
+
+	100% {
+		transform: translate(85px, 0%);
+	}
+}
+//might not be able to get this to work...
+@keyframes bobbing-wave {
+	0% {
+		transform: translatey(0);
+	}
+	50% {
+		transform: translatey(.75rem);
+	}
+	100% {
+		transform: translatey(0);
+	}
 }

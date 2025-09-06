@@ -1,0 +1,171 @@
+<!-- template: playground Five -->
+
+<div class="playground-container">
+    <div class="playground play-five"></div>
+</div>
+
+
+<% content_for :js do %>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var container = document.querySelector('.play-five');
+    if (!container) return;
+    var width = container.offsetWidth;
+    var height = container.offsetHeight;
+    var renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(width, height);
+    container.appendChild(renderer.domElement);
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.OrthographicCamera(0, width, height, 0, 1, 1000);
+    camera.position.z = 10;
+
+    // 三組色系
+    // 冷色系（95%）+ 5%暖色
+    var coolColors = ["#4D96FF", "#0081CF", "#6BCB77", "#43D8C9", "#B4DFE5", "#4f65c0ff", "#4c9cd5ff", "#3a963cff", "#6b2aa3ff", "#845EC2", "#B4DFE5", "#3A4750", "#303C6C", "#ab16b8ff", "#a66adbff", "#793cdaff", "#B4DFE5", "#3892d3ff", "#2a43a9ff"];
+    var warmInCool = ["#FF6B6B"];
+    var coolSet = coolColors.concat(warmInCool);
+
+    // 暖色系（95%）+ 5%冷色
+    var warmColors = ["#FF6B6B", "#FFD93D", "#fe85a2ff", "#FFC75F", "#F9F871", "#b86800ff", "#FF6F3C", "#f672bdff", "#FF847C", "#E84A5F", "#FF6F91", "#FFC75F", "#F9F871", "#FFB400", "#FF6F3C", "#F67280", "#FF847C", "#E84A5F"];
+    var coolInWarm = ["#4D96FF"];
+    var warmSet = warmColors.concat(coolInWarm);
+
+    // 灰階色系（不同色階）
+    var graySet = ["#222", "#444", "#666", "#888", "#AAA", "#CCC", "#EEE", "#B4B4B4", "#D8D8D8", "#F0F0F0", "#999", "#333"];
+
+    var colorSets = [coolSet, warmSet, graySet];
+    var colorSetIdx = Math.floor(Math.random() * colorSets.length);
+    var colors = colorSets[colorSetIdx];
+
+    var maxCircles = 800;
+    var minRadius = 2, maxRadius = 4;
+    var minDuration = 8, maxDuration = 24;
+
+    function randomBetween(a, b) { return a + Math.random() * (b - a); }
+
+    // 圓物件
+    var circles = [];
+
+    function createCircle() {
+        var radius = randomBetween(minRadius, maxRadius);
+        var colorIdx = Math.floor(Math.random() * colors.length);
+        var color = colors[colorIdx];
+        var centerAlpha = 0.8;
+        var duration = randomBetween(minDuration, maxDuration) * 1000;
+        var startX = randomBetween(radius, width-radius);
+        var startY = randomBetween(radius, height-radius);
+    // 隨機生成一個貝茲曲線控制點，確保位移量不超過160px
+    var angle = randomBetween(0, Math.PI*2);
+    var distance = randomBetween(40, 160);
+    var endX = startX + Math.cos(angle) * distance;
+    var endY = startY + Math.sin(angle) * distance;
+    // 控制點（使路徑彎曲）
+    var ctrlAngle = angle + randomBetween(-Math.PI/2, Math.PI/2);
+    var ctrlDist = randomBetween(20, 80);
+    var ctrlX = startX + Math.cos(ctrlAngle) * ctrlDist;
+    var ctrlY = startY + Math.sin(ctrlAngle) * ctrlDist;
+    // 載入時顯示已經運動到一半的效果
+    var now = performance.now();
+    var halfProgress = randomBetween(0.4, 0.6); // 介於40%~60%進度
+    var startTime = now - halfProgress * duration;
+
+        // 漸層 canvas texture
+        var canvas = document.createElement('canvas');
+        canvas.width = 64; canvas.height = 64;
+        var ctx = canvas.getContext('2d');
+        var grad = ctx.createRadialGradient(32,32,0,32,32,32);
+        var rgb = hexToRgb(color);
+        grad.addColorStop(0, 'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+','+centerAlpha+')');
+        grad.addColorStop(1, 'rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(32,32,32,0,Math.PI*2);
+        ctx.fill();
+        var texture = new THREE.CanvasTexture(canvas);
+        var geometry = new THREE.CircleGeometry(radius, 32);
+        var material = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: 1, depthWrite: false });
+        var mesh = new THREE.Mesh(geometry, material);
+        mesh.position.z = 0;
+        scene.add(mesh);
+
+    circles.push({ mesh, radius, color, startX, startY, endX, endY, ctrlX, ctrlY, startTime, duration, centerAlpha });
+    }
+
+    function hexToRgb(hex) {
+        var c = hex.replace('#','');
+        if (c.length === 3) c = c[0]+c[0]+c[1]+c[1]+c[2]+c[2];
+        var r = parseInt(c.substring(0,2),16);
+        var g = parseInt(c.substring(2,4),16);
+        var b = parseInt(c.substring(4,6),16);
+        return [r,g,b];
+    }
+
+    // 初始化
+    for (var i = 0; i < maxCircles; i++) {
+        createCircle();
+    }
+
+    function animate(now) {
+        for (var i = circles.length-1; i >= 0; i--) {
+            var circle = circles[i];
+            var t = (now - circle.startTime) / circle.duration;
+            if (t > 1) {
+                // 移除消失的圓
+                scene.remove(circle.mesh);
+                circles.splice(i,1);
+                // 生成新圓
+                createCircle();
+                continue;
+            }
+            // 運動路徑
+            // 飄浮感路徑：基礎線性 + 隨機正弦飄移
+            var maxXRadius = Math.min(width / 4, 80);
+            var maxYRadius = Math.min(height / 4, 80);
+            // 貝茲曲線運動路徑，非直線
+            var x = (1-t)*(1-t)*circle.startX + 2*(1-t)*t*circle.ctrlX + t*t*circle.endX;
+            var y = (1-t)*(1-t)*circle.startY + 2*(1-t)*t*circle.ctrlY + t*t*circle.endY;
+            // 再加上微弱飄移
+            x += Math.sin(t * Math.PI * randomBetween(1,2) + circle.startTime/1000) * Math.min(randomBetween(0.0625, 0.1875), maxXRadius/32);
+            y += Math.sin(t * Math.PI * randomBetween(1,1.5) + circle.startTime/800) * Math.min(randomBetween(2, 6), maxYRadius/32);
+            // 透明度閃爍減弱一半，頻率也減半
+            var alpha = circle.centerAlpha * (0.9375 + 0.0625 * Math.sin(t * Math.PI * randomBetween(0.25,0.6)));
+            // 剛出現時淡進
+            var fadeInDuration = 0.8; // 前0.8秒淡進
+            if (t < fadeInDuration / (circle.duration/1000)) {
+                var fadeInT = t / (fadeInDuration / (circle.duration/1000));
+                alpha *= fadeInT;
+            }
+            // 最後1.5秒漸淡至完全透明
+            var fadeDuration = 1.5 / (circle.duration/1000); // 1.5秒佔總動畫比例
+            if (t > 1 - fadeDuration) {
+                var fadeT = (t - (1 - fadeDuration)) / fadeDuration;
+                alpha *= (1 - fadeT);
+            }
+            // 大小忽大忽小（效果與頻率減少至三分之一）
+            var scale = 0.92 + 0.25 * Math.abs(Math.sin(t * Math.PI * randomBetween(0.33,0.66)));
+            circle.mesh.position.x = x;
+            circle.mesh.position.y = height-y;
+            circle.mesh.scale.set(scale, scale, 1);
+            circle.mesh.material.opacity = alpha;
+        }
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+    }
+    animate(performance.now());
+
+    window.addEventListener('resize', function() {
+        var width = container.offsetWidth;
+        var height = container.offsetHeight;
+        renderer.setSize(width, height);
+        camera.right = width;
+        camera.top = height;
+        camera.updateProjectionMatrix();
+    });
+});
+</script>
+
+<% end %>
+

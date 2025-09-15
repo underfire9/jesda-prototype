@@ -2,7 +2,7 @@
 
 <div class="container-lg">
     <div class="application-wrapper">
-        <h2 class="application-title">114 申請階段</h2>
+        <h2 class="head-title">114 申請階段</h2>
         <div class="home-container">
             <div class="container-start">
                 <div class="application-info">
@@ -24,16 +24,21 @@
                         </li>
                         <li>
                             <span class="label">目前狀態</span>
-                            <span class="output status h4">申請人修正</span>
+                            <span class="output status h4">
+
+                                <!-- 初審中、審查通過、初審不通過、已取消 -->
+                                <!-- 只有申請人修正才須給錨點連結 -->
+                                <a class="anchor-supplement" href="#application-supplement">申請人修正</a>
+                            </span>
                         </li>
                     </ul>
                     <div class="info-action">
-                        <button class="btn btn-lg btn-outline-main px-5">開啟</button>
-                        <button class="btn btn-lg btn-white">取消申請</button>
+                        <button class="btn btn-lg btn-outline-main px-5">瀏覽</button>
+                        <button class="btn btn-lg btn-cancel">取消申請</button>
                     </div>
                 </div>
 
-                <div class="application-info supplement">
+                <div id="application-supplement" class="application-info supplement">
                     <h4>補件作業</h4>
                     <ul class="menu-item info-list">
                         <li class="border-0">
@@ -41,7 +46,7 @@
                             <span class="output fw-medium">2026 / 04 / 30</span>
                         </li>
                     </ul>
-                    <button class="btn btn-lg btn-dark px-5">補件</button>
+                    <button class="btn btn-lg btn-dark px-5 btn-supplement">補件</button>
                 </div>
             </div>
             <div class="container-end">
@@ -66,4 +71,25 @@
 </div>
 
 <% content_for :js do %>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var anchor = document.querySelector('.anchor-supplement');
+    var btnSupplement = document.querySelector('.btn-supplement');
+    if (anchor && btnSupplement) {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            // 滾動到補件區塊
+            var target = document.getElementById('application-supplement');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            // 補件按鈕動畫
+            btnSupplement.classList.add('playing');
+            setTimeout(function() {
+                btnSupplement.classList.remove('playing');
+            }, 2000);
+        });
+    }
+});
+</script>
 <% end %>

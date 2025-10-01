@@ -1,0 +1,234 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages general-pages">
+            <%= render :partial => "/partials/header" %>
+            <div class="content">
+                <%= yield %>
+            </div>
+            <a id="backtop"></a>
+        </div>
+	</div>
+	
+<script src="../javascripts/jquery-latest.min.js"></script>
+<script src="../javascripts/popper.min.js"></script>
+<script src="../javascripts/bootstrap.bundle.min.js"></script>
+
+<!-- Back to top -->
+<script>
+    var btn = $("#backtop");
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 600) {
+            btn.addClass("show");
+        } else {
+            btn.removeClass("show");
+        }
+    });
+
+    btn.on("click", function (e) {
+        e.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, "300");
+    });
+</script>
+
+<!-- Header nav -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function toggleOffcanvasClasses() {
+            const headerNav = document.querySelector(".user-bar");
+            const dropdownMenu = document.querySelector(".user-nav .dropdown-menu");
+            const dropdownToggle = document.querySelector(".user-nav .dropdown-toggle");
+            
+            if (window.innerWidth < 1199) {
+                headerNav.classList.add("offcanvas", "offcanvas-end");
+                // 小於1199px時，直接顯示dropdown-menu並移除toggle功能
+                if (dropdownMenu) {
+                    dropdownMenu.classList.add("show");
+                }
+                if (dropdownToggle) {
+                    dropdownToggle.removeAttribute("data-bs-toggle");
+                    dropdownToggle.removeAttribute("aria-expanded");
+                }
+            } else {
+                headerNav.classList.remove("offcanvas", "offcanvas-end");
+                // 大於等於1199px時，恢復正常dropdown行為
+                if (dropdownMenu) {
+                    dropdownMenu.classList.remove("show");
+                }
+                if (dropdownToggle) {
+                    dropdownToggle.setAttribute("data-bs-toggle", "dropdown");
+                    dropdownToggle.setAttribute("aria-expanded", "false");
+                }
+            }
+        }
+
+        // Initial check
+        toggleOffcanvasClasses();
+
+        // Add event listener for window resize
+        window.addEventListener("resize", toggleOffcanvasClasses);
+
+        // Add .open class on .btn-offcanvas click
+        const btnOffcanvas = document.querySelector(".btn-offcanvas");
+        btnOffcanvas.addEventListener("click", function () {
+            btnOffcanvas.classList.toggle("open");
+        });
+    });
+</script>
+
+
+
+<!-- DEMO ONLY 請移除 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 獲取當前頁面 URL
+    const currentUrl = window.location.href;
+    const currentPath = window.location.pathname;
+    
+    // 清除所有 current 類別
+    function clearCurrentStates() {
+        document.querySelectorAll('.main-link.current, .user-link.current').forEach(function(link) {
+            link.classList.remove('current');
+        });
+    }
+    
+    // 根據頁面 URL 設定 current 狀態
+    function setCurrentStateByUrl() {
+        clearCurrentStates();
+        
+        // 主選單對應關係
+        const mainNavMap = {
+            'task': '.nav-task',
+            'manuscript': '.nav-manuscript', 
+            'scheduling': '.nav-scheduling'
+            // 移除首頁對應，首頁不應該有任何 current 狀態
+        };
+        
+        // 用戶選單對應關係 (包含 dropdown 子項目)
+        const userNavMap = {
+            'announcement': '.nav-announcement',
+            'notification': '.nav-notification',
+            'account-profile': '.nav-account', // 個人資料 → 帳號
+            'account-password': '.nav-account', // 變更密碼 → 帳號
+            'account': '.nav-account'
+        };
+        
+        // 檢查主選單 - 使用更精確的匹配
+        for (let [key, selector] of Object.entries(mainNavMap)) {
+            // 檢查文件名是否包含關鍵字，避免誤匹配
+            const fileName = currentPath.split('/').pop() || '';
+            const pathSegments = currentPath.split('/');
+            
+            if (fileName.includes(key) || pathSegments.some(segment => segment === key)) {
+                const link = document.querySelector(selector);
+                if (link) link.classList.add('current');
+                break;
+            }
+        }
+        
+        // 檢查用戶選單 - 使用更精確的匹配
+        for (let [key, selector] of Object.entries(userNavMap)) {
+            const fileName = currentPath.split('/').pop() || '';
+            const pathSegments = currentPath.split('/');
+            
+            if (fileName.includes(key) || pathSegments.some(segment => segment === key)) {
+                const link = document.querySelector(selector);
+                if (link) link.classList.add('current');
+                break;
+            }
+        }
+    }
+    
+    // 處理導航連結點擊事件
+    function handleNavClick() {
+        // 處理 brands-link (首頁連結)
+        document.querySelector('.brands-link').addEventListener('click', function(e) {
+            // 點擊首頁連結時，清除所有 current 狀態
+            clearCurrentStates();
+            localStorage.removeItem('activeNavLink'); // 清除儲存的狀態
+        });
+        
+        // 處理主選單和用戶選單連結
+        document.querySelectorAll('.main-link, .user-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    // 儲存被點擊的連結類別到 localStorage
+                    const classList = Array.from(this.classList);
+                    localStorage.setItem('activeNavLink', JSON.stringify(classList));
+                } else {
+                    // 如果是 # 連結，立即切換 current 狀態 (用於展示)
+                    e.preventDefault();
+                    clearCurrentStates();
+                    this.classList.add('current');
+                }
+            });
+        });
+        
+        // 處理 dropdown 子項目連結
+        document.querySelectorAll('.dropdown-item').forEach(function(dropdownItem) {
+            dropdownItem.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    // 找到父層的 .user-link
+                    const parentDropdown = this.closest('.dropdown');
+                    const parentUserLink = parentDropdown ? parentDropdown.querySelector('.user-link') : null;
+                    
+                    if (parentUserLink) {
+                        // 儲存父層連結的類別到 localStorage
+                        const classList = Array.from(parentUserLink.classList);
+                        localStorage.setItem('activeNavLink', JSON.stringify(classList));
+                        
+                        // 立即給父層添加 current 類別 (用於展示)
+                        clearCurrentStates();
+                        parentUserLink.classList.add('current');
+                    }
+                } else {
+                    // 如果是 # 連結，給父層加 current (用於展示)
+                    e.preventDefault();
+                    const parentDropdown = this.closest('.dropdown');
+                    const parentUserLink = parentDropdown ? parentDropdown.querySelector('.user-link') : null;
+                    
+                    if (parentUserLink) {
+                        clearCurrentStates();
+                        parentUserLink.classList.add('current');
+                    }
+                }
+            });
+        });
+    }
+    
+    // 從 localStorage 恢復 current 狀態
+    function restoreCurrentState() {
+        const savedNavLink = localStorage.getItem('activeNavLink');
+        if (savedNavLink) {
+            try {
+                const classList = JSON.parse(savedNavLink);
+                const selector = '.' + classList.join('.');
+                const link = document.querySelector(selector);
+                if (link) {
+                    clearCurrentStates();
+                    link.classList.add('current');
+                }
+            } catch (e) {
+                console.warn('無法恢復導航狀態:', e);
+            }
+        }
+    }
+    
+    // 初始化
+    setCurrentStateByUrl();
+    restoreCurrentState(); // localStorage 優先級較高
+    handleNavClick();
+});
+</script>
+
+<%= yield :js %>
+</body>
+</html>

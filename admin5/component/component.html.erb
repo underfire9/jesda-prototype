@@ -239,8 +239,94 @@
                 </div>
             </div>
         </div>
+        <div class="col-6">
+            <div class="col-block">
+                <div class="block-header has-border"><h5>自定標題可排序列表</h5></div>
+                <div class="block-content">
+                    <p>範例有加上 <code>py-4</code></p>
+                    
+                    <!-- 元件 -->
+                    <div class="sorting-list-wrapper py-4">
+                        <ul class="menu-item sorting-list">
+                            <li>
+                                <div class="item-title">教師編號</div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-white" data-bs-toggle="modal" data-bs-target="#sortingModal" title="編輯"><i class="fas fa-pencil-alt"></i></button>
+                                    <button type="button" class="btn btn-sm btn-white" title="上移"><i class="fas fa-arrow-up"></i></button>
+                                    <button type="button" class="btn btn-sm btn-white" title="下移"><i class="fas fa-arrow-down"></i></button>
+                                    <button type="button" class="btn btn-sm btn-white" title="刪除"><i class="far fa-trash-alt"></i></button>
+                                </div>
+                            </li>
+                            <% (1..6).map do |i| %>
+                            <li>
+                                <div class="item-title"><%= lorem_words(8) %></div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-white" data-bs-toggle="modal" data-bs-target="#sortingModal" title="編輯"><i class="fas fa-pencil-alt"></i></button>
+                                    <button type="button" class="btn btn-sm btn-white" title="上移"><i class="fas fa-arrow-up"></i></button>
+                                    <button type="button" class="btn btn-sm btn-white" title="下移"><i class="fas fa-arrow-down"></i></button>
+                                    <button type="button" class="btn btn-sm btn-white" title="刪除"><i class="far fa-trash-alt"></i></button>
+                                </div>
+                            </li>
+                            <% end %>
+                        </ul>
+                        <div class="text-end mt-2"><button type="button" class="btn btn-rounded btn-outline-primary" data-bs-toggle="modal" data-bs-target="#sortingModal"><i class="fas fa-plus"></i> 新增</button></div>
+                    </div>
+                    <!-- 元件結束 -->  
+                
+                </div>
+            </div>
+        </div>
     </div>
 </main>
+
+<!-- Modal -->
+<div class="modal fade" id="sortingModal" tabindex="-1" aria-labelledby="sortingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="sortingModalLabel">{編輯}{新增}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="itemTitle" class="form-label">標題</label>
+                    <input type="text" class="form-control" id="itemTitle" placeholder="請輸入標題名稱">
+                </div>
+                <div class="form-group">
+                    <label fclass="form-label">填答區塊內容設定</label>
+                    <div class="mt-1">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                            <label class="form-check-label" for="inlineRadio1">文字編輯器</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                            <label class="form-check-label" for="inlineRadio2">企劃主題與執行登錄</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" />
+                            <label class="form-check-label" for="inlineRadio3">預算規劃內容登錄</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4" />
+                            <label class="form-check-label" for="inlineRadio4">多檔案附件上傳</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5" />
+                            <label class="form-check-label" for="inlineRadio5">自行新增區塊</label>
+                        </div>
+                    </div>
+                    <div class="form-text">除文字編輯器模式其餘均只能選擇一次</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <% content_for :js do %>
 

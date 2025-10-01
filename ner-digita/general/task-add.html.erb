@@ -1,0 +1,220 @@
+<!-- template: 建立行程 -->
+
+<div class="page-content">
+    <div class="container-lg">
+        <div class="task-container task-add-container">
+            <div class="page-title">
+                <h3>建立行程</h3>
+
+                <!-- 修改行程時 wording -->
+                <!--h3>修改行程</h3-->
+            </div>
+            <form class="task-form" action="task-view.html" method="post">
+
+                <!-- 主管才有 -->
+                <div class="form-group">
+                    <label class="form-label">行程人員 <span class="required">*</span></label>
+                    <select class="form-select" aria-label="選擇行程人員">
+                        <option selected>請選擇</option>
+                        <option value="1">陳曉明</option>
+                        <option value="2">李四</option>
+                        <option value="3">王五</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskTitle" class="form-label">標題 <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="taskTitle" placeholder="任務標題" />
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="taskStartTime" class="form-label">開始時間 <span class="required">*</span></label>
+                            <div id="taskStartTime"></div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" value="" id="checkDefault" />
+                                <label class="form-check-label" for="checkDefault">
+                                    全天
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="taskEndTime" class="form-label">結束時間 <span class="required">*</span></label>
+                            <div id="taskEndTime"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="taskLocation" class="form-label">地點</label>
+                    <input type="text" class="form-control" id="taskLocation" placeholder="行程地點" />
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription" class="form-label">說明</label>
+                    <textarea class="form-control" id="taskDescription" rows="4"></textarea>
+                </div>
+                <div class="form-action border-0 pt-0">
+                    <button type="submit" class="btn btn-lg btn-main">送出</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+    
+
+
+
+<% content_for :js do %>
+
+<!-- Webix Calendar -->
+<script src="../javascripts/webix.min.js"></script>
+<script>
+    // 設定繁體中文
+    webix.i18n.calendar = {
+        monthFull: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+        monthShort: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+        dayFull: ["日","一","二","三","四","五","六"],
+        dayShort: ["日","一","二","三","四","五","六"],
+        today: "今天",
+        // 不顯示清除按鈕
+        clear: "清除",
+        done: "完成"
+    };
+
+    webix.ready(function () {
+        // 初始化開始時間選擇器
+        var taskStartTimePicker = webix.ui({
+            container: "taskStartTime",
+            view: "datepicker",
+            css: "webix_view_sm",
+            value: new Date(),
+            format: "%Y-%m-%d %H:%i",
+            timepicker: true,
+            suggest: {
+                type: "calendar",
+                body: {
+                    view: "calendar",
+                    css: "webix_view_sm",
+                    weekHeader: true,
+                    events: webix.Date.isHoliday,
+                    icons: true,
+                    buttons: ["today"],
+                    timepicker: true
+                }
+            }
+        });
+
+        // 初始化結束時間選擇器
+        var taskEndTimePicker = webix.ui({
+            container: "taskEndTime", 
+            view: "datepicker",
+            css: "webix_view_sm",
+            value: new Date(new Date().getTime() + 60 * 60 * 1000), // 預設比開始時間晚1小時
+            format: "%Y-%m-%d %H:%i",
+            timepicker: true,
+            suggest: {
+                type: "calendar",
+                body: {
+                    view: "calendar",
+                    css: "webix_view_sm",
+                    weekHeader: true,
+                    events: webix.Date.isHoliday,
+                    icons: true,
+                    buttons: ["today"],
+                    timepicker: true
+                }
+            }
+        });
+
+        // 設定時間聯動：當開始時間改變時，自動調整結束時間
+        taskStartTimePicker.attachEvent("onChange", function(newDate) {
+            if (newDate) {
+                var endDate = new Date(newDate.getTime() + 60 * 60 * 1000); // 結束時間比開始時間晚1小時
+                var currentEndDate = taskEndTimePicker.getValue();
+                
+                // 只有當結束時間早於或等於開始時間時，才自動調整
+                if (!currentEndDate || currentEndDate <= newDate) {
+                    taskEndTimePicker.setValue(endDate);
+                }
+            }
+        });
+
+        // 強制移除 DateTimePicker 的 inline CSS
+        function removeWebixDateTimePickerCSS() {
+            // 移除所有 webix_view_sm 元素的 inline CSS
+            var webixSmElements = document.querySelectorAll('.webix_view_sm');
+            webixSmElements.forEach(function(element) {
+                element.removeAttribute('style');
+                // 移除其所有子元素的 inline CSS
+                var childElements = element.querySelectorAll('[style]');
+                childElements.forEach(function(child) {
+                    child.removeAttribute('style');
+                });
+            });
+            
+            // 移除開始時間選擇器的 inline CSS
+            var startTimeElements = document.querySelectorAll('#taskStartTime [style]');
+            startTimeElements.forEach(function(element) {
+                element.removeAttribute('style');
+            });
+            
+            // 移除結束時間選擇器的 inline CSS
+            var endTimeElements = document.querySelectorAll('#taskEndTime [style]');
+            endTimeElements.forEach(function(element) {
+                element.removeAttribute('style');
+            });
+
+            // 移除所有彈出的 suggest popup 的 inline CSS
+            var suggestElements = document.querySelectorAll('.webix_suggest [style]');
+            suggestElements.forEach(function(element) {
+                element.removeAttribute('style');
+            });
+
+            // 為 input 添加 form-control 類別
+            var startInput = document.querySelector('#taskStartTime input');
+            var endInput = document.querySelector('#taskEndTime input');
+            
+            if (startInput) {
+                startInput.classList.add('form-control');
+                startInput.removeAttribute('style');
+            }
+            
+            if (endInput) {
+                endInput.classList.add('form-control');
+                endInput.removeAttribute('style');
+            }
+        }
+
+        // 初始化後移除 inline CSS
+        setTimeout(removeWebixDateTimePickerCSS, 100);
+        
+        // 監聽事件，持續清理 inline CSS
+        taskStartTimePicker.attachEvent("onShow", removeWebixDateTimePickerCSS);
+        taskStartTimePicker.attachEvent("onAfterRender", removeWebixDateTimePickerCSS);
+        taskEndTimePicker.attachEvent("onShow", removeWebixDateTimePickerCSS);
+        taskEndTimePicker.attachEvent("onAfterRender", removeWebixDateTimePickerCSS);
+
+        // 檢查是否有日曆容器（如果有的話也初始化）
+        if (document.getElementById("webixContainer")) {
+            var calendar = webix.ui({
+                container: "webixContainer",
+                weekHeader: true,
+                date: new Date(),
+                view: "calendar",
+                events: webix.Date.isHoliday,
+                icons: true,
+                buttons: ["today"],
+            });
+        }
+
+        // 監聽視窗大小變化，確保 DateTimePicker 正確顯示
+        window.addEventListener('resize', function() {
+            setTimeout(removeWebixDateTimePickerCSS, 100);
+        });
+    });
+</script>
+<% end %>
+

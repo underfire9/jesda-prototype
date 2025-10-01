@@ -1,0 +1,124 @@
+<!-- template: 教師與學校專區 - 活動資訊 -->
+
+<div class="container-lg">
+    <div class="page-content">
+        <div class="resource-layout">
+            <a href="#C" title="中央內容區塊" id="AC" accesskey="C" name="C" style="">:::</a>
+            <div class="mobile-only">
+                <a class="btn btn-aside-resource" data-bs-toggle="offcanvas" href="#offcanvasResource" role="button" aria-controls="offcanvasResource" title="開啟教師與學校專區選單">
+                    <!-- 名稱吃 menu-resource current -->
+                    活動資訊
+                </a>
+            </div>
+            <aside class="aside-resource offcanvas-start" tabindex="-1" id="offcanvasResource" aria-labelledby="offcanvasResourceLabel">
+                <ul class="menu-item menu-resource scrollbar-inner" aria-label="教師與學校專區選單">
+                    <li><a href="#" class="item-link current" title="活動資訊">活動資訊</a></li>
+                    <li><a href="#" class="item-link" title="計畫簡介簡報">計畫簡介簡報</a></li>
+                    <li><a href="#" class="item-link" title="{後台設定的名稱}">中文名稱字串測試字元長度中文名稱字串測試字元長度</a></li>
+                    <% (1..5).map do |i| %>
+                    <li><a href="#" class="item-link" title="{後台設定的名稱}"><%= lorem_words(6) %></a></li>
+                    <% end %>
+                </ul>
+            </aside>
+
+            <!-- 不需要搜尋 -->
+            <main class="main-resource">
+                <div class="external-resources">
+
+                    <div class="resource-item">
+
+                        <!-- 後台請提供 16:9 (800 x 450) 的圖片裁切工具 -->
+                        <span class="item-cover">
+                            <img src="https://placehold.co/800x450" alt="{圖片描述}">
+                        </span>
+                        <div class="item-info">
+                            <h3 class="item-title">中文名稱字串測試字元長度中文名稱字串測試字元長度</h3>
+                            <ul class="menu-item item-meta">
+                                <li class="meta-category" aria-label="活動類別">實體說明會</li>
+                                <li class="meta-date" aria-label="時間">2025年8月20日（六）14:00-15:30</li>
+                                <li class="meta-object" aria-label="對象"><%= lorem_sentence %></li>
+                            </ul>
+                            <a href="#" class="btn btn-rounded btn-outline-main px-5" title="前往報名 (外部連結)">前往報名</a>
+                        </div>
+                    </div>
+
+                    <div class="resource-item">
+
+                        <!-- 後台請提供 16:9 (800 x 450) 的圖片裁切工具 -->
+                        <span class="item-cover">
+                            <img src="https://placehold.co/800x450" alt="{圖片描述}">
+                        </span>
+                        <div class="item-info">
+                            <h3 class="item-title"><%= lorem_sentence %></h3>
+                            <ul class="menu-item item-meta">
+                                <li class="meta-category" aria-label="活動類別">實體說明會</li>
+                                <li class="meta-date" aria-label="時間">2025年8月20日（六）14:00-15:30</li>
+                                <li class="meta-object" aria-label="對象"><%= lorem_sentence %></li>
+                            </ul>
+                            <a href="#" class="btn btn-rounded btn-outline-main px-5" title="前往報名 (外部連結)">前往報名</a>
+                        </div>
+                    </div>
+
+                    <% (1..3).map do |i| %>
+                    <div class="resource-item">
+
+                        <!-- 後台請提供 16:9 (800 x 450) 的圖片裁切工具 -->
+                        <span class="item-cover">
+                            <img src="https://placehold.co/800x450" alt="{圖片描述}">
+                        </span>
+                        <div class="item-info">
+                            <h3 class="item-title">計畫介紹與申請流程</h3>
+                            <ul class="menu-item item-meta">
+                                <li class="meta-category" aria-label="活動類別">線上說明會</li>
+                                <li class="meta-date" aria-label="時間">2025年8月20日（六）14:00-15:30</li>
+                                <li class="meta-object" aria-label="對象"><%= lorem_sentence %></li>
+                            </ul>
+                            <a href="#" class="btn btn-rounded btn-outline-main px-5" title="前往報名 (外部連結)">前往報名</a>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<!-- 側欄選單控制 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const asideResource = document.querySelector('.aside-resource');
+    const mobileButton = document.querySelector('.btn-aside-resource');
+    
+    function handleOffcanvas() {
+        if (window.innerWidth < 1199) {
+            // 小於 1199px 時啟用 offcanvas
+            asideResource.classList.add('offcanvas');
+            if (mobileButton) {
+                mobileButton.style.display = 'inline-block';
+            }
+        } else {
+            // 大於等於 1199px 時移除 offcanvas
+            asideResource.classList.remove('offcanvas');
+            if (mobileButton) {
+                mobileButton.style.display = 'none';
+            }
+            // 如果 offcanvas 是開啟狀態，關閉它
+            const bsOffcanvas = bootstrap.Offcanvas.getInstance(asideResource);
+            if (bsOffcanvas) {
+                bsOffcanvas.hide();
+            }
+        }
+    }
+    
+    // 初始化
+    handleOffcanvas();
+    
+    // 監聽視窗大小變化
+    window.addEventListener('resize', handleOffcanvas);
+});
+</script>
+<% end %>
+

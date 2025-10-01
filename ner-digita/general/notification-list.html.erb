@@ -1,0 +1,111 @@
+<!-- template: 系統通知 -->
+
+<div class="page-content page-notification">
+    <div class="page-title">
+        <h3>系統通知</h3>
+    </div>
+    <div class="manage-bar">
+        <div class="check-wrap" title="全選">
+            <input class="form-check-input" type="checkbox" value="" id="checkAll">
+        </div>
+        <div class="tool-wrap btn-group">
+            <button type="button" class="btn btn-outline-dark btn-manage">標記已讀</button>
+            <button type="button" class="btn btn-outline-dark btn-manage">刪除</button>
+        </div>
+    </div>
+    <ul class="menu-item notification-list">
+        <li class="list-item unread">
+            <input class="form-check-input" type="checkbox" value="" id="checkNum08">
+            <label class="detail-wrap form-check-label" for="checkNum08">
+                <span class="wrap-start">
+                    2025-10-01 11:30
+                </span>
+                <span class="wrap-end">天哪! 你真的應該檢查一下你今天有哪些重要的行程跟採訪任務</span>
+            </label>
+        </li>
+        <li class="list-item">
+            <input class="form-check-input" type="checkbox" value="" id="checkNum09">
+            <label class="detail-wrap form-check-label" for="checkNum09">
+                <span class="wrap-start">
+                    2025-10-01 11:30
+                </span>
+                <span class="wrap-end">10-10 11:30 至 16:30 國立教育資料館教育廣播電台組織規程</span>
+            </label>
+        </li>
+        <% (10..29).map do |i| %>
+        <li class="list-item">
+            <input class="form-check-input" type="checkbox" value="" id="checkNum<%= i %>">
+            <label class="detail-wrap form-check-label" for="checkNum<%= i %>">
+                <span class="wrap-start">
+                    2025-10-<%= i %> 14:30
+                </span>
+                <span class="wrap-end">10-<%= i %> 11:30 至 16:30 <%= lorem_words(8) %></span>
+            </label>
+        </li>
+        <% end %>
+    </ul>
+    <nav class="nav-pagination" aria-label="換頁">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link"><i class="fas fa-angle-left"></i></a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-current="page">2</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+
+<% content_for :js do %>
+
+<!-- checkbox 全選 & 全不選 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkAll = document.getElementById('checkAll');
+    const notificationCheckboxes = document.querySelectorAll('.notification-list .form-check-input');
+    
+    // 全選功能
+    checkAll.addEventListener('change', function() {
+        const isChecked = this.checked;
+        
+        notificationCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = isChecked;
+        });
+    });
+    
+    // 監聽個別 checkbox 狀態變化，更新全選狀態
+    notificationCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            const totalCheckboxes = notificationCheckboxes.length;
+            const checkedCheckboxes = document.querySelectorAll('.notification-list .form-check-input:checked').length;
+            
+            // 如果全部都勾選，勾選全選框
+            if (checkedCheckboxes === totalCheckboxes) {
+                checkAll.checked = true;
+                checkAll.indeterminate = false;
+            } 
+            // 如果部分勾選，設為半選狀態
+            else if (checkedCheckboxes > 0) {
+                checkAll.checked = false;
+                checkAll.indeterminate = true;
+            } 
+            // 如果都沒勾選，取消全選框
+            else {
+                checkAll.checked = false;
+                checkAll.indeterminate = false;
+            }
+        });
+    });
+});
+</script>
+<% end %>
+

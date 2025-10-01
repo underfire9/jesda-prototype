@@ -1,0 +1,114 @@
+<!-- template: 教師與學校專區 - 資源下載 -->
+
+<div class="container-lg">
+    <div class="page-content">
+        <div class="resource-layout">
+            <a href="#C" title="中央內容區塊" id="AC" accesskey="C" name="C" style="">:::</a>
+            <div class="mobile-only">
+                <a class="btn btn-aside-resource" data-bs-toggle="offcanvas" href="#offcanvasResource" role="button" aria-controls="offcanvasResource" title="開啟教師與學校專區選單">
+                    <!-- 名稱吃 menu-resource current -->
+                    計畫簡介簡報
+                </a>
+            </div>
+            <aside class="aside-resource offcanvas-start" tabindex="-1" id="offcanvasResource" aria-labelledby="offcanvasResourceLabel">
+                <ul class="menu-item menu-resource scrollbar-inner" aria-label="教師與學校專區選單">
+                    <li><a href="#" class="item-link" title="活動資訊">活動資訊</a></li>
+                    <li><a href="#" class="item-link current" title="計畫簡介簡報">計畫簡介簡報</a></li>
+                    <li><a href="#" class="item-link" title="{後台設定的名稱}">中文名稱字串測試字元長度中文名稱字串測試字元長度</a></li>
+                    <% (1..5).map do |i| %>
+                    <li><a href="#" class="item-link" title="{後台設定的名稱}"><%= lorem_words(6) %></a></li>
+                    <% end %>
+                </ul>
+            </aside>
+
+            <main class="main-resource">
+                <div class="resources-files">
+                    <h3 class="resources-dl-title">檔案資源</h3>
+                    <ul class="menu-item resources-files-list">
+                        <li>
+                            <a href="#" class="file-item" title="{<%= lorem_words(6) %>}">
+                                <span class="file-name"><%= lorem_words(6) %></span>
+                                <span class="file-date">2025-10-25</span>
+                            </a>
+                        </li>
+                        <% (1..5).map do |i| %>
+                        <li>
+                            <a href="#" class="file-item" title="{下載後台給的檔案名稱}">
+                                <span class="file-name">下載後台給的檔案名稱</span>
+                                <span class="file-date">2025-10-25</span>
+                            </a>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="resources-images">
+                    <h3 class="resources-dl-title">圖片資源</h3>
+                    <div class="lightbox-row">
+                        <% (1..9).map do |i| %>
+                        <a href="../assets/fake/carousel-<%= i %>.jpg" data-toggle="lightbox" data-gallery="example-gallery" data-size="fullscreen" class="lightbox-item">
+                            <img src="../assets/fake/carousel-<%= i %>.jpg" class="img-fluid" alt="圖片說明文字" />
+                        </a>
+                        <% end %>
+                    </div>
+                    <div class="text-end">
+                        <a href="#" class="btn btn-rounded btn-outline-main btn-package">
+                            <span>打包下載</span>
+                            <i class="far fa-arrow-alt-circle-down"></i>
+                        </a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<!-- 側欄選單控制 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const asideResource = document.querySelector('.aside-resource');
+    const mobileButton = document.querySelector('.btn-aside-resource');
+    
+    function handleOffcanvas() {
+        if (window.innerWidth < 1199) {
+            // 小於 1199px 時啟用 offcanvas
+            asideResource.classList.add('offcanvas');
+            if (mobileButton) {
+                mobileButton.style.display = 'inline-block';
+            }
+        } else {
+            // 大於等於 1199px 時移除 offcanvas
+            asideResource.classList.remove('offcanvas');
+            if (mobileButton) {
+                mobileButton.style.display = 'none';
+            }
+            // 如果 offcanvas 是開啟狀態，關閉它
+            const bsOffcanvas = bootstrap.Offcanvas.getInstance(asideResource);
+            if (bsOffcanvas) {
+                bsOffcanvas.hide();
+            }
+        }
+    }
+    
+    // 初始化
+    handleOffcanvas();
+    
+    // 監聽視窗大小變化
+    window.addEventListener('resize', handleOffcanvas);
+});
+</script>
+
+<script src="../javascripts/bs5-lightbox.min.js"></script>
+<script>
+document.querySelectorAll('.lightbox-item').forEach(function(item) {
+    var img = item.querySelector('img');
+    if (img) {
+        item.style.backgroundImage = 'url(' + img.src + ')';
+        img.style.display = 'none';
+    }
+});
+</script>
+<% end %>
+

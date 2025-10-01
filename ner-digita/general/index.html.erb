@@ -1,0 +1,479 @@
+<!-- template: 首頁 -->
+
+<!-- 關閉 alert 判斷為已讀，否則 header nav-notification 會出現紅點 -->
+<div class="sys-alert alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="container-lg">
+        <strong>天哪!</strong> 你真的應該檢查一下你今天有哪些重要的行程跟採訪任務
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container-lg">
+
+        <div class="task-container">
+
+            <div class="task-calendar">
+                <div class="calendar-wrapper">
+                    <div id="webixContainer"></div>
+                </div>
+                <div class="index-announcement-wrapper">
+                    <h4 class="wrapper-title">系統公告</h4>
+                    <ul class="index-announcement-list menu-item">
+                        <li><a href="announcement.html">系統預定於 11 月 21 日午夜 12 時重開機</a></li>
+                        <li><a href="announcement.html">人民申請案件及陳情案件之處理時限</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="route-container">
+                <div class="route-head">
+                    <div class="head-start">
+                        <div class="general-date">2025. 09-24 <small>行事曆</small></div>
+                        <div class="mobile-date">
+                            <div id="mobileDatePicker"></div>
+                        </div>
+                    </div>
+                    <div class="head-end">
+                        <a href="#" class="btn btn-outline-main btn-plus">建立稿件</a>
+                        <a href="task-add.html" class="btn btn-outline-dark btn-plus">建立行程</a>
+                    </div>
+                </div>
+                <div class="route-list-wrapper">
+                    <div class="list-item">
+                        <a href="task-view.html" class="item-link">
+                            <h4 class="item-title">國立教育資料館教育廣播電台組織規程</h4>
+                            <div class="item-info">
+                                <span class="info-reporter">陳小明</span>
+                                <span class="info-time">09-18 10:00<i>至</i>09-18 15:00</span>
+                                <span class="info-location">
+                                    <button type="button" class="btn btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="100台北市中正區南海路45號">
+                                        <img src="../assets/marker.svg" alt="Location">
+                                    </button>
+                                </span>
+                                <span class="info-manuscript">
+                                    <button type="button" class="btn btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="稿件已建立">
+                                        <img src="../assets/file-check.svg" alt="Check">
+                                    </button>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="list-item">
+                        <a href="task-view.html" class="item-link">
+                            <h4 class="item-title">拜訪國立教育廣播電臺</h4>
+                            <div class="item-info">
+                                <span class="info-reporter">陳小明</span>
+                                <span class="info-time">09-18 10:00<i>至</i>09-18 15:00</span>
+                                <span class="info-location">
+                                    <button type="button" class="btn btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="100台北市中正區南海路45號">
+                                        <img src="../assets/marker.svg" alt="Location">
+                                    </button>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="list-item">
+                        <a href="task-view.html" class="item-link">
+                            <h4 class="item-title">NER國立教育廣播電臺Podcast精選上線</h4>
+                            <div class="item-info">
+                                <span class="info-reporter">陳小明</span>
+                                <span class="info-time">09-18<i>至</i>09-18</span>
+                            </div>
+                        </a>
+                    </div>
+                    <% (1..6).map do |i| %>
+                    <div class="list-item">
+                        <a href="task-view.html" class="item-link">
+                            <h4 class="item-title">教育電臺推廣活動與意見服務個資使用說明</h4>
+                            <div class="item-info">
+                                <span class="info-reporter">張無忌</span>
+                                <span class="info-time">09-18<i>至</i>09-20</span>
+                                <span class="info-manuscript">
+                                    <button type="button" class="btn btn-tooltip" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="稿件已建立">
+                                        <img src="../assets/file-check.svg" alt="Check">
+                                    </button>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    
+
+
+
+<% content_for :js do %>
+
+<!-- Tooltip -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => {
+            return new bootstrap.Tooltip(tooltipTriggerEl, {
+                // 自訂 tooltip 選項
+                template: '<div class="tooltip custom-tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+                customClass: 'custom-width-tooltip' // 自訂 CSS 類別
+            });
+        });
+    });
+</script>
+
+<!-- Webix Calendar -->
+<script src="../javascripts/webix.min.js"></script>
+<script>
+    // 設定繁體中文
+    webix.i18n.calendar = {
+        monthFull: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+        monthShort: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+        dayFull: ["日","一","二","三","四","五","六"],
+        dayShort: ["日","一","二","三","四","五","六"],
+        today: "今天",
+        // 不顯示清除按鈕
+        clear: "",
+        done: "確定"
+    };
+
+    webix.ready(function () {
+        var calendar = webix.ui({
+            container: "webixContainer",
+            weekHeader: true,
+            date: new Date(),
+            view: "calendar",
+            events: webix.Date.isHoliday,
+            icons: true,
+            buttons: ["today"], // 只顯示今天按鈕
+        });
+
+        // 檢查是否存在 mobileDatePicker 容器
+        if (document.getElementById("mobileDatePicker")) {
+            console.log("找到 mobileDatePicker 容器，開始初始化");
+            
+            // 初始化 mobile datepicker
+            var mobileDatePicker = webix.ui({
+                container: "mobileDatePicker",
+                view: "datepicker",
+                css: "webix_view_sm",
+                value: new Date(),
+                format: "%Y. %m-%d",
+                editable: true,
+                suggest: {
+                    type: "calendar",
+                    body: {
+                        view: "calendar",
+                        css: "webix_view_sm",
+                        weekHeader: true,
+                        events: webix.Date.isHoliday,
+                        icons: true,
+                        buttons: ["today"]
+                    }
+                }
+            });
+
+            console.log("mobileDatePicker 已初始化:", mobileDatePicker);
+
+            // 強制移除所有 webix_view_sm 相關的 inline CSS
+            function removeWebixInlineCSS() {
+                // 移除所有 webix_view_sm 元素的 inline CSS
+                var webixSmElements = document.querySelectorAll('.webix_view_sm');
+                webixSmElements.forEach(function(element) {
+                    element.removeAttribute('style');
+                    // 移除其所有子元素的 inline CSS
+                    var childElements = element.querySelectorAll('[style]');
+                    childElements.forEach(function(child) {
+                        child.removeAttribute('style');
+                    });
+                });
+
+                // 移除 datepicker 相關元素的 inline CSS
+                var pickerElements = document.querySelectorAll('#mobileDatePicker [style]');
+                pickerElements.forEach(function(element) {
+                    element.removeAttribute('style');
+                });
+
+                // 移除所有彈出的 suggest popup 的 inline CSS
+                var suggestElements = document.querySelectorAll('.webix_suggest [style]');
+                suggestElements.forEach(function(element) {
+                    element.removeAttribute('style');
+                });
+
+                // 為 input 添加 form-control 類別
+                var inputElement = document.querySelector('#mobileDatePicker input');
+                if (inputElement) {
+                    inputElement.classList.add('form-control');
+                    inputElement.removeAttribute('style');
+                }
+            }
+
+            // 監聽 input 點擊和 focus 事件，立即清理 inline CSS
+            setTimeout(function() {
+                var inputElement = document.querySelector('#mobileDatePicker input');
+                if (inputElement) {
+                    inputElement.addEventListener('click', function() {
+                        removeWebixInlineCSS();
+                        // 使用 requestAnimationFrame 確保在下一個渲染週期也清理
+                        requestAnimationFrame(removeWebixInlineCSS);
+                    });
+                    
+                    inputElement.addEventListener('focus', function() {
+                        removeWebixInlineCSS();
+                        requestAnimationFrame(removeWebixInlineCSS);
+                    });
+                }
+            }, 100);
+
+            // 監聽彈出事件，立即清理
+            mobileDatePicker.attachEvent("onBeforeShow", function() {
+                removeWebixInlineCSS();
+            });
+
+            mobileDatePicker.attachEvent("onShow", function() {
+                removeWebixInlineCSS();
+                requestAnimationFrame(removeWebixInlineCSS);
+            });
+
+            // 使用 MutationObserver 實時監控彈出元素
+            var observer = new MutationObserver(function(mutations) {
+                var shouldClean = false;
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList') {
+                        mutation.addedNodes.forEach(function(node) {
+                            if (node.nodeType === 1) {
+                                // 檢查是否有新的 suggest 或 calendar 元素被添加
+                                if (node.classList && (node.classList.contains('webix_suggest') || 
+                                    node.classList.contains('webix_calendar') ||
+                                    node.classList.contains('webix_view_sm'))) {
+                                    shouldClean = true;
+                                    console.log("檢測到新的 Webix 元素:", node.className);
+                                }
+                                // 檢查子元素
+                                if (node.querySelector && 
+                                    (node.querySelector('.webix_suggest') || 
+                                     node.querySelector('.webix_calendar') ||
+                                     node.querySelector('.webix_view_sm'))) {
+                                    shouldClean = true;
+                                    console.log("檢測到包含 Webix 子元素的容器");
+                                }
+                            }
+                        });
+                    }
+                    
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                        var target = mutation.target;
+                        if (target.classList && (target.classList.contains('webix_suggest') ||
+                            target.classList.contains('webix_calendar') ||
+                            target.classList.contains('webix_view_sm'))) {
+                            console.log("檢測到 Webix 元素的 style 屬性變化，立即移除:", target.className);
+                            target.removeAttribute('style');
+                            shouldClean = true;
+                        }
+                    }
+                });
+                
+                if (shouldClean) {
+                    console.log("執行 CSS 清理");
+                    removeWebixInlineCSS();
+                    // 延遲再執行一次，確保完全清理
+                    requestAnimationFrame(function() {
+                        removeWebixInlineCSS();
+                    });
+                }
+            });
+
+            // 監控整個 document
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                attributes: true,
+                attributeFilter: ['style']
+            });
+
+            // 設定雙向連動
+            calendar.attachEvent("onDateSelect", function(date) {
+                mobileDatePicker.setValue(date);
+                removeWebixInlineCSS();
+            });
+            
+            mobileDatePicker.attachEvent("onChange", function(newDate) {
+                if (newDate) {
+                    calendar.selectDate(newDate);
+                    calendar.showCalendar(newDate);
+                }
+                removeWebixInlineCSS();
+            });
+            
+            // 監聽 datepicker 的月份切換事件
+            mobileDatePicker.attachEvent("onViewChange", function() {
+                console.log("DatePicker view changed - 清理 inline CSS");
+                removeWebixInlineCSS();
+                requestAnimationFrame(removeWebixInlineCSS);
+            });
+            
+            // 監聽 datepicker 的重新渲染事件
+            mobileDatePicker.attachEvent("onAfterRender", function() {
+                console.log("DatePicker after render - 清理 inline CSS");
+                removeWebixInlineCSS();
+            });
+            
+            // 初始化後立即執行一次
+            setTimeout(removeWebixInlineCSS, 50);
+            
+            // 設定定期清理機制，特別是在用戶可能切換月份時
+            var cleanupInterval = setInterval(function() {
+                var webixElements = document.querySelectorAll('.webix_view_sm[style], .webix_calendar[style], .webix_suggest[style]');
+                if (webixElements.length > 0) {
+                    console.log("定期清理檢測到 inline CSS，執行清理");
+                    removeWebixInlineCSS();
+                }
+            }, 500);
+            
+            // 頁面離開時清除定時器
+            window.addEventListener('beforeunload', function() {
+                clearInterval(cleanupInterval);
+            });
+            
+            // 初始化時同步日期
+            var currentDate = calendar.getSelectedDate() || new Date();
+            mobileDatePicker.setValue(currentDate);
+
+            // 響應式處理：監聽視窗大小變化，確保 mobile datepicker 正確顯示
+            function handleResponsiveDisplay() {
+                var mobileDate = document.querySelector('.mobile-date');
+                if (mobileDate && window.innerWidth < 1200) {
+                    // 強制顯示並重新渲染
+                    mobileDate.style.display = 'block';
+                    // 重新渲染 Webix datepicker
+                    setTimeout(function() {
+                        mobileDatePicker.render();
+                        removeWebixInlineCSS();
+                    }, 10);
+                }
+            }
+
+            // 監聽視窗大小變化
+            window.addEventListener('resize', function() {
+                handleResponsiveDisplay();
+            });
+
+            // 初始化時也檢查一次
+            handleResponsiveDisplay();
+
+        } else {
+            console.log("未找到 mobileDatePicker 容器");
+        }
+
+        // 移除 inline CSS 和修改月份年份顯示格式
+        function updateCalendarStructure() {
+            setTimeout(function() {
+                // 移除所有 Webix Calendar 元素的 inline style
+                var calendarElements = document.querySelectorAll('#webixContainer [style]');
+                calendarElements.forEach(function(element) {
+                    element.removeAttribute('style');
+                });
+
+                // 修改月份年份顯示格式
+                updateMonthYearFormat();
+            }, 50);
+            
+            // 延遲再次檢查，確保結構正確
+            setTimeout(function() {
+                updateMonthYearFormat();
+            }, 200);
+        }
+
+        // 獨立的月份年份格式化函數
+        function updateMonthYearFormat() {
+            var monthNameElement = document.querySelector('.webix_cal_month_name');
+            if (monthNameElement) {
+                // 檢查是否已經有分割結構
+                var hasMonthPart = monthNameElement.querySelector('.month-part');
+                var hasYearPart = monthNameElement.querySelector('.year-part');
+                
+                if (!hasMonthPart || !hasYearPart) {
+                    var text = monthNameElement.textContent || monthNameElement.innerText;
+                    var parts = text.split(' ');
+                    if (parts.length === 2) {
+                        var month = parts[0];
+                        var year = parts[1];
+                        monthNameElement.innerHTML = '<span class="month-part">' + month + '</span> <span class="year-part">' + year + '</span>';
+                    }
+                }
+            }
+        }
+
+        // 初始化時更新
+        updateCalendarStructure();
+
+        // 監聽日曆變化事件，當月份改變時重新更新
+        calendar.attachEvent("onDateSelect", updateCalendarStructure);
+        calendar.attachEvent("onViewChange", updateCalendarStructure);
+        
+        // 監聽今天按鈕點擊事件
+        calendar.attachEvent("onTodaySet", updateCalendarStructure);
+        
+        // 使用 MutationObserver 監控 DOM 變化，自動清理新產生的 inline CSS 和更新月份年份格式
+        var observer = new MutationObserver(function(mutations) {
+            var shouldUpdateFormat = false;
+            
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    // 如果是日曆容器內的元素新增了 style 屬性，就移除它
+                    var target = mutation.target;
+                    if (document.querySelector('#webixContainer').contains(target)) {
+                        target.removeAttribute('style');
+                    }
+                }
+                
+                // 如果有新增的節點也包含 style 屬性，一併清理
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === 1 && document.querySelector('#webixContainer').contains(node)) {
+                            var styledElements = node.querySelectorAll ? node.querySelectorAll('[style]') : [];
+                            styledElements.forEach(function(element) {
+                                element.removeAttribute('style');
+                            });
+                            if (node.hasAttribute && node.hasAttribute('style')) {
+                                node.removeAttribute('style');
+                            }
+                            
+                            // 檢查是否有月份名稱元素被更新
+                            if (node.classList && node.classList.contains('webix_cal_month_name')) {
+                                shouldUpdateFormat = true;
+                            }
+                            if (node.querySelector && node.querySelector('.webix_cal_month_name')) {
+                                shouldUpdateFormat = true;
+                            }
+                        }
+                    });
+                }
+                
+                // 檢查月份名稱元素的內容是否被修改
+                if (mutation.type === 'childList' && mutation.target.classList && 
+                    mutation.target.classList.contains('webix_cal_month_name')) {
+                    shouldUpdateFormat = true;
+                }
+            });
+            
+            // 如果需要更新格式，延遲執行以確保 DOM 更新完成
+            if (shouldUpdateFormat) {
+                setTimeout(updateMonthYearFormat, 10);
+            }
+        });
+        
+        // 開始監控日曆容器
+        observer.observe(document.querySelector('#webixContainer'), {
+            attributes: true,
+            childList: true,
+            subtree: true,
+            attributeFilter: ['style']
+        });
+    });
+</script>
+<% end %>
+

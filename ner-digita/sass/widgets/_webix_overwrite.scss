@@ -1,0 +1,263 @@
+
+/* `Webix Overwrite
+-----------------------------------------------------------------------------*/
+
+$cal-size-width: 57px;
+$cal-size-height: 54px;
+$cal-sm-width: 40px;
+$row-margin-bottom: 0;
+$cal-month-button: 32px;
+
+.webix_view.webix_window.webix_popup {
+	width: auto !important;
+	height: auto !important;
+}
+
+.webix_view {
+	border: none;
+	font-family: 'Roboto', 'Noto Sans TC', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
+	& > .webix_cal_header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: auto;
+		margin: 0 0 $row-margin-bottom 0 !important;
+		& > div {
+			float: none;
+			border-bottom: none;
+			width: $cal-size-width;
+			height: $cal-size-height;
+			text-align: center;
+			line-height: $cal-size-height;
+			color: #686868;
+			font-size: .813rem;
+		}
+	}
+	.webix_cal_body { margin: 0 !important; }
+	.webix_cal_row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: $row-margin-bottom;
+		width: auto !important;
+		height: auto !important;
+	}
+	.webix_cal_day,
+	.webix_cal_day_inner {
+		width: $cal-size-width;
+		height: $cal-size-height !important;
+		line-height: $cal-size-height;
+	}
+	.webix_cal_day {
+		float: none !important;
+		color: #121212;
+		font-weight: 500;
+	}
+	.webix_cal_outside {
+		color: #c0c0c0 !important;
+		font-weight: 400 !important;
+	}
+	.webix_cal_day_inner {
+		display: block !important;
+		border-radius: 0 !important;
+		font-size: .9375rem !important;
+		text-align: center;
+		&:hover {
+			background: $secondary_lighten_color !important;
+		}
+	}
+	.webix_cal_select, {
+		.webix_cal_day_inner {
+			background: $main_darker_color !important;
+			box-shadow: none !important;
+
+		}
+	}
+	.webix_cal_today {
+		.webix_cal_day_inner {
+			box-shadow: inset 0 0 0 1px #4b4b4b !important;
+		}
+	}
+	.webix_cal_footer {
+		margin: 1rem 0 0 0;
+		padding: 0;
+		height: 34px !important;
+		.webix_cal_icons {
+			padding: 0;
+			height: auto;
+    		line-height: normal;
+		}
+		.webix_cal_icon {
+			padding: 16px !important;
+			font-family: 'Roboto', 'Noto Sans TC', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif !important;
+			font-size: .9375rem !important;
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				color: $secondary_color !important;
+			}
+		}
+		.webix_cal_time {
+			padding: 8px !important;
+			height: auto !important;
+			line-height: normal !important;
+			font-size: .9375rem !important;
+		}
+		.webix_icon.wxi-clock {
+			&::before {
+				content: "\f017" !important;
+				font-family: "Font Awesome 5 Free";
+				font-weight: 400;
+			}
+		}
+	}
+	.webix_cal_icon_clear {
+		padding: 0 !important;
+	}
+
+	.form-control {
+		border-radius: 6px;
+		padding: .375rem .75rem !important;
+		font-family: 'Roboto', 'Noto Sans TC', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif !important;
+		font-size: 1.063rem !important;
+	}
+	.webix_input_icon.wxi-calendar {
+		background: url('../assets/calendar-sm.svg') no-repeat center;
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		right: .5rem;
+		top: 50%;
+		transform: translateY(-50%);
+		opacity: .5;
+		&::before {
+			content: none;
+		}
+	}
+	&.webix_calendar.webix_view_sm {
+		border: 1px solid #333;
+		padding: .75rem !important;
+		& > .webix_cal_header {
+			& > div {
+				width: $cal-sm-width !important;
+				height: $cal-sm-width !important;
+				line-height: $cal-sm-width !important;
+				font-size: .875rem;
+			}
+		}
+		.webix_cal_day,
+		.webix_cal_day_inner {
+			width: $cal-sm-width !important;
+			height: $cal-sm-width !important;
+			line-height: $cal-sm-width !important;
+			font-size: .875rem !important;
+		}
+		.webix_cal_month {
+			height: auto !important;
+		}
+		.webix_cal_prev_button,
+		.webix_cal_next_button {
+			width: $cal-sm-width !important;
+			bottom: -5px;
+		}
+		.webix_cal_footer {
+			margin: .5rem 0 0 0 !important;
+		}
+		.webix_cal_icon {
+			display: inline-block !important;
+			margin: 0 !important;
+			padding: 7.5px 4px !important;
+			font-size: .875rem !important;
+		}
+		.webix_time_header {
+			display: none;
+		}
+		.webix_cal_block_empty {
+			font-size: .9375rem !important;
+		}
+	}
+	.webix_cal_body {
+		.webix_cal_block {
+			span {
+				border-radius: 0 !important;
+				width: $cal-sm-width !important;
+				height: $cal-sm-width !important;
+				font-size: .875rem !important;
+				line-height: $cal-sm-width !important;
+			}
+			&.webix_selected {
+				span {
+					background: $main_darker_color !important;
+				}
+			}
+		}
+	}
+}
+
+.webix_cal_month {
+	margin: 0 0 1rem !important;
+	padding: 0 0 0 .75rem !important;
+	height:48px;
+	line-height: normal;
+	text-align: start;
+	.webix_cal_month_name {
+		display: inline-block;
+		font-family: 'Roboto', 'Noto Sans TC', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif !important;
+		font-size: 1rem;
+		pointer-events: none;
+		.month-part {
+			margin-right: .5rem;
+			font-size: 2rem;
+		}
+		.year-part {
+			font-weight: 400;
+		}
+	}
+}
+
+.webix_cal_prev_button,
+.webix_cal_next_button {
+	width: $cal-month-button;
+	height: $cal-month-button;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	font-size: 1rem;
+	color: #9C9C9C;
+	top: auto;
+	bottom: 0;
+	&::before {
+		line-height: $cal-month-button;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	&:hover, &:focus, &:active {
+		color: #121212;
+	}
+}
+
+.webix_cal_prev_button {
+	left: auto;
+	right: $cal-month-button;
+	&::before {
+		content: "\f104";
+	}
+}
+
+.webix_cal_next_button {
+	&::before {
+		content: "\f105";
+	}
+}
+
+.webix_time_footer {
+	margin: 0 !important;
+	height: auto;
+	.webix_cal_done {
+		background: #f5f5f5;
+		border-radius: 2px;
+		color: $darker_color;
+		padding: .25rem .75rem;
+		height: auto;
+		font-size: .9375rem;
+	}
+}

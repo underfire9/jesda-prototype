@@ -1,0 +1,176 @@
+<!-- admin-page: NER 新聞排播 -->
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="news-scheduling--container">
+        <div class="d-flex align-items-end gap-2 mb-4">
+            <div>
+                <label class="form-label">播報日期時間</label>
+                <div class="d-flex gap-2">
+                    <input type="date" id="news-scheduling-date" class="form-control" />
+                    <input type="time" id="news-scheduling-time" class="form-control" />
+                </div>
+            </div>
+            <div>
+                <label class="form-label" for="news-scheduling-reporter">播報人員</label>
+                <input type="text" class="form-control" id="news-scheduling-reporter">
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+            <div class="pb-2 ms-4 text-muted">2025-12-12 12:00:00 <%= zh_lorem_name %></div>
+        </div>
+
+        <div class="news-scheduling--wrapper flexible-wrapper">
+            <!--div class="form-check wrapper-control-check">
+                <input class="form-check-input" type="checkbox" id="wrapperControl">
+                <label class="form-check-label" for="wrapperControl">
+                    <span class="label-collapsed"></span>
+                </label>
+            </div-->
+            
+            <div class="flexible-wrapper-start">
+                <div class="scrollbar-inner">
+                    <div class="wrapper-inner">
+                        <h4 class="mb-3">新聞稿件</h4>
+                        <div class="d-flex align-items-end gap-2 mb-4">
+                            <div class="flex-grow-1">
+                                <input type="date" id="news-scheduling-date" class="form-control" />
+                            </div>
+                            <div>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="scheduling-manuscript-list">
+                            <div class="manuscript-card">
+                                <div class="card-hd">
+                                    <h5 class="card-title"><%= zh_lorem_words(20) %></h5>
+                                    <span class="news-category badge bg-secondary">話帶</span>
+                                </div>
+                                <div class="card-bd">
+
+                                    <!-- 改為只顯示單行文字，超過寬度出現省略符，要抓多少字數或整串丟進來找 SA 決定 -->
+                                    <p class="manuscript-introduction"><%= zh_lorem_words(60) %></p>
+
+                                    <audio id="manuscriptAudio" controls class="manuscript-audio mt-1">
+                                        <source id="audioSource" src="" type="audio/mpeg">
+                                        您使用的瀏覽器不支援音檔撥放
+                                    </audio>
+                                </div>
+                                <div class="card-ft">
+                                    <div class="ft-start">
+                                        <span class="label">排播紀錄</span>
+                                        <span class="broadcast">
+                                            <span>08點</span>
+                                            <span>10點</span>
+                                            <span>12點</span>
+                                            <span>14點</span>
+                                            <span>08點</span>
+                                        </span>
+                                    </div>
+                                    <div class="ft-end">
+                                        <button type="button" class="btn btn-white btn-sm" data-bs-toggle="modal" data-bs-target="#manuscriptViewModal" title="檢視內文"><i class="fas fa-eye"></i></button>
+                                        <button type="button" class="btn btn-primary btn-sm" title="加入排程表"><i class="fas fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <% (1..70).map do |i| %>
+                            <div class="manuscript-card">
+                                <div class="card-hd">
+                                    <h5 class="card-title"><%= i %><%= zh_lorem_words(20) %></h5>
+                                    <span class="news-category badge bg-secondary">主播乾稿</span>
+                                </div>
+                                <div class="card-bd">
+                                    <!-- 改為只顯示單行文字，超過寬度出現省略符，要抓多少字數或整串丟進來找 SA 決定 -->
+                                    <p class="manuscript-introduction"><%= zh_lorem_words(60) %></p>
+                                </div>
+                                <div class="card-ft">
+                                    <div class="ft-start">
+                                        <span class="label">排播紀錄</span>
+                                        <span class="broadcast">
+                                            <span>08點</span>
+                                            <span>10點</span>
+                                            <span>12點</span>
+                                            <span>14點</span>
+                                        </span>
+                                    </div>
+                                    <div class="ft-end">
+                                        <button type="button" class="btn btn-white btn-sm" data-bs-toggle="modal" data-bs-target="#manuscriptViewModal" title="檢視內文"><i class="fas fa-eye"></i></button>
+                                        <button type="button" class="btn btn-primary btn-sm" title="加入排程表"><i class="fas fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flexible-wrapper-end">
+                <div class="scrollbar-inner">
+                    <div class="content-start-head d-flex justify-content-between align-items-center border-bottom bg-white">
+                        <div class="head-left border-end flex-grow-1">
+                            <h4 class="mb-3">當時段排程表</h4>
+                            <div class="d-flex align-items-end gap-2">
+                                <button type="button" class="btn btn-outline-dark">下載全部 Word</button>
+                                <button type="button" class="btn btn-outline-primary">新增乾稿</button>
+                            </div>
+                        </div>
+                        <div class="head-right d-flex flex-column align-items-end ps-4">
+                            <span class="item-total mb-1" title="目前音檔總時數"><i class="fas fa-play"></i> <strong>1"20</strong></span>
+                            <span class="item-total" title="目前文字換算總時數"><i class="fas fa-file-alt"></i> <strong>120"60</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- 檢視內文 Modal -->
+<div class="modal fade" id="manuscriptViewModal" tabindex="-1" aria-labelledby="manuscriptViewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="manuscriptViewModalLabel">新聞稿件</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="" class="form-label">標題</label>
+                    <input type="email" class="form-control" id="" value="這是一個新聞標題範例" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="" class="form-label">導言</label>
+                    <textarea class="form-control" id="" rows="3" disabled><%= zh_lorem_words(80) %></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="" class="form-label">內文</label>
+                    <textarea class="form-control" id="" rows="18" disabled><%= zh_lorem_words(1000) %></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<% end %>
+

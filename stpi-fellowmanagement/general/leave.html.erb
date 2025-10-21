@@ -1,0 +1,167 @@
+<!-- template: 請假 -->
+
+<div class="container-lg">
+    <div class="leave-container-head">
+        <h2 class="mb-0 fw-light">請假作業</h2>
+        <a href="#" class="btn btn-lg btn-dark"><i class="fas fa-plus me-2"></i> 請假申請</a>
+    </div>
+	<div class="leave-container">
+		<aside class="aside">
+			<div class="leave-count">
+                <ul class="menu-item">
+                    <li>
+                        <span class="label">免扣款天數</span>
+                        <span class="count"><strong>30</strong>天</span>
+                    </li>
+                    <li>
+                        <span class="label">已使用免扣款天數</span>
+                        <span class="count"><strong>30</strong>天</span>
+                    </li>
+                    <li>
+                        <span class="label">剩餘天數</span>
+                        <span class="count"><strong>0</strong>天</span>
+                    </li>
+                    <li>
+                        <span class="label">需扣款天數</span>
+                        <span class="count"><strong>10</strong>天</span>
+                    </li>
+                    <li>
+                        <span class="label">不需扣款天數</span>
+                        <span class="count"><strong>1</strong>天</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <a href="#" class="btn btn-link"><i class="fas fa-long-arrow-alt-left me-2"></i> 返回首頁</a>
+            </div>
+		</aside>
+	    <main class="main">
+            <div class="request-wrapper">
+                <div class="request-tabs mb-4">
+
+                    <!-- 使用這裡的 wording，否則在手機版會爆版 -->
+                    <ul class="nav nav-tabs" id="leaveTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="tab-review" data-bs-toggle="tab" data-bs-target="#tab-pane-review" type="button" role="tab" aria-controls="tab-pane-review" aria-selected="true">待審查</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab-supplement" data-bs-toggle="tab" data-bs-target="#tab-pane-supplement" type="button" role="tab" aria-controls="tab-pane-supplement" aria-selected="false">待補件</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab-history" data-bs-toggle="tab" data-bs-target="#tab-pane-history" type="button" role="tab" aria-controls="tab-pane-history" aria-selected="false">歷史紀錄</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="leaveTabsContent">
+                        <div class="tab-pane fade show active" id="tab-pane-review" role="tabpanel" aria-labelledby="tab-review">
+
+                            <div class="request-card-list">
+                                <% (1..4).map do |i| %>
+                                <div class="request-card">
+                                    <div class="card-hd">
+                                        <div class="request-date">2022-12-12 ~ 2022-12-13</div>
+                                        <div class="total">總計 <strong>1</strong> 天</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="request-type">請假類型市價公假育嬰假</div>
+                                        <div class="submit-date">
+                                            <span class="label">申請日期</span>
+                                            <span class="date">2025-11-30</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-ft">
+                                        <!-- 待審查與待補件不放狀態也要保留 span.status -->
+                                        <span class="status"></span>
+                                        <div class="ft-actions">
+                                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#absenceModal">銷假</button>
+                                            <a href="#" class="btn btn-outline-primary">檢視</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% end %>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="tab-pane-supplement" role="tabpanel" aria-labelledby="tab-supplement">
+                            <div class="text-muted text-center py-5">無待補件請假紀錄</div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-pane-history" role="tabpanel" aria-labelledby="tab-history">
+                            <div class="request-card-list">
+                                <div class="request-card">
+                                    <div class="card-hd">
+                                        <div class="request-date">2022-12-12 ~ 2022-12-13</div>
+                                        <div class="total">總計 <strong>1</strong> 天</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="request-type">請假類型市價公假育嬰假</div>
+                                        <div class="submit-date">
+                                            <span class="label">申請日期</span>
+                                            <span class="date">2025-11-30</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-ft">
+                                        <span class="status">銷假</span>
+                                        <div class="ft-actions">
+                                            <a href="#" class="btn btn-outline-primary">檢視</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% (1..4).map do |i| %>
+                                <div class="request-card">
+                                    <div class="card-hd">
+                                        <div class="request-date">2022-12-12 ~ 2022-12-13</div>
+                                        <div class="total">總計 <strong>1</strong> 天</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="request-type">請假類型市價公假育嬰假</div>
+                                        <div class="submit-date">
+                                            <span class="label">申請日期</span>
+                                            <span class="date">2025-11-30</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-ft">
+                                        <span class="status">請假完成</span>
+                                        <div class="ft-actions">
+                                            <a href="#" class="btn btn-outline-primary">檢視</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-only">
+                    <a href="#" class="btn btn-link"><i class="fas fa-long-arrow-alt-left me-2"></i> 返回首頁</a>
+                </div>
+            </div>
+		</main>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="absenceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="absenceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="absenceModalLabel">因故銷假</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="absencelTextarea1" class="form-label">銷假原因</label>
+                    <textarea class="form-control" id="absenceTextarea1" rows="3"></textarea>
+                </div>
+                <div class="text-end">是否確認進行銷假 ? </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">確認</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<% end %>
+

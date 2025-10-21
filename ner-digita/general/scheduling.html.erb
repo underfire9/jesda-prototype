@@ -2,15 +2,344 @@
 <div class="page-content">
     <div class="container-lg">
 
-        123
+        <div class="scheduling-container">
+            <aide class="aide-filter">
+                <div class="aide-bd">
+                    <div class="form-group">
+                        <div id="schedulingStart"></div>
+                    </div>
+                    <div class="form-group">
+                        <div id="schedulingEnd"></div>
+                    </div>
+                    <div class="form-group input-group">
+                        <input type="text" id="searchKeyword" class="form-control" placeholder="輸入關鍵字" aria-describedby="button-search">
+                        <button class="btn btn-search" type="button" id="button-search"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="aide-ft">
+                    <ul class="nav nav-tabs aide-filter-list" id="reviewTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="padding-tab" data-bs-toggle="tab" data-bs-target="#padding-tab-pane" type="button" role="tab" aria-controls="padding-tab-pane" aria-selected="true">待審查紀錄</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="done-tab" data-bs-toggle="tab" data-bs-target="#done-tab-pane" type="button" role="tab" aria-controls="done-tab-pane" aria-selected="false">已審查紀錄</button>
+                        </li>
+                    </ul>
+                </div>
+            </aide>
+            <div class="scheduling-list-wrapper">
+                <div class="tab-content" id="reviewTabContent">
+                    <div class="tab-pane fade show active" id="padding-tab-pane" role="tabpanel" aria-labelledby="padding-tab" tabindex="0">
+                        <div class="list-day-group">
+                            <h2 class="group-date">2025. 10-09</h2>
+                            <div class="list-inner">
+                                <div class="scheduling-card">
+                                    <div class="card-hd">
+                                        <div class="hd-start">
+                                            <span class="onair-time">09:00</span>
+                                            <span class="announcer" title="播報人員"><%= zh_lorem_name %></span>
+                                        </div>
+                                        <div class="hd-status status-pending" title="待審查"></div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="info-detail">
+                                            <span class="item-detail detail-articles" title="篇數">5</span>
+                                            <span class="item-detail detail-audio" title="音檔總時數">8 分 30 秒</span>
+                                            <span class="item-detail detail-transcript" title="逐字稿總時數">30 分 30 秒</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-ft">
+                                        <a href="scheduling-review.html" class="btn btn-review">審查</a>
+                                    </div>
+                                </div>
+                                <% (10..15).map do |i| %>
+                                <div class="scheduling-card">
+                                    <div class="card-hd">
+                                        <div class="hd-start">
+                                            <span class="onair-time"><%= i %>:00</span>
+                                            <span class="announcer" title="播報人員"><%= zh_lorem_name %></span>
+                                        </div>
+                                        <div class="hd-status status-pending" title="待審查"></div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="info-detail">
+                                            <span class="item-detail detail-articles" title="篇數">99</span>
+                                            <span class="item-detail detail-audio" title="音檔總時數">20 分 30 秒</span>
+                                            <span class="item-detail detail-transcript" title="逐字稿總時數">110 分 30 秒</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-ft">
+                                        <a href="scheduling-review.html" class="btn btn-review">審查</a>
+                                    </div>
+                                </div>
+                                <% end %>
 
+                            </div>
+                        </div>
+
+                        <div class="list-day-group">
+                            <h2 class="group-date">2025. 10-08</h2>
+                            <div class="list-inner">
+                                <% (11..15).map do |i| %>
+                                <div class="scheduling-card">
+                                    <div class="card-hd">
+                                        <div class="hd-start">
+                                            <span class="onair-time"><%= i %>:00</span>
+                                            <span class="announcer" title="播報人員"><%= zh_lorem_name %></span>
+                                        </div>
+                                        <div class="hd-status status-pending" title="待審查"></div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="info-detail">
+                                            <span class="item-detail detail-articles" title="篇數">999</span>
+                                            <span class="item-detail detail-audio" title="音檔總時數">500 分 30 秒</span>
+                                            <span class="item-detail detail-transcript" title="逐字稿總時數">110 分 30 秒</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-ft">
+                                        <a href="scheduling-review.html" class="btn btn-review">審查</a>
+                                    </div>
+                                </div>
+                                <% end %>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="done-tab-pane" role="tabpanel" aria-labelledby="done-tab" tabindex="0">
+                        <div class="list-day-group">
+                            <h2 class="group-date">2025. 10-09</h2>
+                            <div class="list-inner">
+                                <% (11..13).map do |i| %>
+                                <div class="scheduling-card">
+                                    <div class="card-hd">
+                                        <div class="hd-start">
+                                            <span class="onair-time"><%= i %>:00</span>
+                                            <span class="announcer" title="播報人員"><%= zh_lorem_name %></span>
+                                        </div>
+                                        <div class="hd-status" title="已審查"></div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="info-detail">
+                                            <span class="item-detail detail-articles" title="篇數">999</span>
+                                            <span class="item-detail detail-audio" title="音檔總時數">500 分 30 秒</span>
+                                            <span class="item-detail detail-transcript" title="逐字稿總時數">110 分 30 秒</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-ft">
+                                        <a href="scheduling-view.html" class="btn btn-view">檢視</a>
+                                    </div>
+                                </div>
+                                <% end %>
+
+                            </div>
+                        </div>
+                        <div class="list-day-group">
+                            <h2 class="group-date">2025. 10-08</h2>
+                            <div class="list-inner">
+                                <% (11..12).map do |i| %>
+                                <div class="scheduling-card">
+                                    <div class="card-hd">
+                                        <div class="hd-start">
+                                            <span class="onair-time"><%= i %>:00</span>
+                                            <span class="announcer" title="播報人員"><%= zh_lorem_name %></span>
+                                        </div>
+                                        <div class="hd-status" title="已審查"></div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="info-detail">
+                                            <span class="item-detail detail-articles" title="篇數">999</span>
+                                            <span class="item-detail detail-audio" title="音檔總時數">500 分 30 秒</span>
+                                            <span class="item-detail detail-transcript" title="逐字稿總時數">110 分 30 秒</span>
+                                        </div>
+                                    </div>
+                                    <div class="card-ft">
+                                        <a href="scheduling-view.html" class="btn btn-view">檢視</a>
+                                    </div>
+                                </div>
+                                <% end %>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-    
-
-
-
 <% content_for :js do %>
+<!-- Webix Calendar -->
+<script src="../javascripts/webix.min.js"></script>
+<script>
+    // 設定繁體中文
+    webix.i18n.calendar = {
+        monthFull: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+        monthShort: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+        dayFull: ["日","一","二","三","四","五","六"],
+        dayShort: ["日","一","二","三","四","五","六"],
+        today: "今天",
+        clear: "",
+        done: "確定"
+    };
+
+    webix.ready(function () {
+        // 初始化開始日期選擇器
+        var searchStartPicker = webix.ui({
+            container: "schedulingStart",
+            view: "datepicker",
+            css: "webix_view_sm",
+            value: new Date(),
+            format: "%Y-%m-%d",
+            placeholder: "開始日期",
+            suggest: {
+                type: "calendar",
+                body: {
+                    view: "calendar",
+                    css: "webix_view_sm",
+                    weekHeader: true,
+                    events: webix.Date.isHoliday,
+                    icons: true,
+                    buttons: ["today"]
+                }
+            }
+        });
+
+        // 初始化結束日期選擇器
+        var searchEndPicker = webix.ui({
+            container: "schedulingEnd", 
+            view: "datepicker",
+            css: "webix_view_sm",
+            value: new Date(),
+            format: "%Y-%m-%d",
+            placeholder: "結束日期",
+            suggest: {
+                type: "calendar",
+                body: {
+                    view: "calendar",
+                    css: "webix_view_sm",
+                    weekHeader: true,
+                    events: webix.Date.isHoliday,
+                    icons: true,
+                    buttons: ["today"]
+                }
+            }
+        });
+
+        // 設定日期聯動：當開始日期改變時，限制結束日期
+        searchStartPicker.attachEvent("onChange", function(newDate) {
+            if (newDate) {
+                // 設定結束日期的最小值為開始日期
+                searchEndPicker.config.minDate = newDate;
+            }
+        });
+
+        // 強制移除 DatePicker 的 inline CSS 和隱藏不需要的元素
+        function removeWebixDatePickerCSS() {
+            // 移除所有 webix_view_sm 元素的 inline CSS
+            var webixSmElements = document.querySelectorAll('.webix_view_sm');
+            webixSmElements.forEach(function(element) {
+                element.removeAttribute('style');
+                // 移除其所有子元素的 inline CSS
+                var childElements = element.querySelectorAll('[style]');
+                childElements.forEach(function(child) {
+                    child.removeAttribute('style');
+                });
+            });
+            
+            // 移除開始日期選擇器的 inline CSS
+            var startElements = document.querySelectorAll('#schedulingStart [style]');
+            startElements.forEach(function(element) {
+                element.removeAttribute('style');
+            });
+            
+            // 移除結束日期選擇器的 inline CSS
+            var endElements = document.querySelectorAll('#schedulingEnd [style]');
+            endElements.forEach(function(element) {
+                element.removeAttribute('style');
+            });
+
+            // 移除所有彈出的 suggest popup 的 inline CSS
+            var suggestElements = document.querySelectorAll('.webix_suggest [style]');
+            suggestElements.forEach(function(element) {
+                element.removeAttribute('style');
+            });
+
+            // 隱藏清除按鈕和時間圖標
+            var clearIcons = document.querySelectorAll('.webix_cal_icon_clear');
+            clearIcons.forEach(function(icon) {
+                icon.style.display = 'none !important';
+            });
+
+            var timeIcons = document.querySelectorAll('.webix_cal_time_icons');
+            timeIcons.forEach(function(icon) {
+                icon.style.display = 'none !important';
+            });
+
+            // 為 input 添加 form-control 類別
+            var startInput = document.querySelector('#schedulingStart input');
+            var endInput = document.querySelector('#schedulingEnd input');
+            
+            if (startInput) {
+                startInput.classList.add('form-control');
+                startInput.removeAttribute('style');
+            }
+            
+            if (endInput) {
+                endInput.classList.add('form-control');
+                endInput.removeAttribute('style');
+            }
+        }
+
+        // 初始化後移除 inline CSS
+        setTimeout(removeWebixDatePickerCSS, 100);
+        
+        // 監聽事件，持續清理 inline CSS
+        searchStartPicker.attachEvent("onShow", removeWebixDatePickerCSS);
+        searchStartPicker.attachEvent("onAfterRender", removeWebixDatePickerCSS);
+        searchEndPicker.attachEvent("onShow", removeWebixDatePickerCSS);
+        searchEndPicker.attachEvent("onAfterRender", removeWebixDatePickerCSS);
+
+        // 監聽視窗大小變化，確保 DatePicker 正確顯示
+        window.addEventListener('resize', function() {
+            setTimeout(removeWebixDatePickerCSS, 100);
+        });
+
+        // 使用 MutationObserver 持續監控並隱藏不需要的元素
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === 1) {
+                            // 隱藏新添加的清除按鈕和時間圖標
+                            if (node.classList && node.classList.contains('webix_cal_icon_clear')) {
+                                node.style.display = 'none !important';
+                            }
+                            if (node.classList && node.classList.contains('webix_cal_time_icons')) {
+                                node.style.display = 'none !important';
+                            }
+                            
+                            // 檢查子元素
+                            var clearIcons = node.querySelectorAll ? node.querySelectorAll('.webix_cal_icon_clear') : [];
+                            clearIcons.forEach(function(icon) {
+                                icon.style.display = 'none !important';
+                            });
+                            
+                            var timeIcons = node.querySelectorAll ? node.querySelectorAll('.webix_cal_time_icons') : [];
+                            timeIcons.forEach(function(icon) {
+                                icon.style.display = 'none !important';
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+        // 監控整個 document
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+</script>
 <% end %>
 

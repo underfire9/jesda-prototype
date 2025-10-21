@@ -5,7 +5,7 @@
         <div class="manuscript-container">
             <aide class="aide-filter">
                 <div class="aide-hd">
-                    <a href="#" class="btn btn-outline-dark btn-plus"><span></span>建立稿件</a>
+                    <a href="manuscript-add.html" class="btn btn-outline-dark btn-plus"><span></span>建立稿件</a>
                 </div>
                 <div class="aide-bd">
                     <div class="form-group">
@@ -20,160 +20,172 @@
                     </div>
                 </div>
                 <div class="aide-ft">
-                    <ul class="menu-item aide-filter-list">
-                        <!-- 當前條件 a 要給 active -->
-                        <li><a href="#" class="active">全部稿件</a></li>
-                        <li><a href="#">編輯中</a></li>
-                        <li><a href="#">待審查</a></li>
-                        <li><a href="#">審查中</a></li>
-                        <li><a href="#">草稿</a></li>
+                    <ul class="nav nav-tabs aide-filter-list" id="manuscriptTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">全部稿件</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="editing-tab" data-bs-toggle="tab" data-bs-target="#editing-tab-pane" type="button" role="tab" aria-controls="editing-tab-pane" aria-selected="false">編輯中</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending-tab-pane" type="button" role="tab" aria-controls="pending-tab-pane" aria-selected="false">待審查</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="reviewing-tab" data-bs-toggle="tab" data-bs-target="#reviewing-tab-pane" type="button" role="tab" aria-controls="reviewing-tab-pane" aria-selected="false">審查中</button>
+                        </li>
                     </ul>
                 </div>
             </aide>
             <div class="manuscript-list-wrapper">
-                <div class="list-day-group">
-                    <h2 class="group-date">2025. 09-30</h2>
-                    <div class="list-inner">
+                <div class="tab-content" id="manuscriptTabContent">
+                    <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
+                        <div class="list-day-group">
+                            <h2 class="group-date">2025. 09-30</h2>
+                            <div class="list-inner">
 
-                        <div class="manuscript-card">
-                            <div class="card-inner">
-                                <div class="card-hd">
-                                    <span class="status-wrap">
-                                        <span class="item-status status-stage">草稿</span>
-                                    </span>
-                                    <span class="item-delete"><a href="#" class="btn btn-delete" title="刪除"></a></span>
-                                </div>
-                                <div class="card-bd">
-                                    <a href="#" class="card-link">
-                                        <h4 class="card-title">鏟子超人注意了 疾管署提供花蓮光復鄉公費疫苗接種</h4>
-                                        <div class="info-detail">
-                                            <span class="item-detail detail-user">陳曉明</span>
-                                            <span class="item-detail detail-date">2025-09-30 12:00</span>
+                                <div class="manuscript-card">
+                                    <div class="card-inner">
+                                        <div class="card-hd">
+                                            <span class="status-wrap">
+                                                <span class="item-status status-stage">草稿</span>
+                                            </span>
+                                            <span class="item-delete"><a href="#" class="btn btn-delete" title="刪除"></a></span>
                                         </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="manuscript-card">
-                            <div class="card-inner">
-                                <div class="card-hd">
-                                    <span class="status-wrap">
-                                        <span class="item-status status-stage">初審</span>
-                                        <span class="item-status status-move">審查中</span>
-                                        <span class="item-status status-website undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳官網"></span>
-                                        <span class="item-status status-ftp undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳FTP"></span>
-                                    </span>
-                                    <span class="item-delete"><a href="#" class="btn btn-delete" title="刪除"></a></span>
-                                </div>
-                                <div class="card-bd">
-                                    <a href="#" class="card-link">
-                                        <h4 class="card-title">中市太平國小推動「FIT體位計畫」宣導健康體位觀念</h4>
-                                        <div class="info-detail">
-                                            <span class="item-detail detail-user">陳曉明</span>
-                                            <span class="item-detail detail-date">2025-09-30 12:00</span>
+                                        <div class="card-bd">
+                                            <a href="manuscript-add.html" class="card-link">
+                                                <h4 class="card-title">鏟子超人注意了 疾管署提供花蓮光復鄉公費疫苗接種</h4>
+                                                <div class="info-detail">
+                                                    <span class="item-detail detail-user">陳曉明</span>
+                                                    <span class="item-detail detail-date">2025-09-30 12:00</span>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <% (1..2).map do |i| %>
-                        <div class="manuscript-card">
-                            <div class="card-inner">
-                                <div class="card-hd">
-                                    <span class="status-wrap">
-                                        <span class="item-status status-stage">初審</span>
-                                        <span class="item-status status-move">待審查</span>
-                                        <span class="item-status status-ftp undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳FTP"></span>
-                                    </span>
-                                </div>
-                                <div class="card-bd">
-                                    <a href="#" class="card-link">
-                                        <h4 class="card-title"><%= lorem_sentence %></h4>
-                                        <div class="info-detail">
-                                            <span class="item-detail detail-user"><%= zh_lorem_name %></span>
-                                            <span class="item-detail detail-date">2025-09-30 12:00</span>
+                                <div class="manuscript-card">
+                                    <div class="card-inner">
+                                        <div class="card-hd">
+                                            <span class="status-wrap">
+                                                <span class="item-status status-stage">初審</span>
+                                                <span class="item-status status-move">審查中</span>
+                                                <span class="item-status status-website undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳官網"></span>
+                                                <span class="item-status status-ftp undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳FTP"></span>
+                                            </span>
+                                            <span class="item-delete"><a href="#" class="btn btn-delete" title="刪除"></a></span>
                                         </div>
-                                    </a>
-                                    <a href="#" class="btn btn-review" title="審查"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <% end %>
-                        
-                        <% (1..4).map do |i| %>
-                        <div class="manuscript-card">
-                            <div class="card-inner">
-                                <div class="card-hd">
-                                    <span class="status-wrap">
-                                        <span class="item-status status-stage">初審</span>
-                                        <span class="item-status status-move">通過</span>
-                                        <span class="item-status status-website" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="已上傳官網"></span>
-                                        <span class="item-status status-ftp" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="已上傳FTP"></span>
-                                    </span>
-                                </div>
-                                <div class="card-bd">
-                                    <a href="#" class="card-link">
-                                        <h4 class="card-title"><%= lorem_sentence %></h4>
-                                        <div class="info-detail">
-                                            <span class="item-detail detail-user"><%= zh_lorem_name %></span>
-                                            <span class="item-detail detail-date">2025-09-30 12:00</span>
+                                        <div class="card-bd">
+                                            <a href="manuscript-view.html" class="card-link">
+                                                <h4 class="card-title">中市太平國小推動「FIT體位計畫」宣導健康體位觀念</h4>
+                                                <div class="info-detail">
+                                                    <span class="item-detail detail-user">陳曉明</span>
+                                                    <span class="item-detail detail-date">2025-09-30 12:00</span>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <% end %>
+                                
+                                <% (1..2).map do |i| %>
+                                <div class="manuscript-card">
+                                    <div class="card-inner">
+                                        <div class="card-hd">
+                                            <span class="status-wrap">
+                                                <span class="item-status status-stage">初審</span>
+                                                <span class="item-status status-move">待審查</span>
+                                                <span class="item-status status-ftp undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳FTP"></span>
+                                            </span>
+                                        </div>
+                                        <div class="card-bd">
+                                            <a href="manuscript-view.html" class="card-link">
+                                                <h4 class="card-title"><%= lorem_sentence %></h4>
+                                                <div class="info-detail">
+                                                    <span class="item-detail detail-user"><%= zh_lorem_name %></span>
+                                                    <span class="item-detail detail-date">2025-09-30 12:00</span>
+                                                </div>
+                                            </a>
+                                            <a href="manuscript-review.html" class="btn btn-review" title="審查"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% end %>
+                                
+                                <% (1..4).map do |i| %>
+                                <div class="manuscript-card">
+                                    <div class="card-inner">
+                                        <div class="card-hd">
+                                            <span class="status-wrap">
+                                                <span class="item-status status-stage">初審</span>
+                                                <span class="item-status status-move">通過</span>
+                                                <span class="item-status status-website" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="已上傳官網"></span>
+                                                <span class="item-status status-ftp" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="已上傳FTP"></span>
+                                            </span>
+                                        </div>
+                                        <div class="card-bd">
+                                            <a href="manuscript-view.html" class="card-link">
+                                                <h4 class="card-title"><%= lorem_sentence %></h4>
+                                                <div class="info-detail">
+                                                    <span class="item-detail detail-user"><%= zh_lorem_name %></span>
+                                                    <span class="item-detail detail-date">2025-09-30 12:00</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% end %>
 
+                            </div>
+                        </div>
+                        <div class="list-day-group">
+                            <h2 class="group-date">2025. 10-01</h2>
+                            <div class="list-inner">
+
+                                <div class="manuscript-card">
+                                    <div class="card-inner">
+                                        <div class="card-hd">
+                                            <span class="status-wrap">
+                                                <span class="item-status status-stage">草稿</span>
+                                            </span>
+                                            <span class="item-delete"><a href="#" class="btn btn-delete" title="刪除"></a></span>
+                                        </div>
+                                        <div class="card-bd">
+                                            <a href="manuscript-view.html" class="card-link">
+                                                <h4 class="card-title">鏟子超人注意了 疾管署提供花蓮光復鄉公費疫苗接種</h4>
+                                                <div class="info-detail">
+                                                    <span class="item-detail detail-user">陳曉明</span>
+                                                    <span class="item-detail detail-date">2025-09-30 12:00</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="manuscript-card">
+                                    <div class="card-inner">
+                                        <div class="card-hd">
+                                            <span class="status-wrap">
+                                                <span class="item-status status-stage">初審</span>
+                                                <span class="item-status status-move">審查中</span>
+                                                <span class="item-status status-website undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳官網"></span>
+                                                <span class="item-status status-ftp undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳FTP"></span>
+                                            </span>
+                                            <span class="item-delete"><a href="#" class="btn btn-delete" title="刪除"></a></span>
+                                        </div>
+                                        <div class="card-bd">
+                                            <a href="manuscript-view.html" class="card-link">
+                                                <h4 class="card-title">中市太平國小推動「FIT體位計畫」宣導健康體位觀念</h4>
+                                                <div class="info-detail">
+                                                    <span class="item-detail detail-user">陳曉明</span>
+                                                    <span class="item-detail detail-date">2025-09-30 12:00</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="list-day-group">
-                    <h2 class="group-date">2025. 10-01</h2>
-                    <div class="list-inner">
-
-                        <div class="manuscript-card">
-                            <div class="card-inner">
-                                <div class="card-hd">
-                                    <span class="status-wrap">
-                                        <span class="item-status status-stage">草稿</span>
-                                    </span>
-                                    <span class="item-delete"><a href="#" class="btn btn-delete" title="刪除"></a></span>
-                                </div>
-                                <div class="card-bd">
-                                    <a href="#" class="card-link">
-                                        <h4 class="card-title">鏟子超人注意了 疾管署提供花蓮光復鄉公費疫苗接種</h4>
-                                        <div class="info-detail">
-                                            <span class="item-detail detail-user">陳曉明</span>
-                                            <span class="item-detail detail-date">2025-09-30 12:00</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="manuscript-card">
-                            <div class="card-inner">
-                                <div class="card-hd">
-                                    <span class="status-wrap">
-                                        <span class="item-status status-stage">初審</span>
-                                        <span class="item-status status-move">審查中</span>
-                                        <span class="item-status status-website undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳官網"></span>
-                                        <span class="item-status status-ftp undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳FTP"></span>
-                                    </span>
-                                    <span class="item-delete"><a href="#" class="btn btn-delete" title="刪除"></a></span>
-                                </div>
-                                <div class="card-bd">
-                                    <a href="#" class="card-link">
-                                        <h4 class="card-title">中市太平國小推動「FIT體位計畫」宣導健康體位觀念</h4>
-                                        <div class="info-detail">
-                                            <span class="item-detail detail-user">陳曉明</span>
-                                            <span class="item-detail detail-date">2025-09-30 12:00</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="tab-pane fade" id="editing-tab-pane" role="tabpanel" aria-labelledby="editing-tab" tabindex="0">editing</div>
+                    <div class="tab-pane fade" id="pending-tab-pane" role="tabpanel" aria-labelledby="pending-tab" tabindex="0">pending</div>
+                    <div class="tab-pane fade" id="reviewing-tab-pane" role="tabpanel" aria-labelledby="reviewing-tab" tabindex="0">reviewing</div>
                 </div>
             </div>
         </div>

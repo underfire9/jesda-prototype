@@ -1,0 +1,839 @@
+<!-- template: 新聞稿件 - 新增 -->
+<div class="page-content">
+    <div class="container-lg">
+
+        <div class="manuscript-content-container new-manuscript-container">
+
+            <aide class="manuscript-aide-content">
+                <div class="page-title">
+                    <h3>建立稿件</h3>
+                </div>
+                <button type="button" class="btn btn-outline-dark px-5">Word 匯入</button>
+            </aide>
+
+            <div class="manuscript-content">
+                <form action="manuscript-view.html" method="post">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label class="form-label" for="manuscript_title">標題 <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="manuscript_title" placeholder="稿件標題">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-2">
+                            <div class="form-group">
+                                <label class="form-label" for="manuscript_reporter">記者</label>
+                                <select class="form-select" id="manuscript_reporter" disabled>
+                                    <option>請選擇</option>
+                                    <option value="1" selected>陳曉明</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="manuscriptDate">新聞日期 <span class="required">*</span></label>
+                                <div id="manuscriptDate"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">稿件類型 <span class="required">*</span></label>
+                                <div class="pt-2">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="manuscriptTypeOptions" id="manuscriptTypeDry" value="option1" />
+                                        <label class="form-check-label" for="manuscriptTypeDry">乾稿 (無音檔)</label>
+                                    </div>
+
+                                    <!-- 勾選話帶下方的音檔上傳會出現必填星號，調整 id 時務必修改 js -->
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="manuscriptTypeOptions" id="manuscriptTypeTape" value="option2" />
+                                        <label class="form-check-label" for="manuscriptTypeTape">話帶 (有音檔)</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="manuscriptTypeOptions" id="manuscriptTypeAnchor" value="option3" />
+                                        <label class="form-check-label" for="manuscriptTypeAnchor">主播乾稿</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                            <!-- 勾選否，下方來源、分類、發布時間的星號會拿掉，調整 id 時務必修改 js -->
+                            <div class="form-group">
+                                <label class="form-label">是否上傳官網 <span class="required">*</span></label>
+                                <div class="pt-2">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="uploadOfficial" id="uploadOfficialYes" value="option1" checked />
+                                        <label class="form-check-label" for="uploadOfficialYes">是</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="uploadOfficial" id="uploadOfficialNo" value="option2" />
+                                        <label class="form-check-label" for="uploadOfficialNo">否</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">審查設定 <span class="required">*</span></label>
+                                <div class="pt-2">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio6" value="option1" />
+                                        <label class="form-check-label" for="inlineRadio6">無需審查</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio7" value="option2" checked />
+                                        <label class="form-check-label" for="inlineRadio7">需審查</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="hr-content" />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label" for="manuscript_resource">來源 <span class="required">*</span></label>
+                                <select class="form-select" id="manuscript_resource">
+                                    <option>請選擇</option>
+                                    <option value="1" selected>我自己</option>
+                                    <option value="2">網路抄來的</option>
+                                    <option value="3">其他</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label" for="manuscript_category">分類 <span class="required">*</span></label>
+                                <select class="form-select" id="manuscript_category">
+                                    <option selected>請選擇</option>
+                                    <option value="1">A</option>
+                                    <option value="2">B</option>
+                                    <option value="3">C</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label" for="manuscript_tags">新聞標籤</label>
+                                <select class="form-select" id="manuscript_tags" data-placeholder="選擇標籤" multiple>
+                                    <optgroup label="2025 川普關稅政策">
+                                        <option>2025 南喬治亞島和南桑威奇群島</option>
+                                        <option>南蘇丹</option>
+                                        <option>牙買加</option>
+                                        <option>肯尼亞</option>
+                                        <option>法屬圭亞那</option>
+                                        <option>馬約特</option>
+                                    </optgroup>
+                                    <optgroup label="花蓮馬太鞍溪堰塞湖">
+                                        <option>列支敦士登</option>
+                                        <option>丹麥</option>
+                                        <option>厄利垂亞</option>
+                                        <option>直布羅陀</option>
+                                        <option>聖赫勒拿、亞森松和特里斯坦-達庫尼亞</option>
+                                        <option>海地</option>
+                                        <option>納米比亞</option>
+                                    </optgroup>
+                                    <optgroup label="教育改革">
+                                        <option>南喬治亞島和南桑威奇群島</option>
+                                        <option>越南</option>
+                                        <option>也門</option>
+                                        <option>菲律賓</option>
+                                        <option>貝南</option>
+                                        <option>捷克共和國</option>
+                                        <option>俄羅斯</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label" for="manuscript_Release">官網發佈時間 <span class="required">*</span></label>
+                                <div id="manuscript_Release"></div>
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="checkReviewRelease" />
+                                    <label class="form-check-label fw-light" for="checkReviewRelease">
+                                        以最後審查通過時間為發佈時間
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="hr-content" />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label" for="manuscript_intro">導言 <span class="required">*</span></label>
+                                <textarea class="form-control" id="manuscript_intro" rows="4"></textarea>
+                                <div class="form-text">常用標點符號 : 《》「」〈〉，。</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label" for="manuscript_content">內文 <span class="required">*</span></label>
+                                <textarea class="form-control" id="manuscript_content" rows="12"></textarea>
+                                <div class="form-text">常用標點符號 : 《》「」〈〉，。</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="hr-content" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-group-mp3">
+                                <label for="mp3File" class="form-label">音檔上傳 <small class="text-secondary">mp3 only</small> <span class="required d-none">*</span></label>
+                                <div class="input-group">
+                                    <input class="form-control" type="file" id="mp3File" aria-describedby="button-mp3-delete"/>
+                                    <button class="btn btn-delete d-none" type="button" id="button-mp3-delete" title="清除檔案"></button>
+                                </div>
+                                <audio id="manuscriptAudio" controls class="manuscript-audio d-none">
+                                    <source id="audioSource" src="" type="audio/mpeg">
+                                    您使用的瀏覽器不支援音檔撥放
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="manuscript_video">Youtube 影片</label>
+                                <input type="text" class="form-control" id="manuscript_video" placeholder="影片連結">
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="hr-content" />
+
+                    <!-- 圖片輸出解析度必須符合官網 1200x800 -->
+                    <div>
+                        <label class="form-label" for="manuscript_image">圖片上傳</label>
+                        <div class="row photo-upload-row">
+                            <div class="col-md-6 upload-item">
+                                <div class="form-group">
+                                    <div class="upload-cropper-wrapper">
+                                        <div class="image-preview-box" id="image-preview-box">
+                                            <span class="placeholder">圖片預覽區 (3:2)</span>
+                                            <img id="image-preview" src="" alt="圖片說明">
+                                            <button id="delete-btn" class="btn btn-danger btn-delete" title="刪除圖片"></button>
+                                            <div class="cover-check" title="設為封面">
+                                                <input class="form-check-input" type="radio" name="radioCover" id="radioCover1">
+                                            </div>
+                                        </div>
+                                        <div class="button-group">
+                                            <label for="image-input" class="btn btn-select-image" title="選擇圖片"><span>選擇圖片</span></label>
+                                            <input type="file" id="image-input" accept="image/*" class="d-none">
+                                            <a href="../assets/fake/cut-01.jpg" target="_blank" title="下載" class="btn btn-download"></a>
+                                            <input type="text" class="form-control" id="imageDesc" placeholder="請輸入圖片說明">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <div class="action-start">
+                            <a href="manuscript.html" class="btn btn-lg btn-back px-3" title="回列表"></a>
+                        </div>
+                        
+                        <button type="button" class="btn btn-lg btn-dark">暫存草稿</button>
+                        <button type="submit" class="btn btn-lg btn-main">送出</button>
+                        <div class="action-end">
+                            <button type="button" class="btn btn-lg btn-white btn-word-download" title="轉存 Word"></button>
+                        </div>
+                        <div class="latest-update">最後更新時間：2025-12-12 12:00:00</div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Cropper Modal --> 
+<div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cropModalLabel">裁切圖片</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container-modal">
+                    <img id="image-to-crop" src="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-outline-main" id="crop-and-upload-btn">裁切並上傳</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+
+<!-- Mp3 Required -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 監聽稿件類型選項變化
+    var manuscriptTypeTape = document.getElementById('manuscriptTypeTape');
+    var mp3FormGroup = document.querySelector('.form-group-mp3');
+    var requiredStar = mp3FormGroup ? mp3FormGroup.querySelector('.required') : null;
+    
+    // 監聽所有稿件類型的變化
+    var manuscriptTypeRadios = document.querySelectorAll('input[name="manuscriptTypeOptions"]');
+    manuscriptTypeRadios.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            if (requiredStar) {
+                if (manuscriptTypeTape && manuscriptTypeTape.checked) {
+                    // 話帶被勾選時，顯示必填星號
+                    requiredStar.classList.remove('d-none');
+                } else {
+                    // 其他選項被勾選時，隱藏必填星號
+                    requiredStar.classList.add('d-none');
+                }
+            }
+        });
+    });
+
+    // 監聽是否上傳官網選項變化
+    var uploadOfficialYes = document.getElementById('uploadOfficialYes');
+    var uploadOfficialNo = document.getElementById('uploadOfficialNo');
+    
+    // 取得需要控制必填星號的欄位
+    var resourceLabel = document.querySelector('label[for="manuscript_resource"]');
+    var categoryLabel = document.querySelector('label[for="manuscript_category"]');
+    var releaseLabel = document.querySelector('label[for="manuscript_Release"]');
+    
+    var resourceRequired = resourceLabel ? resourceLabel.querySelector('.required') : null;
+    var categoryRequired = categoryLabel ? categoryLabel.querySelector('.required') : null;
+    var releaseRequired = releaseLabel ? releaseLabel.querySelector('.required') : null;
+    
+    // 監聽上傳官網選項的變化
+    var uploadOfficialRadios = document.querySelectorAll('input[name="uploadOfficial"]');
+    uploadOfficialRadios.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            if (uploadOfficialNo && uploadOfficialNo.checked) {
+                // 選擇「否」時，隱藏必填星號
+                if (resourceRequired) resourceRequired.classList.add('d-none');
+                if (categoryRequired) categoryRequired.classList.add('d-none');
+                if (releaseRequired) releaseRequired.classList.add('d-none');
+            } else {
+                // 選擇「是」時，顯示必填星號
+                if (resourceRequired) resourceRequired.classList.remove('d-none');
+                if (categoryRequired) categoryRequired.classList.remove('d-none');
+                if (releaseRequired) releaseRequired.classList.remove('d-none');
+            }
+        });
+    });
+});
+</script>
+
+<!-- Mp3 Upload -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('manuscriptAudio');
+    const fileInput = document.getElementById('mp3File');
+    const audioSource = document.getElementById('audioSource');
+    const deleteBtn = document.getElementById('button-mp3-delete');
+
+    // 監聽檔案選擇
+    fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            // 檢查檔案是否為MP3格式
+            if (file.type === 'audio/mpeg' || file.type === 'audio/mp3' || file.name.toLowerCase().endsWith('.mp3')) {
+                const objectURL = URL.createObjectURL(file);
+                audioSource.src = objectURL;
+                audio.load();
+                
+                // 顯示音檔播放器和刪除按鈕
+                audio.classList.remove('d-none');
+                deleteBtn.classList.remove('d-none');
+                
+                // 不自動播放，只是載入
+                console.log('MP3 檔案已載入');
+            } else {
+                // 如果不是MP3檔案，顯示錯誤訊息並清除選擇
+                alert('請選擇MP3格式的音檔');
+                fileInput.value = '';
+            }
+        }
+    });
+
+    // 監聽刪除按鈕
+    deleteBtn.addEventListener('click', function() {
+        // 清除檔案選擇
+        fileInput.value = '';
+        
+        // 清除音源
+        audioSource.src = '';
+        audio.load();
+        
+        // 隱藏音檔播放器和刪除按鈕
+        audio.classList.add('d-none');
+        deleteBtn.classList.add('d-none');
+        
+        console.log('MP3 檔案已清除');
+    });
+});
+</script>
+
+<!-- Webix Calendar -->
+<script src="../javascripts/webix.min.js"></script>
+<script>
+    // 設定繁體中文
+    webix.i18n.calendar = {
+        monthFull: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+        monthShort: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+        dayFull: ["日","一","二","三","四","五","六"],
+        dayShort: ["日","一","二","三","四","五","六"],
+        today: "今天",
+        clear: "",
+        done: "確定"
+    };
+
+    webix.ready(function () {
+        // 初始化新聞日期時間選擇器
+        var manuscriptDatePicker = webix.ui({
+            container: "manuscriptDate",
+            view: "datepicker",
+            css: "webix_view_sm",
+            value: new Date(),
+            format: "%Y-%m-%d %H:%i",
+            timepicker: true,
+            suggest: {
+                type: "calendar",
+                body: {
+                    view: "calendar",
+                    css: "webix_view_sm",
+                    weekHeader: true,
+                    events: webix.Date.isHoliday,
+                    icons: true,
+                    buttons: ["today"],
+                    timepicker: true
+                }
+            }
+        });
+
+        // 初始化官網發佈時間選擇器
+        var manuscriptReleasePicker = webix.ui({
+            container: "manuscript_Release",
+            view: "datepicker",
+            css: "webix_view_sm",
+            format: "%Y-%m-%d %H:%i",
+            timepicker: true,
+            suggest: {
+                type: "calendar",
+                body: {
+                    view: "calendar",
+                    css: "webix_view_sm",
+                    weekHeader: true,
+                    events: webix.Date.isHoliday,
+                    icons: true,
+                    buttons: ["today"],
+                    timepicker: true
+                }
+            }
+        });
+
+        // 隱藏清除按鈕和添加 form-control 類別
+        function hideWebixClearButton() {
+            // 隱藏清除按鈕
+            var clearIcons = document.querySelectorAll('.webix_cal_icon_clear');
+            clearIcons.forEach(function(icon) {
+                icon.style.display = 'none !important';
+            });
+
+            // 為 input 添加 form-control 類別
+            var dateInput = document.querySelector('#manuscriptDate input');
+            var releaseInput = document.querySelector('#manuscript_Release input');
+            
+            if (dateInput) {
+                dateInput.classList.add('form-control');
+            }
+            
+            if (releaseInput) {
+                releaseInput.classList.add('form-control');
+            }
+        }
+
+        // 初始化後隱藏清除按鈕
+        setTimeout(hideWebixClearButton, 100);
+        
+        // 監聽事件，持續隱藏清除按鈕
+        manuscriptDatePicker.attachEvent("onShow", hideWebixClearButton);
+        manuscriptDatePicker.attachEvent("onAfterRender", hideWebixClearButton);
+        manuscriptReleasePicker.attachEvent("onShow", hideWebixClearButton);
+        manuscriptReleasePicker.attachEvent("onAfterRender", hideWebixClearButton);
+
+        // 監聽審查通過時間複選框
+        var checkReviewRelease = document.getElementById('checkReviewRelease');
+        if (checkReviewRelease) {
+            checkReviewRelease.addEventListener('change', function() {
+                if (this.checked) {
+                    // 勾選時禁用 manuscriptRelease DateTimePicker
+                    manuscriptReleasePicker.disable();
+                } else {
+                    // 取消勾選時啟用 manuscriptRelease DateTimePicker
+                    manuscriptReleasePicker.enable();
+                }
+            });
+        }
+
+        // 監聽視窗大小變化
+        window.addEventListener('resize', function() {
+            setTimeout(hideWebixClearButton, 100);
+        });
+
+        // 使用 MutationObserver 持續監控並隱藏清除按鈕
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === 1) {
+                            // 隱藏新添加的清除按鈕
+                            if (node.classList && node.classList.contains('webix_cal_icon_clear')) {
+                                node.style.display = 'none !important';
+                            }
+                            
+                            // 檢查子元素中的清除按鈕
+                            var clearIcons = node.querySelectorAll ? node.querySelectorAll('.webix_cal_icon_clear') : [];
+                            clearIcons.forEach(function(icon) {
+                                icon.style.display = 'none !important';
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+        // 監控整個 document
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+</script>
+
+<!-- Select2 -->
+<script src="../javascripts/select2.min.js"></script>
+<script>
+    $( '#manuscript_tags' ).select2( {
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+        closeOnSelect: false,
+    } );
+</script>
+
+<!-- Cropper -->
+<script src="../javascripts/cropper.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // DOM 元素
+    const imageInput = document.getElementById('image-input');
+    const imagePreviewBox = document.getElementById('image-preview-box');
+    const imagePreview = document.getElementById('image-preview');
+    const deleteBtn = document.getElementById('delete-btn');
+    const cropModalElement = document.getElementById('cropModal');
+    const imageToCrop = document.getElementById('image-to-crop');
+    const cropAndUploadBtn = document.getElementById('crop-and-upload-btn');
+
+    // 初始化 Bootstrap Modal
+    const cropModal = new bootstrap.Modal(cropModalElement);
+    
+    let cropper; // Cropper 實例
+    let originalFileName = ''; // 保存原始檔名
+
+    // 監聽文件選擇
+    imageInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        
+        // 記錄當前滾動位置
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        originalFileName = file.name; // 保存原始檔名
+
+        // 設定當前處理的元素（原始的第一個項目）
+        currentImagePreview = imagePreview;
+        currentImagePreviewBox = imagePreviewBox;
+        currentDeleteBtn = deleteBtn;
+        currentImageInput = imageInput;
+
+        // 使用 FileReader 讀取圖片
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            imageToCrop.src = event.target.result;
+            
+            // 顯示 Modal 前保存滾動位置
+            cropModal.show();
+            
+            // 確保 modal 顯示後滾動位置不變
+            setTimeout(() => {
+                window.scrollTo(0, scrollPosition);
+            }, 50);
+        };
+        reader.readAsDataURL(file);
+    });
+    
+    // Modal 顯示時，初始化 Cropper
+    cropModalElement.addEventListener('shown.bs.modal', () => {
+        if (cropper) {
+            cropper.destroy(); // 如果已有實例，先銷毀
+        }
+        cropper = new Cropper(imageToCrop, {
+            aspectRatio: 3 / 2, // 設定裁切框的長寬比
+            viewMode: 1,      // 限制裁切框不能超出圖片範圍
+            background: false,
+            autoCropArea: 0.8,
+        });
+    });
+
+    // Modal 隱藏時，銷毀 Cropper 並清空 input
+    cropModalElement.addEventListener('hidden.bs.modal', () => {
+        if (cropper) {
+            cropper.destroy();
+            cropper = null;
+        }
+        // 清空 file input，這樣才能重新選擇同一張圖片
+        imageInput.value = '';
+        
+        // 防止 modal 關閉後頁面跳到頂部
+        setTimeout(() => {
+            document.body.style.paddingRight = '';
+            document.body.classList.remove('modal-open');
+        }, 100);
+    });
+
+    // 點擊 "裁切並上傳" 按鈕
+    cropAndUploadBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止預設行為
+        e.stopPropagation(); // 阻止事件冒泡
+        
+        if (!cropper) {
+            return;
+        }
+        
+        // 記錄當前滾動位置
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // 獲取裁切後的 Canvas
+        const canvas = cropper.getCroppedCanvas({
+            width: 1000, // 您可以指定輸出圖片的寬度
+            // height 會根據 aspectRatio 自動計算
+            fillColor: '#fff',
+            imageSmoothingEnabled: true,
+            imageSmoothingQuality: 'high',
+        });
+
+        // 將 Canvas 轉換為 Blob 物件 (類似於檔案)
+        canvas.toBlob((blob) => {
+            // 產生一個暫時的 URL 以供預覽
+            const croppedImageUrl = URL.createObjectURL(blob);
+            currentImagePreview.src = croppedImageUrl;
+            
+            // 更新 UI
+            currentImagePreviewBox.classList.add('has-image');
+            currentDeleteBtn.style.display = 'inline-block';
+            
+            // *** 模擬上傳到後端 ***
+            // 這是您需要與後端 API 對接的地方
+            const formData = new FormData();
+            
+            // 將 blob 附加到 formData，第三個參數是檔名
+            formData.append('uploaded_image', blob, `cropped-${originalFileName}`);
+            
+            console.log('準備上傳的 FormData:', formData);
+            // 您可以在這裡使用 fetch 或 axios 將 formData 送出
+            // fetch('/your-upload-api-endpoint', {
+            //     method: 'POST',
+            //     body: formData,
+            // })
+            // .then(response => response.json())
+            // .then(data => console.log('上傳成功:', data))
+            // .catch(error => console.error('上傳失敗:', error));
+            
+            // ------------------------
+            
+            // 每次裁切上傳後都自動生成新的空白項目
+            ensureEmptyUploadItem();
+
+        }, 'image/jpeg', 0.9); // 指定輸出格式和品質
+
+        cropModal.hide(); // 關閉 Modal
+        
+        // 在 modal 關閉後恢復滾動位置
+        setTimeout(() => {
+            window.scrollTo(0, scrollPosition);
+        }, 100);
+    });
+    
+    // 點擊 "刪除圖片" 按鈕
+    deleteBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止預設行為
+        e.stopPropagation(); // 阻止事件冒泡
+        
+        // 記錄當前滾動位置
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // 檢查是否有其他項目
+        const photoUploadRow = document.querySelector('.photo-upload-row');
+        const uploadItems = photoUploadRow.querySelectorAll('.upload-item');
+        
+        if (uploadItems.length > 1) {
+            // 如果有多個項目，移除第一個項目
+            const firstUploadItem = imagePreview.closest('.upload-item');
+            if (firstUploadItem) {
+                firstUploadItem.remove();
+            }
+        } else {
+            // 如果只有一個項目，清空內容但保留結構
+            imagePreview.src = '';
+            imagePreviewBox.classList.remove('has-image');
+            imageInput.value = '';
+            deleteBtn.style.display = 'none';
+        }
+        
+        // 確保始終有一個空的上傳項目
+        ensureEmptyUploadItem();
+        
+        console.log('圖片已刪除');
+        
+        // 確保滾動位置保持不變
+        setTimeout(() => {
+            window.scrollTo(0, scrollPosition);
+        }, 50);
+    });
+
+    // 確保始終有一個空的上傳項目的函數
+    function ensureEmptyUploadItem() {
+        const photoUploadRow = document.querySelector('.photo-upload-row');
+        if (!photoUploadRow) return;
+        
+        // 檢查是否已有空的上傳項目
+        const uploadItems = photoUploadRow.querySelectorAll('.upload-item');
+        let hasEmptyItem = false;
+        
+        uploadItems.forEach(item => {
+            const imagePreviewBox = item.querySelector('.image-preview-box');
+            if (imagePreviewBox && !imagePreviewBox.classList.contains('has-image')) {
+                hasEmptyItem = true;
+            }
+        });
+        
+        // 如果沒有空的項目，新增一個
+        if (!hasEmptyItem) {
+            addNewUploadItem();
+        }
+    }
+
+    // 新增上傳項目的函數
+    function addNewUploadItem() {
+        const photoUploadRow = document.querySelector('.photo-upload-row');
+        if (!photoUploadRow) return;
+        
+        // 產生唯一的 ID
+        const timestamp = Date.now();
+        const newItemId = `upload-item-${timestamp}`;
+        
+        // 建立新的上傳項目 HTML
+        const newUploadItem = document.createElement('div');
+        newUploadItem.className = 'col-md-6 upload-item';
+        newUploadItem.innerHTML = `
+            <div class="form-group">
+                <div class="upload-cropper-wrapper">
+                    <div class="image-preview-box" id="image-preview-box-${timestamp}">
+                        <span class="placeholder">圖片預覽區 (3:2)</span>
+                        <img id="image-preview-${timestamp}" src="" alt="圖片說明">
+                        <button id="delete-btn-${timestamp}" class="btn btn-danger btn-delete" title="刪除圖片"></button>
+                        <div class="cover-check" title="設為封面">
+                            <input class="form-check-input" type="radio" name="radioCover" id="radioCover${timestamp}">
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <label for="image-input-${timestamp}" class="btn btn-select-image" title="選擇圖片"><span>選擇圖片</span></label>
+                        <input type="file" id="image-input-${timestamp}" accept="image/*" class="d-none">
+                        <a href="../assets/fake/cut-01.jpg" target="_blank" title="下載" class="btn btn-download"></a>
+                        <input type="text" class="form-control" id="imageDesc-${timestamp}" placeholder="請輸入圖片說明">
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // 將新項目添加到 photo-upload-row
+        photoUploadRow.appendChild(newUploadItem);
+        
+        // 為新項目綁定事件
+        bindUploadItemEvents(timestamp);
+    }
+
+    // 為新的上傳項目綁定事件的函數
+    function bindUploadItemEvents(timestamp) {
+        const newImageInput = document.getElementById(`image-input-${timestamp}`);
+        const newImagePreviewBox = document.getElementById(`image-preview-box-${timestamp}`);
+        const newImagePreview = document.getElementById(`image-preview-${timestamp}`);
+        const newDeleteBtn = document.getElementById(`delete-btn-${timestamp}`);
+        
+        // 監聽新項目的文件選擇
+        newImageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            // 記錄當前滾動位置
+            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            originalFileName = file.name;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                imageToCrop.src = event.target.result;
+                
+                // 設定當前處理的元素
+                currentImagePreview = newImagePreview;
+                currentImagePreviewBox = newImagePreviewBox;
+                currentDeleteBtn = newDeleteBtn;
+                currentImageInput = newImageInput;
+                
+                cropModal.show();
+                
+                setTimeout(() => {
+                    window.scrollTo(0, scrollPosition);
+                }, 50);
+            };
+            reader.readAsDataURL(file);
+        });
+        
+        // 監聽新項目的刪除按鈕
+        newDeleteBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // 移除整個 upload-item
+            const uploadItem = newDeleteBtn.closest('.upload-item');
+            if (uploadItem) {
+                uploadItem.remove();
+            }
+            
+            // 確保始終有一個空的上傳項目
+            ensureEmptyUploadItem();
+            
+            setTimeout(() => {
+                window.scrollTo(0, scrollPosition);
+            }, 50);
+        });
+    }
+
+    // 用於追蹤當前操作的元素
+    let currentImagePreview = imagePreview;
+    let currentImagePreviewBox = imagePreviewBox;
+    let currentDeleteBtn = deleteBtn;
+    let currentImageInput = imageInput;
+});
+</script>
+<% end %>
+

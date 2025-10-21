@@ -142,60 +142,28 @@
             }
         });
 
-        // 強制移除 DateTimePicker 的 inline CSS
-        function removeWebixDateTimePickerCSS() {
-            // 移除所有 webix_view_sm 元素的 inline CSS
-            var webixSmElements = document.querySelectorAll('.webix_view_sm');
-            webixSmElements.forEach(function(element) {
-                element.removeAttribute('style');
-                // 移除其所有子元素的 inline CSS
-                var childElements = element.querySelectorAll('[style]');
-                childElements.forEach(function(child) {
-                    child.removeAttribute('style');
-                });
-            });
-            
-            // 移除開始時間選擇器的 inline CSS
-            var startTimeElements = document.querySelectorAll('#taskStartTime [style]');
-            startTimeElements.forEach(function(element) {
-                element.removeAttribute('style');
-            });
-            
-            // 移除結束時間選擇器的 inline CSS
-            var endTimeElements = document.querySelectorAll('#taskEndTime [style]');
-            endTimeElements.forEach(function(element) {
-                element.removeAttribute('style');
-            });
-
-            // 移除所有彈出的 suggest popup 的 inline CSS
-            var suggestElements = document.querySelectorAll('.webix_suggest [style]');
-            suggestElements.forEach(function(element) {
-                element.removeAttribute('style');
-            });
-
-            // 為 input 添加 form-control 類別
+        // 為 input 添加 form-control 類別的簡化函數
+        function addFormControlClass() {
             var startInput = document.querySelector('#taskStartTime input');
             var endInput = document.querySelector('#taskEndTime input');
             
             if (startInput) {
                 startInput.classList.add('form-control');
-                startInput.removeAttribute('style');
             }
             
             if (endInput) {
                 endInput.classList.add('form-control');
-                endInput.removeAttribute('style');
             }
         }
 
-        // 初始化後移除 inline CSS
-        setTimeout(removeWebixDateTimePickerCSS, 100);
+        // 初始化後添加 form-control 類別
+        setTimeout(addFormControlClass, 100);
         
-        // 監聽事件，持續清理 inline CSS
-        taskStartTimePicker.attachEvent("onShow", removeWebixDateTimePickerCSS);
-        taskStartTimePicker.attachEvent("onAfterRender", removeWebixDateTimePickerCSS);
-        taskEndTimePicker.attachEvent("onShow", removeWebixDateTimePickerCSS);
-        taskEndTimePicker.attachEvent("onAfterRender", removeWebixDateTimePickerCSS);
+        // 監聽事件，確保 form-control 類別正確添加
+        taskStartTimePicker.attachEvent("onShow", addFormControlClass);
+        taskStartTimePicker.attachEvent("onAfterRender", addFormControlClass);
+        taskEndTimePicker.attachEvent("onShow", addFormControlClass);
+        taskEndTimePicker.attachEvent("onAfterRender", addFormControlClass);
 
         // 檢查是否有日曆容器（如果有的話也初始化）
         if (document.getElementById("webixContainer")) {
@@ -212,7 +180,7 @@
 
         // 監聽視窗大小變化，確保 DateTimePicker 正確顯示
         window.addEventListener('resize', function() {
-            setTimeout(removeWebixDateTimePickerCSS, 100);
+            setTimeout(addFormControlClass, 100);
         });
     });
 </script>

@@ -1,0 +1,103 @@
+<!-- template: 請假申請 - 補件 -->
+
+<div class="container-lg">
+    <div class="leave-container-head">
+        <h2 class="mb-0 fw-light">請假作業</h2>
+    </div>
+    <div class="request-form-wrapper">
+        <div class="notice-wrapper">
+            <p><%= zh_lorem_paragraph %></p>
+        </div>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label class="form-label">請假日期</label>
+                <div class="range-wrap">
+                    <div class="date-inner"><span class="leave-form-output">2025-10-21</span></div>
+                    <div class="text-center">至</div>
+                    <div class="date-inner"><span class="leave-form-output">2025-10-22</span></div>
+                </div>
+                <div class="d-flex gap-3 form-text mt-2">
+                    <span>共計：<strong>1</strong> 天</span>
+                    <span>剩餘免扣款請假天數：<strong>3</strong> 天</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">請假類型</label>
+                <span class="leave-form-output">自定義請假類型</span>
+            </div>
+            <div class="form-group">
+                <label class="form-label">前往國家</label>
+                <span class="leave-form-output">哥斯大黎加共和國</span>
+            </div>
+            <div class="form-group">
+                <label for="leaveReason" class="form-label">請假原因</label>
+                <textarea id="leaveReason" name="leaveReason" class="form-control" rows="3" readonly><%= zh_lorem_paragraph %></textarea>
+            </div>
+            <div class="upload-wrapper fluid-wrapper">
+                <!-- 檔案上傳後多出 .file-pill，當再次上傳時則覆蓋上一筆，點選檔名另開視窗觀看文件 -->
+                <div class="upload-item border-0 p-0">
+                    <div class="mb-3">
+                        <label for="SupportingFile" class="form-label">相關證明文件</label>
+                        <input class="form-control" type="file" id="SupportingFile">
+                        <div class="form-text">檔案格式限制 : pdf、jpg、png、gif，檔案大小限制 : 10MB</div>
+                    </div>
+                    <div class="ft-action">
+                        <span>
+                            <div class="file-pill">
+                                <!-- 避免檔名過長有限制最大寬度 256px，超出時會字元會省略 -->
+                                <a href="#" target="_blank" class="filename"><%= lorem_sentence %>.pdf</a>
+                                <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">目前狀態</label>
+                <h4 class="fw-semibold">補件</h4>
+                <p>審查意見<%= zh_lorem_paragraph %></p>
+            </div>
+
+            <!-- 以下按鈕正常尺寸不要給 btn-lg & 使用這裡的 wording -->
+            <div class="form-action">
+                <span class="backhome">
+                    <a href="#" class="btn btn-link"><i class="fas fa-long-arrow-alt-left"></i> 返回</a>
+                </span>
+                <button type="submit" class="btn btn-primary">送出</button>
+                <span class="action-end">
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#absenceModal">銷假</button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="absenceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="absenceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="absenceModalLabel">因故銷假</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="absencelTextarea1" class="form-label">銷假原因</label>
+                    <textarea class="form-control" id="absenceTextarea1" rows="3"></textarea>
+                </div>
+                <div class="text-end">是否確認進行銷假 ? </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">確認</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<% end %>
+

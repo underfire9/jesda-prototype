@@ -55,6 +55,7 @@
     <script src="../javascripts/frontend-editor/formEditor.js"></script>
     <script src="../javascripts/frontend-editor/webEditor.js"></script>
 	<script src="../javascripts/tooltipster.bundle.js"></script>
+    <script src="../javascripts/jquery.scrollbar.min.js"></script>
     <!--
     <script src="../javascripts/vertical-responsive-menu.js"></script>
     -->
@@ -129,7 +130,6 @@
     </script>
 	
 	<!-- toolbar -->
-    <script src="../javascripts/jquery.scrollbar.min.js"></script>
     <script src="../javascripts/slidebars.js"></script>
     <script>
         $(document).ready( function () {
@@ -298,7 +298,194 @@
             });
         }
     </script>
-    <!--%= livereload_js if ENV["RACK_ENV"] != "production" && defined?(App)%-->
+
+    <!-- Cropper -->
+    <script src="../javascripts/cropper.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // DOM 元素
+        const imageInput = document.getElementById('image-input');
+        const imagePreviewBox = document.getElementById('image-preview-box');
+        const imagePreview = document.getElementById('image-preview');
+        const deleteBtn = document.getElementById('delete-btn');
+        const cropModalElement = document.getElementById('cropModal');
+        const imageToCrop = document.getElementById('image-to-crop');
+        const cropAndUploadBtn = document.getElementById('crop-and-upload-btn');
+
+        // 初始化 Bootstrap Modal
+        const cropModal = new bootstrap.Modal(cropModalElement);
+        
+        let cropper; // Cropper 實例
+        let originalFileName = ''; // 保存原始檔名
+
+        // 監聽文件選擇
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            originalFileName = file.name; // 保存原始檔名
+
+            // 使用 FileReader 讀取圖片
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                imageToCrop.src = event.target.result;
+                cropModal.show(); // 顯示 Modal
+            };
+            reader.readAsDataURL(file);
+        });
+        
+        // Modal 顯示時，初始化 Cropper
+        cropModalElement.addEventListener('shown.bs.modal', () => {
+            if (cropper) {
+                cropper.destroy(); // 如果已有實例，先銷毀
+            }
+            cropper = new Cropper(imageToCrop, {
+                aspectRatio: 16 / 9, // 設定裁切框的長寬比
+                viewMode: 1,      // 限制裁切框不能超出圖片範圍
+                background: false,
+                autoCropArea: 0.8,
+            });
+        });
+
+        // Modal 隱藏時，銷毀 Cropper 並清空 input
+        cropModalElement.addEventListener('hidden.bs.modal', () => {
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            // 清空 file input，這樣才能重新選擇同一張圖片
+            imageInput.value = ''; 
+        });
+
+        // 點擊 "裁切並上傳" 按鈕
+        cropAndUploadBtn.addEventListener('click', () => {
+            if (!cropper) {
+                return;
+            }
+            
+            // 獲取裁切後的 Canvas
+            const canvas = cropper.getCroppedCanvas({
+                width: 1000, // 您可以指定輸出圖片的寬度
+                // height 會根據 aspectRatio 自動計算
+                fillColor: '#fff',
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
+            });
+
+            // 將 Canvas 轉換為 Blob 物件 (類似於檔案)
+            canvas.toBlob((blob) => {
+                // 產生一個暫時的 URL 以供預覽
+                const croppedImageUrl = URL.createObjectURL(blob);
+                imagePreview.src = croppedImageUrl;
+                
+                // 更新 UI
+                imagePreviewBox.classList.add('has-image');
+                deleteBtn.style.display = 'inline-block';
+                
+                // *** 模擬上傳到後端 ***
+                // 這是您需要與後端 API 對接的地方
+                const formData = new FormData();
+                
+                // 將 blob 附加到 formData，第三個參數是檔名
+                formData.append('uploaded_image', blob, `cropped-${originalFileName}`);
+                
+                console.log('準備上傳的 FormData:', formData);
+                // 您可以在這裡使用 fetch 或 axios 將 formData 送出
+                // fetch('/your-upload-api-endpoint', {
+                //     method: 'POST',
+                //     body: formData,
+                // })
+                // .then(response => response.json())
+                // .then(data => console.log('上傳成功:', data))
+                // .catch(error => console.error('上傳失敗:', error));
+                
+                // ------------------------
+
+            }, 'image/jpeg', 0.9); // 指定輸出格式和品質
+
+            cropModal.hide(); // 關閉 Modal
+        });
+        
+        // 點擊 "刪除圖片" 按鈕
+        deleteBtn.addEventListener('click', () => {
+            // 清空預覽
+            imagePreview.src = '';
+            imagePreviewBox.classList.remove('has-image');
+            
+            // 清空 file input
+            imageInput.value = '';
+            
+            // 隱藏刪除按鈕
+            deleteBtn.style.display = 'none';
+            
+            console.log('圖片已刪除');
+        });
+    });
+    </script>
+
+    <!-- flexible-wrapper -->
+    <script>
+    jQuery(document).ready(function(){
+        function calculateFlexibleWrapperHeight() {
+            const $container = $('.news-scheduling--container');
+            const $wrapper = $('.flexible-wrapper');
+            const $formSection = $container.find('.d-flex.align-items-end');
+            
+            if ($container.length && $wrapper.length) {
+                // 取得視窗高度
+                const windowHeight = $(window).height();
+                
+                // 取得容器相對於文件頂部的位置
+                const containerOffsetTop = $container.offset().top;
+                
+                // 取得表單區域的高度（包含 margin）
+                const formSectionHeight = $formSection.outerHeight(true) || 0;
+                
+                // 預留底部空間（footer、padding 等）
+                const bottomPadding = 0;
+                
+                // 計算可用高度
+                const availableHeight = windowHeight - containerOffsetTop - formSectionHeight - bottomPadding;
+                
+                // 設定最小高度為 300px
+                const finalHeight = Math.max(availableHeight, 300);
+                
+                // 設定 flexible-wrapper 的高度
+                $wrapper.css('height', finalHeight + 'px');
+                
+                console.log('設定 flexible-wrapper 高度:', finalHeight + 'px');
+                
+                // 重新初始化 scrollbar
+                setTimeout(function() {
+                    jQuery('.scrollbar-inner').scrollbar();
+                }, 50);
+            }
+        }
+        
+        // 處理收起/展開功能
+        $('#wrapperControl').on('change', function() {
+            const $wrapper = $('.flexible-wrapper');
+            const $wrapperStart = $('.flexible-wrapper-start');
+            
+            if (this.checked) {
+                $wrapperStart.addClass('collapsed');
+                $wrapper.addClass('collapsed');
+            } else {
+                $wrapperStart.removeClass('collapsed');
+                $wrapper.removeClass('collapsed');
+            }
+        });
+        
+        // 頁面載入時計算高度
+        calculateFlexibleWrapperHeight();
+        
+        // 視窗調整大小時重新計算
+        $(window).on('resize', function() {
+            calculateFlexibleWrapperHeight();
+        });
+    });
+    </script>
     <%= yield :js %>
 </body>
 </html>

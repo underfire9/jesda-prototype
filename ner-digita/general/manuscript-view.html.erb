@@ -1,0 +1,386 @@
+<!-- template: 新聞稿件 - 檢視 -->
+<div class="page-content">
+    <div class="container-lg">
+
+        <div class="manuscript-content-container new-manuscript-container">
+
+            <aide class="manuscript-aide-content">
+                <div class="page-title">
+                    <h3>檢視稿件</h3>
+                </div>
+                <div class="under-wrap">
+                    <div class="aide-status">
+                        <span class="status-label">初審</span>
+                        <span class="status-current">審查中</span>
+                    </div>
+                    <div class="review-status">
+                        <span class="review-role" title="審查人員">劉光明</span>
+                        <span class="review-time" title="已審查">1286 秒</span>
+                    </div>
+                </div>
+
+                <!-- 沒有審查歷程也要保留 btn-wrap -->
+                <div class="btn-wrap">
+                    <a href="manuscript-review.html" class="btn btn-lg btn-outline-dark btn-start">開始審查</a>
+                    <button type="button" class="btn btn-lg btn-white btn-backward" title="審查歷程" data-bs-toggle="modal" data-bs-target="#historyModal"></button>
+                </div>
+                <div class="upload-status">
+                    <span class="website-status done" title="上傳官網">
+                        2025-12-12 12:00:00
+                    </span>
+                    <span class="ftp-status" title="上傳狀態"></span>
+                </div>
+            </aide>
+
+            <div class="manuscript-content form-output">
+                <div class="form-action output-action">
+                    <div class="action-start">
+                        <a href="manuscript.html" class="btn btn-back" title="回列表"></a>
+                    </div>
+                    <button type="button" class="btn btn-light btn-delete" title="刪除"></button>
+                    <button type="button" class="btn btn-white btn-word-download" title="轉存 Word"></button>
+                    <button type="button" class="btn btn-white btn-edit" title="重新編輯"></button>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label class="form-label">標題</label>
+                            <div class="output">鏟子超人注意了 疾管署提供花蓮光復鄉公費疫苗接種</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-2">
+                        <div class="form-group">
+                            <label class="form-label">記者</label>
+                            <div class="output">陳曉明</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">新聞日期</label>
+                            <div class="output">2025-10-07 10:35</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">稿件類型</label>
+                            <div class="output">話帶 (有音檔)</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label">是否上傳官網</label>
+                            <div class="output">是</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label">審查設定</label>
+                            <div class="output">需審查</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label">來源</label>
+                            <div class="output">外派記者線報</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label">分類</label>
+                            <div class="output">政策</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">新聞標籤</label>
+                            <div class="output">
+                                <span class="output-tags">2025 南喬治亞島和南桑威奇群島</span>
+                                <span class="output-tags">南喬治亞島和南桑威奇群島</span>
+                                <span class="output-tags">捷克共和國</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label">官網發佈時間</label>
+                            <div class="output">以最後審查通過時間為發佈時間</div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">導言</label>
+                            <div class="textarea-output sm">
+                                <div class="scrollbar-inner">
+                                    <%= lorem_paragraphs(5) %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">內文</label>
+                            <div class="textarea-output xl">
+                                <div class="scrollbar-inner">
+                                    <h4>疾管署提供花蓮光復鄉公費疫苗接種</h4>
+                                    <p><%= lorem_paragraphs(4) %></p>
+                                    <h5>疾管署提供花蓮光復鄉公費疫苗接種</h5>
+                                    <p><%= lorem_paragraphs(2) %></p>
+                                    <p><%= lorem_paragraphs(5) %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-group-mp3">
+                            <label for="mp3File" class="form-label">音檔上傳 <small class="text-secondary">mp3 only</small></label>
+                            <div>202510101225_abcdefg.mp3</div>
+                            <audio id="manuscriptAudio" controls class="manuscript-audio">
+                                <source id="audioSource" src="" type="audio/mpeg">
+                                您使用的瀏覽器不支援音檔撥放
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Youtube 影片</label>
+                            <!-- 此欄位要給 text-break --> 
+                            <div class="output text-break">https://youtu.be/UU95qr0mt0c?si=4KS1tB7ZQJTme8kC</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="form-label" for="manuscript_image">圖片上傳</label>
+                    <div class="row photo-upload-row">
+
+                        <!-- 設為封面的 item 自動排第一個 -->
+                        <div class="col-md-6 upload-item">
+                            <div class="form-group">
+                                <div class="upload-cropper-wrapper">
+                                    <div class="image-preview-box has-image" id="image-preview-box">
+                                        <img id="image-preview" src="../assets/fake/cut-01.jpg" alt="星際效應是一部2014年上映的科幻電影由克里斯多福諾蘭執導和監製">
+                                        <div class="cover-check">
+                                            <input class="form-check-input" type="radio" name="radioCover" id="radioCover1" checked>
+                                        </div>
+                                    </div>
+                                    <div class="button-group">
+                                        <a href="../assets/fake/cut-01.jpg" target="_blank" title="下載" class="btn btn-download"></a>
+                                        <input type="text" class="form-control" id="imageDesc" value="星際效應是一部2014年上映的科幻電影由克里斯多福諾蘭執導和監製">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 upload-item">
+                            <div class="form-group">
+                                <div class="upload-cropper-wrapper">
+                                    <div class="image-preview-box has-image" id="image-preview-box">
+                                        <img id="image-preview" src="../assets/fake/cut-02.jpg" alt="{圖片說明}">
+                                    </div>
+                                    <div class="button-group">
+                                        <a href="../assets/fake/cut-02.jpg" target="_blank" title="下載" class="btn btn-download"></a>
+                                        <input type="text" class="form-control" id="imageDesc" value="圖片說明">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 upload-item">
+                            <div class="form-group">
+                                <div class="upload-cropper-wrapper">
+                                    <div class="image-preview-box has-image" id="image-preview-box">
+                                        <img id="image-preview" src="../assets/fake/cut-03.jpg" alt="{圖片說明}">
+                                    </div>
+                                    <div class="button-group">
+                                        <a href="../assets/fake/cut-03.jpg" target="_blank" title="下載" class="btn btn-download"></a>
+                                        <input type="text" class="form-control" id="imageDesc" value="圖片說明">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- 審查歷程 Modal -->
+<div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="historyModalLabel">審查歷程</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 pt-3 fs-5">鏟子超人注意了 疾管署提供花蓮光復鄉公費疫苗接種</div>
+                <table class="table align-middle history-table">
+                    <thead>
+                        <tr>
+                            <th>角色</th>
+                            <th>姓名</th>
+                            <th>動作</th>
+                            <th>時間</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>記者</td>
+                            <td><%= zh_lorem_name %></td>
+                            <td>新增</td>
+                            <td>2025-10-12 <span class="mobile-only-block">12:00:00</span></td>
+                            <td class="text-end"></td>
+                        </tr>
+                        <% (3..5).map do |i| %>
+                        <tr>
+                            <td>記者</td>
+                            <td><%= zh_lorem_name %></td>
+                            <td>修改內文</td>
+                            <td>2025-10-12 <span class="mobile-only-block">1<%= i %>:00:00</span></td>
+                            <td class="text-end"><button type="button" class="btn btn-diff" data-bs-toggle="modal" data-bs-target="#diffModal" title="內文比對"></button></td>
+                        </tr>
+                        <% end %>
+                        <tr>
+                            <td>主管</td>
+                            <td><%= zh_lorem_name %></td>
+                            <td>初審通過</td>
+                            <td>2025-10-12 <span class="mobile-only-block">16:00:00</span></td>
+                            <td class="text-end"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 內文比對 Modal -->
+<div class="modal fade" id="diffModal" tabindex="-1" aria-labelledby="diffModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="diffModalLabel">內文比對</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- modal-body 有 p-0 -->
+            <div class="modal-body p-0">
+                <div class="diff-container-wrapper">
+                    <div class="diff-container-item">
+                        <h4 class="item-title"><span>標題</span></h4>
+                        <div class="diff-container">
+                            <div class="diff-box">
+                                <h5 class="box-title">原始版本</h5>
+                                <div id="title-left" class="diff-box-content"></div>
+                            </div>
+                            <div class="diff-box">
+                                <h5 class="box-title">修改版本</h5>
+                                <div id="title-right" class="diff-box-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="diff-container-item">
+                        <h4 class="item-title"><span>導言</span></h4>
+                        <div class="diff-container">
+                            <div class="diff-box">
+                                <h5 class="box-title">原始版本</h5>
+                                <div id="lead-left" class="diff-box-content"></div>
+                            </div>
+                            <div class="diff-box">
+                                <h5 class="box-title">修改版本</h5>
+                                <div id="lead-right" class="diff-box-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="diff-container-item">
+                        <h4 class="item-title"><span>內文</span></h4>
+                        <div class="diff-container">
+                            <div class="diff-box">
+                                <h5 class="box-title">原始版本</h5>
+                                <div id="content-left" class="diff-box-content"></div>
+                            </div>
+                            <div class="diff-box">
+                                <h5 class="box-title">修改版本</h5>
+                                <div id="content-right" class="diff-box-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-dark text-white">
+                <button class="btn btn-outline-light" data-bs-target="#historyModal" data-bs-toggle="modal" title="回歷程"><i class="fas fa-long-arrow-alt-left"></i></button>
+                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- jquery scrollbar -->
+<script src="../javascripts/jquery.scrollbar.min.js"></script>
+<script>
+    jQuery(document).ready(function(){
+        jQuery('.scrollbar-inner').scrollbar();
+    });
+</script>
+
+<!-- diff -->
+<!-- white-space: pre-wrap 會保留原始文字中的換行符號與多餘空白，會換行的內容務必按照下方格式或其他解法 -->
+<script src="../javascripts/diff.min.js"></script>
+<script>
+    function renderDiff(oldText, newText, leftId, rightId){
+        // ✅ 改用 diffChars → 精準到單字
+        const diff = Diff.diffChars(oldText, newText);
+        let leftHTML = "", rightHTML = "";
+
+        diff.forEach(part => {
+            if (part.removed) {
+                leftHTML += `<del>${part.value}</del>`;
+            } else if (part.added) {
+                rightHTML += `<ins>${part.value}</ins>`;
+            } else {
+                leftHTML += part.value;
+                rightHTML += part.value;
+            }
+        });
+
+        document.getElementById(leftId).innerHTML = leftHTML;
+        document.getElementById(rightId).innerHTML = rightHTML;
+    }
+
+    // 測試資料
+    const oldTitle = "迎接新學期到來 北京教育局呼籲家長重視孩子安全";
+    const newTitle = "迎接新學期到來 北京教育局呼籲家長務必重視孩子安全 12345";
+
+    const oldLead = "研究也發現，人工的回應也呈現相同模式。這意味著，當越來越多人透過人工智慧獲得心理健康建議時，這種偏誤可能被放大。研究者提醒，過多的增益性建議，可能讓心理健康變成一份永無止境的待辦清單，反而增加壓力。";
+    const newLead = "研究也發現，人工智慧的回應也呈現相同模式。這意味著，當越來越多人透過AI獲得心理健康建議時，這種偏誤可能被放大。研究者提醒，過多的增益性建議，可能讓心理健康變成一份永無止境的待辦清單，反而增加壓力。";
+
+    const oldContent =
+`迎接新學期到來，家長在接送孩子時應遵守交通規則。
+
+學生在校期間，應遵守校園秩序，注意個人安全，諮商心理師公會全聯會常務理事胡延薇說明，這項研究顯示，許多人對待自己比對待朋友更嚴苛，總覺得「應該要做更多」才算努力。
+
+董氏基金會指出，研究整合了8項實驗，囊括了數百名參與者，並分析了社群媒體上的建議內容，甚至測試人工智慧的回應，請參與者針對有關賭博等不良習慣，及錯失運動等有益活動的情境，向陌生人、朋友或自己提供建議。結果顯示，人們大多建議「增加新行動」，而非「減少有害行為」。人們認為「多做」比「少做」更容易、更有效，也較願意接受。但當建議對象是朋友時，大家比較容易提出「少做」的選項，反觀給自己的建議，則更傾向加上新任務。
+
+臺北市青年局「2025臺北市校園創意舞蹈影片競賽」結果揭曉，10組入圍決選團隊以創意舞蹈短片和現場舞臺演出，展現青春能量，最後由華岡藝校《Pinky Bomb》和《Tequila》分別拿下冠亞軍，麗山高中《麗山舞漾》獲得季軍。臺北市青年局長周羿希表示，學生勇敢嘗試、勇於展現自我，每支作品本身就是最好的青春紀錄。`;
+
+    const newContent =
+`迎接新學期到來，家長在接送孩子時應遵守交通規則，避免違規停車。
+
+學生在校期間，應遵守校園秩序，並注意上下樓梯的安全，諮商心理師公會全聯會常務理事胡延薇說明，這項研究顯示，許多人對待自己比對待朋友更嚴苛，總覺得「應該再做更多」才算努力。
+
+董氏基金會指出，研究整合了8項實驗，囊括了數百名參與者，並分析了社群媒體上的建議內容，甚至測試人工智慧的回應，請參與者針對有關賭博等不良習慣，及錯失運動等有益活動的情境，向陌生人、朋友或自己提供建議。結果顯示，人們大多建議「增加新行動」，而非「減少有害行為」。人們認為「多做」比「少做」更容易、更有效，也較願意接受。但當建議對象是朋友時，大家比較容易提出「少做」的選項，反觀給自己的建議，則更傾向加上新任務。
+
+臺北市青年局「2025臺北市校園創意舞蹈影片競賽」結果揭曉，10組入圍決選團隊以創意舞蹈短片和現場舞臺演出，展現青春能量，最後由華岡藝校《Pinky Bomb》和《Tequila》分別拿下冠亞軍，麗山高中《麗山舞漾》獲得季軍。臺北市青年局長周羿希表示，學生勇敢嘗試、勇於展現自我，每支作品本身就是最好的青春紀錄。`;
+
+    // 各區塊比對
+    renderDiff(oldTitle, newTitle, "title-left", "title-right");
+    renderDiff(oldLead, newLead, "lead-left", "lead-right");
+    renderDiff(oldContent, newContent, "content-left", "content-right");
+</script>
+<% end %>
+

@@ -1,0 +1,211 @@
+<!-- admin-page: 客製頁面 - 青年生涯領航計畫 -->
+
+<% content_for :page_styles do %>
+    <link rel="stylesheet" href="../stylesheets/customization/ycnp.css">
+<% end %>
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h1>客製化頁面</h1>
+    </div>
+    <div class="consult-container">
+        <div class="consult-main">
+            <section class="section-consult">
+                <h4 class="section-consult-title">申請需求原因</h4>
+                <div class="form-group">
+                    <label class="form-label">預約的企劃類別</label>
+                    <div class="check-min-height">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
+                            <label class="form-check-label" for="inlineCheckbox1">職場體驗</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" />
+                            <label class="form-check-label" for="inlineCheckbox2">志願服務</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
+                            <label class="form-check-label" for="inlineCheckbox3">壯遊探索</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" />
+                            <label class="form-check-label" for="inlineCheckbox4">達人見習</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5" />
+                            <label class="form-check-label" for="inlineCheckbox5">創業見習</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6" />
+                            <label class="form-check-label" for="inlineCheckbox6">社區見習</label>
+                        </div>
+
+                        <!-- id 與 .consult-other-input 欄位連動，調整需修改下方 js -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="consult-other" value="option7" />
+                            <label class="form-check-label" for="consult-other">其他</label>
+                        </div>
+                        
+                        <div class="consult-other-input">
+                            <input type="text" class="form-control" id="" placeholder="其他類型名稱">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mb-3">關於企劃書撰寫我想問的問題</label>
+
+                    <div class="textarea-group">
+                        <div class="group-head">
+                            <div class="group-serial">Q1</div>
+                            <div>
+                                <select class="form-select">
+                                    <option selected>選擇問題分類</option>
+                                    <option value="1">計畫完成後的就學就業</option>
+                                    <option value="2">尋找體驗學習單位</option>
+                                    <option value="3">其他</option>
+                                </select>
+                            </div>
+                        </div>
+                        <textarea class="form-control" id="consult-question" placeholder="請詳述此項目遇到的問題及困難"></textarea>
+                    </div>
+                </div>
+            </section>
+            <section class="section-consult">
+                <h4 class="section-consult-title">預約諮詢時段</h4>
+                <div class="option-wrap">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="timeCheckbox1" value="optionTime1" />
+                        <label class="form-check-label" for="timeCheckbox1">上午時段 (09:00–12:00) 全選</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="timeCheckbox2" value="optionTime2" />
+                        <label class="form-check-label" for="timeCheckbox2">下午時段 (13:00–17:00) 全選</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="timeCheckbox3" value="optionTime3" />
+                        <label class="form-check-label" for="timeCheckbox3">晚上時段 (18:00–21:00) 全選</label>
+                    </div>
+                </div>
+                <div class="date-wrap">
+                    <ul class="menu-item date-list">
+                        <% (1..6).map do |i| %>
+                        <li>
+                            <span class="date-label">2025 / 11 / 1<%= i %></span>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="dayCheckbox1" value="optionDay1" />
+                                    <label class="form-check-label" for="dayCheckbox1">上午</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="dayCheckbox2" value="optionDay2" />
+                                    <label class="form-check-label" for="dayCheckbox2">下午</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="dayCheckbox3" value="optionDay3" />
+                                    <label class="form-check-label" for="dayCheckbox3">晚上</label>
+                                </div>
+                            </div>
+                        </li>
+                        <% end %>
+                    </ul>
+                    <ul class="menu-item date-list">
+                        <% (17..22).map do |i| %>
+                        <li>
+                            <span class="date-label">2025 / 11 / <%= i %></span>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="dayCheckbox1" value="optionDay1" />
+                                    <label class="form-check-label" for="dayCheckbox1">上午</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="dayCheckbox2" value="optionDay2" />
+                                    <label class="form-check-label" for="dayCheckbox2">下午</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="dayCheckbox3" value="optionDay3" />
+                                    <label class="form-check-label" for="dayCheckbox3">晚上</label>
+                                </div>
+                            </div>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mb-2">諮詢方式</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="modeCheckbox1" value="optionMode1" />
+                            <label class="form-check-label" for="modeCheckbox1">視訊</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="modeCheckbox2" value="optionMode2" />
+                            <label class="form-check-label" for="modeCheckbox2">電話</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="form-label mb-2">備註說明</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="e.g. 僅能某天通話、不便視訊"></textarea>
+                </div>
+            </section>
+        </div>
+        <div class="consult-operate">
+            <section class="section-consult">
+                <h4 class="section-consult-title">指派人員</h4>
+                <div class="form-group">
+                    <label for="consult-assign" class="form-label">諮詢人員</label>
+                    <select class="form-select" id="consult-assign">
+                        <option selected>選擇人員</option>
+                        <option value="1">王小明</option>
+                        <option value="2">李小華</option>
+                        <option value="3">張大同</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-outline-primary">儲存</button>
+            </section>
+            <section class="section-consult">
+                <h4 class="section-consult-title">輔導時間安排及回報</h4>
+                <div class="form-group">
+                    <label class="form-label">預約時間</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <div>
+                            <input type="date" class="form-control" />
+                        </div>
+                        <div>
+                            <input type="time" class="form-control" />
+                        </div>
+                        <div>~</div>
+                        <div>
+                            <input type="time" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="consult-status" class="form-label">輔導狀態登錄</label>
+                    <select class="form-select" id="consult-status">
+                        <option value="1">未完成</option>
+                        <option value="2">已安排</option>
+                        <option value="3">已完成</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="consult-report" rows="8" placeholder="輔導回報登錄"></textarea>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary">儲存</button>
+                    <button type="button" class="btn btn-outline-primary">輔導通知信</button>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+
+<% content_for :js do %>
+
+<% end %>
+

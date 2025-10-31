@@ -6374,6 +6374,7 @@ header.header .sub .en span {
   display: block;
 }
 header.header .nav-container {
+  background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #e9eff3;
 }
@@ -6471,27 +6472,29 @@ header.header .toggler-wrap {
 }
 
 .homepage header.header {
-  position: absolute;
+  position: sticky;
   left: 0;
   right: 0;
   top: 0;
-  z-index: 2;
+  z-index: 3;
 }
-.homepage header.header .header-wrap {
+
+header.header.header-sticky .header-wrap {
   background: transparent;
   box-shadow: none !important;
 }
-.homepage header.header .nav-container {
+header.header.header-sticky .nav-container {
+  background-color: transparent;
   box-shadow: none !important;
   border-bottom: none;
 }
-.homepage header.header .nav-link {
+header.header.header-sticky .nav-link {
   color: #fff;
 }
-.homepage header.header .nav-link:hover {
+header.header.header-sticky .nav-link:hover {
   color: #d78110;
 }
-.homepage header.header::after {
+header.header.header-sticky::after {
   content: "";
   height: 260px;
   position: absolute;
@@ -6501,19 +6504,19 @@ header.header .toggler-wrap {
   background: linear-gradient(0deg, rgba(17, 17, 17, 0) 0%, #111111 100%), linear-gradient(0deg, rgba(17, 17, 17, 0) 0%, #111111 100%), linear-gradient(0deg, rgba(17, 17, 17, 0) 0%, #111111 100%);
   z-index: 0;
 }
-.homepage header.header .language, .homepage header.header .brands-link, .homepage header.header .header-links {
+header.header.header-sticky .language, header.header.header-sticky .brands-link, header.header.header-sticky .header-links {
   position: relative;
   z-index: 1;
 }
-.homepage header.header .header-nav {
+header.header.header-sticky .header-nav {
   position: relative;
   z-index: 1041;
 }
-.homepage header.header .dropdown-menu {
+header.header.header-sticky .dropdown-menu {
   border-radius: .5rem;
   border: none;
 }
-.homepage .waves-container {
+header.header.header-sticky .waves-container {
   display: none;
 }
 
@@ -6730,7 +6733,7 @@ header.header .toggler-wrap {
     transform: translate3d(60px, 0, 0px) !important;
   }
 
-  .homepage header.header::after {
+  .homepage header.header.header-sticky::after {
     content: "";
     height: 120px;
     position: absolute;
@@ -6742,7 +6745,7 @@ header.header .toggler-wrap {
   }
   .homepage .header-nav {
     position: fixed !important;
-    z-index: 1;
+    z-index: 1041;
   }
 }
 @media (max-width: 767px) {
@@ -7260,8 +7263,11 @@ section.section {
 }
 
 .landing-content {
+  width: 100%;
   height: 100vh;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: 1;
 }
 .landing-content .hero {

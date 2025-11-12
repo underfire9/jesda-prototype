@@ -1,0 +1,145 @@
+<!-- template: 登入 -->
+
+<div class="workspace" canvas="container">
+    <h1 class="h1-brands">
+        <span class="brands-logo">臺大夏季學院</span>
+    </h1>
+    <div class="language-switcher">
+        <a href="?lang=en" title="English"><span>EN</span></a>
+    </div>
+    <div class="login-page">
+        <div class="login-container">
+            <div class="login-card">
+                <form class="login-form" action="role.html" method="post">
+                    <div class="card-bd">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" class="form-label">帳號</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput2" class="form-label">密碼</label>
+                            <input type="password" class="form-control" id="exampleFormControlInput2" />
+                            <div class="form-text text-end"><a href="forget-password.html" class="forget-link">忘記密碼？</a></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginInput4" class="form-label">驗證碼</label>
+                            <div class="d-flex align-items-center">
+                                <span class="me-1" style="width: 160px;"><input type="text" class="form-control" id="loginInput4" /></span>
+                                <span class="me-1"><img class="captcha" src="http://nfu-map.dev.com.tw/common/captcha.image" /></span>
+                                <span>
+                                    <button class="btn btn-outline-dark" type="button"><i class="fas fa-sync-alt"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-action d-grid">
+                        <button class="btn btn-lg btn-main" type="submit">登入</button>
+                    </div>
+                </form>
+            </div>
+            <div class="register-card">
+                <h6>還沒有帳號？</h6>
+                <div class="flex-wrap">
+                    <a href="#" class="btn-affidavit" onclick="showAffidavit(event)">學生註冊</a>
+                    <a href="#" class="btn-affidavit" onclick="showAffidavit(event)">教師註冊</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="affidavit-page">
+        <div class="affidavit-container">
+            <div class="affidavit-card">
+                <h3 class="mb-4">個人資料與選課事項切結書</h3>
+                <div class="affidavit-bd">
+                    <p class="mb-3">本人確認並同意以下事項：</p>
+                    <ol class="affidavit-list">
+                        <li>本人所提供之個人資料均為真實且正確，如有不實，願負法律責任。</li>
+                        <li>本人同意提供之個人資料僅供本校學習平台使用，並遵循個人資料保護法相關規定。</li>
+                        <li>本人了解選課相關規定，包含選課時間、退選期限及相關費用規定。</li>
+                        <li>本人確認已詳閱課程內容、時間安排及評核方式，並同意遵守課程相關規範。</li>
+                        <li>本人了解若違反平台使用規範或提供不實資料，本校有權停止本人使用權限。</li>
+                        <li>本人同意接收課程相關通知及重要訊息。</li>
+                    </ol>
+                    <p class="mt-3">請詳細閱讀以上條款，點選「我同意」即表示您已充分了解並同意遵守上述事項。</p>
+                </div>
+                <div class="mt-4 d-flex justify-content-center align-items-center gap-4">
+                    <a href="#" class="btn-cancel text-muted" onclick="showLogin(event)">我不同意</a>
+                    <button class="btn btn-lg btn-outline-main btn-agree" type="button" onclick="showRegister(event)">我同意</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-page">
+        <div class="register-container">
+            <div class="login-card">
+                <h4 class="text-center mb-5">{身分別}註冊</h4>
+                <form class="login-form">
+                    <div class="card-bd">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput3" class="form-label">電子信箱</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="name@example.com" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput4" class="form-label">姓名</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput4" />
+                        </div>
+                        <div class="form-group">
+                            <label for="loginInput5" class="form-label">驗證碼</label>
+                            <div class="d-flex align-items-center">
+                                <span class="me-1" style="width: 160px;"><input type="text" class="form-control" id="loginInput5" /></span>
+                                <span class="me-1"><img class="captcha" src="http://nfu-map.dev.com.tw/common/captcha.image" /></span>
+                                <span>
+                                    <button class="btn btn-outline-dark" type="button"><i class="fas fa-sync-alt"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-action">
+                        <button class="btn btn-block btn-lg btn-outline-main btn-register" type="button" onclick="handleRegister(event)">註冊</button>
+                        <button class="btn btn-block btn-lg btn-main btn-register-done" type="button" onclick="showLogin(event)">前往登入</button>
+                    </div>
+                </form>
+            </div>
+            <div class="register-back-wrap text-center mt-4"><a href="#" class="btn-back" onclick="showLogin(event)">返回登入</a></div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+function showAffidavit(event) {
+    event.preventDefault();
+    document.querySelector('.workspace').className = 'workspace show-affidavit';
+}
+
+function showRegister(event) {
+    event.preventDefault();
+    document.querySelector('.workspace').className = 'workspace show-register';
+    // 重置註冊頁面狀態
+    document.querySelector('.btn-register').style.display = 'block';
+    document.querySelector('.btn-register-done').style.display = 'none';
+    document.querySelector('.register-back-wrap').style.display = 'block';
+}
+
+function showLogin(event) {
+    event.preventDefault();
+    document.querySelector('.workspace').className = 'workspace';
+}
+
+function handleRegister(event) {
+    event.preventDefault();
+    // 隱藏註冊按鈕
+    event.target.style.display = 'none';
+    // 顯示前往登入按鈕
+    document.querySelector('.btn-register-done').style.display = 'block';
+    // 隱藏返回登入連結
+    document.querySelector('.register-back-wrap').style.display = 'none';
+}
+</script>
+<% end %>
+

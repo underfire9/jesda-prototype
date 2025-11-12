@@ -1,0 +1,68 @@
+<!-- template: 設定密碼 -->
+
+<div class="workspace" canvas="container">
+    <h1 class="h1-brands">
+        <span class="brands-logo">臺大夏季學院</span>
+    </h1>
+    <div class="language-switcher">
+        <a href="?lang=en" title="English"><span>EN</span></a>
+    </div>
+    <div class="login-page">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="card-hd">
+                    <h4 class="text-center mb-5">設定密碼</h4>
+                </div>
+                <form class="login-form">
+                    <div class="card-bd">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput2" class="form-label">請輸入密碼</label>
+                            <input type="password" class="form-control" id="exampleFormControlInput2" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput3" class="form-label">請再次輸入密碼</label>
+                            <input type="password" class="form-control" id="exampleFormControlInput3" />
+                        </div>
+                        <div class="notice-wrapper mb-0">
+                            <div class="d-flex align-items-center gap-3">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="form-text">密碼長度最少12碼，須包含1各大小寫英文字母、數字及特殊符號</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-action d-grid">
+                        <button id="settingPassword" class="btn btn-lg btn-main" type="submit">送出</button>
+                    </div>
+                </form>
+                <div class="back-login d-grid mt-3">
+                    <a href="login.html" class="btn btn-lg btn-main">前往登入</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const settingPasswordBtn = document.getElementById('settingPassword');
+    const backLoginDiv = document.querySelector('.back-login');
+    
+    if (settingPasswordBtn) {
+        settingPasswordBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            // 禁用送出按鈕
+            this.disabled = true;
+            
+            // 為 .back-login 添加 .show 類別
+            if (backLoginDiv) {
+                backLoginDiv.classList.add('show');
+            }
+        });
+    }
+});
+</script>
+<% end %>
+

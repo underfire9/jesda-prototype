@@ -1,0 +1,306 @@
+/* design by fire */
+
+@import "base";
+
+/* `Login Page
+-----------------------------------------------------------------------------*/
+
+body {
+	font-size: 1.063rem;
+}
+
+.notice-wrapper {
+	border-radius: .375rem;
+	background: url(../assets/bg-striped.png) left top repeat;
+	margin-bottom: 3rem;
+	padding: 1.25rem;
+	.notice-title { color: orangered; }
+}
+
+.workspace {
+	min-height: 100vh;
+	min-width: 375px;
+	position: relative;
+	overflow: hidden;
+	&::after {
+		content: "";
+		background: url(../assets/logo-shadow.svg) no-repeat center center;
+		height: 320px;
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		z-index: 4;
+	}
+	.h1-brands {
+		margin-bottom: 0;
+		width: 336px;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 5;
+		span {
+			display: block;
+			text-align: center;
+		}
+	}
+	.brands-logo {
+		background: $main_color url(../assets/logo-white.svg) no-repeat center center;
+		padding: 40px 0;
+		text-indent: -999rem;
+		position: relative;
+		&::before {
+			content: "";
+			background: $main_color;
+			position: absolute;
+			bottom: -1.5rem;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 1.5rem;
+			height: 1px;
+		}
+		&::after {
+			content: "";
+			border-radius: 0 0 1rem 1rem;
+			box-shadow: 0 8px 32px rgba(#000,.2);
+			position: absolute;
+			top: -24px;
+			bottom: 24px;
+			left: 0;
+			right: 0;
+			z-index: -1;
+		}
+	}
+	.brands-system {
+		margin-top: 3rem;
+		font-size: 1.75rem;
+		font-weight: 300;
+		position: relative
+	}
+	.language-switcher {
+		text-align: center;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 5;
+		a {
+			background: url(../assets/icons/globe.svg) no-repeat left center;
+			padding: 1.5rem 2rem;
+			display: inline-block;
+			font-size: 1rem;
+			color: #000;
+			line-height: 1.5rem;
+		}
+	}
+}
+
+.login-page,
+.affidavit-page,
+.register-page {
+	padding-top: calc(12rem + 2.5vw);
+	padding-bottom: 3rem;
+	min-height: 100vh;
+	height: 100vh;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	transition: transform 0.3s ease-in-out;
+	background: #fff;
+	z-index: 1;
+	overflow-y: auto;
+}
+
+.login-page {
+	transform: translateX(0);
+	z-index: 3;
+}
+
+.affidavit-page {
+	transform: translateX(100%);
+	z-index: 2;
+}
+
+.register-page {
+	transform: translateX(100%);
+	z-index: 1;
+}
+
+/* Page transition states */
+.workspace.show-affidavit {
+	.login-page {
+		transform: translateX(-100%);
+	}
+	.affidavit-page {
+		transform: translateX(0);
+	}
+}
+
+.workspace.show-register {
+	.login-page {
+		transform: translateX(-100%);
+	}
+	.affidavit-page {
+		transform: translateX(-100%);
+	}
+	.register-page {
+		transform: translateX(0);
+	}
+}
+
+.affidavit-container,
+.register-container {
+	max-width: 640px;
+	min-width: 375px;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+}
+
+.login-container {
+	max-width: 640px;
+	min-width: 375px;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+	position: relative;
+	overflow: hidden;
+}
+
+.login-card {
+	max-width: 480px;
+	margin: 0 auto;
+	.card-hd {
+		margin-bottom: calc(1rem + 1vw);
+		h3 { margin-bottom: 0; }
+	}
+	.form-group {
+		margin-bottom: calc(1rem + .75vw);
+	}
+	.login-action {
+		margin-top: calc(2rem + 2vw);
+	}
+	.forget-link {
+		color: #888;
+		&:hover, &:focus, &:active {
+			color: $link;
+		}
+	}
+	.form-check { margin-bottom: .375rem; }
+	.form-check-inline { margin-right: 1.5rem; }
+	.bottom-link {
+		text-align: center;
+		margin-top: calc(1.5rem + 1.25vw);
+		a {
+			color: #121212;
+			&:hover, &:focus, &:active {
+				color: $link;
+			}
+		}
+	}
+}
+
+.authorization-wrapper {
+	border-top: 1px solid $base_border_color;
+	margin-top: calc(3rem + 3vw);
+	padding-top: calc(3rem + 3vw);
+	.wrapper-inner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 2rem;
+	}
+	.authorization-already {
+		background: url(../assets/check-contained.svg) no-repeat center left;
+		padding-left: 2rem;
+		pointer-events: none;
+		filter: grayscale(100%);
+		opacity: .325;
+	}
+	&.authorization-done {
+		.authorization-already {
+			filter: none;
+			opacity: 1;
+		}
+	}
+}
+
+.register-card {
+	max-width: 480px;
+	margin: calc(2rem + 2vw) auto;
+	text-align: center;
+	h6 {
+		margin-bottom: 1.5rem;
+		font-size: .875rem;
+	}
+	.flex-wrap {
+		display: flex;
+		justify-content: center;
+		position: relative;
+		&::after {
+			content: "";
+			background: #B9B9B9;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 50%;
+			width: 1px;
+		}
+		a {
+			padding-right: 3rem;
+			& + a {
+				padding-right: 0;
+				padding-left: 3rem;
+			}
+		}
+	}
+}
+
+/* Button visibility control */
+.btn-register-done {
+	display: none;
+}
+
+.back-login {
+	display: none;
+	opacity: 0;
+	transition: all 0.2s ease-in-out;
+	transform: translateY(-8px);
+	&.show {
+		display: block;
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* `Responsive
+-----------------------------------------------------------------------------*/
+
+@media (max-width: 991px) {
+	.workspace {
+		&::after {
+			top: -128px;
+		}
+		.h1-brands {
+			width: 192px;
+		}
+		.brands-logo {
+			background: #033E5B url(../assets/logo-sm-white.svg) no-repeat center center;
+			padding: 24px 0;
+		}
+	}
+	.login-page, .affidavit-page, .register-page {
+		padding-top: calc(8rem + 2.5vw);
+	}
+}
+
+@media (max-width: 479px) {
+	.workspace {
+		&::after {
+			background-size: 75%;
+			top: -104px;
+		}
+		.h1-brands {
+			width: 128px;
+		}
+	}
+}

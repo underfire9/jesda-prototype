@@ -1,0 +1,263 @@
+<!-- template: Step3 - 經費申請 -->
+
+<div class="container-lg">
+    <div class="ca-container">
+        <aside class="ca-aside">
+            <ul class="ca-steps menu-item">
+                <li class="done">
+                    <a href="ca-step1.html">
+                        <span class="step-number">1</span>
+                        <span class="step-check"></span>
+                        <span class="step-title">課程基本資料</span>
+                    </a>
+                </li>
+                <li class="done">
+                    <a href="ca-step2.html">
+                        <span class="step-number">2</span>
+                        <span class="step-check"></span>
+                        <span class="step-title">共同授課教師</span>
+                    </a>
+                </li>
+                <li class="done">
+                    <a href="ca-step3.html">
+                        <span class="step-number">3</span>
+                        <span class="step-check"></span>
+                        <span class="step-title">課程規劃</span>
+                    </a>
+                </li>
+                <li class="done">
+                    <a href="ca-step4.html">
+                        <span class="step-number">4</span>
+                        <span class="step-check"></span>
+                        <span class="step-title">教學助教規劃</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a>
+                        <span class="step-number">5</span>
+                        <span class="step-check"></span>
+                        <span class="step-title">經費申請</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="ca-main">
+            <div class="page-title">
+                <h3>經費申請</h3>
+            </div>
+            <div class="mb-5">
+                <button type="button" class="btn btn-lg btn-outline-dark" data-bs-toggle="modal" data-bs-target="#fundingModal">
+                    <i class="fas fa-plus me-1"></i> 新增經費項目
+                </button>
+            </div>
+
+            <!-- 用 peggy 示範的 rwd datatable -->
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead class="text-nowrap">
+                        <tr>
+                            <th></th>
+                            <th>經費項目</th>
+                            <th class="text-center">單價(元)</th>
+                            <th class="text-center">數量</th>
+                            <th class="text-center">單位</th>
+                            <th class="text-center">總價(元)</th>
+                            <th>說明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..6).map do |i| %>
+                        <tr>
+                            <td class="text-nowrap">
+                                <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#fundingModal" title="編輯"><i class="fas fa-pencil-alt"></i></i></button>
+                                <button type="button" class="btn btn-sm btn-light" title="刪除"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                            <td class="text-nowrap">授課鐘點費 王曉明</td>
+                            <td class="text-center">870</td>
+                            <td class="text-center">10</td>
+                            <td class="text-center">節</td>
+                            <td class="text-center">8700</td>
+                            <td class="text-wrap"><%= lorem_sentence %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="funding-total-wrapper">
+                <span class="funding-total-label">課程總費用</span>
+                <span class="funding-total-value">999999</span>
+            </div>
+            <div class="form-action">
+                <a href="ca-step4.html" class="btn btn-outline-dark btn-lg btn-prev"><i class="fas fa-long-arrow-alt-left fs-6 me-1"></i> 上一步</a>
+                <!-- 儲存後判斷欄位沒問題拿掉下一步按鈕的 disabled，下方 js 須加入判斷邏輯 -->
+                <!-- 回上一步頁面中的下一步就不需要再給 disabled，相關判斷 js 麻煩前端處理 -->
+                <button type="button" class="btn btn-main btn-lg btn-save">儲存</button>
+                <a href="courses-apply.html" class="btn btn-primary btn-lg btn-next disabled">送出申請 <i class="fas fa-paper-plane fs-6 ms-1"></i></a>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- 新增經費項目 Modal -->
+<div class="modal fade" id="fundingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="fundingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="fundingModalLabel">授課教師經費</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="fg-padding-sm">
+                    <div class="form-group">
+                        <label for="fundingItem" class="form-label">經費項目</label>
+                        <select class="form-select" id="fundingItem">
+                            <option selected>請選擇</option>
+                            <option value="授課鐘點費" class="funding-select">授課鐘點費</option>
+                            <option value="教學助教費" class="funding-input">教學助教費</option>
+                            <option value="專家學者鐘點費" class="funding-input">專家學者鐘點費</option>
+                            <option value="專家學者交通費" class="funding-input">專家學者交通費</option>
+                            <option value="雜支" class="funding-input">雜支</option>
+                        </select>
+                        <div class="funding-select-wrapper mt-2">
+                            <select class="form-select">
+                                <option selected>請選擇老師</option>
+                                <% (1..10).map do |i| %>
+                                <option value=""><%= zh_lorem_name %></option>
+                                <% end %>
+                            </select>
+                        </div>
+                        <div class="funding-input-wrapper mt-2">
+                            <input type="text" class="form-control" id="" placeholder="請輸入">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="itemPrice" class="form-label">單價(元)</label>
+                                <input type="text" class="form-control" id="itemPrice" placeholder="請輸入">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="itemQuantity" class="form-label">數量</label>
+                                <input type="number" min="1" class="form-control" id="itemQuantity">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="itemUnit" class="form-label">顯示單位</label>
+                                <input type="text" class="form-control" id="itemUnit" placeholder="請輸入">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="itemTotal" class="form-label">總價(元)</label>
+                                <input type="text" class="form-control" id="itemTotal" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fundingDescription" class="form-label">說明</label>
+                        <input type="text" class="form-control" id="fundingDescription" placeholder="請輸入">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-light" data-bs-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-lg btn-primary">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+    <!-- 控制經費項目相關輸入區域顯示隱藏 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const fundingItem = document.getElementById('fundingItem');
+        const fundingSelectWrapper = document.querySelector('.funding-select-wrapper');
+        const fundingInputWrapper = document.querySelector('.funding-input-wrapper');
+        
+        // 預設隱藏兩個區域
+        if (fundingSelectWrapper) {
+            fundingSelectWrapper.style.display = 'none';
+        }
+        if (fundingInputWrapper) {
+            fundingInputWrapper.style.display = 'none';
+        }
+        
+        // 監聽經費項目選擇變化
+        if (fundingItem && fundingSelectWrapper && fundingInputWrapper) {
+            fundingItem.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                
+                // 先隱藏所有區域
+                fundingSelectWrapper.style.display = 'none';
+                fundingInputWrapper.style.display = 'none';
+                
+                // 根據選中選項的 class 顯示對應區域
+                if (selectedOption.classList.contains('funding-select')) {
+                    fundingSelectWrapper.style.display = 'block';
+                } else if (selectedOption.classList.contains('funding-input')) {
+                    fundingInputWrapper.style.display = 'block';
+                }
+            });
+        }
+    });
+    </script>
+
+    <!-- 儲存後開啟下一步 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the save and next buttons
+        const saveBtn = document.querySelector('.btn-save');
+        const nextBtn = document.querySelector('.btn-next');
+        
+        console.log('Save button:', saveBtn);
+        console.log('Next button:', nextBtn);
+        
+        if (saveBtn && nextBtn) {
+            // Add click event listener to save button
+            saveBtn.addEventListener('click', function () {
+                console.log('Save button clicked');
+                
+                // 模擬儲存過程 (可以在這裡加入實際的儲存邏輯)
+                // 顯示儲存中的狀態
+                saveBtn.textContent = '儲存中...';
+                saveBtn.disabled = true;
+                
+                // 模擬 API 呼叫延遲
+                setTimeout(function() {
+                    // 恢復按鈕狀態
+                    saveBtn.textContent = '儲存';
+                    saveBtn.disabled = false;
+                    
+                    // 啟用下一步按鈕
+                    nextBtn.classList.remove('disabled');
+                    nextBtn.style.pointerEvents = 'auto';
+                    nextBtn.style.opacity = '1';
+                    
+                    console.log('Next button enabled');
+                    
+                    // 可選：顯示成功訊息
+                    // alert('資料已儲存！');
+                }, 1000); // 1秒後啟用下一步按鈕
+            });
+            
+            // 防止在禁用狀態下點擊下一步按鈕
+            nextBtn.addEventListener('click', function(e) {
+                if (nextBtn.classList.contains('disabled')) {
+                    e.preventDefault();
+                    alert('請先點擊儲存按鈕儲存資料！');
+                    return false;
+                }
+            });
+        } else {
+            console.error('Save or Next button not found');
+        }
+    });
+    </script>
+
+<% end %>
+

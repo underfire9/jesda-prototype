@@ -1,0 +1,48 @@
+<!-- template: 學生 / 課程公告列表 -->
+<div class="page-content">
+    <div class="container-lg">
+        <div class="page-title">
+            <h3>公告列表</h3>
+        </div>
+        <ol class="row g-4 courses-announcement-list">
+            <% (1..8).map do |i| %>
+            <li class="col-lg-4 col-md-6">
+                <a href="#" class="inner-wrap">
+                    <span class="num"></span>
+                    <div class="mb-2">
+                        <h4><%= lorem_sentence %></h4>
+                        <span class="date d-block fs-6 text-muted">2026-05-0<%= i %> 12:00</span>
+                    </div>
+                    <i class="fas fa-long-arrow-alt-right fs-5"></i>
+                </a>
+            </li>
+            <% end %>
+        </ol>
+        <div class="form-action">
+            <span class="backhome">
+                <a href="#" class="btn btn-light"><i class="fas fa-long-arrow-alt-left"></i> 回列表</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+    <!-- 列表編號 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const announcementItems = document.querySelectorAll('.courses-announcement-list li');
+        
+        announcementItems.forEach((item, index) => {
+            const numElement = item.querySelector('.num');
+            if (numElement) {
+                const number = (index + 1).toString().padStart(2, '0');
+                numElement.textContent = number;
+            }
+        });
+    });
+    </script>
+<% end %>
+

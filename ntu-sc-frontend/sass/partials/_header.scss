@@ -111,8 +111,10 @@ header.header {
 		.nav-link {
 			display: flex;
 			align-items: center;
+			justify-content: center;
 			padding: 0 1rem;
 			height: $header-height;
+			min-width: 100px;
 			font-size: 1.063rem;
 			position: relative;
 			transition: all 0.2s ease-in-out !important;
@@ -143,6 +145,38 @@ header.header {
 			}
 			&:focus {
 				background: transparent;
+			}
+		}
+		.nav-item {
+			.dropdown-menu {
+				margin-top: -2px;
+				border: none;
+				border-radius: 0;
+				background: $main_third_color;
+			}
+			.dropdown-item {
+				padding: .5rem 1rem;
+				font-size: 1rem;
+				color: #111;
+				&:hover, &:focus, &:active {
+					background-color: darken($main_third_color, 25);;
+					color: #fff;
+				}
+			}
+			.nav-link.current + .dropdown-menu,
+			.nav-link.current ~ .dropdown-menu {
+				background: $main_color;
+				.dropdown-item {
+					color: #fff;
+					&:hover, &:focus, &:active {
+						background-color: darken($main_color, 15);
+					}
+				}
+			}
+			&.dropdown {
+				.nav-link::after {
+					content: none;
+				}
 			}
 		}
 	}
@@ -300,13 +334,15 @@ header.header {
 		.topbar-link {
 			display: inline-block;
 		}
-		.profile-dropdown {
+		.profile-dropdown,
+		.dropdown-menu {
 			background: transparent !important;
 			min-width: auto;
-			position: static;
+			position: static !important;
 			.dropdown-item {
+				padding: .25rem 1rem !important;
 				text-align: center;
-				color: #fff;
+				color: #fff !important;
 			}
 		}
 		.notification-item {

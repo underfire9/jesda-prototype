@@ -163,10 +163,13 @@
                                         <div class="card-hd">
                                             <span class="status-wrap">
                                                 <span class="item-status status-stage">初審</span>
-                                                <span class="item-status status-move">審查中</span>
-                                                <span class="item-status status-website undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳官網"></span>
-                                                <span class="item-status status-ftp undone" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="等待上傳FTP"></span>
+                                                <span class="item-status status-move">通過</span>
+                                                <span class="item-status status-website" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="已上傳官網"></span>
+                                                <span class="item-status status-ftp" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="已上傳FTP"></span>
                                             </span>
+
+                                            <span class="item-scheduling"><button type="button" class="btn btn-scheduling" data-bs-toggle="modal" data-bs-target="#schedulingModal" title="排播次數"><strong>5</strong></button></span>
+                                            
                                             <span class="item-delete"><a href="#" class="btn btn-delete" title="刪除"></a></span>
                                         </div>
                                         <div class="card-bd">
@@ -194,7 +197,38 @@
 </div>
 
     
-
+<!-- 排播次數 Modal -->
+<div class="modal fade" id="schedulingModal" tabindex="-1" aria-labelledby="schedulingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="schedulingModalLabel">排播次數</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-list-style mb-0">
+                    <thead>
+                        <tr>
+                            <th>播報日期時間</th>
+                            <th class="text-end">播報人員</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..5).map do |i| %>
+                        <tr>
+                            <td>2026-01-12 1<%= i %>:00</td>
+                            <td class="text-end"><%= zh_lorem_name %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <% content_for :js do %>

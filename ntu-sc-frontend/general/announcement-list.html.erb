@@ -1,0 +1,46 @@
+<!-- template: 通用/公佈欄列表 -->
+
+<div class="container-lg">
+    <div class="announcement-list-wrapper announcement-page-wrapper">
+        <div class="section-title">
+            <h4>公佈欄</h4>
+        </div> 
+        <ul class="announcement-list menu-item">
+            <% (1..9).map do |i| %>
+            <li class="announcement-item">
+                <a href="announcement.html" class="item-link">
+                    <span class="item-date">2026-01-0<%= i %> 12:00</span>
+                    <span class="item-title h5"><%= lorem_sentence %></span>
+                </a>
+            </li>
+            <% end %>
+            <% (10..18).map do |i| %>
+            <li class="announcement-item">
+                <a href="announcement.html" class="item-link">
+                    <span class="item-date">2026-01-<%= i %> 12:00</span>
+                    <span class="item-title h5"><%= zh_lorem_sentence %></span>
+                </a>
+            </li>
+            <% end %>
+        </ul>
+        <nav class="mt-5" aria-label="pagination">
+            <ul class="pagination pagination-main justify-content-end">
+                <li class="page-item disabled">
+                    <a class="page-link" title="上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                    <a class="page-link" href="#" aria-current="page">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" title="下一頁"><i class="fas fa-long-arrow-alt-right"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<% content_for :js do %>
+<% end %>
+

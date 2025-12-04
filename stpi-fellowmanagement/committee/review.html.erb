@@ -1,0 +1,126 @@
+<!-- template: 審查委員 - 審查作業 -->
+
+<div class="container-lg">
+	<div class="committee-review-container">
+        <div class="review-wrapper">
+            <h3 class="mb-4 fw-light">
+                <strong class="fw-bold">薛維彥</strong>
+                <span>期中報告審查作業</span>
+            </h3>
+            <div class="review-content">
+                <div class="review-material">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group form-output-group">
+                                <label class="form-label">計畫名稱</label>
+                                <div class="form-output">
+                                    <%= zh_lorem_words(18) %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group form-output-group">
+                                <label class="form-label">梯次</label>
+                                <div class="form-output">
+                                    <%= zh_lorem_words(6) %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group form-output-group">
+                                <label class="form-label">學員名稱</label>
+                                <div class="form-output">
+                                    薛維彥
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group form-output-group">
+                                <label class="form-label">審查階段</label>
+                                <div class="form-output">
+                                    初審
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group form-output-group">
+                                <label class="form-label">期中/期末報告論文或專書名稱</label>
+                                <div class="form-output">
+                                    <%= zh_lorem_words(28) %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mobile-only">
+                            <div class="form-group">
+                                <label class="form-label fw-bold">報告檢視</label>
+                                <div class="d-flex flex-wrap">
+                                    <a href="#" class="btn-download">期中報告</a>
+                                    <a href="#" class="btn-download">報告檔案名稱可能很長</a>
+                                    <a href="#" class="btn-download">其他檔案字元長</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="form-label fw-bold">評分</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="reviewScore" id="score1" value="option1">
+                                        <label class="form-check-label" for="score1">通過</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="reviewScore" id="score2" value="option2">
+                                        <label class="form-check-label" for="score2">需補件</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="reviewScore" id="score3" value="option3">
+                                        <label class="form-check-label" for="score3">不通過</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="reviewComments" class="form-label fw-bold">審查意見</label>
+                                <textarea id="reviewComments" class="form-control" rows="16" placeholder="請輸入審查意見..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <span class="action-end">
+                            <button type="button" class="btn btn-lg btn-outline-dark">暫存草稿</button>
+                            <button type="button" class="btn btn-lg btn-primary">送出</button> 
+                        </span>
+                        <span class="backhome"><a href="#" class="btn btn-lg btn-link"><i class="fas fa-long-arrow-alt-left"></i> 返回</a></span>
+                    </div>
+                </div>
+                <div class="review-pdf-container">
+                    <div class="file-switch">
+                        <button type="button" class="btn btn-sm btn-light active">期中報告</button>
+                        <button type="button" class="btn btn-sm btn-light">報告檔案名稱可能很長</button>
+                        <button type="button" class="btn btn-sm btn-light">其他檔案字元長</button>
+                    </div>
+                    <!-- pdf plugin 必需要有彈出視窗檢視功能 -->
+                    <iframe class="review-pdf-frame" src="https://docs.google.com/gview?url=https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf&embedded=true"></iframe>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+
+<% content_for :js do %>
+<script>
+$(document).ready(function() {
+    // .file-switch 內的按鈕點擊事件
+    $('.file-switch button').on('click', function() {
+        // 移除所有按鈕的 active 類
+        $('.file-switch button').removeClass('active');
+        // 給當前點擊的按鈕添加 active 類
+        $(this).addClass('active');
+    });
+});
+</script>
+<% end %>
+

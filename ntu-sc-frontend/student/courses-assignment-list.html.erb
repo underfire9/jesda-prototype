@@ -1,0 +1,62 @@
+<!-- template: 學生 / 課程作業列表 -->
+<div class="page-content">
+    <div class="container-lg">
+        <div class="page-title">
+            <h3>作業列表</h3>
+        </div>
+        <ol class="row g-4 courses-announcement-list assignment-list">
+            <% (1..8).map do |i| %>
+            <li class="col-md-6">
+                <div class="inner-wrap">
+                    <span class="num"></span>
+                    <h5 class="fw-semibold mb-2"><%= zh_lorem_words(10) %></h5>
+                    <div class="mb-3"><%= zh_lorem_sentences(2) %></div>
+                    <div class="mb-2">
+                        <span class="d-block fs-6 text-body-tertiary">作業上傳期限</span>
+                        <span class="d-block fw-medium">2026-05-0<%= i %> 12:00</span>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-6">
+                            <span class="d-block fs-6 text-body-tertiary">已交人數</span>
+                            <span class="d-block fw-medium">999</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="d-block fs-6 text-body-tertiary">未繳人數</span>
+                            <span class="d-block fw-medium">999</span>
+                        </div>
+                    </div>
+                    <div class="border-top text-end pt-3">
+                        <a href="#" class="btn btn-outline-dark" title="瀏覽作業">瀏覽</a>
+                    </div>
+                </div>
+            </li>
+            <% end %>
+        </ol>
+        <div class="form-action">
+            <span class="backhome">
+                <a href="#" class="btn btn-light"><i class="fas fa-long-arrow-alt-left"></i> 回列表</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+    <!-- 列表編號 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const announcementItems = document.querySelectorAll('.courses-announcement-list li');
+        
+        announcementItems.forEach((item, index) => {
+            const numElement = item.querySelector('.num');
+            if (numElement) {
+                const number = (index + 1).toString().padStart(2, '0');
+                numElement.textContent = number;
+            }
+        });
+    });
+    </script>
+<% end %>
+

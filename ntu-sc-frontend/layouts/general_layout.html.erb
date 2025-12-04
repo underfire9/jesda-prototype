@@ -36,6 +36,88 @@
                 $("html, body").animate({ scrollTop: 0 }, "300");
             });
         </script>
+
+        <!-- Header nav -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                function toggleOffcanvasClasses() {
+                    const headerNav = document.querySelector(".header-end");
+                    const profileDropdown = document.querySelector(".profile-dropdown");
+                    const profileLink = document.querySelector(".profile-link");
+                    const navbarDropdowns = document.querySelectorAll(".navbar-nav .dropdown-menu");
+                    const navbarDropdownLinks = document.querySelectorAll(".navbar-nav .dropdown-toggle");
+                    
+                    if (headerNav) {
+                        if (window.innerWidth < 1399) {
+                            headerNav.classList.add("offcanvas", "offcanvas-end");
+                            // 啟用 offcanvas 滾動功能
+                            headerNav.setAttribute("data-bs-scroll", "true");
+                            
+                            // 在小螢幕時保持 profile dropdown 展開
+                            if (profileDropdown) {
+                                profileDropdown.classList.add("show");
+                            }
+                            // 移除 profile dropdown 功能
+                            if (profileLink) {
+                                profileLink.classList.remove("dropdown-toggle");
+                                profileLink.removeAttribute("data-bs-toggle");
+                                profileLink.removeAttribute("aria-expanded");
+                            }
+                            
+                            // 在小螢幕時保持 navbar dropdown 展開
+                            navbarDropdowns.forEach(dropdown => {
+                                dropdown.classList.add("show");
+                            });
+                            // 移除 navbar dropdown 功能
+                            navbarDropdownLinks.forEach(link => {
+                                link.classList.remove("dropdown-toggle");
+                                link.removeAttribute("data-bs-toggle");
+                                link.removeAttribute("aria-expanded");
+                            });
+                        } else {
+                            headerNav.classList.remove("offcanvas", "offcanvas-end");
+                            // 在大螢幕時移除 offcanvas 相關屬性
+                            headerNav.removeAttribute("data-bs-scroll");
+                            
+                            // 在大螢幕時移除強制展開
+                            if (profileDropdown) {
+                                profileDropdown.classList.remove("show");
+                            }
+                            // 恢復 profile dropdown 功能
+                            if (profileLink) {
+                                profileLink.classList.add("dropdown-toggle");
+                                profileLink.setAttribute("data-bs-toggle", "dropdown");
+                                profileLink.setAttribute("aria-expanded", "false");
+                            }
+                            
+                            // 在大螢幕時移除強制展開並恢復 dropdown 功能
+                            navbarDropdowns.forEach(dropdown => {
+                                dropdown.classList.remove("show");
+                            });
+                            navbarDropdownLinks.forEach(link => {
+                                link.classList.add("dropdown-toggle");
+                                link.setAttribute("data-bs-toggle", "dropdown");
+                                link.setAttribute("aria-expanded", "false");
+                            });
+                        }
+                    }
+                }
+
+                // Initial check
+                toggleOffcanvasClasses();
+
+                // Add event listener for window resize
+                window.addEventListener("resize", toggleOffcanvasClasses);
+
+                // Add .open class on .btn-offcanvas click
+                const btnOffcanvas = document.querySelector(".btn-offcanvas");
+                if (btnOffcanvas) {
+                    btnOffcanvas.addEventListener("click", function () {
+                        btnOffcanvas.classList.toggle("open");
+                    });
+                }
+            });
+        </script>
         <%= yield :js %>
     </body>
 </html>

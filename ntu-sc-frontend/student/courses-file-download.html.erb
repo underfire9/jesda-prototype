@@ -1,0 +1,51 @@
+<!-- template: 學生 / 課程講義下載 -->
+<div class="page-content">
+    <div class="container-lg">
+        <div class="page-title">
+            <h3>講義下載</h3>
+        </div>
+        <div class="mb-5">
+            <a href="#" class="btn btn-outline-dark px-5" download>全部下載</a>
+        </div>
+        <ol class="row g-5 courses-announcement-list">
+            <% (1..6).map do |i| %>
+            <li class="col-lg-3 col-md-4 col-sm-6">
+                <a href="#" class="inner-wrap" title="下載講義" download>
+                    <span class="num"></span>
+                    <div class="mb-2">
+                        <h5><%= lorem_words(6) %>.pdf</h5>
+                        <span class="date d-block fs-6 text-muted">2026-05-0<%= i %> 12:00</span>
+                    </div>
+                    <i class="fas fa-arrow-alt-circle-down fs-5"></i>
+                </a>
+            </li>
+            <% end %>
+        </ol>
+        <div class="form-action">
+            <span class="backhome">
+                <a href="#" class="btn btn-light"><i class="fas fa-long-arrow-alt-left"></i> 回列表</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+    <!-- 列表編號 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const announcementItems = document.querySelectorAll('.courses-announcement-list li');
+        
+        announcementItems.forEach((item, index) => {
+            const numElement = item.querySelector('.num');
+            if (numElement) {
+                const number = (index + 1).toString().padStart(2, '0');
+                numElement.textContent = number;
+            }
+        });
+    });
+    </script>
+<% end %>
+

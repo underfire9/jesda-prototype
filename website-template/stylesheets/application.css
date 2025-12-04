@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* design by fire */
 @font-face {
   font-family: 'robotoblack';
@@ -6309,6 +6310,10 @@ header.header .brands-link .text-hide {
   height: 0;
   overflow: hidden;
   text-indent: -9999px;
+  position: absolute;
+  clip-path: inset(50%);
+  /* 新法 */
+  white-space: nowrap;
 }
 header.header .brands-link:hover {
   opacity: .75;
@@ -6472,13 +6477,13 @@ header.header .dropdown-item:hover, header.header .dropdown-item:focus {
   top: 21px;
 }
 
+#searchModal {
+  z-index: 1101;
+}
+
 /* `Responsive
 -----------------------------------------------------------------------------*/
 @media (max-width: 1399px) {
-  header.header .h1-logo {
-    width: auto;
-    height: 80px;
-  }
   header.header .navbar .nav-item {
     margin-left: 2rem;
   }
@@ -6528,9 +6533,6 @@ header.header .dropdown-item:hover, header.header .dropdown-item:focus {
   }
 }
 @media (max-width: 991px) {
-  header.header .h1-logo {
-    height: 68px;
-  }
   header.header .brands-link {
     height: 96px;
   }
@@ -6540,7 +6542,7 @@ header.header .dropdown-item:hover, header.header .dropdown-item:focus {
     height: 80px;
   }
   header.header .h1-logo {
-    height: 56px;
+    height: 28px;
   }
 }
 /* `Footer
@@ -6693,6 +6695,8 @@ body {
   font-size: 1rem;
   font-weight: 400;
   color: #363333;
+  text-autospace: normal;
+  height: 100%;
 }
 
 a {
@@ -6937,6 +6941,243 @@ select.browser-default {
   color: #fff !important;
 }
 
+/**
+ * Webix Bootstrap UI - 樣式
+ * 結合 Webix 功能與 Bootstrap 5 風格
+ */
+.webix-bootstrap-datatable .card {
+  border-radius: 0.5rem;
+}
+.webix-bootstrap-datatable .table {
+  margin-bottom: 0;
+}
+.webix-bootstrap-datatable .table th.sortable {
+  user-select: none;
+  transition: background-color 0.2s;
+}
+.webix-bootstrap-datatable .table th.sortable:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.webix-bootstrap-datatable .table th.sortable i {
+  font-size: 0.875rem;
+}
+.webix-bootstrap-datatable .table tbody tr {
+  transition: all 0.2s;
+}
+.webix-bootstrap-datatable .table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+.webix-bootstrap-datatable .table tbody tr.table-active {
+  background-color: rgba(13, 110, 253, 0.1);
+}
+.webix-bootstrap-datatable .table tbody tr.table-active:hover {
+  background-color: rgba(13, 110, 253, 0.15);
+}
+.webix-bootstrap-datatable .mobile-view {
+  padding: 1rem;
+}
+.webix-bootstrap-datatable .mobile-card {
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.webix-bootstrap-datatable .mobile-card:hover {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+.webix-bootstrap-datatable .mobile-card.border-primary {
+  border-width: 2px;
+}
+.webix-bootstrap-datatable .mobile-card .card-title {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+.webix-bootstrap-datatable .mobile-card .row {
+  font-size: 0.875rem;
+}
+.webix-bootstrap-datatable .mobile-card .row .col-5 {
+  padding-right: 0.5rem;
+}
+.webix-bootstrap-datatable .mobile-card .row .col-7 {
+  padding-left: 0.5rem;
+  word-break: break-word;
+}
+.webix-bootstrap-datatable .search-input {
+  border-left: none;
+}
+.webix-bootstrap-datatable .search-input:focus {
+  border-color: #ced4da;
+  box-shadow: none;
+}
+.webix-bootstrap-datatable .input-group-text {
+  border-right: none;
+}
+.webix-bootstrap-datatable .pagination .page-link {
+  color: #0d6efd;
+  border-color: #dee2e6;
+}
+.webix-bootstrap-datatable .pagination .page-link:hover {
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+.webix-bootstrap-datatable .pagination .page-item.active .page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+.webix-bootstrap-datatable .pagination .page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+.webix-bootstrap-datatable .datatable-info {
+  line-height: 2;
+}
+
+.webix-bootstrap-datepicker {
+  position: relative;
+}
+.webix-bootstrap-datepicker .date-input {
+  cursor: pointer;
+  background-color: white;
+}
+.webix-bootstrap-datepicker .datepicker-dropdown {
+  animation: fadeInDown 0.2s;
+}
+.webix-bootstrap-datepicker .datepicker-calendar th, .webix-bootstrap-datepicker .datepicker-calendar td {
+  text-align: center;
+  padding: 0.5rem;
+  border: none;
+}
+.webix-bootstrap-datepicker .datepicker-calendar thead th {
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td {
+  position: relative;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td.selectable {
+  cursor: pointer;
+  border-radius: 0.25rem;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td.selectable:hover {
+  background-color: #e9ecef;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td.selectable.today {
+  font-weight: bold;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td.selectable.today::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: #0d6efd;
+  border-radius: 50%;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td.selectable.selected {
+  background-color: #0d6efd;
+  color: white;
+  font-weight: bold;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td.selectable.selected:hover {
+  background-color: #0b5ed7;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td.selectable.selected::after {
+  display: none;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td.selectable.disabled {
+  color: #dee2e6;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td.selectable.disabled:hover {
+  background-color: transparent;
+}
+.webix-bootstrap-datepicker .datepicker-calendar tbody td.other-month {
+  color: #adb5bd;
+  font-size: 0.75rem;
+}
+.webix-bootstrap-datepicker .current-month-year {
+  font-size: 1rem;
+}
+.webix-bootstrap-datepicker .prev-month,
+.webix-bootstrap-datepicker .next-month {
+  padding: 0.25rem 0.5rem;
+}
+.webix-bootstrap-datepicker .prev-month:hover,
+.webix-bootstrap-datepicker .next-month:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .webix-bootstrap-datatable .card-header .row > div {
+    margin-bottom: 0.5rem;
+  }
+  .webix-bootstrap-datatable .card-header .row > div:last-child {
+    margin-bottom: 0;
+  }
+  .webix-bootstrap-datatable .pagination {
+    font-size: 0.875rem;
+    flex-wrap: wrap;
+  }
+  .webix-bootstrap-datatable .pagination .page-item {
+    margin-bottom: 0.25rem;
+  }
+  .webix-bootstrap-datatable .datatable-info {
+    margin-bottom: 0.5rem;
+  }
+  .webix-bootstrap-datatable .mobile-view {
+    max-height: 600px;
+    overflow-y: auto;
+  }
+  .webix-bootstrap-datatable .mobile-card {
+    font-size: 0.875rem;
+  }
+  .webix-bootstrap-datatable .mobile-card .card-body {
+    padding: 0.75rem !important;
+  }
+
+  .webix-bootstrap-datepicker .datepicker-dropdown {
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+}
+@media (max-width: 576px) {
+  .webix-bootstrap-datatable .mobile-card .card-title {
+    font-size: 0.95rem;
+  }
+  .webix-bootstrap-datatable .mobile-card .row {
+    font-size: 0.8rem;
+  }
+  .webix-bootstrap-datatable .pagination .page-link {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .webix-bootstrap-datatable .table {
+    font-size: 0.875rem;
+  }
+  .webix-bootstrap-datatable .table th, .webix-bootstrap-datatable .table td {
+    padding: 0.5rem;
+  }
+}
 /* `Stuff
 -----------------------------------------------------------------------------*/
 #backtop {

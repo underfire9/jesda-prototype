@@ -1,23 +1,604 @@
 <!-- template: 個人資料 - 帳密管理 -->
 
 <div class="container-lg">
-    <p>個人資料</p>
-    <div>帳密管理</div>
+    <div class="profile-container">
+        <div class="tabs-wrapper">
+            <div class="profile-nav">
+                <div class="side-account">
+                    <span class="account-name">王小明</span>
+                    <span class="account-currently">國立臺灣大學</span>
+                </div>
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" id="v-pills-account-tab" data-bs-toggle="pill" data-bs-target="#v-pills-account" type="button" role="tab" aria-controls="v-pills-account" aria-selected="true">
+                        <span class="nav-icon"><img src="../assets/icons/profile_account.svg"></span>
+                        <span class="nav-wording">帳密管理</span>
+                    </button>
+                    <button class="nav-link" id="v-pills-qualifications-tab" data-bs-toggle="pill" data-bs-target="#v-pills-qualifications" type="button" role="tab" aria-controls="v-pills-qualifications" aria-selected="false">
+                        <span class="nav-icon"><img src="../assets/icons/profile_qualifications.svg"></span>
+                        <span class="nav-wording">教師經歷</span>
+                    </button>
+                    <button class="nav-link" id="v-pills-teaching-tab" data-bs-toggle="pill" data-bs-target="#v-pills-teaching" type="button" role="tab" aria-controls="v-pills-teaching" aria-selected="false">
+                        <span class="nav-icon"><img src="../assets/icons/profile_teaching.svg"></span>
+                        <span class="nav-wording">授課歷程</span>
+                    </button>
+                    <button class="nav-link" id="v-pills-study-tab" data-bs-toggle="pill" data-bs-target="#v-pills-study" type="button" role="tab" aria-controls="v-pills-study" aria-selected="false">
+                        <span class="nav-icon"><img src="../assets/icons/profile_study.svg"></span>
+                        <span class="nav-wording">上課歷程</span>
+                    </button>
+                </div>
+            </div>
+            <div class="profile-content">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-account" role="tabpanel" aria-labelledby="v-pills-account-tab" tabindex="0">
+                        <h4 class="pane-title">
+                            <span>帳密管理</span>
+                        </h4>
+                        <div>
+                            <section class="pane-section">
+                                <h5 class="pane-subtitle">基本資料</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="account" class="form-label">帳號</label>
+                                            <input type="text" class="form-control" id="account" name="account" value="SC2025" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email" class="form-label">電子信箱</label>
+                                            <input type="text" class="form-control" id="email" name="email" placeholder="example@example.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="chinese_name" class="form-label">中文姓名</label>
+                                            <input type="text" class="form-control" id="chinese_name" name="chinese_name" value="王小明">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone" class="form-label">電話</label>
+                                            <input type="text" class="form-control" id="phone" name="phone">
+                                        </div>
+                                    </div>
+
+                                    <!-- 教師專屬資料 -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="department" class="form-label">單位</label>
+                                            <input type="text" class="form-control" id="department" name="department" placeholder="院/系">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="english_name" class="form-label">英文姓名</label>
+                                            <input type="text" class="form-control" id="english_name" name="english_name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">職稱</label>
+                                            <div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="title" id="title_professor" value="教授">
+                                                    <label class="form-check-label" for="title_professor">教授</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="title" id="title_associate_professor" value="副教授">
+                                                    <label class="form-check-label" for="title_associate_professor">副教授</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="title" id="title_assistant_professor" value="助理教授">
+                                                    <label class="form-check-label" for="title_assistant_professor">助理教授</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="title" id="title_lecturer" value="講師">
+                                                    <label class="form-check-label" for="title_lecturer">講師</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">專兼任</label>
+                                            <div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="employment_type" id="employment_full_time" value="專任">
+                                                    <label class="form-check-label" for="employment_full_time">專任</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="employment_type" id="employment_part_time" value="兼任">
+                                                    <label class="form-check-label" for="employment_part_time">兼任</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="phone_number" class="form-label">手機</label>
+                                            <input type="text" class="form-control" id="phone_number" name="phone_number">
+                                        </div>
+                                    </div>
+
+                                    <!-- 學生專屬資料 -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="student_id" class="form-label">身分證</label>
+                                            <input type="text" class="form-control" id="student_id" name="student_id">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="birthday" class="form-label">生日</label>
+                                            <input type="date" class="form-control" id="birthday" name="birthday">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="mobile_phone" class="form-label">手機</label>
+                                            <input type="text" class="form-control" id="mobile_phone" name="mobile_phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">地址</label>
+                                        <div class="row g-2">
+                                            <div class="col-md-2 col-sm-4">
+                                                <select class="form-select" aria-label="縣市">
+                                                    <option selected>請選擇</option>
+                                                    <option value="1">台北市</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 col-sm-4">
+                                                <select class="form-select" aria-label="地區">
+                                                    <option selected>請選擇</option>
+                                                    <option value="1">中正區</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 col-sm-4">
+                                                <input class="form-control" type="text" placeholder="郵遞區號">
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <input class="form-control" type="text" placeholder="地址">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="pane-section">
+                                <h5 class="pane-subtitle">修改密碼</h5>
+                                <p class="form-text text-muted">需要異動才輸入。密碼長度最少8碼，須包含 1 各大小寫英文字母、數字及特殊符號</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="new_password" class="form-label">新密碼</label>
+                                            <input type="password" class="form-control" id="new_password" name="new_password">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="confirm_password" class="form-label">再次輸入密碼</label>
+                                            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="form-action">
+                            <button type="submit" class="btn btn-lg btn-main"><span>儲存</span></button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-qualifications" role="tabpanel" aria-labelledby="v-pills-qualifications-tab" tabindex="0">
+                        <h4 class="pane-title">
+                            <span>教師經歷</span>
+                        </h4>
+                        <div>
+                            <section class="pane-section">
+                                <h5 class="pane-subtitle">主要學歷</h5>
+                                <p>未獲得學位者請在學位欄填寫「肄業」。系統會由高至低自動排序</p>
+                                <div class="experience-wrapper education-wrapper">
+                                    <div class="add-wrapper">
+                                        <button type="button" class="btn btn-lg btn-outline-dark" data-bs-toggle="modal" data-bs-target="#addEducationModal">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.0001 4.79999L12 19.2M19.2 12L4.80005 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                                            </svg>
+                                            <span>新增學歷</span>
+                                        </button>
+                                    </div>
+                                    <div class="experience-list">
+                                        <div class="list-grid">
+                                            <div class="experience-card">
+                                                <div class="card-controls">
+                                                    <button type="button" class="btn btn-trash" title="刪除">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#addEducationModal" title="編輯">
+                                                        <i class="fas fa-pen-alt"></i>
+                                                    </button>
+                                                </div>            
+                                                <span class="experience-university">國立臺灣大學</span>
+                                                <span class="experience-country">臺灣</span>
+                                                <span class="experience-degree">博士</span>
+                                                <span class="experience-department">資訊工程學系</span>
+                                                <span class="experience-year">2010/06 - 2014/06</span>
+                                            </div>
+                                        </div>
+                                        <div class="list-grid">
+                                            <div class="experience-card">
+                                                <div class="card-controls">
+                                                    <button type="button" class="btn btn-trash" title="刪除">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#addEducationModal" title="編輯">
+                                                        <i class="fas fa-pen-alt"></i>
+                                                    </button>
+                                                </div> 
+                                                <span class="experience-university">Massachusetts Institute of Technology</span>
+                                                <span class="experience-country">United States of America</span>
+                                                <span class="experience-degree">Master</span>
+                                                <span class="experience-department">Department of Aeronautics and Astronautics</span>
+                                                <span class="experience-year">2010/06 - 2014/06</span>
+                                            </div>
+                                        </div>
+                                        <div class="list-grid">
+                                            <div class="experience-card">
+                                                <div class="card-controls">
+                                                    <button type="button" class="btn btn-trash" title="刪除">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#addEducationModal" title="編輯">
+                                                        <i class="fas fa-pen-alt"></i>
+                                                    </button>
+                                                </div> 
+                                                <span class="experience-university">國立臺灣大學</span>
+                                                <span class="experience-country">臺灣</span>
+                                                <span class="experience-degree">學士</span>
+                                                <span class="experience-department">資訊工程學系</span>
+                                                <span class="experience-year">2010/06 - 2014/06</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="pane-section">
+                                <h5 class="pane-subtitle">主要經歷</h5>
+                                <p>所有專任職務。系統會依日期自動排序</p>
+                                <div class="experience-wrapper">
+                                    <div class="add-wrapper">
+                                        <button type="button" class="btn btn-lg btn-outline-dark" data-bs-toggle="modal" data-bs-target="#addExperienceModal">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.0001 4.79999L12 19.2M19.2 12L4.80005 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                                            </svg>
+                                            <span>新增經歷</span>
+                                        </button>
+                                    </div>
+                                    <div class="experience-list">
+                                        <div class="list-grid">
+                                            <div class="experience-card">
+                                                <div class="card-controls">
+                                                    <button type="button" class="btn btn-trash" title="刪除">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#addExperienceModal" title="編輯">
+                                                        <i class="fas fa-pen-alt"></i>
+                                                    </button>
+                                                </div> 
+                                                <span class="experience-organization">美利堅合眾國</span>
+                                                <span class="experience-department">外交部</span>
+                                                <span class="experience-title">外交部長</span>
+                                                <span class="experience-year">2010/06 - 2014/06</span>
+                                            </div>
+                                        </div>
+                                        <div class="list-grid">
+                                            <div class="experience-card">
+                                                <div class="card-controls">
+                                                    <button type="button" class="btn btn-trash" title="刪除">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#addExperienceModal" title="編輯">
+                                                        <i class="fas fa-pen-alt"></i>
+                                                    </button>
+                                                </div> 
+                                                <span class="experience-organization">Sony Pictures 索尼影業</span>
+                                                <span class="experience-department">PlayStation Reality Audio</span>
+                                                <span class="experience-title">Player</span>
+                                                <span class="experience-year">2010/06 - 2014/06</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="pane-section">
+                                <h5 class="pane-subtitle">著作、作品</h5>
+                                <p>其他有利審查的文件或作品，如SCI、TSSCI、THCI論文、專書或展覽、表演等</p>
+                                <div class="form-group">
+                                    <label for="professionalWorks" class="form-label">專業</label>
+                                    <textarea class="form-control" id="professionalWorks" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="generalWorks" class="form-label">通識</label>
+                                    <textarea class="form-control" id="generalWorks" rows="3"></textarea>
+                                    <div class="form-text text-muted">與欲開課課程相關領域之論文</div>
+                                </div>
+                            </section>
+                            <section class="pane-section">
+                                <h5 class="pane-subtitle">獎勵</h5>
+                                <p>得獎紀錄</p>
+                                <div class="form-group">
+                                    <label for="teachingAwards" class="form-label">教學研究</label>
+                                    <textarea class="form-control" id="teachingAwards" rows="3"></textarea>
+                                    <div class="form-text text-muted">例：傑出教師教學獎、傑出通識獎等相關教學成就之獲獎紀錄</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="otherAwards" class="form-label">其他自填</label>
+                                    <textarea class="form-control" id="otherAwards" rows="3"></textarea>
+                                    <div class="form-text text-muted">任何獲獎紀錄皆須填列，請依影響力排序</div>
+                                </div>
+                            </section>
+                            <section class="pane-section">
+                                <h5 class="pane-subtitle">教學評鑑</h5>
+                                <p>近 3 年教學評鑑值。系統會依年份自動排序</p>
+                                <div class="experience-wrapper evaluation-wrapper">
+                                    <div class="add-wrapper">
+                                        <button type="button" class="btn btn-lg btn-outline-dark" data-bs-toggle="modal" data-bs-target="#addEvaluationModal">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.0001 4.79999L12 19.2M19.2 12L4.80005 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                                            </svg>
+                                            <span>新增評鑑</span>
+                                        </button>
+                                    </div>
+                                    <div class="experience-list">
+                                        <div class="list-grid">
+                                            <div class="experience-card">
+                                                <div class="card-controls">
+                                                    <button type="button" class="btn btn-trash" title="刪除">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#addEvaluationModal" title="編輯">
+                                                        <i class="fas fa-pen-alt"></i>
+                                                    </button>
+                                                </div> 
+                                                <span class="evaluation-organization">全國夏季學院</span>
+                                                <span class="evaluation-year">2025</span>
+                                                <span class="evaluation-title">用 Python 做商管程式設計</span>
+                                                <span class="evaluation-score">
+                                                    <span class="evaluation-value">85</span>
+                                                    <span class="evaluation-highest">100</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="form-action">
+                            <button type="submit" class="btn btn-lg btn-main"><span>儲存</span></button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-teaching" role="tabpanel" aria-labelledby="v-pills-teaching-tab" tabindex="0">
+                        <h4 class="pane-title">
+                            <span>授課歷程</span>
+                        </h4>
+                        <p>用 RWD Datatables</p>
+                        <!-- 用 rwd datatables -->
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                        <th>Extn.</th>
+                                        <th>E-mail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% (10..20).map do |i| %>
+                                    <tr>
+                                        <td><%= lorem_first_name %></td>
+                                        <td><%= lorem_last_name %></td>
+                                        <td><%= i %></td>
+                                        <td>2025-04-01</td>
+                                        <td>$320,800</td>
+                                        <td>5421</td>
+                                        <td><%= lorem_email %></td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-study" role="tabpanel" aria-labelledby="v-pills-study-tab" tabindex="0">
+                        <h4 class="pane-title">
+                            <span>上課歷程</span>
+                        </h4>
+                        <p>用 RWD Datatables</p>
+                        <!-- 用 rwd datatables -->
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
+                                        <th>Extn.</th>
+                                        <th>E-mail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% (10..20).map do |i| %>
+                                    <tr>
+                                        <td><%= lorem_first_name %></td>
+                                        <td><%= lorem_last_name %></td>
+                                        <td><%= i %></td>
+                                        <td>2025-04-01</td>
+                                        <td>$320,800</td>
+                                        <td>5421</td>
+                                        <td><%= lorem_email %></td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-    
+<!-- 新增學歷 Modal -->
+<div class="modal fade" id="addEducationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addEducationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addEducationModalLabel">新增學歷</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-3">
+                    <label for="educationSchoolName" class="form-label">學校名稱</label>
+                    <input type="text" class="form-control" id="educationSchoolName">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="educationCountry" class="form-label">國別</label>
+                    <input type="text" class="form-control" id="educationCountry">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="educationMajor" class="form-label">主修學門系所</label>
+                    <input type="text" class="form-control" id="educationMajor">
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">學位</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="educationDegree" id="degreeDoctorate" value="博士">
+                            <label class="form-check-label" for="degreeDoctorate">博士</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="educationDegree" id="degreeMaster" value="碩士">
+                            <label class="form-check-label" for="degreeMaster">碩士</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="educationDegree" id="degreeBachelor" value="學士">
+                            <label class="form-check-label" for="degreeBachelor">學士</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="educationPeriod" class="form-label">就學期間</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <input type="month" class="form-control" id="educationStartPeriod">
+                        <span>至</span>
+                        <input type="month" class="form-control" id="educationEndPeriod">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-light" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-lg btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- 新增經歷 Modal -->
+<div class="modal fade" id="addExperienceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addExperienceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addExperienceModalLabel">新增經歷</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-3">
+                    <label for="experienceOrganization" class="form-label">任職機關</label>
+                    <input type="text" class="form-control" id="experienceOrganization">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="experienceDepartment" class="form-label">任職單位</label>
+                    <input type="text" class="form-control" id="experienceDepartment">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="experienceTitle" class="form-label">職稱</label>
+                    <input type="text" class="form-control" id="experienceTitle">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="experiencePeriod" class="form-label">任職期間</label>
+                    <div class="d-flex align-items-center gap-2">
+                        <input type="month" class="form-control" id="experienceStartPeriod">
+                        <span>至</span>
+                        <input type="month" class="form-control" id="experienceEndPeriod">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-light" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-lg btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-
+<!-- 新增評鑑 Modal -->
+<div class="modal fade" id="addEvaluationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addEvaluationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addEvaluationModalLabel">新增教學評鑑</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-3">
+                    <label for="" class="form-label">資料來源</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluationSource" id="sourceNationalSummerInstitute" value="全國夏季學院">
+                            <label class="form-check-label" for="sourceNationalSummerInstitute">全國夏季學院</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluationSource" id="sourceUniversity" value="任職學校">
+                            <label class="form-check-label" for="sourceUniversity">任職學校</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="evaluationCourseName" class="form-label">課程名稱</label>
+                    <input type="text" class="form-control" id="evaluationCourseName">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="experienceTitle" class="form-label">職稱</label>
+                    <input type="text" class="form-control" id="experienceTitle">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="evaluationYear" class="form-label">年份</label>
+                    <select class="form-select" id="evaluationYear">
+                        <option selected>請選擇</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-light" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-lg btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <% content_for :js do %>
-<script>
-    $(document).ready(function() {
-        $('.btn-goapply').on('click', function() {
-            // 跳轉到 courses-apply.html 並帶上參數開啟 modal
-            window.location.href = 'courses-apply.html';
-        });
-    });
-</script>
+
 <% end %>
 

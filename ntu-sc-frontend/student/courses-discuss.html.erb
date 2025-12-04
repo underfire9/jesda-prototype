@@ -1,0 +1,119 @@
+<!-- template: 學生 / 討論 -->
+<div class="page-content">
+    <div class="container-lg">
+        <div class="page-title">
+            <h3>討論</h3>
+        </div>
+        <div class="courses-discuss-container">
+            <div class="aside-discuss">
+                <div class="discuss-bar">
+                    <h4 class="fw-bold mb-3"><%= zh_lorem_words(20) %></h4>
+                    <div class="text-muted mb-4">
+                        <span><%= zh_lorem_name %></span>
+                        <span class="mx-2">|</span>
+                        <span>2026-07-03 09:48</span>
+                    </div>
+                    <div class="mb-3">
+                        <p><%= zh_lorem_sentences(3) %></p>
+                    </div>
+                    <div class="form-action">
+                        <span class="backhome">
+                            <a href="#" class="btn btn-lg btn-light px-4" title="回列表"><i class="fas fa-long-arrow-alt-left"></i></a>
+                        </span>
+                        <span class="has-history">
+                            <button class="btn btn-lg btn-main" data-bs-toggle="modal" data-bs-target="#discussModal"><i class="fas fa-plus"></i> 新增回應</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="main-discuss">
+                <div class="discuss-item">
+                    <div class="fs-6 text-muted mb-1">2026-08-13 (三) 15:00</div>
+                    <div><strong><%= zh_lorem_name %></strong> 11A00999</div>
+                    <div class="discuss-content">
+                        <p><%= zh_lorem_sentence %></p>
+                        <a href="#">https://www.google.com/search?q=4DX&num=10&newwindow=1&sca_esv=8dfe9edb86176f37&sxsrf=AE3TifPF-IgH4Io-LO4hkZZ_4Rsf6es6GQ%3A1764809209034&ei=-dkwaevwAeyMvr0PvvqZiAM&ved=0ahUKEwir0YDQ2qKRAxVshq8BHT59BjEQ4dUDCBE&uact=5&oq=4DX&gs_lp=Egxnd3Mtd2l6LXNlcnAiAzREWDIQEAAYgAQYsQMYQxiDARiKBTIIEAAYgAQYsQMyChAAGIAEGEMYigUyBRAAGIAEMgsQABiABBixAxiDATIKEAAYgAQYQxiKBTIOEAAYgAQYsQMYgwEYigUyDhAAGIAEGLEDGIMBGIoFMgUQABiABDIEEAAYA0jeH1CLEVjPGXACeAGQAQCYATigAaIBqgEBM7gBA8gBAPgBAZgCBaACtQHCAgoQABiwAxjWBBhHmAMAiAYBkAYKkgcBNaAH-AeyBwEzuAesAcIHBTAuMi4zyAcN&sclient=gws-wiz-serp</a>
+                        <p>
+                            <img src="../assets/fake/03.jpg" alt="">
+                            <img src="../assets/fake/04.jpg" alt="">
+                        </p>
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="btn-group mt-2">
+                        <button class="btn btn-xs btn-outline-dark px-3">刪除</button>
+                        <button class="btn btn-xs btn-dark px-3" data-bs-toggle="modal" data-bs-target="#discussModal">編輯</button>
+                    </div>
+                </div>
+                <% (1..4).map do |i| %>
+                <div class="discuss-item">
+                    <div class="fs-6 text-muted mb-1">2026-08-13 (三) 15:00</div>
+                    <div><strong><%= zh_lorem_name %></strong> 11A00999</div>
+                    <div class="discuss-content">
+                        <p><%= zh_lorem_sentences(3) %></p>
+                        <p><%= zh_lorem_sentences(3) %></p>
+                    </div>
+                </div>
+                <div class="discuss-item">
+                    <div class="fs-6 text-muted mb-1">2026-08-13 (三) 15:00</div>
+                    <div><strong><%= zh_lorem_name %></strong> 11A00999</div>
+                    <div class="discuss-content">
+                        <p><%= zh_lorem_sentence %></p>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="discussModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="discussModalModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="discussModalModalLabel">回應</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" rows="8""></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+    <!-- 課程排序欄固定效果 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sortingBar = document.querySelector('.discuss-bar');
+        
+        if (sortingBar) {
+            const originalOffsetTop = sortingBar.offsetTop;
+            
+            function handleScroll() {
+                if (window.innerWidth >= 991) {
+                    if (window.pageYOffset >= originalOffsetTop) {
+                        sortingBar.style.position = 'fixed';
+                        sortingBar.style.top = '20px';
+                    } else {
+                        sortingBar.style.position = 'static';
+                    }
+                } else {
+                    sortingBar.style.position = 'static';
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('resize', handleScroll);
+        }
+    });
+    </script>
+<% end %>
+

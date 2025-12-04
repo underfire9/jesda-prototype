@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWD DataTable 測試</title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/vendor/font-awesome/fontawesome.css">
+    <link rel="stylesheet" href="stylesheets/vendor/font-awesome/fa-solid.css">
+    <link rel="stylesheet" href="stylesheets/webix-bootstrap-ui.css">
+    <style>
+        .device-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="device-info">
+        螢幕寬度: <span id="screen-width"></span>px<br>
+        模式: <span id="view-mode"></span>
+    </div>
+
+    <div class="container py-5">
+        <h2>RWD DataTable 測試</h2>
+        <p class="text-muted">請調整瀏覽器視窗大小來查看響應式效果</p>
+        <div class="alert alert-info">
+            <strong>提示：</strong><br>
+            • 桌面模式 (≥768px)：顯示傳統表格<br>
+            • 行動模式 (&lt;768px)：顯示卡片列表
+        </div>
+        
+        <div id="datepicker" class="mb-4"></div>
+        <hr>
+        <div id="datatable"></div>
+    </div>
+
+    <script src="javascripts/webix-bootstrap-ui.js"></script>
+    <script>
+        // 顯示螢幕資訊
+        function updateScreenInfo() {
+            document.getElementById('screen-width').textContent = window.innerWidth;
+            document.getElementById('view-mode').textContent = window.innerWidth >= 768 ? '桌面版' : '行動版';
+        }
+        updateScreenInfo();
+        window.addEventListener('resize', updateScreenInfo);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Script loaded');
+            
+            // 測試 Datepicker
+            try {
+                const picker = WebixBootstrapUI.Datepicker({
+                    container: 'datepicker',
+                    label: '測試日期',
+                    value: new Date()
+                });
+                console.log('Datepicker OK');
+            } catch(e) {
+                console.error('Datepicker error:', e);
+            }
+            
+            // 測試 RWD DataTable
+            try {
+                const table = WebixBootstrapUI.DataTable({
+                    container: 'datatable',
+                    columns: [
+                        { id: 'id', header: 'ID', width: 60 },
+                        { id: 'name', header: '姓名', width: 120 },
+                        { id: 'email', header: 'Email', width: 200 },
+                        { id: 'department', header: '部門', width: 100 },
+                        { id: 'position', header: '職位' }
+                    ],
+                    data: [
+                        { id: 1, name: '王小明', email: 'wang@example.com', department: '技術部', position: '工程師' },
+                        { id: 2, name: '李小華', email: 'li@example.com', department: '設計部', position: '設計師' },
+                        { id: 3, name: '張大同', email: 'zhang@example.com', department: '管理部', position: '經理' },
+                        { id: 4, name: '陳美玲', email: 'chen@example.com', department: '行銷部', position: '專員' },
+                        { id: 5, name: '林志明', email: 'lin@example.com', department: '技術部', position: '主管' },
+                        { id: 6, name: '黃淑芬', email: 'huang@example.com', department: '人資部', position: '經理' },
+                        { id: 7, name: '吳宗憲', email: 'wu@example.com', department: '財務部', position: '會計' },
+                        { id: 8, name: '劉德華', email: 'liu@example.com', department: '業務部', position: '業務' }
+                    ],
+                    pageSize: 5,
+                    responsive: true,
+                    onRowClick: function(rowData) {
+                        console.log('點擊:', rowData.name);
+                    }
+                });
+                console.log('DataTable OK');
+            } catch(e) {
+                console.error('DataTable error:', e);
+                alert('DataTable 錯誤: ' + e.message);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webix Bootstrap UI 測試</title>
+    <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="../stylesheets/vendor/font-awesome/fontawesome.css">
+    <link rel="stylesheet" href="../stylesheets/vendor/font-awesome/fa-solid.css">
+    <link rel="stylesheet" href="../stylesheets/webix-bootstrap-ui.css">
+</head>
+<body>
+    <div class="container-lg py-5">
+        <h2 class="mb-4">Webix Bootstrap UI 測試頁面</h2>
+        <p class="text-muted mb-4">結合 Webix 功能與 Bootstrap 5 風格的 DataTable 和 Datepicker 元件</p>
+        
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <!-- Datepicker -->
+                <div id="datepicker"></div>
+            </div>
+            
+            <div class="col-lg-8 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">選擇的日期</h5>
+                        <p class="card-text" id="selected-date-display">尚未選擇日期</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DataTable -->
+        <div class="mb-4">
+            <div id="datatable"></div>
+        </div>
+    </div>
+
+    <script src="../javascripts/webix-bootstrap-ui.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('頁面載入完成');
+            console.log('WebixBootstrapUI:', typeof WebixBootstrapUI);
+            
+            try {
+                // 初始化 Bootstrap 風格的 Datepicker
+                const datepicker = WebixBootstrapUI.Datepicker({
+                    container: 'datepicker',
+                    label: '選擇日期',
+                    value: new Date(),
+                    format: 'yyyy-MM-dd',
+                    onChange: function(date) {
+                        const display = document.getElementById('selected-date-display');
+                        if (date) {
+                            const formatted = date.getFullYear() + '年' + 
+                                             (date.getMonth() + 1) + '月' + 
+                                             date.getDate() + '日';
+                            display.textContent = '您選擇的日期：' + formatted;
+                            display.className = 'card-text text-success fw-bold';
+                        } else {
+                            display.textContent = '尚未選擇日期';
+                            display.className = 'card-text';
+                        }
+                    }
+                });
+                console.log('Datepicker 初始化成功');
+                
+                // 初始化 Bootstrap 風格的 DataTable
+                const datatable = WebixBootstrapUI.DataTable({
+                    container: 'datatable',
+                    columns: [
+                        { id: "id", header: "ID", width: 60 },
+                        { id: "name", header: "姓名", width: 120 },
+                        { id: "email", header: "Email", width: 200 },
+                        { id: "age", header: "年齡", width: 80 },
+                        { id: "department", header: "部門", width: 120 },
+                        { id: "position", header: "職位" }
+                    ],
+                    data: [
+                        { id: 1, name: "王小明", email: "wang.xiaoming@company.com", age: 28, department: "技術部", position: "前端工程師" },
+                        { id: 2, name: "李小華", email: "li.xiaohua@company.com", age: 32, department: "設計部", position: "UI/UX 設計師" },
+                        { id: 3, name: "張大同", email: "zhang.datong@company.com", age: 35, department: "管理部", position: "專案經理" },
+                        { id: 4, name: "陳美玲", email: "chen.meiling@company.com", age: 29, department: "技術部", position: "後端工程師" },
+                        { id: 5, name: "林志明", email: "lin.zhiming@company.com", age: 31, department: "技術部", position: "全端工程師" },
+                        { id: 6, name: "黃淑芬", email: "huang.shufen@company.com", age: 27, department: "設計部", position: "視覺設計師" },
+                        { id: 7, name: "吳宗憲", email: "wu.zongxian@company.com", age: 33, department: "品質部", position: "測試工程師" },
+                        { id: 8, name: "劉德華", email: "liu.dehua@company.com", age: 30, department: "技術部", position: "DevOps 工程師" },
+                        { id: 9, name: "鄭成功", email: "zheng.chenggong@company.com", age: 36, department: "管理部", position: "技術主管" },
+                        { id: 10, name: "周杰倫", email: "zhou.jielun@company.com", age: 26, department: "設計部", position: "動畫設計師" }
+                    ],
+                    sortable: true,
+                    searchable: true,
+                    pagination: true,
+                    pageSize: 5,
+                    selectable: true,
+                    striped: true,
+                    hover: true,
+                    bordered: false,
+                    onRowClick: function(rowData, rowIndex) {
+                        console.log('點擊行:', rowData);
+                    },
+                    onRowSelect: function(rowData, selectedIds) {
+                        console.log('已選擇的行 IDs:', selectedIds);
+                    }
+                });
+                console.log('DataTable 初始化成功');
+
+                // 初始顯示
+                const display = document.getElementById('selected-date-display');
+                const today = new Date();
+                const formatted = today.getFullYear() + '年' + 
+                                 (today.getMonth() + 1) + '月' + 
+                                 today.getDate() + '日';
+                display.textContent = '您選擇的日期：' + formatted;
+                display.className = 'card-text text-success fw-bold';
+            } catch (error) {
+                console.error('初始化錯誤:', error);
+                alert('初始化失敗: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

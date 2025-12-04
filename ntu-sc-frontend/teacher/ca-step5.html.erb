@@ -1,100 +1,108 @@
-<!-- template: Step3 - 經費申請 -->
+<!-- template: Step5 - 經費申請 -->
+<div class="page-content">
+    <div class="container-lg">
+        <div class="ca-container">
+            <aside class="ca-aside">
+                <ul class="ca-steps menu-item">
+                    <li class="done">
+                        <a href="ca-step1.html">
+                            <span class="step-number">1</span>
+                            <span class="step-check"></span>
+                            <span class="step-title">課程基本資料</span>
+                        </a>
+                    </li>
+                    <li class="done">
+                        <a href="ca-step2.html">
+                            <span class="step-number">2</span>
+                            <span class="step-check"></span>
+                            <span class="step-title">共同授課教師</span>
+                        </a>
+                    </li>
+                    <li class="done">
+                        <a href="ca-step3.html">
+                            <span class="step-number">3</span>
+                            <span class="step-check"></span>
+                            <span class="step-title">課程規劃</span>
+                        </a>
+                    </li>
+                    <li class="done">
+                        <a href="ca-step4.html">
+                            <span class="step-number">4</span>
+                            <span class="step-check"></span>
+                            <span class="step-title">教學助教規劃</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a>
+                            <span class="step-number">5</span>
+                            <span class="step-check"></span>
+                            <span class="step-title">經費申請</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="step-number">6</span>
+                            <span class="step-check"></span>
+                            <span class="step-title">預覽</span>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+            <main class="ca-main">
+                <div class="page-title">
+                    <h3>經費申請</h3>
+                </div>
+                <div class="mb-5">
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-toggle="modal" data-bs-target="#fundingModal">
+                        <i class="fas fa-plus me-1"></i> 新增經費項目
+                    </button>
+                </div>
 
-<div class="container-lg">
-    <div class="ca-container">
-        <aside class="ca-aside">
-            <ul class="ca-steps menu-item">
-                <li class="done">
-                    <a href="ca-step1.html">
-                        <span class="step-number">1</span>
-                        <span class="step-check"></span>
-                        <span class="step-title">課程基本資料</span>
-                    </a>
-                </li>
-                <li class="done">
-                    <a href="ca-step2.html">
-                        <span class="step-number">2</span>
-                        <span class="step-check"></span>
-                        <span class="step-title">共同授課教師</span>
-                    </a>
-                </li>
-                <li class="done">
-                    <a href="ca-step3.html">
-                        <span class="step-number">3</span>
-                        <span class="step-check"></span>
-                        <span class="step-title">課程規劃</span>
-                    </a>
-                </li>
-                <li class="done">
-                    <a href="ca-step4.html">
-                        <span class="step-number">4</span>
-                        <span class="step-check"></span>
-                        <span class="step-title">教學助教規劃</span>
-                    </a>
-                </li>
-                <li class="active">
-                    <a>
-                        <span class="step-number">5</span>
-                        <span class="step-check"></span>
-                        <span class="step-title">經費申請</span>
-                    </a>
-                </li>
-            </ul>
-        </aside>
-        <main class="ca-main">
-            <div class="page-title">
-                <h3>經費申請</h3>
-            </div>
-            <div class="mb-5">
-                <button type="button" class="btn btn-lg btn-outline-dark" data-bs-toggle="modal" data-bs-target="#fundingModal">
-                    <i class="fas fa-plus me-1"></i> 新增經費項目
-                </button>
-            </div>
-
-            <!-- 用 peggy 示範的 rwd datatable -->
-            <div class="table-responsive">
-                <table class="table align-middle">
-                    <thead class="text-nowrap">
-                        <tr>
-                            <th></th>
-                            <th>經費項目</th>
-                            <th class="text-center">單價(元)</th>
-                            <th class="text-center">數量</th>
-                            <th class="text-center">單位</th>
-                            <th class="text-center">總價(元)</th>
-                            <th>說明</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% (1..6).map do |i| %>
-                        <tr>
-                            <td class="text-nowrap">
-                                <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#fundingModal" title="編輯"><i class="fas fa-pencil-alt"></i></i></button>
-                                <button type="button" class="btn btn-sm btn-light" title="刪除"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                            <td class="text-nowrap">授課鐘點費 王曉明</td>
-                            <td class="text-center">870</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">節</td>
-                            <td class="text-center">8700</td>
-                            <td class="text-wrap"><%= lorem_sentence %></td>
-                        </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-            </div>
-            <div class="funding-total-wrapper">
-                <span class="funding-total-label">課程總費用</span>
-                <span class="funding-total-value">999999</span>
-            </div>
-            <div class="form-action">
-                <a href="ca-step4.html" class="btn btn-outline-dark btn-lg btn-prev"><i class="fas fa-long-arrow-alt-left fs-6 me-1"></i> 上一步</a>
-                <!-- 儲存後判斷欄位沒問題拿掉下一步按鈕的 disabled，下方 js 須加入判斷邏輯 -->
-                <!-- 回上一步頁面中的下一步就不需要再給 disabled，相關判斷 js 麻煩前端處理 -->
-                <button type="button" class="btn btn-main btn-lg btn-save">儲存</button>
-                <a href="courses-apply.html" class="btn btn-primary btn-lg btn-next disabled">送出申請 <i class="fas fa-paper-plane fs-6 ms-1"></i></a>
-            </div>
-        </main>
+                <!-- 用 peggy 示範的 rwd datatable -->
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead class="text-nowrap">
+                            <tr>
+                                <th></th>
+                                <th>經費項目</th>
+                                <th class="text-center">單價(元)</th>
+                                <th class="text-center">數量</th>
+                                <th class="text-center">單位</th>
+                                <th class="text-center">總價(元)</th>
+                                <th>說明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% (1..6).map do |i| %>
+                            <tr>
+                                <td class="text-nowrap">
+                                    <button type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#fundingModal" title="編輯"><i class="fas fa-pencil-alt"></i></i></button>
+                                    <button type="button" class="btn btn-sm btn-light" title="刪除"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                                <td class="text-nowrap">授課鐘點費 王曉明</td>
+                                <td class="text-center">870</td>
+                                <td class="text-center">10</td>
+                                <td class="text-center">節</td>
+                                <td class="text-center">8700</td>
+                                <td class="text-wrap"><%= lorem_sentence %></td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="funding-total-wrapper">
+                    <span class="funding-total-label">課程總費用</span>
+                    <span class="funding-total-value">999999</span>
+                </div>
+                <div class="form-action">
+                    <a href="ca-step4.html" class="btn btn-outline-dark btn-lg btn-prev"><i class="fas fa-long-arrow-alt-left fs-6 me-1"></i> 上一步</a>
+                    <!-- 儲存後判斷欄位沒問題拿掉下一步按鈕的 disabled，下方 js 須加入判斷邏輯 -->
+                    <!-- 回上一步頁面中的下一步就不需要再給 disabled，相關判斷 js 麻煩前端處理 -->
+                    <button type="button" class="btn btn-main btn-lg btn-save">儲存</button>
+                    <a href="ca-step6.html" class="btn btn-primary btn-lg btn-next disabled">下一步 <i class="fas fa-long-arrow-alt-right fs-6 ms-1"></i></a>
+                </div>
+            </main>
+        </div>
     </div>
 </div>
 

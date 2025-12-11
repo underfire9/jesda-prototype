@@ -8594,6 +8594,26 @@ section.section {
   background: #0C6170;
 }
 
+.main-step {
+  margin-bottom: calc(1rem + 1vw);
+}
+.main-step .number {
+  position: relative;
+  color: #c4d3d6;
+}
+.main-step .number::after {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.main-step .done .number {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
 .step-menu.four-step .step-item {
   width: 20%;
 }
@@ -9145,17 +9165,31 @@ section.section {
     width: 25%;
   }
 
-  .step-menu.six-step .step-item {
+  .step-menu.six-step .step-item,
+  .step-menu.main-step .step-item {
     width: 33.33333%;
     display: none;
   }
-  .step-menu.six-step .step-item.current {
+  .step-menu.six-step .step-item.current,
+  .step-menu.main-step .step-item.current {
     display: block;
   }
-  .step-menu.six-step .step-item.current:before {
+  .step-menu.six-step .step-item.current:before,
+  .step-menu.main-step .step-item.current:before {
     background: linear-gradient(90deg, white 0%, #37beb0 100%);
   }
-  .step-menu.six-step .step-item.current + .step-item {
+  .step-menu.six-step .step-item.current + .step-item,
+  .step-menu.main-step .step-item.current + .step-item {
+    display: block;
+  }
+
+  .step-menu.main-step .step-item {
+    width: 40%;
+  }
+  .step-menu.main-step .step-item .description {
+    font-size: 1rem !important;
+  }
+  .step-menu.main-step .step-item.current + .step-item {
     display: block;
   }
 

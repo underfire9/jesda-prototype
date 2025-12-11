@@ -1,0 +1,190 @@
+<!-- template: 教師 / 課程講義 -->
+<div class="page-content">
+    <div class="container-lg">
+        <div class="page-title">
+            <h3>課程講義</h3>
+        </div>
+        <div class="narrow-wrapper">
+
+            <!-- Upload  -->
+            <!-- 多檔、拖曳上傳、上傳清單、進度條、檔案刪除、下載 -->
+            <div>
+                <form class="courses-file-uploader" action="" method="post" enctype="multipart/form-data" data-upload-url="">
+                    <div class="uploader-dropzone p-5 text-center" tabindex="0">
+                        <input type="file" multiple class="uploader-input" />
+                        <div class="h3 text-body-tertiary text-center mb-2"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <p>將檔案拖曳到此處，或 <button type="button" class="btn btn-link p-0 uploader-browse">選擇檔案</button></p>
+                        <div class="uploader-hint fs-6 text-muted">可同時上傳多檔</div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row courses-file-uploader-list">
+                <!--div class="col-md-6 announcement-list-item-wrap">
+                    <div class="announcement-list-item ps-0">
+                        <div class="inner-wrapper">
+                            <span class="date fs-6 text-muted">2026-06-12 12:00</span>
+                            <h5 class="title text-break"><%= lorem_words(4) %>.pdf</h5>
+                            <div class="item-actions btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-danger">刪除</button>
+                                <a href="#" class="btn btn-xs btn-outline-dark">下載</a>
+                            </div>
+                        </div>
+                    </div>
+                </div-->
+            </div>
+            <div class="form-action border-0">
+                <span class="backhome">
+                    <a href="#" class="btn btn-light"><i class="fas fa-long-arrow-alt-left"></i> 回列表</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    const form = document.querySelector('.courses-file-uploader');
+    if(!form) return;
+    const dropzone = form.querySelector('.uploader-dropzone');
+    const input = form.querySelector('.uploader-input');
+    const browseBtn = form.querySelector('.uploader-browse');
+    const listWrap = document.querySelector('.courses-file-uploader-list');
+    const uploadUrl = form.dataset.uploadUrl || ''; // if provided, will attempt real upload
+
+    function prevent(e){ e.preventDefault(); e.stopPropagation(); }
+
+    ['dragenter','dragover'].forEach(evt => {
+        dropzone.addEventListener(evt, function(e){ prevent(e); dropzone.classList.add('dragover'); });
+    });
+    ['dragleave','drop'].forEach(evt => {
+        dropzone.addEventListener(evt, function(e){ prevent(e); dropzone.classList.remove('dragover'); });
+    });
+
+    dropzone.addEventListener('drop', function(e){
+        prevent(e);
+        const files = Array.from(e.dataTransfer.files || []);
+        if(files.length) handleFiles(files);
+    });
+
+    browseBtn.addEventListener('click', function(){ input.click(); });
+    input.addEventListener('change', function(){ const files = Array.from(input.files || []); if(files.length) handleFiles(files); input.value = ''; });
+
+    dropzone.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { input.click(); } });
+
+    function handleFiles(files){
+        files.forEach(file => uploadFile(file));
+    }
+
+    function createListItem(file){
+        const wrap = document.createElement('div');
+        wrap.className = 'col-md-6 announcement-list-item-wrap uploader-item';
+        const inner = document.createElement('div');
+        inner.className = 'announcement-list-item ps-0';
+        inner.innerHTML = `
+            <div class="inner-wrapper">
+                <span class="date fs-6 text-muted">${formatDate(new Date())}</span>
+                <h5 class="title text-break">${escapeHtml(file.name)}</h5>
+                <div class="item-actions btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-danger btn-delete">刪除</button>
+                    <a class="btn btn-xs btn-outline-dark btn-download" href="#">下載</a>
+                </div>
+                <div class="progress"><div class="progress-bar" role="progressbar" style="width:0%"></div></div>
+            </div>
+        `;
+        wrap.appendChild(inner);
+        return wrap;
+    }
+
+    function uploadFile(file){
+        const item = createListItem(file);
+        const progressBar = item.querySelector('.progress-bar');
+        const downloadLink = item.querySelector('.btn-download');
+        const deleteBtn = item.querySelector('.btn-delete');
+
+        listWrap.prepend(item);
+
+        deleteBtn.addEventListener('click', function(){
+            // revoke object URL if exists
+            const url = downloadLink.getAttribute('data-blob-url');
+            if(url) URL.revokeObjectURL(url);
+            item.remove();
+        });
+
+        // If an upload URL is configured, attempt real upload via XHR
+        if(uploadUrl){
+            const xhr = new XMLHttpRequest();
+            const fd = new FormData();
+            fd.append('file', file);
+            xhr.open('POST', uploadUrl, true);
+            xhr.upload.onprogress = function(e){ if(e.lengthComputable){ const p = Math.round(e.loaded / e.total * 100); progressBar.style.width = p + '%'; } };
+            xhr.onload = function(){
+                progressBar.style.width = '100%';
+                // Try to read returned JSON for download URL
+                try{
+                    const res = JSON.parse(xhr.responseText || '{}');
+                    if(res && res.download_url){
+                        downloadLink.href = res.download_url;
+                        downloadLink.setAttribute('download','');
+                    } else {
+                        // fallback: create local blob
+                        const blobUrl = URL.createObjectURL(file);
+                        downloadLink.href = blobUrl;
+                        downloadLink.setAttribute('download', file.name);
+                        downloadLink.setAttribute('data-blob-url', blobUrl);
+                    }
+                }catch(err){
+                    const blobUrl = URL.createObjectURL(file);
+                    downloadLink.href = blobUrl;
+                    downloadLink.setAttribute('download', file.name);
+                    downloadLink.setAttribute('data-blob-url', blobUrl);
+                }
+                // Hide progress bar shortly after reaching 100%
+                setTimeout(()=>{
+                    const prog = progressBar && progressBar.parentElement;
+                    if(prog) prog.style.display = 'none';
+                }, 600);
+            };
+            xhr.onerror = function(){ progressBar.classList.add('bg-danger'); };
+            xhr.send(fd);
+        } else {
+            // Simulate upload progress then create blob download link
+            let percent = 0;
+            const t = setInterval(()=>{
+                percent += Math.floor(Math.random()*20)+10;
+                if(percent >= 100) percent = 100;
+                progressBar.style.width = percent + '%';
+                if(percent >= 100){
+                    clearInterval(t);
+                    const blobUrl = URL.createObjectURL(file);
+                    downloadLink.href = blobUrl;
+                    downloadLink.setAttribute('download', file.name);
+                    downloadLink.setAttribute('data-blob-url', blobUrl);
+                    // 隱藏進度條
+                    setTimeout(()=>{
+                        const prog = progressBar && progressBar.parentElement;
+                        if(prog) prog.style.display = 'none';
+                    }, 600);
+                }
+            }, 250);
+        }
+    }
+
+    function formatDate(d){
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth()+1).padStart(2,'0');
+        const dd = String(d.getDate()).padStart(2,'0');
+        const hh = String(d.getHours()).padStart(2,'0');
+        const mi = String(d.getMinutes()).padStart(2,'0');
+        return `${yyyy}-${mm}-${dd} ${hh}:${mi}`;
+    }
+
+    function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+});
+</script>
+
+<% end %>
+

@@ -1,0 +1,45 @@
+<!-- template: 教師 / 課程公告列表 -->
+<div class="page-content">
+    <div class="container-lg">
+        <div class="page-title">
+            <h3>課程公告</h3>
+        </div>
+        <div class="narrow-wrapper">
+            <div class="d-flex gap-2 mb-3">
+                <a href="#" class="btn btn-lg btn-light px-3" title="回列表"><i class="fas fa-long-arrow-alt-left"></i></a>
+                <a href="#" class="btn btn-lg btn-main px-4"><i class="fas fa-plus"></i> 新增</a>
+            </div>
+            <div class="row announcement-list-manage">
+                <% (1..15).map do |i| %>
+                <div class="col-12">
+                    <div class="announcement-list-item">
+                        <span class="announcement-list-number"></span>
+                        <div class="inner-wrapper">
+                            <span class="date fs-6 text-muted">2026-06-12 12:00</span>
+                            <h4 class="title"><%= lorem_words(8) %></h4>
+                            <div class="item-actions btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-danger">刪除</button>
+                                <a href="#" class="btn btn-xs btn-outline-dark">編輯</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const numberElements = document.querySelectorAll('.announcement-list-number');
+    numberElements.forEach((element, index) => {
+        element.textContent = String(index + 1).padStart(2, '0') + '.';
+    });
+});
+</script>
+<% end %>
+

@@ -1,0 +1,97 @@
+<!-- template: 教師 / 成績登錄 -->
+<div class="page-content">
+    <div class="container-lg">
+        <div class="page-title">
+            <h3>成績登錄</h3>
+        </div>
+        <p>鎖定成績：(即送出)</p>
+        <ol class="mb-4">
+            <li>需要勾選鎖定對象</li>
+            <li>經鎖定後不可以再進行修改成績，同時行政人員及管理者才可以看到成績</li>
+        </ol>
+        <p class="text-danger fw-bold">使用 rwd datatable</p>
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+            <div class="d-flex flex-wrap">
+                <div class="me-1">
+                    <button class="btn btn-sm btn-dark">儲存</button>
+                </div>
+                <div class="btn-group mb-1">
+                    <button class="btn btn-sm btn-outline-dark">鎖定成績</button>
+                    <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#batchModal">批次匯入</button>
+                    <a href="#" class="btn btn-sm btn-outline-dark">學生成績冊下載</a>
+                    <button class="btn btn-sm btn-outline-dark">群體發信</button>
+                </div>
+            </div>
+            <div>
+                <a href="#" class="btn btn-sm btn-outline-dark">等第制成績對照表</a>
+            </div>
+        </div>
+        <div class="table-responsive text-nowrap">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>編號</th>
+                        <th><input type="checkbox" class="form-check-input"></th>
+                        <th>報名序號</th>
+                        <th>姓名</th>
+                        <th>就讀學校</th>
+                        <th>身份別</th>
+                        <th>實際分數</th>
+                        <th>等第制成績</th>
+                        <th>對應百分制成績</th>
+                        <th>等第績分</th>
+                        <th>鎖定時間</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% (1..43).map do |i| %>
+                    <tr>
+                        <td><%= i %></td>
+                        <td><input type="checkbox" class="form-check-input"></td>
+                        <td>23456789</td>
+                        <td><%= zh_lorem_name %></td>
+                        <td><%= zh_lorem_words(8) %></td>
+                        <td><%= zh_lorem_words(3) %></td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>B</td>
+                        <td>87</td>
+                        <td>4.0</td>
+                        <td>2026-01-15 14:35</td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 批次匯入 Modal -->
+<div class="modal fade" id="batchModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="batchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="batchModalLabel">批次成績匯入</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>115 年</h5>
+                <div class="mb-4">
+                    <a href="#" class="btn btn-link" download><i class="fas fa-cloud-download-alt"></i> 下載匯入名單</a>
+                </div>
+                <div>
+                    <label for="formFile" class="form-label">選擇匯入資料檔案</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+
+<% end %>
+

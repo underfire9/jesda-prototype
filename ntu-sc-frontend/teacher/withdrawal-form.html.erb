@@ -1,0 +1,83 @@
+<!-- template: 教師 / 停修審查 -->
+
+<div class="page-content">
+    <div class="container-lg">
+        <div class="page-title">
+            <h3>停修申請單</h3>
+        </div>
+        <div class="row g-5">
+            <div class="col-md-4">
+                <h4 class="mb-3">申請人</h4>
+                <ul class="menu-item">
+                    <li class="border-bottom py-2">
+                        <span class="d-block mb-1 fs-6 text-muted">姓名</span>
+                        <span class="d-block fw-bold"><%= zh_lorem_name %></span>
+                    </li>
+                    <li class="border-bottom py-2">
+                        <span class="d-block mb-1 fs-6 text-muted">信箱</span>
+                        <span class="d-block fw-bold"><%= lorem_email %></span>
+                    </li>
+                    <li class="border-bottom py-2">
+                        <span class="d-block mb-1 fs-6 text-muted">手機</span>
+                        <span class="d-block fw-bold">0903514322</span>
+                    </li>
+                    <li class="border-bottom py-2">
+                        <span class="d-block mb-1 fs-6 text-muted">電話</span>
+                        <span class="d-block fw-bold">0223456789</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <div class="section-title">
+                    <h4>申請停修課程</h4>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">選擇停修課程</label>
+                    <div>
+                        <select class="form-select" aria-label="課程" disabled readonly>
+                            <option>請選擇課程</option>
+                            <option value="1" selected>音樂與戲劇</option>
+                            <option value="2">數學基礎</option>
+                            <option value="3">物理實驗</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="withdrawal_reason">停修原因</label>
+                    <input type="text" id="withdrawal_reason" class="form-control" value="<%= zh_lorem_sentence %>" disabled readonly>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">教師審查結果</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="reviewUnprocessed" class="form-check-input" name="review_result" value="approved" checked>
+                            <label for="reviewUnprocessed" class="me-3">未處理</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="reviewApproved" class="form-check-input" name="review_result" value="approved">
+                            <label for="reviewApproved" class="me-3">核准</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="reviewRejected" class="form-check-input" name="review_result" value="rejected">
+                            <label for="reviewRejected">不核准</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="reasonExplain">原因說明</label>
+                    <textarea id="reasonExplain" class="form-control" rows="4"></textarea>
+                </div>
+                <div class="form-action">
+                    <button type="button" class="btn btn-main btn-lg btn-save">送夏季學院</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+<% end %>
+

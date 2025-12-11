@@ -1,0 +1,89 @@
+<!-- template: 教師 / 課程討論列表 -->
+<div class="page-content">
+    <div class="container-lg">
+        <div class="page-title">
+            <h3>課程討論</h3>
+        </div>
+        <div class="d-flex gap-2 mb-4">
+            <a href="#" class="btn btn-lg btn-light px-3" title="回列表"><i class="fas fa-long-arrow-alt-left"></i></a>
+            <a href="#" class="btn btn-lg btn-main px-4"><i class="fas fa-plus"></i> 新增</a>
+        </div>
+        <ol class="row g-5 courses-announcement-list assignment-list">
+            <% (1..5).map do |i| %>
+            <li class="col-lg-6">
+                <div class="inner-wrap">
+                    <span class="num"></span>
+                    <h5 class="fw-semibold mb-3"><%= lorem_sentence %></h5>
+                    <div class="row mb-3">
+                        <div class="col-lg-8">
+                            <span class="d-block fs-6 text-muted">發布日期</span>
+                            <span class="d-block fw-bold">2026-05-0<%= i %> 12:00</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <span class="d-block fs-6 text-muted">回應數</span>
+                            <span class="d-block fw-bold">999</span>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 border-top pt-3">
+                        <div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input discuss-switch" type="checkbox" role="switch" id="switchCheckChecked<%= i %>" checked>
+                                <label class="form-check-label" for="switchCheckChecked<%= i %>">on</label>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-secondary">刪除</button>
+                            <a href="#" class="btn btn-outline-dark">編輯</a>
+                            <a href="#" class="btn btn-outline-dark">紀錄</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <% end %>
+        </ol>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+    <!-- 列表編號 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const announcementItems = document.querySelectorAll('.courses-announcement-list li');
+        
+        announcementItems.forEach((item, index) => {
+            const numElement = item.querySelector('.num');
+            if (numElement) {
+                const number = (index + 1).toString().padStart(2, '0');
+                numElement.textContent = number;
+            }
+        });
+    });
+    </script>
+    
+    <!-- 討論開關狀態 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const discussSwitches = document.querySelectorAll('.discuss-switch');
+        
+        discussSwitches.forEach(switchElement => {
+            const label = document.querySelector(`label[for="${switchElement.id}"]`);
+            
+            // 初始化標籤文字
+            if (label) {
+                label.textContent = switchElement.checked ? 'On' : 'Off';
+            }
+            
+            // 監聽切換事件
+            switchElement.addEventListener('change', function() {
+                if (label) {
+                    label.textContent = this.checked ? 'On' : 'Off';
+                }
+            });
+        });
+    });
+    </script>
+<% end %>
+

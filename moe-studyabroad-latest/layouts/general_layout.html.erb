@@ -1,0 +1,117 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body>
+	<div class="workspace" canvas="container">
+        <div class="pages general-pages">
+            <%= render :partial => "/partials/header" %>
+            <div class="content">
+                <%= yield %>
+            </div>
+            <a id="backtop" title="Back to top"></a>
+        </div>
+		<%= render :partial => "/partials/footer" %>
+	</div>
+	
+    <script src="../javascripts/jquery-3.7.1.min.js"></script>
+    <script src="../javascripts/popper.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.min.js"></script>
+    
+    <!-- Back to top -->
+    <script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+    </script>
+
+    <!-- Header nav -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function toggleOffcanvasClasses() {
+                const headerNav = document.querySelector(".header-end");
+                if (window.innerWidth < 1199) {
+                    headerNav.classList.add("offcanvas", "offcanvas-end");
+                } else {
+                    headerNav.classList.remove("offcanvas", "offcanvas-end");
+                }
+            }
+
+            // Initial check
+            toggleOffcanvasClasses();
+
+            // Add event listener for window resize
+            window.addEventListener("resize", toggleOffcanvasClasses);
+
+            // Add .open class on .btn-offcanvas click
+            const btnOffcanvas = document.querySelector(".btn-offcanvas");
+            btnOffcanvas.addEventListener("click", function () {
+                btnOffcanvas.classList.toggle("open");
+            });
+        });
+    </script>
+
+    <!-- Cloud animation offset script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const clouds = Array.from(document.querySelectorAll(".cloud-wrapper .cloud"));
+            if (!clouds.length) return;
+
+            const count = clouds.length;
+            const slice = 1 / count;
+            const fractions = Array.from({ length: count }, (_, i) => {
+                const jitter = (Math.random() - 0.5) * slice;
+                let value = i * slice + jitter;
+                if (value < 0) value += 1;
+                if (value > 1) value -= 1;
+                return value;
+            });
+
+            for (let i = fractions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [fractions[i], fractions[j]] = [fractions[j], fractions[i]];
+            }
+
+            clouds.forEach((cloud, index) => {
+                const durationValue = getComputedStyle(cloud).animationDuration;
+                const duration = parseFloat(durationValue);
+                if (!duration || Number.isNaN(duration)) return;
+                const offset = fractions[index] * duration;
+                cloud.style.animationDelay = `-${offset}s`;
+            });
+        });
+    </script>
+
+    <!-- 根據螢幕寬度決定是否加入 offcanvas 類別 -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const updateOffcanvasClass = () => {
+            document.querySelectorAll(".offcanvas-start").forEach((el) => {
+                if (window.innerWidth < 992) {
+                    el.classList.add("offcanvas");
+                } else {
+                    el.classList.remove("offcanvas");
+                }
+            });
+        };
+
+        updateOffcanvasClass();
+        window.addEventListener("resize", updateOffcanvasClass);
+    });
+    </script>
+    <%= yield :js %>
+</body>
+</html>

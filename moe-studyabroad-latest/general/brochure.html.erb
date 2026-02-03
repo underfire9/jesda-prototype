@@ -1,0 +1,91 @@
+<!-- template: 各校簡章辦法 -->
+
+<div class="container-lg">
+    <div class="annual-content">
+        <a href="#C" title="中央內容區塊" id="AC" accesskey="C" name="C" style="">:::</a>
+        <%= render :partial => "/partials/annual-aside" %>
+        <main class="annual-main pt-0">
+            <div class="brochure-wrapper">
+                <ul class="nav nav-tabs" id="brochureTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="tab-hai1" data-bs-toggle="tab" data-bs-target="#pane-hai1" type="button" role="tab" aria-controls="pane-hai1" aria-selected="true">學海飛颺</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-hai2" data-bs-toggle="tab" data-bs-target="#pane-hai2" type="button" role="tab" aria-controls="pane-hai2" aria-selected="false">學海惜珠</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-hai3" data-bs-toggle="tab" data-bs-target="#pane-hai3" type="button" role="tab" aria-controls="pane-hai3" aria-selected="false">學海築夢</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-south" data-bs-toggle="tab" data-bs-target="#pane-south" type="button" role="tab" aria-controls="pane-south" aria-selected="false">新南向</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="brochureTabsContent">
+                    <div class="tab-pane fade show active" id="pane-hai1" role="tabpanel" aria-labelledby="tab-hai1" tabindex="0">
+
+                        <!-- 選擇即塞選，不需要搜尋按鈕。選擇後 select2 自有清除按鈕 -->
+                        <div class="searchbar">
+                            <label for="select-hai1">學校選項</label>
+                            <select id="select-hai1" class="form-select js-select2-single" data-placeholder="請選擇學校">
+                                <option></option>
+                                <option value="a">國立臺灣大學</option>
+                                <option value="b">台南家專學校財團法人台南應用科技大學</option>
+                                <option value="c">崇右學校財團法人崇右影藝科技大學</option>
+                            </select>
+                            <div class="search-result">符合條件有 <strong>115</strong> 筆</div>
+                        </div>
+                        <ul class="menu-item brochure-list">
+                            <% (1..10).map do |i| %>
+                            <li class="brochure-item">
+                                <span class="brochure-label">崑山科技大學 / 學海飛颺</span>
+                                <a href="#" class="brochure-link" title="114年崑山科技大學學海飛颺簡章辦法">114年崑山科技大學學海飛颺簡章辦法</a>
+                            </li>
+                            <li class="brochure-item">
+                                <span class="brochure-label">醒吾學校財團法人醒吾科技大學 / 學海飛颺</span>
+                                <a href="#" class="brochure-link" title="114年醒吾學校財團法人醒吾科技大學學海飛颺簡章辦法">114年醒吾學校財團法人醒吾科技大學學海飛颺簡章辦法</a>
+                            </li>
+                            <% end %>
+                        </ul>
+                        <nav aria-label="分頁導覽">
+                            <ul class="pagination justify-content-end">
+                                <li class="page-item disabled">
+                                    <a class="page-link">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#" aria-current="page">2</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="tab-pane fade" id="pane-hai2" role="tabpanel" aria-labelledby="tab-hai2" tabindex="0">
+                        學海惜珠內容
+                    </div>
+                    <div class="tab-pane fade" id="pane-hai3" role="tabpanel" aria-labelledby="tab-hai3" tabindex="0">
+                        學海築夢內容
+                    </div>
+                    <div class="tab-pane fade" id="pane-south" role="tabpanel" aria-labelledby="tab-south" tabindex="0">
+                        新南向內容
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<% content_for :js do %>
+    <!-- Select2 -->
+    <script src="../javascripts/select2.min.js"></script>
+    <script>
+        $( '.js-select2-single' ).select2( {
+            theme: "bootstrap-5",
+            width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+            placeholder: $( this ).data( 'placeholder' ),allowClear: true
+        } );
+    </script>
+<% end %>
+

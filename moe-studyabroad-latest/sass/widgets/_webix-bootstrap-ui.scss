@@ -1,0 +1,316 @@
+/**
+ * Webix Bootstrap UI - 樣式
+ * 結合 Webix 功能與 Bootstrap 5 風格
+ */
+
+// DataTable 樣式
+.webix-bootstrap-datatable {
+    .card {
+        border-radius: 0.5rem;
+    }
+
+    .table {
+        margin-bottom: 0;
+
+        th.sortable {
+            user-select: none;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+
+            i {
+                font-size: 0.875rem;
+            }
+        }
+
+        tbody tr {
+            transition: all 0.2s;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.03);
+            }
+
+            &.table-active {
+                background-color: rgba(13, 110, 253, 0.1);
+                
+                &:hover {
+                    background-color: rgba(13, 110, 253, 0.15);
+                }
+            }
+        }
+    }
+
+    // 行動版卡片樣式
+    .mobile-view {
+        padding: 1rem;
+    }
+
+    .mobile-card {
+        transition: all 0.2s;
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+
+        &.border-primary {
+            border-width: 2px;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .row {
+            font-size: 0.875rem;
+
+            .col-5 {
+                padding-right: 0.5rem;
+            }
+
+            .col-7 {
+                padding-left: 0.5rem;
+                word-break: break-word;
+            }
+        }
+    }
+
+    .search-input {
+        border-left: none;
+
+        &:focus {
+            border-color: #ced4da;
+            box-shadow: none;
+        }
+    }
+
+    .input-group-text {
+        border-right: none;
+    }
+
+    .pagination {
+        .page-link {
+            color: #0d6efd;
+            border-color: #dee2e6;
+
+            &:hover {
+                background-color: #e9ecef;
+                border-color: #dee2e6;
+            }
+        }
+
+        .page-item.active .page-link {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        .page-item.disabled .page-link {
+            color: #6c757d;
+            pointer-events: none;
+            background-color: #fff;
+            border-color: #dee2e6;
+        }
+    }
+
+    .datatable-info {
+        line-height: 2;
+    }
+}
+
+// Datepicker 樣式
+.webix-bootstrap-datepicker {
+    position: relative;
+
+    .date-input {
+        cursor: pointer;
+        background-color: white;
+    }
+
+    .datepicker-dropdown {
+        animation: fadeInDown 0.2s;
+    }
+
+    .datepicker-calendar {
+        th, td {
+            text-align: center;
+            padding: 0.5rem;
+            border: none;
+        }
+
+        thead th {
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 0.5rem;
+            background-color: #f8f9fa;
+        }
+
+        tbody td {
+            position: relative;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+
+            &.selectable {
+                cursor: pointer;
+                border-radius: 0.25rem;
+
+                &:hover {
+                    background-color: #e9ecef;
+                }
+
+                &.today {
+                    font-weight: bold;
+                    
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 4px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 4px;
+                        height: 4px;
+                        background-color: #0d6efd;
+                        border-radius: 50%;
+                    }
+                }
+
+                &.selected {
+                    background-color: #0d6efd;
+                    color: white;
+                    font-weight: bold;
+
+                    &:hover {
+                        background-color: #0b5ed7;
+                    }
+
+                    &::after {
+                        display: none;
+                    }
+                }
+
+                &.disabled {
+                    color: #dee2e6;
+                    cursor: not-allowed;
+                    text-decoration: line-through;
+
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+            }
+
+            &.other-month {
+                color: #adb5bd;
+                font-size: 0.75rem;
+            }
+        }
+    }
+
+    .current-month-year {
+        font-size: 1rem;
+    }
+
+    .prev-month,
+    .next-month {
+        padding: 0.25rem 0.5rem;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+}
+
+// 動畫效果
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// 響應式調整
+@media (max-width: 768px) {
+    .webix-bootstrap-datatable {
+        .card-header .row {
+            > div {
+                margin-bottom: 0.5rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .pagination {
+            font-size: 0.875rem;
+            flex-wrap: wrap;
+
+            .page-item {
+                margin-bottom: 0.25rem;
+            }
+        }
+
+        .datatable-info {
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-view {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .mobile-card {
+            font-size: 0.875rem;
+
+            .card-body {
+                padding: 0.75rem !important;
+            }
+        }
+    }
+
+    .webix-bootstrap-datepicker {
+        .datepicker-dropdown {
+            max-width: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .webix-bootstrap-datatable {
+        .mobile-card {
+            .card-title {
+                font-size: 0.95rem;
+            }
+
+            .row {
+                font-size: 0.8rem;
+            }
+        }
+
+        .pagination .page-link {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+        }
+    }
+}
+
+// 平板尺寸優化
+@media (min-width: 768px) and (max-width: 991px) {
+    .webix-bootstrap-datatable {
+        .table {
+            font-size: 0.875rem;
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+    }
+}

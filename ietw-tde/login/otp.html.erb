@@ -1,0 +1,116 @@
+<!-- template: OTP 驗證 -->
+
+<div class="container-fixed">
+	<div class="login-wrapper">
+		<div class="page-title">
+			<h3>OTP 驗證</h3>
+		</div>
+		<div class="notice-wrapper">
+			<%= lorem_sentences(2) %>
+		</div>
+		<div class="login-card">
+			<div class="form-group">
+				<label for="loginEmail">請輸入Email</label>
+				<input type="email" id="loginEmail" name="loginEmail" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="loginInput4" class="form-label">圖形驗證碼</label>
+				<div class="d-flex align-items-center">
+					<span class="me-1"><input type="text" class="form-control" id="loginInput4" /></span>
+					<span class="me-1"><img class="captcha" src="http://nfu-map.dev.com.tw/common/captcha.image" /></span>
+					<span>
+						<button class="btn btn-xs btn-outline-secondary" type="button"><i class="fas fa-sync-alt"></i></button>
+					</span>
+				</div>
+			</div>
+			<div class="my-4">
+				<button type="button" class="btn btn-outline-dark sent-otp">發送一次性驗證碼</button>
+			</div>
+			<div class="otp-wrapper">
+				<div class="inner">
+					<div class="form-group">
+						<label for="otpCode">驗證碼</label>
+						<div class="d-flex align-items-center gap-3">
+							<span>
+								<input type="text" id="otpCode" name="otpCode" class="form-control">
+							</span>
+							<span class="countdown">剩餘時間 <strong class="countdown-timer">299</strong> 秒</span>
+						</div>
+					</div>
+				</div>
+				<div class="my-4">
+					<button type="button" class="btn btn-lg btn-primary btn-block" onclick="window.location.href='../general/step1.html'">送出</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<% content_for :js do %>
+<!-- Email & OTP Validation -->
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var loginEmailInput = document.getElementById('loginEmail');
+		var sentOtpButton = document.querySelector('.sent-otp');
+		var otpWrapper = document.querySelector('.otp-wrapper');
+		var countdownTimerEl = document.querySelector('.countdown-timer');
+		var otpCodeInput = document.getElementById('otpCode');
+		var countdownIntervalId = null;
+		if (!loginEmailInput) {
+			return;
+		}
+
+		function validateLoginEmail() {
+			var value = loginEmailInput.value.trim();
+			var isValid = value.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+			loginEmailInput.classList.remove('is-valid', 'is-invalid');
+			if (value.length === 0) {
+				return;
+			}
+			loginEmailInput.classList.add(isValid ? 'is-valid' : 'is-invalid');
+		}
+
+		loginEmailInput.addEventListener('input', validateLoginEmail);
+		loginEmailInput.addEventListener('blur', validateLoginEmail);
+
+		function startCountdown(seconds) {
+			var remaining = seconds;
+			if (countdownIntervalId) {
+				clearInterval(countdownIntervalId);
+			}
+			if (countdownTimerEl) {
+				countdownTimerEl.textContent = String(remaining);
+			}
+			countdownIntervalId = setInterval(function () {
+				remaining -= 1;
+				if (countdownTimerEl) {
+					countdownTimerEl.textContent = String(Math.max(remaining, 0));
+				}
+				if (remaining <= 0) {
+					clearInterval(countdownIntervalId);
+					countdownIntervalId = null;
+					if (otpCodeInput && otpCodeInput.value.trim().length === 0) {
+						if (otpWrapper) {
+							otpWrapper.style.display = 'none';
+						}
+					}
+				}
+			}, 1000);
+		}
+
+		if (sentOtpButton) {
+			sentOtpButton.addEventListener('click', function () {
+				sentOtpButton.textContent = '重新發送一次性驗證碼';
+				loginEmailInput.disabled = true;
+				if (otpWrapper) {
+					otpWrapper.style.display = 'block';
+				}
+				startCountdown(10);
+			});
+		}
+	});
+</script>
+<% end %>
+

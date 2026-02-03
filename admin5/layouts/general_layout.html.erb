@@ -486,6 +486,77 @@
         });
     });
     </script>
+
+<!-- 匯出功能 -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const dataList = document.querySelector(".data-list .outbound-menu");
+        const outboundList = document.querySelector(".outbound-list .outbound-menu");
+
+        if (!dataList || !outboundList) {
+            return;
+        }
+
+        const updateNumbers = () => {
+            const updateList = (list) => {
+                const items = list.querySelectorAll(".data-item");
+                items.forEach((item, index) => {
+                    const numberEl = item.querySelector(".item-number");
+                    if (numberEl) {
+                        numberEl.textContent = String(index + 1).padStart(2, "0") + ". ";
+                    }
+                });
+            };
+
+            updateList(dataList);
+            updateList(outboundList);
+        };
+
+        const moveItem = (item, targetList, isOutbound) => {
+            const button = item.querySelector(".btn");
+            const icon = item.querySelector("i");
+            if (button) {
+                button.classList.remove(isOutbound ? "btn-secondary" : "btn-success");
+                button.classList.add(isOutbound ? "btn-success" : "btn-secondary");
+            }
+            if (icon) {
+                icon.classList.remove(isOutbound ? "far" : "fas");
+                icon.classList.add(isOutbound ? "fas" : "far");
+            }
+
+            item.classList.add("moving");
+            targetList.appendChild(item);
+            window.setTimeout(() => {
+                item.classList.remove("moving");
+            }, 2000);
+
+            updateNumbers();
+        };
+
+        const handleClick = (event) => {
+            const button = event.target.closest(".btn");
+            if (!button) {
+                return;
+            }
+
+            const item = button.closest(".data-item");
+            if (!item) {
+                return;
+            }
+
+            if (dataList.contains(item)) {
+                moveItem(item, outboundList, true);
+            } else if (outboundList.contains(item)) {
+                moveItem(item, dataList, false);
+            }
+        };
+
+        dataList.addEventListener("click", handleClick);
+        outboundList.addEventListener("click", handleClick);
+
+        updateNumbers();
+    });
+</script>
     <%= yield :js %>
 </body>
 </html>

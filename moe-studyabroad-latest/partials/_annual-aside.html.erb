@@ -1,0 +1,57 @@
+<% news_current = current_page?("general/(index|news-single)") %>
+<% brochure_current = current_page?("general/brochure") %>
+<% forms_current = current_page?("general/page") %>
+
+<aside class="annual-aside">
+    <div class="annual-aside-header">
+        <a
+            class="btn btn-annual"
+            data-bs-toggle="offcanvas"
+            href="#offcanvasAnnual"
+            role="button"
+            aria-controls="offcanvasAnnual"
+            aria-label="年度選單"
+            title="年度選單"
+        >
+            <i class="fas fa-ellipsis-h"></i>
+        </a>
+    </div>
+    <div class="offcanvas-start" tabindex="-1" id="offcanvasAnnual" aria-labelledby="offcanvasAnnualLabel">
+        <h3>114 年度</h3>
+
+        <!-- 當前頁面要給 current -->
+        <ul class="menu-item">
+            <li class="annual-item">
+                <a href="index.html" class="annual-link <%= 'current' if news_current %>" title="最新消息">最新消息</a>
+            </li>
+            <li class="annual-item">
+                <span class="level-title">各校簡章辦法</span>
+                <ul class="menu-item level-menu">
+                    <li class="level-item">
+                        <a
+                            class="level-link <%= 'current' if brochure_current %>"
+                            href="brochure.html"
+                            title="各校簡章辦法 第一梯次"
+                            >第一梯次</a
+                        >
+                    </li>
+                    <li class="level-item">
+                        <a class="level-link" href="brochure.html" title="各校簡章辦法 第二梯次">第二梯次</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="annual-item">
+                <a href="page.html" class="annual-link <%= 'current' if forms_current %>" title="相關辦法與表格"
+                    >相關辦法與表格</a
+                >
+            </li>
+            <li class="annual-item">
+                <span class="level-title">日程表</span>
+                <ul class="menu-item level-menu">
+                    <li class="level-item"><a class="level-link" href="#" title="日程表 第一梯次">第一梯次</a></li>
+                    <li class="level-item"><a class="level-link" href="#" title="日程表 第二梯次">第二梯次</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>

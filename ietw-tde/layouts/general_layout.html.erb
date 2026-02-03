@@ -1,0 +1,77 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+    <head>
+        <%= render :partial => "/partials/head" %>
+    </head>
+    <body>
+        <div class="workspace">
+            <%= render :partial => "/partials/header" %>
+            <div class="general-page">
+                <%= yield %>
+                <a id="backtop"></a>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4>注意！</h4>
+                        <div>報名系統尚不支援小螢幕的裝置，請使用電腦或筆電進行操作</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../javascripts/jquery-3.7.1.min.js"></script>
+        <script src="../javascripts/popper.min.js"></script>
+        <script src="../javascripts/bootstrap.bundle.min.js"></script>
+
+        <!-- Warning modal on small screens -->
+        <script>
+            (function () {
+                var warningModalEl = document.getElementById('warningModal');
+                if (!warningModalEl || !window.bootstrap || !window.bootstrap.Modal) {
+                    return;
+                }
+
+                var warningModal = bootstrap.Modal.getOrCreateInstance(warningModalEl, {
+                    backdrop: 'static',
+                    keyboard: false
+                });
+
+                function toggleWarningModal() {
+                    if (window.innerWidth < 1440) {
+                        warningModal.show();
+                    } else {
+                        warningModal.hide();
+                    }
+                }
+
+                window.addEventListener('resize', toggleWarningModal);
+                toggleWarningModal();
+            })();
+        </script>
+
+        <!-- Back to top -->
+        <script>
+            var btn = $("#backtop");
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 600) {
+                    btn.addClass("show");
+                } else {
+                    btn.removeClass("show");
+                }
+            });
+
+            btn.on("click", function (e) {
+                e.preventDefault();
+                $("html, body").animate({ scrollTop: 0 }, "300");
+            });
+        </script>
+        <%= yield :js %>
+    </body>
+</html>

@@ -1,0 +1,146 @@
+<!-- admin-page: 匯出 -->
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#outboundModal">
+        匯出 modal
+    </button>
+</main>
+
+<!-- Modal -->
+<div
+    class="modal fade"
+    id="outboundModal"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="outboundModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="outboundModalLabel">匯出 Excel</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="outbound-wrapper">
+                    <div class="outbound-note">點擊欄位按鈕 <i class="far fa-circle"></i> 即可加入匯出清單，再次點擊即可移除</div>
+                    <div class="outbound-toolbar">
+                        <div class="start-group">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-dark"><i class="far fa-check-square"></i> 全選</button>
+                                <button type="button" class="btn btn-outline-dark"><i class="far fa-square"></i> 取消</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-dark"><i class="far fa-save"></i> 儲存範本</button>
+                                <button type="button" class="btn btn-outline-dark"><i class="far fa-check-circle"></i> 選擇範本</button>
+                                <button type="button" class="btn btn-outline-dark"><i class="far fa-trash-alt"></i> 刪除範本</button>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary px-4">匯出 <i class="fas fa-share ms-2"></i></button>
+                        </div>
+                    </div>
+                    <div class="wrapper-inner">
+                        <div class="data-list">
+                            <h5 class="fw-bold">欄位清單</h5>
+                            <ul class="outbound-menu menu-item">
+                                <% (1..50).map do |i| %>
+                                <li class="data-item">
+                                    <span><span class="item-number"></span><%= lorem_words(4) %></span>
+                                    <button class="btn btn-light"><i class="far fa-circle"></i></button>
+                                </li>
+                                <% end %>
+                            </ul>
+                        </div>
+                        <div class="outbound-list">
+                            <h5 class="fw-bold">匯出欄位</h5>
+                            <ul class="outbound-menu menu-item">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+<!-- 匯出功能 -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const dataList = document.querySelector(".data-list .outbound-menu");
+        const outboundList = document.querySelector(".outbound-list .outbound-menu");
+
+        if (!dataList || !outboundList) {
+            return;
+        }
+
+        const updateNumbers = () => {
+            const updateList = (list) => {
+                const items = list.querySelectorAll(".data-item");
+                items.forEach((item, index) => {
+                    const numberEl = item.querySelector(".item-number");
+                    if (numberEl) {
+                        numberEl.textContent = String(index + 1).padStart(2, "0") + ". ";
+                    }
+                });
+            };
+
+            updateList(dataList);
+            updateList(outboundList);
+        };
+
+        const moveItem = (item, targetList, isOutbound) => {
+            const button = item.querySelector(".btn");
+            const icon = item.querySelector("i");
+            if (button) {
+                button.classList.remove(isOutbound ? "btn-light" : "btn-success");
+                button.classList.add(isOutbound ? "btn-success" : "btn-light");
+            }
+            if (icon) {
+                icon.classList.remove(isOutbound ? "far" : "fas");
+                icon.classList.add(isOutbound ? "fas" : "far");
+            }
+
+            item.classList.add("moving");
+            targetList.appendChild(item);
+            window.setTimeout(() => {
+                item.classList.remove("moving");
+            }, 2000);
+
+            updateNumbers();
+        };
+
+        const handleClick = (event) => {
+            const button = event.target.closest(".btn");
+            if (!button) {
+                return;
+            }
+
+            const item = button.closest(".data-item");
+            if (!item) {
+                return;
+            }
+
+            if (dataList.contains(item)) {
+                moveItem(item, outboundList, true);
+            } else if (outboundList.contains(item)) {
+                moveItem(item, dataList, false);
+            }
+        };
+
+        dataList.addEventListener("click", handleClick);
+        outboundList.addEventListener("click", handleClick);
+
+        updateNumbers();
+    });
+</script>
+<% end %>
+

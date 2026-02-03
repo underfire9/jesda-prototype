@@ -270,6 +270,33 @@
     </div>
 </div>
 
+<!-- 退回 Modal -->
+<div
+    class="modal fade"
+    id="returnedModal"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="returnedModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="returnedModalLabel">退回原因</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" id="" rows="3" placeholder="請輸入退回原因"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">fm3uvl取消</button>
+                <button type="button" class="btn btn-outline-main" data-bs-dismiss="modal">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Cropper Modal --> 
 <div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -425,6 +452,25 @@
 </div>
 
 <% content_for :js do %>
+
+<!-- 退回 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const reviewStatusReturned = document.getElementById('reviewStatus4');
+    const returnedModalEl = document.getElementById('returnedModal');
+
+    if (!reviewStatusReturned || !returnedModalEl) return;
+
+    const returnedModal = bootstrap.Modal.getOrCreateInstance(returnedModalEl);
+
+    reviewStatusReturned.addEventListener('change', function() {
+        if (this.checked) {
+            returnedModal.show();
+        }
+    });
+});
+</script>
+
 
 <!-- Review Timer -->
 <script>

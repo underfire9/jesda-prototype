@@ -6922,19 +6922,18 @@ body {
   left: 0;
   right: 0;
   z-index: 4;
+  pointer-events: none;
 }
 .workspace .h1-brands {
   margin-bottom: 0;
-  width: 336px;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  text-align: center;
+  position: relative;
   z-index: 5;
 }
 .workspace .h1-brands span {
-  display: block;
-  text-align: center;
+  display: inline-block;
+  width: 336px;
+  height: 128px;
 }
 .workspace .brands-logo {
   background: #033E5B url(../assets/logo-white.svg) no-repeat center center;
@@ -6988,51 +6987,11 @@ body {
 .login-page,
 .affidavit-page,
 .register-page {
-  padding-top: calc(12rem + 2.5vw);
-  padding-bottom: 3rem;
-  min-height: 100vh;
-  height: 100vh;
-  position: fixed;
+  padding-top: calc(4rem + 2.5vw);
+  padding-bottom: 6rem;
   width: 100%;
-  top: 0;
-  left: 0;
-  transition: transform 0.3s ease-in-out;
   background: #fff;
   z-index: 1;
-  overflow-y: auto;
-}
-
-.login-page {
-  transform: translateX(0);
-  z-index: 3;
-}
-
-.affidavit-page {
-  transform: translateX(100%);
-  z-index: 2;
-}
-
-.register-page {
-  transform: translateX(100%);
-  z-index: 1;
-}
-
-/* Page transition states */
-.workspace.show-affidavit .login-page {
-  transform: translateX(-100%);
-}
-.workspace.show-affidavit .affidavit-page {
-  transform: translateX(0);
-}
-
-.workspace.show-register .login-page {
-  transform: translateX(-100%);
-}
-.workspace.show-register .affidavit-page {
-  transform: translateX(-100%);
-}
-.workspace.show-register .register-page {
-  transform: translateX(0);
 }
 
 .affidavit-container,
@@ -7168,16 +7127,13 @@ body {
   .workspace::after {
     top: -128px;
   }
-  .workspace .h1-brands {
+  .workspace .h1-brands span {
     width: 192px;
+    height: auto;
   }
   .workspace .brands-logo {
     background: #033E5B url(../assets/logo-sm-white.svg) no-repeat center center;
     padding: 24px 0;
-  }
-
-  .login-page, .affidavit-page, .register-page {
-    padding-top: calc(8rem + 2.5vw);
   }
 }
 @media (max-width: 479px) {
@@ -7185,7 +7141,7 @@ body {
     background-size: 75%;
     top: -104px;
   }
-  .workspace .h1-brands {
+  .workspace .h1-brands span {
     width: 128px;
   }
 }

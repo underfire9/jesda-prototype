@@ -1,0 +1,584 @@
+<!-- template: Step1 - 填寫報名表 -->
+
+<div class="container-fixed wide">
+	<ul class="menu-item step-indicator">
+		<li class="active">
+			<span class="step-number">1</span>
+			<span class="step-label">填寫報名資料</span>
+		</li>
+		<li>
+			<span class="step-number">2</span>
+			<span class="step-label">套印與上傳繳交文件</span>
+		</li>
+		<li>
+			<span class="step-number">3</span>
+			<span class="step-label">預覽送出</span>
+		</li>
+	</ul>
+	<div class="notice-wrapper">
+		<%= zh_lorem_sentences(4) %>
+	</div>
+	<div class="form-wrapper">
+        <div class="wrapper-start">
+            <section class="section">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="chinese_name">中文姓名</label>
+                            <input type="text" id="chinese_name" name="chinese_name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="english_name">英文姓名</label>
+                            <input type="text" id="english_name" name="english_name" class="form-control">
+                            <small class="form-text text-muted">同護照，無護照者請至外交部領事事務局「外文姓名中譯音系統」查詢</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="id_number">身分證字號</label>
+                            <input type="text" id="id_number" name="id_number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="birth_date">出生日期</label>
+                            <input type="date" id="birth_date" name="birth_date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label d-block">性別</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="gender_male" name="gender" value="male" class="form-check-input">
+                                <label class="form-check-label" for="gender_male">男</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="gender_female" name="gender" value="female" class="form-check-input">
+                                <label class="form-check-label" for="gender_female">女</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>就讀學校</h4>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="school_location">學校所在縣市</label>
+                            <select id="school_location" name="school_location" class="form-select">
+                                <option value="">請選擇</option>
+                                <option value="taipei">台北市</option>
+                                <option value="new_taipei">新北市</option>
+                                <option value="taichung">台中市</option>
+                                <option value="tainan">台南市</option>
+                                <option value="kaohsiung">高雄市</option>
+                            </select>
+                            <div class="form-text">海外臺灣學校請選擇在臺通訊地所在縣市</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="registration_area">報名分區</label>
+                            <select id="registration_area" name="registration_area" class="form-select">
+                                <option value="">請選擇</option>
+                                <option value="north">北區</option>
+                                <option value="central">中區</option>
+                                <option value="south">南區</option>
+                                <option value="east">東區</option>
+                                <option value="islands">離島</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="school_name_full">學校校名(全銜)</label>
+                            <input type="text" id="school_name_full" name="school_name_full" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label class="form-label" for="grade">年級</label>
+                            <input type="text" id="grade" name="grade" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="department">科別</label>
+                            <input type="text" id="department" name="department" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label d-block">類型</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="school_type_general" name="school_type" value="general" class="form-check-input">
+                                <label class="form-check-label" for="school_type_general">普通型</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="school_type_vocational" name="school_type" value="vocational" class="form-check-input">
+                                <label class="form-check-label" for="school_type_vocational">技術型</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="school_type_comprehensive" name="school_type" value="comprehensive" class="form-check-input">
+                                <label class="form-check-label" for="school_type_comprehensive">綜合型</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="school_type_single" name="school_type" value="single" class="form-check-input">
+                                <label class="form-check-label" for="school_type_single">單科型</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="school_type_experimental" name="school_type" value="experimental" class="form-check-input">
+                                <label class="form-check-label" for="school_type_experimental">(非)學校型態實驗教育</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="school_type_five_year" name="school_type" value="five_year" class="form-check-input">
+                                <label class="form-check-label" for="school_type_five_year">五專</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label d-block">是否具備特殊才藝</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="special_talent_yes" name="special_talent" value="yes" class="form-check-input">
+                                <label class="form-check-label" for="special_talent_yes">是</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="special_talent_no" name="special_talent" value="no" class="form-check-input">
+                                <label class="form-check-label" for="special_talent_no">否</label>
+                            </div>
+                            <div class="has-talents">
+                                <input type="text" id="talent_details" name="talent_details" class="form-control w-50" placeholder="請輸入">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label d-block">飲食需求</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="diet_meat" name="diet" value="meat" class="form-check-input">
+                                <label class="form-check-label" for="diet_meat">葷食</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="diet_vegetarian" name="diet" value="vegetarian" class="form-check-input">
+                                <label class="form-check-label" for="diet_vegetarian">素食</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label" for="other_requirements">其他需求</label>
+                            <textarea id="other_requirements" name="other_requirements" class="form-control" rows="3" placeholder="如特殊疾病史、需輔導教師特別注意之事項或緊急狀況處理等"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>聯絡電話</h4>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="home_phone">住家電話</label>
+                            <input type="text" id="home_phone" name="home_phone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="mobile_phone">行動電話</label>
+                            <input type="text" id="mobile_phone" name="mobile_phone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="email">電子信箱</label>
+                            <input type="email" id="email" name="email" class="form-control" value="useraccount@example.com" disabled readonly>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>通訊地址</h4>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="postal_code">郵遞區號</label>
+                            <input type="text" id="postal_code" name="postal_code" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label class="form-label" for="address">地址</label>
+                            <input type="text" id="address" name="address" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>緊急聯絡人</h4>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="emergency_contact_name">姓名</label>
+                            <input type="text" id="emergency_contact_name" name="emergency_contact_name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="emergency_relationship">緊急連絡人與本人關係</label>
+                            <input type="text" id="emergency_relationship" name="emergency_relationship" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>緊急聯絡人聯絡電話</h4>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="emergency_contact_phone">手機</label>
+                            <input type="text" id="emergency_contact_phone" name="emergency_contact_phone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="emergency_contact_home">住家</label>
+                            <input type="text" id="emergency_contact_home" name="emergency_contact_home" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="emergency_contact_company">公司</label>
+                            <input type="text" id="emergency_contact_company" name="emergency_contact_company" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>其它</h4>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label d-block">交通補助</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="transportation_subsidy_yes" name="transportation_subsidy" value="yes" class="form-check-input">
+                                <label class="form-check-label" for="transportation_subsidy_yes">需要(以低收入戶/中低收入戶資格申請者，需上傳相關證明文件)</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="transportation_subsidy_no" name="transportation_subsidy" value="no" class="form-check-input">
+                                <label class="form-check-label" for="transportation_subsidy_no">不需要</label>
+                            </div>
+                            <div class="has-subsidy">
+                                <select id="subsidy_type" name="subsidy_type" class="form-select w-50 mt-2">
+                                    <option value="">請選擇申請事由</option>
+                                    <option value="low_income">具低收入/中低收入戶身分</option>
+                                    <option value="remote_school">就讀偏遠地區學校</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label d-block">是否須提前入住飯店</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="early_checkin_yes" name="early_checkin" value="yes" class="form-check-input">
+                                <label class="form-check-label" for="early_checkin_yes">需要(須符合實施計畫第壹拾參點第四款資格)</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="early_checkin_no" name="early_checkin" value="no" class="form-check-input">
+                                <label class="form-check-label" for="early_checkin_no">不需要</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>自傳</h4>
+                </div>
+                <textarea id="autobiography" name="autobiography" class="form-control" rows="10" placeholder="內容應包含個人簡介、專長及個人特質"></textarea>
+                <div class="form-text">不得超過 1200 字數，已輸入 <strong id="autobiography-word-count" class="text-danger">0</strong> 字</div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>英語影片</h4>
+                </div>
+                <ol>
+                    <li>影片時長以2-3分鐘為限，每超過30秒（含）至1分鐘，總成績扣0.5分；影片未全程出鏡者或以物品遮掩臉部者，不予錄取。</li>
+                    <li>英語錄製自我介紹影片，內容須涵蓋報名動機、個人的優勢能力或特長、參加營隊後的自我期許。</li>
+                </ol>
+                <div class="form-group">
+                    <label class="form-label" for="video_url">影片平台</label>
+                    <input type="text" id="video_url" name="video_url" class="form-control" placeholder="請輸入影片連結(URL)">
+                    <div class="form-text">請將影片上傳至個人雲端空間並設定為公開</div>
+                </div>
+            </section>
+        </div>
+        <div class="wrapper-end">
+            <label class="form-label">上傳照片</label>
+
+            <!-- 目前設定圖片輸出 700 x 900，依實際需求再做調整 -->
+            <div class="cropper-container upload-container-wrapper">
+                <div class="image-preview-box" id="image-preview-box">
+                    <span class="placeholder">照片預覽區</span>
+                    <img id="image-preview" src="../assets/avatar.jpg" alt="照片預覽">
+                </div>
+                <div class="button-group">
+                    <label for="image-input" class="btn btn-outline-dark">選擇照片</label>
+                    <input type="file" id="image-input" accept="image/*" class="d-none">
+                    <button id="delete-btn" class="btn btn-danger btn-delete" title="刪除照片"></button>
+                </div>
+            </div>
+            <div class="form-notice form-text">
+                <ol>
+                    <li>格式限制 JPG或PNG，檔案需小於 2 MB</li>
+                    <li>6個月之內拍攝</li>
+                    <li>直4.5公分且橫3.5公分，以頭部及肩膀頂端近拍，使臉部佔整張照片面積的70~80%</li>
+                    <li>對焦需清晰且鮮明，高品質，無墨跡或摺痕</li>
+                    <li>眼睛正視相機鏡頭拍攝，自然地顯現出皮膚的色</li>
+                </ol>
+            </div>
+        </div>
+	</div>
+    <div class="form-action">
+        <button type="button" class="btn btn-dark btn-lg">暫存</button>
+        <a href="step2.html" class="btn btn-outline-dark btn-lg">下一步 <i class="fas fa-long-arrow-alt-right"></i></a>
+    </div>
+</div>
+
+<!-- Cropper Modal -->
+<div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cropModalLabel">裁切圖片</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container-modal">
+                    <img id="image-to-crop" src="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary" id="crop-and-upload-btn">裁切並上傳</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<!-- 欄位展示、隱藏 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const specialTalentYes = document.getElementById('special_talent_yes');
+        const specialTalentNo = document.getElementById('special_talent_no');
+        const talentsSection = document.querySelector('.has-talents');
+
+        const toggleTalentsSection = () => {
+            if (!talentsSection) {
+                return;
+            }
+            talentsSection.style.display = specialTalentYes && specialTalentYes.checked ? '' : 'none';
+        };
+
+        if (specialTalentYes) {
+            specialTalentYes.addEventListener('change', toggleTalentsSection);
+        }
+        if (specialTalentNo) {
+            specialTalentNo.addEventListener('change', toggleTalentsSection);
+        }
+
+        // 預設隱藏
+        toggleTalentsSection();
+    });
+</script>
+
+<!-- 交通補助欄位展示、隱藏 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const transportationSubsidyYes = document.getElementById('transportation_subsidy_yes');
+        const transportationSubsidyNo = document.getElementById('transportation_subsidy_no');
+        const subsidySection = document.querySelector('.has-subsidy');
+
+        const toggleSubsidySection = () => {
+            if (!subsidySection) {
+                return;
+            }
+            subsidySection.style.display = transportationSubsidyYes && transportationSubsidyYes.checked ? '' : 'none';
+        };
+
+        if (transportationSubsidyYes) {
+            transportationSubsidyYes.addEventListener('change', toggleSubsidySection);
+        }
+        if (transportationSubsidyNo) {
+            transportationSubsidyNo.addEventListener('change', toggleSubsidySection);
+        }
+
+        // 預設隱藏
+        toggleSubsidySection();
+    });
+</script>
+
+<!-- 自傳字數統計 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const autobiography = document.getElementById('autobiography');
+        const autobiographyWordCount = document.getElementById('autobiography-word-count');
+
+        const updateAutobiographyCount = () => {
+            if (!autobiography || !autobiographyWordCount) {
+                return;
+            }
+            autobiographyWordCount.textContent = String(autobiography.value.length);
+        };
+
+        if (autobiography) {
+            autobiography.addEventListener('input', updateAutobiographyCount);
+        }
+
+        updateAutobiographyCount();
+    });
+</script>
+
+<!-- Cropper -->
+<script src="../javascripts/cropper.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // DOM 元素
+        const imageInput = document.getElementById('image-input');
+        const imagePreviewBox = document.getElementById('image-preview-box');
+        const imagePreview = document.getElementById('image-preview');
+        const deleteBtn = document.getElementById('delete-btn');
+        const cropModalElement = document.getElementById('cropModal');
+        const imageToCrop = document.getElementById('image-to-crop');
+        const cropAndUploadBtn = document.getElementById('crop-and-upload-btn');
+
+        // 初始化 Bootstrap Modal
+        const cropModal = new bootstrap.Modal(cropModalElement);
+        
+        let cropper; // Cropper 實例
+        let originalFileName = ''; // 保存原始檔名
+
+        // 監聽文件選擇
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            originalFileName = file.name; // 保存原始檔名
+
+            // 使用 FileReader 讀取圖片
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                imageToCrop.src = event.target.result;
+                cropModal.show(); // 顯示 Modal
+            };
+            reader.readAsDataURL(file);
+        });
+        
+        // Modal 顯示時，初始化 Cropper
+        cropModalElement.addEventListener('shown.bs.modal', () => {
+            if (cropper) {
+                cropper.destroy(); // 如果已有實例，先銷毀
+            }
+            cropper = new Cropper(imageToCrop, {
+                aspectRatio: 7 / 9, // 設定裁切框的長寬比
+                viewMode: 1,      // 限制裁切框不能超出圖片範圍
+                background: false,
+                autoCropArea: 0.8,
+            });
+        });
+
+        // Modal 隱藏時，銷毀 Cropper 並清空 input
+        cropModalElement.addEventListener('hidden.bs.modal', () => {
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            // 清空 file input，這樣才能重新選擇同一張圖片
+            imageInput.value = ''; 
+        });
+
+        // 點擊 "裁切並上傳" 按鈕
+        cropAndUploadBtn.addEventListener('click', () => {
+            if (!cropper) {
+                return;
+            }
+            
+            // 獲取裁切後的 Canvas
+            const canvas = cropper.getCroppedCanvas({
+                width: 700, // 您可以指定輸出圖片的寬度
+                // height 會根據 aspectRatio 自動計算
+                fillColor: '#fff',
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
+            });
+
+            // 將 Canvas 轉換為 Blob 物件 (類似於檔案)
+            canvas.toBlob((blob) => {
+                // 產生一個暫時的 URL 以供預覽
+                const croppedImageUrl = URL.createObjectURL(blob);
+                imagePreview.src = croppedImageUrl;
+                
+                // 更新 UI
+                imagePreviewBox.classList.add('has-image');
+                deleteBtn.style.display = 'inline-block';
+                
+                // *** 模擬上傳到後端 ***
+                // 這是您需要與後端 API 對接的地方
+                const formData = new FormData();
+                
+                // 將 blob 附加到 formData，第三個參數是檔名
+                formData.append('uploaded_image', blob, `cropped-${originalFileName}`);
+                
+                console.log('準備上傳的 FormData:', formData);
+                // 您可以在這裡使用 fetch 或 axios 將 formData 送出
+                // fetch('/your-upload-api-endpoint', {
+                //     method: 'POST',
+                //     body: formData,
+                // })
+                // .then(response => response.json())
+                // .then(data => console.log('上傳成功:', data))
+                // .catch(error => console.error('上傳失敗:', error));
+                
+                // ------------------------
+
+            }, 'image/jpeg', 0.9); // 指定輸出格式和品質
+
+            cropModal.hide(); // 關閉 Modal
+        });
+        
+        // 點擊 "刪除圖片" 按鈕
+        deleteBtn.addEventListener('click', () => {
+            // 清空預覽
+            imagePreview.src = '';
+            imagePreviewBox.classList.remove('has-image');
+            
+            // 清空 file input
+            imageInput.value = '';
+            
+            // 隱藏刪除按鈕
+            deleteBtn.style.display = 'none';
+            
+            console.log('圖片已刪除');
+        });
+    });
+</script>
+<% end %>
+

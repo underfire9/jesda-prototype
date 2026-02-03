@@ -1,0 +1,56 @@
+<!-- template: 國內派遣證明函 & 合約提前中止 - 補件 -->
+
+<div class="container-lg">
+    <div class="leave-container-head">
+        <h2 class="mb-0 fw-light">國內派遣證明函 <span class="fw-bold">補件</span></h2>
+        <!--<h2 class="mb-0 fw-light">合約提前中止 <span class="fw-bold">補件</span></h2>-->
+    </div>
+    <div class="request-form-wrapper">
+        <div class="notice-wrapper">
+            <p><%= zh_lorem_paragraphs(3) %></p>
+        </div>
+        <div class="form-group">
+            <label for="applicationReason" class="form-label fw-bold">申請事由</label>
+            <textarea id="applicationReason" name="applicationReason" class="form-control" rows="4" placeholder="請輸入申請事由" disabled readonly><%= zh_lorem_paragraphs(2) %></textarea>
+        </div>
+        <div class="upload-wrapper fluid-wrapper">
+            <!-- 檔案上傳後多出 .file-pill，當再次上傳時則覆蓋上一筆，點選檔名另開視窗觀看文件 -->
+            <div class="upload-item border-0 p-0">
+                <div class="mb-3">
+                    <label for="interimReport" class="form-label fw-bold">證明文件</label>
+                    <p>如果有說明放在這裡。<a href="#">範例檔案下載</a></p>
+                    <input class="form-control" type="file" id="interimReport">
+                    <div class="form-text">檔案格式限制 : pdf、jpg、png、gif，檔案大小限制 : 10MB</div>
+                </div>
+                <div class="ft-action">
+                    <span>
+                        <div class="file-pill">
+                            <!-- 避免檔名過長有限制最大寬度 256px，超出時會字元會省略 -->
+                            <a href="#" target="_blank" class="filename"><%= lorem_sentence %>.pdf</a>
+                            <button type="button" class="btn btn-sm btn-rounded btn-dark" title="移除">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="additional-notice-outer">
+            <h5>目前狀態：補件</h5>
+            <div class="additional-notice-wrapper">
+                <%= zh_lorem_paragraphs(2) %>
+            </div>
+        </div>
+    </div>
+    <div class="form-action border-0 pt-0">
+        <button type="button" class="btn btn-lg btn-outline-primary">暫存</button>
+        <button type="submit" class="btn btn-lg btn-primary">送出</button>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+
+<% end %>
+

@@ -29,7 +29,7 @@ end
 module ViewHelpers
 
   def fake_person_name
-    %w{黃　捷 楊傑仁 吳卓芳 梁芳瑜 顏偉傑 林垣佑 林立仁 顏呈洋 張子倩 林姿廷 賴育絜 林育辰 廖茂亨 林志祐 陳科翰 李柏叡 林俊瑋 李玟樺}.shuffle.first
+    %w{黃郁捷 楊傑仁 吳卓芳 梁芳瑜 顏偉傑 林垣佑 林立仁 顏呈洋 張子倩 林姿廷 賴育絜 林育辰 廖茂亨 林志祐 陳科翰 李柏叡 林俊瑋 李玟樺}.shuffle.first
   end
 
   def fake_company_name

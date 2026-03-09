@@ -1,0 +1,154 @@
+<!-- template: 執行 - 專業認證獎金 -->
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="wrapper-inner">
+            
+            <%= render :partial => "/partials/execution_sidenav" %>
+
+            <main class="main">
+                <div class="content-title">
+                    <h3>專業認證獎金申請</h3>
+                </div>
+                <div class="alert alert-warning mb-5" role="alert">
+                    補件原因說明 <%= lorem_sentence %>
+                </div>
+                <div class="notice-wrapper bonus-notice">
+                    <% notice_list = [
+                        "專業認證獎金申請表",
+                        "專業認證獎金申請表應附上相關證明文件，包含但不限於：工作證明、薪資單、工作內容說明等。",
+                        "申請人需確保所提供的資料真實且完整，若有任何虛假或不實資料，將可能導致申請被拒絕或追回已發放的獎金。",
+                        "申請人需同意相關條款與規定，並遵守申請流程及截止日期。"
+                    ] %>
+                    <ul class="menu-item custom-list">
+                        <% notice_list.each do |notice| %>
+                            <li><%= notice %></li>
+                        <% end %>
+                    </ul>
+                </div>
+                <form action="home.html" method="post" enctype="multipart/form-data">
+                    <div class="experience-bonus-container">
+                        <div class="inner-wrapper">
+                            <h5 class="mb-4">證照資料</h5>
+                            <div class="experience-bonus-list">
+                                <div class="experience-bonus-item">
+                                    <button type="button" class="btn btn-sm btn-trash" style="display: none;" title="刪除"><i class="far fa-trash-alt"></i></button>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="experience_bonus_certificate">證照/合格證明名稱</label>
+                                                <input type="text" class="form-control" id="experience_bonus_certificate" name="experience_bonus_certificate">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="experience_bonus_issue_date">證照核發日期</label>
+                                                <input type="date" class="form-control" id="experience_bonus_issue_date" name="experience_bonus_issue_date">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="certificate_proof">證明文件上傳</label>
+                                                <input type="file" class="form-control" id="certificate_proof" name="certificate_proof">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="certificate_screenshot">學習歷程檔案證照系統截圖</label>
+                                                <input type="file" class="form-control" id="certificate_screenshot" name="certificate_screenshot">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grand-total">
+                                <span>您申請 <strong>1</strong> 張證照可領取金額 <strong>2500</strong> 元整</span>
+                            </div>
+                            <div class="experience-bonus-add">
+                                <button type="button" class="btn btn-add-experience btn-outline-dark"><i class="fas fa-plus me-1"></i> 新增證照</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-action noborder">
+                        <button type="submit" class="btn btn-lg btn-rounded btn-main px-5">送出申請</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+    <!-- 新增證照 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var list = document.querySelector('.experience-bonus-list');
+            var addButton = document.querySelector('.btn-add-experience');
+            var MAX_ITEMS = 2;
+
+            if (!list || !addButton) return;
+
+            function updateAddButtonState() {
+                var currentItems = list.querySelectorAll('.experience-bonus-item').length;
+                addButton.disabled = currentItems >= MAX_ITEMS;
+
+                var shouldShowTrash = currentItems > 1;
+                list.querySelectorAll('.btn-trash').forEach(function(button) {
+                    button.style.display = shouldShowTrash ? '' : 'none';
+                });
+            }
+
+            addButton.addEventListener('click', function() {
+                var currentItems = list.querySelectorAll('.experience-bonus-item').length;
+                if (currentItems >= MAX_ITEMS) return;
+
+                var firstItem = list.querySelector('.experience-bonus-item');
+                if (!firstItem) return;
+
+                var newItem = firstItem.cloneNode(true);
+                var itemIndex = list.querySelectorAll('.experience-bonus-item').length + 1;
+                var idMap = {};
+
+                newItem.querySelectorAll('[id]').forEach(function(element) {
+                    var oldId = element.id;
+                    var newId = oldId + '_' + itemIndex;
+                    element.id = newId;
+                    idMap[oldId] = newId;
+                });
+
+                newItem.querySelectorAll('label[for]').forEach(function(label) {
+                    var oldFor = label.getAttribute('for');
+                    if (idMap[oldFor]) {
+                        label.setAttribute('for', idMap[oldFor]);
+                    }
+                });
+
+                newItem.querySelectorAll('input').forEach(function(input) {
+                    if (input.type === 'file') {
+                        input.value = '';
+                    } else {
+                        input.value = '';
+                    }
+                });
+
+                list.appendChild(newItem);
+                updateAddButtonState();
+            });
+
+            list.addEventListener('click', function(event) {
+                var trashButton = event.target.closest('.btn-trash');
+                if (!trashButton) return;
+
+                var item = trashButton.closest('.experience-bonus-item');
+                if (item) {
+                    item.remove();
+                    updateAddButtonState();
+                }
+            });
+
+            updateAddButtonState();
+        });
+    </script>
+<% end %>

@@ -1,0 +1,54 @@
+<!-- template: 相關辦法與表格 -->
+
+<div class="container-lg">
+    <div class="annual-content">
+        <a href="#C" title="中央內容區塊" id="AC" accesskey="C" name="C" style="">:::</a>
+        <%= render :partial => "/partials/annual-aside" %>
+        <main class="annual-main pt-0">
+            <div class="service-wrapper">
+                <div class="guidelines-content">
+                    <h4 class="content-title">相關辦法</h4>
+                    <ul class="menu-item content-list">
+                        <li><a href="#" class="content-link" title="114教育部鼓勵國內大專校院選送學生出國研修或國外專業實習補助要點">114教育部鼓勵國內大專校院選送學生出國研修或國外專業實習補助要點</a></li>
+                        <li><a href="#" class="content-link" title="相關附表">相關附表</a></li>
+                        <li><a href="#" class="content-link" title="低收入戶及中低收入戶學生參加教育部、大專校院選(薦)出國研修或國外專業實習返國後專案性補助計畫">低收入戶及中低收入戶學生參加教育部、大專校院選(薦)出國研修或國外專業實習返國後專案性補助計畫</a></li>
+                    </ul>
+                </div>
+                <div class="sheet-content">
+                    <h4 class="content-title">表格</h4>
+                    <ul class="menu-item content-list">
+                        <li><a href="#" class="content-link" title="申請流程說明">申請流程說明</a></li>
+                        <li><a href="#" class="content-link" title="行政作業說明(經費請領、變更及結案)">行政作業說明(經費請領、變更及結案)</a></li>
+                        <li><a href="#" class="content-link" title="空白計畫書參考">空白計畫書參考</a></li>
+                        <li><a href="#" class="content-link" title="學海惜珠者申請身分及應檢附文件">學海惜珠者申請身分及應檢附文件</a></li>
+                        <li><a href="#" class="content-link" title="學海計畫申請懶人包-承辦人">學海計畫申請懶人包-承辦人</a></li>
+                        <li><a href="#" class="content-link" title="學海計畫申請懶人包-學生">學海計畫申請懶人包-學生</a></li>
+                        <li><a href="#" class="content-link" title="大專校院推動海外實習課程作業參考手冊">大專校院推動海外實習課程作業參考手冊</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<% content_for :js do %>
+    <!-- 根據螢幕寬度決定是否加入 offcanvas 類別 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const updateOffcanvasClass = () => {
+                const el = document.querySelector("#offcanvasAnnual");
+                if (el) {
+                    if (window.innerWidth < 992) {
+                        el.classList.add("offcanvas");
+                    } else {
+                        el.classList.remove("offcanvas");
+                    }
+                }
+            };
+
+            updateOffcanvasClass();
+            window.addEventListener("resize", updateOffcanvasClass);
+        });
+    </script>
+<% end %>
+

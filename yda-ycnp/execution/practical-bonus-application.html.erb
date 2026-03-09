@@ -1,0 +1,148 @@
+<!-- template: 執行 - 實踐獎金請領 -->
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="wrapper-inner">
+            
+            <%= render :partial => "/partials/execution_sidenav" %>
+
+            <main class="main">
+                <div class="practical-bonus-header">
+                    <h2>第 1 期實踐獎金請領</h2>
+                    <div class="practical-bonus-amount">
+                        <span>請領金額</span>
+                        <strong>40,000元</strong>
+                    </div>
+                    <div class="js-container container"></div>
+                </div>
+                <form action="home.html" method="post" enctype="multipart/form-data">
+                    <div class="practical-bonus-container">
+                        <div class="form-group">
+                            <label class="form-label">是否參加青年百億海外圓夢基金計畫</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="overseas_fund" id="overseas_fund_yes" value="yes">
+                                    <label class="form-check-label" for="overseas_fund_yes">是</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="overseas_fund" id="overseas_fund_no" value="no">
+                                    <label class="form-check-label" for="overseas_fund_no">否</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group overseas-fund-days">
+                            <label class="form-label">參加起訖時間</label>
+                            <div class="day-input-group">
+                                <input type="date" class="form-control" name="overseas_fund_start">
+                                <span>至</span>
+                                <input type="date" class="form-control" name="overseas_fund_end">
+                            </div>
+                        </div>
+                        <div class="procedure-note">
+                            <h5>請領程序</h5>
+                            <p>第1期新臺幣4萬元。青年通過本計畫規定之定期檢核後，得依規定請領。請備妥以下紙本資料，以掛號郵寄至青年署請領獎金（以郵戳為憑），為有效進行請領款項相關作業，說明如下：</p>
+                            <ol>
+                                <li>信封統一使用 <strong>獎金核銷專用信封封面</strong></li>
+                                <li>請款領據（含個人存摺或撥款帳戶影本、身分證正反面影本）</li>
+                                <li>個人存摺或撥款帳戶影本</li>
+                                <li>身分證正反面影本</li>
+                            </ol>
+                            <div class="files-wrap">
+                                <span><a href="#" download><i class="far fa-arrow-alt-circle-down"></i> 獎金核銷專用信封封面下載</a></span>
+                                <span><a href="#" download><i class="far fa-arrow-alt-circle-down"></i> 請款領據下載</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <button type="submit" class="btn btn-lg btn-rounded btn-main px-5">送出申請</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<!-- overseas-fund-days -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const overseasFundYes = document.getElementById('overseas_fund_yes');
+        const overseasFundNo = document.getElementById('overseas_fund_no');
+        const overseasFundDays = document.querySelector('.overseas-fund-days');
+
+        overseasFundDays.style.display = 'none';
+
+        overseasFundYes.addEventListener('change', function() {
+            if (this.checked) {
+                overseasFundDays.style.display = 'block';
+            }
+        });
+
+        overseasFundNo.addEventListener('change', function() {
+            if (this.checked) {
+                overseasFundDays.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<!-- Congratulations animation css (https://codepen.io/masudrana2779/pen/zYaggOr) -->
+<script>
+    const Confettiful = function (el) {
+        this.el = el;
+        this.containerEl = null;
+
+        this.confettiFrequency = 3;
+        this.confettiColors = ["#f7a1bb", "#7ed6c6", "#89b7cc", "#8f8f9c", "#f9ffa3"];
+        this.confettiAnimations = ["slow", "medium", "fast"];
+
+        this._setupElements();
+        this._renderConfetti();
+    };
+
+    Confettiful.prototype._setupElements = function () {
+        const containerEl = document.createElement("div");
+        const elPosition = this.el.style.position;
+
+        if (elPosition !== "relative" && elPosition !== "absolute") {
+            this.el.style.position = "relative";
+        }
+
+        containerEl.classList.add("confetti-container");
+
+        this.el.appendChild(containerEl);
+
+        this.containerEl = containerEl;
+    };
+
+    Confettiful.prototype._renderConfetti = function () {
+        this.confettiInterval = setInterval(() => {
+            const confettiEl = document.createElement("div");
+            const confettiSize = Math.floor(Math.random() * 2) + 4 + "px";
+            const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors.length)];
+            const confettiLeft = Math.floor(Math.random() * this.el.offsetWidth) + "px";
+            const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this.confettiAnimations.length)];
+
+            confettiEl.classList.add("confetti", "confetti--animation-" + confettiAnimation);
+            confettiEl.style.left = confettiLeft;
+            confettiEl.style.width = confettiSize;
+            confettiEl.style.height = confettiSize;
+            confettiEl.style.backgroundColor = confettiBackground;
+
+            confettiEl.removeTimeout = setTimeout(function () {
+                confettiEl.parentNode.removeChild(confettiEl);
+            }, 3000);
+
+            this.containerEl.appendChild(confettiEl);
+        }, 75);
+    };
+
+    const confettiTarget = document.querySelector(".practical-bonus-header .js-container");
+
+    if (confettiTarget && !window.confettiful) {
+        window.confettiful = new Confettiful(confettiTarget);
+    }
+</script>
+<% end %>

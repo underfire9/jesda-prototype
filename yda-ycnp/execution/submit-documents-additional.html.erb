@@ -1,0 +1,165 @@
+<!-- template: 執行 - 繳交資料 (補件) -->
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="wrapper-inner">
+            
+            <%= render :partial => "/partials/execution_sidenav" %>
+
+            <main class="main">
+                <div class="content-title">
+                    <h3>繳交資料</h3>
+                </div>
+                <form action="home.html" method="post" enctype="multipart/form-data">
+                    <div class="documents-upload-container">
+                        <div class="documents-upload-item">
+                            <h4>個人資料上傳</h4>
+                            <div class="alert alert-warning" role="alert">
+                                <%= lorem_sentence %>
+                            </div>
+                            <div class="upload-info">
+                                <%= lorem_paragraph %>
+                            </div>
+                            <div class="upload-wrapper">
+                                <div class="drag-and-drop" role="button" tabindex="0" aria-label="上傳個人資料" data-upload-zone>
+                                    <div class="file-input-wrapper">
+                                        <input class="form-control" type="file" id="personalData" name="personalData" data-file-input hidden>
+                                        <p class="note">拖曳檔案到此處，或點擊選擇檔案</p>
+                                    </div>
+                                </div>
+                                <div class="item-file-wrapper" data-file-list></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <button type="submit" class="btn btn-lg btn-rounded btn-main px-5">送出</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<!-- 拖曳檔案上傳 -->
+<script>
+    (function () {
+        const uploadItems = document.querySelectorAll('.documents-upload-item');
+
+        uploadItems.forEach(function (item) {
+            const uploadZone = item.querySelector('[data-upload-zone]');
+            const fileInput = item.querySelector('[data-file-input]');
+            const fileList = item.querySelector('[data-file-list]');
+            let currentFileUrl = '';
+
+            if (!uploadZone || !fileInput || !fileList) return;
+
+            const resetFileUrl = function () {
+                if (!currentFileUrl) return;
+                URL.revokeObjectURL(currentFileUrl);
+                currentFileUrl = '';
+            };
+
+            const renderFile = function (file) {
+                fileList.innerHTML = '';
+                resetFileUrl();
+
+                if (!file) return;
+
+                const fileItem = document.createElement('div');
+                fileItem.className = 'item-file';
+
+                currentFileUrl = URL.createObjectURL(file);
+
+                const fileName = document.createElement('a');
+                fileName.className = 'file-name';
+                fileName.textContent = file.name;
+                fileName.href = currentFileUrl;
+                fileName.title = file.name;
+                fileName.setAttribute('download', file.name);
+
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.className = 'btn btn-sm btn-danger';
+                removeButton.title = '刪除檔案';
+                removeButton.setAttribute('aria-label', '刪除檔案');
+                removeButton.innerHTML = '<i class="far fa-trash-alt"></i>';
+
+                removeButton.addEventListener('click', function () {
+                    fileInput.value = '';
+                    fileList.innerHTML = '';
+                    resetFileUrl();
+                });
+
+                fileItem.appendChild(fileName);
+                fileItem.appendChild(removeButton);
+                fileList.appendChild(fileItem);
+            };
+
+            const assignSingleFile = function (file) {
+                if (!file) return;
+
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+
+                try {
+                    fileInput.files = dataTransfer.files;
+                } catch (error) {
+                    fileInput.value = '';
+                }
+
+                renderFile(file);
+            };
+
+            uploadZone.addEventListener('click', function () {
+                fileInput.click();
+            });
+
+            uploadZone.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    fileInput.click();
+                }
+            });
+
+            uploadZone.addEventListener('dragenter', function (event) {
+                event.preventDefault();
+                uploadZone.classList.add('is-dragover');
+            });
+
+            uploadZone.addEventListener('dragover', function (event) {
+                event.preventDefault();
+                uploadZone.classList.add('is-dragover');
+            });
+
+            uploadZone.addEventListener('dragleave', function (event) {
+                event.preventDefault();
+                uploadZone.classList.remove('is-dragover');
+            });
+
+            uploadZone.addEventListener('drop', function (event) {
+                event.preventDefault();
+                uploadZone.classList.remove('is-dragover');
+
+                const droppedFiles = event.dataTransfer ? event.dataTransfer.files : null;
+                if (!droppedFiles || !droppedFiles.length) return;
+
+                assignSingleFile(droppedFiles[0]);
+            });
+
+            fileInput.addEventListener('change', function () {
+                if (!fileInput.files || !fileInput.files.length) {
+                    renderFile(null);
+                    return;
+                }
+
+                renderFile(fileInput.files[0]);
+            });
+
+            window.addEventListener('beforeunload', resetFileUrl);
+        });
+    })();
+</script>
+<% end %>

@@ -1,0 +1,107 @@
+<!-- template: 執行 - 企劃諮詢輔導申請 (瀏覽) -->
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="wrapper-inner">
+            
+            <%= render :partial => "/partials/execution_sidenav" %>
+
+            <main class="main consult-main">
+                <div class="content-title">
+                    <h3>企劃諮詢輔導</h3>
+                </div>
+                <div class="form-container">
+                    <section class="section-consult">
+                        <h4 class="section-consult-title">申請需求原因</h4>
+                        <div class="form-group form-group-output">
+                            <label class="form-label">預約的企劃類別</label>
+                            <div class="output output-inline-block">職場體驗</div>
+                        </div>
+
+                        <div class="form-group form-group-output">
+                            <label class="form-label">關於企劃書撰寫我想問的問題</label>
+
+                            <div class="textarea-group">
+                                <div class="group-head">
+                                    <div class="group-serial">Q1</div>
+                                    <div class="select-output">計畫完成後的就學就業</div>
+                                </div>
+                                <div class="output"><%= lorem_paragraphs(3) %></div>
+                            </div>
+
+                            <div class="textarea-group">
+                                <div class="group-head">
+                                    <div class="group-serial">Q2</div>
+                                    <div class="select-output">尋找體驗學習單位</div>
+                                </div>
+                                <div class="output"><%= lorem_paragraphs(3) %></div>
+                            </div>
+
+                        </div>
+                    </section>
+                    <section class="section-consult mb-0">
+                        <h4 class="section-consult-title">預約諮詢時段</h4>
+                        <p>僅開放預約未來兩周，<span class="text-danger">本預約為意願登記，實際時間與方式將另行通知</span></p>
+                        <div class="option-wrap">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="timeCheckbox3" value="optionTime3" checked />
+                                <label class="form-check-label" for="timeCheckbox3">晚上時段 (18:00–21:00) 全選</label>
+                            </div>
+                        </div>
+                        <div class="date-wrap">
+                            <ul class="menu-item date-list">
+                                <% (1..6).map do |i| %>
+                                <li>
+                                    <span class="date-label">2025 / 11 / 1<%= i %></span>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="dayCheckbox5" value="optionDay5" checked />
+                                            <label class="form-check-label" for="dayCheckbox5">17:00–20:00</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <% end %>
+                                <% (17..22).map do |i| %>
+                                <li>
+                                    <span class="date-label">2025 / 11 / <%= i %></span>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="dayCheckbox1" value="optionDay1" checked />
+                                            <label class="form-check-label" for="dayCheckbox1">09:00–11:00</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="dayCheckbox4" value="optionDay4" checked />
+                                            <label class="form-check-label" for="dayCheckbox4">15:00–17:00</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="dayCheckbox5" value="optionDay5" checked />
+                                            <label class="form-check-label" for="dayCheckbox5">17:00–20:00</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <% end %>
+                            </ul>
+                        </div>
+
+                        <div class="form-group form-group-output">
+                            <label class="form-label">諮詢方式</label>
+                            <div class="output">視訊</div>
+                        </div>
+                        <div class="form-group form-group-output mb-0">
+                            <label class="form-label">備註說明</label>
+                            <div class="output"><%= lorem_paragraphs(2) %></div>
+                        </div>
+                    </section>
+                    <div class="form-action noborder mt-0">
+                        <span class="backhome"><a href="home.html" class="btn btn-lg btn-back" title="回首頁"><i class="fas fa-long-arrow-alt-left"></i></a></span>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<% end %>

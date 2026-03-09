@@ -1,0 +1,228 @@
+<!-- template: 執行 - 雙週誌 -->
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="wrapper-inner">
+            
+            <%= render :partial => "/partials/execution_sidenav" %>
+
+            <main class="main">
+                <div class="biweekly-head">
+                    <h2>雙週誌第 6 期</h2>
+                    <span class="date-range">2026/10/10 - 2026/10/23</span>
+                </div>
+                <form action="home.html" method="post" enctype="multipart/form-data">
+                    <div class="biweekly-container">
+                        <div class="form-group">
+                            <label for="work-content" class="form-label"><span class="required">*</span>現階段計畫項目</label>
+                            <select class="form-select-work form-select" id="work-content" name="work-content">
+                                <option value="" selected disabled>請選擇</option>
+                                <option value="project1">計畫項目 1</option>
+                                <option value="project2">計畫項目 2</option>
+                                <option value="project3">計畫項目 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="biweekly-content" class="form-label"><span class="required">*</span>我的雙週誌</label>
+                            <div class="editor-wrapper">
+                                <!-- textarea prototype 用套版時請拿掉，區塊高度由編輯套件定義 -->
+                                <textarea class="form-control form-control-lg" id="biweekly-content" name="biweekly-content" rows="16" placeholder="請在此輸入雙週誌內容..."></textarea>
+                            </div>
+                            <div class="form-text">格式不拘，圖、文、影音、各項證明</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="biweekly-media" class="form-label">其他多媒體</label>
+                            <div class="form-text mt-0 mb-2">圖片、影音等，如使用特定軟體才能開啟之格式（如CAD、3D模型、特殊程式碼檔案等），請轉換為通用格式（如PDF、JPEG、MP4、TXT）或提供開啟方式與相關截圖，以確保輔導委員能正常檢視與評核。</div>
+                            <input class="form-control w-auto" type="file" id="biweekly-media" name="biweekly-media" multiple>
+
+                            <div class="files-group">
+
+                                <!-- html 範例 -->
+                                <!--div class="item-file">
+                                    <a href="#" class="file-link" title="下載{完整綁案名稱}" download><%= lorem_word %>_<%= lorem_word %>.pdf</a>
+                                    <button type="button" class="btn btn-delete" title="刪除檔案"><i class="far fa-trash-alt"></i></button>
+                                </div-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="related-link" class="form-label">相關連結</label>
+                            <div class="input-group link-input-group">
+                                <input id="related-link" type="url" class="form-control" placeholder="請輸入連結後按新增" aria-label="URL" aria-describedby="button-url-addon">
+                                <button class="btn btn-outline-secondary" type="button" id="button-url-addon"><i class="fas fa-plus me-1"></i> 新增</button>
+                            </div>
+                            <div class="url-group">
+                                <!-- html 範例 -->
+                                <!--div class="item-url">
+                                    <a href="#" class="url-link" target="_blank">https://www.youtube.com/watch?v=hnNHvZOc4X0&t=0s</a>
+                                    <button type="button" class="btn btn-delete-url" title="刪除連結"><i class="far fa-trash-alt"></i></button>
+                                </div-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <button type="button" class="btn btn-lg btn-rounded btn-dark">儲存</button>
+                        <button type="submit" class="btn btn-lg btn-rounded btn-main px-5">送出</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+    <!-- 上傳檔案 -->
+    <script>
+        (function () {
+            const fileInput = document.getElementById('biweekly-media');
+            const filesGroup = document.querySelector('.files-group');
+
+            if (!fileInput || !filesGroup) return;
+
+            let fileId = 0;
+            let selectedFiles = [];
+
+            const syncInputFiles = function () {
+                const dataTransfer = new DataTransfer();
+
+                selectedFiles.forEach(function (item) {
+                    dataTransfer.items.add(item.file);
+                });
+
+                fileInput.files = dataTransfer.files;
+            };
+
+            const renderFiles = function () {
+                filesGroup.innerHTML = '';
+
+                if (!selectedFiles.length) return;
+
+                selectedFiles.forEach(function (item) {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'item-file';
+
+                    const fileName = document.createElement('a');
+                    fileName.className = 'file-link';
+                    fileName.textContent = item.file.name;
+                    fileName.title = item.file.name;
+                    fileName.href = item.url;
+                    fileName.setAttribute('download', item.file.name);
+
+                    const removeButton = document.createElement('button');
+                    removeButton.type = 'button';
+                    removeButton.className = 'btn btn-delete';
+                    removeButton.title = '刪除檔案';
+                    removeButton.setAttribute('aria-label', '刪除檔案');
+                    removeButton.innerHTML = '<i class="far fa-trash-alt"></i>';
+
+                    removeButton.addEventListener('click', function () {
+                        URL.revokeObjectURL(item.url);
+
+                        selectedFiles = selectedFiles.filter(function (selectedItem) {
+                            return selectedItem.id !== item.id;
+                        });
+
+                        syncInputFiles();
+                        renderFiles();
+                    });
+
+                    fileItem.appendChild(fileName);
+                    fileItem.appendChild(removeButton);
+                    filesGroup.appendChild(fileItem);
+                });
+            };
+
+            fileInput.addEventListener('click', function () {
+                fileInput.value = '';
+            });
+
+            fileInput.addEventListener('change', function () {
+                if (!fileInput.files || !fileInput.files.length) return;
+
+                Array.from(fileInput.files).forEach(function (file) {
+                    selectedFiles.push({
+                        id: ++fileId,
+                        file: file,
+                        url: URL.createObjectURL(file)
+                    });
+                });
+
+                syncInputFiles();
+                renderFiles();
+            });
+        })();
+    </script>
+
+    <!-- 相關連結 -->
+    <script>
+        (function () {
+            const relatedLinkInput = document.getElementById('related-link');
+            const addLinkButton = document.getElementById('button-url-addon');
+            const urlGroup = document.querySelector('.url-group');
+
+            if (!relatedLinkInput || !addLinkButton || !urlGroup) return;
+
+            const normalizeUrl = function (value) {
+                const trimmedValue = value.trim();
+                if (!trimmedValue) return '';
+
+                try {
+                    return new URL(trimmedValue).href;
+                } catch (error) {
+                    try {
+                        return new URL('https://' + trimmedValue).href;
+                    } catch (innerError) {
+                        return '';
+                    }
+                }
+            };
+
+            const createUrlItem = function (href) {
+                const itemUrl = document.createElement('div');
+                itemUrl.className = 'item-url';
+
+                const link = document.createElement('a');
+                link.className = 'url-link';
+                link.href = href;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.textContent = href;
+
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.className = 'btn btn-delete-url';
+                removeButton.title = '刪除連結';
+                removeButton.setAttribute('aria-label', '刪除連結');
+                removeButton.innerHTML = '<i class="far fa-trash-alt"></i>';
+
+                removeButton.addEventListener('click', function () {
+                    itemUrl.remove();
+                });
+
+                itemUrl.appendChild(link);
+                itemUrl.appendChild(removeButton);
+
+                return itemUrl;
+            };
+
+            const addRelatedLink = function () {
+                const href = normalizeUrl(relatedLinkInput.value);
+                if (!href) return;
+
+                urlGroup.appendChild(createUrlItem(href));
+                relatedLinkInput.value = '';
+                relatedLinkInput.focus();
+            };
+
+            addLinkButton.addEventListener('click', addRelatedLink);
+
+            relatedLinkInput.addEventListener('keydown', function (event) {
+                if (event.key !== 'Enter') return;
+
+                event.preventDefault();
+                addRelatedLink();
+            });
+        })();
+    </script>
+<% end %>

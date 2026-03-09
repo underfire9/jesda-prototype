@@ -1,0 +1,73 @@
+<!-- template: 執行 - 雙週誌申請重新檢核 -->
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="wrapper-inner">
+            
+            <%= render :partial => "/partials/execution_sidenav" %>
+
+            <main class="main">
+                <div class="biweekly-head">
+                    <h2>雙週誌第 6 期<strong class="recheck">申請重新檢核</strong></h2>
+                    <span class="date-range">2026/10/10 - 2026/10/23</span>
+                </div>
+                <div class="alert alert-danger mb-4" role="alert">
+                    退件原因說明 <%= lorem_sentence %>
+                </div>
+                <div class="correction-wrapper">
+                    <div class="correction-head mb-2">
+                        <h5 class="opinions-title">委員意見</h5>
+                    </div>
+                    <div class="correction-opinions">
+                        <div class="opinions-body">
+                            <p>針對本週的日誌繳交的文件無法開啟，請重新調整或是提供新的證明資料。</p>
+                            <p><%= zh_lorem_paragraphs(3) %></p>
+                            <p><%= zh_lorem_paragraph %></p>
+                        </div>
+                    </div>
+                </div>
+                <form action="home.html" method="post" enctype="multipart/form-data">
+                    <div class="biweekly-container">
+                        <div class="form-group">
+                            <label class="form-label"><span class="required">*</span>申請原因</label>
+                            <div class="reason-options">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="recheckReason" id="reason1" value="reason1">
+                                    <label class="form-check-label" for="reason1">因不可抗力因素（如重病、家庭變故、國際事件影響等）無法依規定定期填報雙週誌。<a href="#">法規參考</a></label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="recheckReason" id="reason2" value="reason2">
+                                    <label class="form-check-label" for="reason2">客觀錯誤（如記錄錯誤、資料遺失導致未通過）</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="recheckReason" id="reason3" value="reason3">
+                                    <label class="form-check-label" for="reason3">補正內容未被適當考量（如青年已補正內容，但檢核結果仍顯示未補正）</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="recheckReason" id="reason4" value="reason4">
+                                    <label class="form-check-label" for="reason4">其他可證明合理執行計畫的狀況</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="supportingDocument" class="form-label"><span class="required">*</span>佐證資料上傳</label>
+                            <input type="file" class="form-control w-auto" name="supportingDocument" id="supportingDocument" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="remarks" class="form-label">備註說明</label>
+                            <textarea class="form-control" name="remarks" id="remarks" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-action">
+                        <button type="submit" class="btn btn-lg btn-rounded btn-main px-5">送出申請</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+    <!-- javascript -->
+<% end %>

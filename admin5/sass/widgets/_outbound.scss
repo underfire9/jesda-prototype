@@ -1,12 +1,14 @@
 
-
-
 .outbound-wrapper {
-	max-width: 1600px;
+	//max-width: 1600px;
 	.outbound-toolbar {
 		display: flex;
 		justify-content: space-between;
+		background: #fff;
 		margin-bottom: 1.5rem;
+		margin: 0 -1rem 1.5rem;
+		padding: .5rem 1rem;
+		border-bottom: 1px solid #e5e5e5;
 		.start-group {
 			display: flex;
 			gap: .5rem;
@@ -26,7 +28,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			gap: .5rem;
+			gap: 1rem;
 			background: #fff;
 			border: 1px solid #e5e5e5;
 			border-radius: .25rem;
@@ -37,8 +39,23 @@
 			opacity: 1;
 			.btn {
 				border-radius: 0 .25rem .25rem 0;
+				margin: 0 !important;
 				padding-left: 1.5rem;
 				padding-right: 1.5rem;
+				height: 40px;
+				width: 64px;
+				position: relative;
+				&::after {
+					content: '\f067';
+					font-family: "Font Awesome 5 Free";
+					font-weight: 900;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					font-size: .875rem;
+					color: #333;
+				}
 			}
 			&.moving {
 				animation: btnMove 2s ease-in-out;
@@ -52,6 +69,51 @@
 	.outbound-list {
 		.item-number {
 			font-weight: bold;
+		}
+		.data-item {
+			.btn::after {
+				content: '\f068';
+				color: #fff;
+			}
+		}
+	}
+}
+
+.outbound-template-list {
+	.template-item {
+		display: flex;
+		align-items: center;
+		gap: .25rem;
+		border-bottom: 1px dashed #e5e5e5;
+		padding: .5rem 0;
+		&:last-child {
+			border-bottom: none;
+		}
+		.btn {
+			border: 1px solid #e5e5e5;
+			border-radius: 4px;
+			box-shadow: none;
+			padding: 0;
+			height: 32px;
+			width: 32px;
+			font-size: .875rem;
+			line-height: 32px;
+			text-align: center;
+		}
+		.btn-choose {
+			&:hover {
+				border-color: $success-color;
+				color: $success-color;
+			}
+		}
+		.btn-delete {
+			&:hover {
+				border-color: $red_color;
+				color: $red_color;
+			}
+		}
+		.template-name {
+			margin-left: 1rem;
 		}
 	}
 }

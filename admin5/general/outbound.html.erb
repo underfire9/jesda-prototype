@@ -26,21 +26,20 @@
             </div>
             <div class="modal-body">
                 <div class="outbound-wrapper">
-                    <div class="outbound-note">點擊欄位按鈕 <i class="far fa-circle"></i> 即可加入匯出清單，再次點擊即可移除</div>
+                    <!--div class="outbound-note">點擊欄位按鈕 <i class="far fa-circle"></i> 即可加入匯出清單，再次點擊即可移除</div-->
                     <div class="outbound-toolbar">
                         <div class="start-group">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-dark"><i class="far fa-check-square"></i> 全選</button>
-                                <button type="button" class="btn btn-outline-dark"><i class="far fa-square"></i> 取消</button>
+                                <button type="button" id="outboundSelectAll" class="btn btn-white"><i class="far fa-check-square"></i> 全選</button>
+                                <button type="button" id="outboundDeselectAll" class="btn btn-white"><i class="far fa-square"></i> 取消</button>
                             </div>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-outline-dark"><i class="far fa-save"></i> 儲存範本</button>
-                                <button type="button" class="btn btn-outline-dark"><i class="far fa-check-circle"></i> 選擇範本</button>
-                                <button type="button" class="btn btn-outline-dark"><i class="far fa-trash-alt"></i> 刪除範本</button>
+                                <button type="button" id="outboundSaveTemplate" class="btn btn-white" data-bs-target="#outboundSaveToggle" data-bs-toggle="modal"><i class="far fa-save"></i> 儲存範本</button>
+                                <button type="button" id="outboundSelectTemplate" class="btn btn-white" data-bs-target="#outboundChooseToggle" data-bs-toggle="modal"><i class="far fa-check-circle"></i> 選擇範本</button>
                             </div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-primary px-4">匯出 <i class="fas fa-share ms-2"></i></button>
+                            <button type="button" class="btn btn-dark px-4">匯出 <i class="fas fa-share ms-2"></i></button>
                         </div>
                     </div>
                     <div class="wrapper-inner">
@@ -50,7 +49,7 @@
                                 <% (1..50).map do |i| %>
                                 <li class="data-item">
                                     <span><span class="item-number"></span><%= lorem_words(4) %></span>
-                                    <button class="btn btn-light"><i class="far fa-circle"></i></button>
+                                    <button class="btn btn-light"></button>
                                 </li>
                                 <% end %>
                             </ul>
@@ -70,19 +69,113 @@
     </div>
 </div>
 
+<!-- 儲存範本 Modal -->
+<div
+    class="modal fade"
+    id="outboundSaveToggle"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    aria-hidden="true"
+    aria-labelledby="outboundSaveToggleLabel"
+    tabindex="-1"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="outboundSaveToggleLabel">儲存範本</h1>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="text" class="form-control" id="templateName" placeholder="請輸入範本名稱">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-target="#outboundModal" data-bs-toggle="modal">
+                    取消
+                </button>
+                <button type="submit" class="btn btn-primary" data-bs-target="#outboundModal" data-bs-toggle="modal">
+                    儲存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 選擇範本 Modal -->
+<div
+    class="modal fade"
+    id="outboundChooseToggle"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    aria-hidden="true"
+    aria-labelledby="outboundChooseToggleLabel"
+    tabindex="-1"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="outboundChooseToggleLabel">選擇範本</h1>
+            </div>
+            <div class="modal-body">
+                <ul class="menu-item outbound-template-list">
+                    <% (1..6).map do |i| %>
+                    <li class="template-item">
+                        <span>
+                            <button type="button" class="btn btn-choose" data-bs-target="#outboundModal" data-bs-toggle="modal" title="選擇範本"><i class="fas fa-check"></i></button>
+                        </span>
+                        <span>
+                            <button type="button" class="btn btn-delete" data-bs-target="#outboundDeleteToggle" data-bs-toggle="modal" title="刪除範本"><i class="far fa-trash-alt"></i></button>
+                        </span>
+                        <span class="template-name"><%= lorem_words(2) %></span>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-target="#outboundModal" data-bs-toggle="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 刪除範本 Modal -->
+<div
+    class="modal fade"
+    id="outboundDeleteToggle"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    aria-hidden="true"
+    aria-labelledby="outboundDeleteToggleLabel"
+    tabindex="-1"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="outboundDeleteToggleLabel">確定刪除範本嗎?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-target="#outboundChooseToggle" data-bs-toggle="modal">取消</button>
+                <button type="submit" class="btn btn-danger" data-bs-target="#outboundChooseToggle" data-bs-toggle="modal">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <% content_for :js do %>
 <!-- 匯出功能 -->
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const dataList = document.querySelector(".data-list .outbound-menu");
-        const outboundList = document.querySelector(".outbound-list .outbound-menu");
+    (() => {
+        const getLists = () => {
+            const dataList = document.querySelector(".data-list .outbound-menu");
+            const outboundList = document.querySelector(".outbound-list .outbound-menu");
+            if (!dataList || !outboundList) {
+                return null;
+            }
+            return { dataList, outboundList };
+        };
 
-        if (!dataList || !outboundList) {
-            return;
-        }
-
-        const updateNumbers = () => {
+        const updateNumbers = (dataList, outboundList) => {
             const updateList = (list) => {
                 const items = list.querySelectorAll(".data-item");
                 items.forEach((item, index) => {
@@ -97,50 +190,120 @@
             updateList(outboundList);
         };
 
-        const moveItem = (item, targetList, isOutbound) => {
+        const setItemState = (item, isOutbound) => {
             const button = item.querySelector(".btn");
-            const icon = item.querySelector("i");
             if (button) {
                 button.classList.remove(isOutbound ? "btn-light" : "btn-success");
                 button.classList.add(isOutbound ? "btn-success" : "btn-light");
             }
-            if (icon) {
-                icon.classList.remove(isOutbound ? "far" : "fas");
-                icon.classList.add(isOutbound ? "fas" : "far");
-            }
+        };
 
+        const animateMove = (item, targetList) => {
             item.classList.add("moving");
             targetList.appendChild(item);
             window.setTimeout(() => {
                 item.classList.remove("moving");
             }, 2000);
-
-            updateNumbers();
         };
 
-        const handleClick = (event) => {
-            const button = event.target.closest(".btn");
-            if (!button) {
+        const moveItem = (item, targetList, isOutbound, dataList, outboundList) => {
+            setItemState(item, isOutbound);
+            animateMove(item, targetList);
+            updateNumbers(dataList, outboundList);
+        };
+
+        const moveAllItems = (fromList, toList, isOutbound, dataList, outboundList) => {
+            const items = Array.from(fromList.querySelectorAll(".data-item"));
+            if (items.length === 0) {
                 return;
             }
 
-            const item = button.closest(".data-item");
-            if (!item) {
+            items.forEach((item) => {
+                setItemState(item, isOutbound);
+                animateMove(item, toList);
+            });
+
+            updateNumbers(dataList, outboundList);
+        };
+
+        const applyToolbarSticky = () => {
+            const toolbar = document.querySelector(".outbound-toolbar");
+            if (!toolbar) {
                 return;
             }
 
-            if (dataList.contains(item)) {
-                moveItem(item, outboundList, true);
-            } else if (outboundList.contains(item)) {
-                moveItem(item, dataList, false);
+            toolbar.style.position = "sticky";
+            toolbar.style.top = "0";
+            toolbar.style.zIndex = "10";
+            toolbar.style.backgroundColor = "#fff";
+        };
+
+        const init = () => {
+            document.addEventListener("shown.bs.modal", (event) => {
+                if (event.target && event.target.id === "outboundModal") {
+                    applyToolbarSticky();
+                }
+            });
+
+            document.addEventListener("click", (event) => {
+                const selectAllBtn = event.target.closest("#outboundSelectAll");
+                if (selectAllBtn) {
+                    event.preventDefault();
+                    const lists = getLists();
+                    if (!lists) {
+                        return;
+                    }
+                    moveAllItems(lists.dataList, lists.outboundList, true, lists.dataList, lists.outboundList);
+                    return;
+                }
+
+                const deselectAllBtn = event.target.closest("#outboundDeselectAll");
+                if (deselectAllBtn) {
+                    event.preventDefault();
+                    const lists = getLists();
+                    if (!lists) {
+                        return;
+                    }
+                    moveAllItems(lists.outboundList, lists.dataList, false, lists.dataList, lists.outboundList);
+                    return;
+                }
+
+                const itemBtn = event.target.closest(
+                    ".data-list .outbound-menu .data-item .btn, .outbound-list .outbound-menu .data-item .btn"
+                );
+                if (!itemBtn) {
+                    return;
+                }
+
+                const item = itemBtn.closest(".data-item");
+                if (!item) {
+                    return;
+                }
+
+                const lists = getLists();
+                if (!lists) {
+                    return;
+                }
+
+                if (lists.dataList.contains(item)) {
+                    moveItem(item, lists.outboundList, true, lists.dataList, lists.outboundList);
+                } else if (lists.outboundList.contains(item)) {
+                    moveItem(item, lists.dataList, false, lists.dataList, lists.outboundList);
+                }
+            });
+
+            const lists = getLists();
+            if (lists) {
+                updateNumbers(lists.dataList, lists.outboundList);
             }
         };
 
-        dataList.addEventListener("click", handleClick);
-        outboundList.addEventListener("click", handleClick);
-
-        updateNumbers();
-    });
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init);
+        } else {
+            init();
+        }
+    })();
 </script>
 <% end %>
 

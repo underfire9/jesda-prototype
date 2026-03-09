@@ -1,20 +1,11 @@
 <% news_current = current_page?("general/(index|news-single)") %>
 <% brochure_current = current_page?("general/brochure") %>
-<% forms_current = current_page?("general/page") %>
+<% forms_current = current_page?("general/service") %>
+<% schedule_current = current_page?("general/schedule") %>
 
 <aside class="annual-aside">
     <div class="annual-aside-header">
-        <a
-            class="btn btn-annual"
-            data-bs-toggle="offcanvas"
-            href="#offcanvasAnnual"
-            role="button"
-            aria-controls="offcanvasAnnual"
-            aria-label="年度選單"
-            title="年度選單"
-        >
-            <i class="fas fa-ellipsis-h"></i>
-        </a>
+        <a class="btn btn-annual" data-bs-toggle="offcanvas" href="#offcanvasAnnual" role="button" aria-controls="offcanvasAnnual" aria-label="年度選單" title="年度選單"></a>
     </div>
     <div class="offcanvas-start" tabindex="-1" id="offcanvasAnnual" aria-labelledby="offcanvasAnnualLabel">
         <h3>114 年度</h3>
@@ -41,15 +32,15 @@
                 </ul>
             </li>
             <li class="annual-item">
-                <a href="page.html" class="annual-link <%= 'current' if forms_current %>" title="相關辦法與表格"
+                <a href="service.html" class="annual-link <%= 'current' if forms_current %>" title="相關辦法與表格"
                     >相關辦法與表格</a
                 >
             </li>
             <li class="annual-item">
                 <span class="level-title">日程表</span>
                 <ul class="menu-item level-menu">
-                    <li class="level-item"><a class="level-link" href="#" title="日程表 第一梯次">第一梯次</a></li>
-                    <li class="level-item"><a class="level-link" href="#" title="日程表 第二梯次">第二梯次</a></li>
+                    <li class="level-item"><a class="level-link <%= 'current' if schedule_current %>" href="schedule.html" title="日程表 第一梯次">第一梯次</a></li>
+                    <li class="level-item"><a class="level-link" href="schedule.html" title="日程表 第二梯次">第二梯次</a></li>
                 </ul>
             </li>
         </ul>

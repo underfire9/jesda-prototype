@@ -1,0 +1,173 @@
+<!-- template: 精選心得 -->
+
+<div class="container-lg">
+    <div class="report-wrapper">
+        <a href="#C" title="中央內容區塊" id="AC" accesskey="C" name="C" style="">:::</a>
+        <ul class="nav nav-pills nav-report" id="report-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-host-tab" data-bs-toggle="pill" data-bs-target="#pills-host" type="button" role="tab" aria-controls="pills-host" aria-selected="true">
+                    計畫主持人
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-student-tab" data-bs-toggle="pill" data-bs-target="#pills-student" type="button" role="tab" aria-controls="pills-student" aria-selected="false">
+                    學生
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-host" role="tabpanel" aria-labelledby="pills-host-tab" tabindex="0">
+                <div class="wrapper-inner">
+                    <aside class="filterbar">
+                        <div class="filterbar-header">
+                            <a class="btn btn-filter" data-bs-toggle="offcanvas" href="#offcanvasFilter" role="button" aria-controls="offcanvasFilter" aria-label="年度選單" title="年度選單"></a>
+                        </div>
+                        <div class="offcanvas-start" tabindex="-1" id="offcanvasFilter" aria-labelledby="offcanvasFilterLabel">
+                            <div class="condition-list">
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <div class="condition-item">
+                                            <select class="form-select" aria-label="年度">
+                                                <option selected>年度</option>
+                                                <option value="114">114</option>
+                                                <option value="113">113</option>
+                                                <option value="112">112</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="condition-item">
+                                            <select class="form-select" aria-label="補助年度">
+                                                <option selected>補助年度</option>
+                                                <option value="114">114</option>
+                                                <option value="113">113</option>
+                                                <option value="112">112</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="condition-item">
+                                    <select class="form-select" aria-label="學海計畫">
+                                        <option selected>學海計畫</option>
+                                        <option value="114">學海飛颺</option>
+                                        <option value="113">學海惜珠</option>
+                                        <option value="112">學海築夢</option>
+                                        <option value="112">新南向</option>
+                                    </select>
+                                </div>
+                                <div class="condition-item">
+                                    <select class="form-select" aria-label="研修國家">
+                                        <option selected>研修國家</option>
+                                        <option value="114">日本</option>
+                                        <option value="113">澳大利亞</option>
+                                        <option value="112">比利時</option>
+                                        <option value="112">馬來西亞</option>
+                                    </select>
+                                </div>
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-outline-dark">篩選</button>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="搜尋學校、姓名" aria-label="搜尋範圍：學校、姓名" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-dark" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <main class="report-main">
+                        <p>查詢結果：符合條件有 47 筆</p>
+                        <div class="report-list">
+                            <% plans = ['學海飛颺', '學海惜珠', '學海築夢', '新南向'] %>
+                            <% fields = ['餐旅、運動休閒管理', '生醫科技', '商業管理', '理工', '社會科學', '語文、教育'] %>
+                            <% universities = ['國立臺灣大學', '僑光科技大學', '國立清華大學', '明新學校財團法人明新科技大學', '國立政治大學', '國立臺北藝術大學'] %>
+                            <% countries = ['奧地利', '丹麥', '日本', '新加坡', '馬來西亞', '澳大利亞', '汶萊和平之國', '義大利'] %>
+                            <% (1..15).map do |i| %>
+                                <div class="report-item">
+                                    <div class="item-head">
+                                        <div class="head-start">
+                                            <span data-bs-toggle="tooltip" data-bs-title="114 年度">114</span>
+                                            <span data-bs-toggle="tooltip" data-bs-title="112 年度補助">112</span>
+                                        </div>
+                                        <div class="plan"><%= plans.sample %></div>
+                                    </div>
+                                    <div class="item-object">
+                                        <span class="object"><%= zh_lorem_name %></span>
+                                        <span class="field"><%= fields.sample %></span>
+                                    </div>
+                                    <div class="university"><%= universities.sample %></div>
+                                    <div class="country"><span data-bs-toggle="tooltip" data-bs-title="研修國家"></span><%= countries.sample %></div>
+                                    <div class="item-foot">
+                                        <a href="#" class="btn btn-download" title="下載檔案" download><i class="far fa-file-alt"></i></a>
+                                        <a href="https://www.youtube.com/" class="btn btn-youtube" title="Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </div>
+                        <nav aria-label="頁面導航">
+                            <ul class="pagination justify-content-end">
+                                <li class="page-item disabled"><a href="#" class="page-link" title="上一頁"><i class="fas fa-angle-left"></i></a></li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-current="page">2</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#" title="下一頁"><i class="fas fa-angle-right"></i></a></li>
+                            </ul>
+                        </nav>
+                    </main>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-student" role="tabpanel" aria-labelledby="pills-student-tab" tabindex="0">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+    <!-- bootstrap tooltip -->
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+
+    <!-- 根據螢幕寬度決定是否加入 offcanvas 類別 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const updateOffcanvasClass = () => {
+                const el = document.querySelector("#offcanvasFilter");
+                if (el) {
+                    if (window.innerWidth < 992) {
+                        el.classList.add("offcanvas");
+                    } else {
+                        el.classList.remove("offcanvas");
+                    }
+                }
+            };
+
+            updateOffcanvasClass();
+            window.addEventListener("resize", updateOffcanvasClass);
+        });
+    </script>
+
+    <!-- GSAP -->
+    <script src="../javascripts/gsap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (window.gsap) {
+                gsap.from(".report-item", {
+                    opacity: 0,
+                    y: -10,
+                    duration: 0.4,
+                    stagger: 0.1,
+                    ease: "power1.out"
+                });
+            }
+        });
+    </script>
+<% end %>
+

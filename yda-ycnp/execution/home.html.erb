@@ -1,0 +1,412 @@
+<!-- template: 執行 - 首頁 -->
+
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="wrapper-inner">
+            
+            <%= render :partial => "/partials/execution_sidenav" %>
+
+            <main class="main">
+
+                <!-- 繳交完成隱藏區塊 -->
+                <section class="dashboard-section">
+                    <div class="section-head">
+                        <h4>繳交資料</h4>
+                        <div class="section-additional">2026 年 8 月 20 號截止</div>
+                    </div>
+                    <div class="documents-container">
+
+                        <!-- 起始狀態 -->
+                        <a href="submit-documents.html" class="document-item" data-bs-toggle="tooltip" data-bs-title="待上傳">
+                            <h5 class="document-title">意外險保險單上傳</h5>
+                        </a>
+
+                        <!-- 完成項目給 .done -->
+                        <a href="submit-documents-browse.html" class="document-item done" data-bs-toggle="tooltip" data-bs-title="通過">
+                            <h5 class="document-title">個人資料上傳</h5>
+                        </a>
+
+                        <!-- 補正給 .warning -->
+                        <a href="submit-documents-additional.html" class="document-item warning" data-bs-toggle="tooltip" data-bs-title="補正">
+                            <h5 class="document-title">個人資料上傳</h5>
+                        </a>
+
+                        <!-- 待審查 .pending -->
+                        <a href="submit-documents-browse.html" class="document-item pending" data-bs-toggle="tooltip" data-bs-title="待審查">
+                            <h5 class="document-title">個人資料上傳</h5>
+                        </a>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-head">
+                        <h4>雙週誌</h4>
+                        <div class="section-additional">2026 年 8 月 1 日 至 2028 年 7 月 31 日</div>
+                    </div>
+
+                    <!-- 待填報狀態 -->
+                    <!-- 通過給 .done -->
+                    <!-- 補正給 .warning -->
+                    <!-- 不通過給 .danger -->
+                    <!-- 審查中給 .pending -->
+                    <a href="biweekly.html" class="biweekly-container" data-bs-toggle="tooltip" data-bs-title="待填報">
+                        <h6>本週</h6>
+                        <div class="info-content">
+                            <span class="info-issue">第 7 期</span>
+                            <span class="issue-period">2026.10.24 - 2026.11.06</span>
+                        </div>
+                    </a>
+
+                    <!-- 完成項目拿掉 href 並給 .done -->
+                    <a href="biweekly-browse.html" class="biweekly-container done" data-bs-toggle="tooltip" data-bs-title="通過">
+                        <h6>本週</h6>
+                        <div class="info-content">
+                            <span class="info-issue">第 7 期</span>
+                            <span class="issue-period">2026.10.24 - 2026.11.06</span>
+                        </div>
+                    </a>
+
+                    <a href="biweekly-correction.html" class="biweekly-container warning" data-bs-toggle="tooltip" data-bs-title="補正">
+                        <h6>本週</h6>
+                        <div class="info-content">
+                            <span class="info-issue">第 7 期</span>
+                            <span class="issue-period">2026.10.24 - 2026.11.06</span>
+                        </div>
+                    </a>
+
+                    <a href="biweekly-recheck.html" class="biweekly-container danger" data-bs-toggle="tooltip" data-bs-title="不通過">
+                        <h6>本週</h6>
+                        <div class="info-content">
+                            <span class="info-issue">第 7 期</span>
+                            <span class="issue-period">2026.10.24 - 2026.11.06</span>
+                        </div>
+                    </a>
+
+                    <a href="biweekly-browse.html" class="biweekly-container pending" data-bs-toggle="tooltip" data-bs-title="待審查">
+                        <h6>本週</h6>
+                        <div class="info-content">
+                            <span class="info-issue">第 7 期</span>
+                            <span class="issue-period">2026.10.24 - 2026.11.06</span>
+                        </div>
+                    </a>
+
+                    <!-- 補正、不通過、已過期限待填報才出現，開啟雙週誌列表時只出現篩選結果 -->
+                    <div class="biweekly-status">
+                        <span class="status-warning">你有未完成的項目，請開啟檢視</span>
+                        <a href="biweekly-list.html" class="btn-list"></a>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-head">
+                        <h4>獎金請領</h4>
+                        <div class="section-additional">
+                            <button class="btn-total" data-bs-toggle="modal" data-bs-target="#bonusModal" title="瀏覽明細">已發放獎金 <strong class="number">12,000</strong> 元</button>
+                        </div>
+                    </div>
+                    <div class="bonus-container">
+                        <ul class="bonus-list menu-item">
+                            <li class="bonus-item">
+
+                                <!-- 未具請領資格拿掉 href 並給 .expired -->
+                                <a class="bonus-link expired">
+                                    <h5 class="bonus-title">第 1 期實踐獎金</h5>
+                                    <div class="bonus-info">
+                                        <span>通過第 1 次定期檢核</span>
+                                        <span>2026-10-31</span>
+                                    </div>
+                                    <div class="bonus-amount">4 萬元</div>
+                                    <div class="bonus-qualified">未具請領資格</div>
+                                </a>
+                            </li>
+                            <li class="bonus-item">
+
+                                <!-- 一般狀態 -->
+                                <a href="practical-bonus-application.html" class="bonus-link">
+                                    <h5 class="bonus-title">第 2 期實踐獎金</h5>
+                                    <div class="bonus-info">
+                                        <span>通過第 2 至第 4 次定期檢核</span>
+                                        <span>2026-10-31</span>
+                                    </div>
+                                    <div class="bonus-amount">8 萬元</div>
+                                    <div class="bonus-qualified">已具請領資格</div>
+                                </a>
+                            </li>
+                            <li class="bonus-item">
+
+                                <!-- 完成項目給 .done -->
+                                <a href="practical-bonus-browse.html" class="bonus-link done">
+                                    <h5 class="bonus-title">第 2 期實踐獎金</h5>
+                                    <div class="bonus-info">
+                                        <span>通過第 2 至第 4 次定期檢核</span>
+                                        <span>2026-10-31</span>
+                                    </div>
+                                    <div class="bonus-amount">8 萬元</div>
+                                    <div class="bonus-qualified">已完成請領</div>
+                                </a>
+                            </li>
+                            <li class="bonus-item">
+
+                                <!-- 退件給 .danger -->
+                                <a href="practical-bonus-browse.html" class="bonus-link danger">
+                                    <h5 class="bonus-title">第 2 期實踐獎金</h5>
+                                    <div class="bonus-info">
+                                        <span>通過第 2 至第 4 次定期檢核</span>
+                                        <span>2026-10-31</span>
+                                    </div>
+                                    <div class="bonus-amount">8 萬元</div>
+                                    <div class="bonus-qualified">不通過</div>
+                                </a>
+                            </li>
+                            <li class="bonus-item">
+
+                                <!-- 尚未開放拿掉 href 並給 .disabled -->
+                                <a class="bonus-link disabled">
+                                    <h5 class="bonus-title">第 3 期實踐獎金</h5>
+                                    <div class="bonus-info">
+                                        <span>通過第 5 至第 8 次定期檢核</span>
+                                        <span>2026-10-31</span>
+                                    </div>
+                                    <div class="bonus-amount">12 萬元</div>
+                                    <div class="bonus-qualified">尚未開放申請</div>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="bonus-list menu-item">
+                            <li class="bonus-item">
+                                <a href="professional-certification-bonus-application.html" class="bonus-link">
+                                    <h5 class="bonus-title">專業認證獎金</h5>
+                                    <div class="bonus-info">
+                                        執行滿 12 個月可領 2 萬，累計滿 22個月可領 4 萬
+                                    </div>
+                                    <div class="bonus-qualified">開放申請</div>
+                                </a>
+                            </li>
+                            <li class="bonus-item">
+
+                                <!-- 完成項目給 .done -->
+                                <a href="professional-certification-bonus-browse.html" class="bonus-link done">
+                                    <h5 class="bonus-title">專業認證獎金</h5>
+                                    <div class="bonus-info">
+                                        執行滿 12 個月可領 2 萬，累計滿 22個月可領 4 萬
+                                    </div>
+                                    <div class="bonus-qualified">已完成申請</div>
+                                </a>
+                            </li>
+                            <li class="bonus-item">
+                                <a href="work-experience-bonus-application.html" class="bonus-link">
+                                    <h5 class="bonus-title">職場歷練獎金</h5>
+                                    <div class="bonus-info">
+                                        計畫執行期間取得合格證照 第 1 張證照 2,500，第 2 張證照 5000
+                                    </div>
+                                    <div class="bonus-qualified">滿足條件後自行申請</div>
+                                </a>
+                            </li>
+                            <li class="bonus-item">
+                                <a href="work-experience-bonus-browse.html" class="bonus-link done">
+                                    <h5 class="bonus-title">職場歷練獎金</h5>
+                                    <div class="bonus-info">
+                                        計畫執行期間取得合格證照 第 1 張證照 2,500，第 2 張證照 5000
+                                    </div>
+                                    <div class="bonus-qualified">滿足條件後自行申請</div>
+                                </a>
+                            </li>
+                            <li class="bonus-item">
+                                <a href="work-experience-bonus-application.html" class="bonus-link warning">
+                                    <h5 class="bonus-title">職場歷練獎金</h5>
+                                    <div class="bonus-info">
+                                        計畫執行期間取得合格證照 第 1 張證照 2,500，第 2 張證照 5000
+                                    </div>
+                                    <div class="bonus-qualified">請補件</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="dashboard-section">
+                    <div class="section-head">
+                        <h4>成果報告提交</h4>
+                    </div>
+
+                    <div class="report-container disabled">
+                        <h5>尚未開啟</h5>
+                        <div class="progress-circle" data-start-date="2025-01-01" data-total-stages="52" data-color="#4caf50" data-bs-toggle="tooltip" data-bs-title="倒數說明文案不要太長">
+                            <svg class="progress-ring" viewBox="0 0 80 80">
+                                <circle class="progress-ring-bg" cx="40" cy="40" r="36"></circle>
+                                <circle class="progress-ring-progress" cx="40" cy="40" r="36"></circle>
+                            </svg>
+                            <span class="progress-text"></span>
+                        </div>
+                    </div>
+
+                    <a href="final-report.html" class="report-container enable">
+                        <h5>待上傳</h5>
+                    </a>
+
+                    <a href="final-report.html" class="report-container warning">
+                        <h5>退件請重新提交</h5>
+                    </a>
+
+                    <div class="report-container done">
+                        <h5><a href="#" download>下載成果報告</a></h5>
+                    </div>
+                </section>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#congratulationsModal">
+                    開啟恭喜彈窗
+                </button>
+            </main>
+        </div>
+    </div>
+</div>
+
+<!-- Bonus Modal -->
+<div class="modal fade" id="bonusModal" tabindex="-1" aria-labelledby="bonusModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="bonusModalLabel">獎金發放紀錄</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-bonus-log">
+                    <div class="log-card">
+                        <h6 class="log-title">第 1 期實踐獎金</h6>
+                        <div class="log-value">40,000</div>
+                        <div class="log-status">已發放</div>
+                    </div>
+                    <div class="log-card">
+                        <h6 class="log-title">第 2 期實踐獎金</h6>
+                        <div class="log-value">80,000</div>
+                        <div class="log-status">已發放</div>
+                    </div>
+                    <div class="log-card">
+                        <h6 class="log-title">第 3 期實踐獎金</h6>
+                        <div class="log-value">120,000</div>
+                        <div class="log-status">已發放</div>
+                    </div>
+                    <div class="log-card">
+                        <h6 class="log-title">職場歷練獎金 (1)</h6>
+                        <div class="log-value">20,000</div>
+                        <div class="log-status">已發放</div>
+                    </div>
+                    <div class="log-card">
+                        <h6 class="log-title">專業認證獎金 (1)</h6>
+                        <div class="log-value">2,500</div>
+                        <div class="log-status">已發放</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Congratulations Modal -->
+<div class="modal fade" id="congratulationsModal" tabindex="-1" aria-labelledby="congratulationsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-dialog-congratulations">
+        <div class="modal-content">
+            <div class="modal-body congratulations-content">
+                <div class="congratulations-inner">
+                    <h2>恭喜</h2>
+                    <h4>你已符合實踐獎金請領資格！</h4>
+                    <p>通過第一次定期檢核，現在可以申請獎金！</p>
+                    <h5 class="has-board">獎金金額：4萬元</h5>
+                    <p>這筆獎金是對你努力的肯定，申請期為檢核通過後的15個工作天內，立即申請，讓自己獲得更多實質回報！</p>
+                    <div class="countdown-container">
+                        <span class="label">剩餘時間</span>
+                        <span class="countdown"><strong>15</strong> 個工作天</span>
+                    </div>
+                    <div class="modal-actions">
+                        <a href="practical-bonus-application.html" class="btn btn-lg btn-rounded px-4 btn-main">立即申請獎金</a>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="checkRemind">
+                        <label class="form-check-label" for="checkRemind">不再提醒</label>
+                    </div>
+                </div>
+                <div class="js-container container"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<!-- 進度圓環 -->
+<script src="../javascripts/progress-circle.js"></script>
+
+<!-- bootstrap tooltips -->
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+
+<!-- Congratulations animation css (https://codepen.io/masudrana2779/pen/zYaggOr) -->
+<script>
+    const Confettiful = function (el) {
+        this.el = el;
+        this.containerEl = null;
+
+        this.confettiFrequency = 3;
+        this.confettiColors = ["#f7a1bb", "#7ed6c6", "#89b7cc", "#8f8f9c", "#f9ffa3"];
+        this.confettiAnimations = ["slow", "medium", "fast"];
+
+        this._setupElements();
+        this._renderConfetti();
+    };
+
+    Confettiful.prototype._setupElements = function () {
+        const containerEl = document.createElement("div");
+        const elPosition = this.el.style.position;
+
+        if (elPosition !== "relative" && elPosition !== "absolute") {
+            this.el.style.position = "relative";
+        }
+
+        containerEl.classList.add("confetti-container");
+
+        this.el.appendChild(containerEl);
+
+        this.containerEl = containerEl;
+    };
+
+    Confettiful.prototype._renderConfetti = function () {
+        this.confettiInterval = setInterval(() => {
+            const confettiEl = document.createElement("div");
+            const confettiSize = Math.floor(Math.random() * 2) + 4 + "px";
+            const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors.length)];
+            const confettiLeft = Math.floor(Math.random() * this.el.offsetWidth) + "px";
+            const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this.confettiAnimations.length)];
+
+            confettiEl.classList.add("confetti", "confetti--animation-" + confettiAnimation);
+            confettiEl.style.left = confettiLeft;
+            confettiEl.style.width = confettiSize;
+            confettiEl.style.height = confettiSize;
+            confettiEl.style.backgroundColor = confettiBackground;
+
+            confettiEl.removeTimeout = setTimeout(function () {
+                confettiEl.parentNode.removeChild(confettiEl);
+            }, 3000);
+
+            this.containerEl.appendChild(confettiEl);
+        }, 75);
+    };
+
+    const congratulationsModal = document.getElementById("congratulationsModal");
+
+    if (congratulationsModal) {
+        congratulationsModal.addEventListener("shown.bs.modal", function () {
+            const confettiTarget = congratulationsModal.querySelector(".js-container");
+            if (!window.confettiful && confettiTarget) {
+                window.confettiful = new Confettiful(confettiTarget);
+            }
+        });
+    }
+</script>
+<% end %>

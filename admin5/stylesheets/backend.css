@@ -19046,13 +19046,14 @@ body.hidden-scroll {
 }
 
 /* Outbound ---------------------------------------------------------------------------*/
-.outbound-wrapper {
-  max-width: 1600px;
-}
 .outbound-wrapper .outbound-toolbar {
   display: flex;
   justify-content: space-between;
+  background: #fff;
   margin-bottom: 1.5rem;
+  margin: 0 -1rem 1.5rem;
+  padding: .5rem 1rem;
+  border-bottom: 1px solid #e5e5e5;
 }
 .outbound-wrapper .outbound-toolbar .start-group {
   display: flex;
@@ -19074,7 +19075,7 @@ body.hidden-scroll {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: .5rem;
+  gap: 1rem;
   background: #fff;
   border: 1px solid #e5e5e5;
   border-radius: .25rem;
@@ -19087,8 +19088,24 @@ body.hidden-scroll {
 .outbound-wrapper .data-list .data-item .btn,
 .outbound-wrapper .outbound-list .data-item .btn {
   border-radius: 0 .25rem .25rem 0;
+  margin: 0 !important;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  height: 40px;
+  width: 64px;
+  position: relative;
+}
+.outbound-wrapper .data-list .data-item .btn::after,
+.outbound-wrapper .outbound-list .data-item .btn::after {
+  content: '\f067';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: .875rem;
+  color: #333;
 }
 .outbound-wrapper .data-list .data-item.moving,
 .outbound-wrapper .outbound-list .data-item.moving {
@@ -19101,6 +19118,43 @@ body.hidden-scroll {
 }
 .outbound-wrapper .outbound-list .item-number {
   font-weight: bold;
+}
+.outbound-wrapper .outbound-list .data-item .btn::after {
+  content: '\f068';
+  color: #fff;
+}
+
+.outbound-template-list .template-item {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  border-bottom: 1px dashed #e5e5e5;
+  padding: .5rem 0;
+}
+.outbound-template-list .template-item:last-child {
+  border-bottom: none;
+}
+.outbound-template-list .template-item .btn {
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  box-shadow: none;
+  padding: 0;
+  height: 32px;
+  width: 32px;
+  font-size: .875rem;
+  line-height: 32px;
+  text-align: center;
+}
+.outbound-template-list .template-item .btn-choose:hover {
+  border-color: #63ab2e;
+  color: #63ab2e;
+}
+.outbound-template-list .template-item .btn-delete:hover {
+  border-color: #e22d2d;
+  color: #e22d2d;
+}
+.outbound-template-list .template-item .template-name {
+  margin-left: 1rem;
 }
 
 @keyframes btnMove {

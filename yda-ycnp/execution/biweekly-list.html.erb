@@ -1,0 +1,181 @@
+<!-- template: 執行 - 雙週誌列表 -->
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="wrapper-inner">
+            
+            <%= render :partial => "/partials/execution_sidenav" %>
+
+            <main class="main">
+                <div class="content-title">
+                    <h3>雙週誌</h3>
+                </div>
+                <div class="biweekly-list-container">
+                    <div class="filter-bar">
+                        <button type="button" class="btn btn-all active" data-filter="all">全部</button>
+                        <button type="button" class="btn btn-under-review" data-filter="under-review">審查中</button>
+                        <button type="button" class="btn btn-correction" data-filter="correction">補正</button>
+                        <button type="button" class="btn btn-not-passed" data-filter="not-passed">不通過</button>
+                        <button type="button" class="btn btn-pending-input" data-filter="pending-input">待填報</button>
+                        <button type="button" class="btn btn-approved" data-filter="approved">通過</button>
+                    </div>
+                    <ul class="biweekly-list menu-item">
+                        <li class="biweekly-item">
+
+                            <!-- 列表 item a 要給對應五種狀態的 classname -->
+                            <a href="biweekly-browse.html" class="item-link under-review">
+                                <h5>第 24 期</h5>
+                                <div class="issue-period">2026.10.24 - 2026.11.06</div>
+                                <div class="record-status">審查中</div>
+                            </a>
+                        </li>
+                        <li class="biweekly-item">
+                            <a href="biweekly-correction.html" class="item-link correction">
+                                <h5>第 23 期</h5>
+                                <div class="issue-period">2026.10.24 - 2026.11.06</div>
+                                <div class="record-status">補正</div>
+                            </a>
+                        </li>
+                        <li class="biweekly-item">
+                            <a href="biweekly-recheck.html" class="item-link not-passed">
+                                <h5>第 22 期</h5>
+                                <div class="issue-period">2026.10.24 - 2026.11.06</div>
+                                <div class="record-status">不通過</div>
+                            </a>
+                        </li>
+                        <li class="biweekly-item">
+                            <a href="biweekly.html" class="item-link pending-input">
+                                <h5>第 21 期</h5>
+                                <div class="issue-period">2026.10.24 - 2026.11.06</div>
+                                <div class="record-status">待填報</div>
+                            </a>
+                        </li>
+                        <% (10..20).reverse_each do |i| %>
+                        <li class="biweekly-item">
+                            <a href="biweekly-browse.html" class="item-link approved">
+                                <h5>第 <%= i %> 期</h5>
+                                <div class="issue-period">2026.10.24 - 2026.11.06</div>
+                                <div class="record-status">通過</div>
+                            </a>
+                        </li>
+                        <% end %>
+                        <li class="biweekly-item">
+                            <a href="biweekly-recheck.html" class="item-link not-passed">
+                                <h5>第 9 期</h5>
+                                <div class="issue-period">2026.10.24 - 2026.11.06</div>
+                                <div class="record-status">不通過</div>
+                            </a>
+                        </li>
+                        <% (1..8).reverse_each do |i| %>
+                        <li class="biweekly-item">
+                            <a href="biweekly-browse.html" class="item-link approved">
+                                <h5>第 <%= i %> 期</h5>
+                                <div class="issue-period">2026.10.24 - 2026.11.06</div>
+                                <div class="record-status">通過</div>
+                            </a>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="form-action">
+                    <span class="backhome"><a href="home.html" class="btn btn-lg btn-back" title="回首頁"><i class="fas fa-long-arrow-alt-left"></i></a></span>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+    <!-- 雙週誌列表篩選 -->
+    <script>
+        (function () {
+            const filterBar = document.querySelector('.filter-bar');
+            const filterButtons = filterBar ? filterBar.querySelectorAll('button[data-filter]') : [];
+            const biweeklyItems = document.querySelectorAll('.biweekly-list .biweekly-item');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (!filterButtons.length || !biweeklyItems.length) return;
+
+            biweeklyItems.forEach(function (item) {
+                const styles = window.getComputedStyle(item);
+                item.dataset.originalMarginTop = styles.marginTop;
+                item.dataset.originalMarginBottom = styles.marginBottom;
+
+                item.style.overflow = 'hidden';
+                item.style.willChange = 'opacity, transform, max-height, margin';
+                item.style.transition = prefersReducedMotion
+                    ? 'none'
+                    : 'opacity 220ms ease, transform 220ms ease, max-height 220ms ease, margin 220ms ease';
+            });
+
+            const setActiveButton = function (activeButton) {
+                filterButtons.forEach(function (button) {
+                    button.classList.toggle('active', button === activeButton);
+                });
+            };
+
+            const applyFilter = function (filterKey) {
+                biweeklyItems.forEach(function (item) {
+                    const itemLink = item.querySelector('.item-link');
+                    if (!itemLink) return;
+
+                    const shouldShow = filterKey === 'all' || itemLink.classList.contains(filterKey);
+
+                    if (prefersReducedMotion) {
+                        item.style.display = shouldShow ? '' : 'none';
+                        return;
+                    }
+
+                    if (shouldShow) {
+                        if (item.style.display === 'none') {
+                            item.style.display = '';
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(6px)';
+                            item.style.maxHeight = '0px';
+                            item.style.marginTop = '0px';
+                            item.style.marginBottom = '0px';
+
+                            const targetHeight = item.scrollHeight + 'px';
+                            requestAnimationFrame(function () {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                                item.style.maxHeight = targetHeight;
+                                item.style.marginTop = item.dataset.originalMarginTop || '';
+                                item.style.marginBottom = item.dataset.originalMarginBottom || '';
+                            });
+
+                            window.setTimeout(function () {
+                                item.style.maxHeight = '';
+                            }, 240);
+                        }
+                    } else {
+                        if (item.style.display !== 'none') {
+                            item.style.maxHeight = item.scrollHeight + 'px';
+                            requestAnimationFrame(function () {
+                                item.style.opacity = '0';
+                                item.style.transform = 'translateY(6px)';
+                                item.style.maxHeight = '0px';
+                                item.style.marginTop = '0px';
+                                item.style.marginBottom = '0px';
+                            });
+
+                            window.setTimeout(function () {
+                                item.style.display = 'none';
+                            }, 240);
+                        }
+                    }
+                });
+            };
+
+            filterButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const filterKey = button.getAttribute('data-filter') || 'all';
+                    setActiveButton(button);
+                    applyFilter(filterKey);
+                });
+            });
+        })();
+    </script>
+<% end %>

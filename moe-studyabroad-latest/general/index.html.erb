@@ -71,6 +71,23 @@
 </div>
 
 <% content_for :js do %>
+    <!-- 根據螢幕寬度決定是否加入 offcanvas 類別 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const updateOffcanvasClass = () => {
+                const el = document.querySelector("#offcanvasAnnual");
+                if (el) {
+                    if (window.innerWidth < 992) {
+                        el.classList.add("offcanvas");
+                    } else {
+                        el.classList.remove("offcanvas");
+                    }
+                }
+            };
 
+            updateOffcanvasClass();
+            window.addEventListener("resize", updateOffcanvasClass);
+        });
+    </script>
 <% end %>
 

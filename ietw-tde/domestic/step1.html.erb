@@ -1,0 +1,435 @@
+<!-- template: (國內營隊) Step1 - 填寫報名表 -->
+
+<div class="container-fixed wide">
+	<ul class="menu-item step-indicator">
+		<li class="active">
+			<span class="step-number">1</span>
+			<span class="step-label">填寫報名資料</span>
+		</li>
+		<li>
+			<span class="step-number">2</span>
+			<span class="step-label">套印與上傳繳交文件</span>
+		</li>
+		<li>
+			<span class="step-number">3</span>
+			<span class="step-label">預覽送出</span>
+		</li>
+	</ul>
+	<div class="notice-wrapper">
+		<%= zh_lorem_sentences(4) %>
+	</div>
+	<div class="form-wrapper">
+        <div class="wrapper-start">
+            <section class="section">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_chinese_name">中文姓名</label>
+                            <input type="text" id="domestic_chinese_name" name="chinese_name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_english_name">英文姓名</label>
+                            <input type="text" id="domestic_english_name" name="english_name" class="form-control">
+                            <small class="form-text text-muted">同護照，無護照者請至外交部領事事務局「外文姓名中譯音系統」查詢</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_id_number">身分證字號</label>
+                            <input type="text" id="domestic_id_number" name="id_number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_birth_date">出生日期</label>
+                            <input type="date" id="domestic_birth_date" name="birth_date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label d-block">性別</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="domestic_gender_male" name="gender" value="male" class="form-check-input">
+                                <label class="form-check-label" for="domestic_gender_male">男</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="domestic_gender_female" name="gender" value="female" class="form-check-input">
+                                <label class="form-check-label" for="domestic_gender_female">女</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>任職學校</h4>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_school_location">學校所在縣市</label>
+                            <select id="domestic_school_location" name="school_location" class="form-select">
+                                <option value="">請選擇</option>
+                                <option value="taipei">台北市</option>
+                                <option value="new_taipei">新北市</option>
+                                <option value="taichung">台中市</option>
+                                <option value="tainan">台南市</option>
+                                <option value="kaohsiung">高雄市</option>
+                            </select>
+                            <div class="form-text">海外臺灣學校請選擇在臺通訊地所在縣市</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_school_name_full">學校校名(全銜)</label>
+                            <input type="text" id="domestic_school_name_full" name="school_name_full" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_subject">教授科目</label>
+                            <input type="text" id="domestic_subject" name="subject" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="department">報名場次</label>
+                            <div class="pt-2">
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="domestic_session_1" name="session[]" value="session_1" class="form-check-input">
+                                    <label class="form-check-label" for="domestic_session_1">第1區</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="domestic_session_2" name="session[]" value="session_2" class="form-check-input">
+                                    <label class="form-check-label" for="domestic_session_2">第2區</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label d-block">若各區輔導教師未足額，是否同意由主辦單位依報名情況調整至其他區擔任輔導教師?</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="domestic_adjustment_yes" name="adjustment" value="yes" class="form-check-input">
+                                <label class="form-check-label" for="domestic_adjustment_yes">是</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="domestic_adjustment_no" name="adjustment" value="no" class="form-check-input">
+                                <label class="form-check-label" for="domestic_adjustment_no">否</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>聯絡電話</h4>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_home_phone">住家電話</label>
+                            <input type="text" id="domestic_home_phone" name="home_phone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_mobile_phone">行動電話</label>
+                            <input type="text" id="domestic_mobile_phone" name="mobile_phone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_email">電子信箱</label>
+                            <input type="email" id="domestic_email" name="email" class="form-control" value="useraccount@example.com" disabled readonly>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>通訊地址</h4>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_postal_code">郵遞區號</label>
+                            <input type="text" id="domestic_postal_code" name="postal_code" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_address">地址</label>
+                            <input type="text" id="domestic_address" name="address" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>緊急聯絡人</h4>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_emergency_contact_name">姓名</label>
+                            <input type="text" id="domestic_emergency_contact_name" name="emergency_contact_name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_emergency_relationship">緊急連絡人與本人關係</label>
+                            <input type="text" id="domestic_emergency_relationship" name="emergency_relationship" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>緊急聯絡人聯絡電話</h4>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_emergency_contact_phone">手機</label>
+                            <input type="text" id="domestic_emergency_contact_phone" name="emergency_contact_phone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_emergency_contact_home">住家</label>
+                            <input type="text" id="domestic_emergency_contact_home" name="emergency_contact_home" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_emergency_contact_company">公司</label>
+                            <input type="text" id="domestic_emergency_contact_company" name="emergency_contact_company" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-title">
+                    <h4>其它</h4>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label" for="domestic_education">學歷</label>
+                            <input type="text" id="domestic_education" name="education" class="form-control">
+                            <div class="form-text">大學/系、大學/研究所</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label d-block">飲食需求</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="domestic_diet_meat" name="diet" value="meat" class="form-check-input">
+                                <label class="form-check-label" for="domestic_diet_meat">葷食</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="domestic_diet_vegetarian" name="diet" value="vegetarian" class="form-check-input">
+                                <label class="form-check-label" for="domestic_diet_vegetarian">素食</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label d-block">是否須提前入住飯店</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="domestic_early_checkin_yes" name="early_checkin" value="yes" class="form-check-input">
+                                <label class="form-check-label" for="domestic_early_checkin_yes">需要(須符合實施計畫第壹拾參點第四款資格)</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="domestic_early_checkin_no" name="early_checkin" value="no" class="form-check-input">
+                                <label class="form-check-label" for="domestic_early_checkin_no">不需要</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="wrapper-end">
+            <label class="form-label">上傳照片</label>
+
+            <!-- 目前設定圖片輸出 700 x 900，依實際需求再做調整 -->
+            <div class="cropper-container upload-container-wrapper">
+                <div class="image-preview-box" id="domestic_image-preview-box">
+                    <span class="placeholder">照片預覽區</span>
+                    <img id="domestic_image-preview" src="../assets/avatar.jpg" alt="照片預覽">
+                </div>
+                <div class="button-group">
+                    <label for="domestic_image-input" class="btn btn-outline-dark">選擇照片</label>
+                    <input type="file" id="domestic_image-input" accept="image/*" class="d-none">
+                    <button id="domestic_delete-btn" class="btn btn-danger btn-delete" title="刪除照片"></button>
+                </div>
+            </div>
+            <div class="form-notice form-text">
+                <ol>
+                    <li>格式限制 JPG或PNG，檔案需小於 2 MB</li>
+                    <li>6個月之內拍攝</li>
+                    <li>直4.5公分且橫3.5公分，以頭部及肩膀頂端近拍，使臉部佔整張照片面積的70~80%</li>
+                    <li>對焦需清晰且鮮明，高品質，無墨跡或摺痕</li>
+                    <li>眼睛正視相機鏡頭拍攝，自然地顯現出皮膚的色</li>
+                </ol>
+            </div>
+        </div>
+	</div>
+    <div class="form-action">
+        <button type="button" class="btn btn-dark btn-lg">暫存</button>
+        <a href="step2.html" class="btn btn-outline-dark btn-lg">下一步 <i class="fas fa-long-arrow-alt-right"></i></a>
+    </div>
+</div>
+
+<!-- Cropper Modal -->
+<div class="modal fade" id="domestic_cropModal" tabindex="-1" aria-labelledby="domestic_cropModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="domestic_cropModalLabel">裁切圖片</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container-modal">
+                    <img id="domestic_image-to-crop" src="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary" id="domestic_crop-and-upload-btn">裁切並上傳</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<!-- Cropper -->
+<script src="../javascripts/cropper.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // DOM 元素
+        const imageInput = document.getElementById('domestic_image-input');
+        const imagePreviewBox = document.getElementById('domestic_image-preview-box');
+        const imagePreview = document.getElementById('domestic_image-preview');
+        const deleteBtn = document.getElementById('domestic_delete-btn');
+        const cropModalElement = document.getElementById('domestic_cropModal');
+        const imageToCrop = document.getElementById('domestic_image-to-crop');
+        const cropAndUploadBtn = document.getElementById('domestic_crop-and-upload-btn');
+
+        // 初始化 Bootstrap Modal
+        const cropModal = new bootstrap.Modal(cropModalElement);
+        
+        let cropper; // Cropper 實例
+        let originalFileName = ''; // 保存原始檔名
+
+        // 監聽文件選擇
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            originalFileName = file.name; // 保存原始檔名
+
+            // 使用 FileReader 讀取圖片
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                imageToCrop.src = event.target.result;
+                cropModal.show(); // 顯示 Modal
+            };
+            reader.readAsDataURL(file);
+        });
+        
+        // Modal 顯示時，初始化 Cropper
+        cropModalElement.addEventListener('shown.bs.modal', () => {
+            if (cropper) {
+                cropper.destroy(); // 如果已有實例，先銷毀
+            }
+            cropper = new Cropper(imageToCrop, {
+                aspectRatio: 7 / 9, // 設定裁切框的長寬比
+                viewMode: 1,      // 限制裁切框不能超出圖片範圍
+                background: false,
+                autoCropArea: 0.8,
+            });
+        });
+
+        // Modal 隱藏時，銷毀 Cropper 並清空 input
+        cropModalElement.addEventListener('hidden.bs.modal', () => {
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            // 清空 file input，這樣才能重新選擇同一張圖片
+            imageInput.value = ''; 
+        });
+
+        // 點擊 "裁切並上傳" 按鈕
+        cropAndUploadBtn.addEventListener('click', () => {
+            if (!cropper) {
+                return;
+            }
+            
+            // 獲取裁切後的 Canvas
+            const canvas = cropper.getCroppedCanvas({
+                width: 700, // 您可以指定輸出圖片的寬度
+                // height 會根據 aspectRatio 自動計算
+                fillColor: '#fff',
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
+            });
+
+            // 將 Canvas 轉換為 Blob 物件 (類似於檔案)
+            canvas.toBlob((blob) => {
+                // 產生一個暫時的 URL 以供預覽
+                const croppedImageUrl = URL.createObjectURL(blob);
+                imagePreview.src = croppedImageUrl;
+                
+                // 更新 UI
+                imagePreviewBox.classList.add('has-image');
+                deleteBtn.style.display = 'inline-block';
+                
+                // *** 模擬上傳到後端 ***
+                // 這是您需要與後端 API 對接的地方
+                const formData = new FormData();
+                
+                // 將 blob 附加到 formData，第三個參數是檔名
+                formData.append('uploaded_image', blob, `cropped-${originalFileName}`);
+                
+                console.log('準備上傳的 FormData:', formData);
+                // 您可以在這裡使用 fetch 或 axios 將 formData 送出
+                // fetch('/your-upload-api-endpoint', {
+                //     method: 'POST',
+                //     body: formData,
+                // })
+                // .then(response => response.json())
+                // .then(data => console.log('上傳成功:', data))
+                // .catch(error => console.error('上傳失敗:', error));
+                
+                // ------------------------
+
+            }, 'image/jpeg', 0.9); // 指定輸出格式和品質
+
+            cropModal.hide(); // 關閉 Modal
+        });
+        
+        // 點擊 "刪除圖片" 按鈕
+        deleteBtn.addEventListener('click', () => {
+            // 清空預覽
+            imagePreview.src = '';
+            imagePreviewBox.classList.remove('has-image');
+            
+            // 清空 file input
+            imageInput.value = '';
+            
+            // 隱藏刪除按鈕
+            deleteBtn.style.display = 'none';
+            
+            console.log('圖片已刪除');
+        });
+    });
+</script>
+<% end %>
+

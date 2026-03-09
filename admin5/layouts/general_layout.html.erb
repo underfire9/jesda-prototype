@@ -487,76 +487,148 @@
     });
     </script>
 
-<!-- 匯出功能 -->
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const dataList = document.querySelector(".data-list .outbound-menu");
-        const outboundList = document.querySelector(".outbound-list .outbound-menu");
-
-        if (!dataList || !outboundList) {
-            return;
-        }
-
-        const updateNumbers = () => {
-            const updateList = (list) => {
-                const items = list.querySelectorAll(".data-item");
-                items.forEach((item, index) => {
-                    const numberEl = item.querySelector(".item-number");
-                    if (numberEl) {
-                        numberEl.textContent = String(index + 1).padStart(2, "0") + ". ";
-                    }
-                });
+    <!-- 匯出功能 -->
+    <script>
+        (() => {
+            const getLists = () => {
+                const dataList = document.querySelector(".data-list .outbound-menu");
+                const outboundList = document.querySelector(".outbound-list .outbound-menu");
+                if (!dataList || !outboundList) {
+                    return null;
+                }
+                return { dataList, outboundList };
             };
 
-            updateList(dataList);
-            updateList(outboundList);
-        };
+            const updateNumbers = (dataList, outboundList) => {
+                const updateList = (list) => {
+                    const items = list.querySelectorAll(".data-item");
+                    items.forEach((item, index) => {
+                        const numberEl = item.querySelector(".item-number");
+                        if (numberEl) {
+                            numberEl.textContent = String(index + 1).padStart(2, "0") + ". ";
+                        }
+                    });
+                };
 
-        const moveItem = (item, targetList, isOutbound) => {
-            const button = item.querySelector(".btn");
-            const icon = item.querySelector("i");
-            if (button) {
-                button.classList.remove(isOutbound ? "btn-secondary" : "btn-success");
-                button.classList.add(isOutbound ? "btn-success" : "btn-secondary");
+                updateList(dataList);
+                updateList(outboundList);
+            };
+
+            const setItemState = (item, isOutbound) => {
+                const button = item.querySelector(".btn");
+                if (button) {
+                    button.classList.remove(isOutbound ? "btn-light" : "btn-success");
+                    button.classList.add(isOutbound ? "btn-success" : "btn-light");
+                }
+            };
+
+            const animateMove = (item, targetList) => {
+                item.classList.add("moving");
+                targetList.appendChild(item);
+                window.setTimeout(() => {
+                    item.classList.remove("moving");
+                }, 2000);
+            };
+
+            const moveItem = (item, targetList, isOutbound, dataList, outboundList) => {
+                setItemState(item, isOutbound);
+                animateMove(item, targetList);
+                updateNumbers(dataList, outboundList);
+            };
+
+            const moveAllItems = (fromList, toList, isOutbound, dataList, outboundList) => {
+                const items = Array.from(fromList.querySelectorAll(".data-item"));
+                if (items.length === 0) {
+                    return;
+                }
+
+                items.forEach((item) => {
+                    setItemState(item, isOutbound);
+                    animateMove(item, toList);
+                });
+
+                updateNumbers(dataList, outboundList);
+            };
+
+            const applyToolbarSticky = () => {
+                const toolbar = document.querySelector(".outbound-toolbar");
+                if (!toolbar) {
+                    return;
+                }
+
+                toolbar.style.position = "sticky";
+                toolbar.style.top = "0";
+                toolbar.style.zIndex = "10";
+                toolbar.style.backgroundColor = "#fff";
+            };
+
+            const init = () => {
+                document.addEventListener("shown.bs.modal", (event) => {
+                    if (event.target && event.target.id === "outboundModal") {
+                        applyToolbarSticky();
+                    }
+                });
+
+                document.addEventListener("click", (event) => {
+                    const selectAllBtn = event.target.closest("#outboundSelectAll");
+                    if (selectAllBtn) {
+                        event.preventDefault();
+                        const lists = getLists();
+                        if (!lists) {
+                            return;
+                        }
+                        moveAllItems(lists.dataList, lists.outboundList, true, lists.dataList, lists.outboundList);
+                        return;
+                    }
+
+                    const deselectAllBtn = event.target.closest("#outboundDeselectAll");
+                    if (deselectAllBtn) {
+                        event.preventDefault();
+                        const lists = getLists();
+                        if (!lists) {
+                            return;
+                        }
+                        moveAllItems(lists.outboundList, lists.dataList, false, lists.dataList, lists.outboundList);
+                        return;
+                    }
+
+                    const itemBtn = event.target.closest(
+                        ".data-list .outbound-menu .data-item .btn, .outbound-list .outbound-menu .data-item .btn"
+                    );
+                    if (!itemBtn) {
+                        return;
+                    }
+
+                    const item = itemBtn.closest(".data-item");
+                    if (!item) {
+                        return;
+                    }
+
+                    const lists = getLists();
+                    if (!lists) {
+                        return;
+                    }
+
+                    if (lists.dataList.contains(item)) {
+                        moveItem(item, lists.outboundList, true, lists.dataList, lists.outboundList);
+                    } else if (lists.outboundList.contains(item)) {
+                        moveItem(item, lists.dataList, false, lists.dataList, lists.outboundList);
+                    }
+                });
+
+                const lists = getLists();
+                if (lists) {
+                    updateNumbers(lists.dataList, lists.outboundList);
+                }
+            };
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", init);
+            } else {
+                init();
             }
-            if (icon) {
-                icon.classList.remove(isOutbound ? "far" : "fas");
-                icon.classList.add(isOutbound ? "fas" : "far");
-            }
-
-            item.classList.add("moving");
-            targetList.appendChild(item);
-            window.setTimeout(() => {
-                item.classList.remove("moving");
-            }, 2000);
-
-            updateNumbers();
-        };
-
-        const handleClick = (event) => {
-            const button = event.target.closest(".btn");
-            if (!button) {
-                return;
-            }
-
-            const item = button.closest(".data-item");
-            if (!item) {
-                return;
-            }
-
-            if (dataList.contains(item)) {
-                moveItem(item, outboundList, true);
-            } else if (outboundList.contains(item)) {
-                moveItem(item, dataList, false);
-            }
-        };
-
-        dataList.addEventListener("click", handleClick);
-        outboundList.addEventListener("click", handleClick);
-
-        updateNumbers();
-    });
-</script>
+        })();
+    </script>
     <%= yield :js %>
 </body>
 </html>

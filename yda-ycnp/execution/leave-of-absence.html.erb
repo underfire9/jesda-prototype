@@ -1,0 +1,158 @@
+<!-- template: 執行 - 保留學籍申請 -->
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="wrapper-inner">
+
+            <%= render :partial => "/partials/execution_sidenav" %>
+            
+            <main class="main">
+                <div class="content-title">
+                    <h3>保留學籍申請</h3>
+                </div>
+                <form action="home.html" method="post" enctype="multipart/form-data">
+                    <div class="form-container">
+                        <section class="form-section">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="admitUniversity"><span class="required">*</span>已錄取之大專院校</label>
+                                        <select class="form-select select2" id="admitUniversity" data-placeholder="請選擇">
+                                            <option></option>
+                                            <option>國立臺灣大學</option>
+                                            <option>國立清華大學</option>
+                                            <option>國立交通大學</option>
+                                            <option>國立臺灣體育運動大學</option>
+                                            <option>國立雲林科技大學</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="admitDepartment"><span class="required">*</span>已錄取之科系</label>
+                                        <div class="d-inline-block ms-3">
+                                            <div class="form-check fs-6">
+                                                <input class="form-check-input" type="checkbox" id="dept_not_listed">
+                                                <label class="form-check-label fw-light" for="dept_not_listed">
+                                                    查無系所選項
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <select class="form-select" id="admitDepartment" data-placeholder="請選擇">
+                                            <option></option>
+                                            <optgroup label="文學院">
+                                                <option>中國文學系</option>
+                                                <option>外國語文學系</option>
+                                                <option>歷史學系</option>
+                                            </optgroup>
+                                            <optgroup label="社會科學院">
+                                                <option>政治學系</option>
+                                                <option>社會學系</option>
+                                            </optgroup>
+                                            <optgroup label="語文與創作學系">
+                                                <option>運動資訊與傳播學</option>
+                                                <option>創意產業品牌建構及經營</option>
+                                            </optgroup>
+                                        </select>
+                                        <div class="dept-not-wrap">
+                                            <input class="form-control" type="text" id="dept_not_listed_input" placeholder="請輸入系所名稱">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">日間部或夜間部</label>
+                                        <div class="mt-1">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="dayOrNight" id="day" value="day" checked>
+                                                <label class="form-check-label" for="day">日間部</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="dayOrNight" id="night" value="night">
+                                                <label class="form-check-label" for="night">夜間部</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="admissionProof"><span class="required">*</span>學校錄取相關證明上傳</label>
+                                        <input class="form-control" type="file" id="admissionProof">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="remarks">備註說明</label>
+                                <textarea class="form-control" id="remarks" rows="4" placeholder="請敘述您的問題"></textarea>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="form-action">
+                        <button type="submit" class="btn btn-lg btn-rounded btn-main px-5">送出申請</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<!-- Select2 -->
+<script src="../javascripts/select2.min.js"></script>
+<script>
+$( '#admitUniversity, #admitDepartment' ).select2( {
+    theme: "bootstrap-5",
+    width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+    placeholder: $( this ).data( 'placeholder' ),
+} );
+
+$(function() {
+    var $admitUniversity = $('#admitUniversity');
+    var $admitDepartment = $('#admitDepartment');
+    var $deptNotListed = $('#dept_not_listed');
+    var $deptNotWrap = $('.dept-not-wrap');
+
+    function updateDepartmentTypeVisibility() {
+        var $admitDepartmentSelect2 = $admitDepartment.next('.select2');
+
+        if ($deptNotListed.is(':checked')) {
+            $admitDepartment.hide();
+            $admitDepartmentSelect2.hide();
+            $deptNotWrap.show();
+        } else {
+            $admitDepartment.show();
+            $admitDepartmentSelect2.show();
+            $deptNotWrap.hide();
+        }
+    }
+
+    function updateDepartmentControlState() {
+        var hasUniversity = !!$admitUniversity.val();
+
+        $admitDepartment.prop('disabled', !hasUniversity);
+        $deptNotListed.prop('disabled', !hasUniversity);
+
+        if (!hasUniversity) {
+            $deptNotListed.prop('checked', false);
+            $admitDepartment.val('').trigger('change');
+        }
+
+        updateDepartmentTypeVisibility();
+    }
+
+    $deptNotWrap.hide();
+    $admitDepartment.prop('disabled', true);
+    $deptNotListed.prop('disabled', true);
+
+    $admitUniversity.on('change', updateDepartmentControlState);
+    $deptNotListed.on('change', updateDepartmentTypeVisibility);
+
+    updateDepartmentControlState();
+});
+</script>
+
+<% end %>

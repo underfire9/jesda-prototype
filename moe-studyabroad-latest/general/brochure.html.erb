@@ -37,12 +37,12 @@
                         <ul class="menu-item brochure-list">
                             <% (1..10).map do |i| %>
                             <li class="brochure-item">
-                                <span class="brochure-label">崑山科技大學 / 學海飛颺</span>
-                                <a href="#" class="brochure-link" title="114年崑山科技大學學海飛颺簡章辦法">114年崑山科技大學學海飛颺簡章辦法</a>
+                                <span class="list-label">崑山科技大學 / 學海飛颺</span>
+                                <span class="list-content"><a href="#" class="content-link" title="114年崑山科技大學學海飛颺簡章辦法">114年崑山科技大學學海飛颺簡章辦法</a></span>
                             </li>
                             <li class="brochure-item">
-                                <span class="brochure-label">醒吾學校財團法人醒吾科技大學 / 學海飛颺</span>
-                                <a href="#" class="brochure-link" title="114年醒吾學校財團法人醒吾科技大學學海飛颺簡章辦法">114年醒吾學校財團法人醒吾科技大學學海飛颺簡章辦法</a>
+                                <span class="list-label">醒吾學校財團法人醒吾科技大學 / 學海飛颺</span>
+                                <span class="list-content"><a href="#" class="content-link" title="114年醒吾學校財團法人醒吾科技大學學海飛颺簡章辦法">114年醒吾學校財團法人醒吾科技大學學海飛颺簡章辦法</a></span>
                             </li>
                             <% end %>
                         </ul>
@@ -86,6 +86,40 @@
             width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
             placeholder: $( this ).data( 'placeholder' ),allowClear: true
         } );
+    </script>
+
+    <!-- 視窗小於 480 時 Tabs 改變樣式 -->
+    <script>
+        function updateBrochureTabsVariant() {
+            var $tabs = $( '#brochureTabs' );
+            if ( window.innerWidth < 480 ) {
+                $tabs.removeClass( 'nav-tabs' ).addClass( 'nav-pills' );
+            } else {
+                $tabs.removeClass( 'nav-pills' ).addClass( 'nav-tabs' );
+            }
+        }
+
+        updateBrochureTabsVariant();
+        $( window ).on( 'resize', updateBrochureTabsVariant );
+    </script>
+
+    <!-- 根據螢幕寬度決定是否加入 offcanvas 類別 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const updateOffcanvasClass = () => {
+                const el = document.querySelector("#offcanvasAnnual");
+                if (el) {
+                    if (window.innerWidth < 992) {
+                        el.classList.add("offcanvas");
+                    } else {
+                        el.classList.remove("offcanvas");
+                    }
+                }
+            };
+
+            updateOffcanvasClass();
+            window.addEventListener("resize", updateOffcanvasClass);
+        });
     </script>
 <% end %>
 

@@ -90,7 +90,7 @@
                         </section>
                     </div>
                     <div class="form-action">
-                        <button type="submit" class="btn btn-lg btn-rounded btn-main px-5">送出申請</button>
+                        <button type="button" class="btn btn-lg btn-rounded btn-main btn-submit px-5">送出申請</button>
                     </div>
                 </form>
             </main>
@@ -98,6 +98,20 @@
     </div>
 </div>
 
+<!-- 表單送出確認 modal -->
+<div class="modal fade" id="confirmSubmitModal" tabindex="-1" aria-labelledby="confirmSubmitModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body py-5">
+                <div class="text-center">確定要送出保留學籍申請表單嗎？</div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-rounded btn-light" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-rounded btn-main" id="confirmSubmitBtn">確定送出</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <% content_for :js do %>
@@ -111,10 +125,15 @@ $( '#admitUniversity, #admitDepartment' ).select2( {
 } );
 
 $(function() {
+    var $form = $('main form');
     var $admitUniversity = $('#admitUniversity');
     var $admitDepartment = $('#admitDepartment');
     var $deptNotListed = $('#dept_not_listed');
     var $deptNotWrap = $('.dept-not-wrap');
+    var $submitBtn = $('.btn-submit');
+    var $confirmSubmitBtn = $('#confirmSubmitBtn');
+    var confirmSubmitModalEl = document.getElementById('confirmSubmitModal');
+    var confirmSubmitModal = new bootstrap.Modal(confirmSubmitModalEl);
 
     function updateDepartmentTypeVisibility() {
         var $admitDepartmentSelect2 = $admitDepartment.next('.select2');
@@ -150,6 +169,16 @@ $(function() {
 
     $admitUniversity.on('change', updateDepartmentControlState);
     $deptNotListed.on('change', updateDepartmentTypeVisibility);
+
+    $submitBtn.on('click', function(e) {
+        e.preventDefault();
+        confirmSubmitModal.show();
+    });
+
+    $confirmSubmitBtn.on('click', function() {
+        confirmSubmitModal.hide();
+        $form.get(0).submit();
+    });
 
     updateDepartmentControlState();
 });

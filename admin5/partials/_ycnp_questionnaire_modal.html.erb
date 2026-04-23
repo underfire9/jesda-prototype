@@ -1,0 +1,90 @@
+<!-- 新增題目 Modal -->
+<div class="modal fade" id="addQuestionnaireModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addQuestionnaireModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg questionnaire-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addQuestionnaireModalLabel">新增題目</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="questionTitle" placeholder="請輸入題目">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="questionDescription" rows="3" placeholder="請輸入題目說明"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="form-check form-switch form-switch-lg">
+                        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckRequest">
+                        <label class="form-check-label" for="switchCheckRequest">必填</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <select class="form-select" id="fieldType">
+                        <option value="" selected disabled>請選擇欄位類型</option>
+                        <option value="text">文字輸入框</option>
+                        <option value="textarea">多行文字輸入框</option>
+                        <option value="radio">單選框</option>
+                        <option value="radio-inline">單選框 (單行)</option>
+                        <option value="checkbox">複選框</option>
+                        <option value="checkbox-inline">複選框 (單行)</option>
+                        <option value="select">下拉選單</option>
+                        <option value="date">日期</option>
+                    </select>
+                </div>
+
+                <!-- 選擇欄位類型後才會出現 generate-stage -->
+                <div class="generate-stage">
+                    <div class="item-type">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="generate-stage">
+                    <div class="item-type">
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <!-- checks & radios & select -->
+                <div class="generate-stage">
+                    <div class="item-type">
+                        <div class="item-check input-group">
+                            <input type="text" class="form-control" placeholder="選項 1">
+                            <button type="button" class="btn btn-outline-secondary" title="刪除"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="item-check input-group">
+                            <input type="text" class="form-control" placeholder="選項 2">
+                            <button type="button" class="btn btn-outline-secondary" title="刪除"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-rounded btn-outline-dark mt-2" title="新增選項"><i class="fas fa-plus"></i> 新增選項</button>
+                </div>
+
+                <!-- inline checks & inline radios -->
+                <div class="generate-stage">
+                    <div class="item-type item-type-inline">
+                        <div class="item-check input-group">
+                            <input type="text" class="form-control" placeholder="選項 1">
+                            <button type="button" class="btn btn-outline-secondary" title="刪除"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="item-check input-group">
+                            <input type="text" class="form-control" placeholder="選項 2">
+                            <button type="button" class="btn btn-outline-secondary" title="刪除"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-rounded btn-outline-dark mt-2" title="新增選項"><i class="fas fa-plus"></i> 新增選項</button>
+                </div>
+
+                <div class="generate-stage">
+                    <div class="item-type">
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">確定</button>
+            </div>
+        </div>
+    </div>
+</div>

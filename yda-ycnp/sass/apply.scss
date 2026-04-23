@@ -139,6 +139,10 @@ body {
 			color: $darker_color;
 		}
 	}
+	&.generally-notice {
+		padding: calc(1.25rem + .75vw);
+		font-size: 1rem;
+	}
 }
 
 .required {
@@ -927,6 +931,61 @@ header.header {
 	}
 }
 
+.withdrawal-wrapper {
+	display: flex;
+	justify-content: space-between;
+	.info-aside {
+		width: 240px;
+		li {
+			border-bottom: 1px dashed #c4dada;
+			padding: 1rem 0;
+			&:last-child { border-bottom: none; }
+		}
+		.label, .output {
+			display: block;
+		}
+		.label {
+			font-size: .875rem;
+			font-weight: 500;
+			color: #7a7a7a;
+		}
+	}
+	.withdrawal-main {
+		width: 73.5%;
+	}	
+	.option-wrap {
+		margin-top: 2rem;
+		h6 {
+			color: #6c757d;
+		}
+		.form-check {
+			margin-bottom: .25rem;
+		}
+	}
+	.other-input {
+		display: none;
+		max-width: 512px;
+	}
+	.form-check:has(.form-check-input:checked) .other-input {
+		display: block;
+	}
+}
+
+.form-check.form-check-lg {
+	padding-left: 1.25rem;
+	.form-check-input {
+		border-color: #3f4644;
+		margin-left: -1.25rem;
+		width: 1.25em;
+		height: 1.25em;
+		& + .form-check-label {
+			padding-left: .75rem;
+			font-size: 1.125rem;
+			line-height: 1.7;
+		}
+	}
+}
+
 .consult-container {
 	display: flex;
 	justify-content: space-between;
@@ -1161,7 +1220,8 @@ header.header {
 		}
 	}
 	
-	.consult-container {
+	.consult-container,
+	.withdrawal-wrapper {
 		display: block;
 		.info-aside {
 			width: 100%;
@@ -1178,7 +1238,8 @@ header.header {
 				&:last-child { border-right: none; }
 			}
 		}
-		.consult-main {
+		.consult-main,
+		.withdrawal-main {
 			width: 100%;
 		}
 	}
@@ -1245,7 +1306,8 @@ header.header {
 	.plan-table-row {
 		width: 100%;
 	}
-	.consult-container {
+	.consult-container,
+	.withdrawal-wrapper {
 		.info-list {
 			display: block;
 			li {

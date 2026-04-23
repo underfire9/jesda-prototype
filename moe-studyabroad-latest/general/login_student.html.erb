@@ -1,0 +1,91 @@
+<!-- template: 登入 - 選送學生 -->
+
+<div class="container-lg">
+    <div class="page-content">
+        <div class="login-container login-narrow">
+            <a href="#C" title="中央內容區塊" id="AC" accesskey="C" name="C" style="">:::</a>
+            <h3 class="fw-semibold text-secondary">登入 <span class="fw-light">選送學生</span></h3>
+            <div class="login-wrapper">
+                <form>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="studentYear" class="form-label">年度</label>
+                                <select class="form-select" id="studentYear">
+                                    <option value="116">116</option>
+                                    <option value="115">115</option>
+                                    <option value="114">114</option>
+                                    <option value="113">113</option>
+                                    <option value="112">112</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="studentPlan" class="form-label">計畫</label>
+                                <select class="form-select" id="studentPlan">
+                                    <option value="">請選擇</option>
+                                    <option value="1">學海飛颺</option>
+                                    <option value="2">學海惜珠</option>
+                                    <option value="3">學海築夢</option>
+                                    <option value="4">新南向</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentSchool" class="form-label">學校</label>
+                        <select class="form-select" id="studentSchool" data-placeholder="請選擇">
+                            <option></option>
+                            <option>國立政治大學</option>
+                            <option>國立台灣大學</option>
+                            <option>國立清華大學</option>
+                            <option>國立交通大學</option>
+                            <option>國立成功大學</option>
+                            <option>國立中山大學</option>
+                            <option>國立臺灣師範大學</option>
+                            <option>國立臺灣海洋大學</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="accountStudent" class="form-label">帳號</label>
+                        <input type="text" class="form-control" id="accountStudent" placeholder="請輸入帳號" />
+                    </div>
+                    <div class="form-group">
+                        <label for="captchaStudent" class="form-label">驗證碼</label>
+                        <div class="d-flex align-items-center gap-1">
+                            <input type="text" class="form-control w-captcha" id="captchaStudent" placeholder="請輸入驗證碼" />
+                            <span><img class="captcha" src="https://www.studyabroad.moe.gov.tw/new/common/captcha.image" alt="驗證碼圖片"></span>
+                            <span>
+                                <button type="button" class="btn btn-light captchaPlayAudio" title="播放語音驗證碼">
+                                    <i class="fa fa-volume-up"></i><span class="sr-only">播放語音驗證碼</span>
+                                </button>
+                            </span>
+                            <span>
+                                <button class="btn btn-light captchaChange" type="button" title="更新驗證碼">
+                                    <i class="fas fa-sync-alt"></i><span class="sr-only">更新驗證碼</span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-block btn-primary">登入</button>
+                    <div class="text-center mt-4">帳號請洽學校承辦人</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<script src="../javascripts/select2.min.js"></script>
+<script>
+$( '#studentSchool' ).select2( {
+    theme: "bootstrap-5",
+    width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+    placeholder: $( this ).data( 'placeholder' ),
+} );
+</script>
+<% end %>
+

@@ -1,0 +1,203 @@
+<!-- admin-page: 客製頁面 - 青年生涯領航計畫 - 執行階段文件審查 -->
+
+<% content_for :page_styles do %>
+    <link rel="stylesheet" href="../stylesheets/customization/ycnp.css">
+<% end %>
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h1>客製化頁面</h1>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="col-block">
+                <div class="block-header has-border">
+                    <h4 class="d-inline-block mb-0">意外險保險單</h4>
+                    <div class="float-end"><button type="button" class="btn btn-sm btn-rounded text-muted shadow-none" data-bs-toggle="modal" data-bs-target="#fileSupportModal" title="檔案支援"><i class="fas fa-life-ring"></i></button></div>
+                </div>
+                <div class="block-content file-review-content">
+                    <div class="mb-4">
+                        <span><a href="#" class="btn btn-rounded btn-outline-primary px-3"><i class="far fa-file-alt"></i> 瀏覽檔案</a></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="accidentInsurance" id="insurancePass">
+                            <label class="form-check-label" for="insurancePass">通過</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="accidentInsurance" id="insuranceFail">
+                            <label class="form-check-label" for="insuranceFail">不通過</label>
+                        </div>
+                        <div class="form-check form-check-inline reason-check-input">
+                            <input class="form-check-input" type="radio" name="accidentInsurance" id="insuranceSupplement">
+                            <label class="form-check-label" for="insuranceSupplement">須補件</label>
+                        </div>
+                        <div class="reason-input mt-1">
+                            <input class="form-control" type="text" id="insuranceSupplementReason" placeholder="補件原因說明">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="insuranceNote">備註</label>
+                        <textarea class="form-control" id="insuranceNote" rows="3"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-between gap-2">
+                        <button type="button" class="btn btn-primary">儲存</button>
+                        <span>
+                            <button type="button" class="btn btn-light">補件通知信</button>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#historyModal">歷史紀錄</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="col-block">
+                <div class="block-header has-border">
+                    <h4 class="d-inline-block mb-0">個資資料</h4>
+                    <div class="float-end"><button type="button" class="btn btn-sm btn-rounded text-muted shadow-none" data-bs-toggle="modal" data-bs-target="#fileSupportModal" title="檔案支援"><i class="fas fa-life-ring"></i></button></div>
+                </div>
+                <div class="block-content file-review-content">
+                    <div class="mb-4">
+                        <span><a href="#" class="btn btn-rounded btn-outline-primary px-3"><i class="far fa-file-alt"></i> 瀏覽檔案</a></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="personalData" id="personalDataPass">
+                            <label class="form-check-label" for="personalDataPass">通過</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="personalData" id="personalDataFail">
+                            <label class="form-check-label" for="personalDataFail">不通過</label>
+                        </div>
+                        <div class="form-check form-check-inline reason-check-input">
+                            <input class="form-check-input" type="radio" name="personalData" id="personalDataSupplement">
+                            <label class="form-check-label" for="personalDataSupplement">須補件</label>
+                        </div>
+                        <div class="reason-input mt-1">
+                            <input class="form-control" type="text" id="personalDataSupplementReason" placeholder="補件原因說明">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="personalDataNote">備註</label>
+                        <textarea class="form-control" id="personalDataNote" rows="3"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-between gap-2">
+                        <button type="button" class="btn btn-primary">儲存</button>
+                        <span>
+                            <button type="button" class="btn btn-light">補件通知信</button>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#historyModal">歷史紀錄</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="col-block">
+                <div class="block-header has-border">
+                    <h4 class="d-inline-block mb-0">成果報告</h4>
+                    <div class="float-end"><button type="button" class="btn btn-sm btn-rounded text-muted shadow-none" data-bs-toggle="modal" data-bs-target="#fileSupportModal" title="檔案支援"><i class="fas fa-life-ring"></i></button></div>
+                </div>
+                <div class="block-content file-review-content">
+                    <div class="mb-4">
+                        <span><a href="#" class="btn btn-rounded btn-outline-primary px-3"><i class="far fa-file-alt"></i> 瀏覽檔案</a></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="report" id="reportPass">
+                            <label class="form-check-label" for="reportPass">通過</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="report" id="reportFail">
+                            <label class="form-check-label" for="reportFail">不通過</label>
+                        </div>
+                        <div class="form-check form-check-inline reason-check-input">
+                            <input class="form-check-input" type="radio" name="report" id="reportSupplement">
+                            <label class="form-check-label" for="reportSupplement">須補件</label>
+                        </div>
+                        <div class="reason-input mt-1">
+                            <input class="form-control" type="text" id="reportSupplementReason" placeholder="補件原因說明">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="reportNote">備註</label>
+                        <textarea class="form-control" id="reportNote" rows="3"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-between gap-2">
+                        <button type="button" class="btn btn-primary">儲存</button>
+                        <span>
+                            <button type="button" class="btn btn-light">補件通知信</button>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#historyModal">歷史紀錄</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- 歷史紀錄 Modal -->
+<div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="historyModalLabel">退補件歷程</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">時間</th>
+                            <th scope="col" class="text-nowrap">操作人員</th>
+                            <th scope="col">補件原因說明</th>
+                            <th scope="col" class="text-nowrap">檔案下載</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..4).map do |i| %>
+                        <tr>
+                            <td class="text-nowrap">2026/05/01 12:00</td>
+                            <td><%= zh_lorem_name %></td>
+                            <td><%= lorem_sentence %></td>
+                            <td class="text-center"><a href="#">下載</a></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 檔案支援 Modal -->
+<div class="modal fade" id="fileSupportModal" tabindex="-1" aria-labelledby="fileSupportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="fileSupportModalLabel">檔案支援</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>檔案支援說明文案 <%= lorem_sentence %></p>
+                <div>
+                    <label for="formFile" class="form-label">上傳檔案</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+
+<% end %>
+

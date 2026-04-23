@@ -1,0 +1,331 @@
+<!-- admin-page: 客製頁面 - 衛福部國合 dashboard -->
+
+<% content_for :page_styles do %>
+    <link rel="stylesheet" href="../stylesheets/customization/mohw-ipd.css">
+<% end %>
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="mohw-dashboard">
+        <div class="dashboard-sidebar">
+            <div class="bg-dark-subtle px-4 py-5">
+                <div class="form-group">
+                    <input type="number" id="select-year" class="form-control" value="2026">
+                </div>
+                <div class="form-group">
+                    <select id="select-quarter" class="form-control">
+                        <option value="all">全部季度</option>
+                        <option value="q1">Q1</option>
+                        <option value="q2">Q2</option>
+                        <option value="q3">Q3</option>
+                        <option value="q4">Q4</option>
+                    </select>
+                </div>
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary">重置</button>
+                    <button type="button" class="btn btn-primary"><i class="fa fa-filter"></i> 篩選</button>
+                </div>
+            </div>
+            <div class="bg-info-subtle text-info-emphasis px-4 py-5">
+                <div class="fs-6">期間內成果總數</div>
+                <div class="fs-1 fw-bold">999</div>
+            </div>
+            <div class="d-flex flex-wrap">
+                <div class="w-50 px-4 py-5 bg-secondary-subtle text-secondary-emphasis">
+                    <small>草稿</small>
+                    <div class="fs-4 fw-bold">999</div>
+                </div>
+                <div class="w-50 px-4 py-5 bg-primary-subtle text-primary-emphasis">
+                    <small>已送出</small>
+                    <div class="fs-4 fw-bold">999</div>
+                </div>
+                <div class="w-50 px-4 py-5 bg-success-subtle text-success-emphasis">
+                    <small>已核定</small>
+                    <div class="fs-4 fw-bold">999</div>
+                </div>
+                <div class="w-50 px-4 py-5 bg-dark text-white">
+                    <small>已封存</small>
+                    <div class="fs-4 fw-bold">999</div>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-chart">
+            <div class="row">
+                <div class="col-6">
+                    <div class="chart-block">
+                        <h5 class="chart-title">依成果統計</h5>
+                        <div class="chart-placeholder"><canvas id="resultChart"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="chart-block">
+                        <h5 class="chart-title">依業務統計</h5>
+                        <div class="chart-placeholder"><canvas id="businessChart"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="chart-block">
+                        <h5 class="chart-title">依月份統計</h5>
+                        <div class="bar-placeholder"><canvas id="monthChart"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="chart-block">
+                        <h5 class="chart-title">依國家地區排行 (Top 20)</h5>
+                        <div class="bar-placeholder"><canvas id="countryChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<% content_for :js do %>
+    <script src="../javascripts/Chart.js"></script>
+    <script>
+        // resultChart - 依成果統計
+        const resultCtx = document.getElementById('resultChart').getContext('2d');
+        const resultChart = new Chart(resultCtx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    '參加國際會議或研習',
+                    '辦理國際會議或研習',
+                    '雙邊會談',
+                    '外賓邀/參訪',
+                    '簽署 MOU',
+                    '其他'
+                ],
+                datasets: [{
+                    data: [30, 25, 15, 20, 5, 5],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(153, 102, 255, 0.8)',
+                        'rgba(201, 203, 207, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(201, 203, 207, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.parsed;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // businessChart - 依業務統計
+        const businessCtx = document.getElementById('businessChart').getContext('2d');
+        const businessChart = new Chart(businessCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    '食品',
+                    '藥品',
+                    '醫療器材',
+                    '化粧品',
+                    '管制藥品',
+                    '品質監管',
+                    '研究檢驗'
+                ],
+                datasets: [{
+                    data: [25, 20, 18, 12, 10, 8, 7],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(153, 102, 255, 0.8)',
+                        'rgba(255, 159, 64, 0.8)',
+                        'rgba(201, 203, 207, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(201, 203, 207, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.parsed;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // monthChart - 依月份統計
+        const monthCtx = document.getElementById('monthChart');
+        const monthData = [
+            '2021.01', '2021.04', '2021.07', '2021.10',
+            '2022.01', '2022.04', '2022.07', '2022.10',
+            '2023.01', '2023.04', '2023.07', '2023.10',
+            '2024.01', '2024.04', '2024.07', '2024.10',
+            '2025.01', '2025.04', '2025.07', '2025.10'
+        ];
+        monthCtx.parentElement.style.height = (monthData.length * 30 + 60) + 'px';
+        const monthChart = new Chart(monthCtx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: monthData,
+                datasets: [{
+                    label: '成果數量',
+                    data: [12, 15, 18, 14, 20, 22, 25, 19, 28, 30, 26, 32, 35, 38, 40, 37, 42, 45, 48, 50],
+                    backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                barThickness: 8,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return '數量: ' + context.parsed.x;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '數量'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '月份'
+                        }
+                    }
+                }
+            }
+        });
+
+        // countryChart - 依國家地區排行
+        const countryCtx = document.getElementById('countryChart');
+        const countryData = [
+            '美國', '日本', '德國', '英國', '法國',
+            '澳洲', '加拿大', '韓國', '新加坡', '泰國',
+            '馬來西亞', '印尼', '菲律賓', '越南', '印度',
+            '巴西', '紐西蘭', '荷蘭', '瑞士', '瑞典'
+        ];
+        countryCtx.parentElement.style.height = (countryData.length * 30 + 60) + 'px';
+        const countryChart = new Chart(countryCtx.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: countryData,
+                datasets: [{
+                    label: '合作數量',
+                    data: [85, 72, 68, 65, 58, 52, 48, 45, 42, 38, 35, 32, 28, 25, 22, 20, 18, 15, 12, 10],
+                    backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                barThickness: 8,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return '數量: ' + context.parsed.x;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '數量'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '國家地區'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+<% end %>
+

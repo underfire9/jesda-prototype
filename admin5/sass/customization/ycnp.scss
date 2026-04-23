@@ -1,4 +1,6 @@
 
+@import "widgets/variables";
+
 /* `青年署青年生涯領航計畫
 -----------------------------------------------------------------------------*/
 
@@ -127,5 +129,191 @@ $base_border_color: #d1e1dd;
 	}
 	.nav-brief {
 		color: #352f96;
+	}
+}
+
+/* `執行階段文件審查
+-----------------------------------------------------------------------------*/
+
+.file-review-content {
+	padding: 2rem 1.25rem !important;
+	.reason-input {
+		display: none;
+	}
+	.reason-check-input {
+		&:has(:checked) + .reason-input {
+			display: block;
+		}
+	}
+}
+
+/* `問卷設定
+-----------------------------------------------------------------------------*/
+
+.survey-container {
+	display: flex;
+	gap: calc(2rem + 1vw);
+	max-width: 1920px;
+	padding-bottom: 6rem;
+	.container-start {
+		width: 35%;
+	}
+	.container-end {
+		flex-grow: 1;
+	}
+	.form-action {
+		border-top: 1px solid #ddd;
+		margin-top: 3rem;
+		padding-top: 3rem;
+		text-align: center;
+	}
+}
+
+.form-switch-lg {
+	padding-left: 3em;
+	.form-check-input {
+		width: 2.5em;
+		height: 1.25rem;
+		margin-left: -3em;
+	}
+	.form-check-label {
+		padding-top: .25rem;
+		font-size: 1rem;
+	}
+}
+
+.questionnaire-group {
+	border-radius: .25rem;
+	border: 1px dashed #666;
+	background: #fff;
+	margin-bottom: 1rem;
+	overflow: hidden;
+	.group-hd {
+		display: flex;
+		gap: 1px;
+		background: #c3c7cc;
+		border-bottom: 1px dashed #ddd;
+	}
+	.hd-start {
+		flex-grow: 1;
+		.form-control {
+			border: none;
+			border-radius: 0;
+			padding: .375rem 1.25rem;
+		}
+	}
+	.hd-end {
+		display: flex;
+		gap: 1px;
+		.btn {
+			border-radius: 0;
+			border: none;
+			padding: 0;
+			width: 48px;
+			height: 48px;
+			line-height: 48px;
+			font-size: .75rem;
+		}
+		.btn-delete {
+			background: #fff;
+			color: #999;
+			&:hover, &:focus {
+				background: #ecedee;
+				color: $red_color;
+			}
+		}
+	}
+	.questionnaire-group-bd {
+		padding: 1.25rem;
+		min-height: 6rem;
+		position: relative;
+		&::after {
+			content: "請按右下角按鈕開始新增題目";
+			color: #aaa;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		&.has-items::after {
+			display: none;
+		}
+	}
+	.group-ft {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		border-top: 1px dashed #ddd;
+		padding: 1.25rem;
+		text-align: end;
+	}
+	.item-question {
+		display: flex;
+		border-radius: .25rem;
+		background: #f9f9f9;
+		margin-bottom: .75rem;
+		&:last-child { margin-bottom: 0; }
+		&.is-dragging {
+			opacity: 0.4;
+		}
+		.drag-area {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 64px;
+			font-size: .75rem;
+			color: #999;
+			cursor: grab;
+			transition: all 0.15s ease-in-out;
+			&:hover {
+				color: #111;
+			}
+			&:active {
+				cursor: grabbing;
+			}
+		}
+		.item-bd {
+			flex-grow: 1;
+			padding: 1rem;
+		}
+		.item-action {
+			display: flex;
+			align-items: center;
+			padding: 1rem;
+		}
+	}
+}
+
+.questionnaire-modal {
+	.modal-body {
+		padding: 1.5rem 1rem;
+	}
+	.form-group {
+		margin-bottom: 1.5rem;
+	}
+}
+
+.generate-stage {
+	border-radius: .375rem;
+	border: 1px dashed #ccc;
+	background-color: #f9f9f9;
+	margin-top: .5rem;
+	padding: 1.5rem;
+	.item-check {
+		.btn {
+			font-size: .875rem;
+		}
+		& + .item-check {
+			margin-top: .5rem;
+		}
+	}
+	.item-type-inline {
+		display: flex;
+		flex-wrap: wrap;
+		gap: .5rem;
+		.item-check {
+			margin: 0 !important;
+			width: calc(33.33333% - 0.375rem);
+		}
 	}
 }

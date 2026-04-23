@@ -1,3 +1,7 @@
+<% login_current = current_page?("general/login_(school|host|student)") %>
+<% report_current = current_page?("general/report") %>
+<% faq_current = current_page?("general/faq") %>
+
 <header class="header" id="pagetop">
     <a href="#AC" id="gotocenter" title="移到主要內容" class="sr-only sr-only-focusable">跳到主要內容</a>
     <div class="container-lg">
@@ -21,39 +25,38 @@
                 <div class="topbar">
                     <a href="#U" id="AU" name="U" title="右上方功能區塊" accesskey="U">:::</a>
                     <ul class="menu-item">
-                        <li><a href="#" title="聯絡我們" class="topbar-link"><img src="../assets/send.svg" alt="聯絡我們"></a></li>
-                        <li><a href="#" title="網站導覽" class="topbar-link"><img src="../assets/diagram.svg" alt="網站導覽"></a></li>
+                        <li><a href="contact.html" title="聯絡我們" class="topbar-link"><img src="../assets/send.svg" alt="聯絡我們"></a></li>
+                        <li><a href="sitemap.html" title="網站導覽" class="topbar-link"><img src="../assets/diagram.svg" alt="網站導覽"></a></li>
                     </ul>
                 </div>
                 <nav class="navbar navbar-expand-lg" aria-label="主要功能選單">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle <%= 'current' if login_current %>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 使用者登入
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">學校聯絡人</a></li>
-                                <li><a class="dropdown-item" href="#">計畫主持人</a></li>
-                                <li><a class="dropdown-item" href="#">選送學生</a></li>
+                                <li><a class="dropdown-item" href="login_school.html">學校聯絡人</a></li>
+                                <li><a class="dropdown-item" href="login_host.html">計畫主持人</a></li>
+                                <li><a class="dropdown-item" href="login_student.html">選送學生</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <!-- 當前頁面要給 .current -->
-                            <a class="nav-link current" href="#">精選心得</a>
+                            <a class="nav-link <%= 'current' if report_current %>" href="report.html">精選心得</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">常見問題</a>
+                            <a class="nav-link <%= 'current' if faq_current %>" href="faq.html">常見問題</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 選擇年度
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">114</a></li>
-                                <li><a class="dropdown-item" href="#">113</a></li>
-                                <li><a class="dropdown-item" href="#">112</a></li>
-                                <li><a class="dropdown-item" href="#">111</a></li>
-                                <li><a class="dropdown-item" href="#">110</a></li>
+                                <li><a class="dropdown-item" href="index.html">115</a></li>
+                                <li><a class="dropdown-item" href="index.html">114</a></li>
+                                <li><a class="dropdown-item" href="index.html">113</a></li>
+                                <li><a class="dropdown-item" href="index.html">112</a></li>
+                                <li><a class="dropdown-item" href="index.html">111</a></li>
                             </ul>
                         </li>
                     </ul>

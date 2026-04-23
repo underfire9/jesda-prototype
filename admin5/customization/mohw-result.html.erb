@@ -1,0 +1,282 @@
+<!-- admin-page: 客製頁面 - 衛福部國合成果填報 -->
+
+<% content_for :page_styles do %>
+    <link rel="stylesheet" href="../stylesheets/customization/mohw-ipd.css">
+<% end %>
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="mohw-results-container">
+        <div class="container-head">
+            <button type="button" class="btn" onclick="window.history.back()">
+                <i class="fa fa-arrow-left"></i>
+            </button>
+            <div class="title-group">
+                <h4 class="mb-0">活動/會議名稱(中)測試01</h4>
+                <h6 class="mb-0">Event/Meeting Name (Chinese) Test 01</h6>
+            </div>
+        </div>
+        <div class="container-inner">
+            <div class="inner-start">
+                <div class="basic-info">
+                    <div class="info-item">
+                        <small class="item-label">編號</small>
+                        <div class="item-output">115FS030001</div>
+                    </div>
+                    <div class="info-item">
+                        <small class="item-label">類型</small>
+                        <div class="item-output">雙邊會談</div>
+                    </div>
+                    <div class="info-item">
+                        <small class="item-label">狀態</small>
+                        <div class="item-output">已封存</div>
+                    </div>
+                    <div class="info-item">
+                        <small class="item-label">期間</small>
+                        <div class="item-output">115-04-13 ~ 115-04-18</div>
+                    </div>
+                    <div class="info-item long-item">
+                        <small class="item-label">地點</small>
+                        <div class="item-output">捷克・城市01・地點test01</div>
+                    </div>
+                    <div class="info-item long-item">
+                        <small class="item-label">摘要</small>
+                        <div class="item-output summary"><%= lorem_paragraph %></div>
+                    </div>
+                </div>
+                <div class="attend-info">
+                    <div class="attend-hd">
+                        <h5 class="mb-0 fw-bold">本署參與人員</h5>
+                        <strong>2 位</strong>
+                    </div>
+                    <div class="attend-list">
+                        <div class="list-item">
+                            <span>食品組第一科</span>
+                            <span>一般承辦人</span>
+                            <span>elu1008+5@jesda.com.tw</span>
+                        </div>
+                        <div class="list-item">
+                            <span><%= zh_lorem_words(8) %></span>
+                            <span><%= zh_lorem_words(6) %></span>
+                            <span><%= lorem_email %></span>
+                        </div>
+                    </div>
+                    <div class="attend-info-list">
+                        <div class="list-item">
+                            <small class="item-label">參與/辦理形式</small>
+                            <div class="item-output">混合</div>
+                        </div>
+                        <div class="list-item">
+                            <small class="item-label">新南向/兩岸</small>
+                            <div class="item-output">混合</div>
+                        </div>
+                        <div class="list-item">
+                            <small class="item-label">業務類型</small>
+                            <div class="item-output">混合</div>
+                        </div>
+                        <div class="list-item">
+                            <small class="item-label">主辦</small>
+                            <div class="item-output">主辦單位(中)測試01 <div class="fs-6 text-black-50">本署主辦：否</div></div>
+                        </div>
+                        <div class="list-item">
+                            <small class="item-label">經費來源</small>
+                            <div class="item-output">本署計畫、外部單位</div>
+                            <small class="item-label">出國計畫名稱</small>
+                            <div class="item-output">企科計畫 A</div>
+                            <small class="item-label">外部單位</small>
+                            <div class="item-output">外部單位測試01</div>
+                        </div>
+                        <div class="list-item">
+                            <small class="item-label">限閱</small>
+                            <div class="item-output">否</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="attend-info representative">
+                    <div class="attend-hd">
+                        <h5 class="mb-0 fw-bold">我方／對方代表與其他外賓資訊</h5>
+                    </div>
+                    <div class="attend-info-list">
+                        <div class="list-item">
+                            <small class="item-label">我方代表(接見/主談/簽署)</small>
+                            <div class="item-output">一層長官 一層長官 <div class="fs-6 text-black-50">是否為本署：是</div></div>
+                        </div>
+                        <div class="list-item">
+                            <small class="item-label">對方代表(接見/主談/簽署)</small>
+                            <div class="item-output">對方代表測試01</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-end">
+                <div class="data-wrapper">
+                    <div class="data-item">
+                        <h5 class="fw-bold">重要外賓</h5>
+                        <div class="table-responsive">
+                            <table class="table text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>國家</th>
+                                        <th>姓名</th>
+                                        <th>服務機構(中)</th>
+                                        <th>服務機構(英)</th>
+                                        <th>職稱(中)</th>
+                                        <th>職稱(英)</th>
+                                        <th>電子信箱</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% (1..3).map do |i| %>
+                                    <tr>
+                                        <td>BLZ 貝里斯</td>
+                                        <td><%= zh_lorem_name %></td>
+                                        <td><%= zh_lorem_words(4) %></td>
+                                        <td><%= lorem_words(4) %></td>
+                                        <td><%= zh_lorem_words(6) %></td>
+                                        <td><%= lorem_words(4) %></td>
+                                        <td><%= lorem_email %></td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="data-item">
+                        <h5 class="fw-bold">交流資料</h5>
+                        <div>尚無交流資料</div>
+                    </div>
+                    <div class="data-item">
+                        <h5 class="fw-bold">禮品資料</h5>
+                        <div class="table-responsive">
+                            <table class="table text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>姓名</th>
+                                        <th>國家</th>
+                                        <th>禮品名稱</th>
+                                        <th>附件</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% (1..3).map do |i| %>
+                                    <tr>
+                                        <td><%= zh_lorem_name %></td>
+                                        <td>BLZ 貝里斯</td>
+                                        <td><%= zh_lorem_words(10) %></td>
+                                        <td><a href="#" target="_blank">icon-facebook_ft@2x.png</a></td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="manage-wrapper">
+                    <div class="manage-hd">
+                        <h4 class="mb-0 fw-bold">管理狀態<small class="fw-normal">（僅管理者）</small></h4>
+                    </div>
+                    <div class="manage-status">
+                        <div class="status-label">變更狀態</div>
+                        <div class="status-action">
+                            <button type="button" class="btn btn-rounded btn-outline-primary">核定</button>
+                            <button type="button" class="btn btn-rounded btn-outline-dark">封存</button>
+                            <button type="button" class="btn btn-rounded btn-outline-success" title="回草稿">解封</button>
+                        </div>
+                    </div>
+                    <div class="filling-in">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="fillingDepartment">填報單位</label>
+                                    <select class="form-select" id="fillingDepartment" data-placeholder="請選擇">
+                                        <option></option>
+                                        <option>Reactive</option>
+                                        <option>Solution</option>
+                                        <option>Conglomeration</option>
+                                        <option>Algoritm</option>
+                                        <option>Holistic</option>
+                                    </select>
+                                    <ul class="form-text">
+                                        <li>初次送出時，將依據填報單位的單位代碼（Code）產生編號。若在送出後調整填報單位，則不影響編號。 </li>
+                                        <li>若填報單位未設定單位代碼（Code），將無法送出成果。 </li>
+                                        <li>若變更填報單位，將會影響相關單位對於此筆成果資料的檢視、編輯等權限。 </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="fillingPerson">填報人員</label>
+                                    <select class="form-select" id="fillingPerson" data-placeholder="請選擇">
+                                        <option></option>
+                                        <option>Reactive</option>
+                                        <option>Solution</option>
+                                        <option>Conglomeration</option>
+                                        <option>Algoritm</option>
+                                        <option>Holistic</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary" title="更新填報單位、人員">儲存</button>
+                        </div>
+                    </div>
+                    <div class="association-wrapper">
+                        <h5 class="fw-bold">填報期間關聯管理</h5>
+                        <table class="table text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>期間</th>
+                                    <th>建立時間</th>
+                                    <th class="text-end">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% (1..2).map do |i| %>
+                                <tr>
+                                    <td>2026 Q2 （2026-04-06 ~ 2026-06-26）</td>
+                                    <td>2026-04-13 14:40:01</td>
+                                    <td class="text-end"><button type="button" class="btn btn-danger" title="移除"><i class="far fa-trash-alt"></i></button></td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                        <ul class="form-text">
+                            <li>可手動新增或移除成果的填報期間關聯。  </li>
+                            <li>必須至少關聯一筆啟用中且與成果日期有交集的日程（不限季度填報或會議校對），否則無法「送出」。</li>
+                        </ul>
+                        <div class="pt-5">
+                            <label class="form-label" for="fillingAssociation">新增期間關聯</label>
+                            <div class="input-group">
+                                <select class="form-select w-auto" id="fillingAssociation" data-placeholder="請選擇">
+                                    <option></option>
+                                    <option>Reactive</option>
+                                    <option>Solution</option>
+                                    <option>Conglomeration</option>
+                                    <option>Algoritm</option>
+                                    <option>Holistic</option>
+                                </select>
+                                <button class="btn btn-outline-primary" type="button">新增關聯</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<% content_for :js do %>
+    <script src="../javascripts/select2.js"></script>
+    <script>
+    $( '#fillingDepartment, #fillingPerson, #fillingAssociation' ).select2( {
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+        allowClear: true
+    } );
+    </script>
+<% end %>
+

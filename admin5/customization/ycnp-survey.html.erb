@@ -1,0 +1,329 @@
+<!-- admin-page: 客製頁面 - 青年生涯領航計畫 - 問卷 -->
+
+<% content_for :page_styles do %>
+    <link rel="stylesheet" href="../stylesheets/customization/ycnp.css">
+<% end %>
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="survey-container">
+        <div class="container-start">
+            <h4 class="mb-4 pt-3">問卷範本</h4>
+            <div class="form-group">
+                <label for="surveyTitle" class="form-label">問卷標題</label>
+                <input type="text" class="form-control" id="surveyTitle" placeholder="請輸入問卷標題">
+            </div>
+            <div class="form-group">
+                <label for="surveyDescription" class="form-label">問卷說明</label>
+                <textarea class="form-control" id="surveyDescription" rows="6"></textarea>
+            </div>
+        </div>
+        <div class="container-end">
+            <h4 class="mb-4 pt-3">題目設定</h4>
+            <div class="questionnaire-wrapper">
+
+                <div class="questionnaire-wrapper-inner">
+
+                    <div class="questionnaire-group">
+                        <div class="group-hd">
+                            <div class="hd-start">
+                                <input type="text" class="form-control form-control-lg" id="groupTitle" placeholder="請輸入區塊名稱">
+                            </div>
+                            <div class="hd-end">
+                                <button type="button" class="btn btn-lg btn-light btn-delete" title="刪除此區塊"><i class="fas fa-times"></i></button>
+                                <button type="button" class="btn btn-lg btn-light btn-up" title="區塊上移"><i class="fas fa-arrow-up"></i></button>
+                                <button type="button" class="btn btn-lg btn-light btn-down" title="區塊下移"><i class="fas fa-arrow-down"></i></button>
+                            </div>
+                        </div>
+                        <div class="questionnaire-group-bd">
+
+                            <div class="item-question">
+                                <div class="drag-area"><i class="fas fa-grip-vertical"></i></div>
+                                <div class="item-action">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addQuestionnaireModal" title="編輯題目"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-light" title="刪除題目"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item-bd">
+                                    <label class="form-label">題目名稱</label>
+                                    <input type="text" class="form-control" placeholder="單行文字">
+                                </div>
+                            </div>
+
+                            <div class="item-question">
+                                <div class="drag-area"><i class="fas fa-grip-vertical"></i></div>
+                                <div class="item-action">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addQuestionnaireModal" title="編輯題目"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-light" title="刪除題目"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item-bd">
+                                    <label class="form-label"><%= zh_lorem_sentence %></label>
+                                    <textarea class="form-control" rows="3" placeholder="多行文字"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="item-question">
+                                <div class="drag-area"><i class="fas fa-grip-vertical"></i></div>
+                                <div class="item-action">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addQuestionnaireModal" title="編輯題目"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-light" title="刪除題目"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item-bd">
+                                    <label class="form-label"><%= zh_lorem_sentence %></label>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="option1">
+                                            <label class="form-check-label" for="option1"><%= zh_lorem_sentence %></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="option2">
+                                            <label class="form-check-label" for="option2"><%= zh_lorem_sentence %></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item-question">
+                                <div class="drag-area"><i class="fas fa-grip-vertical"></i></div>
+                                <div class="item-action">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addQuestionnaireModal" title="編輯題目"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-light" title="刪除題目"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item-bd">
+                                    <label class="form-label"><%= zh_lorem_sentence %></label>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="option3">
+                                            <label class="form-check-label" for="option3">選項一</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="option4">
+                                            <label class="form-check-label" for="option4">選項二</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item-question">
+                                <div class="drag-area"><i class="fas fa-grip-vertical"></i></div>
+                                <div class="item-action">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addQuestionnaireModal" title="編輯題目"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-light" title="刪除題目"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item-bd">
+                                    <label class="form-label"><%= zh_lorem_sentence %></label>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radioD1" id="radioDefault1" />
+                                            <label class="form-check-label" for="radioDefault1"> <%= zh_lorem_sentence %></label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radioD1" id="radioDefault2" />
+                                            <label class="form-check-label" for="radioDefault2"> <%= zh_lorem_sentence %></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item-question">
+                                <div class="drag-area"><i class="fas fa-grip-vertical"></i></div>
+                                <div class="item-action">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addQuestionnaireModal" title="編輯題目"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-light" title="刪除題目"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item-bd">
+                                    <label class="form-label"><%= zh_lorem_sentence %></label>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="radioD2" id="radioDefault3" />
+                                            <label class="form-check-label" for="radioDefault3"> 選項一</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="radioD2" id="radioDefault4" />
+                                            <label class="form-check-label" for="radioDefault4"> 選項二</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item-question">
+                                <div class="drag-area"><i class="fas fa-grip-vertical"></i></div>
+                                <div class="item-action">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addQuestionnaireModal" title="編輯題目"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-light" title="刪除題目"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item-bd">
+                                    <label class="form-label"><%= zh_lorem_sentence %></label>
+                                    <select class="form-select">
+                                        <option selected>下拉選單</option>
+                                        <option value="1"><%= zh_lorem_sentence %></option>
+                                        <option value="2"><%= zh_lorem_sentence %></option>
+                                        <option value="3"><%= zh_lorem_sentence %></option>
+                                        <option value="4"><%= zh_lorem_sentence %></option>
+                                        <option value="5"><%= zh_lorem_sentence %></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="item-question">
+                                <div class="drag-area"><i class="fas fa-grip-vertical"></i></div>
+                                <div class="item-action">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addQuestionnaireModal" title="編輯題目"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-light" title="刪除題目"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item-bd">
+                                    <label class="form-label">題目名稱</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="group-ft">
+                            <button type="button" class="btn btn-rounded btn-secondary px-4" data-bs-toggle="modal" data-bs-target="#addQuestionnaireModal" title="新增題目"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="questionnaire-group">
+                        <div class="group-hd">
+                            <div class="hd-start">
+                                <input type="text" class="form-control form-control-lg" id="groupTitle" placeholder="請輸入區塊名稱">
+                            </div>
+                            <div class="hd-end">
+                                <button type="button" class="btn btn-lg btn-light btn-delete" title="刪除此區塊"><i class="fas fa-times"></i></button>
+                                <button type="button" class="btn btn-lg btn-light btn-up" title="區塊上移"><i class="fas fa-arrow-up"></i></button>
+                                <button type="button" class="btn btn-lg btn-light btn-down" title="區塊下移"><i class="fas fa-arrow-down"></i></button>
+                            </div>
+                        </div>
+                        <div class="questionnaire-group-bd">
+                        </div>
+                        <div class="group-ft">
+                            <button type="button" class="btn btn-rounded btn-secondary px-4" data-bs-toggle="modal" data-bs-target="#addQuestionnaireModal" title="新增題目"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-rounded btn-dark px-4">新增區塊</button>
+                </div>
+            </div>
+            <div class="form-action">
+                <button type="button" class="btn btn-lg btn-light">預覽</button>
+                <button type="button" class="btn btn-lg btn-primary px-5">儲存</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<% content_for :js do %>
+
+    <script>
+        function updateGroupBdState(groupBd) {
+            const hasItems = groupBd.querySelector('.item-question') !== null;
+            groupBd.classList.toggle('has-items', hasItems);
+        }
+
+        function updateHdEndVisibility() {
+            const wrapper = document.querySelector('.questionnaire-wrapper');
+            if (!wrapper) return;
+            const groups = wrapper.querySelectorAll('.questionnaire-group');
+            const isSingle = groups.length === 1;
+            groups.forEach(function (group) {
+                const hdEnd = group.querySelector('.hd-end');
+                if (hdEnd) hdEnd.style.display = isSingle ? 'none' : '';
+            });
+        }
+
+        function initGroupBdDragSort(groupBd) {
+            let dragItem = null;
+            let fromHandle = false;
+
+            groupBd.querySelectorAll('.item-question').forEach(function (item) {
+                item.draggable = true;
+            });
+
+            groupBd.addEventListener('mousedown', function (e) {
+                fromHandle = !!e.target.closest('.drag-area');
+            });
+
+            groupBd.addEventListener('dragstart', function (e) {
+                const item = e.target.closest('.item-question');
+                if (!item || !fromHandle) { e.preventDefault(); return; }
+                dragItem = item;
+                e.dataTransfer.effectAllowed = 'move';
+                setTimeout(function () { dragItem.classList.add('is-dragging'); }, 0);
+            });
+
+            groupBd.addEventListener('dragend', function () {
+                if (dragItem) dragItem.classList.remove('is-dragging');
+                dragItem = null;
+                fromHandle = false;
+            });
+
+            groupBd.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                if (!dragItem) return;
+                const target = e.target.closest('.item-question');
+                if (!target || target === dragItem) return;
+                const rect = target.getBoundingClientRect();
+                const insertBefore = e.clientY < rect.top + rect.height / 2;
+                groupBd.insertBefore(dragItem, insertBefore ? target : target.nextElementSibling);
+            });
+        }
+
+        document.querySelectorAll('.questionnaire-group-bd').forEach(function (groupBd) {
+            updateGroupBdState(groupBd);
+            initGroupBdDragSort(groupBd);
+
+            const observer = new MutationObserver(function () {
+                updateGroupBdState(groupBd);
+            });
+            observer.observe(groupBd, { childList: true, subtree: true });
+        });
+
+        const wrapperInner = document.querySelector('.questionnaire-wrapper-inner');
+        if (wrapperInner) {
+            updateHdEndVisibility();
+            const wrapperObserver = new MutationObserver(updateHdEndVisibility);
+            wrapperObserver.observe(wrapperInner, { childList: true });
+
+            wrapperInner.addEventListener('click', function (e) {
+                const btnUp = e.target.closest('.btn-up');
+                const btnDown = e.target.closest('.btn-down');
+                if (!btnUp && !btnDown) return;
+
+                const group = e.target.closest('.questionnaire-group');
+                if (!group) return;
+
+                if (btnUp) {
+                    const prev = group.previousElementSibling;
+                    if (prev && prev.classList.contains('questionnaire-group')) {
+                        wrapperInner.insertBefore(group, prev);
+                    }
+                } else {
+                    const next = group.nextElementSibling;
+                    if (next && next.classList.contains('questionnaire-group')) {
+                        wrapperInner.insertBefore(next, group);
+                    }
+                }
+            });
+        }
+    </script>
+<% end %>
+

@@ -1,0 +1,454 @@
+<% I18n.locale = "zh-TW" %>
+<!doctype html>
+<html lang="<%= I18n.locale %>" class="no-js">
+<head>
+    <%= render :partial => "/partials/head" %>
+</head>
+<body class="admin-body">
+    <div class="workspace" canvas="container">
+        <% if content_for? :sidebar %>
+            <%= yield :sidebar %>
+        <% else %>
+            <%= render :partial => "/partials/sidebar" %>
+        <% end %>
+        <div class="page">
+            <div class="page-inner">
+                <% if content_for? :header %>
+                    <%= yield :header %>
+                <% else %>
+                    <%= render :partial => "/partials/header" %>
+                <% end %>
+                <div class="content-wrapper">
+                    <%= yield %>
+                </div>
+            </div>
+            <a id="backtop"></a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+	<%= render :partial => "/partials/admin_chat" %>
+	<%= render :partial => "/partials/admin_files" %>
+
+    <script src="../javascripts/jquery-3.7.0.min.js"></script>
+    <script src="../javascripts/bootstrap.bundle.min.js"></script>
+    <script>
+        (function () {
+            var COLLAPSE_STORAGE_KEY = "admin6.sidebar.collapsed";
+            var SIDEBAR_THEME_STORAGE_KEY = "admin6.sidebar.theme.lighten";
+            var NAV_CONTEXT_STORAGE_KEY = "admin6.sidebar.nav.context";
+            var body = document.body;
+
+            function normalizePath(pathname) {
+                if (!pathname) {
+                    return "";
+                }
+                var clean = pathname.split("?")[0].split("#")[0];
+                clean = clean.replace(/\/+$/, "");
+                clean = clean.replace(/\.html?$/i, "");
+                return clean.toLowerCase();
+            }
+
+            function getLinkPath(link) {
+                var href = link && link.getAttribute("href");
+                if (!href || href === "#") {
+                    return "";
+                }
+                return normalizePath(new URL(href, window.location.href).pathname);
+            }
+
+            function findFirstMatchedLink(links, targetPath) {
+                if (!targetPath) {
+                    return null;
+                }
+
+                var matchedLink = null;
+                links.forEach(function (link) {
+                    if (matchedLink) {
+                        return;
+                    }
+                    if (getLinkPath(link) === targetPath) {
+                        matchedLink = link;
+                    }
+                });
+                return matchedLink;
+            }
+
+            function saveNavContext(matchedLink, isSubLink) {
+                if (!window.sessionStorage || !matchedLink) {
+                    return;
+                }
+
+                var path = getLinkPath(matchedLink);
+                if (!path) {
+                    return;
+                }
+
+                sessionStorage.setItem(
+                    NAV_CONTEXT_STORAGE_KEY,
+                    JSON.stringify({
+                        path: path,
+                        type: isSubLink ? "sub" : "main"
+                    })
+                );
+            }
+
+            function getSavedNavContext() {
+                if (!window.sessionStorage) {
+                    return null;
+                }
+
+                var raw = sessionStorage.getItem(NAV_CONTEXT_STORAGE_KEY);
+                if (!raw) {
+                    return null;
+                }
+
+                try {
+                    var parsed = JSON.parse(raw);
+                    if (!parsed || !parsed.path || !parsed.type) {
+                        return null;
+                    }
+                    return parsed;
+                } catch (e) {
+                    return null;
+                }
+            }
+
+            function syncCurrentNavState() {
+                var currentPath = normalizePath(window.location.pathname);
+                var navHintPath = normalizePath(new URLSearchParams(window.location.search).get("nav"));
+                var navRoot = document.querySelector(".admin-nav");
+                if (!navRoot) {
+                    return;
+                }
+
+                var links = navRoot.querySelectorAll(".admin-nav__link, .admin-nav__sublink");
+                links.forEach(function (link) {
+                    link.classList.remove("current");
+                });
+
+                var menuItems = navRoot.querySelectorAll(".admin-nav__item.has-submenu");
+                menuItems.forEach(function (item) {
+                    item.classList.remove("is-open");
+                });
+
+                var subLinks = navRoot.querySelectorAll(".admin-nav__sublink[href]");
+                var matchedSubLink = findFirstMatchedLink(subLinks, currentPath) || findFirstMatchedLink(subLinks, navHintPath);
+
+                if (matchedSubLink) {
+                    matchedSubLink.classList.add("current");
+                    var parentItem = matchedSubLink.closest(".admin-nav__item.has-submenu");
+                    if (parentItem) {
+                        parentItem.classList.add("is-open");
+                    }
+                    saveNavContext(matchedSubLink, true);
+                    return;
+                }
+
+                var mainLinks = navRoot.querySelectorAll(".admin-nav__link[href]");
+                var regularMainLinks = Array.from(mainLinks).filter(function (link) {
+                    return !link.hasAttribute("data-submenu-toggle");
+                });
+
+                var matchedMainLink = findFirstMatchedLink(regularMainLinks, currentPath) || findFirstMatchedLink(regularMainLinks, navHintPath);
+
+                if (matchedMainLink) {
+                    matchedMainLink.classList.add("current");
+                    saveNavContext(matchedMainLink, false);
+                    return;
+                }
+
+                var savedContext = getSavedNavContext();
+                if (!savedContext) {
+                    return;
+                }
+
+                if (savedContext.type === "sub") {
+                    var restoredSubLink = findFirstMatchedLink(subLinks, savedContext.path);
+                    if (restoredSubLink) {
+                        restoredSubLink.classList.add("current");
+                        var restoredParentItem = restoredSubLink.closest(".admin-nav__item.has-submenu");
+                        if (restoredParentItem) {
+                            restoredParentItem.classList.add("is-open");
+                        }
+                        return;
+                    }
+                }
+
+                var restoredMainLink = findFirstMatchedLink(regularMainLinks, savedContext.path);
+                if (restoredMainLink) {
+                    restoredMainLink.classList.add("current");
+                }
+            }
+
+            // 還原桌機收合狀態
+            if (window.localStorage && localStorage.getItem(COLLAPSE_STORAGE_KEY) === "1") {
+                body.classList.add("sidebar-collapsed");
+            }
+
+            // 桌機收合／展開
+            var toggleBtn = document.querySelector(".js-sidebar-toggle");
+            if (toggleBtn) {
+                toggleBtn.classList.toggle("is-active", body.classList.contains("sidebar-collapsed"));
+
+                toggleBtn.addEventListener("click", function () {
+                    var collapsed = body.classList.toggle("sidebar-collapsed");
+                    toggleBtn.classList.toggle("is-active", collapsed);
+                    if (window.localStorage) {
+                        localStorage.setItem(COLLAPSE_STORAGE_KEY, collapsed ? "1" : "0");
+                    }
+
+                    syncSidebarTooltips();
+                });
+            }
+
+            // 只有桌機且 sidebar 收合時，才顯示 tooltip
+            function syncSidebarTooltips() {
+                if (!window.bootstrap) {
+                    return;
+                }
+
+                var shouldEnableTooltip = body.classList.contains("sidebar-collapsed") && window.innerWidth >= 1200;
+
+                document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+                    var instance = bootstrap.Tooltip.getInstance(el);
+
+                    if (shouldEnableTooltip) {
+                        if (!instance) {
+                            new bootstrap.Tooltip(el, {
+                                trigger: "hover",
+                                boundary: "window"
+                            });
+                        }
+                    } else if (instance) {
+                        instance.dispose();
+                    }
+                });
+            }
+
+            syncSidebarTooltips();
+            window.addEventListener("resize", syncSidebarTooltips);
+            syncCurrentNavState();
+
+            // 第二層選單 accordion：展開一個會收合其他
+            var submenuToggles = document.querySelectorAll("[data-submenu-toggle]");
+            submenuToggles.forEach(function (toggle) {
+                toggle.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    var item = toggle.closest(".has-submenu");
+                    if (!item) {
+                        return;
+                    }
+                    var willOpen = !item.classList.contains("is-open");
+
+                    // 收合其他已展開的選單
+                    document.querySelectorAll(".admin-nav__item.has-submenu.is-open").forEach(function (openItem) {
+                        if (openItem !== item) {
+                            openItem.classList.remove("is-open");
+                        }
+                    });
+
+                    item.classList.toggle("is-open", willOpen);
+                });
+            });
+
+            // 側欄主題切換按鈕：點擊後套用淺色主題樣式
+            var themeToggleBtn = document.getElementById("themeToggleBtn");
+            var adminSidebar = document.querySelector(".admin-sidebar");
+            if (themeToggleBtn && adminSidebar) {
+                if (window.localStorage && localStorage.getItem(SIDEBAR_THEME_STORAGE_KEY) === "1") {
+                    themeToggleBtn.classList.add("is-switched");
+                    adminSidebar.classList.add("sidebar-theme-lighten");
+                }
+
+                themeToggleBtn.addEventListener("click", function () {
+                    var isSwitched = themeToggleBtn.classList.toggle("is-switched");
+                    adminSidebar.classList.toggle("sidebar-theme-lighten", isSwitched);
+                    if (window.localStorage) {
+                        localStorage.setItem(SIDEBAR_THEME_STORAGE_KEY, isSwitched ? "1" : "0");
+                    }
+                });
+            }
+
+            // 側欄系統切換：更新目前選擇的 icon 與名稱
+            var sidebarSystemSelect = document.getElementById("sidebarSystemSelect");
+            var selectedSystemIcon = document.querySelector("[data-system-selected-icon] i");
+            var selectedSystemName = document.querySelector("[data-system-selected-name]");
+            var systemOptions = document.querySelectorAll("[data-system-select]");
+            if (sidebarSystemSelect && selectedSystemIcon && selectedSystemName && systemOptions.length > 0) {
+                systemOptions.forEach(function (option) {
+                    option.addEventListener("click", function () {
+                        var nextIcon = option.getAttribute("data-system-icon");
+                        var nextName = option.getAttribute("data-system-name");
+
+                        if (nextIcon) {
+                            selectedSystemIcon.className = nextIcon;
+                        }
+                        if (nextName) {
+                            selectedSystemName.textContent = nextName;
+                        }
+
+                        systemOptions.forEach(function (item) {
+                            item.classList.remove("is-active");
+                        });
+                        option.classList.add("is-active");
+                    });
+                });
+            }
+
+            // Header 搜尋按鈕：點擊切換搜尋框顯示
+            var searchExpandBtn = document.querySelector(".header-search__btn-expand");
+            var headerSearch = document.querySelector(".admin-header__search");
+            if (searchExpandBtn && headerSearch) {
+                searchExpandBtn.addEventListener("click", function () {
+                    headerSearch.classList.add("show");
+                });
+
+                document.addEventListener("click", function (event) {
+                    var clickedInsideSearch = headerSearch.contains(event.target);
+                    var clickedExpandBtn = searchExpandBtn.contains(event.target);
+                    if (!clickedInsideSearch && !clickedExpandBtn) {
+                        headerSearch.classList.remove("show");
+                    }
+                });
+            }
+        })();
+    </script>
+    <!-- Lightbox -->
+    <script>
+        (function () {
+            var root = document.getElementById("chatLightbox");
+            if (!root) {
+                return;
+            }
+
+            var stage = root.querySelector(".chat-lightbox__stage");
+            var image = root.querySelector(".chat-lightbox__image");
+            var prevBtn = root.querySelector("[data-chat-lightbox-prev]");
+            var nextBtn = root.querySelector("[data-chat-lightbox-next]");
+            var closeBtns = root.querySelectorAll("[data-chat-lightbox-close]");
+            var items = [];
+            var currentIndex = 0;
+            var opener = null;
+
+            function getGalleryItems(link) {
+                var gallery = link.closest(".modal-chat-gallery");
+                if (!gallery) {
+                    return [];
+                }
+
+                return Array.prototype.slice.call(gallery.querySelectorAll("a[href]"));
+            }
+
+            function show(index) {
+                if (!items.length) {
+                    return;
+                }
+
+                if (index < 0) {
+                    index = items.length - 1;
+                }
+                if (index >= items.length) {
+                    index = 0;
+                }
+
+                currentIndex = index;
+                var currentLink = items[currentIndex];
+                var currentImage = currentLink.querySelector("img");
+                image.src = currentLink.getAttribute("href") || "";
+                image.alt = (currentImage && currentImage.getAttribute("alt")) || "";
+            }
+
+            function open(link) {
+                items = getGalleryItems(link);
+                if (!items.length) {
+                    return;
+                }
+
+                opener = link;
+                root.classList.add("is-open");
+                root.setAttribute("aria-hidden", "false");
+
+                show(items.indexOf(link));
+                stage.focus();
+            }
+
+            function close() {
+                root.classList.remove("is-open");
+                root.setAttribute("aria-hidden", "true");
+                image.src = "";
+                image.alt = "";
+                items = [];
+
+                if (opener) {
+                    opener.focus();
+                    opener = null;
+                }
+            }
+
+            document.addEventListener("click", function (event) {
+                var link = event.target.closest(".modal-chat-gallery a[href]");
+                if (!link) {
+                    return;
+                }
+
+                event.preventDefault();
+                open(link);
+            });
+
+            closeBtns.forEach(function (btn) {
+                btn.addEventListener("click", close);
+            });
+
+            prevBtn.addEventListener("click", function () {
+                show(currentIndex - 1);
+            });
+
+            nextBtn.addEventListener("click", function () {
+                show(currentIndex + 1);
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (!root.classList.contains("is-open")) {
+                    return;
+                }
+
+                if (event.key === "Escape") {
+                    event.preventDefault();
+                    close();
+                    return;
+                }
+
+                if (event.key === "ArrowLeft") {
+                    event.preventDefault();
+                    show(currentIndex - 1);
+                    return;
+                }
+
+                if (event.key === "ArrowRight") {
+                    event.preventDefault();
+                    show(currentIndex + 1);
+                }
+            });
+        })();
+    </script>
+    <!-- Back to top -->
+    <script>
+        var btn = $('#backtop');
+
+        $(window).scroll(function() {
+          if ($(window).scrollTop() > 600) {
+            btn.addClass('show');
+          } else {
+            btn.removeClass('show');
+          }
+        });
+
+        btn.on('click', function(e) {
+          e.preventDefault();
+          $('html, body').animate({scrollTop:0}, '300');
+        });
+    </script>
+    <%= yield :js %>
+</body>
+</html>

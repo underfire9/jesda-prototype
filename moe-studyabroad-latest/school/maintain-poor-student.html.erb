@@ -1,0 +1,89 @@
+<!-- template: 學校聯絡人 - 計畫維護/中低收入學生管理 -->
+<% content_for :header_center do %>
+    <span class="central-title">登錄中低收入學生</span>
+<% end %>
+
+<div class="container">
+    <div class="page-content">
+        <div class="poor-student-toolbar">
+            <div class="toolbar-start">
+                <div>
+                    <select class="form-select" aria-label="選送生">
+                        <option selected>選擇選送生</option>
+                        <option value="1"><%= zh_lorem_name %></option>
+                        <option value="2"><%= zh_lorem_name %></option>
+                        <option value="3"><%= zh_lorem_name %></option>
+                    </select>
+                </div>
+                <div>
+                    <input type="text" class="form-control" placeholder="身分證字號">
+                </div>
+                <div>
+                    <select class="form-select" aria-label="戶籍縣市">
+                        <option selected>選擇戶籍縣市</option>
+                        <option value="台北市">台北市</option>
+                        <option value="新北市">新北市</option>
+                        <option value="台中市">台中市</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-info"><i class="fas fa-plus"></i> 新增</button>
+                </div>
+            </div>
+            <div class="toolbar-end">
+                <a href="#" class="btn btn-outline-secondary">下載學生名冊</a>
+                <a href="#" class="btn btn-outline-secondary">下載調查總表</a>
+            </div>
+        </div>
+        <div class="subplan-list-wrapper poor-student-list">
+            <% (1..5).map do |i| %>
+            <div class="subplan-card">
+                <div class="card-bd">
+                    <div class="item-info">
+                        <span class="item-label">國內就讀系所</span>
+                        <span class="item-value">醫務管理系</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">選送生姓名</span>
+                        <span class="item-value"><%= zh_lorem_name %></span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">身分證字號</span>
+                        <span class="item-value">N126880402</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">戶籍縣市</span>
+                        <span class="item-value">彰化縣</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">學生狀態</span>
+                        <span class="item-value">未領取</span>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-delete btn-light btn-sm" title="刪除"><i class="far fa-trash-alt"></i></button>
+            </div>
+            <% end %>
+        </div>
+        <div class="form-action no-border">
+            <span class="backhome">
+                <a href="maintain.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- 編號 -->
+<script>
+    document.querySelectorAll('.poor-student-list .subplan-card').forEach(function(card, i) {
+        card.querySelector('.card-bd').dataset.index = i + 1;
+    });
+</script>
+
+<!-- Bootstrap tooltip -->
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+<% end %>
+

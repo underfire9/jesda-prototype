@@ -1,0 +1,130 @@
+<aside class="admin-sidebar offcanvas-xl offcanvas-start" tabindex="-1" id="adminSidebar" aria-labelledby="adminSidebarLabel">
+    <div class="admin-sidebar__brand">
+        <% if content_for? :sidebar_logo %>
+            <%= yield :sidebar_logo %>
+        <% else %>
+
+            <!-- 沒有其它系統時拿掉 admin-sidebar__system-menu、admin-sidebar__system-arrow，admin-sidebar__system-select-btn 要給連結到系統首頁 -->
+
+            <div class="dropdown admin-sidebar__system-select">
+                <button class="btn admin-sidebar__system-select-btn dropdown-toggle no-after" type="button" id="sidebarSystemSelect" data-bs-toggle="dropdown" aria-expanded="false" aria-label="選擇系統">
+                    <span class="admin-sidebar__system-icon" data-system-selected-icon><i class="bi bi-grid-1x2-fill"></i></span>
+                    <span class="admin-sidebar__system-name" data-system-selected-name>後台管理系統</span>
+                    <span class="admin-sidebar__system-arrow"><i class="bi bi-plus"></i></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark admin-sidebar__system-menu" aria-labelledby="sidebarSystemSelect">
+                    <li>
+                        <button class="dropdown-item admin-sidebar__system-option is-active" type="button" data-system-select data-system-icon="bi bi-grid-1x2-fill" data-system-name="後台管理系統">
+                            <span class="admin-sidebar__system-option-icon"><i class="bi bi-grid-1x2-fill"></i></span>
+                            <span class="admin-sidebar__system-option-name">後台管理系統</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item admin-sidebar__system-option" type="button" data-system-select data-system-icon="bi bi-calendar-check" data-system-name="員工請假系統">
+                            <span class="admin-sidebar__system-option-icon"><i class="bi bi-calendar-check"></i></span>
+                            <span class="admin-sidebar__system-option-name">員工請假系統</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item admin-sidebar__system-option" type="button" data-system-select data-system-icon="bi bi-receipt" data-system-name="客戶報價系統">
+                            <span class="admin-sidebar__system-option-icon"><i class="bi bi-receipt"></i></span>
+                            <span class="admin-sidebar__system-option-name">客戶報價系統</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item admin-sidebar__system-option" type="button" data-system-select data-system-icon="bi bi-kanban" data-system-name="專案管理系統">
+                            <span class="admin-sidebar__system-option-icon"><i class="bi bi-kanban"></i></span>
+                            <span class="admin-sidebar__system-option-name">專案管理系統</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="admin-sidebar__body">
+        <nav class="admin-nav" aria-label="主選單">
+            <ul class="admin-nav__list">
+                <li class="admin-nav__item">
+                    <a class="admin-nav__link" href="dashboard.html" data-bs-toggle="tooltip" data-bs-placement="right" title="儀表板">
+                        <span class="admin-nav__icon"><i class="bi bi-speedometer2"></i></span>
+                        <span class="admin-nav__text">儀表板</span>
+                    </a>
+                </li>
+                <li class="admin-nav__item">
+                    <a class="admin-nav__link" href="datatables.html" data-bs-toggle="tooltip" data-bs-placement="right" title="Datatables">
+                        <span class="admin-nav__icon"><i class="bi bi-database"></i></span>
+                        <span class="admin-nav__text">Datatables</span>
+                    </a>
+                </li>
+                <li class="admin-nav__item">
+                    <span class="admin-nav__title">選單分類標題</span>
+                </li>
+
+                <li class="admin-nav__item has-submenu">
+                    <a class="admin-nav__link" href="#" data-submenu-toggle data-bs-toggle="tooltip" data-bs-placement="right" title="會員管理">
+                        <span class="admin-nav__icon"><i class="bi  bi-people"></i></span>
+                        <span class="admin-nav__text">會員管理</span>
+                        <span class="admin-nav__arrow"><i class="fas fa-angle-down"></i></span>
+                    </a>
+                    <ul class="admin-nav__submenu">
+                        <li><a class="admin-nav__sublink" href="member-list.html">會員列表</a></li>
+                        <li><a class="admin-nav__sublink" href="#">新增會員</a></li>
+                        <li><a class="admin-nav__sublink" href="#">會員等級</a></li>
+                    </ul>
+                </li>
+
+                <li class="admin-nav__item has-submenu">
+                    <a class="admin-nav__link" href="#" data-submenu-toggle data-bs-toggle="tooltip" data-bs-placement="right" title="商品管理">
+                        <span class="admin-nav__icon"><i class="bi bi-box"></i></span>
+                        <span class="admin-nav__text">商品管理</span>
+                        <span class="admin-nav__arrow"><i class="fas fa-angle-down"></i></span>
+                    </a>
+                    <ul class="admin-nav__submenu">
+                        <li><a class="admin-nav__sublink" href="#">商品列表</a></li>
+                        <li><a class="admin-nav__sublink" href="#">新增商品</a></li>
+                        <li><a class="admin-nav__sublink" href="#">分類管理</a></li>
+                    </ul>
+                </li>
+
+                <li class="admin-nav__item">
+                    <a class="admin-nav__link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="訂單管理">
+                        <span class="admin-nav__icon"><i class="bi bi-cart"></i></span>
+                        <span class="admin-nav__text">訂單管理</span>
+                    </a>
+                </li>
+                <li class="admin-nav__item">
+                    <a class="admin-nav__link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="報表分析">
+                        <span class="admin-nav__icon"><i class="bi bi-graph-up"></i></span>
+                        <span class="admin-nav__text">報表分析</span>
+                    </a>
+                </li>
+                <li class="admin-nav__divider" role="separator"></li>
+                <li class="admin-nav__item">
+                    <a class="admin-nav__link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="系統設定">
+                        <span class="admin-nav__icon"><i class="bi bi-gear"></i></span>
+                        <span class="admin-nav__text">系統設定</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="admin-sidebar__footer">
+            <div class="admin-sidebar__theme">
+                <button type="button" class="btn btn-transparent btn-theme" id="themeToggleBtn" aria-label="側欄配色" title="側欄配色">
+                    <i class="bi bi-brightness-high-fill"></i>
+                    <i class="bi bi-moon"></i>
+                </button>
+            </div>
+            <!--div class="dropdown admin-sidebar__system-dropdown">
+                <button class="btn btn-transparent dropdown-toggle no-after" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="系統切換" title="系統切換">
+                    <i class="bi bi-database-fill-gear"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">員工請假系統</a></li>
+                    <li><a class="dropdown-item" href="#">客戶報價系統</a></li>
+                    <li><a class="dropdown-item" href="#">專案管理</a></li>
+                </ul>
+            </div-->
+        </div>
+    </div>
+</aside>

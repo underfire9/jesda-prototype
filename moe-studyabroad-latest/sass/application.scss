@@ -370,6 +370,7 @@ $annual-aside-width: 224px;
 		display: block;
 		padding: 1rem 0 1rem 1rem;
 		font-size: 1.188rem;
+		font-weight: 300;
 		color: #707474;
 	}
 	.level-item {
@@ -685,31 +686,92 @@ article.article {
 }
 
 .service-wrapper {
-	display: flex;
-	justify-content: space-between;
 	padding-top: .5rem;
-	.guidelines-content,
-	.sheet-content {
-		width: 46.5%;
+	.guidelines-content {
+		margin-bottom: 4rem;
+	}
+	.guidelines-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		counter-reset: guidelines;
+	}
+	.guidelines-item {
+		width: calc(50% - 1rem);
+		position: relative;
+		counter-increment: guidelines;
+	}
+	.guidelines-link {
+		--r: 14px; /* radius */
+		--s: 32px; /* inner curve size */
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		background: #f3fbfd;
+		border-radius: 1rem;
+		padding: calc(1rem + .75vw) 3rem;
+		font-weight: 500;
+		min-height: 120px;
+		word-break: break-all;
+		overflow-wrap: break-word;
+		color: #5b6363;
+		clip-path: shape(
+			from 0 0,
+			hline to calc(100% - var(--s) - 2 * var(--r)),
+			arc by var(--r) var(--r) of var(--r) cw,
+			arc by var(--s) var(--s) of var(--s),
+			arc by var(--r) var(--r) of var(--r) cw,
+			vline to 100%,
+			hline to 0
+		);
+		&:hover, &:active, &:focus {
+			background: #2DB4D0;
+			color: #fff;
+			& ~ .guidelines-number {
+				background: #2DB4D0;
+			}
+		}
+	}
+	.guidelines-number {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		background: #5b6363;
+		color: #fff;
+		width:36px;
+		height: 36px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transition: all 0.2s ease-in-out;
+		&::before {
+			content: counter(guidelines);
+		}
 	}
 	.content-title {
 		margin-bottom: 1.5rem;
 		font-weight: 300;
 	}
 	.content-list {
-		li {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 2rem;
+		.content-item {
 			border-bottom: 1px dashed $base_border_color;
 			padding: .5rem 0;
-			&:last-child {
-				border-bottom: none;
-			}
+			width: calc(50% - 1rem);
 		}
 		.content-link {
 			display: flex;
 			align-items: center;
 			border-radius: 6px;
-			padding: .5rem 1rem .5rem 2.5rem;
-			min-height: 72px;
+			padding: .5rem 1rem .5rem 2rem;
+			width: 100%;
+			height: 100%;
+			min-height: 48px;
 			font-size: 1.063rem;
 			//color: #43434d;
 			position: relative;
@@ -1259,6 +1321,18 @@ article.article {
 		gap: 3rem;
 		& > li {
 			width: calc(50% - 1.5rem);
+		}
+	}
+	.service-wrapper {
+		.guidelines-list {
+			gap: 1rem;
+		}
+		.guidelines-item,
+		.content-list .content-item  {
+			width: 100%;
+			&:last-child {
+				border-bottom: none;
+			}
 		}
 	}
 }

@@ -1,0 +1,535 @@
+<!-- template: 學校聯絡人 - 計畫申請/填寫計畫其他相關說明 -->
+<% content_for :header_center do %>
+    <span class="central-title">填寫計畫其他相關說明</span>
+<% end %>
+
+<div class="container">
+    <div class="page-content">
+        <div class="plan-edit-wrapper">
+            <aside class="plan-edit-sidebar">
+
+                <!-- 編號 serial 由 js 生 -->
+                <ul class="nav flex-column plan-edit-nav" id="planTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link active"
+                            id="q1-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#q1-tab-pane"
+                            type="button"
+                            role="tab"
+                            aria-controls="q1-tab-pane"
+                            aria-selected="true"
+                        >
+                            <span class="serial"></span>
+                            <span class="hide">(一)校內審查機制（包括校內計畫案、選送學生甄選基準、計畫主持人甄選學生作業方式等相關資訊之揭露、分配各計畫案經費之準則、本年選送原住民學生及新住民（臺灣地區人民之配偶為外國人、無國籍人、大陸地區人民及香港、澳門居民）子女人數；遴選他校學生參與，須提出相關甄選基準及甄選學生作業方式）</span>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
+                            id="q2-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#q2-tab-pane"
+                            type="button"
+                            role="tab"
+                            aria-controls="q2-tab-pane"
+                            aria-selected="false"
+                        >
+                            <span class="serial"></span>
+                            <span class="hide">(二)補助計畫整體配套措施（包括建立與國外實習機構之實習合作機制、計畫主持人安排學生赴國外實習輔導機制、前一年度補助經費支用原則及支用情形）</span>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
+                            id="q3-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#q3-tab-pane"
+                            type="button"
+                            role="tab"
+                            aria-controls="q3-tab-pane"
+                            aria-selected="false"
+                        >
+                            <span class="serial"></span>
+                            <span class="hide">Contact</span>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <div class="nav-link">
+                            <span class="serial"></span>
+                            <span class="hide">Contact</span>
+                        </div>
+                        <ul class="nav-sub menu-item">
+                            <li class="nav-item" role="presentation">
+                                <button
+                                    class="nav-link"
+                                    id="q4-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#q4-tab-pane"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="q4-tab-pane"
+                                    aria-selected="false"
+                                >
+                                    <span class="serial"></span>
+                                    <span class="hide">Disabled</span>
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button
+                                    class="nav-link"
+                                    id="q5-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#q5-tab-pane"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="q5-tab-pane"
+                                    aria-selected="false"
+                                >
+                                    <span class="serial"></span>
+                                    <span class="hide">Disabled</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
+                            id="q6-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#q6-tab-pane"
+                            type="button"
+                            role="tab"
+                            aria-controls="q6-tab-pane"
+                            aria-selected="false"
+                        >
+                            <span class="serial"></span>
+                            <span class="hide">Contact</span>
+                        </button>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- 區塊需要前端套編輯器，新增、刪除、拖曳排序功能交由前端統一處理 -->
+            <main class="plan-edit-main">
+                <div class="tab-content" id="planTabContent">
+                    <div class="tab-pane fade show active" id="q1-tab-pane" role="tabpanel" aria-labelledby="q1-tab" tabindex="0">
+                        <h5 class="pane-title">(一) 校內審查機制（包括校內計畫案、選送學生甄選基準、計畫主持人甄選學生作業方式等相關資訊之揭露、分配各計畫案經費之準則、本年選送原住民學生及新住民（臺灣地區人民之配偶為外國人、無國籍人、大陸地區人民及香港、澳門居民）子女人數；遴選他校學生參與，須提出相關甄選基準及甄選學生作業方式）</h5>
+                        <div class="editor-wrapper">
+                            <div class="editor-section">
+                                <div class="wrapper-control">
+                                    <div class="drag-area" title="拖曳排序"></div>
+                                    <div class="delete">
+                                        <button type="button" class="btn btn-sm btn-light" title="刪除">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- 區塊高度為 inline css 可視情況調整，或拿掉由編輯器決定 -->
+                                <div class="editor-frame" style="height: 24rem;">
+                                    <!-- 編輯器放這裡，如果編輯器本身有框線要拿掉，或在 editor-frame 給 inline css - border: none; -->
+                                </div>
+                            </div>
+
+                            <div class="editor-section">
+                                <div class="wrapper-control">
+                                    <div class="drag-area" title="拖曳排序"></div>
+                                    <div class="delete">
+                                        <button type="button" class="btn btn-sm btn-light" title="刪除">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- 區塊高度為 inline css 可視情況調整，或拿掉由編輯器決定 -->
+                                <div class="editor-frame" style="height: 24rem;">
+                                    <!-- 編輯器放這裡，如果編輯器本身有框線要拿掉，或在 editor-frame 給 inline css - border: none; -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-block text-end">
+                            <button type="button" class="btn btn-outline-dark">
+                                <i class="fas fa-plus me-1"></i> 新增區塊
+                            </button>
+                            <button type="button" class="btn btn-outline-dark">
+                                <i class="fas fa-plus me-1"></i> 新增圖片
+                            </button>
+                        </div>
+
+                        <div class="upload-wrapper">
+                            <div class="drag-file-wrapper" id="dragFileWrapper">
+                                <input type="file" id="fileInput" class="file-input-hidden" accept=".pdf,application/pdf" multiple>
+                                <div class="drop-zone" id="dropZone">
+                                    <div class="drop-zone-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <p class="drop-zone-text">點擊或拖曳檔案至此上傳</p>
+                                    <p class="drop-zone-hint">僅支援 PDF 檔案</p>
+                                </div>
+                                <ul class="file-list" id="fileList"></ul>
+                            </div>
+                            <div class="form-text mt-2">
+                                <ul>
+                                    <li>上傳補充資料，檔案太大會導致計畫書無法下載，非必要無須上傳</li>
+                                    <li>請確認上傳的PDF檔案未經保全設定</li>
+                                    <li>上傳文件如有學生個資請遮蔽後再上傳</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pane-action">
+                            <button type="button" class="btn btn-lg btn-primary px-4">
+                                儲存
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="q2-tab-pane" role="tabpanel" aria-labelledby="q2-tab" tabindex="0">
+                        <h5 class="pane-title">(二) 補助計畫整體配套措施（包括建立與國外實習機構之實習合作機制、計畫主持人安排學生赴國外實習輔導機制、前一年度補助經費支用原則及支用情形）</h5>
+                        <div class="editor-wrapper">
+                            <div class="editor-section">
+                                <div class="wrapper-control">
+                                    <div class="drag-area" title="拖曳排序"></div>
+                                    <div class="delete">
+                                        <button type="button" class="btn btn-sm btn-light" title="刪除">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- 區塊高度為 inline css 可視情況調整，或拿掉由編輯器決定 -->
+                                <div class="editor-frame" style="height: 24rem;">
+                                    <!-- 編輯器放這裡，如果編輯器本身有框線要拿掉，或在 editor-frame 給 inline css - border: none; -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="q3-tab-pane" role="tabpanel" aria-labelledby="q3-tab" tabindex="0">
+                        <h5 class="pane-title">(三) 執行本計畫之推廣及鼓勵措施</h5>
+                    </div>
+                    <div class="tab-pane fade" id="q4-tab-pane" role="tabpanel" aria-labelledby="q4-tab" tabindex="0">
+                        <h5 class="pane-title">(四) 執行本計畫之推廣及鼓勵措施</h5>
+                        <h6 class="sub-title">鼓勵學生出國研修措施（如評選及獎勵優良心得報告）</h6>
+                        <div class="editor-wrapper">
+                            <div class="editor-section">
+                                <div class="wrapper-control">
+                                    <div class="drag-area" title="拖曳排序"></div>
+                                    <div class="delete">
+                                        <button type="button" class="btn btn-sm btn-light" title="刪除">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- 區塊高度為 inline css 可視情況調整，或拿掉由編輯器決定 -->
+                                <div class="editor-frame" style="height: 24rem;">
+                                    <!-- 編輯器放這裡，如果編輯器本身有框線要拿掉，或在 editor-frame 給 inline css - border: none; -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="q5-tab-pane" role="tabpanel" aria-labelledby="q5-tab" tabindex="0">
+                        <h5 class="pane-title">(四) 執行本計畫之推廣及鼓勵措施</h5>
+                        <h6 class="sub-title">辦理國外專業實習經驗分享座談會情形</h6>
+                    </div>
+                    <div class="tab-pane fade" id="q6-tab-pane" role="tabpanel" aria-labelledby="q6-tab" tabindex="0">
+                        test
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div class="form-action">
+            <span class="backhome">
+                <a href="apply.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </span>
+            <span class="action-end">
+                <button type="button" class="btn btn-lg btn-rounded btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#previewModal" title="計劃書預覽">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="previewModalLabel">計劃書預覽</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="plan-edit-wrapper">
+                        <aside class="plan-edit-sidebar">
+
+                            <!-- 編號 serial 由 js 生 -->
+                            <ul class="nav flex-column plan-edit-nav" id="previewPlanTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button
+                                        class="nav-link active"
+                                        id="r1-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#r1-tab-pane"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="r1-tab-pane"
+                                        aria-selected="true"
+                                    >
+                                        <span class="serial"></span>
+                                        <span class="hide">(一)校內審查機制（包括校內計畫案、選送學生甄選基準、計畫主持人甄選學生作業方式等相關資訊之揭露、分配各計畫案經費之準則、本年選送原住民學生及新住民（臺灣地區人民之配偶為外國人、無國籍人、大陸地區人民及香港、澳門居民）子女人數；遴選他校學生參與，須提出相關甄選基準及甄選學生作業方式）</span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button
+                                        class="nav-link"
+                                        id="r2-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#r2-tab-pane"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="r2-tab-pane"
+                                        aria-selected="false"
+                                    >
+                                        <span class="serial"></span>
+                                        <span class="hide">(二)補助計畫整體配套措施（包括建立與國外實習機構之實習合作機制、計畫主持人安排學生赴國外實習輔導機制、前一年度補助經費支用原則及支用情形）</span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button
+                                        class="nav-link"
+                                        id="r3-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#r3-tab-pane"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="r3-tab-pane"
+                                        aria-selected="false"
+                                    >
+                                        <span class="serial"></span>
+                                        <span class="hide">Contact</span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <div class="nav-link">
+                                        <span class="serial"></span>
+                                        <span class="hide">Contact</span>
+                                    </div>
+                                    <ul class="nav-sub menu-item">
+                                        <li class="nav-item" role="presentation">
+                                            <button
+                                                class="nav-link"
+                                                id="r4-tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#r4-tab-pane"
+                                                type="button"
+                                                role="tab"
+                                                aria-controls="r4-tab-pane"
+                                                aria-selected="false"
+                                            >
+                                                <span class="serial"></span>
+                                                <span class="hide">Disabled</span>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button
+                                                class="nav-link"
+                                                id="r5-tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#r5-tab-pane"
+                                                type="button"
+                                                role="tab"
+                                                aria-controls="r5-tab-pane"
+                                                aria-selected="false"
+                                            >
+                                                <span class="serial"></span>
+                                                <span class="hide">Disabled</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </aside>
+
+                        <!-- 區塊需要前端套編輯器，新增、刪除、拖曳排序功能交由前端統一處理 -->
+                        <main class="plan-edit-main">
+                            <div class="tab-content" id="planTabContent">
+                                <div class="tab-pane fade show active" id="r1-tab-pane" role="tabpanel" aria-labelledby="r1-tab" tabindex="0">
+                                    <h5 class="pane-title">(一) 校內審查機制（包括校內計畫案、選送學生甄選基準、計畫主持人甄選學生作業方式等相關資訊之揭露、分配各計畫案經費之準則、本年選送原住民學生及新住民（臺灣地區人民之配偶為外國人、無國籍人、大陸地區人民及香港、澳門居民）子女人數；遴選他校學生參與，須提出相關甄選基準及甄選學生作業方式）</h5>
+                                    <div class="editor-wrapper">
+                                        <h5>校內計畫案甄選基準：</h5>
+                                        <ol>
+                                            <li>計畫主持人須為本校專任教師，且具備相關領域專業知識與經驗。</li>
+                                            <li>計畫內容須符合補助計畫的宗旨與目標，並具備創新性與可行性。</li>
+                                            <li>計畫主持人須提出明確的學生甄選基準，包括學業成績、語言能力、相關經驗等。</li>
+                                            <li>計畫主持人須說明學生甄選作業方式，包括公告、報名、面試等程序。</li>
+                                            <li>計畫主持人須說明分配各計畫案經費的準則，確保資源合理分配。</li>
+                                            <li>本年選送原住民學生及新住民子女人數須符合教育部相關規定，並優先考慮弱勢學生。</li>
+                                            <li>如遴選他校學生參與，須提出相關甄選基準及甄選學生作業方式，確保公平公正。</li>
+                                        </ol>
+                                        <h5>計畫主持人安排學生赴國外實習輔導機制：</h5>
+                                        <p>計畫主持人須建立完善的學生赴國外實習輔導機制，包括但不限於以下措施：</p>
+                                        <ol>
+                                            <li>提供學生赴國外實習前的說明會，介紹實習機構、實習內容、注意事項等。</li>
+                                            <li>指派專人負責學生赴國外實習的聯絡與協調，確保學生在實習期間得到適當的支持與協助。</li>
+                                            <li>建立學生赴國外實習的反饋機制，收集學生的實習經驗與建議，以持續改進輔導機制。</li>
+                                        </ol>
+                                        <h5>前一年度補助經費支用原則及支用情形：</h5>
+                                        <p>計畫主持人須說明前一年度補助經費的支用原則，包括但不限於以下內容：</p>
+                                        <ol>
+                                            <li>補助經費應依照計畫核定的預算項目進行支用，並遵守相關財務規定。</li>
+                                            <li>計畫主持人須定期檢視經費使用情形，確保經費使用的合理性與合規性。</li>
+                                            <li>如有經費調整需求，計畫主持人須提出申請並獲得教育部的批准後方可執行。</li>
+                                            <li>計畫主持人須在計畫結束後提交經費使用報告，詳細說明經費的支用情形與成效。</li>
+                                        </ol>
+                                        <p><%= lorem_paragraphs(20) %></p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="r2-tab-pane" role="tabpanel" aria-labelledby="r2-tab" tabindex="0">
+                                    <h5 class="pane-title">(二) 補助計畫整體配套措施（包括建立與國外實習機構之實習合作機制、計畫主持人安排學生赴國外實習輔導機制、前一年度補助經費支用原則及支用情形）</h5>
+                                </div>
+                                <div class="tab-pane fade" id="r3-tab-pane" role="tabpanel" aria-labelledby="r3-tab" tabindex="0">
+                                    <h5 class="pane-title">(三) 執行本計畫之推廣及鼓勵措施</h5>
+                                </div>
+                                <div class="tab-pane fade" id="r4-tab-pane" role="tabpanel" aria-labelledby="r4-tab" tabindex="0">
+                                    <h5 class="pane-title">(四) 執行本計畫之推廣及鼓勵措施</h5>
+                                    <h6 class="sub-title">鼓勵學生出國研修措施（如評選及獎勵優良心得報告）</h6>
+                                    <p><%= lorem_paragraphs(20) %></p>
+                                </div>
+                                <div class="tab-pane fade" id="r5-tab-pane" role="tabpanel" aria-labelledby="r5-tab" tabindex="0">
+                                    R5
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<script>
+(function () {
+    // ----- 拖曳 / 點擊上傳 -----
+    (function () {
+        var $wrapper = $('#dragFileWrapper');
+        var $dropZone = $('#dropZone');
+        var $fileInput = $('#fileInput');
+        var $fileList = $('#fileList');
+        var files = [];
+
+        function formatSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        function getFileIcon(name) {
+            var ext = name.split('.').pop().toLowerCase();
+            var map = {
+                pdf: 'fa-file-pdf', doc: 'fa-file-word', docx: 'fa-file-word',
+                xls: 'fa-file-excel', xlsx: 'fa-file-excel',
+                ppt: 'fa-file-powerpoint', pptx: 'fa-file-powerpoint',
+                png: 'fa-file-image', jpg: 'fa-file-image', jpeg: 'fa-file-image', gif: 'fa-file-image',
+                zip: 'fa-file-archive', rar: 'fa-file-archive'
+            };
+            return 'far ' + (map[ext] || 'fa-file');
+        }
+
+        function renderFileList() {
+            $fileList.empty();
+            files.forEach(function (file, idx) {
+                var $li = $('<li class="file-item"></li>');
+                $li.append('<span class="file-icon"><i class="' + getFileIcon(file.name) + '"></i></span>');
+                $li.append('<span class="file-name" title="' + $('<span>').text(file.name).html() + '">' + $('<span>').text(file.name).html() + '</span>');
+                $li.append('<span class="file-size">' + formatSize(file.size) + '</span>');
+                var $del = $('<button type="button" class="btn btn-sm btn-light file-delete" title="刪除"><i class="far fa-trash-alt"></i></button>');
+                $del.on('click', function () {
+                    files.splice(idx, 1);
+                    renderFileList();
+                });
+                $li.append($del);
+                $fileList.append($li);
+            });
+        }
+
+        function addFiles(newFiles) {
+            var rejected = [];
+            Array.prototype.forEach.call(newFiles, function (f) {
+                if (f.type !== 'application/pdf' && !f.name.toLowerCase().endsWith('.pdf')) {
+                    rejected.push(f.name);
+                    return;
+                }
+                if (!files.some(function (existing) { return existing.name === f.name && existing.size === f.size; })) {
+                    files.push(f);
+                }
+            });
+            if (rejected.length) {
+                alert('以下檔案非 PDF，已略過：\n' + rejected.join('\n'));
+            }
+            renderFileList();
+        }
+
+        $dropZone.on('click', function () { $fileInput.trigger('click'); });
+
+        $fileInput.on('change', function () {
+            if (this.files && this.files.length) {
+                addFiles(this.files);
+                this.value = '';
+            }
+        });
+
+        $dropZone.on('dragover dragenter', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $dropZone.addClass('is-dragover');
+        });
+
+        $dropZone.on('dragleave dragend', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $dropZone.removeClass('is-dragover');
+        });
+
+        $dropZone.on('drop', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $dropZone.removeClass('is-dragover');
+            var dt = e.originalEvent.dataTransfer;
+            if (dt && dt.files && dt.files.length) {
+                addFiles(dt.files);
+            }
+        });
+    })();
+
+    // ----- 編號 -----
+    function buildSerials(navId) {
+        var topCounter = 0;
+        $(navId + ' > .nav-item').each(function () {
+            topCounter++;
+            var $topSerial = $(this).children('.nav-link, div.nav-link').first().find('> .serial');
+            $topSerial.text(topCounter);
+
+            var $sub = $(this).children('.nav-sub');
+            if ($sub.length) {
+                var subCounter = 0;
+                $sub.find('> .nav-item').each(function () {
+                    subCounter++;
+                    $(this).find('> button.nav-link > .serial, > .nav-link > .serial').first().text(topCounter + '.' + subCounter);
+                });
+            }
+        });
+    }
+    buildSerials('#planTab');
+    buildSerials('#previewPlanTab');
+})();
+</script>
+<% end %>
+

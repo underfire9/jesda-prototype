@@ -151,6 +151,11 @@ body {
 		padding: 0;
 		margin-bottom: calc(1.5rem + .5vw);
 	}
+	&.important-notice {
+		background: #fff;
+		border: 1px solid #f5c2c2;
+		color: #d64242;
+	}
 	.custom-list {
 		li {
 			margin-bottom: .25rem;
@@ -690,6 +695,11 @@ header.header {
 	}
 }
 
+.military-title {
+	margin-bottom: 1.5rem;
+	font-weight: 500;
+}
+
 /* `Dashboard
 -----------------------------------------------------------------------------*/
 
@@ -1132,6 +1142,26 @@ main.main {
 			}
 			&::after {
 				@extend %pending-icon;
+			}
+		}
+		&.disabled {
+			border: 1px solid #e5e5e5;
+			h6, .issue-period, .info-content span {
+				color: #aaa;
+			}
+			&::before {
+				background: transparent;
+			}
+			&::after {
+				border-radius: 50%;
+				border: 1px solid #e9e9e9;
+				background: none;
+				width: 44px;
+				height: 44px;
+			}
+			&:hover, &:active, &:focus {
+				box-shadow: none;
+				transform: none;
 			}
 		}
 	}
@@ -2358,6 +2388,21 @@ main.main {
 			}
 			&::after {
 				background-color: $main_color;
+			}
+		}
+		&.disabled {
+			color: #b8b7bc;
+			cursor: default;
+			&::before {
+				background: transparent;
+				border: 1px solid #e5e5e5;
+			}
+			&::after {
+				background-color: transparent;
+			}
+			&:hover, &:active, &:focus {
+				border: 1px dashed #ddd;
+				color: #b8b7bc;
 			}
 		}
 		&.approved {

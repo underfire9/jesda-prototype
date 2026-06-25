@@ -1,0 +1,907 @@
+<!-- admin-page: Skill / DataTables -->
+<%= render :partial => "/partials/admin_breadcrumb" %>
+<% content_for :page_styles do %>
+    <link rel="stylesheet" href="../stylesheets/skill-template.css">
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.3.8/af-2.7.1/b-3.2.6/b-colvis-3.2.6/cr-2.1.2/cc-1.2.1/date-1.6.3/fh-4.0.6/r-3.0.8/sc-2.4.3/datatables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css">
+<% end %>
+
+<main class="main">
+    <div class="medium-container">
+        <div class="page-header">
+            <h2>DataTables</h2>
+        </div>
+        <div class="datatables-wrapper">
+            <div class="datatables-toolbar">
+                <div class="toolbar-inner">
+                    <div class="toolbar-inner-start">
+                        <h5 class="mb-0 fw-bold"><i class="bi bi-person-lines-fill text-secondary me-2"></i> 聯絡人</h5>
+                    </div>
+                    <div class="toolbar-inner-end">
+                        <div class="toolbar-search"></div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-sm">
+                                <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="批次寄送"><i class="bi bi-envelope"></i></span>
+                            </button>
+                            <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#multiSortModal">
+                                <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="多重排序"><i class="bi bi-sort-down"></i></span>
+                            </button>
+                            <button class="btn btn-secondary btn-sm">
+                                <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="設定欄位"><i class="bi bi-table"></i></span>
+                            </button>
+                            <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#outboundModal">
+                                <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="匯出 Excel"><i class="bi bi-file-earmark-excel"></i></span>
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="新增聯絡人">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <button class="btn btn-white btn-sm btn-icon" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="重新整理">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                        <div class="theme-dropdown">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-sm btn-theme dropdown-toggle no-after" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="切換風格"><i class="bi bi-palette-fill"></i></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                                    <li>
+                                        <div class="form-check form-check-theme">
+                                            <input class="form-check-input" type="radio" name="tableTheme" id="themeDefault" checked>
+                                            <label class="form-check-label" for="themeDefault">
+                                                Light Blue
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check form-check-theme">
+                                            <input class="form-check-input" type="radio" name="tableTheme" id="themeTwo">
+                                            <label class="form-check-label" for="themeTwo">
+                                                Style Two
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check form-check-theme">
+                                            <input class="form-check-input" type="radio" name="tableTheme" id="themeThree">
+                                            <label class="form-check-label" for="themeThree">
+                                                Style Three
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-check form-switch mb-0" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="切換表格尺寸">
+                                <input class="form-check-input" type="checkbox" role="switch" id="switchTableSize">
+                                <label class="form-check-label" for="switchTableSize"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field-setting-panel"></div>
+            </div>
+            <div class="datatables-content">
+                <% customers = ["教育部", "內政部", "衛生福利部", "臺北市政府", "國立臺灣大學", "國立政治大學", "國立清華大學", "國立陽明交通大學", "國立成功大學", "國立中興大學"] %>
+                <% units = ["招生組", "註冊組", "教務處", "人事室", "資訊中心", "國際事務處", "學務處", "總務處", "秘書室", "研究發展處"] %>
+                <% titles = ["專員", "組員", "副組長", "組長", "資深工程師", "行政助理", "計畫助理", "助理管理師"] %>
+                <% statuses = ["升遷", "在職", "離職", "通緝"] %>
+                <% account_states = ["已啟用", "已認證", "未啟用", "已刪除"] %>
+                <table id="staffTable" class="table table-hover align-middle w-100">
+                    <thead class="bg-info-subtle">
+                        <tr>
+                            <th width="44">
+                                <input type="checkbox" class="form-check-input" id="selectAllRows" title="全選">
+                            </th>
+                            <th>姓名</th>
+                            <th>客戶 / 所屬單位</th>
+                            <th>職稱</th>
+                            <th>email</th>
+                            <th>電話 / 手機</th>
+                            <th>Line ID</th>
+                            <th>狀態</th>
+                            <th>帳號</th>
+                            <th width="96">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..32).map do |i| %>
+                            <% name_zh  = zh_lorem_name %>
+                            <% name_en  = lorem_name %>
+                            <% customer = customers[(i - 1) % customers.length] %>
+                            <% unit     = units[(i - 1) % units.length] %>
+                            <% title    = titles[(i - 1) % titles.length] %>
+                            <% status   = statuses[(i - 1) % statuses.length] %>
+                            <% account  = account_states[(i - 1) % account_states.length] %>
+                            <% status_class = {
+                                "升遷" => "status-primary",
+                                "在職" => "status-success",
+                                "離職" => "status-warning",
+                                "通緝" => "status-danger"
+                            }[status] %>
+                            <% account_class = {
+                                "已啟用" => "pill-primary",
+                                "已認證" => "pill-success",
+                                "未啟用" => "pill-warning",
+                                "已刪除" => "pill-danger"
+                            }[account] %>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check" title="勾選本列"></td>
+                                <td data-order="<%= name_zh %>">
+                                    <div class="fw-bold"><%= name_zh %></div>
+                                    <div class="fs-8 text-secondary"><%= name_en %></div>
+                                </td>
+                                <td data-order="<%= customer %>">
+                                    <div class="fw-bold"><%= customer %></div>
+                                    <div class="fs-8 text-secondary"><%= unit %></div>
+                                </td>
+                                <td><%= title %></td>
+                                <td>user<%= i %>@example.org.tw</td>
+                                <td>
+                                    <div class="fs-7 fw-semibold">02-2<%= format('%07d', i) %></div>
+                                    <div class="fs-7 text-secondary">09<%= format('%08d', 10000000 + i) %></div>
+                                </td>
+                                <td>line_<%= format('%04d', i) %></td>
+                                <td data-order="<%= status %>">
+                                    <div class="status-inline <%= status_class %>"><%= status %></div>
+                                </td>
+                                <td>
+                                    <div class="pill-inline <%= account_class %>"><%= account %></div>
+                                </td>
+                                <td>
+                                    <div class="action-group">
+                                        <button type="button" class="btn btn-sm btn-transparent" title="編輯">
+                                            <i class="bi bi-pen"></i>
+                                        </button>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-sm btn-transparent dropdown-toggle no-after" data-bs-toggle="dropdown" aria-expanded="false" title="更多操作">
+                                                <i class="bi bi-three-dots"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><button type="button" class="dropdown-item" title="檢視"><i class="bi bi-eye me-2"></i>檢視</button></li>
+                                                <li><button type="button" class="dropdown-item" title="停用帳號"><i class="bi bi-person-x me-2"></i>停用帳號</button></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><button type="button" class="dropdown-item text-danger" title="刪除"><i class="bi bi-trash me-2"></i>刪除</button></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="datatables-footer">
+                <div class="ft-start"></div>
+                <div class="ft-end"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- 匯出 Modal -->
+<div
+    class="modal fade"
+    id="outboundModal"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="outboundModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-datatable modal-datatable-medium">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <!-- modal-title 下方有簡短說明時才多包一層 div -->
+                <div>
+                    <h1 class="modal-title fs-5 fw-bold" id="outboundModalLabel"><i class="bi bi-file-earmark-excel text-success me-1"></i> 匯出 Excel</h1>
+                    <div class="outbound-note">選擇匯出欄位、調整順序，並可儲存為常用匯出範本</div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="outbound-wrapper">
+                    <div class="outbound-toolbar">
+                        <div class="start-group">
+                            <div class="btn-group">
+                                <button type="button" id="outboundSelectAll" class="btn btn-sm btn-secondary"><i class="far fa-check-square"></i> 全選</button>
+                                <button type="button" id="outboundDeselectAll" class="btn btn-sm btn-secondary"><i class="far fa-square"></i> 取消</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" id="outboundSaveTemplate" class="btn btn-sm btn-outline-white" data-bs-target="#outboundSaveToggle" data-bs-toggle="modal"><i class="far fa-save"></i> 儲存範本</button>
+                                <button type="button" id="outboundSelectTemplate" class="btn btn-sm btn-outline-white" data-bs-target="#outboundChooseToggle" data-bs-toggle="modal"><i class="far fa-check-circle"></i> 選擇範本</button>
+                            </div>
+                        </div>
+                        <div class="end-group">
+                            <button type="button" class="btn btn-sm btn-primary px-4">匯出 <i class="fas fa-share ms-2"></i></button>
+                        </div>
+                    </div>
+                    <div class="wrapper-inner">
+                        <div class="data-list">
+                            <h5>欄位清單</h5>
+                            <ul class="outbound-menu menu-item">
+                                <% (1..20).map do |i| %>
+                                <li class="data-item">
+                                    <span class="item-number"></span>
+                                    <span class="item-title"><%= lorem_words(4) %></span>
+                                    <button class="btn btn-light"></button>
+                                </li>
+                                <% end %>
+                            </ul>
+                        </div>
+                        <div class="outbound-list">
+                            <h5>匯出欄位</h5>
+                            <ul class="outbound-menu menu-item">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 匯出 / 儲存範本 Modal -->
+<div
+    class="modal fade"
+    id="outboundSaveToggle"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    aria-hidden="true"
+    aria-labelledby="outboundSaveToggleLabel"
+    tabindex="-1"
+>
+    <div class="modal-dialog modal-datatable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="outboundSaveToggleLabel">儲存範本</h1>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="text" class="form-control" id="templateName" placeholder="請輸入範本名稱">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-target="#outboundModal" data-bs-toggle="modal">
+                    取消
+                </button>
+                <button type="submit" class="btn btn-primary" data-bs-target="#outboundModal" data-bs-toggle="modal">
+                    儲存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 匯出 / 選擇範本 Modal -->
+<div
+    class="modal fade"
+    id="outboundChooseToggle"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    aria-hidden="true"
+    aria-labelledby="outboundChooseToggleLabel"
+    tabindex="-1"
+>
+    <div class="modal-dialog modal-datatable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="outboundChooseToggleLabel">選擇範本</h1>
+            </div>
+            <div class="modal-body">
+                <ul class="menu-item outbound-template-list">
+                    <% (1..6).map do |i| %>
+                    <li class="template-item">
+                        <span>
+                            <button type="button" class="btn btn-choose" data-bs-target="#outboundModal" data-bs-toggle="modal" title="選擇範本"><i class="fas fa-check"></i></button>
+                        </span>
+                        <span>
+                            <button type="button" class="btn btn-delete" data-bs-target="#outboundDeleteToggle" data-bs-toggle="modal" title="刪除範本"><i class="far fa-trash-alt"></i></button>
+                        </span>
+                        <span class="template-name"><%= lorem_words(2) %></span>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-target="#outboundModal" data-bs-toggle="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 匯出 / 刪除範本 Modal -->
+<div
+    class="modal fade"
+    id="outboundDeleteToggle"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    aria-hidden="true"
+    aria-labelledby="outboundDeleteToggleLabel"
+    tabindex="-1"
+>
+    <div class="modal-dialog modal-datatable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="outboundDeleteToggleLabel">確定刪除範本嗎?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-target="#outboundChooseToggle" data-bs-toggle="modal">取消</button>
+                <button type="submit" class="btn btn-danger" data-bs-target="#outboundChooseToggle" data-bs-toggle="modal">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 多重排序 Modal -->
+<div
+    class="modal fade"
+    id="multiSortModal"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    aria-hidden="true"
+    aria-labelledby="multiSortModalLabel"
+    tabindex="-1"
+>
+    <div class="modal-dialog modal-datatable modal-datatable-medium">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <!-- modal-title 下方有簡短說明時才多包一層 div -->
+                <div>
+                    <h1 class="modal-title fs-5" id="multiSortModalLabel"><i class="bi bi-sort-down text-primary me-2"></i> 多重排序</h1>
+                    <div class="outbound-note">依照優先順序設定多個排序條件，適合 1000 筆以上聯絡人清單快速整理</div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="multi_sort-wrapper">
+                    <div class="multi_sort-note"><i class="bi bi-info-circle me-1"></i>多重排序會套用於目前篩選結果與 Excel 匯出</div>
+                    <section class="modal-section">
+                        <div class="section-hd">
+                            <h5>目前排序條件</h5>
+                            <span>
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-target="#multiSortAddToggle" data-bs-toggle="modal"><i class="bi bi-plus-lg"></i> 新增排序條件</button>
+                            </span>
+                        </div>
+                        <div class="datatable-sort-list">
+                            <div class="item-sort empty-state">未設定排序條件系統會使用預設排序</div>
+                            <div class="sort-list-inner">
+                                <div class="item-sort">
+                                    <div class="item-field item-number">1</div>
+                                    <div class="item-field item-delete">
+                                        <button type="button" class="btn btn-sm btn-trash" title="刪除"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                    <div class="item-field item-long">
+                                        <select class="form-select form-select-sm">
+                                            <option selected>排序欄位</option>
+                                            <option value="name">客戶名稱</option>
+                                            <option value="unit">所屬單位</option>
+                                            <option value="customer">姓名</option>
+                                            <option value="title">職稱</option>
+                                            <option value="email">email</option>
+                                            <option value="leave">在職狀態</option>
+                                            <option value="account">帳號狀態</option>
+                                            <option value="line">Line ID</option>
+                                            <option value="phone">電話</option>
+                                        </select>
+                                    </div>
+                                    <div class="item-field">
+                                        <select class="form-select form-select-sm">
+                                            <option selected>方向</option>
+                                            <option value="asc">遞增 A → Z</option>
+                                            <option value="desc">遞減 Z → A</option>
+                                        </select>
+                                    </div>
+                                    <div class="item-field">
+                                        <select class="form-select form-select-sm">
+                                            <option selected>空值</option>
+                                            <option value="asc">排最前</option>
+                                            <option value="desc">排最後</option>
+                                        </select>
+                                    </div>
+                                    <div class="item-field">
+                                        <button type="button" class="btn btn-sm btn-move" title="排序上移" disabled><i class="bi-arrow-up"></i></button>
+                                        <button type="button" class="btn btn-sm btn-move" title="排序下移"><i class="bi-arrow-down"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item-sort">
+                                    <div class="item-field item-number">2</div>
+                                    <div class="item-field item-delete">
+                                        <button type="button" class="btn btn-sm btn-trash" title="刪除"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                    <div class="item-field item-long">
+                                        <select class="form-select form-select-sm">
+                                            <option selected>排序欄位</option>
+                                            <option value="name">客戶名稱</option>
+                                            <option value="unit">所屬單位</option>
+                                            <option value="customer">姓名</option>
+                                            <option value="title">職稱</option>
+                                            <option value="email">email</option>
+                                            <option value="leave">在職狀態</option>
+                                            <option value="account">帳號狀態</option>
+                                            <option value="line">Line ID</option>
+                                            <option value="phone">電話</option>
+                                        </select>
+                                    </div>
+                                    <div class="item-field">
+                                        <select class="form-select form-select-sm">
+                                            <option selected>方向</option>
+                                            <option value="asc">遞增 A → Z</option>
+                                            <option value="desc">遞減 Z → A</option>
+                                        </select>
+                                    </div>
+                                    <div class="item-field">
+                                        <select class="form-select form-select-sm">
+                                            <option selected>空值</option>
+                                            <option value="asc">排最前</option>
+                                            <option value="desc">排最後</option>
+                                        </select>
+                                    </div>
+                                    <div class="item-field">
+                                        <button type="button" class="btn btn-sm btn-move" title="排序上移"><i class="bi-arrow-up"></i></button>
+                                        <button type="button" class="btn btn-sm btn-move" title="排序下移"><i class="bi-arrow-down"></i></button>
+                                    </div>
+                                </div>
+                                <div class="item-sort">
+                                    <div class="item-field item-number">3</div>
+                                    <div class="item-field item-delete">
+                                        <button type="button" class="btn btn-sm btn-trash" title="刪除"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                    <div class="item-field item-long">
+                                        <select class="form-select form-select-sm">
+                                            <option selected>排序欄位</option>
+                                            <option value="name">客戶名稱</option>
+                                            <option value="unit">所屬單位</option>
+                                            <option value="customer">姓名</option>
+                                            <option value="title">職稱</option>
+                                            <option value="email">email</option>
+                                            <option value="leave">在職狀態</option>
+                                            <option value="account">帳號狀態</option>
+                                            <option value="line">Line ID</option>
+                                            <option value="phone">電話</option>
+                                        </select>
+                                    </div>
+                                    <div class="item-field">
+                                        <select class="form-select form-select-sm">
+                                            <option selected>方向</option>
+                                            <option value="asc">遞增 A → Z</option>
+                                            <option value="desc">遞減 Z → A</option>
+                                        </select>
+                                    </div>
+                                    <div class="item-field">
+                                        <select class="form-select form-select-sm">
+                                            <option selected>空值</option>
+                                            <option value="asc">排最前</option>
+                                            <option value="desc">排最後</option>
+                                        </select>
+                                    </div>
+                                    <div class="item-field">
+                                        <button type="button" class="btn btn-sm btn-move" title="排序上移"><i class="bi-arrow-up"></i></button>
+                                        <button type="button" class="btn btn-sm btn-move" title="排序下移" disabled><i class="bi-arrow-down"></i></button>
+                                    </div>
+                                </div>
+                                <div class="multi_sort-control">
+                                    <button class="btn btn-sm btn-transparent" id="btnClearSort"><i class="bi bi-x"></i> 清除排序</button>
+                                    <button class="btn btn-sm btn-light" id="btnSaveDefaultSort">儲存為預設排序</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="modal-section">
+                        <div class="section-hd">
+                            <h5>排序摘要</h5>
+                        </div>
+                        <div class="sort-summary">
+                            <ul class="sort-summary-list menu-item">
+                                <li class="summary-item">
+                                    <span class="summary-number">1</span>
+                                    <span class="summary-column">所屬單位</span>
+                                    <span class="summary-order">遞增 A → Z1</span>
+                                </li>
+                                <li class="summary-item">
+                                    <span class="summary-number">2</span>
+                                    <span class="summary-column">在職狀態</span>
+                                    <span class="summary-order">離職優先</span>
+                                </li>
+                                <li class="summary-item">
+                                    <span class="summary-number">3</span>
+                                    <span class="summary-column">姓名</span>
+                                    <span class="summary-order">遞減 Z → A</span>
+                                </li>
+                            </ul>
+                            <div class="form-text">套用後列表表頭會顯示排序順位標籤，後端查詢可轉為 ORDER BY customer_unit ASC, leave DESC。</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-target="#multiSortModal" data-bs-toggle="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Hoisting -->
+<script>
+    (function () {
+        function hoistModalsToBody() {
+            var modals = document.querySelectorAll('.content-wrapper .modal');
+            Array.prototype.forEach.call(modals, function (modalEl) {
+                if (modalEl.parentNode !== document.body) {
+                    document.body.appendChild(modalEl);
+                }
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', hoistModalsToBody);
+        } else {
+            hoistModalsToBody();
+        }
+    }());
+</script>
+
+<!-- DataTables -->
+<script>
+    (function () {
+        if (window.__staffTableBooted) {
+            return;
+        }
+        window.__staffTableBooted = true;
+
+        function ensureDataTables(done) {
+            var hasJqDt = !!(window.jQuery && jQuery.fn && jQuery.fn.DataTable);
+            var hasDt2 = typeof DataTable !== 'undefined';
+            if (hasJqDt || hasDt2) {
+                done();
+                return;
+            }
+
+            var script = document.createElement('script');
+            script.src = 'https://cdn.datatables.net/v/bs5/dt-2.3.8/datatables.min.js';
+            script.onload = function () {
+                done();
+            };
+            script.onerror = function () {};
+            document.head.appendChild(script);
+        }
+
+        function initStaffTable() {
+            var tableEl = document.getElementById('staffTable');
+            if (!tableEl) {
+                return;
+            }
+
+            var options = {
+                pageLength: 15,
+                lengthMenu: [10, 15, 30, 50, 100],
+                order: [[1, 'asc']],
+                columnDefs: [
+                    { targets: [0, 3, 4, 5, 6, 8, 9], orderable: false }
+                ],
+                language: {
+                    search: '搜尋：',
+                    lengthMenu: '<span>每頁</span> _MENU_ <span>筆</span>',
+                    info: '顯示 _START_ - _END_，共 _TOTAL_ 筆',
+                    infoEmpty: '顯示 0 - 0，共 0 筆',
+                    paginate: {
+                        previous: '上一頁',
+                        next: '下一頁'
+                    }
+                },
+                layout: {
+                    topStart: 'search',
+                    topEnd: null,
+                    bottomStart: ['pageLength', 'info'],
+                    bottomEnd: 'paging'
+                }
+            };
+
+            var dt;
+            if (window.jQuery && jQuery.fn && jQuery.fn.DataTable) {
+                dt = jQuery('#staffTable').DataTable(options);
+            } else if (typeof DataTable !== 'undefined') {
+                dt = new DataTable('#staffTable', options);
+            } else {
+                return;
+            }
+
+            var wrapper = dt.table ? dt.table().container() : tableEl.closest('.dataTables_wrapper, .dt-container');
+            var toolbar = document.querySelector('.datatables-toolbar');
+            var ftStart = document.querySelector('.datatables-footer .ft-start');
+            var ftEnd = document.querySelector('.datatables-footer .ft-end');
+
+            function cleanupEmptyDtLayout(container) {
+                if (!container) return;
+
+                var shells = container.querySelectorAll('.dt-layout-start, .dt-layout-end');
+                Array.prototype.forEach.call(shells, function (shell) {
+                    if (!shell.children.length && !shell.textContent.trim()) {
+                        shell.remove();
+                    }
+                });
+
+                var rows = container.querySelectorAll('.dt-layout-row, .row.mt-2.justify-content-between');
+                Array.prototype.forEach.call(rows, function (row) {
+                    if (!row.children.length && !row.textContent.trim()) {
+                        row.remove();
+                    }
+                });
+            }
+
+            if (wrapper && toolbar) {
+                var search = wrapper.querySelector('.dt-search, .dataTables_filter');
+                var toolbarSearch = toolbar.querySelector('.toolbar-search');
+                if (search && toolbarSearch) {
+                    toolbarSearch.appendChild(search);
+                } else if (search) {
+                    toolbar.appendChild(search);
+                }
+
+                var searchInput = search ? search.querySelector('input[type="search"], input') : null;
+                if (searchInput) {
+                    searchInput.setAttribute('placeholder', '關鍵字搜尋');
+                }
+            }
+            if (wrapper && ftStart) {
+                var length = wrapper.querySelector('.dt-length, .dataTables_length');
+                var info = wrapper.querySelector('.dt-info, .dataTables_info');
+                if (length) ftStart.appendChild(length);
+                if (info) ftStart.appendChild(info);
+            }
+            if (wrapper && ftEnd) {
+                var paging = wrapper.querySelector('.dt-paging, .dataTables_paginate');
+                if (paging) {
+                    ftEnd.appendChild(paging);
+                }
+            }
+
+            function getPageInfo() {
+                if (dt && typeof dt.page === 'function' && typeof dt.page.info === 'function') {
+                    return dt.page.info();
+                }
+                return null;
+            }
+
+            function ensurePageInputNavigation() {
+                if (!ftEnd) return;
+
+                var exists = ftEnd.querySelector('.dt-page-nav');
+                if (exists) return;
+
+                var nav = document.createElement('div');
+                nav.className = 'dt-page-nav';
+                nav.innerHTML = '' +
+                    '<input type="text" class="form-control dt-page-input" inputmode="numeric" placeholder="前往" aria-label="頁碼輸入">' +
+                    '<span class="dt-page-unit">頁</span>';
+
+                ftEnd.appendChild(nav);
+
+                var pageInput = nav.querySelector('.dt-page-input');
+
+                function syncPageInputNavigation() {
+                    var info = getPageInfo();
+                    var totalPages = info && info.pages ? info.pages : 1;
+                    pageInput.dataset.maxPage = String(totalPages);
+                }
+
+                function jumpToPage() {
+                    var info = getPageInfo();
+                    if (!info || !info.pages) return;
+                    var target = parseInt(pageInput.value, 10);
+                    if (isNaN(target)) return;
+
+                    target = Math.max(1, Math.min(info.pages, target));
+                    pageInput.value = String(target);
+                    dt.page(target - 1).draw('page');
+                }
+
+                pageInput.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        jumpToPage();
+                    }
+                });
+
+                pageInput.addEventListener('blur', function () {
+                    if (!pageInput.value.trim()) {
+                        syncPageInputNavigation();
+                    }
+                });
+
+                syncPageInputNavigation();
+            }
+
+            function applyPaginationSizeClass() {
+                var pagerList = ftEnd ? ftEnd.querySelector('ul.pagination') : null;
+                var sizeSwitch = document.getElementById('switchTableSize');
+                if (!pagerList) return;
+                pagerList.classList.toggle('pagination-sm', !!(sizeSwitch && sizeSwitch.checked));
+            }
+
+            function applyLengthSelectSizeClass() {
+                var sizeSwitch = document.getElementById('switchTableSize');
+                var lengthSelect = ftStart
+                    ? ftStart.querySelector('select#dt-length-0, .dt-length select, .dataTables_length select')
+                    : null;
+                if (!lengthSelect) return;
+                lengthSelect.classList.toggle('form-select-sm', !!(sizeSwitch && sizeSwitch.checked));
+            }
+
+            function applyPageInputSizeClass() {
+                var sizeSwitch = document.getElementById('switchTableSize');
+                var pageInput = ftEnd ? ftEnd.querySelector('.dt-page-input') : null;
+                if (!pageInput) return;
+                pageInput.classList.toggle('form-control-sm', !!(sizeSwitch && sizeSwitch.checked));
+            }
+
+            ensurePageInputNavigation();
+            applyPaginationSizeClass();
+            applyLengthSelectSizeClass();
+            applyPageInputSizeClass();
+
+            cleanupEmptyDtLayout(wrapper);
+
+            var headerCheck = document.getElementById('selectAllRows');
+            function visibleChecks() {
+                return Array.prototype.slice.call(tableEl.querySelectorAll('tbody .row-check'));
+            }
+            function syncHeaderCheckbox() {
+                if (!headerCheck) return;
+                var checks = visibleChecks();
+                var total = checks.length;
+                var checked = checks.filter(function (el) { return el.checked; }).length;
+                headerCheck.checked = total > 0 && checked === total;
+                headerCheck.indeterminate = checked > 0 && checked < total;
+            }
+
+            if (headerCheck) {
+                headerCheck.addEventListener('change', function () {
+                    visibleChecks().forEach(function (el) { el.checked = headerCheck.checked; });
+                });
+            }
+
+            tableEl.addEventListener('change', function (event) {
+                if (event.target.classList.contains('row-check')) {
+                    syncHeaderCheckbox();
+                }
+            });
+
+            if (dt.on) {
+                dt.on('draw', function () {
+                    syncHeaderCheckbox();
+                    ensurePageInputNavigation();
+                    applyPaginationSizeClass();
+                    applyLengthSelectSizeClass();
+                    applyPageInputSizeClass();
+                });
+            } else if (window.jQuery) {
+                jQuery('#staffTable').on('draw.dt', function () {
+                    syncHeaderCheckbox();
+                    ensurePageInputNavigation();
+                    applyPaginationSizeClass();
+                    applyLengthSelectSizeClass();
+                    applyPageInputSizeClass();
+                });
+            }
+
+            var tableSizeSwitch = document.getElementById('switchTableSize');
+            function applyTableSizeClass() {
+                if (!tableSizeSwitch) return;
+                tableEl.classList.toggle('table-sm', !!tableSizeSwitch.checked);
+                applyPaginationSizeClass();
+                applyLengthSelectSizeClass();
+                applyPageInputSizeClass();
+            }
+            if (tableSizeSwitch) {
+                tableSizeSwitch.addEventListener('change', applyTableSizeClass);
+                applyTableSizeClass();
+            }
+
+            syncHeaderCheckbox();
+        }
+
+        function boot() {
+            ensureDataTables(initStaffTable);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', boot);
+        } else {
+            boot();
+        }
+    }());
+</script>
+
+<% content_for :js do %>
+<!-- Bootstrap Tooltips -->
+<script>
+    (function () {
+        var openModalCount = 0;
+
+        function setToolbarTooltipsEnabled(enabled) {
+            if (!window.bootstrap || !bootstrap.Tooltip) {
+                return;
+            }
+
+            var toolbarTriggers = document.querySelectorAll('.datatables-toolbar [data-bs-toggle="tooltip"]');
+            Array.prototype.forEach.call(toolbarTriggers, function (triggerEl) {
+                var instance = bootstrap.Tooltip.getInstance(triggerEl);
+                if (!instance) {
+                    return;
+                }
+
+                if (enabled) {
+                    instance.enable();
+                    return;
+                }
+
+                instance.hide();
+                instance.disable();
+            });
+        }
+
+        function hideAllTooltips() {
+            if (!window.bootstrap || !bootstrap.Tooltip) {
+                return;
+            }
+
+            var activeTooltipTriggers = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            Array.prototype.forEach.call(activeTooltipTriggers, function (triggerEl) {
+                var instance = bootstrap.Tooltip.getInstance(triggerEl);
+                if (instance) {
+                    instance.hide();
+                }
+            });
+        }
+
+        function initTooltips() {
+            if (!window.bootstrap || !bootstrap.Tooltip) {
+                return;
+            }
+
+            var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            Array.prototype.forEach.call(tooltipTriggerList, function (triggerEl) {
+                var tooltipContainer = triggerEl.closest('.modal') || document.body;
+                bootstrap.Tooltip.getOrCreateInstance(triggerEl, {
+                    container: tooltipContainer
+                });
+            });
+
+            var modalList = document.querySelectorAll('.modal');
+            Array.prototype.forEach.call(modalList, function (modalEl) {
+                modalEl.addEventListener('show.bs.modal', function () {
+                    openModalCount += 1;
+                    hideAllTooltips();
+                    setToolbarTooltipsEnabled(false);
+                });
+
+                modalEl.addEventListener('hidden.bs.modal', function () {
+                    openModalCount = Math.max(0, openModalCount - 1);
+                    hideAllTooltips();
+
+                    if (openModalCount === 0) {
+                        setToolbarTooltipsEnabled(true);
+                    }
+                });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTooltips);
+        } else {
+            initTooltips();
+        }
+    }());
+</script>
+<% end %>

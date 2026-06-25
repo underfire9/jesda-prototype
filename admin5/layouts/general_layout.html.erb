@@ -44,7 +44,7 @@
 	<%= render :partial => "/partials/admin_chat" %>
 	<%= render :partial => "/partials/admin_files" %>
 	
-    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/jquery-3.7.0.min.js"></script>
     <script src="../javascripts/popper.min.js"></script>
     <script src="../javascripts/bootstrap.bundle.js"></script>
     <script src="../javascripts/bootstrap-select.min.js"></script>
@@ -122,7 +122,7 @@
 	</script>
 	
 	<!-- Multiple Select https://multiple-select.wenzhixin.net.cn/en/ -->
-	<script src="../javascripts/multiple-select.min"></script>
+	<script src="../javascripts/multiple-select.min.js"></script>
     <script>
         $(function() {
             $('.multiple-select').multipleSelect()
@@ -143,7 +143,10 @@
                 $('#bcc_button').addClass('hidden');
             });
         } );
-        $('.modal').appendTo('body').modal('hide');
+        $('.modal').appendTo('body');
+        document.querySelectorAll('.modal').forEach(function(modalEl) {
+            bootstrap.Modal.getOrCreateInstance(modalEl).hide();
+        });
 
         // select hide/show
         $(function() {
@@ -158,14 +161,6 @@
             jQuery('.scrollbar-inner').scrollbar();
         });
 
-    </script>
-	
-	<!-- DataTables -->
-    <script src="../javascripts/datatables.min.js"></script>
-    <script>
-        $(document).ready( function () {
-            $('#jesdaDataTable').DataTable();
-        } );
     </script>
 	
     <script src="../javascripts/Chart.js"></script>
@@ -254,18 +249,29 @@
 
 		];
 
-	window.onload = function(){
-		var ctx1 = document.getElementById("canvas").getContext("2d");
-		window.myLine = new Chart(ctx1).Line(lineChartData, {
-			responsive: true
-		});
-		var ctx2 = document.getElementById("canvasbar").getContext("2d");
-		window.myBar = new Chart(ctx2).Bar(barChartData, {
-			responsive : true
-		});
-		var ctx3 = document.getElementById("chart-area").getContext("2d");
-		window.myPie = new Chart(ctx3).Pie(pieData);
-	}
+    window.onload = function(){
+        var canvasLine = document.getElementById("canvas");
+        if (canvasLine) {
+            var ctx1 = canvasLine.getContext("2d");
+            window.myLine = new Chart(ctx1).Line(lineChartData, {
+                responsive: true
+            });
+        }
+
+        var canvasBar = document.getElementById("canvasbar");
+        if (canvasBar) {
+            var ctx2 = canvasBar.getContext("2d");
+            window.myBar = new Chart(ctx2).Bar(barChartData, {
+                responsive : true
+            });
+        }
+
+        var canvasPie = document.getElementById("chart-area");
+        if (canvasPie) {
+            var ctx3 = canvasPie.getContext("2d");
+            window.myPie = new Chart(ctx3).Pie(pieData);
+        }
+    }
 
 	</script>
 
@@ -311,6 +317,10 @@
         const cropModalElement = document.getElementById('cropModal');
         const imageToCrop = document.getElementById('image-to-crop');
         const cropAndUploadBtn = document.getElementById('crop-and-upload-btn');
+
+        if (!imageInput || !imagePreviewBox || !imagePreview || !deleteBtn || !cropModalElement || !imageToCrop || !cropAndUploadBtn) {
+            return;
+        }
 
         // 初始化 Bootstrap Modal
         const cropModal = new bootstrap.Modal(cropModalElement);

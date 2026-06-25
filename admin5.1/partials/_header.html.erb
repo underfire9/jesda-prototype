@@ -1,0 +1,125 @@
+<header class="admin-header">
+    <div class="admin-header__left">
+        <!-- 桌機：收合／展開 sidebar -->
+        <button type="button" class="admin-header__btn js-sidebar-toggle d-none d-xl-inline-flex" aria-label="收合選單">
+            <span class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+
+        <!-- 小於 1199px：展開 offcanvas sidebar -->
+        <button type="button" class="admin-header__btn d-inline-flex d-xl-none" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar" aria-controls="adminSidebar" aria-label="開啟選單">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- 小於 575px 搜尋由按鈕展開-->
+        <button type="button" class="admin-header__btn header-search__btn-expand admin-header__btn-active" aria-label="開啟搜尋">
+            <i class="fas fa-search"></i>
+        </button>
+        <form class="admin-header__search" role="search" action="#" method="get">
+            <i class="fas fa-search admin-header__search-icon"></i>
+            <input type="search" name="q" class="admin-header__search-input" placeholder="搜尋…" aria-label="搜尋">
+        </form>
+    </div>
+
+    <div class="admin-header__right">
+        <div>
+            <button type="button" class="admin-header__btn admin-header__btn-active" data-bs-toggle="dropdown" aria-expanded="false" aria-label="通知" title="通知">
+                <i class="far fa-bell"></i>
+                <span class="admin-header__badge">3</span>
+            </button>
+            <ul class="dropdown-menu header-dropdown" aria-labelledby="通知下拉選單">
+                <li class="dropdown-head">
+                    <span class="head-icon"><i class="far fa-bell"></i></span>
+                    <span>通知</span>
+                </li>
+                <li>
+                    <ul class="has-row">
+                        <% (1..6).map do |i| %>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <div class="peer avatar"><img src="https://i.pravatar.cc/1<%= i %>0" alt="頭像" class="img-avatar"></div>
+                                <div class="peer peer-greed">
+                                    <div class="d-flex justify-content-between">
+                                        <p><%= lorem_name %></p>
+                                        <small>5 mins ago</small>
+                                    </div>
+                                    <span class="summary"><%= lorem_sentence %></span>
+                                </div>
+                            </a>
+                        </li>
+                        <% end %>
+                    </ul>
+                </li>
+                <li class="dropdown-foot"><div class="view-all"><a href="">查看所有通知 <i class="fa fa-angle-right"></i></a></div ></li>
+            </ul>
+        </div>
+        <div class="chat-dropdown-clip">
+            <button type="button" class="admin-header__btn admin-header__btn-active" data-bs-toggle="dropdown" aria-expanded="false" aria-label="訊息" title="訊息">
+                <i class="far fa-comment-dots"></i>
+                <span class="admin-header__badge">27</span>
+            </button>
+            <ul class="dropdown-menu header-dropdown" aria-labelledby="訊息下拉選單">
+                <li>
+                    <ul class="has-row">
+                        <% (1..3).map do |i| %>
+                        <li>
+                            <a role="button" class="dropdown-item message-item" data-bs-toggle="modal" data-bs-target="#adminChat">
+                                <div class="character">
+                                    <div class="peer avatar"><img src="https://i.pravatar.cc/<%= i %>00" alt="頭像" class="img-avatar"></div>
+                                    <div class="peer peer-greed">
+                                        <div>
+                                            <p class="name"><%= lorem_name %></p>
+                                            <small class="office">駐胡志明市辦事處僑務組</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="message-ft">
+                                    <span class="time">35 min</span>
+                                    <span class="badge rounded-pill">123</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a role="button" class="dropdown-item message-item" data-bs-toggle="modal" data-bs-target="#adminChat">
+                                <div class="character">
+                                    <div class="peer avatar"><img src="https://i.pravatar.cc/2<%= i %>0" alt="頭像" class="img-avatar"></div>
+                                    <div class="peer peer-greed">
+                                        <div>
+                                            <p class="name"><%= lorem_name %></p>
+                                            <small class="office"><%= lorem_sentence %></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="message-ft">
+                                    <span class="time">2 days</span>
+                                    <span class="badge rounded-pill">5</span>
+                                </div>
+                            </a>
+                        </li>
+                        <% end %>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="dropdown admin-header__user">
+            <button type="button" class="admin-header__user-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="admin-header__avatar">
+                    <img src="../assets/default-avatar.svg" alt="頭像" class="img-avatar">
+                </span>
+                <span class="admin-header__username d-none d-sm-inline">username</span>
+                <i class="fas fa-chevron-down admin-header__caret d-none d-sm-inline"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li class="d-sm-none"><h6 class="dropdown-header">username</h6></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-person-vcard text-body-secondary me-3"></i>個人資料</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-person-gear text-body-secondary me-3"></i>帳號設定</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-door-open text-body-secondary me-3"></i>登出</a></li>
+            </ul>
+        </div>
+    </div>
+</header>

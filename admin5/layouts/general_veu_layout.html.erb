@@ -44,7 +44,7 @@
 	<%= render :partial => "/partials/admin_chat" %>
 	<%= render :partial => "/partials/admin_files" %>
 	
-    <script src="../javascripts/jquery-3.4.1.min.js"></script>
+    <script src="../javascripts/jquery-3.7.0.min.js"></script>
     <script src="../javascripts/popper.min.js"></script>
 
         <!-- import Vue before Element -->
@@ -255,18 +255,29 @@
 
 		];
 
-	window.onload = function(){
-		var ctx1 = document.getElementById("canvas").getContext("2d");
-		window.myLine = new Chart(ctx1).Line(lineChartData, {
-			responsive: true
-		});
-		var ctx2 = document.getElementById("canvasbar").getContext("2d");
-		window.myBar = new Chart(ctx2).Bar(barChartData, {
-			responsive : true
-		});
-		var ctx3 = document.getElementById("chart-area").getContext("2d");
-		window.myPie = new Chart(ctx3).Pie(pieData);
-	}
+    window.onload = function(){
+        var canvasLine = document.getElementById("canvas");
+        if (canvasLine) {
+            var ctx1 = canvasLine.getContext("2d");
+            window.myLine = new Chart(ctx1).Line(lineChartData, {
+                responsive: true
+            });
+        }
+
+        var canvasBar = document.getElementById("canvasbar");
+        if (canvasBar) {
+            var ctx2 = canvasBar.getContext("2d");
+            window.myBar = new Chart(ctx2).Bar(barChartData, {
+                responsive : true
+            });
+        }
+
+        var canvasPie = document.getElementById("chart-area");
+        if (canvasPie) {
+            var ctx3 = canvasPie.getContext("2d");
+            window.myPie = new Chart(ctx3).Pie(pieData);
+        }
+    }
 
 	</script>
 

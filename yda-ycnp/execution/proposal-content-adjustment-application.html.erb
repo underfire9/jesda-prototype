@@ -1,0 +1,318 @@
+<!-- template: 執行 - 企劃內容調整 -->
+
+<div class="container-lg">
+    <div class="application-wrapper">
+        <div class="wrapper-inner">
+            
+            <%= render :partial => "/partials/execution_sidenav" %>
+
+            <main class="main">
+                <div class="content-title">
+                    <h3>企劃內容調整</h3>
+                </div>
+                <form action="home.html" method="post" enctype="multipart/form-data">
+                    <section class="plan-section execution-section">
+                        <div class="form-group">
+                            <select class="form-select w-auto">
+                                <% (6.downto(1)).each do |i| %>
+                                <option>1150511 10:05:0<%= i %></option>
+                                <% end %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="proposalContentAdjustmentReason" class="form-label">修改原因</label>
+                            <textarea class="form-control" id="proposalContentAdjustmentReason" name="proposalContentAdjustmentReason" rows="3" placeholder="100 個字以內"></textarea>
+                            <div class="form-text text-body-tertiary text-end">字數 <strong id="textCount" class="d-inline-block ms-1">0</strong></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">修改主題</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="reason1" value="option1" />
+                                    <label class="form-check-label" for="reason1">壹、自傳</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="reason2" value="option2" />
+                                    <label class="form-check-label" for="reason2">貳、申請動機與探索脈絡</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="reason3" value="option3" />
+                                    <label class="form-check-label" for="reason3">參、企劃主題與執行</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="reason4" value="option4" />
+                                    <label class="form-check-label" for="reason4">肆、預算規劃與資源配置</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="reason5" value="option5" />
+                                    <label class="form-check-label" for="reason5">伍、預期學習成果與成長指標</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="plan-section execution-section">
+                        <div class="plan-header">
+                            <h5 class="mb-0">企劃主題與執行</h5>
+                        </div>
+                        <div class="plan-editor" style="min-height: 320px;">
+                            <!-- 只是說明，套版時請拿掉 -->
+                            <span class="d-block text-secondary p-4">編輯器區塊高度是 inline css 可自行修改設定或拿掉，如套用的編輯器有框線樣式請拿掉或呼叫 fire 調整樣式</span>
+                        </div>
+
+                        <!-- 沒有增建資料前 .plan-table 不要出現 -->
+                        <div class="plan-table">
+                            <div class="plan-table-header">
+                                <div class="plan-table-row">
+                                    <div class="plan-table-cell w-sm">日期</div>
+                                    <div class="plan-table-cell w-sm">體驗類型</div>
+                                    <div class="plan-table-cell">執行主題</div>
+                                    <div class="plan-table-cell w-sm">地點</div>
+                                    <div class="plan-table-cell">單位名稱</div>
+                                    <div class="plan-table-cell w-lg">備註</div>
+                                    <div class="plan-table-cell w-sm"></div>
+                                </div>
+                            </div>
+                            <div class="plan-table-body">
+                                <div class="plan-table-row">
+                                    <div class="plan-table-cell w-sm" data-label="日期"><span class="rwd-th">日期</span>2024-06</div>
+                                    <div class="plan-table-cell w-sm" data-label="體驗類型"><span class="rwd-th">體驗類型</span>職場體驗</div>
+                                    <div class="plan-table-cell" data-label="執行主題"><span class="rwd-th">執行主題</span>科技公司任職專案助理</div>
+                                    <div class="plan-table-cell w-sm" data-label="地點"><span class="rwd-th">地點</span>台北</div>
+                                    <div class="plan-table-cell" data-label="單位名稱"><span class="rwd-th">單位名稱</span>帕蘭泰爾技術公司</div>
+                                    <div class="plan-table-cell w-lg" data-label="備註"><span class="rwd-th">備註</span>職業探索，並賺取至英國旅費。已通知面試</div>
+                                    <div class="plan-table-cell w-lg">
+                                        <div class="d-flex gap-1">
+                                            <button type="button" class="btn btn-outline-secondary tb-btn" data-bs-toggle="modal" data-bs-target="#subjectModal" title="編輯"><i class="fas fa-pen"></i></button>
+                                            <button type="button" class="btn btn-outline-danger tb-btn" title="刪除"><i class="fas fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="plan-table-row">
+                                    <div class="plan-table-cell w-sm" data-label="日期"><span class="rwd-th">日期</span>2024-07</div>
+                                    <div class="plan-table-cell w-sm" data-label="體驗類型"><span class="rwd-th">體驗類型</span>志願服務</div>
+                                    <div class="plan-table-cell" data-label="執行主題"><span class="rwd-th">執行主題</span>主題B</div>
+                                    <div class="plan-table-cell w-sm" data-label="地點"><span class="rwd-th">地點</span>新竹</div>
+                                    <div class="plan-table-cell" data-label="單位名稱"><span class="rwd-th">單位名稱</span>甲骨文公司</div>
+                                    <div class="plan-table-cell w-lg" data-label="備註"><span class="rwd-th">備註</span><%= lorem_sentence %></div>
+                                    <div class="plan-table-cell w-lg">
+                                        <div class="d-flex gap-1">
+                                            <button type="button" class="btn btn-outline-secondary tb-btn" data-bs-toggle="modal" data-bs-target="#subjectModal" title="編輯"><i class="fas fa-pen"></i></button>
+                                            <button type="button" class="btn btn-outline-danger tb-btn" title="刪除"><i class="fas fa-times"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="plan-footer">
+                            <div>
+                                <button type="button" class="btn btn-rounded btn-outline-primary" data-bs-toggle="modal" data-bs-target="#subjectModal"><i class="fas fa-plus me-1"></i> 新增一筆</button>
+                            </div>
+                            <div class="form-text ms-3">需要業主提供說明文案告訴使用者新增一筆按鈕的用途，文案要避免太長、換行或條列式說明</div>
+                        </div>
+                    </section>
+                    <div class="form-action">
+                        <button type="submit" class="btn btn-lg btn-rounded btn-main px-5">更新為最新版本</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+<!-- 執行計畫 Modal -->
+<div class="modal fade" id="subjectModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="subjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h1 class="modal-title fs-5" id="subjectModalLabel">執行計畫</h1>
+                <div data-bs-theme="dark">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">起訖年月</label>
+                    <div class="d-flex align-items-center">
+                        <span><input id="rocMonthStart" class="form-control" type="text" placeholder="請選擇年月"></span>
+                        <span class="mx-2">至</span>
+                        <span><input id="rocMonthEnd" class="form-control" type="text" placeholder="請選擇年月"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">體驗類型</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="experience01" value="option1" />
+                            <label class="form-check-label" for="experience01">職場體驗</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="experience02" value="option2" />
+                            <label class="form-check-label" for="experience02">志願服務</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="experience03" value="option3" />
+                            <label class="form-check-label" for="experience03">壯遊探索</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="experience04" value="option4" />
+                            <label class="form-check-label" for="experience04">達人見習</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="experience05" value="option5" />
+                            <label class="form-check-label" for="experience05">創業見習</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="experience06" value="option6" />
+                            <label class="form-check-label" for="experience06">社區見習</label>
+                        </div>
+
+                        <!-- id 與 .consult-other-input 欄位連動，調整需修改下方 js -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="consult-other" value="option7" />
+                            <label class="form-check-label" for="consult-other">其他</label>
+                        </div>
+                        
+                        <div class="consult-other-input">
+                            <input type="text" class="form-control" id="" placeholder="其他類型名稱">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="exampleForm02" class="form-label">執行主題</label>
+                            <input type="text" class="form-control" id="exampleForm02" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="exampleForm03" class="form-label">地點</label>
+                            <input type="text" class="form-control" id="exampleForm03" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="exampleForm04" class="form-label">單位名稱</label>
+                            <input type="text" class="form-control" id="exampleForm04" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="exampleForm05" class="form-label">備註</label>
+                            <input type="text" class="form-control" id="exampleForm05" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-lg btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- 選擇日期 flatpickr + monthSelect -->
+<script src="../javascripts/flatpickr.js"></script>
+<script src="../javascripts/monthselect.js"></script>
+<script>
+['#rocMonthStart', '#rocMonthEnd'].forEach(function(selector) {
+    flatpickr(selector, {
+        plugins: [
+            new monthSelectPlugin({
+                shorthand: true,
+                dateFormat: "Y-m", // 儲存的值
+                altFormat: "Y 年 m 月", // 顯示的值
+                monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+            }),
+        ],
+        locale: {
+            ...flatpickr.l10ns.zh,
+            months: {
+                shorthand: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+                longhand: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+            }
+        },
+        onChange: function (selectedDates, dateStr, instance) {
+            const [y, m] = dateStr.split("-");
+            instance.input.value = `${y} 年 ${parseInt(m)} 月`;
+        },
+    });
+});
+</script>
+
+<!-- 體驗類型其他欄位 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const consultOtherCheckbox = document.getElementById("consult-other");
+        const consultOtherInput = document.querySelector(".consult-other-input");
+
+        // 預設隱藏
+        consultOtherInput.style.display = "none";
+
+        consultOtherCheckbox.addEventListener("change", function() {
+            if (consultOtherCheckbox.checked) {
+                consultOtherInput.style.display = "inline-block";
+            } else {
+                consultOtherInput.style.display = "none";
+            }
+        });
+    });
+</script>
+
+<!-- 調整內容字數限制 -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const textarea = document.getElementById("proposalContentAdjustmentReason");
+        const textCount = document.getElementById("textCount");
+        const MAX_FULLWIDTH_COUNT = 100;
+
+        if (!textarea || !textCount) return;
+
+        function getCharUnit(char) {
+            return /[\u0000-\u00ff]/.test(char) ? 0.5 : 1;
+        }
+
+        function getFullwidthEquivalentLength(text) {
+            return Array.from(text).reduce(function(total, char) {
+                return total + getCharUnit(char);
+            }, 0);
+        }
+
+        function trimToLimit(text) {
+            let total = 0;
+            let result = "";
+
+            for (const char of Array.from(text)) {
+                const unit = getCharUnit(char);
+                if (total + unit > MAX_FULLWIDTH_COUNT) break;
+                total += unit;
+                result += char;
+            }
+
+            return { text: result, count: total };
+        }
+
+        function formatCount(count) {
+            return Number.isInteger(count) ? String(count) : count.toFixed(1).replace(/\.0$/, "");
+        }
+
+        function updateCount() {
+            const trimmed = trimToLimit(textarea.value);
+
+            if (trimmed.text !== textarea.value) {
+                textarea.value = trimmed.text;
+            }
+
+            textCount.textContent = formatCount(getFullwidthEquivalentLength(textarea.value));
+        }
+
+        textarea.addEventListener("input", updateCount);
+        textarea.addEventListener("compositionend", updateCount);
+        updateCount();
+    });
+</script>
+<% end %>

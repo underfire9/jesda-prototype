@@ -1,0 +1,74 @@
+<!-- template: 學校聯絡人 - 計畫申請/計畫主持人帳號管理 -->
+<% content_for :header_center do %>
+    <span class="central-title">計畫主持人帳號管理</span>
+<% end %>
+
+<div class="container">
+    <div class="page-content">
+        <div class="manager-list-wrapper">
+            <% (1..10).map do |i| %>
+            <div class="manager-card">
+                <div class="card-bd">
+                    <div class="item-info">
+                        <span class="item-label">計畫主持人姓名</span>
+                        <span class="item-value fw-bold"><%= zh_lorem_name %></span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">電子信箱</span>
+                        <span class="item-value fs-6"><%= lorem_email %></span>
+                    </div>
+                </div>
+                <div class="card-ft">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-secondary btn-sm">刪除</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#managerModal">編輯</button>
+                    </div>
+                    <button type="button" class="btn btn-info btn-sm shadow-none" data-bs-toggle="tooltip" data-bs-title="寄送計畫通知"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+            <% end %>
+        </div>
+        <div class="form-action no-border">
+            <span class="backhome">
+                <a href="apply.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </span>
+            <button type="button" class="btn btn-lg btn-primary px-4" data-bs-toggle="modal" data-bs-target="#managerModal">
+                <i class="fas fa-plus me-1"></i> 新增
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="managerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="managerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="managerModalLabel">新增{編輯}計畫主持人</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="managerName" class="form-label">計畫主持人姓名</label>
+                    <input type="text" class="form-control" id="managerName" placeholder="請輸入">
+                </div>
+                <div class="form-group mt-3">
+                    <label for="managerEmail" class="form-label">電子信箱</label>
+                    <input type="email" class="form-control" id="managerEmail" placeholder="example@example.com">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+<% end %>
+

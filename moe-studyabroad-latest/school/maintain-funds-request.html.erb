@@ -1,0 +1,219 @@
+<!-- template: 學校聯絡人 - 計畫維護/子計畫經費分配 -->
+<% content_for :header_center do %>
+    <span class="central-title">子計畫經費分配</span>
+<% end %>
+
+<div class="container">
+    <div class="page-content">
+        <div class="subplan-examine-main maintain-subplan-examine">
+            <p class="main-fas-info"><i class="fas fa-info-circle fs-5 me-1"></i> 請先儲存分配結果，再送出請款名單</p>
+            <div class="notice-wrapper d-flex flex-wrap gap-3 mb-5">
+                <div class="h4 mb-0"><small class="fs-6 fw-normal text-secondary">教育部補助總金額</small> <strong>1284100</strong></div>
+                <div class="h4 mb-0"><small class="fs-6 fw-normal text-secondary">已分配</small> <strong>996100</strong></div>
+            </div>
+            <div class="subplan-examine-list funds-request-list">
+
+                <% (1..9).map do |i| %>
+                <div class="item-examine">
+                    <div class="item-examine-hd">
+                        <div class="data-field" data-bs-toggle="tooltip" data-bs-title="序號">1151009000<%= i %></div>
+                    </div>
+
+                    <!-- .bd-data-value 有做字元長度限制，超過 16 個字元做文字截斷展開功能，計畫名稱不用限制 -->
+                    <div class="examine-outter">
+                        <div class="row item-examine-row">
+                            <div class="col-lg-6">
+                                <div class="data-field">
+                                    <div class="data-label">計畫名稱</div>
+                                    <div class="data-value">
+                                        日本長者居家照顧與服務拓展: 長照政策下的醫療與健康
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="data-field">
+                                    <div class="data-label">計畫主持人</div>
+                                    <div class="data-value bd-data-value"><%= zh_lorem_name %></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="data-field">
+                                    <div class="data-label">亮點計畫</div>
+                                    <div class="data-value">是</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="data-field">
+                                    <div class="data-label">實習領域</div>
+                                    <div class="data-value bd-data-value">社會科學</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="data-field">
+                                    <div class="data-label">實習國別</div>
+                                    <div class="data-value bd-data-value">日本</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="data-field">
+                                    <div class="data-label">實習機構</div>
+                                    <div class="data-value bd-data-value"><%= zh_lorem_sentences(3) %></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="data-field">
+                                    <div class="data-label">預計選送學生人數</div>
+                                    <div class="data-value">7</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="data-field">
+                                    <div class="data-label">預定人數</div>
+                                    <div class="data-value">
+                                        <input type="number" class="form-control form-control-sm" style="width: 80px;" value="7" min="0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                <div class="data-field">
+                                    <div class="data-label">新住民總人數</div>
+                                    <div class="data-value">0</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="data-field">
+                                    <div class="data-label">申請補助經費</div>
+                                    <div class="data-value">294,189</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="data-field">
+                                    <div class="data-label">學校配合款</div>
+                                    <div class="data-value">58,840</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                <div class="data-field">
+                                    <div class="data-label">承辦人請款</div>
+                                    <div class="data-value">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="requestPayment<%= i %>" id="requestPaymentYes<%= i %>" checked/>
+                                            <label class="form-check-label" for="requestPaymentYes<%= i %>">確定請款</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="requestPayment<%= i %>" id="requestPaymentNo<%= i %>" />
+                                            <label class="form-check-label" for="requestPaymentNo<%= i %>">放棄請款</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="amount-examine-row">    
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="data-field">
+                                        <div class="data-label">分配教育部補助經費</div>
+                                        <div class="data-value bd-data-value">
+                                            <input type="text" class="form-control form-control-sm" value="282,789">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="data-field">
+                                        <div class="data-label">分配學校配合款</div>
+                                        <div class="data-value bd-data-value">
+                                            <input type="text" class="form-control form-control-sm" value="11,400">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="form-action no-border">
+            <span class="backhome">
+                <a href="maintain.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </span>
+            <button type="submit" class="btn btn-lg btn-dark">儲存</button>
+            <button type="submit" class="btn btn-lg btn-primary">送出請款名單</button>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+<script>
+
+    // Tooltip 初始化
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    // 文字截斷展開功能，可調整字元上限
+    const TRUNCATE_LIMIT = 28;
+
+    function initTruncate(limit = TRUNCATE_LIMIT) {
+        document.querySelectorAll('.bd-data-value').forEach(el => {
+            const text = el.textContent.trim();
+            if (text.length <= limit) return;
+
+            el.dataset.fullText = text;
+
+            const textSpan = document.createElement('span');
+            textSpan.className = 'truncate-text';
+            textSpan.textContent = text.slice(0, limit) + '\u2026';
+
+            const toggleBtn = document.createElement('button');
+            toggleBtn.className = 'btn-truncate-toggle';
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            toggleBtn.setAttribute('title', '展開');
+            toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+
+            el.textContent = '';
+            el.appendChild(textSpan);
+            el.appendChild(toggleBtn);
+
+            toggleBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+                if (isExpanded) {
+                    textSpan.textContent = el.dataset.fullText.slice(0, limit) + '\u2026';
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                    toggleBtn.title = '展開';
+                } else {
+                    textSpan.textContent = el.dataset.fullText;
+                    toggleBtn.setAttribute('aria-expanded', 'true');
+                    toggleBtn.title = '收合';
+                }
+            });
+        });
+    }
+
+    // 請款選項切換邏輯：當選擇「放棄請款」時，隱藏分配金額輸入欄位；選擇「確定請款」時顯示
+    function initRequestPaymentToggle() {
+        document.querySelectorAll('.item-examine').forEach(item => {
+            const amountRow = item.querySelector('.amount-examine-row');
+            const radios = item.querySelectorAll('input[type="radio"][name^="requestPayment"]');
+            if (!amountRow || !radios.length) return;
+
+            const syncAmountRowVisibility = () => {
+                const isGiveUp = item.querySelector('input[type="radio"][id^="requestPaymentNo"]')?.checked;
+                amountRow.style.display = isGiveUp ? 'none' : '';
+            };
+
+            radios.forEach(radio => {
+                radio.addEventListener('change', syncAmountRowVisibility);
+            });
+
+            syncAmountRowVisibility();
+        });
+    }
+
+    initTruncate();
+    initRequestPaymentToggle();
+</script>
+<% end %>
+

@@ -1,0 +1,349 @@
+<!-- template: 學校聯絡人 - 計畫維護 (學海飛颺、學海惜珠) -->
+<% content_for :header_center do %>
+    <span class="central-title">學海飛颺計畫維護</span>
+<% end %>
+
+<div class="container">
+    <div class="page-content">
+        <div class="maintain-dashboard">
+            <aside class="maintain-dashboard__sidebar">
+                <div class="plan-progress">
+                    <span class="label">計畫審查進度</span>
+                    <span class="status">審查中</span>
+                </div>
+                <ul class="side-menu menu-item">
+                    <li>
+                        <button type="button" class="menu-link" data-bs-toggle="modal" data-bs-target="#previewModal">計畫書查詢</button>
+                        <p>依計畫書填寫段落預覽計畫書內容</p>
+                        <a href="#" class="btn btn-sm btn-rounded btn-outline-secondary mt-1 px-3"><i class="far fa-file-pdf"></i> 下載完整計畫書</a>
+                    </li>
+                </ul>
+            </aside>
+            <main class="maintain-dashboard__main">
+                <p class="main-fas-info"><i class="fas fa-info-circle fs-5 me-1"></i> 請依各項開放時程起訖時間內完成作業</p>
+
+                <!-- 無論開放與否 maintain-section 皆顯示，未開放的連結使用 div、截止的 section 給 timeout -->
+                <section class="maintain-section">
+                    <div class="section-hd">
+                        <div class="hd-title">教育部核定結果開放查詢時間</div>
+                        <div class="date-range"><span class="text-nowrap">2026 年 01 月 01 日 00:00</div>
+                    </div>
+                    <div class="section-bd">
+                        <div class="total-amount">
+                            <span class="bd-label">教育部核定總金額</span>
+                            <div class="bd-value">新台幣 <strong>1,000,000</strong> 元</div>
+                        </div>
+                        <p class="bd-note">公告教育部核定計畫補助經費總額</p>
+                    </div>
+                </section>
+                <div class="maintain-row">
+                    
+                    <!-- 尚未開放 div.menu-title，開放才改成 <a> -->
+                    <!-- 時間截止 section 給 timeout -->
+                    <section class="maintain-section timeout">
+                        <div class="section-hd">
+                            <div class="hd-title">經費請領作業開放時間</div>
+                            <div class="date-range"><span class="text-nowrap">2026 年 01 月 01 日 00:00</span> 至 <span class="text-nowrap">2026 年 08 月 31 日 23:59</span></div>
+                        </div>
+                        <div class="section-bd">
+                            <ul class="section-menu funding-menu menu-item">
+                                <li class="done">
+                                    <a href="maintain-school-account.html" class="menu-title">填寫學校匯款帳戶資訊</a>
+                                    <p>預設帶入帳號資訊維護內的資料</p>
+                                </li>
+
+                                <!-- 學海惜珠 only -->
+                                <li class="unnecessary">
+                                    <a href="#" class="menu-title">學生請款名單</a>
+                                    <span class="badge">0 放棄</span>
+                                    <p>確認各子計畫是否請領獲得補助</p>
+                                </li>
+
+                                <!-- 學海飛颺 only -->
+                                <li class="unnecessary">
+                                    <div class="menu-title">核定學校配合款 <strong class="d-inline-block ms-1" style="color: #953ae2;">190,000</strong></div>
+                                    <p>預計提撥總校配款</p>
+                                </li>
+                                <li class="unnecessary">
+                                    <div class="menu-title">
+                                        列印核定經費請領表
+                                        <button class="btn btn-rounded btn-info ms-2 px-3"><i class="fas fa-print"></i></button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="menu-title">發送公文至臺灣科技大學</div>
+                                    <!--p>公文文號 長庚大字第1140060140號</p-->
+                                    <p>尚未發送</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 學海飛颺、學海惜珠 -->
+                    <section class="maintain-section">
+                        <div class="section-hd">
+                            <div class="hd-title">補助學生資料維護開放時間</div>
+                            <div class="date-range"><span class="text-nowrap">2026 年 01 月 01 日 00:00</span> 至 <span class="text-nowrap">2026 年 08 月 31 日 23:59</span></div>
+                        </div>
+                        <div class="section-bd">
+                            <ul class="section-menu modify-menu menu-item">
+                                <li>
+                                    <a href="maintain-student-list.html" class="menu-title">補助學生資料異動/變更</a>
+                                    <p>維護計畫補助學生名單，調整出國學生名冊與學生出國資料。</p>
+                                    <a href="#">(demo only) 學海惜珠 link</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+                <section class="maintain-section">
+                    <div class="section-hd">
+                        <div class="hd-title">結案報告清單列印開放時間</div>
+                        <div class="date-range"><span class="text-nowrap">2024 年 06 月 30 日 00:00</span> 至 <span class="text-nowrap">2026 年 12 月 31 日 00:00</span></div>
+                    </div>
+                    <div class="section-bd">
+                        <div class="closing-wrapper">
+                            <div class="wrap-start">
+                                <!-- 如果還沒開放 button 給 disabled -->
+                                <div>
+                                    <p>列印結案報告清單，包含經費收支結算表、選送生經費支領一覽表</p>
+                                    <button type="button" class="btn btn-rounded btn-outline-info mb-2" disabled>預覽結案報告</button>
+                                    <button type="button" class="btn btn-rounded btn-info mb-2" data-bs-toggle="modal" data-bs-target="#confirmModal"><i class="far fa-arrow-alt-circle-down"></i> 正式下載結案報告</button>
+                                </div>
+                            </div>
+                            <div class="wrap-end">
+                                <ul class="step-menu menu-item">
+
+                                    <!-- 四種狀態，預設沒有 class，進行中 processing、完成 done、警告 danger -->
+                                    <li class="done">
+                                        <h5>學校呈報結案</h5>
+                                        <p>完成及維護所有資料，備妥相關文件並發函至辦公室辦理</p>
+                                    </li>
+                                    <li class="processing">
+                                        <h5>結案辦理中</h5>
+                                        <!--p>辦公室收件</p-->
+                                    </li>
+                                    <li class="danger">
+                                        <h5>結案完成</h5>
+                                        <p>辦公室復函通知學校</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Modal -->
+<div class="modal fade" id="confirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="confirmModalLabel">下載結案報告</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center p-4">
+                    <div class="mb-4 fs-4" style="color: #dadada;"><i class="fas fa-exclamation"></i></div>
+                    <div>一旦確定正式下載則無法再修改任何資料，是否確定要正式下載結案報告？</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Preview Modal -->
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="previewModalLabel">計劃書</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="plan-edit-wrapper">
+                        <aside class="plan-edit-sidebar">
+
+                            <!-- 編號 serial 由 js 生 -->
+                            <ul class="nav flex-column plan-edit-nav" id="previewPlanTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button
+                                        class="nav-link active"
+                                        id="r1-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#r1-tab-pane"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="r1-tab-pane"
+                                        aria-selected="true"
+                                    >
+                                        <span class="serial"></span>
+                                        <span class="hide">(一)校內審查機制（包括校內計畫案、選送學生甄選基準、計畫主持人甄選學生作業方式等相關資訊之揭露、分配各計畫案經費之準則、本年選送原住民學生及新住民（臺灣地區人民之配偶為外國人、無國籍人、大陸地區人民及香港、澳門居民）子女人數；遴選他校學生參與，須提出相關甄選基準及甄選學生作業方式）</span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button
+                                        class="nav-link"
+                                        id="r2-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#r2-tab-pane"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="r2-tab-pane"
+                                        aria-selected="false"
+                                    >
+                                        <span class="serial"></span>
+                                        <span class="hide">(二)補助計畫整體配套措施（包括建立與國外實習機構之實習合作機制、計畫主持人安排學生赴國外實習輔導機制、前一年度補助經費支用原則及支用情形）</span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button
+                                        class="nav-link"
+                                        id="r3-tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#r3-tab-pane"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="r3-tab-pane"
+                                        aria-selected="false"
+                                    >
+                                        <span class="serial"></span>
+                                        <span class="hide">Contact</span>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <div class="nav-link">
+                                        <span class="serial"></span>
+                                        <span class="hide">Contact</span>
+                                    </div>
+                                    <ul class="nav-sub menu-item">
+                                        <li class="nav-item" role="presentation">
+                                            <button
+                                                class="nav-link"
+                                                id="r4-tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#r4-tab-pane"
+                                                type="button"
+                                                role="tab"
+                                                aria-controls="r4-tab-pane"
+                                                aria-selected="false"
+                                            >
+                                                <span class="serial"></span>
+                                                <span class="hide">Disabled</span>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button
+                                                class="nav-link"
+                                                id="r5-tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#r5-tab-pane"
+                                                type="button"
+                                                role="tab"
+                                                aria-controls="r5-tab-pane"
+                                                aria-selected="false"
+                                            >
+                                                <span class="serial"></span>
+                                                <span class="hide">Disabled</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </aside>
+
+                        <!-- 區塊需要前端套編輯器，新增、刪除、拖曳排序功能交由前端統一處理 -->
+                        <main class="plan-edit-main">
+                            <div class="tab-content" id="planTabContent">
+                                <div class="tab-pane fade show active" id="r1-tab-pane" role="tabpanel" aria-labelledby="r1-tab" tabindex="0">
+                                    <h5 class="pane-title">(一) 校內審查機制（包括校內計畫案、選送學生甄選基準、計畫主持人甄選學生作業方式等相關資訊之揭露、分配各計畫案經費之準則、本年選送原住民學生及新住民（臺灣地區人民之配偶為外國人、無國籍人、大陸地區人民及香港、澳門居民）子女人數；遴選他校學生參與，須提出相關甄選基準及甄選學生作業方式）</h5>
+                                    <div class="editor-wrapper">
+                                        <h5>校內計畫案甄選基準：</h5>
+                                        <ol>
+                                            <li>計畫主持人須為本校專任教師，且具備相關領域專業知識與經驗。</li>
+                                            <li>計畫內容須符合補助計畫的宗旨與目標，並具備創新性與可行性。</li>
+                                            <li>計畫主持人須提出明確的學生甄選基準，包括學業成績、語言能力、相關經驗等。</li>
+                                            <li>計畫主持人須說明學生甄選作業方式，包括公告、報名、面試等程序。</li>
+                                            <li>計畫主持人須說明分配各計畫案經費的準則，確保資源合理分配。</li>
+                                            <li>本年選送原住民學生及新住民子女人數須符合教育部相關規定，並優先考慮弱勢學生。</li>
+                                            <li>如遴選他校學生參與，須提出相關甄選基準及甄選學生作業方式，確保公平公正。</li>
+                                        </ol>
+                                        <h5>計畫主持人安排學生赴國外實習輔導機制：</h5>
+                                        <p>計畫主持人須建立完善的學生赴國外實習輔導機制，包括但不限於以下措施：</p>
+                                        <ol>
+                                            <li>提供學生赴國外實習前的說明會，介紹實習機構、實習內容、注意事項等。</li>
+                                            <li>指派專人負責學生赴國外實習的聯絡與協調，確保學生在實習期間得到適當的支持與協助。</li>
+                                            <li>建立學生赴國外實習的反饋機制，收集學生的實習經驗與建議，以持續改進輔導機制。</li>
+                                        </ol>
+                                        <h5>前一年度補助經費支用原則及支用情形：</h5>
+                                        <p>計畫主持人須說明前一年度補助經費的支用原則，包括但不限於以下內容：</p>
+                                        <ol>
+                                            <li>補助經費應依照計畫核定的預算項目進行支用，並遵守相關財務規定。</li>
+                                            <li>計畫主持人須定期檢視經費使用情形，確保經費使用的合理性與合規性。</li>
+                                            <li>如有經費調整需求，計畫主持人須提出申請並獲得教育部的批准後方可執行。</li>
+                                            <li>計畫主持人須在計畫結束後提交經費使用報告，詳細說明經費的支用情形與成效。</li>
+                                        </ol>
+                                        <p><%= lorem_paragraphs(20) %></p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="r2-tab-pane" role="tabpanel" aria-labelledby="r2-tab" tabindex="0">
+                                    <h5 class="pane-title">(二) 補助計畫整體配套措施（包括建立與國外實習機構之實習合作機制、計畫主持人安排學生赴國外實習輔導機制、前一年度補助經費支用原則及支用情形）</h5>
+                                </div>
+                                <div class="tab-pane fade" id="r3-tab-pane" role="tabpanel" aria-labelledby="r3-tab" tabindex="0">
+                                    <h5 class="pane-title">(三) 執行本計畫之推廣及鼓勵措施</h5>
+                                </div>
+                                <div class="tab-pane fade" id="r4-tab-pane" role="tabpanel" aria-labelledby="r4-tab" tabindex="0">
+                                    <h5 class="pane-title">(四) 執行本計畫之推廣及鼓勵措施</h5>
+                                    <h6 class="sub-title">鼓勵學生出國研修措施（如評選及獎勵優良心得報告）</h6>
+                                    <p><%= lorem_paragraphs(20) %></p>
+                                </div>
+                                <div class="tab-pane fade" id="r5-tab-pane" role="tabpanel" aria-labelledby="r5-tab" tabindex="0">
+                                    R5
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<script>
+(function () {
+    // ----- 編號 -----
+    function buildSerials(navId) {
+        var topCounter = 0;
+        $(navId + ' > .nav-item').each(function () {
+            topCounter++;
+            var $topSerial = $(this).children('.nav-link, div.nav-link').first().find('> .serial');
+            $topSerial.text(topCounter);
+
+            var $sub = $(this).children('.nav-sub');
+            if ($sub.length) {
+                var subCounter = 0;
+                $sub.find('> .nav-item').each(function () {
+                    subCounter++;
+                    $(this).find('> button.nav-link > .serial, > .nav-link > .serial').first().text(topCounter + '.' + subCounter);
+                });
+            }
+        });
+    }
+    buildSerials('#planTab');
+    buildSerials('#previewPlanTab');
+})();
+</script>
+<% end %>
+

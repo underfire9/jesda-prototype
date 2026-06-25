@@ -1,0 +1,138 @@
+<!-- template: 學校聯絡人 - 計畫維護/計畫主持人變更 -->
+<% content_for :header_center do %>
+    <span class="central-title">計畫主持人變更</span>
+<% end %>
+
+<div class="container">
+    <div class="page-content">
+        <div class="top-action-btn">
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#newManagerModal"><i class="fas fa-plus"></i> 新增變更申請</button>
+        </div>
+        <div class="company-modify-wrapper">
+            <% (1..5).map do |i| %>
+            <div class="company-card">
+                <div class="card-bd">
+                    <div class="item-info">
+                        <span class="item-label">計畫名稱</span>
+                        <span class="item-value">日本長者居家照顧與服務拓展: 長照政策下的醫療與健康</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">原計畫主持人</span>
+                        <span class="item-value"><%= zh_lorem_name %></span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">新計畫主持人</span>
+                        <span class="item-value"><%= zh_lorem_name %></span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">申請日期</span>
+                        <span class="item-value">2026 年 01 月 01 日</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">申請狀態</span>
+                        <span class="item-value">狀態1234</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">回函公文狀態</span>
+                        <span class="item-value">回函5678</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">申請紀錄</span>
+                        <span class="item-value">紀錄00</span>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        </div>
+        <div class="form-action no-border">
+            <span class="backhome">
+                <a href="maintain.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newManagerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="newManagerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="newManagerModalLabel">計畫主持人變更申請</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="p-4 bg-light mb-4">請填寫及上傳下列各項資料，填寫完畢後，按下方"送出"按鈕，送計畫辦公室審查，經辦公室辦理後，回函學校後才能開始使用變更後資料</div>
+                <div class="form-group">
+                    <label for="projectName" class="form-label form-label-sm"><span class="required">*</span> 選擇要變更計畫主持人的計畫</label>
+                    <select id="projectName" class="form-select">
+                        <option value="">請選擇計畫</option>
+                        <option value="1">日本長者居家照顧與服務拓展: 長照政策下的醫療與健康</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="projectName" class="form-label form-label-sm">原計畫主持人</label>
+                    <div class="d-flex gap-3">
+                        <span>許美華</span>
+                        <span>mayhsu@mail.cnu.edu.tw</span>
+                    </div>
+                </div>
+                <div class="new-manager-wrapper">
+                    <h5>新計畫主持人</h5>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="selectExistingManager">
+                        <label class="form-check-label" for="selectExistingManager">
+                            從現有計畫主持人清單內選取
+                        </label>
+                    </div>
+                    <div class="select-existing">
+                        <select id="existingManager" class="form-select">
+                            <option value="">請選擇計畫主持人</option>
+                            <option value="1">王大明</option>
+                            <option value="2">李小華</option>
+                        </select>
+                    </div>
+                    <div class="manager-wrapper-inner">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="newManagerName" class="form-label form-label-sm"><span class="required">*</span> 姓名</label>
+                                    <input type="text" id="newManagerName" class="form-control" placeholder="請輸入">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="newManagerEmail" class="form-label form-label-sm"><span class="required">*</span> 電子郵件</label>
+                                    <input type="email" id="newManagerEmail" class="form-control" placeholder="請輸入">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h5>應檢附資料</h5>
+                    <ol>
+                        <li>
+                            變更計畫主持人同意書
+                            <div class="form-text mt-0">變更計畫主持人須有新舊兩位主持人簽名或蓋章</div>
+                        </li>
+                        <li>專任教師說明及證明</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">送出</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- 編號 -->
+<script>
+    document.querySelectorAll('.company-modify-wrapper .company-card').forEach(function(card, i) {
+        card.querySelector('.card-bd').dataset.index = i + 1;
+    });
+</script>
+<% end %>
+

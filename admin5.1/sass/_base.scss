@@ -1,0 +1,98 @@
+
+@import "widgets/font";
+@import "vendor/font-awesome";
+@import "widgets/variables";
+
+/* `Base
+-----------------------------------------------------------------------------*/
+
+html {
+	height: 100%;
+	min-height: 100%;
+}
+
+body {
+    background: $body_background;
+	font-family: 'Roboto', 'Noto Sans TC', 'Apple LiGothic Medium', '\5FAE\8EDF\6B63\9ED1\9AD4', Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+	font-size: 1rem;
+	font-weight: 400;
+	color: $base_font_color;
+}
+
+a {
+	color: $link;
+	text-decoration: none;
+	transition: all 0.2s ease-in-out;
+	&:hover { color: $third_color; }
+	&:focus {
+		outline: none; /* for Firefox Google Chrome  */
+		behavior: expression(this.onFocus=this.blur()); /* for IE */
+        color: $secondary_color;
+	}
+}
+
+.menu-item, .menu-item li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.form-group { margin-bottom: 1rem; }
+
+.no-after {
+	&::after { display: none; }
+}
+
+.btn-transparent {
+	background: transparent;
+	border: 1px solid transparent;
+	box-shadow: none;
+	color: $darkgray_color;
+	&:hover {
+		background: transparent;
+		border-color: #e0e0e2;
+	}
+}
+
+.btn-rounded {
+	border-radius: 10rem;
+}
+
+.fs-7 {
+	font-size: 0.875rem;
+}
+
+.rounded-circle {
+	border-radius: 50%;
+}
+
+#backtop {
+    display: inline-block;
+    background-color: $main_color;
+	border-radius: .75rem;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    transition: background-color .3s, opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+	cursor: pointer;
+	&:after {
+        content: "\f077";
+        font-family: Font Awesome\ 5 Free;
+        font-weight: 900;
+        font-style: normal;
+        font-size: 1em;
+        line-height: 3rem;
+        color: #fff;
+	}
+	&.show {
+		opacity: 1;
+		visibility: visible;
+	}
+}

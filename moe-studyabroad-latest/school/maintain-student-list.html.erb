@@ -1,0 +1,832 @@
+<!-- template: 學校聯絡人 - 計畫維護/補助學生資料維護 (學海飛颺) -->
+<% content_for :header_center do %>
+    <span class="central-title">補助學生資料維護</span>
+<% end %>
+
+<div class="container">
+    <div class="page-content">
+        <div class="maintain-student-wrapper">
+            <div class="wrapper-start">
+                <div class="info-section">
+                    <h4 class="info-section-title">計畫經費</h4>
+                    <div class="info-list-wrapper">
+                        <div class="info-item">
+                            <span class="info-item-label">教育部核定經費</span>
+                            <span class="info-item-value"><strong>2,783,330</strong>元整</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-label">實際教育部補助經費總計</span>
+                            <span class="info-item-value"><strong>2,783,330</strong>元整</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-label">實際學校配合款至少需要</span>
+                            <span class="info-item-value"><strong>556,666</strong>元整</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-item-label">實際學校配合款總計</span>
+                            <span class="info-item-value"><strong>556,670</strong>元整</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-end">
+                <h4 class="info-section-title">學生資料</h4>
+                <p class="main-fas-info"><i class="fas fa-info-circle fs-5 me-1"></i> 此階段所有異動皆會納入紀錄，請謹慎操作！</p>
+                <div class="list-toolbar">
+                    <div><button class="btn btn-rounded btn-dark px-4" data-bs-toggle="modal" data-bs-target="#addStudentModal"><i class="fas fa-plus"></i> 新增</button></div>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-rounded btn-outline-secondary">匯出 EXCEL</button>
+                        <button class="btn btn-sm btn-rounded btn-outline-secondary">匯出 ODS</button>
+                    </div>
+                </div>
+                <div class="maintain-student-list">
+                    <% (1..11).map do |i| %>
+                    <div class="student-card">
+                        <div class="card-bd">
+                            <div class="item-name" title="姓名"><%= zh_lorem_name %></div>
+                            <div class="item-status" title="狀態">正常</div>
+                            <div>
+                                <div class="item-info">
+                                    <span class="item-label">系所 / 級別</span>
+                                    <span class="item-value">
+                                        <span class="inner">生物科學與科技學院 生命科學系</span>
+                                        <span class="inner inner-second">大學二年級</span>
+                                    </span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">研修領域</span>
+                                    <span class="item-value">藝術、建築規劃與設計</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">國別</span>
+                                    <span class="item-value">奧地利</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">大專校/院名(前100大)</span>
+                                    <span class="item-value">格勒諾布爾-阿爾卑斯大學</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">研修期程</span>
+                                    <span class="item-value">
+                                        <span class="inner-block">2024/09/01 至</span>
+                                        <span class="inner-block">2025/06/30</span>
+                                    </span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">實際出返國日期</span>
+                                    <span class="item-value">
+                                        <span class="inner-block">2024/09/01 至</span>
+                                        <span class="inner-block">2025/06/30</span>
+                                    </span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">實際教育部核定經費</span>
+                                    <span class="item-value">125,000</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">實際學校配合款</span>
+                                    <span class="item-value">25,000</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">實際獲補助經費</span>
+                                    <span class="item-value">150,000</span>
+                                </div>
+                            </div>
+                            <div class="item-experience">
+                                <a href="#" class="btn btn-white" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="下載學生心得"><i class="far fa-file-pdf"></i></a>
+                            </div>
+                            <div class="item-edit">
+                                <span class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="編輯"><button class="btn btn-white" data-bs-toggle="modal" data-bs-target="#addStudentModal"><i class="fas fa-pencil-alt"></i></button></span>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="form-action no-border">
+            <span class="backhome">
+                <a href="maintain.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-maintain-student">
+                    <div class="container">
+                        <h3 class="modal-title">補助學生資料維護</h3>
+                        <p class="main-fas-info"><i class="fas fa-info-circle fs-5 me-1"></i> 同一位申請生在同一教育階段若完成過申請補助，欲申請其他補助計畫者，請通知本案承辦人開放申請權限。</p>
+                        <div class="row g-5">
+                            <div class="col-lg-7">
+                                <section class="maintain-student-section">
+                                    <h4 class="modal-section-title">申請基本資料</h4>
+                                    <p><span class="required">*</span> 除非特別註釋，否則所有欄位皆為必填</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentChineseName" class="form-label">中文姓名</label>
+                                                <input type="text" class="form-control" id="studentChineseName" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentId" class="form-label">學號</label>
+                                                <input type="text" class="form-control" id="studentId" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label">就讀學校</label>
+                                                <div class="form-control">國立成功大學國立成功大學</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentBirthDate" class="form-label">出生年月日</label>
+                                                <input type="date" id="studentBirthDate" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentGender" class="form-label">性別</label>
+                                                <div class="mt-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="studentGender" id="genderMale" value="male">
+                                                        <label class="form-check-label" for="genderMale">男</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="studentGender" id="genderFemale" value="female">
+                                                        <label class="form-check-label" for="genderFemale">女</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentPhone" class="form-label">連絡電話</label>
+                                                <input type="text" id="studentPhone" class="form-control" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentMobile" class="form-label">行動電話</label>
+                                                <input type="text" id="studentMobile" class="form-control" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="studentEmail" class="form-label">電子信箱</label>
+                                                <input type="text" id="studentEmail" class="form-control" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentDepartment" class="form-label">就讀系所</label>
+                                                <input type="text" id="studentDepartment" class="form-control" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentStatus" class="form-label">就讀狀況</label>
+                                                <div class="row g-2">
+                                                    <div class="col-6">
+                                                        <select id="studentStatus" class="form-select">
+                                                            <option value="">請選擇</option>
+                                                            <option value="junior_college">專科</option>
+                                                            <option value="university">大學</option>
+                                                            <option value="master">碩士</option>
+                                                            <option value="doctor">博士</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <select id="studentGrade" class="form-select">
+                                                            <option value="">請選擇年級</option>
+                                                            <option value="1">一年級</option>
+                                                            <option value="2">二年級</option>
+                                                            <option value="3">三年級</option>
+                                                            <option value="4">四年級</option>
+                                                            <option value="5">五年級</option>
+                                                            <option value="6">六年級</option>
+                                                            <option value="7">七年級</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentGPA" class="form-label">在校平均成績</label>
+                                                <input type="text" id="studentGPA" class="form-control" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentRank" class="form-label">班級排行百分比 <small class="text-danger">學士之外免填</small></label>
+                                                <input type="text" id="studentRank" class="form-control" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentField" class="form-label">研修領域別</label>
+                                                <select id="studentField" class="form-select">
+                                                    <option value="">請選擇</option>
+                                                    <option value="field1">藝術、建築規劃與設計</option>
+                                                    <option value="field2">人文與社會科學</option>
+                                                    <option value="field3">自然科學</option>
+                                                    <option value="field4">工程與應用科學</option>
+                                                    <option value="field5">其他</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="hostInstitution" class="form-label">研修學校</label>
+                                                <div class="host-institution-wrapper">
+                                                    <div class="host-institution-select">
+                                                        <select id="hostInstitution" class="form-select">
+                                                            <option value="">請選擇</option>
+                                                            <option value="top100">前百大學校</option>
+                                                            <option value="other">其他學校</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="select-100">
+                                                        <select class="form-select" id="topHundred" data-placeholder="請選擇">
+                                                            <option></option>
+                                                            <option>哈佛大學</option>
+                                                            <option>斯坦福大學</option>
+                                                            <option>加州大學伯克利分校</option>
+                                                            <option>麻省理工學院</option>
+                                                            <option>劍橋大學</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="select-other">
+                                                        <div class="select-inner">
+                                                            <div class="input-wrap">
+                                                                <input type="text" id="otherInstitution" class="form-control" placeholder="請輸入學校名稱">
+                                                            </div>
+                                                            <div class="input-wrap">
+                                                                <input type="text" id="rankingReference" class="form-control" placeholder="請輸入排名參考依據">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-text text-danger">修改留存異動紀錄僅限修改一次</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentCountry" class="form-label">前往研修國別</label>
+                                                <select id="studentCountry" class="form-select">
+                                                    <option value="">請選擇</option>
+                                                    <option value="country1">奧地利</option>
+                                                    <option value="country2">比利時</option>
+                                                    <option value="country3">加拿大</option>
+                                                    <option value="country4">丹麥</option>
+                                                    <option value="country5">芬蘭</option>
+                                                    <option value="country6">法國</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentRegion" class="form-label">前往區域</label>
+                                                <select id="studentRegion" class="form-select">
+                                                    <option value="">請選擇</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">研修學校為姊妹校</label>
+                                                <div class="mt-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="sisterSchool" id="sisterSchoolYes" value="yes">
+                                                        <label class="form-check-label" for="sisterSchoolYes">是</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="sisterSchool" id="sisterSchoolNo" value="no">
+                                                        <label class="form-check-label" for="sisterSchoolNo">否</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentMajor" class="form-label">研修系所(學程)</label>
+                                                <input type="text" id="studentMajor" class="form-control" placeholder="請輸入">
+                                                <div class="form-text text-danger">修改留存異動紀錄僅限修改一次</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentAddress" class="form-label">研修學校地址</label>
+                                                <input type="text" id="studentAddress" class="form-control" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentContactName" class="form-label">研修學校聯絡人姓名</label>
+                                                <input type="text" id="studentContactName" class="form-control" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="studentContactPhone" class="form-label">研修學校連絡電話</label>
+                                                <input type="text" id="studentContactPhone" class="form-control" placeholder="請輸入">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">具研修學校入學許可</label>
+                                                <div class="mt-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="admissionPermit" id="admissionPermitYes" value="yes">
+                                                        <label class="form-check-label" for="admissionPermitYes">是</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="admissionPermit" id="admissionPermitNo" value="no">
+                                                        <label class="form-check-label" for="admissionPermitNo">否</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">具體獲獎事蹟或參與國際性競賽獲獎</label>
+                                                <div class="mt-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="awardOrCompetition" id="awardOrCompetitionYes" value="yes">
+                                                        <label class="form-check-label" for="awardOrCompetitionYes">是</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="awardOrCompetition" id="awardOrCompetitionNo" value="no">
+                                                        <label class="form-check-label" for="awardOrCompetitionNo">否</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label">具語言能力證明文件</label>
+                                                <div class="mt-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="languageProficiency" id="languageProficiencyYes" value="yes">
+                                                        <label class="form-check-label" for="languageProficiencyYes">是</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="languageProficiency" id="languageProficiencyNo" value="no">
+                                                        <label class="form-check-label" for="languageProficiencyNo">否</label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <input type="text" id="languageProficiencyNote" class="form-control w-auto ms-2" placeholder="備註">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label">出國管道</label>
+                                                <div class="mt-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="studyAbroadChannel" id="overseasSelf" value="yes">
+                                                        <label class="form-check-label" for="overseasSelf">自行尋找</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="studyAbroadChannel" id="overseasSchool" value="no">
+                                                        <label class="form-check-label" for="overseasSchool">學校(系所)交換生</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="studyAbroadChannel" id="overseasOther" value="other">
+                                                        <label class="form-check-label" for="overseasOther">其他</label>
+                                                    </div>
+                                                    <div class="form-check-inline check-other-input">
+                                                        <input type="text" id="overseasOtherNote" class="form-control w-auto ms-2" placeholder="說明">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label class="form-label">是否為新住民</label>
+                                                <div class="mt-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="newResident" id="newResidentNo" value="no">
+                                                        <label class="form-check-label" for="newResidentNo">否</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="newResident" id="newResidentYes" value="yes" checked>
+                                                        <label class="form-check-label" for="newResidentYes">是</label>
+                                                    </div>
+                                                </div>
+                                                <div class="new-resident-wrapper">
+                                                    <div class="select-wrapper">
+                                                        <select class="form-select" id="fatherNationality" data-placeholder="父國籍">
+                                                            <option></option>
+                                                            <option value="fathercountry1">奧地利</option>
+                                                            <option value="fathercountry2">比利時</option>
+                                                            <option value="fathercountry3">加拿大</option>
+                                                            <option value="fathercountry4">丹麥</option>
+                                                            <option value="fathercountry5">芬蘭</option>
+                                                            <option value="fathercountry6">法國</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="select-wrapper">
+                                                        <select class="form-select" id="motherNationality" data-placeholder="母國籍">
+                                                            <option></option>
+                                                            <option value="mothercountry1">奧地利</option>
+                                                            <option value="mothercountry2">比利時</option>
+                                                            <option value="mothercountry3">加拿大</option>
+                                                            <option value="mothercountry4">丹麥</option>
+                                                            <option value="mothercountry5">芬蘭</option>
+                                                            <option value="mothercountry6">法國</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">是否為原住民</label>
+                                                <div class="mt-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="aboriginal" id="aboriginalNo" value="no">
+                                                        <label class="form-check-label" for="aboriginalNo">否</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="aboriginal" id="aboriginalYes" value="yes" checked>
+                                                        <label class="form-check-label" for="aboriginalYes">是</label>
+                                                    </div>
+                                                </div>
+                                                <div class="aboriginal-wrapper">
+                                                    <div class="select-wrapper">
+                                                        <select class="form-select" id="aboriginal" data-placeholder="族別">
+                                                            <option></option>
+                                                            <option value="aboriginal1">阿美族</option>
+                                                            <option value="aboriginal2">泰雅族</option>
+                                                            <option value="aboriginal3">排灣族</option>
+                                                            <option value="aboriginal4">布農族</option>
+                                                            <option value="aboriginal5">魯凱族</option>
+                                                            <option value="aboriginal6">鄒族</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="educationSubsidy" class="form-label">預計向教育部申請補助經費</label>
+                                                <input type="text" id="educationSubsidy" class="form-control" value="150,000" disabled>
+                                                <div class="form-text">新台幣</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="schoolContribution" class="form-label">預計學校可提出之配合款</label>
+                                                <input type="text" id="schoolContribution" class="form-control" value="150,000" disabled>
+                                                <div class="form-text">新台幣</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="departureDate" class="form-label">出返國日期</label>
+                                                <div class="departure-date-wrapper">
+                                                    <div class="col">
+                                                        <input type="date" id="departureDate" class="form-control" disabled>
+                                                    </div>
+                                                    <div class="text-to">至</div>
+                                                    <div class="col">
+                                                        <input type="date" id="returnDate" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-text text-danger">含交通時日</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="plannedStartDate" class="form-label">預計研修日期</label>
+                                                <div class="start-date-wrapper">
+                                                    <div class="col">
+                                                        <input type="date" id="plannedStartDate" class="form-control" disabled>
+                                                    </div>
+                                                    <div class="text-to">至</div>
+                                                    <div class="col">
+                                                        <input type="date" id="plannedEndDate" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-text"><span class="text-danger">以實際支領日起算</span>。預計研修天數不得少於一學期(季)或一學年，起始日需在 <strong>2025-05-13</strong> 之後</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-lg-5">
+                                <section class="maintain-student-section">
+                                    <h4 class="modal-section-title">申請經費資料</h4>
+                                    <p><span class="required">*</span> 所有欄位皆為必填</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="actualEDUSubsidiesA" class="form-label">實際教育部補助經費(A)</label>
+                                                <input type="number" class="form-control" id="actualEDUSubsidiesA">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="actualSchoolContributionB" class="form-label">實際學校配合款(B)</label>
+                                                <input type="number" class="form-control" id="actualSchoolContributionB">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label fw-bolder text-dark fs-6">實際經費項目(新台幣)</label>
+                                            <div class="row g-2">
+                                                <div class="col-sm-4">
+
+                                                    <!-- 這裡 group 用的是 mb-2 -->
+                                                    <div class="mb-2">
+                                                        <label for="tuition" class="form-label">學費</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control" id="tuition" aria-label="學費" aria-describedby="tuition-addon">
+                                                            <span class="input-group-text" id="tuition-addon">元</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="mb-2">
+                                                        <label for="livingExpenses" class="form-label">生活費</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control" id="livingExpenses" aria-label="生活費" aria-describedby="livingExpenses-addon">
+                                                            <span class="input-group-text" id="livingExpenses-addon">元</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="mb-2">
+                                                        <label for="roundTripTickets" class="form-label">來回機票</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control" id="roundTripTickets" aria-label="來回機票" aria-describedby="roundTripTickets-addon">
+                                                            <span class="input-group-text" id="roundTripTickets-addon">元</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-end text-secondary">合計 <strong class="text-dark">0</strong> 元 <small class="ms-2">(=A+B)</small></div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="actualDepartureDate" class="form-label">實際出返國日期</label>
+                                                <div class="departure-date-wrapper">
+                                                    <div class="col">
+                                                        <input type="date" id="actualDepartureDate" class="form-control">
+                                                    </div>
+                                                    <div class="text-to">至</div>
+                                                    <div class="col">
+                                                        <input type="date" id="actualReturnDate" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <input type="text" id="actualReturnDateNote" class="form-control" placeholder="備註">
+                                                </div>
+                                                <div class="form-text text-danger">含交通時日</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="actualTrainingStart" class="form-label">實際研修/實習期程</label>
+                                                <div class="form-check form-check-inline ms-2 same-as-above">
+                                                    <input class="form-check-input" type="checkbox" value="" id="sameAsAbove" />
+                                                    <label class="form-check-label" for="sameAsAbove"> 同上</label>
+                                                </div>
+                                                <div class="departure-date-wrapper">
+                                                    <div class="col">
+                                                        <input type="date" id="actualTrainingStart" class="form-control">
+                                                    </div>
+                                                    <div class="text-to">至</div>
+                                                    <div class="col">
+                                                        <input type="date" id="actualTrainingEnd" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-text"><span class="text-danger">以實際支領日起算</span>，實際研修/實習起始日需在當年度核定公告日之後</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="foreignCredits" class="form-label">國外修讀學分數</label>
+                                                <input type="number" class="form-control" id="foreignCredits">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="recognizedCredits" class="form-label">薦送學校採認學分數</label>
+                                                <input type="number" class="form-control" id="recognizedCredits">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="creditRecognitionNote" class="form-label">學分採認說明</label>
+                                                <textarea class="form-control" id="creditRecognitionNote" rows="3"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="deleteStudentReason" class="form-label">刪除學生原因</label>
+                                                <textarea class="form-control" id="deleteStudentReason" rows="3"></textarea>
+                                                <div class="form-text text-danger">刪除學生必須填寫原因</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="maintain-student-section">
+                                    <h4 class="modal-section-title">選送學生附件資料</h4>
+                                    <div class="upload-attachment-item">
+                                        <label for="attachment-1" class="form-label">申請學生赴國外研修計畫書</label>
+                                        <div class="form-text mt-0 mb-1">包括個人自傳、赴國外研修之目標及計畫、預期出國、研修課程及目前學習之相關性、未來展望，約一千字至一千五百字</div>
+                                        <input type="file" class="form-control" id="attachment-1" accept=".pdf,application/pdf">
+                                        <div class="file-wrapper" hidden>
+
+                                            <!-- 檔名有限制最大寬度 -->
+                                            <a href="#" class="file-name" target="_blank" rel="noopener noreferrer" title="檢視"></a>
+                                            <button type="button" class="btn btn-sm btn-delete" title="刪除檔案"><i class="far fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                    <% (1..4).map do |i| %>
+                                    <div class="upload-attachment-item">
+                                        <label for="attachment-2" class="form-label"><%= lorem_sentence %></label>
+                                        <input type="file" class="form-control" id="attachment-2" accept=".pdf,application/pdf">
+                                        <div class="file-wrapper" hidden>
+                                            <a href="#" class="file-name" target="_blank" rel="noopener noreferrer" title="檢視"></a>
+                                            <button type="button" class="btn btn-sm btn-delete" title="刪除檔案"><i class="far fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                    <% end %>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="form-action">
+                            <button type="button" class="btn btn-lg btn-light" data-bs-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-lg btn-primary px-5">儲存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- 編號 + 附件上傳 -->
+<script>
+    document.querySelectorAll('.maintain-student-list .student-card').forEach(function(card, i) {
+        card.querySelector('.card-bd').dataset.index = i + 1;
+    });
+
+    document.querySelectorAll('.upload-attachment-item').forEach(function(item, i) {
+        item.dataset.index = i + 1;
+
+        var fileInput = item.querySelector('input[type="file"]');
+        if (!fileInput) return;
+
+        fileInput.setAttribute('accept', '.pdf,application/pdf');
+
+        var fileWrapper = item.querySelector('.file-wrapper');
+        var fileName = fileWrapper ? fileWrapper.querySelector('.file-name') : null;
+        var deleteButton = fileWrapper ? fileWrapper.querySelector('button') : null;
+        var previewUrl = null;
+
+        function clearSelectedFile() {
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl);
+                previewUrl = null;
+            }
+
+            fileInput.value = '';
+            if (fileName) {
+                fileName.textContent = '';
+                fileName.removeAttribute('href');
+            }
+            if (fileWrapper) fileWrapper.hidden = true;
+        }
+
+        function showSelectedFile(file) {
+            if (!fileWrapper || !fileName) return;
+
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl);
+            }
+
+            previewUrl = URL.createObjectURL(file);
+            fileName.textContent = file.name;
+            fileName.href = previewUrl;
+            fileWrapper.hidden = false;
+        }
+
+        fileInput.addEventListener('change', function(e) {
+            var selectedFile = e.target.files && e.target.files[0];
+
+            if (!selectedFile) {
+                clearSelectedFile();
+                return;
+            }
+
+            var fileNameLower = selectedFile.name.toLowerCase();
+            var isPdfType = selectedFile.type === 'application/pdf' || fileNameLower.endsWith('.pdf');
+
+            if (!isPdfType) {
+                alert('僅接受 PDF 檔案格式');
+                clearSelectedFile();
+                return;
+            }
+
+            showSelectedFile(selectedFile);
+        });
+
+        if (deleteButton) {
+            deleteButton.addEventListener('click', function() {
+                clearSelectedFile();
+            });
+        }
+    });
+</script>
+
+<!-- Bootstrap tooltip -->
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+
+<!-- Select2 -->
+<script src="../javascripts/select2.min.js"></script>
+<script>
+    $( '#topHundred, #studentCountry, #fatherNationality, #motherNationality, #aboriginal' ).select2( {
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+    } );
+</script>
+
+<!-- 下拉選擇 -->
+<script>
+    const hostInstitution = document.getElementById('hostInstitution');
+    const selectTop100 = document.querySelector('.select-100');
+    const selectOther = document.querySelector('.select-other');
+
+    function toggleHostInstitutionFields() {
+        const selectedValue = hostInstitution ? hostInstitution.value : '';
+
+        if (selectTop100) {
+            selectTop100.style.display = selectedValue === 'top100' ? 'block' : 'none';
+        }
+
+        if (selectOther) {
+            selectOther.style.display = selectedValue === 'other' ? 'block' : 'none';
+        }
+    }
+
+    if (hostInstitution) {
+        hostInstitution.addEventListener('change', toggleHostInstitutionFields);
+        toggleHostInstitutionFields();
+    }
+</script>
+
+<!-- 新住民國籍 -->
+<script>
+    const newResidentNo = document.getElementById('newResidentNo');
+    const newResidentYes = document.getElementById('newResidentYes');
+    const newResidentWrapper = document.querySelector('.new-resident-wrapper');
+
+    function toggleNewResidentFields() {
+        if (!newResidentWrapper) return;
+        newResidentWrapper.style.display = newResidentYes && newResidentYes.checked ? 'flex' : 'none';
+    }
+
+    if (newResidentNo && newResidentYes) {
+        newResidentNo.addEventListener('change', toggleNewResidentFields);
+        newResidentYes.addEventListener('change', toggleNewResidentFields);
+        toggleNewResidentFields();
+    }
+</script>
+
+<!-- 原住民族別 -->
+<script>
+    const aboriginalNo = document.getElementById('aboriginalNo');
+    const aboriginalYes = document.getElementById('aboriginalYes');
+    const aboriginalWrapper = document.querySelector('.aboriginal-wrapper');
+
+    function toggleAboriginalFields() {
+        if (!aboriginalWrapper) return;
+        aboriginalWrapper.style.display = aboriginalYes && aboriginalYes.checked ? 'block' : 'none';
+    }
+
+    if (aboriginalNo && aboriginalYes) {
+        aboriginalNo.addEventListener('change', toggleAboriginalFields);
+        aboriginalYes.addEventListener('change', toggleAboriginalFields);
+        toggleAboriginalFields();
+    }
+</script>
+<% end %>
+

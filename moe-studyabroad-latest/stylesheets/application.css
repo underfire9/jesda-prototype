@@ -126,42 +126,42 @@
   font-style: normal;
   font-weight: 100;
   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.woff) format("woff"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Thin.otf) format("opentype");
-  font-display: fallback;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Noto Sans TC';
   font-style: normal;
   font-weight: 300;
   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.woff) format("woff"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Light.otf) format("opentype");
-  font-display: fallback;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Noto Sans TC';
   font-style: normal;
   font-weight: 400;
   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.woff) format("woff"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Regular.otf) format("opentype");
-  font-display: fallback;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Noto Sans TC';
   font-style: normal;
   font-weight: 500;
   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.woff) format("woff"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Medium.otf) format("opentype");
-  font-display: fallback;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Noto Sans TC';
   font-style: normal;
   font-weight: 700;
   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.woff) format("woff"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Bold.otf) format("opentype");
-  font-display: fallback;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Noto Sans TC';
   font-style: normal;
   font-weight: 900;
   src: url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.woff) format("woff"), url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.otf) format("opentype");
-  font-display: fallback;
+  font-display: swap;
 }
 /*!
  * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
@@ -6489,23 +6489,23 @@ select.browser-default {
 }
 
 .btn-info {
-  background-color: #2ac4e3;
-  border-color: #2ac4e3;
+  background-color: #0ba0be;
+  border-color: #0ba0be;
   color: #fff;
 }
 .btn-info:hover, .btn-info:active, .btn-info:focus {
-  background-color: #19a5c1 !important;
-  border-color: #19a5c1 !important;
+  background-color: #08778e !important;
+  border-color: #08778e !important;
   color: #fff !important;
 }
 
 .btn-outline-info {
-  border-color: #2ac4e3;
-  color: #2ac4e3;
+  border-color: #0ba0be;
+  color: #0ba0be;
 }
 .btn-outline-info:hover, .btn-outline-info:active, .btn-outline-info:focus {
-  background-color: #2ac4e3 !important;
-  border-color: #2ac4e3 !important;
+  background-color: #0ba0be !important;
+  border-color: #0ba0be !important;
   color: #fff !important;
 }
 
@@ -6605,6 +6605,7 @@ header.header .topbar-link {
   justify-content: center;
   width: 24px;
   height: 24px;
+  color: #26373B;
 }
 header.header .topbar-link img {
   width: 20px;
@@ -6612,12 +6613,11 @@ header.header .topbar-link img {
 }
 header.header .topbar-link:hover {
   opacity: .65;
+  color: #1893ac;
 }
 header.header .topbar-link:focus {
   background: #111;
-}
-header.header .topbar-link:focus img {
-  filter: invert(1);
+  color: #fff;
 }
 header.header .navbar {
   padding: 0;
@@ -8748,6 +8748,7 @@ section.section + section.section {
   display: block;
   padding: 1rem 0 1rem 1rem;
   font-size: 1.188rem;
+  font-weight: 300;
   color: #707474;
 }
 .annual-aside .level-item + .level-item {
@@ -9050,31 +9051,88 @@ article.article .article-body {
 }
 
 .service-wrapper {
-  display: flex;
-  justify-content: space-between;
   padding-top: .5rem;
 }
-.service-wrapper .guidelines-content,
-.service-wrapper .sheet-content {
-  width: 46.5%;
+.service-wrapper .guidelines-content {
+  margin-bottom: 4rem;
+}
+.service-wrapper .guidelines-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  counter-reset: guidelines;
+}
+.service-wrapper .guidelines-item {
+  width: calc(50% - 1rem);
+  position: relative;
+  counter-increment: guidelines;
+}
+.service-wrapper .guidelines-link {
+  --r: 14px;
+  /* radius */
+  --s: 32px;
+  /* inner curve size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #f3fbfd;
+  border-radius: 1rem;
+  padding: calc(1rem + .75vw) 3rem;
+  font-weight: 500;
+  min-height: 120px;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  color: #5b6363;
+  clip-path: shape(from 0 0, hline to calc(100% - var(--s) - 2 * var(--r)), arc by var(--r) var(--r) of var(--r) cw, arc by var(--s) var(--s) of var(--s), arc by var(--r) var(--r) of var(--r) cw, vline to 100%, hline to 0);
+}
+.service-wrapper .guidelines-link:hover, .service-wrapper .guidelines-link:active, .service-wrapper .guidelines-link:focus {
+  background: #2DB4D0;
+  color: #fff;
+}
+.service-wrapper .guidelines-link:hover ~ .guidelines-number, .service-wrapper .guidelines-link:active ~ .guidelines-number, .service-wrapper .guidelines-link:focus ~ .guidelines-number {
+  background: #2DB4D0;
+}
+.service-wrapper .guidelines-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #5b6363;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 0.2s ease-in-out;
+}
+.service-wrapper .guidelines-number::before {
+  content: counter(guidelines);
 }
 .service-wrapper .content-title {
   margin-bottom: 1.5rem;
   font-weight: 300;
 }
-.service-wrapper .content-list li {
+.service-wrapper .content-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 2rem;
+}
+.service-wrapper .content-list .content-item {
   border-bottom: 1px dashed #e5e5e5;
   padding: .5rem 0;
-}
-.service-wrapper .content-list li:last-child {
-  border-bottom: none;
+  width: calc(50% - 1rem);
 }
 .service-wrapper .content-list .content-link {
   display: flex;
   align-items: center;
   border-radius: 6px;
-  padding: .5rem 1rem .5rem 2.5rem;
-  min-height: 72px;
+  padding: .5rem 1rem .5rem 2rem;
+  width: 100%;
+  height: 100%;
+  min-height: 48px;
   font-size: 1.063rem;
   position: relative;
 }
@@ -9605,6 +9663,18 @@ article.article .article-body {
   }
   .sitemap > li {
     width: calc(50% - 1.5rem);
+  }
+
+  .service-wrapper .guidelines-list {
+    gap: 1rem;
+  }
+  .service-wrapper .guidelines-item,
+  .service-wrapper .content-list .content-item {
+    width: 100%;
+  }
+  .service-wrapper .guidelines-item:last-child,
+  .service-wrapper .content-list .content-item:last-child {
+    border-bottom: none;
   }
 }
 @media (max-width: 479px) {

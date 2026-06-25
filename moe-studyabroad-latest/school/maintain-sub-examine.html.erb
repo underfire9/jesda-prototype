@@ -1,0 +1,338 @@
+<!-- template: 學校聯絡人 - 計畫維護/子計畫瀏覽 -->
+<% content_for :header_center do %>
+    <span class="central-title">子計畫瀏覽</span>
+<% end %>
+
+<!-- 欄位排序利用 css nth-child 極度客製化，變動發現版面有問題找 fire 處理 -->
+
+<div class="container">
+    <div class="page-content">
+        <div class="subplan-examine-main maintain-subplan-examine">
+            <p class="main-fas-info"><i class="fas fa-info-circle fs-5 me-1"></i> 表列為學校聯絡人審核通過計畫清冊</p>
+            <div class="action-bar">
+                <div class="bar-inner">
+                    <span>匯出計畫資料</span>
+                    <div class="btn-group action-group" role="group">
+                        <button type="button" class="btn btn-sm btn-rounded btn-outline-secondary">EXCEL</button>
+                        <button type="button" class="btn btn-sm btn-rounded btn-outline-secondary">ODS</button>
+                    </div>
+                </div>
+                <div class="bar-inner">
+                    <span>匯出選送生資料</span>
+                    <div class="btn-group action-group" role="group">
+                        <button type="button" class="btn btn-sm btn-rounded btn-outline-secondary">EXCEL</button>
+                        <button type="button" class="btn btn-sm btn-rounded btn-outline-secondary">ODS</button>
+                    </div>
+                </div>
+            </div>
+            <div class="subplan-examine-list">
+
+                <% (1..9).map do |i| %>
+                <div class="item-examine">
+                    <div class="item-examine-hd">
+                        <div class="data-field" data-bs-toggle="tooltip" data-bs-title="序號">1151009000<%= i %></div>
+                    </div>
+
+                    <!-- .bd-data-value 有做字元長度限制，超過 16 個字元做文字截斷展開功能，計畫名稱不用限制 -->
+
+                    <div class="item-examine-bd">
+                        <div class="data-field">
+                            <div class="data-label">計畫名稱</div>
+                            <div class="data-value">
+                                日本長者居家照顧與服務拓展: 長照政策下的醫療與健康
+                                <span class="team-modal-link" data-bs-toggle="tooltip" data-bs-title="計畫團員資料"><button type="button" class="btn btn-rounded btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#teamModal"><i class="fas fa-users"></i></button></span>
+                            </div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">計畫主持人</div>
+                            <div class="data-value bd-data-value">
+                                <a href="#" class="blank-link" target="_blank" title="開啟"><%= zh_lorem_name %></a>
+                            </div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">實習領域</div>
+                            <div class="data-value bd-data-value">社會科學</div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">實習國別</div>
+                            <div class="data-value bd-data-value">日本</div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">實習機構</div>
+                            <div class="data-value bd-data-value"><%= zh_lorem_sentences(3) %></div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">預計選送學生人數</div>
+                            <div class="data-value bd-data-value">7</div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">新住民總人數</div>
+                            <div class="data-value bd-data-value">0</div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">申請補助經費</div>
+                            <div class="data-value bd-data-value">294,189</div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">學校配合款</div>
+                            <div class="data-value bd-data-value">58,840</div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">承辦人請款</div>
+                            <div class="data-value bd-data-value">確定請款</div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">實際教育部補助經費</div>
+                            <div class="data-value bd-data-value">56,997</div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">實際學校配合款</div>
+                            <div class="data-value bd-data-value">11,400</div>
+                        </div>
+                        <div class="data-field">
+                            <div class="data-label">計畫成果</div>
+                            <div class="data-value bd-data-value">
+                                <a href="#" target="_blank"><i class="fas fa-file-pdf text-danger"></i> 下載 PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="form-action no-border">
+            <span class="backhome">
+                <a href="maintain.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- 計畫團員資料 Modal -->
+<div class="modal fade" id="teamModal" tabindex="-1" aria-labelledby="teamModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable subplan-team-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="teamModalLabel">計畫團員資料</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="team-list">
+                    <% (1..6).map do |i| %>
+                    <div class="item-members">
+                        <div class="item-start">
+                            <span class="item-serial"><%= i %></span>
+                            <button type="button" class="btn btn-view" data-bs-target="#studentModal" data-bs-toggle="modal" title="檢視"><i class="fas fa-arrow-right"></i></button>
+                        </div>
+                        <div class="item-end">
+                            <div class="info-wrapper">
+                                <div class="item-info">
+                                    <span class="info-label">學生類型</span>
+                                    <span class="info-value">本校學生</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="info-label">姓名</span>
+                                    <span class="info-value"><%= zh_lorem_name %></span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="info-label">學號</span>
+                                    <span class="info-value">B100200</i></span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="info-label">系所 / 級別</span>
+                                    <span class="info-value">醫學系 / 大學五年級</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="info-label">實習國別</span>
+                                    <span class="info-value">奧地利</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="info-label">實習機構</span>
+                                    <span class="info-value">Medical University of Vienna</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="info-label">預計出返國日期</span>
+                                    <span class="info-value">2026-08-28 ~ 2026-10-02</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="info-label">預計實習期程</span>
+                                    <span class="info-value">2026-08-28 ~ 2026-10-02</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="info-label">預計向教育部申請補助經費</span>
+                                    <span class="info-value">114107</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="info-label">預計學校可提出之配合款</span>
+                                    <span class="info-value">22821</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 學生資料 Modal -->
+<div class="modal fade" id="studentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable team-student-modal">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="studentModalLabel">學生資料</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>同一位申請生在同一補助計畫內不能選送至多個子計畫案</p>
+                <div class="student-info-wrapper">
+                    <div class="student-info">
+                        <span class="info-label">中文姓名</span>
+                        <span class="info-value"><%= zh_lorem_name %></span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">英文姓名</span>
+                        <span class="info-value"><%= lorem_name %></span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">學號</span>
+                        <span class="info-value">B1141052</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">就讀學校</span>
+                        <span class="info-value">長庚大學</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">出生年月日</span>
+                        <span class="info-value">2003-10-15</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">性別</span>
+                        <span class="info-value">男</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">聯絡電話</span>
+                        <span class="info-value">0978-583-538</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">手機</span>
+                        <span class="info-value">0978-583-538</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">電子信箱</span>
+                        <span class="info-value">example@example.com</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">就讀系所</span>
+                        <span class="info-value">醫務管理學系</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">就讀狀況</span>
+                        <span class="info-value">大學 / 四年級</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">具語言能力證明文件</span>
+                        <span class="info-value">是 ，備註: 多益 885</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">在校平均成績</span>
+                        <span class="info-value">98017</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">是否為新住民</span>
+                        <span class="info-value">否</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">是否為原住民</span>
+                        <span class="info-value">否</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">採認學分</span>
+                        <span class="info-value">國外專業實習是否可抵校內學分？ 是</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">預計向教育部申請補助經費(新台幣)</span>
+                        <span class="info-value">116742</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">預計學校可提出之配合款(新台幣)</span>
+                        <span class="info-value">23348</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">出返國日期</span>
+                        <span class="info-value">2026-06-28 至 2026-08-22</span>
+                        <div class="form-text">含交通時日</div>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">實習機構</span>
+                        <span class="info-value">實習機構: 日本穗來彩診所</span>
+                    </div>
+                    <div class="student-info">
+                        <span class="info-label">預計實習日程</span>
+                        <span class="info-value">2026-06-29 至 2026-08-21</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-target="#teamModal" data-bs-toggle="modal"><i class="fas fa-long-arrow-alt-left"></i> 返回</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+<script>
+
+    // Tooltip 初始化
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    // 文字截斷展開功能，可調整字元上限
+    const TRUNCATE_LIMIT = 16;
+
+    function initTruncate(limit = TRUNCATE_LIMIT) {
+        document.querySelectorAll('.bd-data-value').forEach(el => {
+            const text = el.textContent.trim();
+            if (text.length <= limit) return;
+
+            el.dataset.fullText = text;
+
+            const textSpan = document.createElement('span');
+            textSpan.className = 'truncate-text';
+            textSpan.textContent = text.slice(0, limit) + '\u2026';
+
+            const toggleBtn = document.createElement('button');
+            toggleBtn.className = 'btn-truncate-toggle';
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            toggleBtn.setAttribute('title', '展開');
+            toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+
+            el.textContent = '';
+            el.appendChild(textSpan);
+            el.appendChild(toggleBtn);
+
+            toggleBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+                if (isExpanded) {
+                    textSpan.textContent = el.dataset.fullText.slice(0, limit) + '\u2026';
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                    toggleBtn.title = '展開';
+                } else {
+                    textSpan.textContent = el.dataset.fullText;
+                    toggleBtn.setAttribute('aria-expanded', 'true');
+                    toggleBtn.title = '收合';
+                }
+            });
+        });
+    }
+
+    initTruncate();
+</script>
+<% end %>
+

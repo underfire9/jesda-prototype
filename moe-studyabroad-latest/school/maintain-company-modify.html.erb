@@ -1,0 +1,568 @@
+<!-- template: 學校聯絡人 - 計畫維護/實習機構變更 -->
+<% content_for :header_center do %>
+    <span class="central-title">實習機構變更</span>
+<% end %>
+
+<div class="container">
+    <div class="page-content">
+        <div class="company-modify-wrapper">
+            <div class="company-card">
+                <div class="card-bd">
+                    <div class="item-info">
+                        <span class="item-label">計畫名稱</span>
+                        <span class="item-value">日本醫療現況及漢方醫學的發展</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">計畫主持人</span>
+                        <span class="item-value"><%= zh_lorem_name %></span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">可申請變更次數</span>
+                        <span class="item-value">1</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">已申請變更次數</span>
+                        <span class="item-value">0</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">剩餘變更次數</span>
+                        <span class="item-value">1</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">回函上傳狀態</span>
+                        <!-- 沒有時給 0 -->
+                        <span class="item-value">0</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">申請紀錄</span>
+                        <!-- 沒有時給 0 -->
+                        <span class="item-value">0</span>
+                    </div>
+                </div>
+                <div class="card-ft">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modifyModal">申請 <i class="fas fa-angle-right ms-2"></i></button>
+                </div>
+            </div>
+            <% (1..4).map do |i| %>
+            <div class="company-card">
+                <div class="card-bd">
+                    <div class="item-info">
+                        <span class="item-label">計畫名稱</span>
+                        <span class="item-value"><%= lorem_sentence %></span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">計畫主持人</span>
+                        <span class="item-value"><%= zh_lorem_name %></span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">可申請變更次數</span>
+                        <span class="item-value">1</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">已申請變更次數</span>
+                        <span class="item-value">0</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">剩餘變更次數</span>
+                        <span class="item-value">1</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">回函上傳狀態</span>
+                        <!-- 沒有時給 0 -->
+                        <span class="item-value">0</span>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-label">申請紀錄</span>
+                        <!-- 沒有時給 0 -->
+                        <span class="item-value">0</span>
+                    </div>
+                </div>
+                <div class="card-ft">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modifyModal">申請 <i class="fas fa-angle-right ms-2"></i></button>
+                </div>
+            </div>
+            <% end %>
+        </div>
+        <div class="form-action no-border">
+            <span class="backhome">
+                <a href="maintain.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modifyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="modifyModalLabel">實習機構變更</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>2026冬季日本八王子藥劑中心實務實習暨藥學交流</h5>
+                <p>主持人：<%= zh_lorem_name %></p>
+                <div class="bg-light rounded-4 p-4 text-center">
+                    <button type="button" class="btn btn-outline-dark m-1" data-bs-target="#companyModifyModal" data-bs-toggle="modal">實習機構變更申請</button>
+                    <button type="button" class="btn btn-outline-dark m-1" data-bs-target="#newCompanyModifyModal" data-bs-toggle="modal">新實習機構申請</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="companyModifyModal" tabindex="-1" aria-labelledby="companyModifyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="companyModifyModalLabel">實習機構變更申請</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="company-modify-modal">
+                        <div class="notice-wrapper">請填寫及上傳下列各項資料，填寫完畢後，按下方"送出"按鈕，送計畫辦公室審查，經辦公室辦理後，回函學校後才能開始使用變更後資料。</div>
+                        <div class="row g-5">
+                            <div class="col-lg-5">
+                                <section class="modal-section">
+                                    <h5 class="modal-section-title">選擇要變更實習機構的計畫</h5>
+                                    <div class="form-group">
+                                        <label class="form-label">計畫名稱</label>
+                                        <div class="output">我的夢想國度-日本宮島休閒產業實習</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label"><span class="required">*</span> 實習機構</label>
+                                        <select class="form-select" aria-label="實習機構">
+                                            <option selected>有限会社まこと総合企画</option>
+                                            <option value="114">日本藥妝店</option>
+                                            <option value="113">日本藥局</option>
+                                            <option value="112">日本醫院</option>
+                                        </select>
+                                    </div>
+                                </section>
+                                <section class="modal-section disabled">
+                                    <h5 class="mb-4">原實習機構<small class="fs-7 text-danger-emphasis ps-2">資料不能再使用</small></h5>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="form-label">實習國別</label>
+                                                <div class="output">日本</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="form-label">前往區域</label>
+                                                <div class="output">華盛頓哥倫比亞特區</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="form-label">產業別</label>
+                                                <div class="output">旅遊</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="form-label">實習領域別</label>
+                                                <div class="output">餐旅、運動休閒管理</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">是否為5+2產業</label>
+                                                <div class="output">否</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">實習機構與單位</label>
+                                                <div class="output">
+                                                    <div class="output-item">
+                                                        <span><i class="fas fa-building"></i></span>
+                                                        <span>有限会社まこと総合企画</span>
+                                                    </div>
+                                                    <div class="output-item">
+                                                        <span><i class="fas fa-user-tie"></i></span>
+                                                        <span>梅林保雄</span>
+                                                    </div>
+                                                    <div class="output-item">
+                                                        <span><i class="fas fa-phone"></i></span>
+                                                        <span>024-59-0001</span>
+                                                    </div>
+                                                    <div class="output-item">
+                                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                                        <span>広島県廿日市市宮島町755番地</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">機構同意書PDF</label>
+                                                <a href="#" class="btn btn-link">檢視同意書</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-lg-7">
+                                <section class="modal-section">
+                                    <h5 class="modal-section-title">新實習機構</h5>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="internship-country" class="form-label"><span class="required">*</span> 實習國別</label>
+                                                <select id="internship-country" class="form-select" aria-label="實習國別">
+                                                    <option selected>請選擇</option>
+                                                    <option value="114">奧地利</option>
+                                                    <option value="113">丹麥</option>
+                                                    <option value="112">新加坡</option>
+                                                    <option value="111">巴布亞紐幾內亞獨立國</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="internship-region" class="form-label"><span class="required">*</span> 前往區域</label>
+                                                <select id="internship-region" class="form-select" aria-label="前往區域">
+                                                    <option selected>請選擇</option>
+                                                    <option value="1">華盛頓哥倫比亞特區</option>
+                                                    <option value="2">紐約州</option>
+                                                    <option value="3">加利福尼亞州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="form-label"><span class="required">*</span> 產業別</label>
+                                                <select class="form-select" aria-label="產業別">
+                                                    <option selected>請選擇</option>
+                                                    <option value="114">旅遊</option>
+                                                    <option value="113">餐飲</option>
+                                                    <option value="112">零售</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="form-label">實習領域別</label>
+                                                <div class="output">同原機構</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">是否為5+2產業</label>
+                                                <div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="is-5plus2" id="is-5plus2-yes" value="yes">
+                                                        <label class="form-check-label" for="is-5plus2-yes">是</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="is-5plus2" id="is-5plus2-no" value="no">
+                                                        <label class="form-check-label" for="is-5plus2-no">否</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">實習機構與單位</label>
+                                                <div class="output empty">
+                                                    <div class="output-item">
+                                                        <span><i class="fas fa-building"></i></span>
+                                                        <span><input type="text" class="form-control" placeholder="機構名稱"></span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="output-item">
+                                                                <span><i class="fas fa-user-tie"></i></span>
+                                                                <span><input type="text" class="form-control" placeholder="聯絡人姓名"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="output-item">
+                                                                <span><i class="fas fa-phone"></i></span>
+                                                                <span><input type="text" class="form-control" placeholder="聯絡電話號碼"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="output-item">
+                                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                                        <span><input type="text" class="form-control" placeholder="聯絡地址"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="modal-section">
+                                    <h5 class="modal-section-title">應檢附資料</h5>
+                                    <div class="attached-group">
+                                        <div class="attached-item">
+                                            <h6 class="fw-bold mb-3">校內審核通過紀錄</h6>
+                                            <p>請填寫審核通過會議紀錄時間，會議主持人非計畫主持人</p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="meetingRecordDate" class="form-label">審核通過會議紀錄日期</label>
+                                                        <input type="date" id="meetingRecordDate" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="meetingRecordHost" class="form-label">會議主持人</label>
+                                                        <input type="text" id="meetingRecordHost" class="form-control" placeholder="請輸入">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="attached-item">
+                                            <h6 class="fw-bold mb-3">實習機構同意書或合作契約書影本</h6>
+                                            <div class="contract-wrapper">
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="" id="hasContract">
+                                                    <label class="form-check-label" for="hasContract">
+                                                        契約書中實習期間尚未過期
+                                                    </label>
+                                                </div>
+                                                <div class="contract-textarea">
+                                                    <textarea class="form-control" rows="3" placeholder="如未勾選實習期間尚未過期，需填寫此處說明"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-check mb-2 mt-4">
+                                                <input class="form-check-input" type="checkbox" value="" id="hasContractStamped">
+                                                <label class="form-check-label" for="hasContractStamped">
+                                                    確認契約書中已用印
+                                                </label>
+                                            </div>
+                                            <div class="form-text">若國外實習機構確實無印章可提供用印，需由計畫主持人另提書面說明，因配合國外實習機構無印章，故該國外實習機構以簽名代替，由計畫主持人提供書面說明並無誤後簽名，上傳說明檔案。</div>
+                                        </div>
+                                        <div class="attached-item">
+                                            <h6 class="fw-bold mb-3">新實習機構詳細介紹</h6>
+                                            <p class="text-danger">這邊不知道是給什麼欄位，測試機沒東西</p>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-target="#modifyModal" data-bs-toggle="modal">取消</button>
+
+                <!-- 送出後畫面同樣回到上一個 modal -->
+                <button type="submit" class="btn btn-primary" data-bs-target="#modifyModal" data-bs-toggle="modal">送出</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newCompanyModifyModal" tabindex="-1" aria-labelledby="newCompanyModifyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h1 class="modal-title fs-5" id="newCompanyModifyModalLabel">實習機構變更申請</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="company-modify-modal">
+                        <div class="notice-wrapper">請填寫及上傳下列各項資料，填寫完畢後，按下方"送出"按鈕，送計畫辦公室審查，經辦公室辦理後，回函學校後才能開始使用變更後資料。</div>
+                        <div class="row g-5">
+                            <div class="col-lg-4">
+                                <section class="modal-section">
+                                    <div class="form-group">
+                                        <label class="form-label">計畫名稱</label>
+                                        <h5>我的夢想國度-日本宮島休閒產業實習</h5>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-lg-8">
+                                <section class="modal-section">
+                                    <h5 class="modal-section-title">新實習機構</h5>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="new-internship-country" class="form-label"><span class="required">*</span> 實習國別</label>
+                                                <select id="new-internship-country" class="form-select" aria-label="實習國別">
+                                                    <option selected>請選擇</option>
+                                                    <option value="114">奧地利</option>
+                                                    <option value="113">丹麥</option>
+                                                    <option value="112">新加坡</option>
+                                                    <option value="111">巴布亞紐幾內亞獨立國</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="new-internship-region" class="form-label"><span class="required">*</span> 前往區域</label>
+                                                <select id="new-internship-region" class="form-select" aria-label="前往區域">
+                                                    <option selected>請選擇</option>
+                                                    <option value="1">華盛頓哥倫比亞特區</option>
+                                                    <option value="2">紐約州</option>
+                                                    <option value="3">加利福尼亞州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="new-internship-industry" class="form-label"><span class="required">*</span> 產業別</label>
+                                                <select id="new-internship-industry" class="form-select" aria-label="產業別">
+                                                    <option selected>請選擇</option>
+                                                    <option value="114">旅遊</option>
+                                                    <option value="113">餐飲</option>
+                                                    <option value="112">零售</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="form-label">實習領域別</label>
+                                                <div class="output">同原機構</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">是否為5+2產業</label>
+                                                <div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="new-is-5plus2" id="new-is-5plus2-yes" value="yes">
+                                                        <label class="form-check-label" for="new-is-5plus2-yes">是</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="new-is-5plus2" id="new-is-5plus2-no" value="no">
+                                                        <label class="form-check-label" for="new-is-5plus2-no">否</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">實習機構與單位</label>
+                                                <div class="output empty">
+                                                    <div class="output-item">
+                                                        <span><i class="fas fa-building"></i></span>
+                                                        <span><input type="text" class="form-control" placeholder="機構名稱"></span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="output-item">
+                                                                <span><i class="fas fa-user-tie"></i></span>
+                                                                <span><input type="text" class="form-control" placeholder="聯絡人姓名"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="output-item">
+                                                                <span><i class="fas fa-phone"></i></span>
+                                                                <span><input type="text" class="form-control" placeholder="聯絡電話號碼"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="output-item">
+                                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                                        <span><input type="text" class="form-control" placeholder="聯絡地址"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="modal-section">
+                                    <h5 class="modal-section-title">應檢附資料</h5>
+                                    <div class="attached-group">
+                                        <div class="attached-item">
+                                            <h6 class="fw-bold mb-3">校內審核通過紀錄</h6>
+                                            <p>請填寫審核通過會議紀錄時間，會議主持人非計畫主持人</p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="newMeetingRecordDate" class="form-label">審核通過會議紀錄日期</label>
+                                                        <input type="date" id="newMeetingRecordDate" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="newMeetingRecordHost" class="form-label">會議主持人</label>
+                                                        <input type="text" id="newMeetingRecordHost" class="form-control" placeholder="請輸入">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="attached-item">
+                                            <h6 class="fw-bold mb-3">實習機構同意書或合作契約書影本</h6>
+                                            <div class="contract-wrapper">
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input" type="checkbox" value="" id="newHasContract">
+                                                    <label class="form-check-label" for="newHasContract">
+                                                        契約書中實習期間尚未過期
+                                                    </label>
+                                                </div>
+                                                <div class="contract-textarea">
+                                                    <textarea class="form-control" rows="3" placeholder="如未勾選實習期間尚未過期，需填寫此處說明"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-check mb-2 mt-4">
+                                                <input class="form-check-input" type="checkbox" value="" id="newHasContractStamped">
+                                                <label class="form-check-label" for="newHasContractStamped">
+                                                    確認契約書中已用印
+                                                </label>
+                                            </div>
+                                            <div class="form-text">若國外實習機構確實無印章可提供用印，需由計畫主持人另提書面說明，因配合國外實習機構無印章，故該國外實習機構以簽名代替，由計畫主持人提供書面說明並無誤後簽名，上傳說明檔案。</div>
+                                        </div>
+                                        <div class="attached-item">
+                                            <h6 class="fw-bold mb-3">新實習機構詳細介紹</h6>
+                                            <p class="text-danger">這邊不知道是給什麼欄位，測試機沒東西</p>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-target="#modifyModal" data-bs-toggle="modal">取消</button>
+
+                <!-- 送出後畫面同樣回到上一個 modal -->
+                <button type="submit" class="btn btn-primary" data-bs-target="#modifyModal" data-bs-toggle="modal">送出</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- 編號 -->
+<script>
+    document.querySelectorAll('.company-modify-wrapper .company-card').forEach(function(card, i) {
+        card.querySelector('.card-bd').dataset.index = i + 1;
+    });
+</script>
+
+<!-- Bootstrap tooltip -->
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+
+<!-- 實習國別/區域連動 -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const country = document.querySelector("#internship-country");
+        const region = document.querySelector("#internship-region");
+
+        if (!country || !region) return;
+
+        region.disabled = true;
+
+        country.addEventListener("change", () => {
+            const hasSelection = country.value && country.value !== "請選擇";
+            region.disabled = !hasSelection;
+        });
+    });
+</script>
+<% end %>
+

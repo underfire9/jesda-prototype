@@ -73,7 +73,7 @@
                 <div class="col-6">
                     <div class="chart-block">
                         <h5 class="chart-title">依國家地區排行 (Top 20)</h5>
-                        <div class="bar-placeholder"><canvas id="countryChart"></canvas></div>
+                        <div class="bar-placeholder" style="position:relative"><canvas id="countryChart"></canvas><div id="countryStatsPanel" class="country-stats-panel"></div></div>
                     </div>
                 </div>
             </div>
@@ -85,6 +85,41 @@
 <% content_for :js do %>
     <script src="../javascripts/Chart.js"></script>
     <script>
+        // Inline plugin：直接在餅圖/甜甜圈圖色塊內繪製 "標籤: 數值" 文字
+        const pieDataLabelsPlugin = {
+            id: 'pieDataLabels',
+            afterDatasetsDraw(chart) {
+                const { ctx } = chart;
+                chart.data.datasets.forEach(function(dataset, datasetIndex) {
+                    const meta = chart.getDatasetMeta(datasetIndex);
+                    meta.data.forEach(function(arc, index) {
+                        const segmentAngle = arc.endAngle - arc.startAngle;
+                        if (segmentAngle < 0.3) return; // 太小的區塊略過
+                        const label = chart.data.labels[index] || '';
+                        const value = dataset.data[index];
+                        const shortLabel = label.length > 7 ? label.slice(0, 6) + '…' : label;
+                        const text = shortLabel + ': ' + value;
+                        const midAngle = arc.startAngle + segmentAngle / 2;
+                        const innerR = arc.innerRadius != null ? arc.innerRadius : 0;
+                        const outerR = arc.outerRadius;
+                        const r = innerR + (outerR - innerR) * 0.65;
+                        const x = arc.x + r * Math.cos(midAngle);
+                        const y = arc.y + r * Math.sin(midAngle);
+                        ctx.save();
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.font = 'bold 13px sans-serif';
+                        ctx.strokeStyle = 'rgba(255,255,255,0.8)';
+                        ctx.lineWidth = 3;
+                        ctx.strokeText(text, x, y);
+                        ctx.fillStyle = '#222';
+                        ctx.fillText(text, x, y);
+                        ctx.restore();
+                    });
+                });
+            }
+        };
+
         // resultChart - 依成果統計
         const resultCtx = document.getElementById('resultChart').getContext('2d');
         const resultChart = new Chart(resultCtx, {
@@ -133,7 +168,9 @@
                         }
                     },
                     tooltip: {
+                        bodyFont: { size: 15 },
                         callbacks: {
+                            title: function() { return ''; },
                             label: function(context) {
                                 let label = context.label || '';
                                 if (label) {
@@ -145,7 +182,8 @@
                         }
                     }
                 }
-            }
+            },
+            plugins: [pieDataLabelsPlugin]
         });
 
         // businessChart - 依業務統計
@@ -199,7 +237,9 @@
                         }
                     },
                     tooltip: {
+                        bodyFont: { size: 14 },
                         callbacks: {
+                            title: function() { return ''; },
                             label: function(context) {
                                 let label = context.label || '';
                                 if (label) {
@@ -211,7 +251,8 @@
                         }
                     }
                 }
-            }
+            },
+            plugins: [pieDataLabelsPlugin]
         });
 
         // monthChart - 依月份統計
@@ -277,7 +318,8 @@
             '美國', '日本', '德國', '英國', '法國',
             '澳洲', '加拿大', '韓國', '新加坡', '泰國',
             '馬來西亞', '印尼', '菲律賓', '越南', '印度',
-            '巴西', '紐西蘭', '荷蘭', '瑞士', '瑞典'
+            '巴西', '紐西蘭', '荷蘭',
+            '南非', '埃及'
         ];
         countryCtx.parentElement.style.height = (countryData.length * 30 + 60) + 'px';
         const countryChart = new Chart(countryCtx.getContext('2d'), {
@@ -286,7 +328,7 @@
                 labels: countryData,
                 datasets: [{
                     label: '合作數量',
-                    data: [85, 72, 68, 65, 58, 52, 48, 45, 42, 38, 35, 32, 28, 25, 22, 20, 18, 15, 12, 10],
+                    data: [85, 72, 68, 65, 58, 52, 48, 45, 42, 38, 35, 32, 28, 25, 22, 20, 18, 15, 8, 6],
                     backgroundColor: 'rgba(75, 192, 192, 0.8)',
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
@@ -326,6 +368,37 @@
                 }
             }
         });
+
+        // countryChart overlay — 各洲統計摘要
+        (function() {
+            const continentGroups = [
+                { name: '亞洲', color: '#36a2eb', countries: ['日本', '韓國', '新加坡', '泰國', '馬來西亞', '印尼', '菲律賓', '越南', '印度'] },
+                { name: '歐洲', color: '#ff6384', countries: ['德國', '英國', '法國', '荷蘭'] },
+                { name: '美洲', color: '#ffcd56', countries: ['美國', '加拿大', '巴西'] },
+                { name: '大洋洲', color: '#4bc0c0', countries: ['澳洲', '紐西蘭'] },
+                { name: '非洲', color: '#ff9f40', countries: ['南非', '埃及'] }
+            ];
+            const labels = countryChart.data.labels;
+            const values = countryChart.data.datasets[0].data;
+            const total = values.reduce(function(a, b) { return a + b; }, 0);
+            const panel = document.getElementById('countryStatsPanel');
+            let html = '<div class="csp-title">各洲統計</div>';
+            continentGroups.forEach(function(group) {
+                let sum = 0;
+                group.countries.forEach(function(c) {
+                    const idx = labels.indexOf(c);
+                    if (idx !== -1) sum += values[idx];
+                });
+                const pct = total > 0 ? ((sum / total) * 100).toFixed(0) : 0;
+                html += '<div class="csp-row">'
+                    + '<span class="csp-dot" style="background:' + group.color + '"></span>'
+                    + '<span class="csp-name">' + group.name + '</span>'
+                    + '<span class="csp-val">' + sum + '</span>'
+                    + '<span class="csp-pct">' + pct + '%</span>'
+                    + '</div>';
+            });
+            panel.innerHTML = html;
+        })();
     </script>
 <% end %>
 

@@ -1,0 +1,451 @@
+<!-- template: 闈場審查系統 - 審查介面 -->
+
+<div class="scoreboard-container">
+    <div class="container-header">
+        <div class="header-start">
+            <div class="start-inner">
+                <div class="page-controller">
+                    <button type="button" class="btn"><i class="fas fa-caret-left me-2"></i>上一筆</button>
+                    <button type="button" class="btn">下一筆<i class="fas fa-caret-right ms-2"></i></button>
+                </div>
+                <div class="page-status">1 / 共 10 筆</div>
+            </div>
+            <div class="school-name">國立臺中科技大學</div>
+        </div>
+        <div class="header-end">
+            <div class="btn-clip">
+                <button type="button" class="btn btn-rounded btn-light btn-guide" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="介面導覽">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </div>
+            <div class="btn-clip">
+                <button type="button" class="btn btn-rounded btn-light js-open-chat-modal" data-chat-modal="#discussionModal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="委員討論區">
+                    <i class="fas fa-comments"></i>
+                </button>
+            </div>
+            <div class="btn-clip">
+                <button type="button" class="btn btn-rounded btn-light js-open-chat-modal" data-chat-modal="#officeModal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="聯絡辦公室">
+                    <i class="fas fa-comment-medical"></i>
+                    <span class="badge rounded-pill bg-danger">2</span>
+                </button>
+            </div>
+            <div class="btn-clip close-clip">
+                <a href="room.html" class="btn x2arrow" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="回列表">
+                    <span class="inner-wrap">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="scoreboard-wrapper">
+        <div class="score-sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-note"><i class="fas fa-info-circle me-2 text-danger"></i>滿分為 90 分，請分項評分，並<strong>填寫委員評語</strong></div>
+                <div class="score-group">
+                    <div class="score-item">
+                        <div class="item-column">
+                            <div class="item-title">選送計畫</div>
+                            <div class="item-input input-group">
+                                <span class="input-group-text" id="score-addon1">40分</span>
+                                <input type="number" class="form-control" aria-describedby="score-addon1" value="0" min="0" max="40" required>
+                            </div>
+                        </div>
+
+                        <!-- note 限制 128個全形字元，超過時會有 item-note-toggle 按鈕控制展開收合，該次的操作應該延續到下一筆審核 -->
+                        <div class="item-note">
+                            1. 校內審查機制 包括校內計畫案、選送學生甄選基準、計畫主持人甄選學生作業方式等、分配各計畫案經費之準則、本年選送原住民學生及新住民子女人數；遴選他校學生與，須提出相關甄選基準及甄選學生作業方式）。<br>
+                            2. 補助計畫整體配套措施（包括建立與國外實習機構之實習合作機制、計畫主持人安排學生赴國外實習輔導機制、前一年度補助經費支用原則及支用情形）。<br>
+                            3. 近三年內薦送學校執行成效（包括選送原住民學生及新住民子女人數成效）、國內學校與國外實習機構後續連結效益、對學生未來發展性等實際成效、變更各計畫所提預定實習人數或機構之次數、原申請書填報之實習機構與實際實習機構之差異等。
+                        </div>
+                    </div>
+                    <div class="score-item">
+                        <div class="item-column">
+                            <div class="item-title">研修規定</div>
+                            <div class="item-input input-group">
+                                <span class="input-group-text" id="score-addon2">20分</span>
+                                <input type="number" class="form-control" aria-describedby="score-addon2" value="0" min="0" max="20" required>
+                            </div>
+                        </div>
+                        <div class="item-note">選送學生出國研修規定/辦法/簡章(包括校內審查機制、專業及語言能力條件)及其適切性。</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="item-column">
+                            <div class="item-title">執行成效</div>
+                            <div class="item-input input-group">
+                                <span class="input-group-text" id="score-addon3">20分</span>
+                                <input type="number" class="form-control" aria-describedby="score-addon3" value="0" min="0" max="20" required>
+                            </div>
+                        </div>
+                        <div class="item-note">近三年執行成效（包括選送原住民學生及新住民子女人數）</div>
+                    </div>
+                    <div class="score-item score-total">
+                        <div class="item-column">
+                            <div class="item-title">總分</div>
+                            <div class="item-input input-group">
+                                <span class="input-group-text" id="score-addon4">90分</span>
+                                <input type="number" class="form-control" aria-describedby="score-addon4" value="0" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="score-item">
+                        <div class="item-label">委員評語</div>
+                        <textarea class="form-control" rows="6" placeholder="請填寫委員評語" required></textarea>
+                    </div>
+                    <div class="score-item">
+                        <textarea class="form-control" rows="4" placeholder="66分以下(含66分)，請加註特別理由"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="score-action">
+                <div class="action-clip action-switch">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckavoid1">
+                        <label class="form-check-label" for="switchCheckavoid1">迴避</label>
+                    </div>
+                </div>
+                <div class="action-clip">
+                    <button type="button" id="saveButton" class="btn btn-lg btn-save">儲存</button>
+                </div>
+            </div>
+        </div>
+        <div class="review-wrapper">
+            <div class="review-controller">
+                <div class="document-control">
+                    <div class="control-clip">
+                        <button type="button" class="btn btn-control"><i class="fas fa-angle-double-left me-2"></i> 上一文件</button>
+                    </div>
+                    <div class="control-clip">
+                        <select class="form-select js-document-select" aria-label="選擇文件">
+                            <option selected>選送計畫書.pdf</option>
+                            <option value="1">附件一.pdf</option>
+                            <option value="2">附件二.pdf</option>
+                            <option value="completeDoc">完整計劃書</option>
+                        </select>
+                    </div>
+                    <div class="control-clip">
+                        <button type="button" class="btn btn-control">下一文件 <i class="fas fa-angle-double-right ms-2"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="review-body js-pdf-viewer" data-pdf-url="https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf">
+                <div class="pdf-toolbar" aria-label="PDF 閱覽工具列">
+                    <div class="pdf-toolbar-group">
+                        <button type="button" class="btn btn-icon js-pdf-previous" data-bs-toggle="tooltip" data-bs-title="上一頁" disabled><i class="fas fa-chevron-left"></i></button>
+                        <label class="pdf-page-input"><input type="number" class="form-control js-pdf-page" min="1" value="1" aria-label="頁碼"><span>/ <span class="js-pdf-page-count">-</span></span></label>
+                        <button type="button" class="btn btn-icon js-pdf-next" data-bs-toggle="tooltip" data-bs-title="下一頁" disabled><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="pdf-file-name"><i class="fas fa-file-pdf"></i> 選送計畫書.pdf</div>
+                    <div class="pdf-toolbar-group pdf-toolbar-actions">
+                        <button type="button" class="btn btn-icon js-pdf-zoom-out" data-bs-toggle="tooltip" data-bs-title="縮小"><i class="fas fa-search-minus"></i></button>
+                        <output class="js-pdf-zoom">100%</output>
+                        <button type="button" class="btn btn-icon js-pdf-zoom-in" data-bs-toggle="tooltip" data-bs-title="放大"><i class="fas fa-search-plus"></i></button>
+                        <button type="button" class="btn btn-icon js-pdf-fit" data-bs-toggle="tooltip" data-bs-title="適合寬度"><i class="fas fa-arrows-alt-h"></i></button>
+                        <button type="button" class="btn btn-icon js-pdf-rotate" data-bs-toggle="tooltip" data-bs-title="旋轉"><i class="fas fa-redo"></i></button>
+                        <a class="btn btn-icon js-pdf-download" href="#" download data-bs-toggle="tooltip" data-bs-title="下載"><i class="fas fa-download"></i></a>
+                        <button type="button" class="btn btn-icon js-pdf-fullscreen" data-bs-toggle="tooltip" data-bs-title="全螢幕"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="pdf-reader">
+                    <aside class="pdf-thumbnails" aria-label="PDF 所有頁面"><div class="pdf-status">載入頁面中...</div></aside>
+                    <main class="pdf-canvas-area" tabindex="0" aria-label="PDF 文件內容"><div class="pdf-status">PDF 載入中...</div></main>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%= render :partial => "/partials/chat" %>
+
+<!-- 提示 Modal -->
+<div class="modal fade" id="tipModal" tabindex="-1" aria-labelledby="tipModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-tip">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="tipModalLabel">提示</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>以下為必須審查的子計畫內容，完整計畫書亦可作為參考</p>
+                <ul>
+                    <li>選送計畫書</li>
+                    <li>附件一：計畫主持人甄選學生作業方式</li>
+                    <li>附件二：計畫主持人安排學生赴國外實習輔導機制</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- bootstrap tooltips -->
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(
+        tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
+            delay: { show: 100, hide: 100 }
+        })
+    )
+</script>
+
+<!-- chat -->
+<script>
+    const chatModalElements = document.querySelectorAll('.chat-modal')
+    const chatModals = [...chatModalElements].reduce((acc, modalElement) => {
+        acc["#" + modalElement.id] = new bootstrap.Modal(modalElement, {
+            backdrop: false,
+            focus: false,
+            keyboard: true
+        })
+        modalElement.addEventListener('shown.bs.modal', () => {
+            document.body.classList.remove('modal-open')
+            document.body.style.overflow = ''
+            document.body.style.paddingRight = ''
+        })
+        return acc
+    }, {})
+
+    document.querySelectorAll('.js-open-chat-modal').forEach(button => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.chatModal
+            if (target && chatModals[target]) {
+                Object.entries(chatModals).forEach(([key, modal]) => {
+                    if (key !== target) {
+                        modal.hide()
+                    }
+                })
+                chatModals[target].show()
+            }
+        })
+    })
+
+    const formatDateTime = date => {
+        const y = date.getFullYear()
+        const m = String(date.getMonth() + 1).padStart(2, '0')
+        const d = String(date.getDate()).padStart(2, '0')
+        const h = String(date.getHours()).padStart(2, '0')
+        const min = String(date.getMinutes()).padStart(2, '0')
+        const s = String(date.getSeconds()).padStart(2, '0')
+        return `${y}-${m}-${d} ${h}:${min}:${s}`
+    }
+
+    document.querySelectorAll('.chat-input-form').forEach(form => {
+        form.addEventListener('submit', event => {
+            event.preventDefault()
+            const input = form.querySelector('input')
+            const text = input.value.trim()
+            if (!text) return
+
+            const bodySelector = form.dataset.chatBody
+            const chatBody = document.querySelector(bodySelector)
+            if (!chatBody) return
+
+            const item = document.createElement('div')
+            item.className = 'chat-item is-self'
+            item.innerHTML = `
+                <img src="../assets/default-avatar.svg" alt="您" class="chat-avatar">
+                <div class="chat-bubble">
+                    <div class="chat-meta"><strong>您</strong><span>${formatDateTime(new Date())}</span></div>
+                    <p></p>
+                </div>
+            `
+            item.querySelector('p').textContent = text
+            chatBody.appendChild(item)
+            chatBody.scrollTop = chatBody.scrollHeight
+            input.value = ''
+        })
+    })
+</script>
+
+<!-- 完整計劃書提示 -->
+<script>
+    const documentSelect = document.querySelector('.js-document-select')
+    const tipModal = new bootstrap.Modal(document.querySelector('#tipModal'))
+
+    documentSelect.addEventListener('change', () => {
+        if (documentSelect.value === 'completeDoc') {
+            tipModal.show()
+        }
+    })
+</script>
+
+<!-- Item Note -->
+<script>
+    const itemNoteLimit = 128
+
+    document.querySelectorAll('.item-note').forEach(note => {
+        const content = document.createElement('span')
+        content.className = 'item-note-content'
+        content.replaceChildren(...note.childNodes)
+
+        const fullHtml = content.innerHTML
+        const fullText = content.textContent.trim()
+        const characters = Array.from(fullText)
+
+        if (characters.length <= itemNoteLimit) {
+            note.appendChild(content)
+            return
+        }
+
+        const toggleButton = document.createElement('button')
+        toggleButton.type = 'button'
+        toggleButton.className = 'item-note-toggle'
+        toggleButton.setAttribute('aria-label', '收合說明')
+        toggleButton.title = '收合'
+        toggleButton.setAttribute('aria-expanded', 'true')
+        toggleButton.innerHTML = '<i class="fas fa-angle-up" aria-hidden="true"></i>'
+        note.append(content, toggleButton)
+
+        toggleButton.addEventListener('click', () => {
+            const isCollapsed = note.classList.toggle('is-collapsed')
+            if (isCollapsed) {
+                content.textContent = `${characters.slice(0, itemNoteLimit).join('')}...`
+            } else {
+                content.innerHTML = fullHtml
+            }
+            toggleButton.setAttribute('aria-label', isCollapsed ? '展開完整說明' : '收合說明')
+            toggleButton.title = isCollapsed ? '展開' : '收合'
+            toggleButton.setAttribute('aria-expanded', String(!isCollapsed))
+        })
+    })
+</script>
+
+<!-- PDF Viewer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+    const pdfViewer = document.querySelector('.js-pdf-viewer')
+    const pdfCanvasArea = pdfViewer.querySelector('.pdf-canvas-area')
+    const pdfThumbnails = pdfViewer.querySelector('.pdf-thumbnails')
+    const pdfPageInput = pdfViewer.querySelector('.js-pdf-page')
+    const pdfPageCount = pdfViewer.querySelector('.js-pdf-page-count')
+    const pdfPreviousButton = pdfViewer.querySelector('.js-pdf-previous')
+    const pdfNextButton = pdfViewer.querySelector('.js-pdf-next')
+    const pdfZoomValue = pdfViewer.querySelector('.js-pdf-zoom')
+    let pdfDocument
+    let currentPdfPage = 1
+    let pdfZoom = 1
+    let pdfRotation = 0
+
+    const updatePdfControls = () => {
+        pdfPageInput.value = currentPdfPage
+        pdfPreviousButton.disabled = currentPdfPage === 1
+        pdfNextButton.disabled = currentPdfPage === pdfDocument.numPages
+        pdfZoomValue.textContent = `${Math.round(pdfZoom * 100)}%`
+        pdfThumbnails.querySelectorAll('.pdf-thumbnail').forEach(thumbnail => {
+            thumbnail.classList.toggle('is-active', Number(thumbnail.dataset.page) === currentPdfPage)
+        })
+    }
+
+    const renderPdfPage = async pageNumber => {
+        const page = await pdfDocument.getPage(pageNumber)
+        const viewport = page.getViewport({ scale: pdfZoom, rotation: pdfRotation })
+        const canvas = document.createElement('canvas')
+        const context = canvas.getContext('2d')
+        canvas.width = viewport.width
+        canvas.height = viewport.height
+        canvas.setAttribute('aria-label', `第 ${pageNumber} 頁`)
+        await page.render({ canvasContext: context, viewport }).promise
+        pdfCanvasArea.replaceChildren(canvas)
+    }
+
+    const showPdfPage = async pageNumber => {
+        currentPdfPage = Math.min(Math.max(pageNumber, 1), pdfDocument.numPages)
+        await renderPdfPage(currentPdfPage)
+        updatePdfControls()
+        pdfThumbnails.querySelector(`[data-page="${currentPdfPage}"]`).scrollIntoView({ block: 'nearest' })
+    }
+
+    const fitPdfWidth = async () => {
+        const page = await pdfDocument.getPage(currentPdfPage)
+        const unscaledViewport = page.getViewport({ scale: 1, rotation: pdfRotation })
+        pdfZoom = Math.max(.5, (pdfCanvasArea.clientWidth - 64) / unscaledViewport.width)
+        await showPdfPage(currentPdfPage)
+    }
+
+    const renderPdfThumbnails = async () => {
+        const thumbnails = await Promise.all([...Array(pdfDocument.numPages)].map(async (_, index) => {
+            const pageNumber = index + 1
+            const page = await pdfDocument.getPage(pageNumber)
+            const viewport = page.getViewport({ scale: .18 })
+            const canvas = document.createElement('canvas')
+            const context = canvas.getContext('2d')
+            canvas.width = viewport.width
+            canvas.height = viewport.height
+            await page.render({ canvasContext: context, viewport }).promise
+            const thumbnail = document.createElement('button')
+            thumbnail.type = 'button'
+            thumbnail.className = 'pdf-thumbnail'
+            thumbnail.dataset.page = pageNumber
+            thumbnail.setAttribute('aria-label', `前往第 ${pageNumber} 頁`)
+            thumbnail.append(canvas, Object.assign(document.createElement('span'), { textContent: pageNumber }))
+            thumbnail.addEventListener('click', () => showPdfPage(pageNumber))
+            return thumbnail
+        }))
+        pdfThumbnails.replaceChildren(...thumbnails)
+    }
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'
+    pdfjsLib.getDocument(pdfViewer.dataset.pdfUrl).promise.then(async document => {
+        pdfDocument = document
+        pdfPageCount.textContent = document.numPages
+        pdfPageInput.max = document.numPages
+        pdfViewer.querySelector('.js-pdf-download').href = pdfViewer.dataset.pdfUrl
+        await Promise.all([renderPdfThumbnails(), fitPdfWidth()])
+    }).catch(() => {
+        pdfCanvasArea.textContent = '無法載入 PDF 文件。'
+        pdfThumbnails.textContent = '無可用縮圖。'
+    })
+
+    pdfPreviousButton.addEventListener('click', () => showPdfPage(currentPdfPage - 1))
+    pdfNextButton.addEventListener('click', () => showPdfPage(currentPdfPage + 1))
+    pdfPageInput.addEventListener('change', () => showPdfPage(Number(pdfPageInput.value)))
+    pdfViewer.querySelector('.js-pdf-zoom-out').addEventListener('click', () => { pdfZoom = Math.max(.5, pdfZoom - .1); showPdfPage(currentPdfPage) })
+    pdfViewer.querySelector('.js-pdf-zoom-in').addEventListener('click', () => { pdfZoom = Math.min(2.5, pdfZoom + .1); showPdfPage(currentPdfPage) })
+    pdfViewer.querySelector('.js-pdf-fit').addEventListener('click', fitPdfWidth)
+    pdfViewer.querySelector('.js-pdf-rotate').addEventListener('click', () => { pdfRotation = (pdfRotation + 90) % 360; showPdfPage(currentPdfPage) })
+    pdfViewer.querySelector('.js-pdf-fullscreen').addEventListener('click', () => pdfViewer.requestFullscreen?.())
+    pdfCanvasArea.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft') showPdfPage(currentPdfPage - 1)
+        if (event.key === 'ArrowRight') showPdfPage(currentPdfPage + 1)
+    })
+</script>
+
+<!-- 迴避時儲存按鈕 disabled -->
+<script>
+    const avoidSwitch = document.querySelector('#switchCheckavoid1')
+    const saveButton = document.querySelector('#saveButton')
+
+    const toggleSaveButton = () => {
+        saveButton.disabled = avoidSwitch.checked
+    }
+
+    avoidSwitch.addEventListener('change', toggleSaveButton)
+    toggleSaveButton()
+</script>
+
+<!-- is-invalid demo -->
+<script>
+    const validateRequiredControl = control => {
+        const isScoreInput = control.matches('.score-group input[type="number"]')
+        const isInvalid = !control.value.trim() || (isScoreInput && Number(control.value) === 0)
+        control.classList.toggle('is-invalid', isInvalid)
+    }
+
+    document.querySelector('#saveButton').addEventListener('click', () => {
+        document.querySelectorAll('.form-control[required]').forEach(control => {
+            validateRequiredControl(control)
+        })
+    })
+
+    document.querySelectorAll('.form-control[required]').forEach(control => {
+        control.addEventListener('input', () => validateRequiredControl(control))
+    })
+</script>
+
+<% end %>
+

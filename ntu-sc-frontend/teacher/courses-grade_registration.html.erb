@@ -23,6 +23,7 @@
                 </div>
             </div>
             <div>
+                <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#noticeModal">注意事項</button>
                 <a href="#" class="btn btn-sm btn-outline-dark">等第制成績對照表</a>
             </div>
         </div>
@@ -65,6 +66,64 @@
     </div>
 </div>
 
+<!-- 注意事項 Modal -->
+<div class="modal fade" id="noticeModal" tabindex="-1" aria-labelledby="noticeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="noticeModalLabel">注意事項</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>📝 成績登錄作業流程與重要提醒事項</h4>
+                <h5>🔹 步驟一：進入登錄頁面</h5>
+                <p>請點選網頁上方的 <strong>【成績管理】</strong> 或課程區塊下方的 <strong>【成績登錄】</strong>。</p>
+                <h5>🔹 步驟二：輸入成績（二擇一）</h5>
+                <ul>
+                    <li><strong>單筆登錄：</strong>直接於網頁畫面上逐筆輸入。</li>
+                    <li><strong>批次匯入：</strong>下載系統範本，填寫完成後再上傳匯入。</li>
+                </ul>
+                <p>可直接輸入原始分數，系統將自動轉換為等第制成績、對應百分制成績與等第績分</p>
+                <h5>🔹 步驟三：儲存與鎖定</h5>
+                <ol>
+                    <li>執行輸入或匯入後，請先點選 <strong>『儲存』</strong>（此時尚未送出，仍可修改）。</li>
+                    <li>再次詳細確認成績內容無誤。</li>
+                    <li>可點選學生姓名前方核取方塊，單獨 <strong>『鎖定成績』</strong>，亦可選擇上方編號旁的核取方塊，全選全班學生一起 <strong>『鎖定成績』</strong>，即完成登錄作業。</li>
+                </ol>
+                <div class="alert alert-warning" role="alert">
+                    <ul class="mb-0">
+                        <li>按下鎖定成績後，成績即送出且無法再更改，敬請確認後再鎖定。</li>
+                        <li>若有不及格同學建議先行確認狀況，以免成績鎖住送出後將無法做更改。</li>
+                        <li>鎖住成績後，並回傳簽名成績冊後，學生就讀學校之行政人員即可同步查詢到該生成績並進行校內登分。</li>
+                    </ul>
+                </div>
+                <h5>🔹 步驟四：下載並繳交學生成績冊</h5>
+                <ol>
+                    <li><strong>下載：</strong>全班登分完成並鎖定成績後，請重新點選一次上方的 【學生成績冊下載】 按鈕。</li>
+                    <li><strong>簽名：</strong>將下載的「學生成績冊」印出後，請於紙本上方的教師簽名欄位簽名確認。</li>
+                    <li>
+                        <strong>繳交：</strong>請透過以下方式回傳至全國夏季學院計畫辦公室備存：
+                        <ul>
+                            <li><strong>E-mail 繳交：</strong>請將簽名後的紙本，掃描或拍照成清晰的電子檔後寄回　n2summerntu@gmail.com。</li>
+                            <li><strong>紙本寄送：</strong>請將簽名紙本正本郵寄至 106216 臺北市羅斯福路四段1號 國立臺灣大學博雅館4樓405 共教中心-全國夏季學院收。</li>
+                        </ul>
+                    </li>
+                </ol>
+                <div class="alert alert-danger" role="alert">
+                    <h5 class="alert-heading">⚠️ 重要提醒</h5>
+                    <ul class="mb-0">
+                        <li>請務必要<strong>先儲存、再鎖定</strong>，才可正確將已登錄之評分結果鎖定送出。</li>
+                        <li>敬請於<strong>課程結束後兩週</strong>內完成登分作業</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 批次匯入 Modal -->
 <div class="modal fade" id="batchModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="batchModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -92,6 +151,14 @@
 
 
 <% content_for :js do %>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var noticeModalEl = document.getElementById('noticeModal');
+        if (!noticeModalEl || !window.bootstrap || !bootstrap.Modal) return;
 
+        var noticeModal = new bootstrap.Modal(noticeModalEl);
+        noticeModal.show();
+    });
+</script>
 <% end %>
 

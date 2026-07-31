@@ -17,8 +17,6 @@
                 <div class="dnd-idle" id="dndIdle">
                     <i class="fas fa-file-pdf dnd-icon"></i>
                     <span class="title">請將 PDF 檔案拖曳至此，或<button type="button" class="btn btn-outline-dark mx-2" id="browseBtn">點擊選擇檔案</button></span>
-
-                    <!-- 疑問，壓縮後再上傳要怎麼預覽跟列印？套版時請找 Kim 問清楚 -->
                     <span class="dnd-hint">僅限 PDF，檔案大小上限 1 MB，建議使用合法且安全的壓縮工具進行壓縮後再上傳</span>
                 </div>
                 <div class="dnd-preview" id="dndPreview" hidden>
@@ -30,9 +28,6 @@
                         </div>
                     </div>
                     <div class="dnd-preview-actions">
-                        <button type="button" class="btn btn-outline-secondary btn-sm" id="viewInlineBtn" title="在頁面瀏覽">
-                            <i class="fas fa-eye"></i> 預覽
-                        </button>
                         <button type="button" class="btn btn-outline-secondary btn-sm" id="viewNewTabBtn" title="開啟新視窗">
                             <i class="fas fa-external-link-alt"></i> 新視窗
                         </button>
@@ -55,7 +50,10 @@
 
         <div class="form-action no-border">
             <span class="backhome">
-                <a href="apply.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+                <a href="apply.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
             </span>
             <button type="button" class="btn btn-lg btn-rounded btn-primary px-5" id="uploadBtn" disabled>
                 <i class="fas fa-cloud-upload-alt me-1"></i> 上傳
@@ -78,7 +76,6 @@
     const dndFilename = document.getElementById('dndFilename');
     const dndFilesize = document.getElementById('dndFilesize');
     const removeBtn   = document.getElementById('removeFileBtn');
-    const viewInline  = document.getElementById('viewInlineBtn');
     const viewNewTab  = document.getElementById('viewNewTabBtn');
     const uploadBtn   = document.getElementById('uploadBtn');
     const pdfPreview  = document.getElementById('pdfInlinePreview');
@@ -111,9 +108,10 @@
         dndIdle.hidden    = true;
         dndPreview.hidden = false;
         uploadBtn.disabled = false;
-        printBtn.disabled  = false;
-        // Close inline preview when new file is selected
-        hidePdfPreview();
+        if (printBtn) printBtn.disabled = false;
+        pdfIframe.src = currentObjectUrl;
+        pdfLabel.textContent = file.name;
+        pdfPreview.hidden = false;
     }
 
     function clearFile() {
@@ -125,7 +123,7 @@
         dndIdle.hidden    = false;
         dndPreview.hidden = true;
         uploadBtn.disabled = true;
-        printBtn.disabled  = true;
+        if (printBtn) printBtn.disabled = true;
         hidePdfPreview();
     }
 
@@ -162,14 +160,6 @@
     // Actions
     removeBtn.addEventListener('click', clearFile);
 
-    viewInline.addEventListener('click', () => {
-        if (!currentObjectUrl) return;
-        pdfIframe.src = currentObjectUrl;
-        pdfLabel.textContent = dndFilename.textContent;
-        pdfPreview.hidden = false;
-        pdfPreview.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-
     viewNewTab.addEventListener('click', () => {
         if (currentObjectUrl) window.open(currentObjectUrl, '_blank');
     });
@@ -181,11 +171,13 @@
         alert('上傳功能尚未串接後端，請實作上傳邏輯。');
     });
 
-    printBtn.addEventListener('click', () => {
-        if (!currentObjectUrl) return;
-        const win = window.open(currentObjectUrl, '_blank');
-        if (win) win.addEventListener('load', () => win.print());
-    });
+    if (printBtn) {
+        printBtn.addEventListener('click', () => {
+            if (!currentObjectUrl) return;
+            const win = window.open(currentObjectUrl, '_blank');
+            if (win) win.addEventListener('load', () => win.print());
+        });
+    }
 })();
 </script>
 <% end %>

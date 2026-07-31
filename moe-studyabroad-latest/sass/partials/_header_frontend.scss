@@ -81,6 +81,28 @@ header.header {
 			bottom: -.5rem;
 			animation-name: triangleBounceLg;
 		}
+		&.manager-central-title {
+			font-size: 1rem;
+			&::before {
+				border-color: #b442ee transparent transparent transparent;
+				animation-name: triangleBounceSm;
+			}
+			&::after {
+				border-color: #e6c6f6 transparent transparent transparent;
+				animation-name: triangleOGBounceLg;
+			}
+		}
+		&.examine-central-title {
+			font-size: 1.125rem;
+			&::before {
+				border-color: #46504e transparent transparent transparent;
+				animation-name: triangleBounceSm;
+			}
+			&::after {
+				border-color: #eee transparent transparent transparent;
+				animation-name: triangleEXBounceLg;
+			}
+		}
 	}
 	.btn-account {
 		box-shadow: none;
@@ -92,7 +114,7 @@ header.header {
 			content: '';
 			position: absolute;
 			left: 0;
-			top: 50%;
+			top: 45%;
 			transform: translateY(-50%);
 			width: 1.5rem;
 			height: 1.5rem;
@@ -113,6 +135,9 @@ header.header {
 		border-radius: 0;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		border: none;
+		li:first-child {
+			margin-bottom: .25rem;
+		}
 	}
 	.dropdown-item {
 		&:hover {
@@ -159,6 +184,49 @@ header.header {
 	100% {
         border-color: #dfe9e9 transparent transparent transparent;
     }
+}
+@keyframes triangleOGBounceLg {
+	0% {
+		border-color: #e6c6f6 transparent transparent transparent;
+	}
+	75% {
+		border-color: #b442ee transparent transparent transparent;
+	}
+	100% {
+		border-color: #e6c6f6 transparent transparent transparent;
+	}
+}
+
+@keyframes triangleEXBounceLg {
+	0% {
+		border-color: #eee transparent transparent transparent;
+	}
+	75% {
+		border-color: #46504e transparent transparent transparent;
+	}
+	100% {
+		border-color: #eee transparent transparent transparent;
+	}
+}
+
+.examine-workspace {
+	header.header {
+		min-width: 1600px !important;
+	}
+	.examine-account {
+		display: inline-flex;
+		align-items: center;
+		gap: .25rem;
+	}
+	.btn-logout {
+		box-shadow: none;
+		color: #46504e;
+		i { transition: all 0.2s ease-in-out; }
+		&:hover, &:focus, &:active {
+			color: $main_color;
+			i { transform: translateX(2px); }
+		}
+	}
 }
 
 /* `Responsive
@@ -242,6 +310,9 @@ header.header {
 	header.header {
 		.central-title {
 			font-size: 1rem;
+			&.manager-central-title {
+				font-size: .875rem;
+			}
 		}
 	}
 }

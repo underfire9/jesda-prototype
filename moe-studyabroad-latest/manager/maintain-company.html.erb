@@ -1,0 +1,359 @@
+<!-- template: 計畫主持人 - 計畫申請/實習機構檢視 -->
+<% content_for :header_center do %>
+    <span class="central-title manager-central-title">實習機構檢視</span>
+<% end %>
+
+<% content_for :header_dropdown do %>
+    <%= render :partial => "/partials/manager_dropdown" %>
+<% end %>
+
+<div class="container">
+    <div class="page-content">
+        <div class="plan-manager-company">
+            <div class="maintain-company-list">
+                <% (1..3).map do |i| %>
+                <div class="company-card">
+                    <div class="card-bd">
+                        <div class="item-status" title="狀態">正常</div>
+                        <div>
+                            <div class="item-info">
+                                <span class="item-label">機構名稱</span>
+                                <span class="item-value"><%= lorem_words(4) %></span>
+                            </div>
+                            <div class="item-info">
+                                <span class="item-label">實習國別</span>
+                                <span class="item-value">義大利</span>
+                            </div>
+                            <div class="item-info">
+                                <span class="item-label">前往區域</span>
+                                <span class="item-value">義大利</span>
+                            </div>
+                            <div class="item-info">
+                                <span class="item-label">產業別</span>
+                                <span class="item-value">再生能源與環保</span>
+                            </div>
+                            <div class="item-info">
+                                <span class="item-label">實習領域別</span>
+                                <span class="item-value">理工</span>
+                            </div>
+                        </div>
+                        <div class="item-experience">
+                            <a href="#" class="btn btn-white" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="機構同意書"><i class="far fa-file-pdf"></i></a>
+                        </div>
+                        <div class="item-edit">
+                            <span class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="檢視"><button class="btn btn-white" data-bs-toggle="modal" data-bs-target="#addCompanyModal"><i class="fas fa-eye"></i></button></span>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="form-action no-border">
+            <span class="backhome">
+                <a href="apply.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<!-- 檢視階段 Modal 不用給 static -->
+<div class="modal fade" id="addCompanyModal" tabindex="-1" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white" data-bs-theme="dark">
+                <h5 class="modal-title" id="addCompanyModalLabel">實習機構</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="internshipCountry">實習國別</label>
+                            <select id="internshipCountry" class="form-select" data-placeholder="請選擇國家" disabled>
+                                <option value=""></option>
+                                <option value="at">奧地利</option>
+                                <option value="au">澳洲</option>
+                                <option value="be">比利時</option>
+                                <option value="ca">加拿大</option>
+                                <option value="fr">法國</option>
+                                <option value="de">德國</option>
+                                <option value="it">義大利</option>
+                                <option value="jp">日本</option>
+                                <option value="kr">韓國</option>
+                                <option value="nl">荷蘭</option>
+                                <option value="nz">紐西蘭</option>
+                                <option value="sg">新加坡</option>
+                                <option value="es">西班牙</option>
+                                <option value="se">瑞典</option>
+                                <option value="ch">瑞士</option>
+                                <option value="gb">英國</option>
+                                <option value="us">美國</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="internshipRegion">前往區域</label>
+                            <select id="internshipRegion" class="form-select" disabled>
+                                <option selected>請選擇區域</option>
+                                <% (1..6).map do |i| %>
+                                <option value=""><%= lorem_words(3) %></option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="industry">產業別</label>
+                            <select id="industry" class="form-select" disabled>
+                                <option selected>請選擇產業</option>
+                                <% (1..6).map do |i| %>
+                                <option value=""><%= lorem_words(3) %></option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="internshipField">實習領域別</label>
+                            <select id="internshipField" class="form-select" disabled>
+                                <option selected>請選擇實習領域</option>
+                                <% (1..6).map do |i| %>
+                                <option value=""><%= lorem_words(3) %></option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label" for="internshipField">是否為 5+2 產業</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="isFivePlusTwo" id="isFivePlusTwoNo" value="no" disabled>
+                                    <label class="form-check-label" for="isFivePlusTwoNo">否</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="isFivePlusTwo" id="isFivePlusTwoYes" value="yes" checked>
+                                    <label class="form-check-label" for="isFivePlusTwoYes">是</label>
+                                </div>
+                            </div>
+                            <div class="modal-industry-5plus2">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="industry5plus2" id="industry5plus2_1" value="1" disabled>
+                                    <label class="form-check-label" for="industry5plus2_1">亞洲矽谷</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="industry5plus2" id="industry5plus2_2" value="2" checked>
+                                    <label class="form-check-label" for="industry5plus2_2">生技醫療</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="industry5plus2" id="industry5plus2_3" value="3" disabled>
+                                    <label class="form-check-label" for="industry5plus2_3">綠能科技</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="industry5plus2" id="industry5plus2_4" value="4" disabled>
+                                    <label class="form-check-label" for="industry5plus2_4">智慧機械</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="industry5plus2" id="industry5plus2_5" value="5" disabled>
+                                    <label class="form-check-label" for="industry5plus2_5">國防航太</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="industry5plus2" id="industry5plus2_6" value="6" disabled>
+                                    <label class="form-check-label" for="industry5plus2_6">新農業</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="industry5plus2" id="industry5plus2_7" value="7" disabled>
+                                    <label class="form-check-label" for="industry5plus2_7">循環經濟</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">實習機構與單位</label>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="internshipName" class="fs-7">名稱</label>
+                                    <input type="text" id="internshipName" class="form-control" value="<%= lorem_words(4) %>" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="internshipContact" class="fs-7">聯絡人</label>
+                                    <input type="text" id="internshipContact" class="form-control" value="<%= lorem_name %>" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="internshipPhone" class="fs-7">電話</label>
+                                    <input type="text" id="internshipPhone" class="form-control" value="1234567890" disabled>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="internshipAddress" class="fs-7">地址</label>
+                                    <input type="text" id="internshipAddress" class="form-control" value="<%= lorem_words(8) %>" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label" for="internshipAgreement">上傳機構同意書 PDF</label>
+                            <div class="modal-file-group mt-0">
+                                <a href="#" class="file-item" target="_blank">
+                                    <span class="file-name">檢視已上傳檔案</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- Bootstrap tooltip -->
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+
+<!-- 編號 -->
+<script>
+    var managerCompany = document.querySelector('.plan-manager-company');
+    var companyList = managerCompany ? managerCompany.querySelector('.maintain-company-list') : null;
+</script>
+
+<!-- 判斷是否有 company card -->
+<script>
+    if (managerCompany && companyList) {
+        var cardCount = companyList.querySelectorAll('.company-card').length;
+        managerCompany.classList.toggle('is-empty', cardCount === 0);
+    }
+
+    document.querySelectorAll('.maintain-company-list .company-card').forEach(function(card, i) {
+        card.querySelector('.card-bd').dataset.index = i + 1;
+    });
+</script>
+
+<!-- Select2 -->
+<script src="../javascripts/select2.min.js"></script>
+<script>
+    ( function() {
+        var $internshipCountry = $( '#internshipCountry' );
+
+        if ( !$internshipCountry.length || typeof $.fn.select2 !== 'function' ) {
+            return;
+        }
+
+        $internshipCountry.select2( {
+            theme: 'bootstrap-5',
+            width: '100%',
+            placeholder: $internshipCountry.data( 'placeholder' ),
+            allowClear: true,
+            dropdownParent: $( '#addCompanyModal' ),
+            minimumResultsForSearch: 0
+        } );
+    } )();
+</script>
+
+<!-- 5+2 -->
+<script>
+    ( function() {
+        var fivePlusTwoRadios = document.querySelectorAll( 'input[name="isFivePlusTwo"]' );
+        var fivePlusTwoOptions = document.querySelector( '.modal-industry-5plus2' );
+
+        if ( !fivePlusTwoOptions || !fivePlusTwoRadios.length ) {
+            return;
+        }
+
+        function toggleFivePlusTwoOptions() {
+            var selected = document.querySelector( 'input[name="isFivePlusTwo"]:checked' );
+            var shouldShow = selected && selected.value === 'yes';
+
+            fivePlusTwoOptions.classList.toggle( 'd-none', !shouldShow );
+
+            if ( !shouldShow ) {
+                fivePlusTwoOptions.querySelectorAll( 'input[name="industry5plus2"]' ).forEach( function( input ) {
+                    input.checked = false;
+                } );
+            }
+        }
+
+        fivePlusTwoRadios.forEach( function( radio ) {
+            radio.addEventListener( 'change', toggleFivePlusTwoOptions );
+        } );
+
+        toggleFivePlusTwoOptions();
+    } )();
+</script>
+
+<!-- Modal Upload -->
+<script>
+    ( function() {
+        var agreementInput = document.getElementById( 'internshipAgreement' );
+        var fileGroup = document.querySelector( '.modal-file-group' );
+        var fileName = fileGroup ? fileGroup.querySelector( '.file-name' ) : null;
+        var removeButton = fileGroup ? fileGroup.querySelector( '.js-remove-agreement' ) : null;
+
+        if ( !agreementInput || !fileGroup || !fileName || !removeButton ) {
+            return;
+        }
+
+        function clearAgreementFile() {
+            agreementInput.value = '';
+            fileName.textContent = '';
+            fileGroup.classList.add( 'd-none' );
+        }
+
+        function isPdfFile( file ) {
+            if ( !file ) {
+                return false;
+            }
+
+            return file.type === 'application/pdf' || /\.pdf$/i.test( file.name || '' );
+        }
+
+        agreementInput.addEventListener( 'change', function() {
+            var files = agreementInput.files;
+
+            if ( !files || !files.length ) {
+                clearAgreementFile();
+                return;
+            }
+
+            if ( files.length > 1 ) {
+                alert( '僅允許上傳單一檔案' );
+                clearAgreementFile();
+                return;
+            }
+
+            var file = files[0];
+
+            if ( !isPdfFile( file ) ) {
+                alert( '僅允許上傳 PDF 檔案' );
+                clearAgreementFile();
+                return;
+            }
+
+            fileName.textContent = file.name;
+            fileGroup.classList.remove( 'd-none' );
+        } );
+
+        removeButton.addEventListener( 'click', function() {
+            clearAgreementFile();
+        } );
+    } )();
+</script>
+<% end %>
+

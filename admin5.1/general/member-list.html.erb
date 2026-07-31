@@ -4,9 +4,82 @@
     <div class="page-header">
         <h2>會員列表</h2>
     </div>
-    <% (1..10).map do |i| %>
-        <p><%= lorem_paragraphs(10) %></p>
-    <% end %>
+    <div class="col-block">
+        <div class="block-hd">
+            <h5 class="block-title">區塊標題</h5>
+        </div>
+        <div class="block-bd">
+            <!-- general-form -->
+            <form class="row g-3 general-form">
+                <div class="col-12 col-md-6">
+                    <label for="memberName" class="form-label">姓名</label>
+                    <input type="text" class="form-control" id="memberName" name="member_name" placeholder="請輸入姓名">
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="memberGender" class="form-label">性別</label>
+                    <select class="form-select" id="memberGender" name="member_gender">
+                        <option value="">請選擇</option>
+                        <option value="male">男</option>
+                        <option value="female">女</option>
+                        <option value="other">其他</option>
+                    </select>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="memberBirthday" class="form-label">生日</label>
+                    <input type="date" class="form-control" id="memberBirthday" name="member_birthday">
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="memberId" class="form-label">身分證字號</label>
+                    <input type="text" class="form-control" id="memberId" name="member_id" placeholder="請輸入身分證字號">
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="memberPhone" class="form-label">手機</label>
+                    <input type="tel" class="form-control" id="memberPhone" name="member_phone" placeholder="09xxxxxxxx">
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="memberEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="memberEmail" name="member_email" placeholder="name@example.com">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label mb-1">住址</label>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label for="addressCity" class="form-label">縣市</label>
+                    <input type="text" class="form-control" id="addressCity" name="address_city" placeholder="例如：台北市">
+                </div>
+                <div class="col-12 col-md-4">
+                    <label for="addressDistrict" class="form-label">鄉鎮市區</label>
+                    <input type="text" class="form-control" id="addressDistrict" name="address_district" placeholder="例如：中正區">
+                </div>
+                <div class="col-12 col-md-4">
+                    <label for="addressZip" class="form-label">郵遞區號</label>
+                    <input type="text" class="form-control" id="addressZip" name="address_zip" placeholder="例如：100">
+                </div>
+                <div class="col-12">
+                    <label for="addressDetail" class="form-label">詳細地址</label>
+                    <input type="text" class="form-control" id="addressDetail" name="address_detail" placeholder="請輸入路段、巷弄、門牌">
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label for="memberContact" class="form-label">緊急聯絡人</label>
+                    <input type="text" class="form-control" id="memberContact" name="member_contact" placeholder="請輸入聯絡人姓名">
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="memberContactPhone" class="form-label">緊急聯絡電話</label>
+                    <input type="tel" class="form-control" id="memberContactPhone" name="member_contact_phone" placeholder="請輸入聯絡電話">
+                </div>
+
+                <div class="col-12 d-flex justify-content-end gap-2 mt-2">
+                    <button type="reset" class="btn btn-outline-secondary">清除</button>
+                    <button type="submit" class="btn btn-primary">儲存</button>
+                </div>
+            </form>
+        </div>
+        <div class="block-ft fs-7">本合約包含需求確認、系統開發、測試驗收、上線支援與保固維護，需求項目須維持 RTM 追溯關係。</div>
+    </div>
 </main>
 
 <% content_for :js do %>

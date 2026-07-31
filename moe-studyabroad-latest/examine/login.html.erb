@@ -1,0 +1,108 @@
+<!-- template: 闈場審查系統 - Login -->
+
+<div class="login-container">
+    <div class="login-card-background">
+        <div class="login-card">
+            <div class="card-body">
+                <div class="login-logo">
+                    <img src="../assets/logo-moe.svg">
+                </div>
+                <h4 class="login-title"><small class="d-block">教育部學海計畫</small>闈場審查系統</h4>
+                <form action="agreement.html">
+                    <div class="form-group">
+                        <label for="account" class="form-label">帳號</label>
+                        <input type="text" class="form-control" id="account" placeholder="請輸入帳號">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">密碼</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" placeholder="請輸入密碼">
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary js-toggle-password"
+                                data-target="password"
+                                aria-label="顯示密碼"
+                                aria-controls="password"
+                                aria-pressed="false"
+                                title="顯示密碼"
+                            >
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-primary w-100">登入</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="copyright">
+    <small>© 2026 捷思達數位開發</small>
+</div>
+
+<div class="kaleidoscope"></div>
+
+<% content_for :js do %>
+
+<!-- 顯示密碼 -->
+<script>
+    (function() {
+        var toggleButtons = document.querySelectorAll('.js-toggle-password');
+
+        toggleButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var targetId = button.getAttribute('data-target');
+                var input = document.getElementById(targetId);
+
+                if (!input) return;
+
+                var isPassword = input.getAttribute('type') === 'password';
+                input.setAttribute('type', isPassword ? 'text' : 'password');
+                button.innerHTML = isPassword ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+                button.setAttribute('aria-pressed', isPassword ? 'true' : 'false');
+                button.setAttribute('aria-label', isPassword ? '隱藏密碼' : '顯示密碼');
+                button.setAttribute('title', isPassword ? '隱藏密碼' : '顯示密碼');
+            });
+        });
+    })();
+</script>
+
+<!-- Background Effect -->
+<script>
+const palettes = [
+  {
+    name: "Horizon Shift",
+    colors: ["#0B132B", "#1C2541", "#3A506B", "#5BC0BE", "#F4F4F4", "#FF6B6B"]
+  },
+  {
+    name: "Quiet Voltage",
+    colors: ["#1A1A1D", "#4E4E50", "#6F2232", "#950740", "#C3073F", "#EAEAEA"]
+  },
+  {
+    name: "Filtered Reality",
+    colors: ["#1F1D36", "#3F3351", "#864879", "#E9A6A6", "#F0F0F0", "#2E2E2E"]
+  },
+  {
+    name: "Desert Bloom",
+    colors: ["#3E2723", "#6D4C41", "#D7CCC8", "#FFAB91", "#FF7043", "#FFF3E0"]
+  },
+  {
+    name: "Cosmic Ink",
+    colors: ["#0F0F1B", "#1B1B2F", "#16213E", "#533483", "#E94560", "#F5F5F5"]
+  }
+];
+
+const current = Math.floor(Math.random() * palettes.length);
+
+function applyPalette(index) {
+  const palette = palettes[index];
+
+  palette.colors.forEach((color, i) => {
+    document.documentElement.style.setProperty(`--c${i + 1}`, color);
+  });
+}
+
+applyPalette(current);
+</script>
+<% end %>

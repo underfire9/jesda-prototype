@@ -7,50 +7,67 @@
             <%= render :partial => "/partials/execution_sidenav" %>
 
             <main class="main">
-                <div class="practical-bonus-header">
-                    <h2>第 1 期實踐獎金請領</h2>
-                    <div class="practical-bonus-amount">
-                        <span>請領金額</span>
-                        <strong>40,000元</strong>
-                    </div>
-                    <div class="js-container container"></div>
-                </div>
                 <form action="home.html" method="post" enctype="multipart/form-data">
-                    <div class="practical-bonus-container">
-                        <div class="form-group">
-                            <label class="form-label">是否參加青年百億海外圓夢基金計畫</label>
-                            <div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="overseas_fund" id="overseas_fund_yes" value="yes">
-                                    <label class="form-check-label" for="overseas_fund_yes">是</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="overseas_fund" id="overseas_fund_no" value="no">
-                                    <label class="form-check-label" for="overseas_fund_no">否</label>
-                                </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label" for="practical-bonus-bank">銀行代號</label>
+                                <select class="form-select" id="practical-bonus-bank" data-placeholder="請選擇銀行">
+                                    <option></option>
+                                    <option>Reactive</option>
+                                    <option>Solution</option>
+                                    <option>Conglomeration</option>
+                                    <option>Algoritm</option>
+                                    <option>Holistic</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group overseas-fund-days">
-                            <label class="form-label">參加起訖時間</label>
-                            <div class="day-input-group">
-                                <input type="date" class="form-control" name="overseas_fund_start">
-                                <span>至</span>
-                                <input type="date" class="form-control" name="overseas_fund_end">
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label" for="practical-bonus-branch">分行代號</label>
+                                <select class="form-select" id="practical-bonus-branch" data-placeholder="請選擇分行">
+                                    <option></option>
+                                    <option>Reactive</option>
+                                    <option>Solution</option>
+                                    <option>Conglomeration</option>
+                                    <option>Algoritm</option>
+                                    <option>Holistic</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="procedure-note">
-                            <h5>請領程序</h5>
-                            <p>第1期新臺幣4萬元。青年通過本計畫規定之定期檢核後，得依規定請領。請備妥以下紙本資料，以掛號郵寄至青年署請領獎金（以郵戳為憑），為有效進行請領款項相關作業，說明如下：</p>
-                            <ol>
-                                <li>信封統一使用 <strong>獎金核銷專用信封封面</strong></li>
-                                <li>請款領據（含個人存摺或撥款帳戶影本、身分證正反面影本）</li>
-                                <li>個人存摺或撥款帳戶影本</li>
-                                <li>身分證正反面影本</li>
-                            </ol>
-                            <div class="files-wrap">
-                                <span><a href="#" download><i class="far fa-arrow-alt-circle-down"></i> 獎金核銷專用信封封面下載</a></span>
-                                <span><a href="#" download><i class="far fa-arrow-alt-circle-down"></i> 請款領據下載</a></span>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label" for="practical-bonus-account">銀行帳戶</label>
+                                <input type="text" class="form-control" id="practical-bonus-account" placeholder="請輸入銀行帳戶">
                             </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label" for="practical-bonus-name">戶名</label>
+                                <input type="text" class="form-control" id="practical-bonus-name" placeholder="請輸入戶名">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label" for="practical-bonus-passbook">銀行存摺掃描檔</label>
+                                <input type="file" class="form-control" id="practical-bonus-passbook">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="practical-bonus-agree">
+                            <label class="form-check-label" for="practical-bonus-agree">
+                                本人確認個人指定帳戶之銀行代碼、分行代碼及帳號(存摺影本)均正確無誤
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="practical-bonus-agree2">
+                            <label class="form-check-label" for="practical-bonus-agree2">
+                                確認為本人上傳
+                            </label>
                         </div>
                     </div>
                     <div class="form-action">
@@ -65,84 +82,16 @@
 
 
 <% content_for :js do %>
-<!-- overseas-fund-days -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const overseasFundYes = document.getElementById('overseas_fund_yes');
-        const overseasFundNo = document.getElementById('overseas_fund_no');
-        const overseasFundDays = document.querySelector('.overseas-fund-days');
-
-        overseasFundDays.style.display = 'none';
-
-        overseasFundYes.addEventListener('change', function() {
-            if (this.checked) {
-                overseasFundDays.style.display = 'block';
+    <script src="../javascripts/select2.min.js"></script>
+    <script>
+        $( '#practical-bonus-bank, #practical-bonus-branch' ).select2( {
+            theme: "bootstrap-5",
+            width: function() {
+                return $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style';
+            },
+            placeholder: function() {
+                return $( this ).data( 'placeholder' );
             }
-        });
-
-        overseasFundNo.addEventListener('change', function() {
-            if (this.checked) {
-                overseasFundDays.style.display = 'none';
-            }
-        });
-    });
-</script>
-
-<!-- Congratulations animation css (https://codepen.io/masudrana2779/pen/zYaggOr) -->
-<script>
-    const Confettiful = function (el) {
-        this.el = el;
-        this.containerEl = null;
-
-        this.confettiFrequency = 3;
-        this.confettiColors = ["#f7a1bb", "#7ed6c6", "#89b7cc", "#8f8f9c", "#f9ffa3"];
-        this.confettiAnimations = ["slow", "medium", "fast"];
-
-        this._setupElements();
-        this._renderConfetti();
-    };
-
-    Confettiful.prototype._setupElements = function () {
-        const containerEl = document.createElement("div");
-        const elPosition = this.el.style.position;
-
-        if (elPosition !== "relative" && elPosition !== "absolute") {
-            this.el.style.position = "relative";
-        }
-
-        containerEl.classList.add("confetti-container");
-
-        this.el.appendChild(containerEl);
-
-        this.containerEl = containerEl;
-    };
-
-    Confettiful.prototype._renderConfetti = function () {
-        this.confettiInterval = setInterval(() => {
-            const confettiEl = document.createElement("div");
-            const confettiSize = Math.floor(Math.random() * 2) + 4 + "px";
-            const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors.length)];
-            const confettiLeft = Math.floor(Math.random() * this.el.offsetWidth) + "px";
-            const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this.confettiAnimations.length)];
-
-            confettiEl.classList.add("confetti", "confetti--animation-" + confettiAnimation);
-            confettiEl.style.left = confettiLeft;
-            confettiEl.style.width = confettiSize;
-            confettiEl.style.height = confettiSize;
-            confettiEl.style.backgroundColor = confettiBackground;
-
-            confettiEl.removeTimeout = setTimeout(function () {
-                confettiEl.parentNode.removeChild(confettiEl);
-            }, 3000);
-
-            this.containerEl.appendChild(confettiEl);
-        }, 75);
-    };
-
-    const confettiTarget = document.querySelector(".practical-bonus-header .js-container");
-
-    if (confettiTarget && !window.confettiful) {
-        window.confettiful = new Confettiful(confettiTarget);
-    }
-</script>
+        } );
+    </script>
 <% end %>

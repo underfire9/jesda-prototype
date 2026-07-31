@@ -9,6 +9,102 @@
             <div>教育部補助總金額 <strong>2240000</strong> 元</div>
             <div>已分配 <strong>2240000</strong> 元</div>
         </div>
+
+        <!-- table 跟卡片式並存都要給資料，由 css 控制寬度斷點要 show 哪個 -->
+        <div class="funds-transfer-table">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">序號</th>
+                            <th scope="col">計畫主持人</th>
+                            <th scope="col">計畫名稱</th>
+                            <th scope="col">計畫執行狀態</th>
+                            <th scope="col">流用後教育部補助經費</th>
+                            <th scope="col">流用後學校配合款</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="funds-transfer-row">
+                            <td>11300010001</td>
+                            <td><%= zh_lorem_name %></td>
+                            <td><%= lorem_sentence %></td>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="executionStatusTable01" id="alreadyExecutedTable01" value="option1" checked />
+                                    <label class="form-check-label" for="alreadyExecutedTable01">已執行該計畫</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="executionStatusTable01" id="notExecutedTable01" value="option2" />
+                                    <label class="form-check-label" for="notExecutedTable01">未執行該計畫</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="funds-transfer-adjust-fields">
+                                    <input type="text" class="form-control form-control-sm" value="880913">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="funds-transfer-adjust-fields">
+                                    <input type="text" class="form-control form-control-sm" value="176183">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="funds-transfer-row">
+                            <td>11300010002</td>
+                            <td><%= zh_lorem_name %></td>
+                            <td><%= lorem_sentence %></td>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="executionStatusTable02" id="alreadyExecutedTable02" value="option1" />
+                                    <label class="form-check-label" for="alreadyExecutedTable02">已執行該計畫</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="executionStatusTable02" id="notExecutedTable02" value="option2" checked />
+                                    <label class="form-check-label" for="notExecutedTable02">未執行該計畫</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="funds-transfer-adjust-fields">
+                                    <input type="text" class="form-control form-control-sm">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="funds-transfer-adjust-fields">
+                                    <input type="text" class="form-control form-control-sm">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="funds-transfer-row">
+                            <td>11300010003</td>
+                            <td><%= zh_lorem_name %></td>
+                            <td><%= lorem_sentence %></td>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="executionStatusTable03" id="alreadyExecutedTable03" value="option1" checked />
+                                    <label class="form-check-label" for="alreadyExecutedTable03">已執行該計畫</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="executionStatusTable03" id="notExecutedTable03" value="option2" />
+                                    <label class="form-check-label" for="notExecutedTable03">未執行該計畫</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="funds-transfer-adjust-fields">
+                                    <input type="text" class="form-control form-control-sm" value="880913">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="funds-transfer-adjust-fields">
+                                    <input type="text" class="form-control form-control-sm" value="176183">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- table 跟卡片式並存都要給資料，由 css 控制寬度斷點要 show 哪個 -->
         <div class="general-card-list funds-transfer-list">
             <div class="item-card">
                 <div class="card-bd">
@@ -113,6 +209,7 @@
                 </div>
             </div>
         </div>
+
         <div class="funds-transfer-action">
             <button type="button" class="btn btn-lg btn-rounded btn-dark px-4">儲存分配結果</button>
         </div>
@@ -166,7 +263,10 @@
         </div>
         <div class="form-action no-border">
             <span class="backhome">
-                <a href="maintain.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+                <a href="maintain.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
             </span>
         </div>
     </div>
@@ -498,41 +598,51 @@
     const nextApplicationModal = nextApplicationModalEl ? new bootstrap.Modal(nextApplicationModalEl) : null
     const confirmBtn = document.getElementById('executionStatusConfirmBtn')
     let pendingChange = null
-    let lastConfirmedCard = null
+    let lastConfirmedEntry = null
 
-    const getCurrentStatus = (card) => {
-        const checked = card.querySelector('input[type="radio"][name^="executionStatus"]:checked')
+    const statusEntrySelector = '.funds-transfer-list .item-card, .funds-transfer-table .funds-transfer-row'
+
+    const getCurrentStatus = (entry) => {
+        const checked = entry.querySelector('input[type="radio"][name^="executionStatus"]:checked')
         return checked ? checked.value : null
     }
 
-    const setCardStatus = (card, value) => {
-        const target = card.querySelector(`input[type="radio"][name^="executionStatus"][value="${value}"]`)
+    const setEntryStatus = (entry, value) => {
+        const target = entry.querySelector(`input[type="radio"][name^="executionStatus"][value="${value}"]`)
         if (target) {
             target.checked = true
         }
     }
 
-    const setLastStatus = (card, value) => {
+    const setLastStatus = (entry, value) => {
         if (value) {
-            card.dataset.lastStatus = value
+            entry.dataset.lastStatus = value
         } else {
-            delete card.dataset.lastStatus
+            delete entry.dataset.lastStatus
         }
     }
 
-    const updateInfoGroupVisibility = (card) => {
-        const infoGroup = card.querySelector('.info-group')
-        const notExecuted = card.querySelector('input[type="radio"][value="option2"]')
-        if (!infoGroup || !notExecuted) {
+    const updateInfoGroupVisibility = (entry) => {
+        const notExecuted = entry.querySelector('input[type="radio"][value="option2"]')
+        if (!notExecuted) {
             return
         }
-        infoGroup.style.display = notExecuted.checked ? 'none' : ''
+
+        const infoGroup = entry.querySelector('.info-group')
+        if (infoGroup) {
+            infoGroup.style.display = notExecuted.checked ? 'none' : ''
+            return
+        }
+
+        entry.querySelectorAll('.funds-transfer-adjust-fields').forEach((field) => {
+            field.style.display = notExecuted.checked ? 'none' : ''
+        })
     }
 
     const initializeInfoGroupVisibility = () => {
-        document.querySelectorAll('.funds-transfer-list .item-card').forEach((card) => {
-            setLastStatus(card, getCurrentStatus(card))
-            updateInfoGroupVisibility(card)
+        document.querySelectorAll(statusEntrySelector).forEach((entry) => {
+            setLastStatus(entry, getCurrentStatus(entry))
+            updateInfoGroupVisibility(entry)
         })
     }
 
@@ -541,24 +651,24 @@
         if (!radio.matches('input[type="radio"][name^="executionStatus"]')) {
             return
         }
-        const card = radio.closest('.item-card')
-        if (!card) {
+        const entry = radio.closest('.item-card, .funds-transfer-row')
+        if (!entry) {
             return
         }
 
-        const previousStatus = card.dataset.lastStatus
+        const previousStatus = entry.dataset.lastStatus
         const nextStatus = radio.value
 
         if (nextStatus === 'option2' && previousStatus === 'option1') {
-            pendingChange = { card, previousStatus, nextStatus }
+            pendingChange = { entry, previousStatus, nextStatus }
             if (confirmModal) {
                 confirmModal.show()
             }
             return
         }
 
-        updateInfoGroupVisibility(card)
-        setLastStatus(card, nextStatus)
+        updateInfoGroupVisibility(entry)
+        setLastStatus(entry, nextStatus)
     }
 
     if (confirmBtn) {
@@ -566,9 +676,9 @@
             if (!pendingChange) {
                 return
             }
-            updateInfoGroupVisibility(pendingChange.card)
-            setLastStatus(pendingChange.card, pendingChange.nextStatus)
-            lastConfirmedCard = pendingChange.card
+            updateInfoGroupVisibility(pendingChange.entry)
+            setLastStatus(pendingChange.entry, pendingChange.nextStatus)
+            lastConfirmedEntry = pendingChange.entry
             pendingChange = null
             if (confirmModal) {
                 confirmModal.hide()
@@ -584,22 +694,22 @@
             if (!pendingChange) {
                 return
             }
-            setCardStatus(pendingChange.card, pendingChange.previousStatus)
-            updateInfoGroupVisibility(pendingChange.card)
-            setLastStatus(pendingChange.card, pendingChange.previousStatus)
+            setEntryStatus(pendingChange.entry, pendingChange.previousStatus)
+            updateInfoGroupVisibility(pendingChange.entry)
+            setLastStatus(pendingChange.entry, pendingChange.previousStatus)
             pendingChange = null
         })
     }
 
     if (nextApplicationModalEl) {
         nextApplicationModalEl.addEventListener('hidden.bs.modal', () => {
-            if (!lastConfirmedCard) {
+            if (!lastConfirmedEntry) {
                 return
             }
-            setCardStatus(lastConfirmedCard, 'option1')
-            updateInfoGroupVisibility(lastConfirmedCard)
-            setLastStatus(lastConfirmedCard, 'option1')
-            lastConfirmedCard = null
+            setEntryStatus(lastConfirmedEntry, 'option1')
+            updateInfoGroupVisibility(lastConfirmedEntry)
+            setLastStatus(lastConfirmedEntry, 'option1')
+            lastConfirmedEntry = null
         })
     }
 

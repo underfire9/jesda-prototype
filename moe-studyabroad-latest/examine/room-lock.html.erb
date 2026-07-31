@@ -1,0 +1,384 @@
+<!-- template: 闈場審查系統 - 審查計畫(上鎖) -->
+<% content_for :header_center do %>
+    <span class="central-title examine-central-title">審查計畫</span>
+<% end %>
+
+<% content_for :header_dropdown do %>
+    <%= render :partial => "/partials/examine_dropdown" %>
+<% end %>
+
+<div class="container-full mx-auto">
+    <div class="room-wrapper">
+        <aside class="room-sidebar">
+            <ul class="menu-item">
+                <li>學海惜珠</li>
+                <li>技專校院</li>
+                <li>近三年未獲補助</li>
+            </ul>
+            <div class="back-clip">
+                <a href="examine-list.html" class="btn"><i class="fas fa-long-arrow-alt-left"></i> 回計畫名單</a>
+            </div>
+        </aside>
+        <!-- 鎖定給 room-locked -->
+        <main class="room-main room-locked">
+            <div class="room-toolbar">
+                <div class="bar-start">
+                    <div class="inner-start">
+                        <!-- 鎖定給 statu-lock -->
+                        <div class="toolbar-status statu-lock" title="資料鎖定">評分送出</div>
+                        <div class="btn-clip">
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalScoreSheet">審查評分總表</button>
+                        </div>
+                        <div class="btn-clip">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalSignature">檢視簽名檔</button>
+                        </div>
+                    </div>
+                    <div class="inner-end">
+                        <div class="btn-clip">
+                            <button type="button" class="btn btn-rounded btn-light js-open-chat-modal" data-chat-modal="#discussionModal" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="委員討論區">
+                                <i class="fas fa-comments"></i>
+                            </button>
+                        </div>
+                        <div class="btn-clip">
+                            <button type="button" class="btn btn-rounded btn-light js-open-chat-modal" data-chat-modal="#officeModal" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="聯絡辦公室">
+                                <i class="fas fa-comment-medical"></i>
+                                <span class="badge rounded-pill bg-danger">2</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="room-body">
+                <div class="thead-wrap">
+                    <div class="thead-row d-flex"><span>審查 / 迴避</span></div>
+                    <div class="thead-row d-flex"><span class="ps-4">學校 / 申請學生</span></div>
+                    <div class="thead-row">
+                        <div class="inner-colspan"><span>分項評分及總分</span></div>
+                        <div class="thead-inner">
+                            <div class="inner-row">
+                                <div class="has-modal">
+                                    學生成績、能力<strong>(30分)</strong>
+                                    <span>
+                                        <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalScoreGuide" title="說明"><i class="fas fa-info-circle"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="inner-row">
+                                <div class="has-modal">
+                                    研修計畫書<strong>(30分)</strong>
+                                    <span>
+                                        <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalScoreGuide" title="說明"><i class="fas fa-info-circle"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="inner-row">
+                                <div class="has-modal">
+                                    研修動機與身分<strong>(30分)</strong>
+                                    <span>
+                                        <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalScoreGuide" title="說明"><i class="fas fa-info-circle"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="inner-row">
+                                <div class="has-modal">
+                                    總分<strong>(90分)</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tbody-wrap">
+                    <% schools = [
+                        { name: "國立臺北科技大學" },
+                        { name: "國立臺中科技大學" },
+                        { name: "文藻學校財團法人文藻外語大學" },
+                        { name: "國立虎尾科技大學" },
+                        { name: "崇仁醫護管理專科學校" },
+                        { name: "樹德科技大學" },
+                        { name: "耕莘健康管理專科學校" },
+                        { name: "修平學校財團法人修平科技大學" }
+                    ] %>
+                    <% schools.each_with_index do |school, index| %>
+                    <div class="wrap-card">
+                        <div class="item-row">
+                            <div class="row-start">
+                                <div class="item-serial"><%= index + 1 %></div>
+                                <div class="start-clip">
+                                    <div class="item-action">
+                                        <!-- wording 改瀏覽 -->
+                                        <button type="button" class="btn btn-secondary btn-lg" onclick="window.location.href='score.html'">瀏覽</button>
+                                    </div>
+                                    <div class="item-avoid">
+                                        <div class="form-check form-switch">
+                                            <!-- disabled -->
+                                            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckavoid<%= index + 1 %>" disabled>
+                                            <label class="form-check-label" for="switchCheckavoid<%= index + 1 %>">迴避</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-center">
+                                <div class="start-title"><%= school[:name] %></div>
+                                <div class="start-text">
+                                    <%= zh_lorem_name %>
+                                </div>
+                            </div>
+                            <div class="row-end">
+                                <div class="row-top">
+                                    <div class="col"><input type="number" class="form-control" value="28" disabled /></div>
+                                    <div class="col"><input type="number" class="form-control" value="27" disabled /></div>
+                                    <div class="col"><input type="number" class="form-control" value="28" disabled /></div>
+                                    <div class="col"><input type="number" class="form-control" value="83" disabled /></div>
+                                </div>
+                                <div class="row-bottom">
+                                    <div class="col h-100"><textarea class="form-control" rows="3" placeholder="請填寫委員評語" disabled><%= lorem_paragraph %></textarea></div>
+                                    <div class="col h-100"><textarea class="form-control" rows="3" placeholder="66分以下(含66分)，請加註特別理由" disabled></textarea></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<%= render :partial => "/partials/chat" %>
+
+<!-- Modal Signature -->
+<div class="modal fade" id="modalSignature" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-signature">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">簽名檔</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="signature-wrapper">
+                    <img class="img-signature" src="../assets/fake/signature.jpg" alt="簽名檔" />
+                </div>
+                <div class="text-muted text-center my-3">2026/04/18 23:15 送出評分表</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Score Guide -->
+<div class="modal fade" id="modalScoreGuide" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalScoreGuideLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-score-guide">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalScoreGuideLabel">評分說明</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- 直接帶進 thead (.inner-row) wording -->
+                <h4 class="fw-medium">薦送學校 (60分)</h4>
+                <div>包括整體目標、預期績效、預定選送學生出國研修人數、薦送學校甄選作業方式與執行本要點之推廣及鼓勵措施，包括本年度選送原住民學生及新住民子女人數。</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Score Sheet -->
+<div class="modal fade" id="modalScoreSheet" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen modal-dialog-scrollable modal-score-sheet">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-full mx-auto">
+                    <div class="score-sheet-wrapper">
+                        <div class="wrapper-body">
+                            <div class="body-head">
+                                <div class="head-top">
+                                    <h1 class="modal-title fs-5">審查評分總表</h1>
+                                    <div class="form-check form-switch form-switch-lg">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="switchExpandAll">
+                                        <label class="form-check-label" for="switchExpandAll">展開全部</label>
+                                    </div>
+                                </div>
+                                <div class="thead-wrap">
+                                    <div class="thead-start">
+                                        <div class="thead-row row-serial"></div>
+                                        <div class="thead-row row-expand">展開</div>
+                                        <div class="thead-row row-name">學校名稱 / 申請學生</div>
+                                    </div>
+                                    <div class="thead-center">
+                                        <div class="thead-row">委員 1</div>
+                                        <div class="thead-row">委員 2</div>
+                                        <div class="thead-row">委員 3</div>
+                                        <div class="thead-row">委員 4</div>
+                                    </div>
+                                    <div class="thead-end">
+                                        <div class="thead-row">平均</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="score-sheet-list">
+                                <% (1..30).each do |i| %>
+                                <div class="item-score-sheet">
+                                    <div class="item-start">
+                                        <div class="item-serial"><%= i %></div>
+                                        <div class="item-switch">
+                                            <div class="form-check form-switch mb-0">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="switchExpand<%= i %>"<%= ' checked' if i == 1 %>>
+                                                <label class="form-check-label" for="switchExpand<%= i %>"></label>
+                                            </div>
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="school-name">國立臺北護理健康大學</div>
+                                            <div class="info-text">
+                                                <%= zh_lorem_name %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item-end">
+                                        <div class="committee-wrap">
+                                            <% (1..4).each do |i| %>
+                                            <div class="committee-clip">
+                                                <div class="committee-score">
+                                                    <input type="text" class="form-control" value="8<%= i %>" disabled />
+                                                </div>
+                                                <div class="committee-comment">
+                                                    <textarea class="form-control" rows="4" disabled><%= lorem_paragraph %></textarea>
+                                                </div>
+                                            </div>
+                                            <% end %>
+                                        </div>
+                                        <div class="average-clip">
+                                            <input type="text" class="form-control" value="81.56" disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal"><i class="fas fa-times me-2"></i> 關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+
+<!-- bootstrap tooltips -->
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(
+        tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
+            delay: { show: 100, hide: 100 }
+        })
+    )
+</script>
+
+<!-- chat -->
+<script>
+    const chatModalElements = document.querySelectorAll('.chat-modal')
+    const chatModals = [...chatModalElements].reduce((acc, modalElement) => {
+        acc["#" + modalElement.id] = new bootstrap.Modal(modalElement, {
+            backdrop: false,
+            focus: false,
+            keyboard: true
+        })
+        modalElement.addEventListener('shown.bs.modal', () => {
+            document.body.classList.remove('modal-open')
+            document.body.style.overflow = ''
+            document.body.style.paddingRight = ''
+        })
+        return acc
+    }, {})
+
+    document.querySelectorAll('.js-open-chat-modal').forEach(button => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.chatModal
+            if (target && chatModals[target]) {
+                Object.entries(chatModals).forEach(([key, modal]) => {
+                    if (key !== target) {
+                        modal.hide()
+                    }
+                })
+                chatModals[target].show()
+            }
+        })
+    })
+
+    const formatDateTime = date => {
+        const y = date.getFullYear()
+        const m = String(date.getMonth() + 1).padStart(2, '0')
+        const d = String(date.getDate()).padStart(2, '0')
+        const h = String(date.getHours()).padStart(2, '0')
+        const min = String(date.getMinutes()).padStart(2, '0')
+        const s = String(date.getSeconds()).padStart(2, '0')
+        return `${y}-${m}-${d} ${h}:${min}:${s}`
+    }
+
+    document.querySelectorAll('.chat-input-form').forEach(form => {
+        form.addEventListener('submit', event => {
+            event.preventDefault()
+            const input = form.querySelector('input')
+            const text = input.value.trim()
+            if (!text) return
+
+            const bodySelector = form.dataset.chatBody
+            const chatBody = document.querySelector(bodySelector)
+            if (!chatBody) return
+
+            const item = document.createElement('div')
+            item.className = 'chat-item is-self'
+            item.innerHTML = `
+                <img src="../assets/default-avatar.svg" alt="您" class="chat-avatar">
+                <div class="chat-bubble">
+                    <div class="chat-meta"><strong>您</strong><span>${formatDateTime(new Date())}</span></div>
+                    <p></p>
+                </div>
+            `
+            item.querySelector('p').textContent = text
+            chatBody.appendChild(item)
+            chatBody.scrollTop = chatBody.scrollHeight
+            input.value = ''
+        })
+    })
+</script>
+
+<!-- Score Sheet Expand -->
+<script>
+    const scoreSheetWrapper = document.querySelector('.score-sheet-wrapper')
+    const expandAllSwitch = document.querySelector('#switchExpandAll')
+    const expandAllLabel = document.querySelector('label[for="switchExpandAll"]')
+    const itemExpandSwitches = document.querySelectorAll('.item-score-sheet .item-switch .form-check-input')
+
+    const syncItemExpansion = input => {
+        const scoreSheetItem = input.closest('.item-score-sheet')
+        scoreSheetItem.classList.toggle('is-expanded', input.checked)
+    }
+
+    const syncExpandAll = () => {
+        itemExpandSwitches.forEach(input => {
+            input.checked = expandAllSwitch.checked
+            syncItemExpansion(input)
+        })
+        expandAllLabel.textContent = expandAllSwitch.checked ? '隱藏全部' : '展開全部'
+    }
+
+    itemExpandSwitches.forEach(input => {
+        syncItemExpansion(input)
+        input.addEventListener('change', () => syncItemExpansion(input))
+    })
+
+    expandAllLabel.textContent = expandAllSwitch.checked ? '隱藏全部' : '展開全部'
+    expandAllSwitch.addEventListener('change', syncExpandAll)
+</script>
+
+<% end %>
+

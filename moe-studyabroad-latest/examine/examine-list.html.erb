@@ -1,0 +1,170 @@
+<!-- template: 闈場審查系統 - 審查計畫名單 -->
+<% content_for :header_center do %>
+    <span class="central-title examine-central-title">審查計畫名單</span>
+<% end %>
+
+<% content_for :header_dropdown do %>
+    <%= render :partial => "/partials/examine_dropdown" %>
+<% end %>
+
+<div class="container">
+    <div class="examine-list-wrapper">
+        <div class="examine-list-card">
+            <div class="card-serial">1</div>
+
+            <!-- 已審查給 done 以及 title -->
+            <div class="card-status done" title="已審查"><span>已審查</span></div>
+            <div class="info-bd">
+                <div class="info-group">
+                    <span class="card-label">計畫類型</span>
+                    <span class="card-value">學海飛颺</span>
+                </div>
+                <div class="info-group">
+                    <span class="card-label">學校類別</span>
+                    <span class="card-value">一般大學</span>
+                </div>
+                <div class="info-group">
+                    <span class="card-label">領域別</span>
+                    <span class="card-value">資訊工程</span>
+                </div>
+                <div class="info-group">
+                    <span class="card-label">近三年是否獲補助</span>
+                    <span class="card-value">近三年獲補助</span>
+                </div>
+                <div class="info-group">
+                    <span class="card-label">各名單申請數</span>
+                    <span class="card-value">58</span>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button type="button" class="btn btn-rounded btn-light js-open-chat-modal" data-chat-modal="#discussionModal" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="委員討論區">
+                    <i class="fas fa-comments"></i>
+                    <span class="badge rounded-pill bg-danger">99+</span>
+                </button>
+                <button type="button" class="btn btn-rounded btn-light js-open-chat-modal" data-chat-modal="#officeModal" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="聯絡辦公室">
+                    <i class="fas fa-comment-medical"></i>
+                    <span class="badge rounded-pill bg-danger">2</span>
+                </button>
+                <a href="room.html" class="btn btn-rounded btn-primary">進入</a>
+            </div>
+        </div>
+        <% (2..5).map do |i| %>
+        <div class="examine-list-card">
+            <div class="card-serial"><%= i %></div>
+            <div class="card-status"><span>未審查</span></div>
+            <div class="info-bd">
+                <div class="info-group">
+                    <span class="card-label">計畫類型</span>
+                    <span class="card-value">學海飛颺</span>
+                </div>
+                <div class="info-group">
+                    <span class="card-label">學校類別</span>
+                    <span class="card-value">一般大學</span>
+                </div>
+                <div class="info-group">
+                    <span class="card-label">領域別</span>
+                    <span class="card-value">資訊工程</span>
+                </div>
+                <div class="info-group">
+                    <span class="card-label">近三年是否獲補助</span>
+                    <span class="card-value">近三年獲補助</span>
+                </div>
+                <div class="info-group">
+                    <span class="card-label">各名單申請數</span>
+                    <span class="card-value">58</span>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button type="button" class="btn btn-rounded btn-light js-open-chat-modal" data-chat-modal="#discussionModal" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="委員討論區"><i class="fas fa-comments"></i></button>
+                <button type="button" class="btn btn-rounded btn-light js-open-chat-modal" data-chat-modal="#officeModal" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="聯絡辦公室"><i class="fas fa-comment-medical"></i></button>
+                <a href="room.html" class="btn btn-rounded btn-primary">進入</a>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+
+<%= render :partial => "/partials/chat" %>
+
+
+
+<% content_for :js do %>
+<!-- bootstrap tooltips -->
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(
+        tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
+            delay: { show: 100, hide: 100 }
+        })
+    )
+</script>
+
+<script>
+    const chatModalElements = document.querySelectorAll('.chat-modal')
+    const chatModals = [...chatModalElements].reduce((acc, modalElement) => {
+        acc["#" + modalElement.id] = new bootstrap.Modal(modalElement, {
+            backdrop: false,
+            focus: false,
+            keyboard: true
+        })
+        modalElement.addEventListener('shown.bs.modal', () => {
+            document.body.classList.remove('modal-open')
+            document.body.style.overflow = ''
+            document.body.style.paddingRight = ''
+        })
+        return acc
+    }, {})
+
+    document.querySelectorAll('.js-open-chat-modal').forEach(button => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.chatModal
+            if (target && chatModals[target]) {
+                Object.entries(chatModals).forEach(([key, modal]) => {
+                    if (key !== target) {
+                        modal.hide()
+                    }
+                })
+                chatModals[target].show()
+            }
+        })
+    })
+
+    const formatDateTime = date => {
+        const y = date.getFullYear()
+        const m = String(date.getMonth() + 1).padStart(2, '0')
+        const d = String(date.getDate()).padStart(2, '0')
+        const h = String(date.getHours()).padStart(2, '0')
+        const min = String(date.getMinutes()).padStart(2, '0')
+        const s = String(date.getSeconds()).padStart(2, '0')
+        return `${y}-${m}-${d} ${h}:${min}:${s}`
+    }
+
+    document.querySelectorAll('.chat-input-form').forEach(form => {
+        form.addEventListener('submit', event => {
+            event.preventDefault()
+            const input = form.querySelector('input')
+            const text = input.value.trim()
+            if (!text) return
+
+            const bodySelector = form.dataset.chatBody
+            const chatBody = document.querySelector(bodySelector)
+            if (!chatBody) return
+
+            const item = document.createElement('div')
+            item.className = 'chat-item is-self'
+            item.innerHTML = `
+                <img src="../assets/default-avatar.svg" alt="您" class="chat-avatar">
+                <div class="chat-bubble">
+                    <div class="chat-meta"><strong>您</strong><span>${formatDateTime(new Date())}</span></div>
+                    <p></p>
+                </div>
+            `
+            item.querySelector('p').textContent = text
+            chatBody.appendChild(item)
+            chatBody.scrollTop = chatBody.scrollHeight
+            input.value = ''
+        })
+    })
+</script>
+<% end %>
+

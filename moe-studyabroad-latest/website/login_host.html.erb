@@ -21,16 +21,29 @@
                     </ol>
                 </div>
                 <div class="login-wrapper">
-                    <form>
+                    <form action="../school/privacy.html">
                         <div class="form-group">
                             <label for="accountHost" class="form-label">帳號</label>
                             <input type="text" class="form-control" id="accountHost" placeholder="請輸入帳號" />
                         </div>
                         <div class="form-group">
                             <label for="passwordHost" class="form-label">密碼</label>
-                            <input type="password" class="form-control" id="passwordHost" placeholder="請輸入密碼" />
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="passwordHost" placeholder="請輸入密碼" />
+                                <button
+                                    type="button"
+                                    class="btn js-toggle-password"
+                                    data-target="passwordHost"
+                                    aria-label="顯示密碼"
+                                    aria-controls="passwordHost"
+                                    aria-pressed="false"
+                                >
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
+                                    <span class="sr-only">顯示密碼</span>
+                                </button>
+                            </div>
                             <div class="text-end form-text">
-                                <a href="#" class="forgot-password-link">忘記密碼?</a>
+                                <a href="forget_password.html" class="forgot-password-link">忘記密碼?</a>
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,6 +75,36 @@
 
 
 <% content_for :js do %>
+<script>
+    (function() {
+        var toggleButtons = document.querySelectorAll('.js-toggle-password');
 
+        toggleButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var targetId = button.getAttribute('data-target');
+                var input = document.getElementById(targetId);
+
+                if (!input) return;
+
+                var isPassword = input.getAttribute('type') === 'password';
+                var icon = button.querySelector('i');
+                var srText = button.querySelector('.sr-only');
+
+                input.setAttribute('type', isPassword ? 'text' : 'password');
+                button.setAttribute('aria-pressed', isPassword ? 'true' : 'false');
+                button.setAttribute('aria-label', isPassword ? '隱藏密碼' : '顯示密碼');
+
+                if (icon) {
+                    icon.classList.toggle('fa-eye', !isPassword);
+                    icon.classList.toggle('fa-eye-slash', isPassword);
+                }
+
+                if (srText) {
+                    srText.textContent = isPassword ? '隱藏密碼' : '顯示密碼';
+                }
+            });
+        });
+    })();
+</script>
 <% end %>
 

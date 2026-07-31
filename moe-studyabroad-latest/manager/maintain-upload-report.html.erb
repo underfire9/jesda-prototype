@@ -1,0 +1,169 @@
+<!-- template: 學校聯絡人 - 維護/計畫成果報告 PDF 上傳 -->
+<% content_for :header_center do %>
+    <span class="central-title manager-central-title">計畫成果報告上傳</span>
+<% end %>
+
+<div class="container">
+    <div class="page-content">
+        <div class="text-end mb-2 form-text">建議使用合法且安全的壓縮工具進行壓縮後再上傳，PDF檔案壓縮 <a href="https://smallpdf.com/compress-pdf" target="_blank">Smallpdf</a></div>
+
+        <div class="upload-container">
+            <div class="drag-and-drop" id="dropZone">
+                <input type="file" id="fileInput" accept="application/pdf" hidden>
+                <div class="dnd-idle" id="dndIdle">
+                    <i class="fas fa-file-pdf dnd-icon"></i>
+                    <span class="title">請將 PDF 檔案拖曳至此，或<button type="button" class="btn btn-outline-dark mx-2" id="browseBtn">點擊選擇檔案</button></span>
+                    <span class="dnd-hint">僅限 PDF，檔案大小上限 100 MB，重新上傳將覆蓋前一次檔案</span>
+                </div>
+                <div class="dnd-preview" id="dndPreview" hidden>
+                    <div class="dnd-preview-info">
+                        <i class="fas fa-file-pdf dnd-icon text-danger"></i>
+                        <div class="dnd-file-meta">
+                            <span class="dnd-filename" id="dndFilename"></span>
+                            <span class="dnd-filesize" id="dndFilesize"></span>
+                        </div>
+                    </div>
+                    <div class="dnd-preview-actions">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="viewNewTabBtn" title="開啟新視窗">
+                            <i class="fas fa-external-link-alt"></i> 新視窗
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-sm" id="removeFileBtn" title="刪除檔案">
+                            <i class="fas fa-trash-alt"></i> 刪除
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inline PDF preview -->
+            <div class="pdf-inline-preview" id="pdfInlinePreview" hidden>
+                <div class="pdf-inline-toolbar">
+                    <span id="pdfInlineFilename"></span>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="closePdfPreview"><i class="fas fa-times"></i> 關閉預覽</button>
+                </div>
+                <iframe id="pdfIframe" title="PDF 預覽" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <div class="form-action no-border">
+            <span class="backhome">
+                <a href="apply.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
+            </span>
+            <button type="button" class="btn btn-lg btn-rounded btn-primary px-5" id="uploadBtn" disabled>
+                <i class="fas fa-cloud-upload-alt me-1"></i> 上傳
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+<% content_for :js do %>
+<script>
+(function () {
+    const MAX_SIZE = 100 * 1024 * 1024; // 100 MB
+    const dropZone    = document.getElementById('dropZone');
+    const fileInput   = document.getElementById('fileInput');
+    const browseBtn   = document.getElementById('browseBtn');
+    const dndIdle     = document.getElementById('dndIdle');
+    const dndPreview  = document.getElementById('dndPreview');
+    const dndFilename = document.getElementById('dndFilename');
+    const dndFilesize = document.getElementById('dndFilesize');
+    const removeBtn   = document.getElementById('removeFileBtn');
+    const viewNewTab  = document.getElementById('viewNewTabBtn');
+    const uploadBtn   = document.getElementById('uploadBtn');
+    const pdfPreview  = document.getElementById('pdfInlinePreview');
+    const pdfIframe   = document.getElementById('pdfIframe');
+    const pdfLabel    = document.getElementById('pdfInlineFilename');
+    const closePrev   = document.getElementById('closePdfPreview');
+
+    let currentObjectUrl = null;
+
+    function formatSize(bytes) {
+        if (bytes >= 1024 * 1024) return (bytes / 1024 / 1024).toFixed(1) + ' MB';
+        return (bytes / 1024).toFixed(0) + ' KB';
+    }
+
+    function setFile(file) {
+        if (!file) return;
+        if (file.type !== 'application/pdf') {
+            alert('請上傳 PDF 格式的檔案。');
+            return;
+        }
+        if (file.size > MAX_SIZE) {
+            alert('檔案大小超過 100 MB，請重新選擇。');
+            return;
+        }
+        if (currentObjectUrl) URL.revokeObjectURL(currentObjectUrl);
+        currentObjectUrl = URL.createObjectURL(file);
+        dndFilename.textContent = file.name;
+        dndFilesize.textContent = formatSize(file.size);
+        dndIdle.hidden    = true;
+        dndPreview.hidden = false;
+        uploadBtn.disabled = false;
+        pdfIframe.src = currentObjectUrl;
+        pdfLabel.textContent = file.name;
+        pdfPreview.hidden = false;
+    }
+
+    function clearFile() {
+        if (currentObjectUrl) {
+            URL.revokeObjectURL(currentObjectUrl);
+            currentObjectUrl = null;
+        }
+        fileInput.value = '';
+        dndIdle.hidden    = false;
+        dndPreview.hidden = true;
+        uploadBtn.disabled = true;
+        hidePdfPreview();
+    }
+
+    function hidePdfPreview() {
+        pdfPreview.hidden = true;
+        pdfIframe.src = '';
+    }
+
+    // Click to browse
+    browseBtn.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('click', (e) => {
+        if (e.target === dropZone || e.target === dndIdle) fileInput.click();
+    });
+
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files[0]) setFile(fileInput.files[0]);
+    });
+
+    // Drag & Drop
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dnd-hover');
+    });
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dnd-hover');
+    });
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dnd-hover');
+        const file = e.dataTransfer.files[0];
+        if (file) setFile(file);
+    });
+
+    // Actions
+    removeBtn.addEventListener('click', clearFile);
+
+    viewNewTab.addEventListener('click', () => {
+        if (currentObjectUrl) window.open(currentObjectUrl, '_blank');
+    });
+
+    closePrev.addEventListener('click', hidePdfPreview);
+
+    uploadBtn.addEventListener('click', () => {
+        // TODO: wire up real upload logic
+        alert('上傳功能尚未串接後端，請實作上傳邏輯。');
+    });
+})();
+</script>
+<% end %>
+

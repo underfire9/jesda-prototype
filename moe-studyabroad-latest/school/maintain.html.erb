@@ -148,8 +148,44 @@
                         <div class="hd-title">結案報告清單列印開放時間</div>
                         <div class="date-range"><span class="text-nowrap">2024 年 06 月 30 日 00:00</span> 至 <span class="text-nowrap">2026 年 12 月 31 日 00:00</span></div>
                     </div>
-                    <div class="section-bd">
-                        <p>結案方式：以計畫為單位分別申請結案</p>
+
+                    <!-- section-bd 多給一個 px-0 -->
+                    <!-- table 跟卡片式並存都要給資料，由 css 控制寬度斷點要 show 哪個 -->
+                    <div class="section-bd px-0">
+                        <p class="extend_note">結案方式：以計畫為單位分別申請結案</p>
+                        <div class="maintain-closing-table table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">計畫編號</th>
+                                        <th scope="col">計畫名稱</th>
+                                        <th scope="col">計畫主持人</th>
+                                        <th scope="col">實習領域</th>
+                                        <th scope="col">實習國別</th>
+                                        <th scope="col">結案狀態</th>
+                                        <th scope="col" class="text-center">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% (1..12).map do |i| %>
+                                    <tr>
+                                        <td class="fs-7">114103000N0<%= i %></td>
+                                        <td><%= lorem_sentence %></td>
+                                        <td><%= zh_lorem_name %>教授</td>
+                                        <td>藝術、建築規劃與設計</td>
+                                        <td>哥斯大黎加</td>
+                                        <td>未列印結案資料</td>
+                                        <td>
+                                            <div class="d-grid gap-2 table-action-group">
+                                                <a href="#" class="btn btn-sm btn-rounded btn-outline-dark">預覽結案報告</a>
+                                                <a href="#" class="btn btn-sm btn-rounded btn-outline-dark">正式下載結案報告</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="maintain-closing-card">
                             <% (1..5).map do |i| %>
                             <div class="closing-card">

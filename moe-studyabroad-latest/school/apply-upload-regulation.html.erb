@@ -22,9 +22,6 @@
                         </div>
                     </div>
                     <div class="dnd-preview-actions">
-                        <button type="button" class="btn btn-outline-secondary btn-sm" id="viewInlineBtn" title="在頁面瀏覽">
-                            <i class="fas fa-eye"></i> 預覽
-                        </button>
                         <button type="button" class="btn btn-outline-secondary btn-sm" id="viewNewTabBtn" title="開啟新視窗">
                             <i class="fas fa-external-link-alt"></i> 新視窗
                         </button>
@@ -47,7 +44,10 @@
 
         <div class="form-action no-border">
             <span class="backhome">
-                <a href="apply.html" class="btn btn-lg btn-light" title="回上一頁"><i class="fas fa-long-arrow-alt-left"></i></a>
+                <a href="apply.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
             </span>
             <button type="button" class="btn btn-lg btn-rounded btn-primary px-5" id="uploadBtn" disabled>
                 <i class="fas fa-cloud-upload-alt me-1"></i> 上傳
@@ -70,7 +70,6 @@
     const dndFilename = document.getElementById('dndFilename');
     const dndFilesize = document.getElementById('dndFilesize');
     const removeBtn   = document.getElementById('removeFileBtn');
-    const viewInline  = document.getElementById('viewInlineBtn');
     const viewNewTab  = document.getElementById('viewNewTabBtn');
     const uploadBtn   = document.getElementById('uploadBtn');
     const pdfPreview  = document.getElementById('pdfInlinePreview');
@@ -102,8 +101,9 @@
         dndIdle.hidden    = true;
         dndPreview.hidden = false;
         uploadBtn.disabled = false;
-        // Close inline preview when new file is selected
-        hidePdfPreview();
+        pdfIframe.src = currentObjectUrl;
+        pdfLabel.textContent = file.name;
+        pdfPreview.hidden = false;
     }
 
     function clearFile() {
@@ -150,14 +150,6 @@
 
     // Actions
     removeBtn.addEventListener('click', clearFile);
-
-    viewInline.addEventListener('click', () => {
-        if (!currentObjectUrl) return;
-        pdfIframe.src = currentObjectUrl;
-        pdfLabel.textContent = dndFilename.textContent;
-        pdfPreview.hidden = false;
-        pdfPreview.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
 
     viewNewTab.addEventListener('click', () => {
         if (currentObjectUrl) window.open(currentObjectUrl, '_blank');

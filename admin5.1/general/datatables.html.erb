@@ -34,59 +34,6 @@
                 </div>
             </div>
         </div>
-        <div class="datatables-filter-bar">
-            <div class="bar-criteria">
-                <!-- clip 容器自動適應寬度 -->
-                <div class="bar-clip">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>選擇篩選條件</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="bar-clip">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected><%= lorem_sentence %></option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="bar-clip">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>選擇篩選條件</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="bar-clip">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>選擇篩選條件</option>
-                        <option value="1">One</option>
-                        <option value="2"><%= lorem_sentence %></option>
-                        <option value="3"><%= lorem_sentence %></option>
-                    </select>
-                </div>
-                <div class="bar-clip">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>選擇篩選條件</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-            </div>
-            <div class="bar-action">
-                <button class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="篩選">
-                    <i class="bi bi-funnel"></i>
-                </button>
-                <button class="btn btn-transparent" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="重置">
-                    <i class="bi bi-arrow-counterclockwise"></i>
-                </button>
-            </div>
-        </div>
         <div class="datatables-wrapper">
             <div class="datatables-toolbar">
                 <div class="toolbar-inner">
@@ -100,13 +47,13 @@
                             </button>
                         </div>
                         <div class="btn-group">
-                            <button class="btn btn-secondary">
+                            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalEmail">
                                 <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="批次寄送"><i class="bi bi-envelope"></i></span>
                             </button>
                             <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#multiSortModal">
                                 <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="多重排序"><i class="bi bi-sort-down"></i></span>
                             </button>
-                            <button class="btn btn-secondary">
+                            <button type="button" class="btn btn-secondary btn-field-setting" id="toggleFieldSettingPanel" aria-expanded="false" aria-controls="fieldSettingPanel">
                                 <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="設定欄位"><i class="bi bi-table"></i></span>
                             </button>
                             <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#outboundModal">
@@ -142,8 +89,17 @@
                     <div class="toolbar-inner-end">
                         <div class="toolbar-search"></div>
                         <div>
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="進階搜尋">
-                                進階 <i class="bi bi-search"></i>
+                            <button type="button" class="btn btn-secondary btn-adsearch" data-bs-toggle="collapse" data-bs-target="#adSearch" aria-expanded="false" aria-controls="adSearch">
+                                <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="進階搜尋">
+                                    進階 <i class="bi bi-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-secondary btn-adsearch btn-filter" data-bs-toggle="collapse" data-bs-target="#filterBarPanel" aria-expanded="false" aria-controls="filterBarPanel">
+                                <span data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="篩選">
+                                    <i class="bi bi-funnel"></i>
+                                </span>
                             </button>
                         </div>
                         <div>
@@ -159,6 +115,81 @@
                         </div>
                     </div>
                 </div>
+                <div class="field-setting-panel" id="fieldSettingPanel" aria-hidden="true">
+                    <div class="panel-head">
+                        <h6 class="panel-title">列表顯示欄位</h6>
+                        <div class="setting-action">
+                            <button type="button" class="btn btn-sm btn-white" id="fieldSelectAllBtn">
+                                全選
+                            </button>
+                            <button type="button" class="btn btn-sm btn-white" id="fieldResetBtn">
+                                還原預設
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary" id="fieldApplyBtn">
+                                套用
+                            </button>
+                        </div>
+                    </div>
+                    <div class="field-order-list" id="fieldOrderList">
+                        <!-- 可拖曳排序、勾選的欄位列表 -->
+                    </div>
+                </div>
+                <div class="collapse dttoolbar-collapse" id="filterBarPanel">
+                    <div class="datatables-filter-bar">
+                        <div class="bar-criteria">
+                            <!-- clip 容器自動適應寬度 -->
+                            <div class="bar-clip">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>選擇篩選條件</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="bar-clip">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected><%= lorem_sentence %></option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="bar-clip">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>選擇篩選條件</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="bar-clip">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>選擇篩選條件</option>
+                                    <option value="1">One</option>
+                                    <option value="2"><%= lorem_sentence %></option>
+                                    <option value="3"><%= lorem_sentence %></option>
+                                </select>
+                            </div>
+                            <div class="bar-clip">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>選擇篩選條件</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="bar-action">
+                            <button class="btn btn-transparent" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="確定">
+                                <i class="bi bi-check2"></i>
+                            </button>
+                            <button class="btn btn-transparent" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="top" data-bs-title="重置">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <%= render :partial => "/partials/advanced_search" %>
             </div>
             <div class="datatables-content">
                 <% customers = ["教育部", "內政部", "衛生福利部", "臺北市政府", "國立臺灣大學", "國立政治大學", "國立清華大學", "國立陽明交通大學", "國立成功大學", "國立中興大學"] %>
@@ -403,7 +434,6 @@
                         ><span>每頁</span>
                         <select aria-controls="staffTable" class="form-select" id="dt-length-0">
                             <option value="12">12</option>
-                            <option value="12">12</option>
                             <option value="24">24</option>
                             <option value="48">48</option>
                         </select>
@@ -413,25 +443,10 @@
                 <div class="dt-info" aria-live="polite" id="staffTable_info" role="status">顯示 1 - 12，共 128 筆</div>
             </div>
 
-            <!-- pagination RWD 塞不下，991px 後會被隱藏 -->
             <div class="ft-end">
                 <div class="dt-paging">
                     <nav aria-label="pagination">
                         <ul class="pagination">
-                            <li class="dt-paging-button page-item disabled">
-                                <button
-                                    class="page-link first"
-                                    role="link"
-                                    type="button"
-                                    aria-controls="staffTable"
-                                    aria-disabled="true"
-                                    aria-label="First"
-                                    data-dt-idx="first"
-                                    tabindex="-1"
-                                >
-                                    «
-                                </button>
-                            </li>
                             <li class="dt-paging-button page-item disabled">
                                 <button
                                     class="page-link previous"
@@ -443,7 +458,7 @@
                                     data-dt-idx="previous"
                                     tabindex="-1"
                                 >
-                                    上一頁
+                                    <i class="bi bi-chevron-left"></i>
                                 </button>
                             </li>
                             <li class="dt-paging-button page-item active">
@@ -503,19 +518,7 @@
                                     aria-label="Next"
                                     data-dt-idx="next"
                                 >
-                                    下一頁
-                                </button>
-                            </li>
-                            <li class="dt-paging-button page-item">
-                                <button
-                                    class="page-link last"
-                                    role="link"
-                                    type="button"
-                                    aria-controls="staffTable"
-                                    aria-label="Last"
-                                    data-dt-idx="last"
-                                >
-                                    »
+                                    <i class="bi bi-chevron-right"></i>
                                 </button>
                             </li>
                         </ul>
@@ -537,352 +540,7 @@
     </div>
 </main>
 
-<!-- 匯出 Modal -->
-<div
-    class="modal fade"
-    id="outboundModal"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="outboundModalLabel"
-    aria-hidden="true"
->
-    <div class="modal-dialog modal-datatable modal-datatable-medium">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                <!-- modal-title 下方有簡短說明時才多包一層 div -->
-                <div>
-                    <h1 class="modal-title fs-5 fw-bold" id="outboundModalLabel"><i class="bi bi-file-earmark-excel text-success me-1"></i> 匯出 Excel</h1>
-                    <div class="outbound-note">選擇匯出欄位、調整順序，並可儲存為常用匯出範本</div>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="outbound-wrapper">
-                    <div class="outbound-toolbar">
-                        <div class="start-group">
-                            <div class="btn-group">
-                                <button type="button" id="outboundSelectAll" class="btn btn-sm btn-secondary"><i class="far fa-check-square"></i> 全選</button>
-                                <button type="button" id="outboundDeselectAll" class="btn btn-sm btn-secondary"><i class="far fa-square"></i> 取消</button>
-                            </div>
-                            <div class="btn-group">
-                                <button type="button" id="outboundSaveTemplate" class="btn btn-sm btn-outline-white" data-bs-target="#outboundSaveToggle" data-bs-toggle="modal"><i class="far fa-save"></i> 儲存範本</button>
-                                <button type="button" id="outboundSelectTemplate" class="btn btn-sm btn-outline-white" data-bs-target="#outboundChooseToggle" data-bs-toggle="modal"><i class="far fa-check-circle"></i> 選擇範本</button>
-                            </div>
-                        </div>
-                        <div class="end-group">
-                            <button type="button" class="btn btn-sm btn-primary px-4">匯出 <i class="fas fa-share ms-2"></i></button>
-                        </div>
-                    </div>
-                    <div class="wrapper-inner">
-                        <div class="data-list">
-                            <h5>欄位清單</h5>
-                            <ul class="outbound-menu menu-item">
-                                <% (1..20).map do |i| %>
-                                <li class="data-item">
-                                    <span class="item-number"></span>
-                                    <span class="item-title"><%= lorem_words(4) %></span>
-                                    <button class="btn btn-light"></button>
-                                </li>
-                                <% end %>
-                            </ul>
-                        </div>
-                        <div class="outbound-list">
-                            <h5>匯出欄位</h5>
-                            <ul class="outbound-menu menu-item">
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">關閉</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 匯出 / 儲存範本 Modal -->
-<div
-    class="modal fade"
-    id="outboundSaveToggle"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    aria-hidden="true"
-    aria-labelledby="outboundSaveToggleLabel"
-    tabindex="-1"
->
-    <div class="modal-dialog modal-datatable modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="outboundSaveToggleLabel">儲存範本</h1>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <input type="text" class="form-control" id="templateName" placeholder="請輸入範本名稱">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-target="#outboundModal" data-bs-toggle="modal">
-                    取消
-                </button>
-                <button type="submit" class="btn btn-primary" data-bs-target="#outboundModal" data-bs-toggle="modal">
-                    儲存
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 匯出 / 選擇範本 Modal -->
-<div
-    class="modal fade"
-    id="outboundChooseToggle"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    aria-hidden="true"
-    aria-labelledby="outboundChooseToggleLabel"
-    tabindex="-1"
->
-    <div class="modal-dialog modal-datatable modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="outboundChooseToggleLabel">選擇範本</h1>
-            </div>
-            <div class="modal-body">
-                <ul class="menu-item outbound-template-list">
-                    <% (1..6).map do |i| %>
-                    <li class="template-item">
-                        <span>
-                            <button type="button" class="btn btn-choose" data-bs-target="#outboundModal" data-bs-toggle="modal" title="選擇範本"><i class="fas fa-check"></i></button>
-                        </span>
-                        <span>
-                            <button type="button" class="btn btn-delete" data-bs-target="#outboundDeleteToggle" data-bs-toggle="modal" title="刪除範本"><i class="far fa-trash-alt"></i></button>
-                        </span>
-                        <span class="template-name"><%= lorem_words(2) %></span>
-                    </li>
-                    <% end %>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-target="#outboundModal" data-bs-toggle="modal">取消</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 匯出 / 刪除範本 Modal -->
-<div
-    class="modal fade"
-    id="outboundDeleteToggle"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    aria-hidden="true"
-    aria-labelledby="outboundDeleteToggleLabel"
-    tabindex="-1"
->
-    <div class="modal-dialog modal-datatable modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="outboundDeleteToggleLabel">確定刪除範本嗎?</h1>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-target="#outboundChooseToggle" data-bs-toggle="modal">取消</button>
-                <button type="submit" class="btn btn-danger" data-bs-target="#outboundChooseToggle" data-bs-toggle="modal">確定</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 多重排序 Modal -->
-<div
-    class="modal fade"
-    id="multiSortModal"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    aria-hidden="true"
-    aria-labelledby="multiSortModalLabel"
-    tabindex="-1"
->
-    <div class="modal-dialog modal-datatable modal-datatable-medium">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                <!-- modal-title 下方有簡短說明時才多包一層 div -->
-                <div>
-                    <h1 class="modal-title fs-5" id="multiSortModalLabel"><i class="bi bi-sort-down text-primary me-2"></i> 多重排序</h1>
-                    <div class="outbound-note">依照優先順序設定多個排序條件，適合 1000 筆以上聯絡人清單快速整理</div>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="multi_sort-wrapper">
-                    <div class="multi_sort-note"><i class="bi bi-info-circle me-1"></i>多重排序會套用於目前篩選結果與 Excel 匯出</div>
-                    <section class="modal-section">
-                        <div class="section-hd">
-                            <h5>目前排序條件</h5>
-                            <span>
-                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-target="#multiSortAddToggle" data-bs-toggle="modal"><i class="bi bi-plus-lg"></i> 新增排序條件</button>
-                            </span>
-                        </div>
-                        <div class="datatable-sort-list">
-                            <div class="item-sort empty-state">未設定排序條件系統會使用預設排序</div>
-                            <div class="sort-list-inner">
-                                <div class="item-sort">
-                                    <div class="item-field item-number">1</div>
-                                    <div class="item-field item-delete">
-                                        <button type="button" class="btn btn-sm btn-trash" title="刪除"><i class="bi bi-trash"></i></button>
-                                    </div>
-                                    <div class="item-field item-long">
-                                        <select class="form-select form-select-sm">
-                                            <option selected>排序欄位</option>
-                                            <option value="name">客戶名稱</option>
-                                            <option value="unit">所屬單位</option>
-                                            <option value="customer">姓名</option>
-                                            <option value="title">職稱</option>
-                                            <option value="email">email</option>
-                                            <option value="leave">在職狀態</option>
-                                            <option value="account">帳號狀態</option>
-                                            <option value="line">Line ID</option>
-                                            <option value="phone">電話</option>
-                                        </select>
-                                    </div>
-                                    <div class="item-field">
-                                        <select class="form-select form-select-sm">
-                                            <option selected>方向</option>
-                                            <option value="asc">遞增 A → Z</option>
-                                            <option value="desc">遞減 Z → A</option>
-                                        </select>
-                                    </div>
-                                    <div class="item-field">
-                                        <select class="form-select form-select-sm">
-                                            <option selected>空值</option>
-                                            <option value="asc">排最前</option>
-                                            <option value="desc">排最後</option>
-                                        </select>
-                                    </div>
-                                    <div class="item-field">
-                                        <button type="button" class="btn btn-sm btn-move" title="排序上移" disabled><i class="bi-arrow-up"></i></button>
-                                        <button type="button" class="btn btn-sm btn-move" title="排序下移"><i class="bi-arrow-down"></i></button>
-                                    </div>
-                                </div>
-                                <div class="item-sort">
-                                    <div class="item-field item-number">2</div>
-                                    <div class="item-field item-delete">
-                                        <button type="button" class="btn btn-sm btn-trash" title="刪除"><i class="bi bi-trash"></i></button>
-                                    </div>
-                                    <div class="item-field item-long">
-                                        <select class="form-select form-select-sm">
-                                            <option selected>排序欄位</option>
-                                            <option value="name">客戶名稱</option>
-                                            <option value="unit">所屬單位</option>
-                                            <option value="customer">姓名</option>
-                                            <option value="title">職稱</option>
-                                            <option value="email">email</option>
-                                            <option value="leave">在職狀態</option>
-                                            <option value="account">帳號狀態</option>
-                                            <option value="line">Line ID</option>
-                                            <option value="phone">電話</option>
-                                        </select>
-                                    </div>
-                                    <div class="item-field">
-                                        <select class="form-select form-select-sm">
-                                            <option selected>方向</option>
-                                            <option value="asc">遞增 A → Z</option>
-                                            <option value="desc">遞減 Z → A</option>
-                                        </select>
-                                    </div>
-                                    <div class="item-field">
-                                        <select class="form-select form-select-sm">
-                                            <option selected>空值</option>
-                                            <option value="asc">排最前</option>
-                                            <option value="desc">排最後</option>
-                                        </select>
-                                    </div>
-                                    <div class="item-field">
-                                        <button type="button" class="btn btn-sm btn-move" title="排序上移"><i class="bi-arrow-up"></i></button>
-                                        <button type="button" class="btn btn-sm btn-move" title="排序下移"><i class="bi-arrow-down"></i></button>
-                                    </div>
-                                </div>
-                                <div class="item-sort">
-                                    <div class="item-field item-number">3</div>
-                                    <div class="item-field item-delete">
-                                        <button type="button" class="btn btn-sm btn-trash" title="刪除"><i class="bi bi-trash"></i></button>
-                                    </div>
-                                    <div class="item-field item-long">
-                                        <select class="form-select form-select-sm">
-                                            <option selected>排序欄位</option>
-                                            <option value="name">客戶名稱</option>
-                                            <option value="unit">所屬單位</option>
-                                            <option value="customer">姓名</option>
-                                            <option value="title">職稱</option>
-                                            <option value="email">email</option>
-                                            <option value="leave">在職狀態</option>
-                                            <option value="account">帳號狀態</option>
-                                            <option value="line">Line ID</option>
-                                            <option value="phone">電話</option>
-                                        </select>
-                                    </div>
-                                    <div class="item-field">
-                                        <select class="form-select form-select-sm">
-                                            <option selected>方向</option>
-                                            <option value="asc">遞增 A → Z</option>
-                                            <option value="desc">遞減 Z → A</option>
-                                        </select>
-                                    </div>
-                                    <div class="item-field">
-                                        <select class="form-select form-select-sm">
-                                            <option selected>空值</option>
-                                            <option value="asc">排最前</option>
-                                            <option value="desc">排最後</option>
-                                        </select>
-                                    </div>
-                                    <div class="item-field">
-                                        <button type="button" class="btn btn-sm btn-move" title="排序上移"><i class="bi-arrow-up"></i></button>
-                                        <button type="button" class="btn btn-sm btn-move" title="排序下移" disabled><i class="bi-arrow-down"></i></button>
-                                    </div>
-                                </div>
-                                <div class="multi_sort-control">
-                                    <button class="btn btn-sm btn-transparent" id="btnClearSort"><i class="bi bi-x"></i> 清除排序</button>
-                                    <button class="btn btn-sm btn-light" id="btnSaveDefaultSort">儲存為預設排序</button>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="modal-section">
-                        <div class="section-hd">
-                            <h5>排序摘要</h5>
-                        </div>
-                        <div class="sort-summary">
-                            <ul class="sort-summary-list menu-item">
-                                <li class="summary-item">
-                                    <span class="summary-number">1</span>
-                                    <span class="summary-column">所屬單位</span>
-                                    <span class="summary-order">遞增 A → Z1</span>
-                                </li>
-                                <li class="summary-item">
-                                    <span class="summary-number">2</span>
-                                    <span class="summary-column">在職狀態</span>
-                                    <span class="summary-order">離職優先</span>
-                                </li>
-                                <li class="summary-item">
-                                    <span class="summary-number">3</span>
-                                    <span class="summary-column">姓名</span>
-                                    <span class="summary-order">遞減 Z → A</span>
-                                </li>
-                            </ul>
-                            <div class="form-text">套用後列表表頭會顯示排序順位標籤，後端查詢可轉為 ORDER BY customer_unit ASC, leave DESC。</div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-target="#multiSortModal" data-bs-toggle="modal">取消</button>
-            </div>
-        </div>
-    </div>
-</div>
+<%= render :partial => "/partials/toolbar_modal" %>
 
 <% content_for :js do %>
 
@@ -959,6 +617,432 @@
             var toolbar = document.querySelector('.datatables-toolbar');
             var ftStart = document.querySelector('.datatables-footer .ft-start');
             var ftEnd = document.querySelector('.datatables-footer .ft-end');
+            var fieldPanelToggleBtn = document.getElementById('toggleFieldSettingPanel');
+            var fieldSettingPanel = document.getElementById('fieldSettingPanel');
+            var advancedSearchCollapseEl = document.getElementById('adSearch');
+            var filterPanelCollapseEl = document.getElementById('filterBarPanel');
+            var advancedSearchCollapse = null;
+            var filterPanelCollapse = null;
+            var fieldOrderList = document.getElementById('fieldOrderList');
+            var fieldSelectAllBtn = document.getElementById('fieldSelectAllBtn');
+            var fieldResetBtn = document.getElementById('fieldResetBtn');
+            var fieldApplyBtn = document.getElementById('fieldApplyBtn');
+            var allColumnIndexes = [];
+            var initialColumnOrder = [];
+            var currentColumnOrder = [];
+            var initialColumnVisibility = {};
+            var currentColumnVisibility = {};
+            var fieldListDragBound = false;
+            var draggingFieldItem = null;
+
+            function extractHeaderTitle(cell, fallbackIndex) {
+                if (!cell) {
+                    return '欄位 ' + String(fallbackIndex + 1);
+                }
+
+                var title = (cell.textContent || '').replace(/\s+/g, ' ').trim();
+                if (title) {
+                    return title;
+                }
+
+                var inputTitle = cell.querySelector('input[title], button[title]');
+                if (inputTitle) {
+                    var named = (inputTitle.getAttribute('title') || '').trim();
+                    if (named) {
+                        return named;
+                    }
+                }
+
+                return '欄位 ' + String(fallbackIndex + 1);
+            }
+
+            function cloneVisibilityMap(sourceMap) {
+                var result = {};
+                allColumnIndexes.forEach(function (columnIndex) {
+                    result[columnIndex] = sourceMap[columnIndex] !== false;
+                });
+                return result;
+            }
+
+            function setFieldPanelVisibility(isOpen) {
+                if (!fieldSettingPanel) {
+                    return;
+                }
+
+                fieldSettingPanel.classList.toggle('is-open', !!isOpen);
+                fieldSettingPanel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+                if (fieldPanelToggleBtn) {
+                    fieldPanelToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                }
+            }
+
+            function hideAdvancedSearchPanel() {
+                if (!advancedSearchCollapseEl) {
+                    return;
+                }
+
+                if (advancedSearchCollapse) {
+                    advancedSearchCollapse.hide();
+                    return;
+                }
+
+                advancedSearchCollapseEl.classList.remove('show');
+                advancedSearchCollapseEl.setAttribute('aria-expanded', 'false');
+            }
+
+            function hideFilterPanel() {
+                if (!filterPanelCollapseEl) {
+                    return;
+                }
+
+                if (filterPanelCollapse) {
+                    filterPanelCollapse.hide();
+                    return;
+                }
+
+                filterPanelCollapseEl.classList.remove('show');
+                filterPanelCollapseEl.setAttribute('aria-expanded', 'false');
+            }
+
+            function getDragAfterElement(container, y) {
+                var draggableItems = Array.prototype.slice.call(
+                    container.querySelectorAll('.field-order-item:not(.dragging)')
+                );
+
+                return draggableItems.reduce(function (closest, item) {
+                    var box = item.getBoundingClientRect();
+                    var offset = y - box.top - box.height / 2;
+                    if (offset < 0 && offset > closest.offset) {
+                        return {
+                            offset: offset,
+                            element: item
+                        };
+                    }
+                    return closest;
+                }, {
+                    offset: Number.NEGATIVE_INFINITY,
+                    element: null
+                }).element;
+            }
+
+            function bindFieldListDragEvents() {
+                if (!fieldOrderList) {
+                    return;
+                }
+                var items = fieldOrderList.querySelectorAll('.field-order-item');
+
+                Array.prototype.forEach.call(items, function (item) {
+                    item.addEventListener('dragstart', function () {
+                        draggingFieldItem = item;
+                        item.classList.add('dragging');
+                    });
+
+                    item.addEventListener('dragend', function () {
+                        item.classList.remove('dragging');
+                        draggingFieldItem = null;
+                    });
+                });
+
+                if (!fieldListDragBound) {
+                    fieldOrderList.addEventListener('dragover', function (event) {
+                        if (!draggingFieldItem) {
+                            return;
+                        }
+
+                        event.preventDefault();
+                        var afterElement = getDragAfterElement(fieldOrderList, event.clientY);
+                        if (!afterElement) {
+                            fieldOrderList.appendChild(draggingFieldItem);
+                        } else {
+                            fieldOrderList.insertBefore(draggingFieldItem, afterElement);
+                        }
+                    });
+
+                    fieldListDragBound = true;
+                }
+            }
+
+            function renderFieldOrderList(order, visibilityMap) {
+                if (!fieldOrderList) {
+                    return;
+                }
+
+                fieldOrderList.innerHTML = '';
+                order.forEach(function (columnIndex, position) {
+                    var columnHeader = dt.column(columnIndex).header();
+                    var title = extractHeaderTitle(columnHeader, columnIndex);
+                    var checkId = 'field-column-' + String(columnIndex);
+                    var item = document.createElement('div');
+                    var handle = document.createElement('span');
+                    var handleIcon = document.createElement('i');
+                    var formCheck = document.createElement('div');
+                    var checkbox = document.createElement('input');
+                    var label = document.createElement('label');
+                    var isChecked = visibilityMap[columnIndex] !== false;
+
+                    item.className = 'field-order-item';
+                    item.setAttribute('draggable', 'true');
+                    item.setAttribute('data-column-index', String(columnIndex));
+
+                    handle.className = 'field-drag-handle';
+                    handle.setAttribute('aria-hidden', 'true');
+                    handleIcon.className = 'bi bi-grip-vertical';
+                    handle.appendChild(handleIcon);
+
+                    formCheck.className = 'form-check mb-0';
+
+                    checkbox.className = 'form-check-input field-toggle-check';
+                    checkbox.type = 'checkbox';
+                    checkbox.id = checkId;
+                    checkbox.checked = isChecked;
+
+                    label.className = 'form-check-label';
+                    label.setAttribute('for', checkId);
+                    label.textContent = title;
+
+                    formCheck.appendChild(checkbox);
+                    formCheck.appendChild(label);
+                    item.appendChild(handle);
+                    item.appendChild(formCheck);
+
+                    if (position === 0) {
+                        item.classList.add('first-item');
+                    }
+
+                    fieldOrderList.appendChild(item);
+                });
+
+                bindFieldListDragEvents();
+            }
+
+            function getCurrentPanelOrder() {
+                if (!fieldOrderList) {
+                    return currentColumnOrder.slice();
+                }
+
+                return Array.prototype.map.call(
+                    fieldOrderList.querySelectorAll('.field-order-item'),
+                    function (item) {
+                        return parseInt(item.getAttribute('data-column-index'), 10);
+                    }
+                ).filter(function (columnIndex) {
+                    return !isNaN(columnIndex);
+                });
+            }
+
+            function getCurrentPanelVisibility() {
+                var visibilityMap = cloneVisibilityMap(currentColumnVisibility);
+                if (!fieldOrderList) {
+                    return visibilityMap;
+                }
+
+                Array.prototype.forEach.call(fieldOrderList.querySelectorAll('.field-order-item'), function (item) {
+                    var columnIndex = parseInt(item.getAttribute('data-column-index'), 10);
+                    var checkbox = item.querySelector('.field-toggle-check');
+                    if (isNaN(columnIndex) || !checkbox) {
+                        return;
+                    }
+                    visibilityMap[columnIndex] = checkbox.checked;
+                });
+
+                return visibilityMap;
+            }
+
+            function tagVisibleCellsByColumnIndex() {
+                var visibleIndexes = dt.columns(':visible').indexes().toArray();
+                var sections = [];
+
+                if (tableEl.tHead) {
+                    sections.push(tableEl.tHead);
+                }
+                Array.prototype.forEach.call(tableEl.tBodies, function (body) {
+                    sections.push(body);
+                });
+                if (tableEl.tFoot) {
+                    sections.push(tableEl.tFoot);
+                }
+
+                sections.forEach(function (section) {
+                    Array.prototype.forEach.call(section.rows, function (row) {
+                        Array.prototype.forEach.call(row.children, function (cell, index) {
+                            var columnIndex = visibleIndexes[index];
+                            if (typeof columnIndex === 'number') {
+                                cell.setAttribute('data-col-index', String(columnIndex));
+                            } else {
+                                cell.removeAttribute('data-col-index');
+                            }
+                        });
+                    });
+                });
+            }
+
+            function reorderVisibleColumnsByOrder(visibleOrder) {
+                var sections = [];
+
+                if (tableEl.tHead) {
+                    sections.push(tableEl.tHead);
+                }
+                Array.prototype.forEach.call(tableEl.tBodies, function (body) {
+                    sections.push(body);
+                });
+                if (tableEl.tFoot) {
+                    sections.push(tableEl.tFoot);
+                }
+
+                sections.forEach(function (section) {
+                    Array.prototype.forEach.call(section.rows, function (row) {
+                        var cells = Array.prototype.slice.call(row.children);
+                        if (!cells.length) {
+                            return;
+                        }
+
+                        var cellMap = {};
+                        cells.forEach(function (cell) {
+                            var key = cell.getAttribute('data-col-index');
+                            if (key !== null) {
+                                cellMap[key] = cell;
+                            }
+                        });
+
+                        var fragment = document.createDocumentFragment();
+                        visibleOrder.forEach(function (columnIndex) {
+                            var key = String(columnIndex);
+                            if (cellMap[key]) {
+                                fragment.appendChild(cellMap[key]);
+                                delete cellMap[key];
+                            }
+                        });
+
+                        Array.prototype.forEach.call(row.children, function (cell) {
+                            if (cell.parentNode === row) {
+                                fragment.appendChild(cell);
+                            }
+                        });
+
+                        row.appendChild(fragment);
+                    });
+                });
+            }
+
+            function applyFieldSettingsToDataTable() {
+                allColumnIndexes.forEach(function (columnIndex) {
+                    var visible = currentColumnVisibility[columnIndex] !== false;
+                    dt.column(columnIndex).visible(visible, false);
+                });
+
+                tagVisibleCellsByColumnIndex();
+                reorderVisibleColumnsByOrder(
+                    currentColumnOrder.filter(function (columnIndex) {
+                        return currentColumnVisibility[columnIndex] !== false;
+                    })
+                );
+
+                if (dt.columns && typeof dt.columns.adjust === 'function') {
+                    dt.columns.adjust();
+                }
+                dt.draw(false);
+            }
+
+            function resetFieldSettingsToDefault() {
+                currentColumnOrder = initialColumnOrder.slice();
+                currentColumnVisibility = cloneVisibilityMap(initialColumnVisibility);
+                renderFieldOrderList(currentColumnOrder, currentColumnVisibility);
+            }
+
+            function checkAllFieldSettings() {
+                if (!fieldOrderList) {
+                    return;
+                }
+
+                Array.prototype.forEach.call(fieldOrderList.querySelectorAll('.field-toggle-check'), function (checkbox) {
+                    checkbox.checked = true;
+                });
+            }
+
+            function setupFieldSettingPanel() {
+                if (!fieldSettingPanel || !fieldOrderList) {
+                    return;
+                }
+
+                allColumnIndexes = dt.columns().indexes().toArray();
+                initialColumnOrder = allColumnIndexes.slice();
+                currentColumnOrder = allColumnIndexes.slice();
+
+                allColumnIndexes.forEach(function (columnIndex) {
+                    var visible = dt.column(columnIndex).visible();
+                    initialColumnVisibility[columnIndex] = visible;
+                });
+                currentColumnVisibility = cloneVisibilityMap(initialColumnVisibility);
+
+                renderFieldOrderList(currentColumnOrder, currentColumnVisibility);
+                setFieldPanelVisibility(false);
+
+                if (fieldPanelToggleBtn) {
+                    fieldPanelToggleBtn.addEventListener('click', function () {
+                        var opened = fieldSettingPanel.classList.contains('is-open');
+                        if (!opened) {
+                            hideAdvancedSearchPanel();
+                            hideFilterPanel();
+                        }
+                        setFieldPanelVisibility(!opened);
+                    });
+                }
+
+                if (fieldSelectAllBtn) {
+                    fieldSelectAllBtn.addEventListener('click', function () {
+                        checkAllFieldSettings();
+                    });
+                }
+
+                if (fieldResetBtn) {
+                    fieldResetBtn.addEventListener('click', function () {
+                        resetFieldSettingsToDefault();
+                    });
+                }
+
+                if (fieldApplyBtn) {
+                    fieldApplyBtn.addEventListener('click', function () {
+                        currentColumnOrder = getCurrentPanelOrder();
+                        currentColumnVisibility = getCurrentPanelVisibility();
+                        applyFieldSettingsToDataTable();
+                        setFieldPanelVisibility(false);
+                    });
+                }
+            }
+
+            function setupToolbarMutualExclusion() {
+                if (!advancedSearchCollapseEl && !filterPanelCollapseEl) {
+                    return;
+                }
+
+                if (window.bootstrap && bootstrap.Collapse) {
+                    if (advancedSearchCollapseEl) {
+                        advancedSearchCollapse = bootstrap.Collapse.getOrCreateInstance(advancedSearchCollapseEl, {
+                            toggle: false
+                        });
+                    }
+
+                    if (filterPanelCollapseEl) {
+                        filterPanelCollapse = bootstrap.Collapse.getOrCreateInstance(filterPanelCollapseEl, {
+                            toggle: false
+                        });
+                    }
+                }
+
+                if (advancedSearchCollapseEl) {
+                    advancedSearchCollapseEl.addEventListener('show.bs.collapse', function () {
+                        setFieldPanelVisibility(false);
+                        hideFilterPanel();
+                    });
+                }
+
+                if (filterPanelCollapseEl) {
+                    filterPanelCollapseEl.addEventListener('show.bs.collapse', function () {
+                        setFieldPanelVisibility(false);
+                        hideAdvancedSearchPanel();
+                    });
+                }
+            }
 
             function cleanupEmptyDtLayout(container) {
                 if (!container) return;
@@ -1111,6 +1195,8 @@
             applySearchInputSizeClassDeferred();
 
             cleanupEmptyDtLayout(wrapper);
+            setupFieldSettingPanel();
+            setupToolbarMutualExclusion();
 
             var headerCheck = document.getElementById('selectAllRows');
             function visibleChecks() {
@@ -1146,6 +1232,12 @@
                     applyPageInputSizeClass();
                     applySearchInputSizeClass();
                     applySearchInputSizeClassDeferred();
+                    tagVisibleCellsByColumnIndex();
+                    reorderVisibleColumnsByOrder(
+                        currentColumnOrder.filter(function (columnIndex) {
+                            return currentColumnVisibility[columnIndex] !== false;
+                        })
+                    );
                 });
             } else if (window.jQuery) {
                 jQuery('#staffTable').on('draw.dt', function () {
@@ -1156,6 +1248,12 @@
                     applyPageInputSizeClass();
                     applySearchInputSizeClass();
                     applySearchInputSizeClassDeferred();
+                    tagVisibleCellsByColumnIndex();
+                    reorderVisibleColumnsByOrder(
+                        currentColumnOrder.filter(function (columnIndex) {
+                            return currentColumnVisibility[columnIndex] !== false;
+                        })
+                    );
                 });
             }
 

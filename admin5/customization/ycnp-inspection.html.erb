@@ -1,0 +1,161 @@
+<!-- admin-page: 客製頁面 - 青年生涯領航計畫 - 稽查內容登錄 -->
+
+<% content_for :page_styles do %>
+    <link rel="stylesheet" href="../stylesheets/customization/ycnp.css">
+<% end %>
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h1>稽查內容登錄</h1>
+    </div>
+    <div class="row inspection-record-wrapper">
+        <div class="col-4">
+            <div class="col-block mb-4">
+                <div class="block-header has-border">
+                    <h5 class="fw-bold">委員輔導紀錄</h5>
+                </div>
+                <div class="block-content">
+                    <select class="form-select mb-3">
+                        <option selected>請選擇審查結果</option>
+                        <option value="1">通過</option>
+                        <option value="2">不通過</option>
+                    </select>
+                    <textarea class="form-control" rows="8" placeholder="請輸入審查意見"></textarea>
+                    <div class="text-end"><button type="button" class="btn btn-primary mt-3">儲存</button></div>
+                </div>
+            </div>
+            <div class="col-block">
+                <div class="block-header has-border">
+                    <h5 class="fw-bold">管理者</h5>
+                </div>
+                <div class="block-content">
+                    <textarea class="form-control" rows="4" placeholder="備註意見僅管理者可瀏覽"></textarea>
+                    <div class="text-end"><button type="button" class="btn btn-primary mt-3">儲存</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="col-block">
+                <div class="block-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">第 1 期 2026-06-09 至 2026-06-19</h5>
+                        <div>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#planContentModal" class="btn btn-sm btn-dark">瀏覽計劃書內容</button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#reviewHistoryModal" class="btn btn-sm btn-dark">審查結果歷程</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-content expansion">
+                    <table class="table vertical-align-middle table-hover inspection-record-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">填報區間</th>
+                                <th scope="col">起始日期</th>
+                                <th scope="col">結束日期</th>
+                                <th scope="col">填報時間</th>
+                                <th scope="col">狀態</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% (1..10).map do |i| %>
+                            <tr>
+                                <td>第 <%= i %> 次雙周誌</td>
+                                <td>2026-06-09</td>
+                                <td>2026-06-19</td>
+                                <td>2026-06-09</td>
+                                <td>已完成</td>
+                                <td class="text-end"><button type="button" class="btn btn-sm btn-light">查看</button></td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                    <div class="pe-3">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-end">
+                                <li class="page-item"><a href="#" class="page-link">Previous</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#" aria-current="page">2</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="reviewHistoryModal" tabindex="-1" aria-labelledby="reviewHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="reviewHistoryModalLabel">審查結果歷程</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">異動人員</th>
+                            <th scope="col">異動時間</th>
+                            <th scope="col">異動內容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (1..4).map do |i| %>
+                        <tr>
+                            <td><%= lorem_name %></td>
+                            <td>2026-06-09 12:00</td>
+                            <td>審查結果：不同意</td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>    
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="planContentModal" tabindex="-1" aria-labelledby="planContentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="planContentModalLabel">企劃書內容</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex align-items-center mb-4">
+                    <div class="me-3">版本切換</div>
+                    <div class="flex-grow-1">
+                        <select class="form-select"
+                            <option selected>20260512 10:05:04  委員要求調整XXXXX內容 </option>
+                            <option value="1">20260512 10:05:04  委員要求調整XXXXX內容 </option>
+                            <option value="2">20260512 10:05:04  委員要求調整XXXXX內容 </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="">顯示最新被學生維護過的檔案內容</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :js do %>
+
+<% end %>
+

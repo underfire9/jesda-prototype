@@ -1,8 +1,106 @@
 <!-- template: 闈場審查系統 - 審查介面 -->
 
+<% content_for :page_styles do %>
+<style>
+    .score-guide-popover {
+        all: initial;
+        box-sizing: border-box;
+        display: block;
+        position: fixed;
+        z-index: 1000000000;
+        min-width: 280px;
+        max-width: 340px;
+        padding: 1rem;
+        border: 1px solid #d7e0e3;
+        border-radius: .5rem;
+        background: #fff;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, .2);
+        color: #2f3b40;
+        font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+        font-size: .9375rem;
+        line-height: 1.6;
+    }
+    .score-guide-popover *,
+    .score-guide-popover *::before,
+    .score-guide-popover *::after {
+        box-sizing: border-box;
+    }
+    .score-guide-popover .driver-popover-title {
+        display: block;
+        margin: 0;
+        padding-right: 1.5rem;
+        font-size: 1.125rem;
+        font-weight: 700;
+        line-height: 1.4;
+        color: #244a52;
+    }
+    .score-guide-popover .driver-popover-description {
+        display: block;
+        margin: .5rem 0 0;
+        color: #51626b;
+    }
+    .score-guide-popover .driver-popover-close-btn {
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+        border: 0;
+        padding: .25rem .5rem;
+        background: transparent;
+        color: #738187;
+        font-size: 1.25rem;
+        line-height: 1;
+        cursor: pointer;
+    }
+    .score-guide-popover .driver-popover-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: .75rem;
+        margin-top: 1rem;
+        padding-top: .75rem;
+        border-top: 1px solid #e4ebed;
+    }
+    .score-guide-popover .driver-popover-progress-text {
+        color: #718087;
+        font-size: .8125rem;
+    }
+    .score-guide-popover .driver-popover-navigation-btns {
+        display: flex;
+        gap: .375rem;
+    }
+    .score-guide-popover .driver-popover-footer-btn {
+        border: 1px solid #cbd8db;
+        border-radius: .25rem;
+        padding: .375rem .625rem;
+        background: #fff;
+        color: #38545b;
+        font-family: inherit;
+        font-size: .8125rem;
+        line-height: 1.25;
+        cursor: pointer;
+    }
+    .score-guide-popover .driver-popover-next-btn {
+        border-color: #3f8b9b;
+        background: #3f8b9b;
+        color: #fff;
+    }
+    .score-guide-popover .driver-popover-footer-btn:hover,
+    .score-guide-popover .driver-popover-footer-btn:focus {
+        border-color: #2f6f7c;
+        background: #edf6f7;
+        color: #244a52;
+    }
+    .score-guide-popover .driver-popover-next-btn:hover,
+    .score-guide-popover .driver-popover-next-btn:focus {
+        background: #2f6f7c;
+        color: #fff;
+    }
+</style>
+<% end %>
+
 <div class="scoreboard-container">
     <div class="container-header">
-        <div class="header-start">
+        <div class="header-start js-score-guide-record">
             <div class="start-inner">
                 <div class="page-controller">
                     <button type="button" class="btn"><i class="fas fa-caret-left me-2"></i>上一筆</button>
@@ -55,7 +153,7 @@
                         </div>
 
                         <!-- note 限制 128個全形字元，超過時會有 item-note-toggle 按鈕控制展開收合，該次的操作應該延續到下一筆審核 -->
-                        <div class="item-note">
+                        <div class="item-note js-score-guide-note">
                             1. 校內審查機制 包括校內計畫案、選送學生甄選基準、計畫主持人甄選學生作業方式等、分配各計畫案經費之準則、本年選送原住民學生及新住民子女人數；遴選他校學生與，須提出相關甄選基準及甄選學生作業方式）。<br>
                             2. 補助計畫整體配套措施（包括建立與國外實習機構之實習合作機制、計畫主持人安排學生赴國外實習輔導機制、前一年度補助經費支用原則及支用情形）。<br>
                             3. 近三年內薦送學校執行成效（包括選送原住民學生及新住民子女人數成效）、國內學校與國外實習機構後續連結效益、對學生未來發展性等實際成效、變更各計畫所提預定實習人數或機構之次數、原申請書填報之實習機構與實際實習機構之差異等。
@@ -90,12 +188,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="score-item">
-                        <div class="item-label">委員評語</div>
-                        <textarea class="form-control" rows="6" placeholder="請填寫委員評語" required></textarea>
-                    </div>
-                    <div class="score-item">
-                        <textarea class="form-control" rows="4" placeholder="66分以下(含66分)，請加註特別理由"></textarea>
+                    <div class="js-score-guide-comments">
+                        <div class="score-item">
+                            <div class="item-label">委員評語</div>
+                            <textarea class="form-control" rows="6" placeholder="請填寫委員評語" required></textarea>
+                        </div>
+                        <div class="score-item">
+                            <textarea class="form-control" rows="4" placeholder="66分以下(含66分)，請加註特別理由"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -159,7 +259,7 @@
 
 <%= render :partial => "/partials/chat" %>
 
-<!-- 提示 Modal -->
+<!-- 完整計劃書提示 Modal -->
 <div class="modal fade" id="tipModal" tabindex="-1" aria-labelledby="tipModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-tip">
         <div class="modal-content">
@@ -315,7 +415,7 @@
     })
 </script>
 
-<!-- PDF Viewer -->
+<!-- PDF Viewer demo -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
     const pdfViewer = document.querySelector('.js-pdf-viewer')
@@ -445,6 +545,99 @@
     document.querySelectorAll('.form-control[required]').forEach(control => {
         control.addEventListener('input', () => validateRequiredControl(control))
     })
+</script>
+
+<!-- 介面導覽 driver demo -->
+<script src="../javascripts/driver.js.iife.js"></script>
+<script>
+    const scoreGuideButton = document.querySelector('.btn-guide')
+    const scoreGuide = window.driver.js.driver({
+        animate: true,
+        smoothScroll: true,
+        overlayOpacity: .65,
+        showProgress: true,
+        progressText: '第 {{current}} / {{total}} 步',
+        nextBtnText: '下一步',
+        prevBtnText: '上一步',
+        doneBtnText: '完成',
+        popoverClass: 'score-guide-popover',
+        steps: [
+            {
+                element: '.js-score-guide-record',
+                popover: {
+                    title: '切換審查資料',
+                    description: '使用上一筆與下一筆切換不同學校的審查資料，並確認目前筆數與學校名稱。',
+                    side: 'bottom',
+                    align: 'start'
+                }
+            },
+            {
+                element: '.score-group .score-item:first-child .item-column',
+                popover: {
+                    title: '分項評分',
+                    description: '依評分項目輸入分數，並留意各項的最高配分。',
+                    side: 'right',
+                    align: 'start'
+                }
+            },
+            {
+                element: '.js-score-guide-note',
+                popover: {
+                    title: '評分說明',
+                    description: '閱讀評分重點；內容過長時，可使用左下角按鈕展開或收合說明。',
+                    side: 'right',
+                    align: 'start'
+                }
+            },
+            {
+                element: '.js-score-guide-comments',
+                popover: {
+                    title: '填寫委員評語',
+                    description: '請填寫委員評語；總分為 66 分以下（含 66 分）時，須加註特別理由。',
+                    side: 'right',
+                    align: 'end'
+                }
+            },
+            {
+                element: '.score-action',
+                popover: {
+                    title: '迴避與儲存',
+                    description: '需要迴避時開啟切換鈕；完成評分與委員評語後，按下儲存。',
+                    side: 'right',
+                    align: 'end'
+                }
+            },
+            {
+                element: '.document-control',
+                popover: {
+                    title: '選擇審查文件',
+                    description: '可使用下拉或按鈕切換不同文件',
+                    side: 'bottom',
+                    align: 'center'
+                }
+            },
+            {
+                element: '.pdf-toolbar',
+                popover: {
+                    title: 'PDF 閱覽工具',
+                    description: '可切換頁面、縮放、旋轉、下載，或使用全螢幕查看文件。',
+                    side: 'bottom',
+                    align: 'center'
+                }
+            },
+            {
+                element: '.header-end',
+                popover: {
+                    title: '其他功能',
+                    description: '可開啟介面導覽、進入委員討論區、聯絡辦公室查看訊息；完成審查後，最後可使用回列表返回案件清單。',
+                    side: 'bottom',
+                    align: 'center'
+                }
+            }
+        ]
+    })
+
+    scoreGuideButton.addEventListener('click', () => scoreGuide.drive())
 </script>
 
 <% end %>

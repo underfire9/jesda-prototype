@@ -423,14 +423,46 @@ section.section + section.section {
 }
 
 .manager-apply-container {
+	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	gap: 3rem;
 	.container-half {
-		width: calc(50% - 1.5rem);
+		width: 75%;
 	}
 }
 
 .section-mission {
+	.section-hd {
+		position: relative;
+		.section-collapse {
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+		.btn-collapse {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #354345;
+			box-shadow: none;
+			border-radius: .875rem;
+			padding: 0;
+			width: 2.5rem;
+			height: 2.5rem;
+			color: #fff;
+			i {
+				transition: transform 0.2s ease-in-out;
+			}
+			&[aria-expanded="true"] {
+				background-color: #eee;
+				color: #354345;
+				i {
+					transform: rotate(180deg);
+				}
+			}
+		}
+	}
 	.application-title {
 		display: inline-block;
 		background-color: #354345;
@@ -584,16 +616,6 @@ section.section + section.section {
 				top: 2rem;
 			}
 		}
-		&.submitted {
-			background-image: url(../assets/dot.png);
-			background-repeat: repeat;
-			background-position: 1px 1px;
-			animation: submitted-bg-scroll 10s linear infinite;
-			margin-bottom: -2rem;
-			padding-bottom: 2rem !important;
-			font-size: 1.125rem;
-			color: #ba52ef;
-		}
 		.note-danger {
 			display: inline-block;
 			border-radius: .25rem;
@@ -615,6 +637,19 @@ section.section + section.section {
 		&:active, &:focus {
 			background-color: darken($main_color, 15);
 			color: #fff;
+		}
+	}
+	.section-ft {
+		background-image: url(../assets/dot.png);
+		background-repeat: repeat;
+		background-position: 1px 1px;
+		animation: submitted-bg-scroll 10s linear infinite;
+		border: 1px solid $base_border_color !important;
+		border-top: none !important;
+		padding: 2rem 1rem;
+		.submitted {
+			font-size: 1.125rem;
+			color: #ba52ef;
 		}
 	}
 }
@@ -1473,16 +1508,38 @@ $secondBorderColor: #e7ebea;
 			font-size: .9375rem;
 		}
 	}
+	.notice-wrapper {
+		background: #f2f6fb;
+	}
 	.action-group .btn {
 		font-size: .9375rem;
 	}
+	.expand-subplan-data {
+		margin-bottom: 2rem;
+		.form-switch {
+			display: flex;
+			align-items: center;
+			gap: .5rem;
+			padding-left: 0;
+			.form-check-input {
+				margin: 0;
+				width: 2.5rem;
+				height: 1.25rem;
+				&:checked {
+					background-color: #6823e4;
+				}
+			}
+		}
+	}
 	.subplan-examine-list {
 		.examine-outter {
-			background-color: #fff;
-			padding: 1rem 2rem;
+			display: flex;
 			.data-field {
 				padding: 1rem 0 .5rem;
 				border-bottom: 1px dashed $secondBorderColor !important;
+				&.no-border {
+					border-bottom: none !important;
+				}
 			}
 			.data-label {
 				font-size: .875rem;
@@ -1495,19 +1552,40 @@ $secondBorderColor: #e7ebea;
 			}
 		}
 		.item-examine-hd {
-			border-color: #cbcfce;
+			border: none;
 			.data-field {
+				background: #414046;
 				border-color: #cbcfce;
-				padding: .75rem 1rem;
+				border-right: none !important;
+				border-top: none !important;
+				border-radius: .375rem .375rem 0 0;
+				padding: .5rem 1rem !important;
+				color: #ddd;
 			}
 		}
 		.amount-examine-row {
-			background: #f6f6f6;
-			margin: -1px -2rem -1rem;
-			padding: 0 2rem .5rem;
 			.row { justify-content: end; }
 			.data-field {
 				border-bottom: none !important;
+				padding-bottom: 1rem;
+			}
+		}
+		.examine-data {
+			background-color: #fff;
+			padding: 0 1rem;
+			width: 65%;
+		}
+		.request-for-payment {
+			width: 35%;
+			.payment-inner {
+				background-color: #f2f6fb;
+				padding: 0 1rem;
+			}
+			.data-field {
+				border: none;
+			}
+			.amount-examine-row {
+				border-top: 1px dashed #cbcfce;
 			}
 		}
 	}
@@ -1515,6 +1593,27 @@ $secondBorderColor: #e7ebea;
 		.data-label {
 			color: #5e6265;
 		}
+	}
+	.btn-expand {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0;
+		box-shadow: none;
+		height: 42px;
+		width: 72px;
+		font-size: .875rem;
+		color: #212cff;
+		&:hover {
+			color: #d426ff;
+		}
+		.fa-chevron-down {
+			transition: transform 0.2s ease-in-out;
+		}
+	}
+	.btn-expand[aria-expanded="true"] .fa-chevron-down {
+		transform: rotate(180deg);
+		color: #d426ff;
 	}
 }
 
@@ -2396,12 +2495,12 @@ $secondBorderColor: #e7ebea;
 		margin-bottom: 0;
 		font-size: .9375rem;
 	}
-	th:not(:nth-child(2)):not(:last-child),
-	td:not(:nth-child(2)):not(:last-child) {
+	th:not(:nth-child(3)):not(:first-child),
+	td:not(:nth-child(3)):not(:first-child) {
 		white-space: nowrap;
 	}
-	th:nth-child(2),
-	td:nth-child(2) {
+	th:nth-child(3),
+	td:nth-child(3) {
 		min-width: 256px;
 		white-space: normal;
 	}
@@ -3705,6 +3804,13 @@ $secondBorderColor: #e7ebea;
 					}
 				}
 			}
+			.examine-outter {
+				flex-direction: column;
+			}
+			.examine-data,
+			.request-for-payment {
+				width: 100%;
+			}
 		}
 	}
 	.funds-transfer-list {
@@ -4151,7 +4257,6 @@ $secondBorderColor: #e7ebea;
 		.item-examine-bd {
 			.data-field:first-child {
 				.data-value {
-					padding-right: 4rem;
 					.team-modal-link {
 						.btn {
 							font-size: .9375rem;
@@ -4237,13 +4342,6 @@ $secondBorderColor: #e7ebea;
 				.item-value {
 					font-size: 1.25rem;
 				}
-			}
-		}
-	}
-	.maintain-subplan-examine {
-		.subplan-examine-list {
-			.examine-outter {
-				padding: 1rem;
 			}
 		}
 	}

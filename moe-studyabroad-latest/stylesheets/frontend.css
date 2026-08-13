@@ -8600,13 +8600,45 @@ section.section + section.section {
 }
 
 .manager-apply-container {
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 3rem;
 }
 .manager-apply-container .container-half {
-  width: calc(50% - 1.5rem);
+  width: 75%;
 }
 
+.section-mission .section-hd {
+  position: relative;
+}
+.section-mission .section-hd .section-collapse {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.section-mission .section-hd .btn-collapse {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #354345;
+  box-shadow: none;
+  border-radius: .875rem;
+  padding: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #fff;
+}
+.section-mission .section-hd .btn-collapse i {
+  transition: transform 0.2s ease-in-out;
+}
+.section-mission .section-hd .btn-collapse[aria-expanded="true"] {
+  background-color: #eee;
+  color: #354345;
+}
+.section-mission .section-hd .btn-collapse[aria-expanded="true"] i {
+  transform: rotate(180deg);
+}
 .section-mission .application-title {
   display: inline-block;
   background-color: #354345;
@@ -8748,16 +8780,6 @@ section.section + section.section {
 .section-mission .mission-bundle .item-status::before {
   top: 2rem;
 }
-.section-mission .mission-bundle.submitted {
-  background-image: url(../assets/dot.png);
-  background-repeat: repeat;
-  background-position: 1px 1px;
-  animation: submitted-bg-scroll 10s linear infinite;
-  margin-bottom: -2rem;
-  padding-bottom: 2rem !important;
-  font-size: 1.125rem;
-  color: #ba52ef;
-}
 .section-mission .mission-bundle .note-danger {
   display: inline-block;
   border-radius: .25rem;
@@ -8779,6 +8801,19 @@ section.section + section.section {
 .section-mission .btn-action:active, .section-mission .btn-action:focus {
   background-color: #0f5a69;
   color: #fff;
+}
+.section-mission .section-ft {
+  background-image: url(../assets/dot.png);
+  background-repeat: repeat;
+  background-position: 1px 1px;
+  animation: submitted-bg-scroll 10s linear infinite;
+  border: 1px solid #e5e5e5 !important;
+  border-top: none !important;
+  padding: 2rem 1rem;
+}
+.section-mission .section-ft .submitted {
+  font-size: 1.125rem;
+  color: #ba52ef;
 }
 
 @keyframes submitted-bg-scroll {
@@ -9647,16 +9682,38 @@ section.section + section.section {
   gap: .375rem;
   font-size: .9375rem;
 }
+.maintain-subplan-examine .notice-wrapper {
+  background: #f2f6fb;
+}
 .maintain-subplan-examine .action-group .btn {
   font-size: .9375rem;
 }
+.maintain-subplan-examine .expand-subplan-data {
+  margin-bottom: 2rem;
+}
+.maintain-subplan-examine .expand-subplan-data .form-switch {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding-left: 0;
+}
+.maintain-subplan-examine .expand-subplan-data .form-switch .form-check-input {
+  margin: 0;
+  width: 2.5rem;
+  height: 1.25rem;
+}
+.maintain-subplan-examine .expand-subplan-data .form-switch .form-check-input:checked {
+  background-color: #6823e4;
+}
 .maintain-subplan-examine .subplan-examine-list .examine-outter {
-  background-color: #fff;
-  padding: 1rem 2rem;
+  display: flex;
 }
 .maintain-subplan-examine .subplan-examine-list .examine-outter .data-field {
   padding: 1rem 0 .5rem;
   border-bottom: 1px dashed #e7ebea !important;
+}
+.maintain-subplan-examine .subplan-examine-list .examine-outter .data-field.no-border {
+  border-bottom: none !important;
 }
 .maintain-subplan-examine .subplan-examine-list .examine-outter .data-label {
   font-size: .875rem;
@@ -9668,25 +9725,65 @@ section.section + section.section {
   min-height: 34px;
 }
 .maintain-subplan-examine .subplan-examine-list .item-examine-hd {
-  border-color: #cbcfce;
+  border: none;
 }
 .maintain-subplan-examine .subplan-examine-list .item-examine-hd .data-field {
+  background: #414046;
   border-color: #cbcfce;
-  padding: .75rem 1rem;
-}
-.maintain-subplan-examine .subplan-examine-list .amount-examine-row {
-  background: #f6f6f6;
-  margin: -1px -2rem -1rem;
-  padding: 0 2rem .5rem;
+  border-right: none !important;
+  border-top: none !important;
+  border-radius: .375rem .375rem 0 0;
+  padding: .5rem 1rem !important;
+  color: #ddd;
 }
 .maintain-subplan-examine .subplan-examine-list .amount-examine-row .row {
   justify-content: end;
 }
 .maintain-subplan-examine .subplan-examine-list .amount-examine-row .data-field {
   border-bottom: none !important;
+  padding-bottom: 1rem;
+}
+.maintain-subplan-examine .subplan-examine-list .examine-data {
+  background-color: #fff;
+  padding: 0 1rem;
+  width: 65%;
+}
+.maintain-subplan-examine .subplan-examine-list .request-for-payment {
+  width: 35%;
+}
+.maintain-subplan-examine .subplan-examine-list .request-for-payment .payment-inner {
+  background-color: #f2f6fb;
+  padding: 0 1rem;
+}
+.maintain-subplan-examine .subplan-examine-list .request-for-payment .data-field {
+  border: none;
+}
+.maintain-subplan-examine .subplan-examine-list .request-for-payment .amount-examine-row {
+  border-top: 1px dashed #cbcfce;
 }
 .maintain-subplan-examine .item-examine:hover .data-label {
   color: #5e6265;
+}
+.maintain-subplan-examine .btn-expand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  box-shadow: none;
+  height: 42px;
+  width: 72px;
+  font-size: .875rem;
+  color: #212cff;
+}
+.maintain-subplan-examine .btn-expand:hover {
+  color: #d426ff;
+}
+.maintain-subplan-examine .btn-expand .fa-chevron-down {
+  transition: transform 0.2s ease-in-out;
+}
+.maintain-subplan-examine .btn-expand[aria-expanded="true"] .fa-chevron-down {
+  transform: rotate(180deg);
+  color: #d426ff;
 }
 
 .subplan-team-modal .modal-body {
@@ -10530,12 +10627,12 @@ section.section + section.section {
   margin-bottom: 0;
   font-size: .9375rem;
 }
-.maintain-closing-table th:not(:nth-child(2)):not(:last-child),
-.maintain-closing-table td:not(:nth-child(2)):not(:last-child) {
+.maintain-closing-table th:not(:nth-child(3)):not(:first-child),
+.maintain-closing-table td:not(:nth-child(3)):not(:first-child) {
   white-space: nowrap;
 }
-.maintain-closing-table th:nth-child(2),
-.maintain-closing-table td:nth-child(2) {
+.maintain-closing-table th:nth-child(3),
+.maintain-closing-table td:nth-child(3) {
   min-width: 256px;
   white-space: normal;
 }
@@ -11848,6 +11945,13 @@ section.section + section.section {
   .maintain-subplan-examine .subplan-examine-list .item-examine-bd .data-field:nth-child(10) {
     border-bottom: 1px dashed #e7ebea;
   }
+  .maintain-subplan-examine .subplan-examine-list .examine-outter {
+    flex-direction: column;
+  }
+  .maintain-subplan-examine .subplan-examine-list .examine-data,
+  .maintain-subplan-examine .subplan-examine-list .request-for-payment {
+    width: 100%;
+  }
 
   .funds-transfer-list {
     gap: 2rem;
@@ -12284,9 +12388,6 @@ section.section + section.section {
     width: 100% !important;
   }
 
-  .subplan-examine-list .item-examine-bd .data-field:first-child .data-value {
-    padding-right: 4rem;
-  }
   .subplan-examine-list .item-examine-bd .data-field:first-child .data-value .team-modal-link .btn {
     font-size: .9375rem;
   }
@@ -12357,10 +12458,6 @@ section.section + section.section {
   }
   .funds-transfer-wrapper .card-bd .item-info:first-child .item-value {
     font-size: 1.25rem;
-  }
-
-  .maintain-subplan-examine .subplan-examine-list .examine-outter {
-    padding: 1rem;
   }
 
   .maintain-student-wrapper .info-list-wrapper .info-item,

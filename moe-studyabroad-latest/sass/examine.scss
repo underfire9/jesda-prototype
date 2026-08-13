@@ -1308,6 +1308,10 @@ section.section + section.section {
 	.form-control {
 		border-radius: 0;
 		padding: 1.5rem;
+		&.form-control-note {
+			margin-top: .5rem;
+			padding: 6px 12px;
+		}
 	}
 	textarea.form-control {
 		font-size: .9375rem;
@@ -1504,14 +1508,12 @@ $scoreBoardBg:    #eceef0;
 	border-bottom: 1px solid rgba(#343536, .5);
 	.item-column {
 		display: flex;
-		border-bottom: 1px solid rgba(#cccfd3, .5);
+		border-top: 1px solid rgba(#cccfd3, .5);
 	}
-	.item-title {
+	.column-label {
 		background: #e9ecef;
 		padding: 1.5rem;
-		width: 50%;
-		font-size: 1.125rem;
-		font-weight: 500;
+		width: 42.5%;
 	}
 	.item-label {
 		background: #e9ecef;
@@ -1529,21 +1531,28 @@ $scoreBoardBg:    #eceef0;
 		}
 	}
 	.item-note {
-		padding: 1rem 1.5rem 1rem 4rem;
-		font-size: .9375rem;
-		opacity: .75;
-		position: relative;
-		transition: opacity .1s ease;
-		&:before {
-			content: "\f129";
-			font-family: Font Awesome\ 5 Free;
-			font-weight: 900;
-			font-size: .75rem;
-			font-style: normal;
-			position: absolute;
-			left: 2rem;
-			top: 1rem;
+		.note-inner {
+			padding: 0 1.5rem 1rem 4rem;
+			font-size: .9375rem;
+			opacity: .75;
+			position: relative;
+			transition: opacity .1s ease;
+			&:before {
+				content: "\f129";
+				font-family: Font Awesome\ 5 Free;
+				font-weight: 900;
+				font-size: .75rem;
+				font-style: normal;
+				position: absolute;
+				left: 2rem;
+				top: 0;
+			}
 		}
+	}
+	.item-title {
+		padding: 1rem 1.5rem;
+		font-size: 1.063rem;
+		font-weight: 500;
 	}
 	.item-note-toggle {
 		border-radius: .5rem;
@@ -1577,14 +1586,19 @@ $scoreBoardBg:    #eceef0;
 		transform: rotate(180deg);
 	}
 	&:hover {
-		.item-note {
+		.note-inner {
 			opacity: 1;
 		}
 	}
 	&.score-total {
 		background: #e9ecef;
+		.column-label {
+			font-size: 1.125rem;
+			font-weight: 500;
+		}
 		.item-title {
 			background: transparent;
+			font-size: 1.125rem;
 			font-weight: 700;
 		}
 		.input-group-text {

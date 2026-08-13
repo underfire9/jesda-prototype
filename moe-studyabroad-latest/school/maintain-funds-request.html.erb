@@ -11,16 +11,145 @@
                 <div class="h4 mb-0"><small class="fs-6 fw-normal text-secondary">教育部補助總金額</small> <strong>1284100</strong></div>
                 <div class="h4 mb-0"><small class="fs-6 fw-normal text-secondary">已分配</small> <strong>996100</strong></div>
             </div>
+
+            <div class="expand-subplan-data">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="toggleAllSubplanData">
+                    <label class="form-check-label" for="toggleAllSubplanData">展開全部細項</label>
+                </div>
+            </div>
             <div class="subplan-examine-list funds-request-list">
 
                 <% (1..9).map do |i| %>
                 <div class="item-examine">
                     <div class="item-examine-hd">
                         <div class="data-field" data-bs-toggle="tooltip" data-bs-title="序號">1151009000<%= i %></div>
+                        <div class="expand-button" data-bs-toggle="tooltip" data-bs-title="所有細項">
+                            <button class="btn btn-expand" type="button" data-bs-toggle="collapse" data-bs-target="#expandData<%= i %>" aria-expanded="false" aria-controls="expandData<%= i %>">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
                     </div>
 
-                    <!-- .bd-data-value 有做字元長度限制，超過 16 個字元做文字截斷展開功能，計畫名稱不用限制 -->
                     <div class="examine-outter">
+                        <div class="examine-data">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="data-field">
+                                        <div class="data-label">計畫名稱</div>
+                                        <div class="data-value">
+                                            日本長者居家照顧與服務拓展: 長照政策下的醫療與健康
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="data-field">
+                                        <div class="data-label">計畫主持人</div>
+                                        <div class="data-value bd-data-value"><%= zh_lorem_name %></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="data-field">
+                                        <div class="data-label">預計選送學生人數</div>
+                                        <div class="data-value">7</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="data-field">
+                                        <div class="data-label">預定人數</div>
+                                        <div class="data-value">
+                                            <input type="number" class="form-control form-control-sm" style="width: 80px;" value="7" min="0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="data-field">
+                                        <div class="data-label">申請補助經費</div>
+                                        <div class="data-value">294,189</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="data-field">
+                                        <div class="data-label">學校配合款</div>
+                                        <div class="data-value">58,840</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="expand-data collapse<%= ' show' if i == 1 %>" id="expandData<%= i %>">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="data-field">
+                                            <div class="data-label">新住民總人數</div>
+                                            <div class="data-value">0</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="data-field">
+                                            <div class="data-label">亮點計畫</div>
+                                            <div class="data-value">是</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="data-field">
+                                            <div class="data-label">實習領域</div>
+                                            <div class="data-value bd-data-value">社會科學</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="data-field">
+                                            <div class="data-label">實習國別</div>
+                                            <div class="data-value bd-data-value">日本</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="data-field no-border">
+                                            <div class="data-label">實習機構</div>
+                                            <div class="data-value bd-data-value"><%= zh_lorem_sentences(4) %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-for-payment">
+                            <div class="payment-inner">
+                                <div class="data-field">
+                                    <div class="data-label">承辦人請款</div>
+                                    <div class="data-value">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="requestPayment<%= i %>" id="requestPaymentYes<%= i %>" checked/>
+                                            <label class="form-check-label" for="requestPaymentYes<%= i %>">確定請款</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="requestPayment<%= i %>" id="requestPaymentNo<%= i %>" />
+                                            <label class="form-check-label" for="requestPaymentNo<%= i %>">放棄請款</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="amount-examine-row">    
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="data-field">
+                                                <div class="data-label">分配教育部補助經費</div>
+                                                <div class="data-value bd-data-value">
+                                                    <input type="text" class="form-control form-control-sm" value="282,789">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="data-field">
+                                                <div class="data-label">分配學校配合款</div>
+                                                <div class="data-value bd-data-value">
+                                                    <input type="text" class="form-control form-control-sm" value="11,400">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--div class="examine-outter">
                         <div class="row item-examine-row">
                             <div class="col-lg-6">
                                 <div class="data-field">
@@ -129,7 +258,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div-->
                 </div>
                 <% end %>
             </div>
@@ -156,7 +285,7 @@
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
     // 文字截斷展開功能，可調整字元上限
-    const TRUNCATE_LIMIT = 28;
+    const TRUNCATE_LIMIT = 46;
 
     function initTruncate(limit = TRUNCATE_LIMIT) {
         document.querySelectorAll('.bd-data-value').forEach(el => {
@@ -217,6 +346,54 @@
 
     initTruncate();
     initRequestPaymentToggle();
+</script>
+
+<!-- 全部展開、收合 -->
+<script>
+    const allSubplanDataToggle = document.querySelector('#toggleAllSubplanData');
+    const subplanDataPanels = [...document.querySelectorAll('.funds-request-list .expand-data')];
+
+    const syncAllSubplanDataToggle = () => {
+        allSubplanDataToggle.checked = subplanDataPanels.length > 0
+            && subplanDataPanels.every(panel => panel.classList.contains('show'));
+    };
+
+    allSubplanDataToggle?.addEventListener('change', () => {
+        subplanDataPanels.forEach(panel => {
+            bootstrap.Collapse.getOrCreateInstance(panel, { toggle: false })[allSubplanDataToggle.checked ? 'show' : 'hide']();
+        });
+    });
+
+    subplanDataPanels.forEach(panel => {
+        panel.addEventListener('shown.bs.collapse', syncAllSubplanDataToggle);
+        panel.addEventListener('hidden.bs.collapse', syncAllSubplanDataToggle);
+    });
+
+    syncAllSubplanDataToggle();
+</script>
+
+<!-- 區塊展開、按鈕 -->
+<script>
+    document.querySelectorAll('.btn-expand').forEach(button => {
+        const targetSelector = button.getAttribute('data-bs-target');
+        const expandData = targetSelector && document.querySelector(targetSelector);
+        const expandButton = button.closest('.expand-button');
+        if (!expandData || !expandButton) return;
+
+        const syncButtonState = isExpanded => {
+            button.setAttribute('aria-expanded', String(isExpanded));
+            expandButton.setAttribute('data-bs-title', isExpanded ? '收合' : '所有細項');
+
+            const tooltip = bootstrap.Tooltip.getInstance(expandButton);
+            if (tooltip?.setContent) {
+                tooltip.setContent({ '.tooltip-inner': expandButton.getAttribute('data-bs-title') });
+            }
+        };
+
+        expandData.addEventListener('shown.bs.collapse', () => syncButtonState(true));
+        expandData.addEventListener('hidden.bs.collapse', () => syncButtonState(false));
+        syncButtonState(expandData.classList.contains('show'));
+    });
 </script>
 <% end %>
 

@@ -8311,6 +8311,10 @@ section.section + section.section {
   border-radius: 0;
   padding: 1.5rem;
 }
+.item-score-sheet .form-control.form-control-note {
+  margin-top: .5rem;
+  padding: 6px 12px;
+}
 .item-score-sheet textarea.form-control {
   font-size: .9375rem;
 }
@@ -8506,14 +8510,12 @@ section.section + section.section {
 }
 .score-item .item-column {
   display: flex;
-  border-bottom: 1px solid rgba(204, 207, 211, 0.5);
+  border-top: 1px solid rgba(204, 207, 211, 0.5);
 }
-.score-item .item-title {
+.score-item .column-label {
   background: #e9ecef;
   padding: 1.5rem;
-  width: 50%;
-  font-size: 1.125rem;
-  font-weight: 500;
+  width: 42.5%;
 }
 .score-item .item-label {
   background: #e9ecef;
@@ -8530,14 +8532,14 @@ section.section + section.section {
   font-size: 1.125rem;
   color: #67706f;
 }
-.score-item .item-note {
-  padding: 1rem 1.5rem 1rem 4rem;
+.score-item .item-note .note-inner {
+  padding: 0 1.5rem 1rem 4rem;
   font-size: .9375rem;
   opacity: .75;
   position: relative;
   transition: opacity .1s ease;
 }
-.score-item .item-note:before {
+.score-item .item-note .note-inner:before {
   content: "\f129";
   font-family: Font Awesome\ 5 Free;
   font-weight: 900;
@@ -8545,7 +8547,12 @@ section.section + section.section {
   font-style: normal;
   position: absolute;
   left: 2rem;
-  top: 1rem;
+  top: 0;
+}
+.score-item .item-title {
+  padding: 1rem 1.5rem;
+  font-size: 1.063rem;
+  font-weight: 500;
 }
 .score-item .item-note-toggle {
   border-radius: .5rem;
@@ -8578,14 +8585,19 @@ section.section + section.section {
 .score-item .item-note.is-collapsed .item-note-toggle i {
   transform: rotate(180deg);
 }
-.score-item:hover .item-note {
+.score-item:hover .note-inner {
   opacity: 1;
 }
 .score-item.score-total {
   background: #e9ecef;
 }
+.score-item.score-total .column-label {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
 .score-item.score-total .item-title {
   background: transparent;
+  font-size: 1.125rem;
   font-weight: 700;
 }
 .score-item.score-total .input-group-text {

@@ -144,44 +144,50 @@
                 <div class="sidebar-note"><i class="fas fa-info-circle me-2 text-danger"></i>滿分為 90 分，請分項評分，並<strong>填寫委員評語</strong></div>
                 <div class="score-group">
                     <div class="score-item">
-                        <div class="item-column">
+                        <div class="item-note">
                             <div class="item-title">選送計畫</div>
+                            <div class="note-inner item-note-content">
+                                1. 校內審查機制 包括校內計畫案、選送學生甄選基準、計畫主持人甄選學生作業方式等、分配各計畫案經費之準則、本年選送原住民學生及新住民子女人數；遴選他校學生與，須提出相關甄選基準及甄選學生作業方式）。<br>
+                                2. 補助計畫整體配套措施（包括建立與國外實習機構之實習合作機制、計畫主持人安排學生赴國外實習輔導機制、前一年度補助經費支用原則及支用情形）。<br>
+                                3. 近三年內薦送學校執行成效（包括選送原住民學生及新住民子女人數成效）、國內學校與國外實習機構後續連結效益、對學生未來發展性等實際成效、變更各計畫所提預定實習人數或機構之次數、原申請書填報之實習機構與實際實習機構之差異等。
+                            </div>
+                        </div>
+                        <div class="item-column">
+                            <div class="column-label">佩分</div>
                             <div class="item-input input-group">
                                 <span class="input-group-text" id="score-addon1">40分</span>
                                 <input type="number" class="form-control" aria-describedby="score-addon1" value="0" min="0" max="40" required>
                             </div>
                         </div>
-
-                        <!-- note 限制 128個全形字元，超過時會有 item-note-toggle 按鈕控制展開收合，該次的操作應該延續到下一筆審核 -->
-                        <div class="item-note js-score-guide-note">
-                            1. 校內審查機制 包括校內計畫案、選送學生甄選基準、計畫主持人甄選學生作業方式等、分配各計畫案經費之準則、本年選送原住民學生及新住民子女人數；遴選他校學生與，須提出相關甄選基準及甄選學生作業方式）。<br>
-                            2. 補助計畫整體配套措施（包括建立與國外實習機構之實習合作機制、計畫主持人安排學生赴國外實習輔導機制、前一年度補助經費支用原則及支用情形）。<br>
-                            3. 近三年內薦送學校執行成效（包括選送原住民學生及新住民子女人數成效）、國內學校與國外實習機構後續連結效益、對學生未來發展性等實際成效、變更各計畫所提預定實習人數或機構之次數、原申請書填報之實習機構與實際實習機構之差異等。
-                        </div>
                     </div>
                     <div class="score-item">
-                        <div class="item-column">
+                        <div class="item-note">
                             <div class="item-title">研修規定</div>
+                            <div class="note-inner item-note-content">選送學生出國研修規定/辦法/簡章(包括校內審查機制、專業及語言能力條件)及其適切性。</div>
+                        </div>
+                        <div class="item-column">
+                            <div class="column-label">佩分</div>
                             <div class="item-input input-group">
-                                <span class="input-group-text" id="score-addon2">20分</span>
-                                <input type="number" class="form-control" aria-describedby="score-addon2" value="0" min="0" max="20" required>
+                                <span class="input-group-text" id="score-addon2">30分</span>
+                                <input type="number" class="form-control" aria-describedby="score-addon2" value="0" min="0" max="30" required>
                             </div>
                         </div>
-                        <div class="item-note">選送學生出國研修規定/辦法/簡章(包括校內審查機制、專業及語言能力條件)及其適切性。</div>
                     </div>
                     <div class="score-item">
+                        <div class="item-note">
+                            <div class="item-title">選送學生出國研修規定/辦法/簡章(包括校內審查機制、專業及語言能力條件)及其適切性。</div>
+                        </div>
                         <div class="item-column">
-                            <div class="item-title">執行成效</div>
+                            <div class="column-label">佩分</div>
                             <div class="item-input input-group">
                                 <span class="input-group-text" id="score-addon3">20分</span>
                                 <input type="number" class="form-control" aria-describedby="score-addon3" value="0" min="0" max="20" required>
                             </div>
                         </div>
-                        <div class="item-note">近三年執行成效（包括選送原住民學生及新住民子女人數）</div>
                     </div>
                     <div class="score-item score-total">
                         <div class="item-column">
-                            <div class="item-title">總分</div>
+                            <div class="column-label">總分</div>
                             <div class="item-input input-group">
                                 <span class="input-group-text" id="score-addon4">90分</span>
                                 <input type="number" class="form-control" aria-describedby="score-addon4" value="0" disabled>
@@ -374,47 +380,6 @@
     })
 </script>
 
-<!-- Item Note -->
-<script>
-    const itemNoteLimit = 128
-
-    document.querySelectorAll('.item-note').forEach(note => {
-        const content = document.createElement('span')
-        content.className = 'item-note-content'
-        content.replaceChildren(...note.childNodes)
-
-        const fullHtml = content.innerHTML
-        const fullText = content.textContent.trim()
-        const characters = Array.from(fullText)
-
-        if (characters.length <= itemNoteLimit) {
-            note.appendChild(content)
-            return
-        }
-
-        const toggleButton = document.createElement('button')
-        toggleButton.type = 'button'
-        toggleButton.className = 'item-note-toggle'
-        toggleButton.setAttribute('aria-label', '收合說明')
-        toggleButton.title = '收合'
-        toggleButton.setAttribute('aria-expanded', 'true')
-        toggleButton.innerHTML = '<i class="fas fa-angle-up" aria-hidden="true"></i>'
-        note.append(content, toggleButton)
-
-        toggleButton.addEventListener('click', () => {
-            const isCollapsed = note.classList.toggle('is-collapsed')
-            if (isCollapsed) {
-                content.textContent = `${characters.slice(0, itemNoteLimit).join('')}...`
-            } else {
-                content.innerHTML = fullHtml
-            }
-            toggleButton.setAttribute('aria-label', isCollapsed ? '展開完整說明' : '收合說明')
-            toggleButton.title = isCollapsed ? '展開' : '收合'
-            toggleButton.setAttribute('aria-expanded', String(!isCollapsed))
-        })
-    })
-</script>
-
 <!-- PDF Viewer demo -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
@@ -529,6 +494,7 @@
 </script>
 
 <!-- is-invalid demo -->
+<!-- 不確定要不要保留的功能 -->
 <script>
     const validateRequiredControl = control => {
         const isScoreInput = control.matches('.score-group input[type="number"]')
@@ -544,6 +510,48 @@
 
     document.querySelectorAll('.form-control[required]').forEach(control => {
         control.addEventListener('input', () => validateRequiredControl(control))
+    })
+</script>
+
+<!-- Note inner 展開/收合 -->
+<!-- 不確定要不要保留的功能 -->
+<script>
+    const itemNoteLimit = 128
+
+    document.querySelectorAll('.note-inner').forEach(note => {
+        const content = document.createElement('span')
+        content.className = 'item-note-content'
+        content.replaceChildren(...note.childNodes)
+
+        const fullHtml = content.innerHTML
+        const fullText = content.textContent.trim()
+        const characters = Array.from(fullText)
+
+        if (characters.length <= itemNoteLimit) {
+            note.appendChild(content)
+            return
+        }
+
+        const toggleButton = document.createElement('button')
+        toggleButton.type = 'button'
+        toggleButton.className = 'item-note-toggle'
+        toggleButton.setAttribute('aria-label', '收合說明')
+        toggleButton.title = '收合'
+        toggleButton.setAttribute('aria-expanded', 'true')
+        toggleButton.innerHTML = '<i class="fas fa-angle-up" aria-hidden="true"></i>'
+        note.append(content, toggleButton)
+
+        toggleButton.addEventListener('click', () => {
+            const isCollapsed = note.classList.toggle('is-collapsed')
+            if (isCollapsed) {
+                content.textContent = `${characters.slice(0, itemNoteLimit).join('')}...`
+            } else {
+                content.innerHTML = fullHtml
+            }
+            toggleButton.setAttribute('aria-label', isCollapsed ? '展開完整說明' : '收合說明')
+            toggleButton.title = isCollapsed ? '展開' : '收合'
+            toggleButton.setAttribute('aria-expanded', String(!isCollapsed))
+        })
     })
 </script>
 

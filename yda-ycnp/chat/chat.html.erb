@@ -1,0 +1,333 @@
+<!-- template: 聊天室 -->
+<% content_for :replace_css do %>
+    <link rel="stylesheet" media="all" href="../stylesheets/chatroom.css" />
+<% end %>
+
+<% rooms = ["海外志工交流區", "計畫執行諮詢", "青年志工夥伴", "提案交流討論", "成果報告討論", "活動籌備群組", "地方創生交流", "國際交流專區", "學習資源分享", "專案進度討論"] %>
+
+<div class="chatroom-container">
+    <aside class="chatroom-sidebar d-none d-lg-flex" aria-label="聊天室列表">
+        <div class="chatroom-sidebar-tabs nav nav-tabs" role="tablist">
+            <button class="nav-link active" id="desktop-chats-tab" data-bs-toggle="tab" data-bs-target="#desktop-chats" type="button" role="tab" aria-controls="desktop-chats" aria-selected="true"><i class="fas fa-comments" aria-hidden="true"></i><span>聊天紀錄</span></button>
+            <button class="nav-link" id="desktop-members-tab" data-bs-toggle="tab" data-bs-target="#desktop-members" type="button" role="tab" aria-controls="desktop-members" aria-selected="false"><i class="fas fa-users" aria-hidden="true"></i><span>成員名單</span></button>
+        </div>
+        <div class="chatroom-search"><i class="fas fa-search" aria-hidden="true"></i><input type="search" class="form-control" placeholder="搜尋聊天室或成員" aria-label="搜尋聊天室或成員"></div>
+        <div class="tab-content chatroom-tab-content">
+        <div class="chatroom-tab-pane tab-pane fade show active" id="desktop-chats" role="tabpanel" aria-labelledby="desktop-chats-tab">
+        <nav class="chatroom-list" aria-label="所有聊天室">
+            <% rooms.each_with_index do |room, i| %>
+                <a class="chatroom-list-item <%= 'active' if i == 0 %>" href="#" <%= 'aria-current="page"' if i == 0 %>>
+                    <span class="chatroom-cover"><span class="chatroom-icon"><i class="fas fa-comments" aria-hidden="true"></i></span><% if i == 1 %><img src="../assets/fake/view.jpg" alt=""><% elsif i == 2 %><img src="../assets/fake/movie.jpg" alt=""><% end %></span>
+                    <span class="chatroom-list-content"><strong><%= room %></strong><small><%= i == 0 ? '好的，資料已經收到了，謝謝！' : '查看最近的討論內容' %></small></span>
+                    <span class="chatroom-list-meta"><time><%= i == 0 ? '2026-09-04' : '2026-09-03' %></time><% if i == 0 %><span class="badge rounded-pill bg-primary">2</span><% end %></span>
+                </a>
+            <% end %>
+        </nav>
+        <div class="chatroom-list-footer">
+            <!-- 目前邏輯封面跟名稱都必填才能選擇成員 -->
+            <!-- 封面不是必填的話，為上傳前就是目前的 icon 作為預設封面 -->
+            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#createChatroomModal"><i class="fas fa-plus me-2" aria-hidden="true"></i>新增聊天室</button>
+        </div>
+        </div>
+        <div class="chatroom-list tab-pane fade" id="desktop-members" role="tabpanel" aria-labelledby="desktop-members-tab">
+            <% ["王小明", "林怡君", "陳志豪", "張雅雯", "承辦人員", "李冠廷", "黃郁婷", "吳佳蓉"].each do |member| %>
+                <div class="chatroom-list-item member-item"><span class="chatroom-icon"><i class="fas fa-comment-dots" aria-hidden="true"></i></span><span class="chatroom-list-content"><strong><%= member %></strong><small>聊天室成員</small></span></div>
+            <% end %>
+        </div>
+        </div>
+    </aside>
+
+    <main class="chatroom-main">
+        <header class="chatroom-header">
+            <div class="chatroom-header-start">
+                <button class="btn chatroom-menu-btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#chatroomSidebar" aria-controls="chatroomSidebar" aria-label="展開聊天室列表"><i class="fas fa-bars" aria-hidden="true"></i></button>
+                <span class="chatroom-cover chatroom-cover-icon"><span class="chatroom-icon"><i class="fas fa-comments" aria-hidden="true"></i></span><img src="../assets/fake/book.jpg" alt=""></span>
+            </div>
+            <h2 class="chatroom-header-title">海外志工交流區</h2>
+            <div class="chatroom-header-actions">
+
+                <!-- 加入成員開啟的是新增聊天室的 modal，這邊的 modal 請將返回新增聊天室按鈕拔除 -->
+                <button type="button" class="btn chatroom-action-btn" title="加入成員" aria-label="加入成員" data-bs-toggle="modal" data-bs-target="#selectMemberModal"><i class="fas fa-user-plus" aria-hidden="true"></i></button>
+                <button type="button" class="btn chatroom-action-btn" title="聊天室設定" aria-label="聊天室設定" data-bs-toggle="modal" data-bs-target="#chatroomSettingsModal"><i class="fas fa-cog" aria-hidden="true"></i></button>
+            </div>
+        </header>
+
+        <section class="chatroom-messages" aria-label="聊天訊息" aria-live="polite">
+            <div class="chatroom-date-divider"><span>2026 年 9 月 4 日</span></div>
+            <% messages = [
+                ["王小明", "大家好，請問成果報告的附件需要使用哪一種格式呢？", "13:48:06", false],
+                ["承辦人員", "您好，附件請統一使用 PDF 格式上傳；若有照片，可整理後一併放入附件中。", "13:51:24", false],
+                ["我", "了解，我稍後整理完成後會再上傳，謝謝說明！", "14:02:17", true],
+                ["林怡君", "我也已經完成上傳，系統目前顯示審核中。", "14:17:42", false],
+                ["我", "好的，資料已經收到了，謝謝！", "14:32:10", true]
+            ] %>
+            <% messages.each do |name, message, timestamp, own| %>
+                <article class="message-row <%= 'is-own' if own %>">
+                    <span class="chatroom-icon message-icon"><i class="fas fa-comment-dots" aria-hidden="true"></i></span>
+                    <div class="message-content"><div class="message-meta"><span class="message-name"><%= name %></span><time class="message-time"><%= timestamp %></time></div><div class="message-bubble"><%= message %></div></div>
+                </article>
+            <% end %>
+        </section>
+
+        <footer class="chatroom-composer">
+            <label class="visually-hidden" for="chatroom-message-input">輸入訊息</label>
+            <div class="input-group"><input type="text" class="form-control" id="chatroom-message-input" placeholder="輸入訊息…" autocomplete="off"><button class="btn btn-primary" type="button"><span class="d-none d-sm-inline">傳送</span><i class="fas fa-paper-plane ms-sm-2" aria-hidden="true"></i></button></div>
+        </footer>
+    </main>
+</div>
+
+<div class="offcanvas offcanvas-start chatroom-offcanvas" tabindex="-1" id="chatroomSidebar" aria-labelledby="chatroomSidebarLabel">
+    <div class="offcanvas-header"><h2 class="visually-hidden" id="chatroomSidebarLabel">聊天室</h2><div class="chatroom-sidebar-tabs nav nav-tabs" role="tablist"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#mobile-chats" type="button" role="tab"><i class="fas fa-comments" aria-hidden="true"></i><span>聊天紀錄</span></button><button class="nav-link" data-bs-toggle="tab" data-bs-target="#mobile-members" type="button" role="tab"><i class="fas fa-users" aria-hidden="true"></i><span>成員名單</span></button></div><button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="關閉"></button></div>
+    <div class="chatroom-search"><i class="fas fa-search" aria-hidden="true"></i><input type="search" class="form-control" placeholder="搜尋聊天室或成員" aria-label="搜尋聊天室或成員"></div>
+    <div class="tab-content chatroom-tab-content">
+    <div class="chatroom-tab-pane tab-pane fade show active" id="mobile-chats" role="tabpanel">
+    <nav class="chatroom-list" aria-label="所有聊天室">
+        <% rooms.each_with_index do |room, i| %>
+            <a class="chatroom-list-item <%= 'active' if i == 0 %>" href="#"><span class="chatroom-cover"><span class="chatroom-icon"><i class="fas fa-comments" aria-hidden="true"></i></span><% if i == 1 %><img src="../assets/fake/view.jpg" alt=""><% elsif i == 2 %><img src="../assets/fake/movie.jpg" alt=""><% end %></span><span class="chatroom-list-content"><strong><%= room %></strong><small><%= i == 0 ? '好的，資料已經收到了，謝謝！' : '查看最近的討論內容' %></small></span><span class="chatroom-list-meta"><time><%= i == 0 ? '2026-09-04' : '2026-09-03' %></time></span></a>
+        <% end %>
+    </nav>
+    <div class="chatroom-list-footer"><button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#createChatroomModal"><i class="fas fa-plus me-2" aria-hidden="true"></i>新增聊天室</button></div>
+    </div>
+    <div class="chatroom-list tab-pane fade" id="mobile-members" role="tabpanel">
+        <% ["王小明", "林怡君", "陳志豪", "張雅雯", "承辦人員", "李冠廷", "黃郁婷", "吳佳蓉"].each do |member| %><div class="chatroom-list-item member-item"><span class="chatroom-icon"><i class="fas fa-comment-dots" aria-hidden="true"></i></span><span class="chatroom-list-content"><strong><%= member %></strong><small>聊天室成員</small></span></div><% end %>
+    </div>
+    </div>
+</div>
+
+<div class="modal fade chatroom-modal" id="createChatroomModal" tabindex="-1" aria-labelledby="createChatroomModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="createChatroomModalLabel">新增聊天室</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
+            </div>
+            <div class="modal-body">
+                <div class="chatroom-cover-editor">
+                    <div class="chatroom-crop-stage" id="chatroomCropStage">
+                        <canvas id="chatroomCropCanvas" width="420" height="420" aria-label="聊天室封面裁切預覽"></canvas>
+                        <div class="chatroom-upload-placeholder" id="chatroomUploadPlaceholder"><i class="fas fa-image" aria-hidden="true"></i><span>上傳圖片後可拖曳調整位置</span></div>
+                    </div>
+                    <input type="file" class="visually-hidden" id="chatroomCoverInput" accept="image/*">
+                    <input type="hidden" id="chatroomCroppedCover" name="chatroom_cover">
+                    <button type="button" class="btn btn-outline-primary" id="chatroomUploadButton"><i class="fas fa-upload me-2" aria-hidden="true"></i>上傳封面</button>
+                    <div class="chatroom-zoom d-none" id="chatroomZoomWrap"><i class="fas fa-image" aria-hidden="true"></i><input type="range" class="form-range" id="chatroomZoom" min="1" max="3" step="0.01" value="1" aria-label="縮放封面"><i class="fas fa-image fa-lg" aria-hidden="true"></i></div>
+                </div>
+                <div class="mt-4">
+                    <label class="form-label fw-semibold" for="chatroomName">聊天室名稱</label>
+                    <input type="text" class="form-control" id="chatroomName" maxlength="40" placeholder="請輸入聊天室名稱">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="openMemberModal" disabled>選擇成員</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade chatroom-modal" id="selectMemberModal" tabindex="-1" aria-labelledby="selectMemberModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn chatroom-modal-back" id="backToCreateModal" aria-label="返回新增聊天室"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                <h2 class="modal-title fs-5" id="selectMemberModalLabel">選擇成員</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="chatroom-member-list">
+                    <% ["王小明", "林怡君", "陳志豪", "張雅雯", "承辦人員", "李冠廷", "黃郁婷", "吳佳蓉"].each_with_index do |member, i| %>
+                        <label class="chatroom-member-option" for="chatroom-member-<%= i %>">
+                            <input class="form-check-input" type="checkbox" value="<%= member %>" id="chatroom-member-<%= i %>">
+                            <i class="fas fa-user-circle chatroom-member-avatar" aria-hidden="true"></i>
+                            <span><%= member %></span>
+                        </label>
+                    <% end %>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="chatroom-selected-count me-auto" id="chatroomSelectedCount">已選擇 0 位</span>
+                <button type="button" class="btn btn-primary" id="confirmChatroomMembers">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade chatroom-modal" id="chatroomSettingsModal" tabindex="-1" aria-labelledby="chatroomSettingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="chatroomSettingsModalLabel">聊天室設定</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
+            </div>
+            <div class="modal-body">
+                <div class="chatroom-cover-editor">
+                    <div class="chatroom-crop-stage" id="settingsCropStage">
+                        <canvas id="settingsCropCanvas" width="420" height="420" aria-label="目前聊天室封面裁切預覽"></canvas>
+                    </div>
+                    <input type="file" class="visually-hidden" id="settingsCoverInput" accept="image/*">
+                    <input type="hidden" id="settingsCroppedCover" name="settings_chatroom_cover">
+                    <button type="button" class="btn btn-outline-primary" id="settingsUploadButton"><i class="fas fa-upload me-2" aria-hidden="true"></i>更換封面</button>
+                    <div class="chatroom-zoom" id="settingsZoomWrap"><i class="fas fa-image" aria-hidden="true"></i><input type="range" class="form-range" id="settingsZoom" min="1" max="3" step="0.01" value="1" aria-label="縮放封面"><i class="fas fa-image fa-lg" aria-hidden="true"></i></div>
+                </div>
+                <div class="mt-4">
+                    <label class="form-label fw-semibold" for="settingsChatroomName">聊天室名稱</label>
+                    <input type="text" class="form-control" id="settingsChatroomName" maxlength="40" value="海外志工交流區">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger me-auto" id="openLeaveChatroomModal"><i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>離開對話</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="saveChatroomSettings">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade chatroom-modal" id="leaveChatroomModal" tabindex="-1" aria-labelledby="leaveChatroomModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="leaveChatroomModalLabel">確認離開對話</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <div class="chatroom-leave-icon"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></div>
+                <p class="mb-1 fw-semibold">確定要離開「海外志工交流區」嗎？</p>
+                <p class="mb-0 text-muted small">離開後將無法繼續查看或參與這個聊天室。</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-outline-secondary" id="cancelLeaveChatroom">取消</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">確認離開</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var coverInput = document.getElementById('chatroomCoverInput');
+    var uploadButton = document.getElementById('chatroomUploadButton');
+    var canvas = document.getElementById('chatroomCropCanvas');
+    var stage = document.getElementById('chatroomCropStage');
+    var placeholder = document.getElementById('chatroomUploadPlaceholder');
+    var zoomWrap = document.getElementById('chatroomZoomWrap');
+    var zoomInput = document.getElementById('chatroomZoom');
+    var nextButton = document.getElementById('openMemberModal');
+    var chatroomNameInput = document.getElementById('chatroomName');
+    var createModalElement = document.getElementById('createChatroomModal');
+    var memberModalElement = document.getElementById('selectMemberModal');
+    var createModal = bootstrap.Modal.getOrCreateInstance(createModalElement);
+    var memberModal = bootstrap.Modal.getOrCreateInstance(memberModalElement);
+    var context = canvas.getContext('2d');
+    var image = new Image();
+    var imageReady = false;
+    var scale = 1;
+    var offsetX = 0;
+    var offsetY = 0;
+    var dragging = false;
+    var pointerX = 0;
+    var pointerY = 0;
+
+    function updateNextButtonState() {
+        nextButton.disabled = !imageReady || chatroomNameInput.value.trim() === '';
+    }
+
+    function drawCover() {
+        if (!imageReady) return;
+        var baseScale = Math.max(canvas.width / image.naturalWidth, canvas.height / image.naturalHeight);
+        var drawWidth = image.naturalWidth * baseScale * scale;
+        var drawHeight = image.naturalHeight * baseScale * scale;
+        var limitX = Math.max(0, (drawWidth - canvas.width) / 2);
+        var limitY = Math.max(0, (drawHeight - canvas.height) / 2);
+        offsetX = Math.max(-limitX, Math.min(limitX, offsetX));
+        offsetY = Math.max(-limitY, Math.min(limitY, offsetY));
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(image, (canvas.width - drawWidth) / 2 + offsetX, (canvas.height - drawHeight) / 2 + offsetY, drawWidth, drawHeight);
+    }
+
+    uploadButton.addEventListener('click', function () { coverInput.click(); });
+    coverInput.addEventListener('change', function () {
+        var file = coverInput.files && coverInput.files[0];
+        if (!file || !file.type.startsWith('image/')) return;
+        var reader = new FileReader();
+        reader.onload = function (event) { image.onload = function () { imageReady = true; scale = 1; offsetX = 0; offsetY = 0; zoomInput.value = '1'; placeholder.classList.add('d-none'); zoomWrap.classList.remove('d-none'); updateNextButtonState(); drawCover(); }; image.src = event.target.result; };
+        reader.readAsDataURL(file);
+    });
+    chatroomNameInput.addEventListener('input', updateNextButtonState);
+    zoomInput.addEventListener('input', function () { scale = Number(zoomInput.value); drawCover(); });
+    stage.addEventListener('pointerdown', function (event) { if (!imageReady) return; dragging = true; pointerX = event.clientX; pointerY = event.clientY; stage.setPointerCapture(event.pointerId); stage.classList.add('is-dragging'); });
+    stage.addEventListener('pointermove', function (event) { if (!dragging) return; var ratio = canvas.width / stage.clientWidth; offsetX += (event.clientX - pointerX) * ratio; offsetY += (event.clientY - pointerY) * ratio; pointerX = event.clientX; pointerY = event.clientY; drawCover(); });
+    stage.addEventListener('pointerup', function () { dragging = false; stage.classList.remove('is-dragging'); });
+    stage.addEventListener('pointercancel', function () { dragging = false; stage.classList.remove('is-dragging'); });
+
+    nextButton.addEventListener('click', function () { document.getElementById('chatroomCroppedCover').value = canvas.toDataURL('image/jpeg', 0.9); createModalElement.addEventListener('hidden.bs.modal', function showMembers() { createModalElement.removeEventListener('hidden.bs.modal', showMembers); memberModal.show(); }); createModal.hide(); });
+    document.getElementById('backToCreateModal').addEventListener('click', function () { memberModalElement.addEventListener('hidden.bs.modal', function showCreate() { memberModalElement.removeEventListener('hidden.bs.modal', showCreate); createModal.show(); }); memberModal.hide(); });
+
+    var memberChecks = memberModalElement.querySelectorAll('.form-check-input');
+    function updateSelectedCount() { var checked = memberModalElement.querySelectorAll('.form-check-input:checked').length; document.getElementById('chatroomSelectedCount').textContent = '已選擇 ' + checked + ' 位'; }
+    memberChecks.forEach(function (checkbox) { checkbox.addEventListener('change', updateSelectedCount); });
+    document.getElementById('confirmChatroomMembers').addEventListener('click', function () { memberModal.hide(); });
+
+    function setupCropEditor(options) {
+        var cropCanvas = document.getElementById(options.canvasId);
+        var cropStage = document.getElementById(options.stageId);
+        var cropInput = document.getElementById(options.inputId);
+        var cropUploadButton = document.getElementById(options.uploadButtonId);
+        var cropZoom = document.getElementById(options.zoomId);
+        var cropContext = cropCanvas.getContext('2d');
+        var cropImage = new Image();
+        var cropScale = 1;
+        var cropOffsetX = 0;
+        var cropOffsetY = 0;
+        var cropDragging = false;
+        var cropPointerX = 0;
+        var cropPointerY = 0;
+
+        function draw() {
+            if (!cropImage.naturalWidth) return;
+            var baseScale = Math.max(cropCanvas.width / cropImage.naturalWidth, cropCanvas.height / cropImage.naturalHeight);
+            var width = cropImage.naturalWidth * baseScale * cropScale;
+            var height = cropImage.naturalHeight * baseScale * cropScale;
+            var limitX = Math.max(0, (width - cropCanvas.width) / 2);
+            var limitY = Math.max(0, (height - cropCanvas.height) / 2);
+            cropOffsetX = Math.max(-limitX, Math.min(limitX, cropOffsetX));
+            cropOffsetY = Math.max(-limitY, Math.min(limitY, cropOffsetY));
+            cropContext.clearRect(0, 0, cropCanvas.width, cropCanvas.height);
+            cropContext.drawImage(cropImage, (cropCanvas.width - width) / 2 + cropOffsetX, (cropCanvas.height - height) / 2 + cropOffsetY, width, height);
+        }
+
+        function loadImage(source) {
+            cropImage.onload = function () { cropScale = 1; cropOffsetX = 0; cropOffsetY = 0; cropZoom.value = '1'; draw(); };
+            cropImage.src = source;
+        }
+
+        cropUploadButton.addEventListener('click', function () { cropInput.click(); });
+        cropInput.addEventListener('change', function () {
+            var file = cropInput.files && cropInput.files[0];
+            if (!file || !file.type.startsWith('image/')) return;
+            var reader = new FileReader();
+            reader.onload = function (event) { loadImage(event.target.result); };
+            reader.readAsDataURL(file);
+        });
+        cropZoom.addEventListener('input', function () { cropScale = Number(cropZoom.value); draw(); });
+        cropStage.addEventListener('pointerdown', function (event) { if (!cropImage.naturalWidth) return; cropDragging = true; cropPointerX = event.clientX; cropPointerY = event.clientY; cropStage.setPointerCapture(event.pointerId); cropStage.classList.add('is-dragging'); });
+        cropStage.addEventListener('pointermove', function (event) { if (!cropDragging) return; var ratio = cropCanvas.width / cropStage.clientWidth; cropOffsetX += (event.clientX - cropPointerX) * ratio; cropOffsetY += (event.clientY - cropPointerY) * ratio; cropPointerX = event.clientX; cropPointerY = event.clientY; draw(); });
+        cropStage.addEventListener('pointerup', function () { cropDragging = false; cropStage.classList.remove('is-dragging'); });
+        cropStage.addEventListener('pointercancel', function () { cropDragging = false; cropStage.classList.remove('is-dragging'); });
+        loadImage(options.initialImage);
+        return function () { return cropCanvas.toDataURL('image/jpeg', 0.9); };
+    }
+
+    var getSettingsCover = setupCropEditor({ canvasId: 'settingsCropCanvas', stageId: 'settingsCropStage', inputId: 'settingsCoverInput', uploadButtonId: 'settingsUploadButton', zoomId: 'settingsZoom', initialImage: '../assets/fake/book.jpg' });
+    document.getElementById('saveChatroomSettings').addEventListener('click', function () { document.getElementById('settingsCroppedCover').value = getSettingsCover(); bootstrap.Modal.getInstance(document.getElementById('chatroomSettingsModal')).hide(); });
+
+    var settingsModalElement = document.getElementById('chatroomSettingsModal');
+    var leaveModalElement = document.getElementById('leaveChatroomModal');
+    var settingsModal = bootstrap.Modal.getOrCreateInstance(settingsModalElement);
+    var leaveModal = bootstrap.Modal.getOrCreateInstance(leaveModalElement);
+    document.getElementById('openLeaveChatroomModal').addEventListener('click', function () { settingsModalElement.addEventListener('hidden.bs.modal', function showLeaveConfirmation() { settingsModalElement.removeEventListener('hidden.bs.modal', showLeaveConfirmation); leaveModal.show(); }); settingsModal.hide(); });
+    document.getElementById('cancelLeaveChatroom').addEventListener('click', function () { leaveModalElement.addEventListener('hidden.bs.modal', function showSettings() { leaveModalElement.removeEventListener('hidden.bs.modal', showSettings); settingsModal.show(); }); leaveModal.hide(); });
+});
+</script>
+<% end %>

@@ -1,0 +1,643 @@
+<!-- admin-page: 客製頁面 - 青年生涯領航計畫 - 待開發合輯 -->
+
+<% content_for :page_styles do %>
+    <link rel="stylesheet" href="../stylesheets/customization/ycnp.css">
+<% end %>
+
+<%= render :partial => "/partials/admin_breadcrumb" %>
+
+<main class="main">
+    <div class="page-header">
+        <h1>待開發合輯</h1>
+    </div>
+    <div style="margin-bottom: 4rem;">
+        <h4 class="fw-bold mb-4">個人下載資源</h4>
+
+        <!-- content start -->
+        <div class="personal-downloads-wrapper">
+            <div class="upload-section">
+                <input type="file" class="form-control" />
+                <button class="btn btn-primary"><i class="fas fa-plus"></i> 加入</button>
+            </div>
+            <div class="col-block">
+                <div class="block-content expansion">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th class="text-center text-nowrap">序號</th>
+                                <th>檔案名稱</th>
+                                <th>上傳時間</th>
+                                <th class="text-nowrap">刪除</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">1</td>
+                                <td>filenameorsomethingelse.pdf</td>
+                                <td class="text-nowrap">2026-06-05 10:00</td>
+                                <td><button class="btn btn-delete"><i class="fas fa-times"></i></button></td>
+                            </tr>
+                            <% (2..11).map do |i| %>
+                            <tr>
+                                <td class="text-center"><%= i %></td>
+                                <td><%= lorem_words(5) %>.pdf</td>
+                                <td class="text-nowrap">2026-06-05 10:00</td>
+                                <td><button class="btn btn-delete"><i class="fas fa-times"></i></button></td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 4rem;">
+        <h4 class="fw-bold mb-4">下載資源設定</h4>
+
+        <!-- content start -->
+        <div class="download-resource-settings">
+            <div class="col-block">
+                <div class="block-header has-bg">
+                    下載資源設定
+                </div>
+                <div class="block-content">
+                    <div class="form-group">
+                        <label for="resource-type" class="form-label">資源類型</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="resource-type" id="resource-type-1" value="option1">
+                                <label class="form-check-label" for="resource-type-1">網站連結</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="resource-type" id="resource-type-2" value="option2">
+                                <label class="form-check-label" for="resource-type-2">檔案下載</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="resource-category" class="form-label">分類</label>
+                        <select class="form-select w-auto" id="resource-category" name="resource-category">
+                            <option value="">請選擇分類</option>
+                            <option value="category1">分類 1</option>
+                            <option value="category2">出境旅外／役男相關</option>
+                            <option value="category3">分類 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="resource-name" class="form-label">資源名稱</label>
+                        <input type="text" class="form-control" id="resource-name" name="resource-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="resource-link" class="form-label">資源連結</label>
+                        <input type="text" class="form-control" id="resource-link" name="resource-link">
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">儲存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 4rem;">
+        <h4 class="fw-bold mb-4">瀏覽工作移轉紀錄</h4>
+
+        <!-- content start -->
+        <div class="work-transfer-records">
+            <div class="col-block">
+                <div class="block-header has-bg">
+                    工作移轉內容
+                </div>
+                <div class="block-content">
+                    <div class="info-wrap">
+                        <div class="info-item">
+                            <div class="fs-7">移轉來源</div>
+                            <div>
+                                <span class="fw-bold"><%= zh_lorem_name %></span>
+                                <span class="d-inline-block ps-1">總幹事</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="fs-7">新負責人</div>
+                            <div>
+                                <span class="fw-bold"><%= zh_lorem_name %></span>
+                                <span class="d-inline-block ps-1">總統府資政</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="fs-7">移轉時間</div>
+                            <div>YYYY-MM-DD HH:mm</div>
+                        </div>
+                    </div>
+                    <div class="list-wrap">
+                        <div class="list-column">
+                            <div class="column-hd">
+                                <h5 class="fw-bold">審查案件</h5>
+                                <span class="fs-6">共 9 件</span>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>案件編號</th>
+                                        <th>學生姓名</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% (1..9).map do |i| %>
+                                    <tr>
+                                        <td>115000<%= i %></td>
+                                        <td><%= zh_lorem_name %></td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="list-column">
+                            <div class="column-hd">
+                                <h5 class="fw-bold">輔導案件</h5>
+                                <span class="fs-6">共 2 件</span>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>申請時間</th>
+                                        <th>學生姓名</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% (1..2).map do |i| %>
+                                    <tr>
+                                        <td>2026-10-10 10:10</td>
+                                        <td><%= zh_lorem_name %></td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 4rem;">
+        <h4 class="fw-bold mb-4">AI 情緒分析</h4>
+
+        <!-- content start -->
+        <div class="ai-emotion-analysis">
+            <div class="wrapper-head">
+                <div class="head-start">
+                    <span><button type="button" class="btn btn-dark">開始分析</button></span>
+                    <span><button type="button" class="btn btn-outline-primary btn-tutoring" data-bs-toggle="modal" data-bs-target="#tutoringModal">需轉介關懷輔導</button></span>
+                    <span>已產生關懷輔導申請 2026-10-10</span>
+                </div>
+                <div class="head-end">
+                    <select class="form-select">
+                        <option value="option1">2026-10-10 10:10</option>
+                        <option value="option2">選項 2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="wrapper-body">
+                <div class="chart-wrapper">
+                   <canvas id="emotionChart"></canvas>
+                </div>
+                <div class="analysis-result">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th>維度</th>
+                                <th class="text-center text-nowrap">分數</th>
+                                <th>分析說明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-nowrap">壓力感知</td>
+                                <td class="text-center">8</td>
+                                <td>文字中頻繁出現負面情緒與抱怨，例如「不知道有什麼用」、「懷疑人生」、「趕快結束吧」，顯示情緒起伏大且穩定度低。</td>
+                            </tr>
+                            <tr>
+                                <td class="text-nowrap">情緒穩定度</td>
+                                <td class="text-center">4</td>
+                                <td>多次提及疲累、進度壓力與學習困難，例如「學不會也只能自己硬撐」、「很累」，顯示心理負荷高。</td>
+                            </tr>
+                            <tr>
+                                <td class="text-nowrap">社交支持與連結感</td>
+                                <td class="text-center">6</td>
+                                <td>少數提到同學的幫助，但更多是孤立感與不信任，例如「每個人都只是為了交差」，顯示連結感不足。</td>
+                            </tr>
+                            <tr>
+                                <td class="text-nowrap">自我肯定與價值感</td>
+                                <td class="text-center">5</td>
+                                <td>強烈自我懷疑與缺乏成就感，如「沒有什麼成就感」、「更迷惘」，顯示價值感低。</td>
+                            </tr>
+                            <tr>
+                                <td class="text-nowrap">參與與投入感</td>
+                                <td class="text-center">7</td>
+                                <td>缺乏積極參與意願，語氣多表現出被動與不感興趣，如「沒什麼動力」、「只是為了交差」。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 4rem;">
+        <h4 class="fw-bold mb-4">AI 計畫執行分析</h4>
+
+        <!-- content start -->
+        <div class="ai-project-execution-analysis">
+            <div class="wrapper-head">
+                <div class="head-start">
+                    <span><button type="button" class="btn btn-dark">開始分析</button></span>
+                </div>
+                <div class="head-end">
+                    <select class="form-select">
+                        <option value="option1">2026-10-10 10:10</option>
+                        <option value="option2">選項 2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="wrapper-body">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>評分維度</th>
+                            <th class="text-center text-nowrap">分數</th>
+                            <th>說明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-nowrap">目標一致性</td>
+                            <td class="text-center">8</td>
+                            <td>回報內容與原計畫目標高度契合，涵蓋 HTML、CSS、JavaScript、Git、作品集網站製作與職場軟技能，完全符合課程設定方向。</td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap">進度達成率</td>
+                            <td class="text-center">4</td>
+                            <td>各階段進度均如期完成，從基礎學習到專案製作、測試與簡報準備，無延誤情況。</td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap">內容品質</td>
+                            <td class="text-center">6</td>
+                            <td>回報詳盡且具體，能清楚描述學習內容、技術應用與解決問題的過程，條理清晰。</td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap">積極參與度</td>
+                            <td class="text-center">5</td>
+                            <td>學生積極參與課堂、專案與同儕互動，並主動解決問題與提升作品品質。</td>
+                        </tr>
+                        <tr>
+                            <td class="text-nowrap">風險或異常狀態</td>
+                            <td class="text-center">7</td>
+                            <td>全程無負面情緒或中斷傾向，語氣正面積極，顯示高度適應與穩定狀態。</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mt-5">
+                    <h5 class="fw-bold">整體執行情況總結</h5>
+                    <p>學生在各評分維度上表現良好，目標一致性高，進度達成率穩定，內容品質詳盡，積極參與課堂與專案，且無風險或異常狀態，整體執行狀況令人滿意。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 4rem;">
+        <h4 class="fw-bold mb-4">AI 設定 (AI警示通知)</h4>
+
+        <!-- content start -->
+        <div class="ai-alert-notification">
+            <div class="notification-aside">
+                <div class="nav flex-column nav-pills" id="aiAlertTabs" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" id="emotion-module-tab" data-bs-toggle="tab" data-bs-target="#emotion-module-pane" type="button" role="tab" aria-controls="emotion-module-pane" aria-selected="true">AI 學生情緒分析模組</button>
+                    <button class="nav-link" id="execution-module-tab" data-bs-toggle="tab" data-bs-target="#execution-module-pane" type="button" role="tab" aria-controls="execution-module-pane" aria-selected="false">AI 學生計畫執行分析</button>
+                </div>
+            </div>
+            <div class="notification-main">
+                <div class="tab-content" id="aiAlertTabsContent">
+                    <div class="tab-pane fade show active" id="emotion-module-pane" role="tabpanel" aria-labelledby="emotion-module-tab" tabindex="0">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="function-name" class="form-label">功能名稱</label>
+                                    <input type="text" id="function-name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="gpt-api-key" class="form-label">GPT API Key</label>
+                                    <input type="text" id="gpt-api-key" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="gpt-model" class="form-label">GPT Model</label>
+                                    <select id="gpt-model" class="form-control">
+                                        <option value="" selected>依照現有提供的版本顯示</option>
+                                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                                        <option value="gpt-4">GPT-4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="temperature" class="form-label">Temperature</label>
+                                    <input type="number" id="temperature" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="prompt-frontend-command" class="form-label">Prompt 前端指令</label>
+                                    <input type="text" id="prompt-frontend-command" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="prompt-backend-command" class="form-label">Prompt 後端指令</label>
+                                    <input type="text" id="prompt-backend-command" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prompt-settings">
+                            <h5 class="mb-3">Prompt 執行內容設定</h5>
+                            <div class="my-3">
+                                <button type="button" class="btn btn-primary btn-rounded px-4 btn-add-prompt" data-bs-toggle="modal" data-bs-target="#promptSettingModal" data-modal-mode="add"><i class="fas fa-plus"></i> 新增</button>
+                            </div>
+                            <table class="table align-middle text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">#</th>
+                                        <th scope="col" class="text-center">啟用</th>
+                                        <th scope="col">題目/標題</th>
+                                        <th scope="col">執行 Prompt</th>
+                                        <th scope="col">Response 回存位子</th>
+                                        <th scope="col">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="text-center">1</th>
+                                        <td class="text-center">是</td>
+                                        <td class="text-wrap">學生個案各項資料整理及個資脫敏</td>
+                                        <td class="text-wrap">請將[[雙周日誌內容]][[輔導紀錄內容]]進行個資脫敏</td>
+                                        <td>回傳內容</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-primary btn-edit-prompt" title="編輯" data-bs-toggle="modal" data-bs-target="#promptSettingModal" data-modal-mode="edit"><i class="fas fa-pen"></i></button>
+                                            <button type="button" class="btn btn-sm btn-danger" title="刪除"><i class="far fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                    <% (2..6).map do |i| %>
+                                    <tr>
+                                        <th scope="row" class="text-center"><%= i %></th>
+                                        <td class="text-center">是</td>
+                                        <td class="text-wrap"><%= lorem_sentence %></td>
+                                        <td class="text-wrap"><%= lorem_paragraph %></td>
+                                        <td><%= lorem_words(5) %></td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-primary btn-edit-prompt" title="編輯" data-bs-toggle="modal" data-bs-target="#promptSettingModal" data-modal-mode="edit"><i class="fas fa-pen"></i></button>
+                                            <button type="button" class="btn btn-sm btn-danger" title="刪除"><i class="far fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="execution-module-pane" role="tabpanel" aria-labelledby="execution-module-tab" tabindex="0">
+                        內容同上
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- AI 情緒分析 modal -->
+<div class="modal fade" id="tutoringModal" tabindex="-1" aria-labelledby="tutoringModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tutoringModalLabel">需轉介關懷輔導</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">輔導學生</label>
+                    <div class="fw-bold">
+                        1150001 王小明
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">關注原因</label>
+                    <textarea rows="3" class="form-control" placeholder="請輸入關注原因"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary">送出</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Prompt 設定 modal -->
+<div class="modal fade" id="promptSettingModal" tabindex="-1" aria-labelledby="promptSettingModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="promptSettingModalLabel">新增 Prompt 內容</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-10">
+                        <div class="form-group">
+                            <label for="prompt-title" class="form-label">標題</label>
+                            <input type="text" id="prompt-title" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="prompt-sequence" class="form-label">序號</label>
+                            <input type="text" id="prompt-sequence" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label">prompt 內容設定</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkActive">
+                                <label class="form-check-label" for="checkActive">
+                                    啟用
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-inline-block w-auto mb-2">
+                            <div class="input-group">
+                                <select id="prompt-content-type" class="form-select w-auto">
+                                    <option value="">個案管理師登錄輔導結果內容</option>
+                                    <option value="">雙週誌</option>
+                                    <option value="">影片</option>
+                                </select>
+                                <button class="btn btn-secondary" type="button">加入</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="prompt-content" class="form-control" rows="6"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="prompt-result-storage" class="form-label">Prompt 所屬結果儲存於</label>
+                            <select id="prompt-result-storage" class="form-select w-auto">
+                                <option value="">選擇結果儲存位置</option>
+                                <option value="database">資料庫</option>
+                                <option value="file">檔案</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h5 class="mb-3">
+                        警示設定
+                        <small class="text-muted">(依照AI回傳值進行觸發警示)</small>
+                    </h5>
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">AI 分析回傳分數</th>
+                                <th scope="col">警警示處理示內容</th>
+                                <th scope="col">通知對象 (Email 及 建立任務)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% (1..5).map do |i| %>
+                            <tr>
+                                <td>1 ~ 2 分</td>
+                                <td>
+                                    <select class="form-select w-auto">
+                                        <option value="task">建立任務</option>
+                                        <option value="donotthing">無須處理</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="notify-youth-officer" value="email">
+                                        <label class="form-check-label" for="notify-youth-officer">青年署承辦人</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="notify-supervisor" value="email">
+                                        <label class="form-check-label" for="notify-supervisor">主管</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="notify-reviewer" value="email">
+                                        <label class="form-check-label" for="notify-reviewer">審查委員</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- chartjs -->
+<script src="../javascripts/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var chartElement = document.getElementById('emotionChart');
+        if (!chartElement) return;
+
+        new Chart(chartElement, {
+            type: 'radar',
+            data: {
+                labels: [
+                    '壓力感知',
+                    '情緒穩定度',
+                    '社交支持與連結感',
+                    '自我肯定與價值感',
+                    '參與與投入感'
+                ],
+                datasets: [{
+                    label: '負向趨勢',
+                    data: [8, 4, 6, 5, 7],
+                    backgroundColor: 'rgba(220, 53, 69, 0.2)',
+                    borderColor: 'rgba(220, 53, 69, 1)',
+                    pointBackgroundColor: 'rgba(220, 53, 69, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(220, 53, 69, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '學生情緒評分雷達圖',
+                        font: {
+                            size: 17
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        min: 0,
+                        max: 10,
+                        pointLabels: {
+                            font: {
+                                size: 15
+                            }
+                        },
+                        ticks: {
+                            stepSize: 2
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+<!-- Modal: Prompt Setting -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var promptSettingModal = document.getElementById('promptSettingModal');
+        var promptSettingModalLabel = document.getElementById('promptSettingModalLabel');
+
+        if (!promptSettingModal || !promptSettingModalLabel) return;
+
+        promptSettingModal.addEventListener('show.bs.modal', function(event) {
+            var triggerButton = event.relatedTarget;
+            if (!triggerButton) return;
+
+            var modalMode = triggerButton.getAttribute('data-modal-mode');
+            promptSettingModalLabel.textContent = modalMode === 'edit' ? '編輯 Prompt 內容' : '新增 Prompt 內容';
+        });
+    });
+</script>
+
+<% end %>
+

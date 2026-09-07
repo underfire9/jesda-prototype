@@ -1,0 +1,122 @@
+/* design by fire */
+
+@import "widgets/font";
+@import "vendor/font-awesome";
+@import "widgets/variables";
+
+.todo-modal {
+	max-width: 1320px;
+	padding-left: .75rem;
+	padding-right: .75rem;
+	.modal-body {
+		background-color: #f8f9fa;
+	}
+	.todo-container {
+		display: flex;
+		gap: 1.5rem;
+	}
+	.todo-cloumn {
+		width: calc(33.333% - 1rem);
+	}
+	.todo-list-wrapper {
+		min-height: 80%;
+	}
+	.cloumn-head {
+		//border-bottom: 2px solid #e7e7e7;
+		margin-bottom: 1rem;
+		padding-bottom: .25rem;
+		font-size: 1.125rem;
+	}
+
+	.unprocessed-cloumn {
+		.cloumn-head {
+			border-color: #ff4d00;
+		}
+		.todo-card {
+			border-color: #ff4d00;
+		}
+	}
+	.processing-cloumn {
+		.cloumn-head {
+			border-color: #0048ff;
+		}
+		.todo-card {
+			border-color: #0048ff;
+		}
+	}
+	.done-cloumn {
+		.cloumn-head {
+			border-color: #008000;
+		}
+		.todo-card {
+			border-color: #008000;
+		}
+	}
+	.todo-card {
+		background-color: #ffffff;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+		border-left: 3px solid #e7e7e7;
+		border-radius: .125rem;
+		padding: 1rem;
+		cursor: grab;
+		&:active {
+			cursor: grabbing;
+		}
+		& + .todo-card {
+			margin-top: .75rem;
+		}
+	}
+	.todo-title {
+		margin-bottom: .5rem;
+		font-size: 1.063rem;
+		font-weight: 500;
+		color: #27242d;
+	}
+	.todo-desc {
+		margin-bottom: .5rem;
+		color: #6c757d;
+		font-size: 0.875rem;
+	}
+	.todo-action {
+		text-align: end;
+		.btn-action {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: none;
+			border-radius: 20rem;
+			padding: 0;
+			width: 32px;
+			height: 32px;
+		}
+		a.btn-action {
+			background-color: #333436;
+			color: #ffffff;
+			&:hover {
+				background-color: #316bdf;
+			}
+		}
+		button.btn-action {
+			color: #616369;
+			&:hover {
+				color: #316bdf;
+			}
+		}
+	}
+}
+
+
+
+/* `Responsive
+-----------------------------------------------------------------------------*/
+
+@media (max-width: 991px) {
+	.todo-container {
+		flex-direction: column;
+		.todo-cloumn {
+			width: 100%;
+		}
+	}
+}
+
+

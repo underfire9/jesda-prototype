@@ -1,0 +1,315 @@
+<!-- template: 任務清單 -->
+
+<% content_for :replace_css do %>
+    <link rel="stylesheet" media="all" href="../stylesheets/todo.css" />
+<% end %>
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#todoListModal">
+    任務清單
+</button>
+</div>
+
+<div class="modal fade" id="todoListModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="todoListModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable todo-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="todoListModalLabel">任務清單</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="todo-container">
+                    <div class="todo-cloumn unprocessed-cloumn" data-status="unprocessed">
+                        <div class="cloumn-head">未處理</div>
+                        <div class="todo-list-wrapper">
+                            <div class="todo-card system-card">
+                                <div class="todo-title">學生姓名申請件審查</div>
+                                <div class="todo-desc">執行時間：YYYY-MM-DD HH:mm~YYYY-MM-DD HH:mm</div>
+                                <div class="todo-action">
+                                    <a href="#" class="btn btn-action" title="前往"><i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                            <% (1..10).map do |i| %>
+                            <div class="todo-card">
+                                <div class="todo-title">自定義任務標題</div>
+                                <div class="todo-action">
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-action" title="任務操作" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-cog"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <button type="button" class="dropdown-item btn-open-todo-edit">編輯</button>
+                                            <button type="button" class="dropdown-item">複製</button>
+                                            <button type="button" class="dropdown-item">刪除</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="todo-cloumn processing-cloumn" data-status="processing">
+                        <div class="cloumn-head">處理中</div>
+                        <div class="todo-list-wrapper">
+                            <div class="todo-card">
+                                <div class="todo-title">自定義任務標題</div>
+                                <div class="todo-desc">自定義任務說明內容，要限字元長度，現在測試可以多長才不會覺得尷尬。</div>
+                                <div class="todo-action">
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-action" title="任務操作" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-cog"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <button type="button" class="dropdown-item btn-open-todo-edit">編輯</button>
+                                            <button type="button" class="dropdown-item">複製</button>
+                                            <button type="button" class="dropdown-item">刪除</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="todo-card system-card">
+                                <div class="todo-title">某個系統任務測試</div>
+                                <div class="todo-desc">YYYY-MM-DD HH:mm~YYYY-MM-DD HH:mm</div>
+                                <div class="todo-action">
+                                    <a href="#" class="btn btn-action" title="前往"><i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="todo-cloumn done-cloumn" data-status="done">
+                        <div class="cloumn-head">結案</div>
+                        <div class="todo-list-wrapper">
+                            <div class="todo-card">
+                                <div class="todo-title">自定義任務標題</div>
+                                <div class="todo-desc">自定義任務說明內容，要限字元長度，現在測試可以多長才不會覺得尷尬。</div>
+                                <div class="todo-action">
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-action" title="任務操作" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-cog"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <button type="button" class="dropdown-item btn-open-todo-edit">編輯</button>
+                                            <button type="button" class="dropdown-item">複製</button>
+                                            <button type="button" class="dropdown-item">刪除</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary btn-open-todo-edit">新增任務</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="todoEditModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="todoEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="todoEditModalLabel">編輯任務</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="todo-title" class="form-label">任務名稱</label>
+                    <input type="text" class="form-control" id="todo-title" placeholder="請輸入任務名稱">
+                </div>
+                <div class="mb-3">
+                    <label for="todo-desc" class="form-label">任務說明</label>
+                    <input type="text" class="form-control" id="todo-desc" placeholder="請輸入任務說明">
+                </div>
+                <div class="mb-3">
+                    <label for="todo-status" class="form-label">狀態</label>
+                    <select class="form-select w-auto" id="todo-status">
+                        <option value="unprocessed">未處理</option>
+                        <option value="processing">處理中</option>
+                        <option value="done">結案</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary btn-save-todo">儲存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% content_for :js do %>
+<!-- Drag and Drop functionality for todo cards -->
+<script>
+    (function () {
+        const lists = Array.from(document.querySelectorAll('.todo-modal .todo-list-wrapper'));
+
+        if (!lists.length) return;
+
+        const cards = Array.from(document.querySelectorAll('.todo-modal .todo-card'));
+        const dropIndicator = document.createElement('div');
+        dropIndicator.className = 'todo-card drop-indicator';
+
+        let draggingCard = null;
+
+        const clearActionDragBlock = function () {
+            const blockedCards = document.querySelectorAll('.todo-modal .todo-card[data-drag-block="1"]');
+
+            blockedCards.forEach(function (card) {
+                card.removeAttribute('data-drag-block');
+            });
+        };
+
+        const getDragAfterElement = function (list, cursorY) {
+            const candidates = Array.from(list.querySelectorAll('.todo-card:not(.is-dragging):not(.drop-indicator)'));
+            let closestOffset = Number.NEGATIVE_INFINITY;
+            let closestElement = null;
+
+            candidates.forEach(function (candidate) {
+                const box = candidate.getBoundingClientRect();
+                const offset = cursorY - (box.top + box.height / 2);
+
+                if (offset < 0 && offset > closestOffset) {
+                    closestOffset = offset;
+                    closestElement = candidate;
+                }
+            });
+
+            return closestElement;
+        };
+
+        document.addEventListener('pointerdown', function (event) {
+            const actionArea = event.target.closest('.todo-action');
+
+            if (!actionArea) return;
+
+            const card = actionArea.closest('.todo-card');
+
+            if (!card) return;
+
+            card.setAttribute('data-drag-block', '1');
+        });
+
+        document.addEventListener('pointerup', clearActionDragBlock);
+        document.addEventListener('click', clearActionDragBlock);
+
+        cards.forEach(function (card) {
+            card.setAttribute('draggable', 'true');
+
+            card.addEventListener('dragstart', function (event) {
+                if (card.getAttribute('data-drag-block') === '1' || event.target.closest('.btn-action')) {
+                    event.preventDefault();
+                    return;
+                }
+
+                draggingCard = card;
+                card.classList.add('is-dragging');
+                event.dataTransfer.effectAllowed = 'move';
+                event.dataTransfer.setData('text/plain', 'todo-card');
+            });
+
+            card.addEventListener('dragend', function () {
+                card.classList.remove('is-dragging');
+                draggingCard = null;
+                dropIndicator.remove();
+
+                lists.forEach(function (list) {
+                    list.classList.remove('is-drag-over');
+                });
+
+                clearActionDragBlock();
+            });
+        });
+
+        lists.forEach(function (list) {
+            list.addEventListener('dragover', function (event) {
+                if (!draggingCard) return;
+
+                event.preventDefault();
+
+                const afterElement = getDragAfterElement(list, event.clientY);
+
+                if (!afterElement) {
+                    list.appendChild(dropIndicator);
+                    return;
+                }
+
+                list.insertBefore(dropIndicator, afterElement);
+            });
+
+            list.addEventListener('dragenter', function (event) {
+                if (!draggingCard) return;
+
+                event.preventDefault();
+                list.classList.add('is-drag-over');
+            });
+
+            list.addEventListener('dragleave', function (event) {
+                if (!list.contains(event.relatedTarget)) {
+                    list.classList.remove('is-drag-over');
+                }
+            });
+
+            list.addEventListener('drop', function (event) {
+                if (!draggingCard) return;
+
+                event.preventDefault();
+
+                if (dropIndicator.parentNode === list) {
+                    list.insertBefore(draggingCard, dropIndicator);
+                } else {
+                    list.appendChild(draggingCard);
+                }
+
+                dropIndicator.remove();
+                list.classList.remove('is-drag-over');
+            });
+        });
+
+            const todoListModalEl = document.getElementById('todoListModal');
+            const todoEditModalEl = document.getElementById('todoEditModal');
+
+            if (!todoListModalEl || !todoEditModalEl || !window.bootstrap || !window.bootstrap.Modal) return;
+
+            const todoListModal = window.bootstrap.Modal.getOrCreateInstance(todoListModalEl);
+            const todoEditModal = window.bootstrap.Modal.getOrCreateInstance(todoEditModalEl);
+            const openEditButtons = Array.from(document.querySelectorAll('.btn-open-todo-edit'));
+            const saveButton = todoEditModalEl.querySelector('.btn-save-todo');
+
+            let openingEditModal = false;
+            let shouldReturnToListModal = false;
+
+            openEditButtons.forEach(function (button) {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    openingEditModal = true;
+                    shouldReturnToListModal = true;
+                    todoListModal.hide();
+                });
+            });
+
+            todoListModalEl.addEventListener('hidden.bs.modal', function () {
+                if (!openingEditModal) return;
+
+                openingEditModal = false;
+                todoEditModal.show();
+            });
+
+            if (saveButton) {
+                saveButton.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    todoEditModal.hide();
+                });
+            }
+
+            todoEditModalEl.addEventListener('hidden.bs.modal', function () {
+                if (!shouldReturnToListModal) return;
+
+                shouldReturnToListModal = false;
+                todoListModal.show();
+            });
+    })();
+</script>
+<% end %>

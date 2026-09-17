@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="toolbar-select2">
-                        <select id="toolbarStudentName" class="form-select" data-placeholder="搜尋姓名">
+                        <select id="toolbarStudentName" class="form-select" data-placeholder="搜尋姓名、學號">
                             <option value=""></option>
                         </select>
                     </div>
@@ -785,35 +785,42 @@
     var $toolbarStudentName = $('#toolbarStudentName');
 
     if ($toolbarStudentName.length) {
-        var studentNames = [];
+        var studentOptions = [];
+        var studentCards = Array.from(document.querySelectorAll('.maintain-student-list .student-card'));
 
-        document.querySelectorAll('.maintain-student-list .student-card .item-name').forEach(function(nameNode) {
-            var nameText = nameNode.textContent.trim();
-            if (nameText) studentNames.push(nameText);
+        studentCards.forEach(function(card, index) {
+            var cardNameNode = card.querySelector('.item-name');
+            var cardName = cardNameNode ? cardNameNode.textContent.trim() : '';
+            if (!cardName) return;
+
+            var studentId = String(index + 1).padStart(7, '0');
+            card.dataset.studentId = studentId;
+
+            studentOptions.push({
+                id: studentId,
+                text: cardName + '（' + studentId + '）',
+                name: cardName,
+                studentId: studentId
+            });
         });
 
-        var uniqueNames = Array.from(new Set(studentNames)).sort(function(a, b) {
-            return a.localeCompare(b, 'zh-Hant-TW');
-        });
-
-        uniqueNames.forEach(function(name) {
-            $toolbarStudentName.append(new Option(name, name, false, false));
+        studentOptions.forEach(function(option) {
+            $toolbarStudentName.append(new Option(option.text, option.id, false, false));
         });
 
         $toolbarStudentName.select2({
             theme: 'bootstrap-5',
-            width: '160px',
-            placeholder: '搜尋姓名',
+            width: '192px',
+            placeholder: '搜尋姓名、學號',
             allowClear: true,
         });
 
         $toolbarStudentName.on('change', function() {
-            var selectedName = this.value;
+            var selectedStudentId = this.value;
 
-            document.querySelectorAll('.maintain-student-list .student-card').forEach(function(card) {
-                var cardNameNode = card.querySelector('.item-name');
-                var cardName = cardNameNode ? cardNameNode.textContent.trim() : '';
-                var isMatch = !selectedName || cardName === selectedName;
+            studentCards.forEach(function(card) {
+                var cardStudentId = card.dataset.studentId || '';
+                var isMatch = !selectedStudentId || cardStudentId === selectedStudentId;
                 card.style.display = isMatch ? '' : 'none';
             });
         });

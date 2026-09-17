@@ -8,40 +8,60 @@
 <% end %>
 
 <div class="container">
-    <div class="page-content width-small mx-auto">
+    <div class="page-content">
+        <div class="content-header">
+            <div class="hd-start">
+                <p class="mb-0"><i class="fas fa-info-circle"></i> 僅於實習機構提供機票時上傳即可。單一機構僅上傳一份PDF檔案，重複上傳將覆蓋前次檔案。</p>
+            </div>
+            <div class="hd-end">
+                <div class="content-select">
+                    <select id="contentSearch" class="form-select" data-placeholder="搜尋機構名稱">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="airfare-upload-wrapper">
-            <% (1..2).map do |i| %>
+            <% internship_countries = ["美國", "日本", "德國", "新加坡", "澳洲"] %>
+            <% destination_regions = ["加利福尼亞州(南部)", "關東地區", "巴伐利亞邦", "中區", "維多利亞州"] %>
+            <% industry_types = ["運輸物流", "金融科技", "生技醫療", "觀光餐旅", "半導體製造"] %>
+            <% internship_fields = ["語文、教育", "資訊工程", "行銷企劃", "機械工程", "公共衛生"] %>
+            <% (1..7).map do |i| %>
+            <% country = internship_countries.sample %>
+            <% region = destination_regions.sample %>
+            <% industry = industry_types.sample %>
+            <% field = internship_fields.sample %>
             <div class="airfare-upload-item">
                 <div class="status-value">未上傳</div>
                 <div class="row general-info">
                     <div class="col-12">
                         <div class="form-group">
                             <label class="form-label">機構名稱</label>
-                            <div class="info-value org-name"><%= lorem_words(10) %></div>
+                            <div class="info-value org-name"><%= lorem_words(8) %></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">實習國別</label>
-                            <div class="info-value">美國</div>
+                            <div class="info-value"><%= country %></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">前往區域</label>
-                            <div class="info-value">加利福尼亞州(南部)</div>
+                            <div class="info-value"><%= region %></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">產業別</label>
-                            <div class="info-value">運輸物流</div>
+                            <div class="info-value"><%= industry %></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">實習領域別</label>
-                            <div class="info-value">語文、教育</div>
+                            <div class="info-value"><%= field %></div>
                         </div>
                     </div>
                 </div>
@@ -97,10 +117,49 @@
 
 
 
+
 <% content_for :js do %>
+<script src="../javascripts/select2.min.js"></script>
+
 <script>
 (function () {
-    const uploadItems = document.querySelectorAll('.airfare-upload-item');
+    const uploadItems = Array.from(document.querySelectorAll('.airfare-upload-item'));
+    const $contentSearch = $('#contentSearch');
+
+    if ($contentSearch.length && typeof $.fn.select2 === 'function') {
+        const organizationNames = [];
+
+        uploadItems.forEach((item) => {
+            const orgNameNode = item.querySelector('.org-name');
+            const organizationName = orgNameNode ? orgNameNode.textContent.trim() : '';
+
+            if (!organizationName) return;
+
+            item.dataset.organizationName = organizationName;
+            organizationNames.push(organizationName);
+        });
+
+        Array.from(new Set(organizationNames)).sort((a, b) => a.localeCompare(b, 'zh-Hant-TW')).forEach((name) => {
+            $contentSearch.append(new Option(name, name, false, false));
+        });
+
+        $contentSearch.select2({
+            theme: 'bootstrap-5',
+            width: '240px',
+            placeholder: $contentSearch.data('placeholder'),
+            allowClear: true,
+        });
+
+        $contentSearch.on('change', function () {
+            const selectedName = this.value;
+
+            uploadItems.forEach((item) => {
+                const itemName = item.dataset.organizationName || '';
+                const isMatch = !selectedName || itemName === selectedName;
+                item.style.display = isMatch ? '' : 'none';
+            });
+        });
+    }
 
     function formatSize(bytes) {
         if (bytes >= 1024 * 1024) return (bytes / 1024 / 1024).toFixed(1) + ' MB';

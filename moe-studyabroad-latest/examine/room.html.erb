@@ -35,6 +35,8 @@
                 <div class="bar-start">
                     <div class="inner-start">
                         <div class="toolbar-status statu-review">審查中</div>
+
+                        <!-- 勾選「主委」時才會出現此按鈕，檢視三位審查委員分數，否則僅能檢視委員本人輸入之成績確認 -->
                         <div class="btn-clip">
                             <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalScoreSheet">審查評分總表</button>
                         </div>
@@ -55,7 +57,7 @@
                 </div>
                 <div class="bar-end">
                     <div class="btn-clip">
-                        <button class="btn btn-lg btn-submit">審查完成送出</button>
+                        <button class="btn btn-lg btn-submit" data-bs-toggle="modal" data-bs-target="#submitConfirmModal">審查完成送出</button>
                     </div>
                 </div>
             </div>
@@ -286,6 +288,25 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn" data-bs-dismiss="modal"><i class="fas fa-times me-2"></i> 關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Submit Confirm -->
+<div class="modal fade" id="submitConfirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-body-secondary">
+                <h1 class="modal-title fs-5">確認送出審查結果</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-5 text-center">
+                送出後將鎖定本次審查內容，是否確認送出？
+            </div>
+            <div class="modal-footer bg-body-secondary">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='room-lock.html'">確認送出</button>
             </div>
         </div>
     </div>

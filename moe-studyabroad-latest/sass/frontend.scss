@@ -178,6 +178,15 @@ section.section + section.section {
 	&.no-border {
 		border-top: none;
 	}
+	&.content-top {
+		border-top: none;
+		margin: 0 0 1rem;
+		padding: 0 0 3rem;
+		.backhome, .action-end {
+			top: auto;
+			bottom: 3rem;
+		}
+	}
 }
 
 .content {
@@ -186,6 +195,32 @@ section.section + section.section {
 
 .page-content {
 	position: relative;
+}
+
+.content-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2rem;
+	margin-bottom: calc(2rem + 1vw);
+	.content-select {
+		position: relative;
+		.form-control {
+			padding-right: 2.5rem; // to make space for the search button
+		}
+	}
+	.btn-search {
+		border: none;
+		box-shadow: none;
+		color: #a7adac;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		&:hover {
+			color: #484c4b;
+		}
+	}
 }
 
 .padding-content {
@@ -3104,6 +3139,7 @@ $secondBorderColor: #e7ebea;
 .plan-manager-company {
 	.wrapper-hd {
 		display: flex;
+		align-items: center;
 		margin-bottom: calc(2.5rem + 1vw);
 		.hd-info {
 			display: flex;
@@ -3629,15 +3665,22 @@ $secondBorderColor: #e7ebea;
 	}
 }
 
+.airfare-upload-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+}
+
 .airfare-upload-item {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	border-radius: .75rem;
 	background-color: #fff;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 	padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+	width: calc(33.3333% - 1.3333rem);
 	position: relative;
-	& + .airfare-upload-item {
-		margin-top: calc(1.5rem + 1vw);
-	}
 	&::before,
 	&::after {
 		content: "";
@@ -3741,6 +3784,15 @@ $secondBorderColor: #e7ebea;
 		.student-card {
 			width: calc(50% - 1rem);
 		}
+	}
+	.form-action.content-top {
+		display: none;
+	}
+	.airfare-upload-wrapper {
+		gap: 2rem;
+	}
+	.airfare-upload-item {
+		width: calc(50% - 1rem);
 	}
 }
 
@@ -4145,6 +4197,14 @@ $secondBorderColor: #e7ebea;
 				width: 100%;
 			}
 		}
+	}
+	.airfare-upload-wrapper {
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.airfare-upload-item {
+		width: 100%;
 	}
 }
 

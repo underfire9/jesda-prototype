@@ -9076,6 +9076,9 @@ article.article .article-body {
   position: relative;
   counter-increment: guidelines;
 }
+.service-wrapper .guidelines-item:first-child {
+  width: 100%;
+}
 .service-wrapper .guidelines-link {
   --r: 14px;
   /* radius */
@@ -9146,7 +9149,6 @@ article.article .article-body {
   position: relative;
 }
 .service-wrapper .content-list .content-link::before {
-  content: "";
   background: #2e2f2f;
   border-radius: 50%;
   width: 4px;
@@ -9728,11 +9730,20 @@ article.article .article-body {
 
 .survey-controller {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   gap: 0.75rem;
   margin-top: 3rem;
   padding-top: 3rem;
   border-top: 1px solid #edf1ef;
+}
+
+.survey-submit-note {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  color: #657572;
+  font-size: .875rem;
+  line-height: 1.4;
 }
 
 .survey-controller .btn {
@@ -9743,6 +9754,10 @@ article.article .article-body {
   margin-left: auto;
   background: #2f8066;
   border-color: #2f8066;
+}
+
+.survey-submit-note:not([hidden]) + .js-survey-next {
+  margin-left: 0;
 }
 
 .survey-controller .js-survey-next:hover,
@@ -10058,6 +10073,18 @@ article.article .article-body {
   }
 }
 @media (max-width: 767px) {
+  .survey-controller {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .survey-submit-note {
+    order: 2;
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
   .brochure-list .brochure-item {
     display: block;
   }

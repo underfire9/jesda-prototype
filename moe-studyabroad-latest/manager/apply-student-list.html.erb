@@ -9,6 +9,15 @@
 
 <div class="container">
     <div class="page-content">
+        <div class="form-action content-top">
+            <span class="backhome">
+                <a href="apply.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
+            </span>
+            <button type="submit" class="btn btn-lg btn-rounded btn-primary px-5">儲存</button>
+        </div>
         <div class="manager-student-wrapper">
             <div class="wrapper-start">
                 <div class="info-section">
@@ -185,6 +194,7 @@
         </div>
         <div class="manager-student-wrapper desktop-only">
             <h4 class="info-section-title">選送學生名單</h4>
+            <p class="text-muted mb-4">可於頁面編輯預計出返國日期、預計實習期程、預計教育部…，及學校配合款。完成編輯後請點選儲存按鈕。</p>
             <div class="data-wrapper">
                 <div class="mb-2">
                     <button class="btn btn-white btn-add" data-bs-toggle="modal" data-bs-target="#addStudentModal"><i class="fas fa-plus"></i> 新增本校學生</button>
@@ -209,10 +219,13 @@
                                     <th scope="col">預計實習期程</th>
                                     <th class="text-end" scope="col">預計向教育部<br>申請補助經費</th>
                                     <th class="text-end" scope="col">預計學校可<br>提出之配合款</th>
+                                    <th scope="col">系所 / 級別</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <% countries = ["奧地利", "比利時", "加拿大", "丹麥", "芬蘭", "法國"] %>
+                                <% departments = ["資訊與圖書館學系", "生物科技學系", "外國語文學系", "工業工程學系", "教育學系", "企業管理學系"] %>
+                                <% grades = ["大學二年級", "大學三年級", "大學四年級", "碩士一年級", "碩士二年級", "博士一年級"] %>
                                 <% institutions = ["維也納大學", "SIMPTIER Co., Ltd.（株式会社 シンプティア；中譯：森普提亞有限公司）", "多倫多大學", "哥本哈根大學", "赫爾辛基大學", "巴黎文理研究大學"] %>
                                 <% (1..6).each do |i| %>
                                 <tr>
@@ -236,6 +249,10 @@
                                     </td>
                                     <td class="text-end fw-bold js-budget-edit" role="button" tabindex="0" title="點擊編輯經費"><%= (120000 + (i * 5000)).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
                                     <td class="text-end fw-bold js-budget-edit" role="button" tabindex="0" title="點擊編輯經費"><%= (30000 + (i * 3000)).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
+                                    <td>
+                                        <div><%= departments[i - 1] %></div>
+                                        <div class="text-secondary"><%= grades[i - 1] %></div>
+                                    </td>
                                 </tr>
                                 <% end %>
                             </tbody>

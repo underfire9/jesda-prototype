@@ -8360,6 +8360,15 @@ section.section + section.section {
 .form-action.no-border {
   border-top: none;
 }
+.form-action.content-top {
+  border-top: none;
+  margin: 0 0 1rem;
+  padding: 0 0 3rem;
+}
+.form-action.content-top .backhome, .form-action.content-top .action-end {
+  top: auto;
+  bottom: 3rem;
+}
 
 .content {
   padding: calc(2.5rem + 2.5vw) 0 calc(4rem + 2.5vw);
@@ -8367,6 +8376,32 @@ section.section + section.section {
 
 .page-content {
   position: relative;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: calc(2rem + 1vw);
+}
+.content-header .content-select {
+  position: relative;
+}
+.content-header .content-select .form-control {
+  padding-right: 2.5rem;
+}
+.content-header .btn-search {
+  border: none;
+  box-shadow: none;
+  color: #a7adac;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.content-header .btn-search:hover {
+  color: #484c4b;
 }
 
 .padding-content {
@@ -11272,6 +11307,7 @@ section.section + section.section {
 
 .plan-manager-company .wrapper-hd {
   display: flex;
+  align-items: center;
   margin-bottom: calc(2.5rem + 1vw);
 }
 .plan-manager-company .wrapper-hd .hd-info {
@@ -11766,15 +11802,22 @@ section.section + section.section {
   color: #495f64;
 }
 
+.airfare-upload-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
 .airfare-upload-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: .75rem;
   background-color: #fff;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+  width: calc(33.3333% - 1.3333rem);
   position: relative;
-}
-.airfare-upload-item + .airfare-upload-item {
-  margin-top: calc(1.5rem + 1vw);
 }
 .airfare-upload-item::before, .airfare-upload-item::after {
   content: "";
@@ -11875,6 +11918,18 @@ section.section + section.section {
   }
 
   .maintain-student-list.three-column-layout .student-card {
+    width: calc(50% - 1rem);
+  }
+
+  .form-action.content-top {
+    display: none;
+  }
+
+  .airfare-upload-wrapper {
+    gap: 2rem;
+  }
+
+  .airfare-upload-item {
     width: calc(50% - 1rem);
   }
 }
@@ -12286,6 +12341,15 @@ section.section + section.section {
     flex-direction: column;
   }
   .manager-student-wrapper .manager-student-list .student-card {
+    width: 100%;
+  }
+
+  .airfare-upload-wrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .airfare-upload-item {
     width: 100%;
   }
 }

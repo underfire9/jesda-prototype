@@ -5,6 +5,21 @@
 
 <div class="container">
     <div class="page-content">
+        <div class="content-header">
+            <div class="hd-start">
+                <a href="apply.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
+            </div>
+            <div class="hd-end">
+                <div class="content-select">
+                    <select id="contentSearch" class="form-select" data-placeholder="搜尋主持人、計畫名稱">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="subplan-list-wrapper">
             <% (1..5).map do |i| %>
             <div class="subplan-card">
@@ -92,9 +107,85 @@
 </div>
 
 <% content_for :js do %>
+<script src="../javascripts/select2.min.js"></script>
+
 <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+
+<script>
+    ( function() {
+        var $contentSearch = $( '#contentSearch' );
+        var subplanCards = Array.from( document.querySelectorAll( '.subplan-list-wrapper .subplan-card' ) );
+
+        if ( !$contentSearch.length || typeof $.fn.select2 !== 'function' || !subplanCards.length ) {
+            return;
+        }
+
+        var searchOptions = [];
+
+        subplanCards.forEach( function( card ) {
+            var planName = '';
+            var managerName = '';
+
+            card.querySelectorAll( '.item-info' ).forEach( function( item ) {
+                var labelNode = item.querySelector( '.item-label' );
+                var valueNode = item.querySelector( '.item-value' );
+                var label = labelNode ? labelNode.textContent.trim() : '';
+                var value = valueNode ? valueNode.textContent.trim() : '';
+
+                if ( label === '計畫名稱' ) {
+                    planName = value;
+                }
+
+                if ( label === '計畫主持人' ) {
+                    managerName = value;
+                }
+            } );
+
+            if ( !managerName && !planName ) {
+                return;
+            }
+
+            var searchKey = managerName + '|' + planName;
+            card.dataset.searchKey = searchKey;
+
+            searchOptions.push( {
+                value: searchKey,
+                label: managerName + '(' + planName + ')'
+            } );
+        } );
+
+        var uniqueOptions = Array.from( new Map( searchOptions.map( function( option ) {
+            return [option.value, option];
+        } ) ).values() );
+
+        uniqueOptions.forEach( function( option ) {
+            $contentSearch.append( new Option( option.label, option.value, false, false ) );
+        } );
+
+        $contentSearch.select2( {
+            theme: 'bootstrap-5',
+            width: '240px',
+            placeholder: $contentSearch.data( 'placeholder' ),
+            allowClear: true
+        } );
+
+        $contentSearch.on( 'change', function() {
+            var selectedValue = this.value;
+
+            subplanCards.forEach( function( card ) {
+                if ( !selectedValue ) {
+                    card.style.display = '';
+                    return;
+                }
+
+                var cardSearchKey = card.dataset.searchKey || '';
+                card.style.display = cardSearchKey === selectedValue ? '' : 'none';
+            } );
+        } );
+    } )();
 </script>
 <% end %>
 

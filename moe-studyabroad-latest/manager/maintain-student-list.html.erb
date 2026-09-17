@@ -9,6 +9,15 @@
 
 <div class="container">
     <div class="page-content">
+        <div class="form-action content-top">
+            <span class="backhome">
+                <a href="apply.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
+            </span>
+            <button type="submit" class="btn btn-lg btn-rounded btn-primary px-5">儲存</button>
+        </div>
         <div class="manager-student-wrapper">
             <div class="wrapper-start">
                 <div class="info-section">
@@ -184,6 +193,7 @@
         </div>
         <div class="manager-student-wrapper desktop-only">
             <h4 class="info-section-title">選送學生名單</h4>
+            <p class="text-muted mb-4">可於頁面編輯預計出返國日期、預計實習期程、預計教育部…，及學校配合款。完成編輯後請點選儲存按鈕。</p>
             <div class="data-wrapper">
 
                 <div class="table-student-wrapper">
@@ -196,13 +206,13 @@
                                     <th scope="col">狀態</th>
                                     <th scope="col">姓名</th>
                                     <!--th scope="col">學號</th-->
-                                    <th scope="col">系所 / 級別</th>
                                     <th scope="col">實習國別</th>
                                     <th scope="col">實習機構</th>
                                     <th scope="col">實際出返國日期</th>
                                     <th scope="col">實習期程</th>
                                     <th class="text-end" scope="col">實際教育部<br>補助經費</th>
                                     <th class="text-end" scope="col">實際學校<br>配合款</th>
+                                    <th scope="col">系所 / 級別</th>
                                     <th scope="col">學生心得</th>
                                 </tr>
                             </thead>
@@ -220,10 +230,6 @@
                                     <td>正常</td>
                                     <td><%= zh_lorem_name %></td>
                                     <!--td>B13302240<%= i %></td-->
-                                    <td>
-                                        <div><%= departments[i - 1] %></div>
-                                        <div class="text-secondary"><%= grades[i - 1] %></div>
-                                    </td>
                                     <td><%= countries[i - 1] %></td>
                                     <td class="row-institutions"><%= institutions[i - 1] %></td>
                                     <td>
@@ -236,6 +242,10 @@
                                     </td>
                                     <td class="text-end fw-bold"><%= (120000 + (i * 5000)).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
                                     <td class="text-end fw-bold"><%= (30000 + (i * 3000)).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
+                                    <td>
+                                        <div><%= departments[i - 1] %></div>
+                                        <div class="text-secondary"><%= grades[i - 1] %></div>
+                                    </td>
                                     <td class="text-center"><a href="#" class="btn btn-dl-pdf" title="下載 PDF"><i class="far fa-file-pdf"></i></a></td>
                                 </tr>
                                 <% end %>

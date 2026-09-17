@@ -158,7 +158,7 @@
                                 <span class="survey-upload-icon"><i class="fas fa-file-pdf"></i></span>
                                 <div>
                                     <h4 id="survey-upload-title">上傳研修心得報告</h4>
-                                    <p class="js-survey-upload-message">完成問卷，請上傳您的研修心得 PDF 檔案。</p>
+                                    <p class="js-survey-upload-message">完成問卷，請上傳您的研修心得 PDF 檔案。如須替換檔案請直接重新上傳，將覆蓋前一次檔案。</p>
                                 </div>
                             </div>
                             <div class="survey-dropzone js-survey-dropzone" role="button" tabindex="0" aria-label="選擇或拖曳 PDF 檔案上傳">
@@ -184,6 +184,7 @@
                     </div>
                     <div class="survey-controller">
                         <button type="button" class="btn btn-outline-secondary js-survey-prev" hidden><i class="fas fa-chevron-left me-2"></i>上一步</button>
+                        <span class="survey-submit-note js-survey-submit-note" hidden>此為匿名問卷，送出後無法再抽回</span>
                         <button type="button" class="btn btn-primary js-survey-next">下一步<i class="fas fa-chevron-right ms-2"></i></button>
                     </div>
                 </div>
@@ -191,8 +192,6 @@
         </div>
     </div>
 </div>
-
-
 
 <% content_for :js do %>
 <script>
@@ -219,6 +218,7 @@
         const pdfName = document.querySelector('.js-survey-pdf-name')
         const pdfFrame = document.querySelector('.js-survey-pdf-frame')
         const submitAction = document.querySelector('.js-survey-submit-action')
+        const submitNote = document.querySelector('.js-survey-submit-note')
         const submitButton = document.querySelector('.js-survey-submit')
         const uploadMessage = document.querySelector('.js-survey-upload-message')
         let currentIndex = 0
@@ -235,6 +235,7 @@
             surveyController.hidden = currentIndex >= formStepCount
             previousButton.hidden = currentIndex === 0 || currentIndex >= formStepCount
             nextButton.hidden = currentIndex >= formStepCount
+            if (submitNote) submitNote.hidden = currentIndex !== formStepCount - 1
             nextButton.innerHTML = currentIndex === formStepCount - 1
                 ? '確定送出<i class="fas fa-paper-plane ms-2"></i>'
                 : '下一步<i class="fas fa-chevron-right ms-2"></i>'

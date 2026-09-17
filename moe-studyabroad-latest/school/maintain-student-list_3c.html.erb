@@ -5,6 +5,21 @@
 
 <div class="container">
     <div class="page-content">
+        <div class="content-header">
+            <div class="hd-start">
+                <a href="apply.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
+            </div>
+            <div class="hd-end">
+                <div class="content-select">
+                    <select id="contentSearch" class="form-select" data-placeholder="搜尋姓名">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="maintain-student-wrapper d-block">
             <p class="main-fas-info"><i class="fas fa-info-circle fs-5 me-1"></i> 此階段所有異動皆會納入紀錄，請謹慎操作！</p>
             <div class="maintain-student-list three-column-layout">
@@ -738,9 +753,9 @@
         placeholder: $( this ).data( 'placeholder' ),
     } );
 
-    var $toolbarStudentName = $('#toolbarStudentName');
+    var $contentSearch = $('#contentSearch');
 
-    if ($toolbarStudentName.length) {
+    if ($contentSearch.length) {
         var studentNames = [];
 
         document.querySelectorAll('.maintain-student-list .student-card .item-name').forEach(function(nameNode) {
@@ -753,17 +768,17 @@
         });
 
         uniqueNames.forEach(function(name) {
-            $toolbarStudentName.append(new Option(name, name, false, false));
+            $contentSearch.append(new Option(name, name, false, false));
         });
 
-        $toolbarStudentName.select2({
+        $contentSearch.select2({
             theme: 'bootstrap-5',
             width: '160px',
-            placeholder: '搜尋姓名',
+            placeholder: $contentSearch.data('placeholder'),
             allowClear: true,
         });
 
-        $toolbarStudentName.on('change', function() {
+        $contentSearch.on('change', function() {
             var selectedName = this.value;
 
             document.querySelectorAll('.maintain-student-list .student-card').forEach(function(card) {

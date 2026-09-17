@@ -5,6 +5,21 @@
 
 <div class="container">
     <div class="page-content">
+        <div class="content-header">
+            <div class="hd-start">
+                <a href="maintain.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
+            </div>
+            <div class="hd-end">
+                <div class="content-select">
+                    <select id="contentSearch" class="form-select" data-placeholder="搜尋主持人、計畫名稱">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="company-modify-wrapper">
             <div class="company-card">
                 <div class="card-bd">
@@ -536,6 +551,9 @@
 </div>
 
 <% content_for :js do %>
+<!-- Select2 -->
+<script src="../javascripts/select2.min.js"></script>
+
 <!-- 編號 -->
 <script>
     document.querySelectorAll('.company-modify-wrapper .company-card').forEach(function(card, i) {
@@ -547,6 +565,82 @@
 <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+
+<!-- 搜尋 Select2 -->
+<script>
+    ( function() {
+        var $contentSearch = $( '#contentSearch' );
+        var companyCards = Array.from( document.querySelectorAll( '.company-modify-wrapper .company-card' ) );
+
+        if ( !$contentSearch.length || typeof $.fn.select2 !== 'function' || !companyCards.length ) {
+            return;
+        }
+
+        var searchOptions = [];
+
+        companyCards.forEach( function( card ) {
+            var infoItems = card.querySelectorAll( '.item-info' );
+            var planName = '';
+            var managerName = '';
+
+            infoItems.forEach( function( info ) {
+                var labelNode = info.querySelector( '.item-label' );
+                var valueNode = info.querySelector( '.item-value' );
+                var label = labelNode ? labelNode.textContent.trim() : '';
+                var value = valueNode ? valueNode.textContent.trim() : '';
+
+                if ( label === '計畫名稱' ) {
+                    planName = value;
+                }
+
+                if ( label === '計畫主持人' ) {
+                    managerName = value;
+                }
+            } );
+
+            if ( !managerName && !planName ) {
+                return;
+            }
+
+            var searchKey = managerName + '|' + planName;
+            card.dataset.searchKey = searchKey;
+
+            searchOptions.push( {
+                value: searchKey,
+                label: managerName + '(' + planName + ')'
+            } );
+        } );
+
+        var uniqueOptions = Array.from( new Map( searchOptions.map( function( option ) {
+            return [option.value, option];
+        } ) ).values() );
+
+        uniqueOptions.forEach( function( option ) {
+            $contentSearch.append( new Option( option.label, option.value, false, false ) );
+        } );
+
+        $contentSearch.select2( {
+            theme: 'bootstrap-5',
+            width: '240px',
+            placeholder: $contentSearch.data( 'placeholder' ),
+            allowClear: true
+        } );
+
+        $contentSearch.on( 'change', function() {
+            var selectedValue = this.value;
+
+            companyCards.forEach( function( card ) {
+                if ( !selectedValue ) {
+                    card.style.display = '';
+                    return;
+                }
+
+                var cardSearchKey = card.dataset.searchKey || '';
+                card.style.display = cardSearchKey === selectedValue ? '' : 'none';
+            } );
+        } );
+    } )();
 </script>
 
 <!-- 實習國別/區域連動 -->

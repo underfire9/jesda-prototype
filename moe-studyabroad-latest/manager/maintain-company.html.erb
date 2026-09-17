@@ -9,6 +9,21 @@
 
 <div class="container">
     <div class="page-content">
+        <div class="content-header">
+            <div class="hd-start">
+                <a href="apply.html" class="btn btn-lg btn-light">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <span class="md-none">回上一頁</span>
+                </a>
+            </div>
+            <div class="hd-end">
+                <div class="content-select">
+                    <select id="contentSearch" class="form-select" data-placeholder="搜尋機構名稱">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="plan-manager-company">
             <div class="maintain-company-list">
                 <% (1..3).map do |i| %>
@@ -250,7 +265,57 @@
 <script src="../javascripts/select2.min.js"></script>
 <script>
     ( function() {
+        var $contentSearch = $( '#contentSearch' );
         var $internshipCountry = $( '#internshipCountry' );
+        var companyCards = Array.from( document.querySelectorAll( '.maintain-company-list .company-card' ) );
+
+        if ( $contentSearch.length && typeof $.fn.select2 === 'function' ) {
+            var organizationOptions = [];
+
+            companyCards.forEach( function( card ) {
+                var labelNodes = card.querySelectorAll( '.item-label' );
+                var organizationName = '';
+
+                labelNodes.forEach( function( labelNode ) {
+                    if ( labelNode.textContent.trim() !== '機構名稱' ) {
+                        return;
+                    }
+
+                    var valueNode = labelNode.parentElement ? labelNode.parentElement.querySelector( '.item-value' ) : null;
+                    organizationName = valueNode ? valueNode.textContent.trim() : '';
+                } );
+
+                if ( !organizationName ) {
+                    return;
+                }
+
+                card.dataset.organizationName = organizationName;
+                organizationOptions.push( organizationName );
+            } );
+
+            Array.from( new Set( organizationOptions ) ).sort( function( a, b ) {
+                return a.localeCompare( b, 'zh-Hant-TW' );
+            } ).forEach( function( name ) {
+                $contentSearch.append( new Option( name, name, false, false ) );
+            } );
+
+            $contentSearch.select2( {
+                theme: 'bootstrap-5',
+                width: '240px',
+                placeholder: $contentSearch.data( 'placeholder' ),
+                allowClear: true
+            } );
+
+            $contentSearch.on( 'change', function() {
+                var selectedName = this.value;
+
+                companyCards.forEach( function( card ) {
+                    var cardOrganizationName = card.dataset.organizationName || '';
+                    var isMatch = !selectedName || cardOrganizationName === selectedName;
+                    card.style.display = isMatch ? '' : 'none';
+                } );
+            } );
+        }
 
         if ( !$internshipCountry.length || typeof $.fn.select2 !== 'function' ) {
             return;

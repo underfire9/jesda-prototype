@@ -41,6 +41,16 @@
             <div class="wrapper-end">
                 <h4 class="info-section-title">計畫主持人名單</h4>
                 <p class="main-fas-info"><i class="fas fa-info-circle text-black-50 me-1"></i> 填寫共同主持人資料，並選定至多一位計畫主持人填寫預計出國相關資訊</p>
+                <div class="page-toolbar justify-content-end">
+                    <div class="btn-group">
+                        <button class="btn btn-rounded btn-light btn-export">
+                            <span>匯出</span> EXCEL
+                        </button>
+                        <button class="btn btn-rounded btn-light btn-export">
+                            <span>匯出</span> ODS
+                        </button>
+                    </div>
+                </div>
                 <div class="manager-plan-wrapper">
 
                     <!-- 有共同主持人時只可以有一位出國，出國選項可以同時 "否" 但不可以同時 "是" -->
@@ -193,25 +203,25 @@
         </div>
         <div class="manager-student-wrapper desktop-only">
             <h4 class="info-section-title">選送學生名單</h4>
-            <p class="text-muted mb-4">可於頁面編輯預計出返國日期、預計實習期程、預計教育部…，及學校配合款。完成編輯後請點選儲存按鈕。</p>
+            <p class="text-muted mb-4">可於灰底處編輯資料，完成編輯後請點選儲存按鈕</p>
             <div class="data-wrapper">
 
                 <div class="table-student-wrapper">
                     <div class="table-responsive">
                         <table class="table table-hover align-middle manager-table-student text-nowrap">
-                            <thead>
+                            <thead class="text-center">
                                 <tr>
                                     <th scope="col"></th>
-                                    <th class="text-center" scope="col"></th>
+                                    <th scope="col"></th>
                                     <th scope="col">狀態</th>
                                     <th scope="col">姓名</th>
                                     <!--th scope="col">學號</th-->
                                     <th scope="col">實習國別</th>
                                     <th scope="col">實習機構</th>
-                                    <th scope="col">實際出返國日期</th>
-                                    <th scope="col">實習期程</th>
-                                    <th class="text-end" scope="col">實際教育部<br>補助經費</th>
-                                    <th class="text-end" scope="col">實際學校<br>配合款</th>
+                                    <th class="bg-body-secondary" scope="col">實際出返國日期</th>
+                                    <th class="bg-body-secondary" scope="col">實習期程</th>
+                                    <th class="bg-body-secondary" scope="col">實際教育部<br>補助經費</th>
+                                    <th class="bg-body-secondary" scope="col">實際學校<br>配合款</th>
                                     <th scope="col">系所 / 級別</th>
                                     <th scope="col">學生心得</th>
                                 </tr>
@@ -232,16 +242,16 @@
                                     <!--td>B13302240<%= i %></td-->
                                     <td><%= countries[i - 1] %></td>
                                     <td class="row-institutions"><%= institutions[i - 1] %></td>
-                                    <td>
+                                    <td class="bg-body-secondary js-date-edit" role="button" tabindex="0" title="點擊編輯日期" data-start="2026-09-0<%= i %>" data-end="2027-02-2<%= i %>">
                                         <div>2026/09/0<%= i %> <span class="text-black-50">至</span></div>
                                         <div>2027/02/2<%= i %></div>
                                     </td>
-                                    <td>
+                                    <td class="bg-body-secondary js-date-edit" role="button" tabindex="0" title="點擊編輯日期" data-start="2026-09-1<%= i %>" data-end="2027-01-3<%= i %>">
                                         <div>2026/09/1<%= i %> <span class="text-black-50">至</span></div>
                                         <div>2027/01/3<%= i %></div>
                                     </td>
-                                    <td class="text-end fw-bold"><%= (120000 + (i * 5000)).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
-                                    <td class="text-end fw-bold"><%= (30000 + (i * 3000)).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
+                                    <td class="bg-body-secondary text-end fw-bold js-budget-edit" role="button" tabindex="0" title="點擊編輯經費"><%= (120000 + (i * 5000)).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
+                                    <td class="bg-body-secondary text-end fw-bold js-budget-edit" role="button" tabindex="0" title="點擊編輯經費"><%= (30000 + (i * 3000)).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
                                     <td>
                                         <div><%= departments[i - 1] %></div>
                                         <div class="text-secondary"><%= grades[i - 1] %></div>
@@ -739,6 +749,182 @@
 </div>
 
 <% content_for :js do %>
+<!-- 學生表格可編輯欄位 -->
+<script>
+    (function() {
+        var table = document.querySelector('.manager-table-student');
+        if (!table) return;
+
+        var tbody = table.querySelector('tbody');
+        if (!tbody) return;
+
+        function editBudget(cell) {
+            if (cell.querySelector('input')) return;
+
+            var originalValue = cell.textContent.trim();
+            var input = document.createElement('input');
+            var isFinished = false;
+
+            input.type = 'text';
+            input.inputMode = 'numeric';
+            input.className = 'form-control form-control-sm text-end fw-bold';
+            input.value = originalValue.replace(/[^\d]/g, '');
+            input.setAttribute('aria-label', '編輯經費');
+
+            function finishEdit(save) {
+                var value;
+
+                if (isFinished) return;
+                isFinished = true;
+                value = save ? input.value.replace(/[^\d]/g, '') : originalValue.replace(/[^\d]/g, '');
+                cell.textContent = value ? Number(value).toLocaleString('en-US') : '';
+            }
+
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    finishEdit(true);
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    finishEdit(false);
+                }
+            });
+
+            input.addEventListener('blur', function() {
+                finishEdit(true);
+            });
+
+            cell.textContent = '';
+            cell.appendChild(input);
+            input.focus();
+            input.select();
+        }
+
+        function formatDisplayDate(iso) {
+            if (!iso) return '';
+            var parts = iso.split('-');
+            if (parts.length !== 3) return iso;
+            return parts[0] + '/' + parts[1] + '/' + parts[2];
+        }
+
+        function renderDateDisplay(cell, start, end) {
+            cell.dataset.start = start;
+            cell.dataset.end = end;
+            cell.innerHTML = '';
+
+            var display = document.createElement('div');
+            display.className = 'js-date-display';
+
+            var line1 = document.createElement('div');
+            var startSpan = document.createElement('span');
+            startSpan.className = 'js-date-start';
+            startSpan.textContent = formatDisplayDate(start);
+            line1.appendChild(startSpan);
+            line1.insertAdjacentHTML('beforeend', ' <span class="text-black-50">至</span>');
+
+            var line2 = document.createElement('div');
+            line2.className = 'js-date-end';
+            line2.textContent = formatDisplayDate(end);
+
+            display.appendChild(line1);
+            display.appendChild(line2);
+            cell.appendChild(display);
+        }
+
+        function editDate(cell) {
+            if (cell.querySelector('.js-date-editor')) return;
+
+            var originalStart = cell.dataset.start || '';
+            var originalEnd = cell.dataset.end || '';
+            var isFinished = false;
+
+            var editor = document.createElement('div');
+            editor.className = 'js-date-editor';
+
+            var startInput = document.createElement('input');
+            startInput.type = 'date';
+            startInput.className = 'form-control form-control-sm';
+            startInput.value = originalStart;
+            startInput.setAttribute('aria-label', '開始日期');
+
+            var endInput = document.createElement('input');
+            endInput.type = 'date';
+            endInput.className = 'form-control form-control-sm';
+            endInput.value = originalEnd;
+            endInput.setAttribute('aria-label', '結束日期');
+
+            editor.appendChild(startInput);
+            editor.appendChild(endInput);
+
+            function finishEdit(save) {
+                if (isFinished) return;
+                isFinished = true;
+
+                var start = save ? startInput.value : originalStart;
+                var end = save ? endInput.value : originalEnd;
+
+                renderDateDisplay(cell, start, end);
+            }
+
+            function handleEditorBlur() {
+                setTimeout(function() {
+                    if (!editor.contains(document.activeElement)) {
+                        finishEdit(true);
+                    }
+                }, 150);
+            }
+
+            function handleEditorKeydown(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    finishEdit(true);
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    finishEdit(false);
+                }
+            }
+
+            editor.addEventListener('focusout', handleEditorBlur);
+            startInput.addEventListener('keydown', handleEditorKeydown);
+            endInput.addEventListener('keydown', handleEditorKeydown);
+
+            cell.textContent = '';
+            cell.appendChild(editor);
+            startInput.focus();
+        }
+
+        tbody.addEventListener('click', function(e) {
+            var budgetCell = e.target.closest('.js-budget-edit');
+            var dateCell = e.target.closest('.js-date-edit');
+
+            if (budgetCell && tbody.contains(budgetCell)) {
+                editBudget(budgetCell);
+                return;
+            }
+
+            if (dateCell && tbody.contains(dateCell)) {
+                editDate(dateCell);
+            }
+        });
+
+        tbody.addEventListener('keydown', function(e) {
+            var budgetCell = e.target.closest('.js-budget-edit');
+            var dateCell = e.target.closest('.js-date-edit');
+
+            if (budgetCell && e.target === budgetCell && (e.key === 'Enter' || e.key === ' ')) {
+                e.preventDefault();
+                editBudget(budgetCell);
+                return;
+            }
+
+            if (dateCell && e.target === dateCell && (e.key === 'Enter' || e.key === ' ')) {
+                e.preventDefault();
+                editDate(dateCell);
+            }
+        });
+    })();
+</script>
+
 <!-- 編號 -->
 <script>
     document.querySelectorAll('.manager-student-list .student-card').forEach(function(card, i) {

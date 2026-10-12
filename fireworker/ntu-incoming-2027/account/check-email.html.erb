@@ -1,0 +1,28 @@
+<% content_for :title do %>Check your email<% end %>
+<% content_for :title_key do %>checkEmail.title<% end %>
+<% content_for :page do %>checkEmail<% end %>
+
+<div class="container auth">
+  <section class="auth__card" aria-labelledby="page-title">
+    <span class="auth__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+    </span>
+    <div class="auth__head">
+      <h1 class="auth__title" id="page-title" data-i18n="checkEmail.title">Check your email</h1>
+      <!-- 寄送的 Email 由上一頁帶入（?email=） -->
+      <p class="auth__lead auth__lead--ink" data-i18n="checkEmail.lead" data-i18n-vars='{"email":"angela.winson@uw.edu"}' data-sent-email>We sent a link to angela.winson@uw.edu. Open it to verify your email and set your password.</p>
+      <p class="auth__lead" data-i18n="checkEmail.expiry">The link can be used once and expires in 24 hours.</p>
+    </div>
+
+    <div class="notice notice--small">
+      <p class="notice__body" data-i18n="checkEmail.noEmail">No email? Check your spam folder, or wait a minute before sending it again.</p>
+    </div>
+
+    <!-- 重新寄送冷卻 60 秒 -->
+    <button type="button" class="btn btn--block" data-resend="60" data-i18n="checkEmail.resend">Resend email</button>
+
+    <p class="auth__center">
+      <a class="link" href="/account/login.html" data-i18n="common.backLogin">Back to log in</a>
+    </p>
+  </section>
+</div>

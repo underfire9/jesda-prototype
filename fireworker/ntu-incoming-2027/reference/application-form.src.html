@@ -1,0 +1,866 @@
+<title>NTU OIA Application Form</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600&display=swap">
+<style>
+/* Layout: quiet institutional masthead → 5-step track → sticky section index + 12-col form → sticky action bar → ink footer.
+   One accent only: the brick red of the OIA bell mark. */
+:root{
+  --paper:#F6F5F3; --surface:#FFFFFF; --ink:#1F1C1A; --muted:#6C6560; --faint:#958D87;
+  --line:#E3DFDB; --line-strong:#CBC5BF;
+  --brick:#8B362C; --brick-ink:#FFFFFF; --brick-soft:#F5EAE7; --brick-line:#E2C4BE;
+  --act:#1F5A73; --act-hover:#174759; --act-ink:#FFFFFF; --act-soft:#EAF2F5; --act-line:#B8D3DE;
+  --danger:#C0261B; --danger-ink:#FFFFFF; --danger-soft:#FDEEEC; --danger-line:#F2C2BD;
+  --ok:#2F6B4F; --ok-soft:#E6F0EA; --warn:#9A5B12;
+  --foot-bg:#1D1A19; --foot-ink:#ECE6E1; --foot-muted:#A69D96; --foot-line:#36302D; --foot-mark:#C7836F;
+  --shadow:0 1px 2px rgba(40,25,20,.05),0 8px 24px -12px rgba(40,25,20,.12);
+  --f-display:"Newsreader","Noto Serif TC",Georgia,"Times New Roman",serif;
+  --f-body:"IBM Plex Sans","Noto Sans TC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r:6px; --maxw:1280px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#131110; --surface:#1B1918; --ink:#EDE8E3; --muted:#A79F98; --faint:#7F7771;
+  --line:#2D2926; --line-strong:#423C38;
+  --brick:#E08D7E; --brick-ink:#1B1110; --brick-soft:#33201C; --brick-line:#5A332C;
+  --act:#8CC2D6; --act-hover:#A8D3E2; --act-ink:#0F1C22; --act-soft:#16262D; --act-line:#2C4A56;
+  --danger:#FF8F84; --danger-ink:#2A0E0B; --danger-soft:#3A1A17; --danger-line:#6B2C26;
+  --ok:#7CC3A0; --ok-soft:#1C2D25; --warn:#E0A55A;
+  --foot-bg:#0C0B0A; --foot-ink:#E6E0DB; --foot-muted:#8F8780; --foot-line:#26221F; --foot-mark:#C7836F;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#131110; --surface:#1B1918; --ink:#EDE8E3; --muted:#A79F98; --faint:#7F7771;
+  --line:#2D2926; --line-strong:#423C38;
+  --brick:#E08D7E; --brick-ink:#1B1110; --brick-soft:#33201C; --brick-line:#5A332C;
+  --act:#8CC2D6; --act-hover:#A8D3E2; --act-ink:#0F1C22; --act-soft:#16262D; --act-line:#2C4A56;
+  --danger:#FF8F84; --danger-ink:#2A0E0B; --danger-soft:#3A1A17; --danger-line:#6B2C26;
+  --ok:#7CC3A0; --ok-soft:#1C2D25; --warn:#E0A55A;
+  --foot-bg:#0C0B0A; --foot-ink:#E6E0DB; --foot-muted:#8F8780; --foot-line:#26221F; --foot-mark:#C7836F;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+html[lang="zh-Hant"] body{--f-body:"Noto Sans TC","IBM Plex Sans",system-ui,sans-serif;--f-display:"Noto Serif TC","Newsreader",serif;letter-spacing:.01em}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--act);outline-offset:2px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
+@media (max-width:640px){.wrap{padding-inline:16px}}
+.mark{display:inline-block;background:var(--brick);-webkit-mask:url(__LOGO__) center/contain no-repeat;mask:url(__LOGO__) center/contain no-repeat}
+
+/* ── Header ─────────────────────────────── */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.head-row{display:flex;align-items:center;gap:20px;height:68px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;min-width:0}
+.brand .mark{width:40px;height:40px;flex:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand-uni{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.brand-office{font-family:var(--f-display);font-size:19px;font-weight:500;white-space:nowrap;letter-spacing:-.005em}
+.head-sys{padding-left:20px;border-left:1px solid var(--line);font-size:13px;color:var(--muted);line-height:1.3;max-width:15em}
+.head-tools{margin-left:auto;display:flex;align-items:center;gap:10px}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--paper)}
+.lang button{white-space:nowrap;border:0;background:none;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:500;color:var(--muted);cursor:pointer;line-height:1.4}
+.lang button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.user{position:relative}
+.user-btn{display:flex;align-items:center;gap:10px;border:1px solid transparent;background:none;border-radius:999px;padding:4px 10px 4px 4px;cursor:pointer}
+.user-btn:hover{border-color:var(--line)}
+.avatar{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--brick-soft);color:var(--brick);font-size:12px;font-weight:600;letter-spacing:.04em}
+.user-name{font-size:13.5px}
+.user-name small{display:block;font-size:11px;color:var(--faint);line-height:1.2}
+.chev{width:10px;height:10px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg) translateY(-3px)}
+.menu{position:absolute;right:0;top:calc(100% + 8px);min-width:200px;background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:6px;display:grid}
+.menu a,.menu button{display:block;text-align:left;padding:9px 12px;border-radius:5px;text-decoration:none;font-size:14px;border:0;background:none;cursor:pointer}
+.menu a:hover,.menu button:hover{background:var(--paper)}
+.menu hr{border:0;border-top:1px solid var(--line);margin:4px 0}
+@media (max-width:900px){.head-sys{display:none}}
+@media (max-width:640px){
+  .head-row{height:60px;gap:12px}
+  .brand .mark{width:34px;height:34px}
+  .brand-office{font-size:16px}
+  .brand-uni{font-size:9.5px;letter-spacing:.12em}
+  .user-name,.user-btn .chev{display:none}
+  .user-btn{padding:0}
+}
+@media (max-width:640px){.brand-office{white-space:normal;font-size:15px;line-height:1.12}.brand-text{max-width:12em}.lang button{padding:4px 9px}}
+@media (max-width:420px){.brand-uni{display:none}}
+
+/* ── Masthead + steps ───────────────────── */
+.masthead{padding-block:40px 28px}
+.eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--act);font-weight:600}
+.masthead h1{font-family:var(--f-display);font-weight:500;font-size:clamp(30px,4.4vw,44px);line-height:1.08;letter-spacing:-.015em;margin:10px 0 14px;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;color:var(--muted);font-size:13px}
+.meta .mono{font-family:var(--f-mono);font-size:12.5px;color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-strong);border-radius:999px;padding:2px 10px;font-size:12px;font-weight:500;color:var(--ink)}
+.chip i{width:6px;height:6px;border-radius:50%;background:var(--warn)}
+
+.steps{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line)}
+.steps li{position:relative;padding:14px 12px 0 0;font-size:13px;color:var(--faint);min-width:0}
+.steps li::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:transparent}
+.steps .n{display:block;font-family:var(--f-mono);font-size:11.5px;margin-bottom:3px}
+.steps .t{display:block;line-height:1.3}
+.steps li.current{color:var(--ink)}
+.steps li.current::before{background:var(--act)}
+.steps li.current .n{color:var(--act)}
+.steps-compact{display:none}
+@media (max-width:760px){
+  .steps{display:none}
+  .steps-compact{display:block;margin-top:22px}
+  .steps-compact .row{display:flex;justify-content:space-between;font-size:13px;gap:12px}
+  .steps-compact .row b{font-weight:600}
+  .steps-compact .bar{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:8px}
+  .steps-compact .bar span{height:3px;border-radius:2px;background:var(--line)}
+  .steps-compact .bar span.on{background:var(--act)}
+  .masthead{padding-block:28px 20px}
+}
+
+/* ── Body layout ───────────────────────── */
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px;padding-block:8px 48px;align-items:start}
+.toc{position:sticky;top:100px}
+.toc h2{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);font-weight:600;margin:0 0 12px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.toc a{display:flex;align-items:center;gap:10px;padding:7px 10px;margin-left:-10px;border-radius:5px;text-decoration:none;font-size:13.5px;color:var(--muted)}
+.toc a:hover{background:var(--surface);color:var(--ink)}
+.toc a.active{color:var(--ink);background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.dot{width:16px;height:16px;flex:none;border-radius:50%;border:1.5px solid var(--line-strong);display:grid;place-items:center}
+.dot.done{border-color:var(--ok);background:var(--ok)}
+.dot.done::after{content:"";width:6px;height:3.5px;border-left:1.5px solid var(--surface);border-bottom:1.5px solid var(--surface);transform:rotate(-45deg) translate(0,-1px)}
+.dot.part{border-color:var(--act);background:conic-gradient(var(--act) 0 50%,transparent 50% 100%)}
+.toc .help{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.5}
+.toc .help b{display:block;color:var(--ink);font-weight:500;margin-bottom:2px}
+@media (max-width:960px){.layout{grid-template-columns:minmax(0,1fr)}.toc{display:none}}
+
+/* ── Form ──────────────────────────────── */
+form{display:grid;gap:20px;min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px 32px 32px;min-width:0}
+@media (max-width:640px){.card{padding:20px 18px 24px;border-radius:8px}}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.sec-head h2{font-family:var(--f-display);font-weight:500;font-size:23px;line-height:1.2;margin:0;letter-spacing:-.005em;text-wrap:balance}
+.sec-head p{margin:4px 0 0;color:var(--muted);font-size:13.5px;max-width:60ch}
+.sec-head .req-note{font-size:12px;color:var(--faint);white-space:nowrap}
+.sub{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:30px 0 16px;display:flex;align-items:center;gap:12px}
+.sub::after{content:"";flex:1;height:1px;background:var(--line)}
+.sub:first-of-type{margin-top:0}
+.sub b{color:var(--act);font-family:var(--f-mono);font-weight:500;letter-spacing:0}
+
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px 20px}
+.c-12{grid-column:span 12}.c-8{grid-column:span 8}.c-6{grid-column:span 6}.c-4{grid-column:span 4}.c-3{grid-column:span 3}
+@media (max-width:720px){.c-8,.c-6,.c-4{grid-column:span 12}.c-3{grid-column:span 6}}
+
+.field{display:grid;gap:7px;min-width:0;align-content:start}
+.label{font-size:13.5px;font-weight:500;display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.label .req{color:var(--act)}
+.label .opt{font-weight:400;color:var(--faint);font-size:12px}
+.hint{font-size:12.5px;color:var(--muted);line-height:1.45}
+.err{font-size:12.5px;color:var(--danger);display:flex;gap:6px;align-items:flex-start}
+.err::before{content:"!";flex:none;width:15px;height:15px;border-radius:50%;background:var(--danger);color:var(--danger-ink);font-size:10px;font-weight:700;display:grid;place-items:center;margin-top:2px}
+.input,.select{width:100%;height:44px;padding:0 13px;border:1px solid var(--line-strong);border-radius:var(--r);background:var(--surface);transition:border-color .15s,box-shadow .15s}
+.input:hover,.select:hover{border-color:var(--faint)}
+.input:focus,.select:focus{outline:0;border-color:var(--act);box-shadow:0 0 0 3px color-mix(in srgb,var(--act) 18%,transparent)}
+.input[aria-invalid="true"]{border-color:var(--danger);background:var(--danger-soft)}
+.input::placeholder{color:var(--faint)}
+.select{appearance:none;-webkit-appearance:none;padding-right:34px;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 17px) 19px,calc(100% - 12px) 19px;background-size:5px 5px;background-repeat:no-repeat}
+.select:disabled,.input:disabled{opacity:.55;cursor:not-allowed}
+.inline{display:grid;gap:8px}
+.dob{grid-template-columns:1.3fr 1fr 1fr}
+.phone{grid-template-columns:118px minmax(0,1fr)}
+
+/* segmented radios */
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border:1px solid var(--line-strong);border-radius:var(--r);cursor:pointer;font-size:14px;background:var(--surface)}
+.seg span::before{content:"";width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line-strong);flex:none}
+.seg input:checked+span{border-color:var(--act);background:var(--act-soft)}
+.seg input:checked+span::before{border:4.5px solid var(--act)}
+.seg input:focus-visible+span{outline:2px solid var(--act);outline-offset:2px}
+
+/* category cards */
+
+/* combobox */
+.combo{position:relative}
+.combo .input{padding-right:36px}
+.combo::after{content:"";position:absolute;right:15px;top:16px;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);pointer-events:none}
+.listbox{position:absolute;z-index:20;left:0;right:0;top:calc(100% + 4px);max-height:248px;overflow:auto;margin:0;padding:4px;list-style:none;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;box-shadow:var(--shadow)}
+.listbox li{padding:8px 10px;border-radius:5px;cursor:pointer;font-size:14px;display:flex;justify-content:space-between;gap:12px}
+.listbox li small{color:var(--faint);font-size:12px;white-space:nowrap}
+.listbox li[aria-selected="true"],.listbox li:hover{background:var(--act-soft)}
+.listbox .empty{color:var(--faint);cursor:default}
+.listbox .empty:hover{background:none}
+
+/* advisor */
+.search-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+th{text-align:left;font-weight:500;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 14px;background:var(--paper);border-bottom:1px solid var(--line)}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+td .mono{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+caption{caption-side:bottom;text-align:left;padding:8px 14px;font-size:12px;color:var(--faint);border-top:1px solid var(--line)}
+.picked{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--act-line);background:var(--act-soft);border-radius:8px;flex-wrap:wrap}
+.picked .ini{width:40px;height:40px;border-radius:50%;background:var(--surface);color:var(--act);display:grid;place-items:center;font-family:var(--f-display);font-size:16px;flex:none}
+.picked .who{min-width:0;flex:1}
+.picked .who b{font-weight:500;display:block}
+.picked .who span{font-size:12.5px;color:var(--muted)}
+
+/* period */
+.period{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto;gap:12px;align-items:end}
+.period .arrow{height:44px;display:grid;place-items:center;color:var(--faint)}
+.days{height:44px;display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:var(--r);background:var(--paper);border:1px dashed var(--line-strong);font-size:13px;color:var(--muted);white-space:nowrap}
+.days b{font-family:var(--f-mono);font-size:15px;font-weight:500;color:var(--ink)}
+.days.bad{border-color:var(--danger);color:var(--danger)}
+.days.bad b{color:var(--danger)}
+.meter{height:4px;border-radius:2px;background:var(--line);overflow:hidden;margin-top:10px}
+.meter span{display:block;height:100%;background:var(--ok);transition:width .3s}
+.meter.bad span{background:var(--danger)}
+@media (max-width:720px){.period{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.period .arrow{display:none}.days{grid-column:span 2}}
+
+.pref{display:grid;gap:10px}
+.pref-row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;align-items:center}
+.pref-row .k{font-size:13px;color:var(--muted)}
+.pref-row .k b{font-family:var(--f-mono);color:var(--ink);font-weight:500;margin-right:4px}
+@media (max-width:480px){.pref-row{grid-template-columns:minmax(0,1fr);gap:6px}}
+.reveal{margin-top:20px;padding:20px;border-radius:8px;background:var(--paper);border:1px solid var(--line)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 20px;border-radius:var(--r);font-weight:500;font-size:14px;cursor:pointer;border:1px solid var(--line-strong);background:var(--surface);white-space:nowrap;text-decoration:none}
+.btn:hover{border-color:var(--faint)}
+.btn.primary{background:var(--act);border-color:var(--act);color:var(--act-ink)}
+.btn.primary:hover{background:var(--act-hover);border-color:var(--act-hover)}
+.btn.ghost{border-color:transparent;background:none;color:var(--muted)}
+.btn.ghost:hover{color:var(--ink);background:var(--paper)}
+.btn.sm{height:34px;padding:0 12px;font-size:13px}
+
+.actions{position:sticky;bottom:0;z-index:25;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.actions .wrap{display:flex;align-items:center;gap:12px;min-height:68px;padding-block:12px}
+.saved{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:8px;margin-right:auto}
+.saved i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+@media (max-width:640px){
+  .actions .wrap{flex-wrap:wrap;gap:8px}
+  .saved{width:100%;margin:0}
+  .actions .btn{flex:1}
+  .actions .btn.ghost{display:none}
+}
+
+.summary{border:1px solid var(--danger-line);background:var(--danger-soft);border-radius:10px;padding:16px 20px}
+.summary b{font-weight:600;color:var(--danger)}
+.summary ul{margin:8px 0 0;padding-left:18px;font-size:13.5px}
+.summary a{color:var(--danger)}
+
+.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:8px;font-size:13.5px;opacity:0;transition:opacity .2s,transform .2s;z-index:50;pointer-events:none;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ── Footer ────────────────────────────── */
+.site-foot{background:var(--foot-bg);color:var(--foot-ink);position:relative;overflow:hidden}
+.site-foot .wrap{position:relative;padding-block:56px 28px}
+.foot-mark-bg{position:absolute;right:-60px;top:-30px;width:340px;height:340px;background:var(--foot-mark);opacity:.07;-webkit-mask:url(__LOGO__) center/contain no-repeat;mask:url(__LOGO__) center/contain no-repeat;pointer-events:none}
+.foot-top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:40px}
+.foot-brand{display:flex;gap:16px;align-items:flex-start}
+.foot-brand .mark{width:52px;height:52px;background:var(--foot-mark);flex:none}
+.foot-brand .en{font-family:var(--f-display);font-size:21px;line-height:1.2;font-weight:500}
+.foot-brand .zh{font-family:"Noto Serif TC",serif;font-size:14px;color:var(--foot-muted);margin-top:4px;letter-spacing:.08em}
+.foot-col h3{margin:0 0 12px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--foot-muted);font-weight:500}
+.foot-col p{margin:0;font-size:13.5px;line-height:1.7}
+.foot-col .zh-addr{color:var(--foot-muted);font-size:12.5px;margin-top:6px}
+.kv{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 10px;font-size:13.5px;margin:0}
+.kv dt{color:var(--foot-muted);font-family:var(--f-mono);font-size:11.5px;padding-top:2px}
+.kv dd{margin:0;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.foot-bottom{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;margin-top:48px;padding-top:20px;border-top:1px solid var(--foot-line);font-size:12px;color:var(--foot-muted)}
+.foot-bottom a{text-decoration:none}
+.foot-bottom a:hover{color:var(--foot-ink)}
+@media (max-width:860px){.foot-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.foot-brand{grid-column:span 2}}
+@media (max-width:560px){.foot-top{grid-template-columns:minmax(0,1fr);gap:28px}.foot-brand{grid-column:auto}.site-foot .wrap{padding-block:40px 24px}}
+
+
+/* ---------- rev 2 · 16px (1rem) base, 48px controls ---------- */
+body{font-size:16px;line-height:1.6}
+.head-sys{font-size:14px}
+/* rev 3 · header scale: university < office < system name */
+.brand-uni{font-size:12px;letter-spacing:.125em}
+.brand-office{font-size:18px;line-height:1.3}
+.head-sys{font-family:var(--f-body);font-size:17px;font-weight:500;color:var(--ink);line-height:1.3;max-width:none;white-space:nowrap;padding-left:24px}
+html[lang="zh-Hant"] .brand-uni{font-size:14px;letter-spacing:.06em}
+html[lang="zh-Hant"] .head-sys{font-size:18px;max-width:none}
+.user-name{font-size:14px}.user-name small{font-size:12px}
+.lang button{font-size:13px}
+.eyebrow{font-size:13px}
+.masthead h1{font-size:clamp(34px,4vw,48px)}
+.meta{font-size:14px}.meta .mono{font-size:14px}.chip{font-size:13px}
+.steps li{font-size:14px}.steps .n{font-size:13px}
+.steps-compact .row{font-size:14px}
+.toc h2{font-size:12px}.toc a{font-size:15px}.toc .help{font-size:14px}
+.card{padding:36px 40px 40px}
+@media (max-width:640px){.card{padding:24px 20px 28px}}
+.sec-head h2{font-size:28px}
+@media (max-width:640px){.sec-head h2{font-size:24px}}
+.sec-head p{font-size:16px}
+.sec-head .req-note{font-size:14px}
+.sub{font-size:13px}
+.label{font-size:16px}.label .opt{font-size:14px}
+.hint,.err{font-size:14px}
+.input,.select{height:48px;font-size:16px}
+.seg span{height:48px;font-size:16px}
+.btn{height:48px;font-size:16px;padding:0 22px}
+.btn.sm{height:38px;font-size:14px}
+.listbox li{font-size:16px}.listbox li small{font-size:13px}
+table{font-size:15px}th{font-size:12px}td .mono{font-size:13px}
+.picked .who span{font-size:14px}
+.period .arrow,.days{height:48px}.days{font-size:14px}.days b{font-size:16px}
+.pref-row .k{font-size:14px}
+.saved{font-size:14px}
+.summary ul{font-size:15px}
+.toast{font-size:15px}
+.foot-col p,.kv{font-size:15px}.foot-col .zh-addr{font-size:14px}.kv dt{font-size:12px}
+.foot-col h3{font-size:12px}
+.foot-bottom{font-size:13px}
+.input[disabled],.select[disabled]{background:var(--paper);color:var(--muted);border-color:var(--line);cursor:not-allowed;opacity:1}
+.locked{display:flex;align-items:center;gap:10px}
+.locked .lock{font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.oia-note{border-left:3px solid var(--act);background:var(--paper);border-radius:8px;padding:18px 22px;display:grid;gap:8px}
+.oia-note .tag{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--act);font-weight:600}
+.oia-note p{margin:0}
+.oia-note a{color:var(--act)}
+.check{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:16px;min-height:32px}
+.check input{width:20px;height:20px;accent-color:var(--act);margin:0}
+@media (max-width:640px){
+  .lang{padding:0;background:none;border-color:var(--line-strong)}
+  .lang button[aria-pressed="true"]{display:none}
+  .lang button{padding:6px 14px;color:var(--ink);font-size:14px}
+  .brand-office{font-size:15px}
+  .brand-text{max-width:11.5em}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="#top" aria-label="NTU Office of International Affairs">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="brand-text">
+        <span class="brand-uni" data-zh="國立臺灣大學">National Taiwan University</span>
+        <span class="brand-office" data-zh="國際事務處">Office of International Affairs</span>
+      </span>
+    </a>
+    <div class="head-sys" data-zh="來校訪問研究生申請系統">Visiting Research Students<br>Application System</div>
+    <div class="head-tools">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="lang-en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-zh" aria-pressed="false">中文</button>
+      </div>
+      <div class="user">
+        <button type="button" class="user-btn" id="user-btn" aria-haspopup="true" aria-expanded="false">
+          <span class="avatar">AW</span>
+          <span class="user-name"><span data-zh="您好，Angela Winson">Hi, Angela Winson</span><small>angela.winson@uw.edu</small></span>
+          <span class="chev" aria-hidden="true"></span>
+        </button>
+        <div class="menu" id="user-menu" hidden>
+          <a href="#top" data-zh="申請紀錄">My applications</a>
+          <a href="#top" data-zh="修改密碼">Change password</a>
+          <hr>
+          <button type="button" data-zh="登出">Log out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap masthead">
+    <div class="eyebrow" data-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</div>
+    <h1 data-zh="申請表">Application Form</h1>
+    <div class="meta">
+      <span class="chip"><i></i><span data-zh="草稿">Draft</span></span>
+      <span id="meta-saved" data-zh="上次儲存 09:12">Last saved 09:12</span>
+    </div>
+
+    <ol class="steps" aria-label="Application steps">
+      <li class="current" aria-current="step"><span class="n">01</span><span class="t" data-zh="申請表">Application Form</span></li>
+      <li><span class="n">02</span><span class="t" data-zh="入臺證申請資料">Entry Permit Information</span></li>
+      <li><span class="n">03</span><span class="t" data-zh="上傳文件">Upload Documents</span></li>
+      <li><span class="n">04</span><span class="t" data-zh="繳費">Payment</span></li>
+      <li><span class="n">05</span><span class="t" data-zh="預覽與送出">Preview &amp; Submit</span></li>
+    </ol>
+    <div class="steps-compact" aria-hidden="true">
+      <div class="row"><b data-zh="申請表">Application Form</b><span data-zh="步驟 1 / 5">Step 1 of 5</span></div>
+      <div class="bar"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <aside class="toc" aria-label="Form sections">
+      <h2 data-zh="本頁內容">On this page</h2>
+      <ol id="toc">
+        <li><a href="#s-category" data-sec="s-category"><span class="dot"></span><span data-zh="申請類別">Application Category</span></a></li>
+        <li><a href="#s-home" data-sec="s-home"><span class="dot"></span><span data-zh="原就讀學校">Home University</span></a></li>
+        <li><a href="#s-personal" data-sec="s-personal"><span class="dot"></span><span data-zh="個人資料">Personal Information</span></a></li>
+        <li><a href="#s-contact" data-sec="s-contact"><span class="dot"></span><span data-zh="聯絡資料">Contact Information</span></a></li>
+        <li><a href="#s-enroll" data-sec="s-enroll"><span class="dot"></span><span data-zh="目前就讀資料">Current Enrollment</span></a></li>
+        <li><a href="#s-ntu" data-sec="s-ntu"><span class="dot"></span><span data-zh="臺大訪問研究資料">NTU Visiting Research</span></a></li>
+        <li><a href="#s-emergency" data-sec="s-emergency"><span class="dot"></span><span data-zh="緊急聯絡人">Emergency Contact</span></a></li>
+      </ol>
+      <div class="help">
+        <b data-zh="需要協助？">Need help?</b>
+        <span data-zh="請來信國際事務處招生組">Write to the OIA admissions team at</span><br>intadmission@ntu.edu.tw
+      </div>
+    </aside>
+
+    <form id="app" novalidate>
+      <div class="summary" id="summary" hidden tabindex="-1"></div>
+
+      <!-- Category -->
+      <section class="card" id="s-category">
+        <div class="sec-head"><div><h2 data-zh="申請類別">Application Category</h2><p data-zh="申請類別由國際事務處承辦人指定。">Your programme category is assigned by the Office of International Affairs.</p></div></div>
+        <div class="grid">
+          <div class="field c-6"><label class="label" for="f-cat"><span data-zh="類別">Category</span></label>
+            <select class="select" id="f-cat" disabled aria-describedby="h-cat"><option data-zh="一般計畫申請">General Application</option></select>
+            <div class="hint" id="h-cat" data-zh="由承辦人於後台勾選，學生無法修改；如有疑問請與我們聯絡。">Set by OIA staff when your application is opened. Contact us if this looks wrong.</div></div>
+        </div>
+      </section>
+
+      <!-- Home University -->
+      <section class="card" id="s-home">
+        <div class="sec-head"><div><h2 data-zh="原就讀學校">Home University</h2><p data-zh="您目前就讀的學校。">The university where you are currently enrolled.</p></div></div>
+        <div class="oia-note" data-cms="home-university-note">
+          <span class="tag" data-zh="國際事務處說明">Note from OIA</span>
+          <p data-zh="請選擇您目前具有學籍的學校；若清單中找不到，請勾選下方選項並填寫學校完整英文名稱。">Choose the university that currently holds your student status. If it is not in the list, tick the box below and type its full English name.</p>
+          <a href="#top" data-zh="閱讀訪問學生申請須知">Read the visiting student guidelines</a>
+        </div>
+        <div class="grid" style="margin-top:24px">
+          <div class="field c-6"><label class="label" for="f-hcountry"><span data-zh="學校所在國家">I am from</span><span class="req">*</span></label>
+            <div class="combo" data-source="countries"><input class="input" id="f-hcountry" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off" required placeholder="Please select country" data-zh-ph="請選擇國家" data-value="US"></div></div>
+          <div class="field c-6"><label class="label" for="f-huni"><span data-zh="學校名稱">University</span><span class="req">*</span></label>
+            <div class="combo" data-source="universities"><input class="input" id="f-huni" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off" required placeholder="Type to search" data-zh-ph="輸入關鍵字搜尋" data-value="University of Washington"></div>
+            <div class="hint" id="h-huni" data-zh="可輸入關鍵字搜尋所選國家的學校。">Type to search universities in the country you selected.</div></div>
+          <div class="field c-12"><label class="check"><input type="checkbox" id="f-unlisted"><span data-zh="無法選擇到學校">My university is not listed</span></label></div>
+          <div class="field c-12" id="unlisted-wrap" hidden><label class="label" for="f-huni-name"><span data-zh="學校完整英文名稱">University full name (English)</span><span class="req">*</span></label>
+            <input class="input" id="f-huni-name" required placeholder="e.g. Cascadia Institute of Technology" data-zh-ph="請輸入學校完整英文名稱">
+            <div class="hint" data-zh="請填寫官方英文全名，勿使用縮寫。">Write the official English name in full, without abbreviations.</div></div>
+        </div>
+      </section>
+
+      <!-- Personal -->
+      <section class="card" id="s-personal">
+        <div class="sec-head"><div><h2 data-zh="個人資料">Personal Information</h2><p data-zh="請依護照所載資料填寫，標示 * 為必填。">Use the same spelling as your passport. Fields marked * are required.</p></div></div>
+        <div class="grid">
+          <div class="field c-6"><label class="label" for="f-family"><span data-zh="姓（護照）">Family name</span><span class="req">*</span></label><input class="input" id="f-family" required value="WINSON" autocomplete="family-name"></div>
+          <div class="field c-6"><label class="label" for="f-given"><span data-zh="名（護照）">Given name</span><span class="req">*</span></label><input class="input" id="f-given" required value="ANGELA" autocomplete="given-name"></div>
+          <div class="field c-6"><label class="label" for="f-native"><span data-zh="中文姓名">Name in Chinese</span><span class="opt" data-zh="選填">Optional</span></label><input class="input" id="f-native" placeholder="e.g. 溫安琪" data-zh-ph="例：溫安琪"></div>
+          <div class="field c-6"><label class="label" for="f-passport"><span data-zh="護照號碼">Passport number</span><span class="req">*</span></label><input class="input" id="f-passport" required value="A48219736" style="font-family:var(--f-mono)"></div>
+          <div class="field c-6"><span class="label" id="l-gender"><span data-zh="性別">Gender</span><span class="req">*</span></span>
+            <div class="seg" role="radiogroup" aria-labelledby="l-gender">
+              <label><input type="radio" name="gender" value="m" required><span data-zh="男">Male</span></label>
+              <label><input type="radio" name="gender" value="f" checked><span data-zh="女">Female</span></label>
+            </div></div>
+          <div class="field c-6"><span class="label" id="l-dob"><span data-zh="出生日期">Date of birth</span><span class="req">*</span></span>
+            <div class="inline dob" role="group" aria-labelledby="l-dob">
+              <select class="select" id="f-dob-y" aria-label="Year" required></select>
+              <select class="select" id="f-dob-m" aria-label="Month" required></select>
+              <select class="select" id="f-dob-d" aria-label="Day" required></select>
+            </div></div>
+          <div class="field c-6"><label class="label" for="f-nation"><span data-zh="國籍">Nationality</span><span class="req">*</span></label>
+            <div class="combo" data-source="countries"><input class="input" id="f-nation" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off" required placeholder="Search country" data-zh-ph="搜尋國家" data-value="US"></div></div>
+          <div class="field c-12"><label class="label" for="f-email">Email<span class="req">*</span></label>
+            <input class="input" id="f-email" type="email" required value="angela.winson@uw.edu" aria-describedby="h-email" autocomplete="email">
+            <div class="hint" id="h-email" data-zh="所有通知都會寄到這裡。結尾為 .cn、@qq.com、@126.com、@163.com 的信箱無法收到本處信件。">We send every notice here. Addresses ending in .cn, @qq.com, @126.com or @163.com cannot receive our mail.</div></div>
+        </div>
+      </section>
+
+
+      <!-- Contact -->
+      <section class="card" id="s-contact">
+        <div class="sec-head"><div><h2 data-zh="聯絡資料">Contact Information</h2><p data-zh="審查期間我們將以此資料與您聯絡。">How we reach you while your application is under review.</p></div></div>
+        <div class="grid">
+          <div class="field c-6"><label class="label" for="f-phone"><span data-zh="手機號碼">Mobile phone</span><span class="req">*</span></label>
+            <div class="inline phone"><select class="select" id="f-phone-cc" aria-label="Country code"><option>+1</option><option>+44</option><option>+49</option><option>+63</option><option>+81</option><option>+82</option><option>+84</option><option>+886</option><option>+91</option></select><input class="input" id="f-phone" type="tel" required value="206 555 0198" autocomplete="tel-national"></div></div>
+          <div class="field c-6"><label class="label" for="f-city"><span data-zh="城市">City</span><span class="req">*</span></label><input class="input" id="f-city" required value="Seattle, WA"></div>
+          <div class="field c-12"><label class="label" for="f-addr"><span data-zh="通訊地址">Mailing address</span><span class="req">*</span></label><input class="input" id="f-addr" required value="4512 Brooklyn Ave NE, Apt 6C, Seattle, WA 98105, USA" autocomplete="street-address"></div>
+        </div>
+      </section>
+
+      <!-- Enrollment -->
+      <section class="card" id="s-enroll">
+        <div class="sec-head"><div><h2 data-zh="目前就讀資料">Current Enrollment</h2><p data-zh="您目前在原就讀學校的學程。">Your current programme at your home university.</p></div></div>
+        <div class="grid">
+          <div class="field c-12"><span class="label" id="l-level"><span data-zh="就讀學制">Level of study</span><span class="req">*</span></span>
+            <div class="seg" role="radiogroup" aria-labelledby="l-level">
+              <label><input type="radio" name="level" value="ug" required><span data-zh="大學部">Undergraduate</span></label>
+              <label><input type="radio" name="level" value="ms"><span data-zh="碩士班">Graduate · Master</span></label>
+              <label><input type="radio" name="level" value="phd" checked><span data-zh="博士班">Graduate · PhD</span></label>
+            </div></div>
+          <div class="field c-6"><label class="label" for="f-hcollege"><span data-zh="學院">College / School</span><span class="req">*</span></label><input class="input" id="f-hcollege" required value="College of Engineering"></div>
+          <div class="field c-6"><label class="label" for="f-hdept"><span data-zh="系所">Department / Programme</span><span class="req">*</span></label><input class="input" id="f-hdept" required value="Civil & Environmental Engineering"></div>
+        </div>
+      </section>
+
+      <!-- NTU -->
+      <section class="card" id="s-ntu">
+        <div class="sec-head"><div><h2 data-zh="臺大訪問研究資料">NTU Visiting Research Information</h2><p data-zh="請選擇接待單位與指導教授，並填寫預計研究期間。">Choose your host department and advisor, and the dates you plan to be at NTU.</p></div></div>
+
+        <h3 class="sub"><b>A</b><span data-zh="在臺大研究">Study at NTU</span></h3>
+        <div class="grid">
+          <div class="field c-6"><label class="label" for="f-ncollege"><span data-zh="接待學院">Host college</span><span class="req">*</span></label><select class="select" id="f-ncollege" required></select></div>
+          <div class="field c-6"><label class="label" for="f-ndept"><span data-zh="接待系所">Host department / institute</span><span class="req">*</span></label><select class="select" id="f-ndept" required></select></div>
+
+          <div class="field c-12"><span class="label" id="l-adv"><span data-zh="指導教授">Faculty advisor</span><span class="req">*</span></span>
+            <div id="adv-picked" class="picked" hidden></div>
+            <div id="adv-search">
+              <div class="search-row"><input class="input" id="f-advq" placeholder="Search by name or email" data-zh-ph="以姓名或 Email 搜尋" aria-labelledby="l-adv"><button type="button" class="btn" id="adv-go" data-zh="搜尋">Search</button></div>
+              <div class="hint" style="margin-top:7px" data-zh="請先取得教授同意。搜尋結果限於所選接待學院。">Contact your advisor before applying. Results are limited to the host college above.</div>
+              <div class="tbl-wrap" id="adv-results" style="margin-top:12px" hidden></div>
+            </div></div>
+
+          <div class="field c-12"><span class="label" id="l-period"><span data-zh="預計研究期間">Research period</span><span class="req">*</span></span>
+            <div class="period" role="group" aria-labelledby="l-period">
+              <div class="field"><label class="hint" for="f-start" data-zh="開始日期">Start date</label><input class="input" type="date" id="f-start" required value="2026-02-16"></div>
+              <span class="arrow" aria-hidden="true">→</span>
+              <div class="field"><label class="hint" for="f-end" data-zh="結束日期">End date</label><input class="input" type="date" id="f-end" required value="2026-06-30"></div>
+              <div class="days" id="days" aria-live="polite"></div>
+            </div>
+            <div class="meter" id="meter"><span></span></div>
+            <div class="hint" id="period-hint" data-zh="研究期間最長 180 天。">Maximum stay is 180 days.</div></div>
+        </div>
+
+        <h3 class="sub" style="margin-top:36px"><b>B</b><span data-zh="校內住宿">On-campus Accommodation</span></h3>
+        <div class="field">
+          <span class="label" id="l-dorm"><span data-zh="是否申請校內宿舍？">Do you need on-campus accommodation?</span><span class="req">*</span></span>
+          <div class="seg" role="radiogroup" aria-labelledby="l-dorm">
+            <label><input type="radio" name="dorm" value="yes" checked required><span data-zh="是">Yes</span></label>
+            <label><input type="radio" name="dorm" value="no"><span data-zh="否，自行安排">No, I will arrange my own</span></label>
+          </div>
+        </div>
+        <div class="reveal" id="dorm-pref">
+          <div class="label" style="margin-bottom:4px" data-zh="房型偏好順序">Room type preference</div>
+          <div class="hint" style="margin-bottom:14px" data-zh="床位依先後順序分配，無法保證第一志願。">Beds are allocated in order of submission; your first choice is not guaranteed.</div>
+          <div class="pref">
+            <div class="pref-row"><span class="k"><b>1st</b><span data-zh="第一志願">choice</span></span>
+              <div class="seg"><label><input type="radio" name="pref1" value="twin" checked><span data-zh="雙人房">Twin room</span></label><label><input type="radio" name="pref1" value="quad"><span data-zh="四人房">Quad room</span></label></div></div>
+            <div class="pref-row"><span class="k"><b>2nd</b><span data-zh="第二志願">choice</span></span>
+              <div class="seg"><label><input type="radio" name="pref2" value="twin"><span data-zh="雙人房">Twin room</span></label><label><input type="radio" name="pref2" value="quad" checked><span data-zh="四人房">Quad room</span></label></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Emergency -->
+      <section class="card" id="s-emergency">
+        <div class="sec-head"><div><h2 data-zh="緊急聯絡人">Emergency Contact</h2><p data-zh="您在臺期間發生緊急狀況時，我們會聯絡此人。">The person we contact if something happens to you while you are in Taiwan.</p></div></div>
+        <div class="grid">
+          <div class="field c-6"><label class="label" for="f-ecname"><span data-zh="姓名">Full name</span><span class="req">*</span></label><input class="input" id="f-ecname" required value="Margaret Winson"></div>
+          <div class="field c-6"><label class="label" for="f-ecrel"><span data-zh="關係">Relationship</span><span class="req">*</span></label>
+            <select class="select" id="f-ecrel" required>
+              <option value="" data-zh="請選擇">Select</option>
+              <option value="parent" selected data-zh="父母">Parent</option>
+              <option value="spouse" data-zh="配偶">Spouse / partner</option>
+              <option value="sibling" data-zh="兄弟姊妹">Sibling</option>
+              <option value="other" data-zh="其他">Other</option>
+            </select></div>
+          <div class="field c-6"><label class="label" for="f-ecphone"><span data-zh="電話">Phone</span><span class="req">*</span></label><input class="input" id="f-ecphone" type="tel" required placeholder="+1 206 555 0143" data-zh-ph="含國碼，例 +1 206 555 0143"></div>
+          <div class="field c-6"><label class="label" for="f-ecemail">Email<span class="opt" data-zh="選填">Optional</span></label><input class="input" id="f-ecemail" type="email" placeholder="name@example.com"></div>
+        </div>
+      </section>
+    </form>
+  </div>
+</main>
+
+<div class="actions">
+  <div class="wrap">
+    <span class="saved" id="saved"><i></i><span id="saved-t" data-zh="已自動儲存草稿 · 09:12">Draft saved automatically · 09:12</span></span>
+    <button type="button" class="btn ghost" id="b-preview" data-zh="預覽">Preview</button>
+    <button type="button" class="btn" id="b-save" data-zh="儲存">Save</button>
+    <button type="button" class="btn primary" id="b-next" data-zh="儲存並下一步">Save &amp; Next</button>
+  </div>
+</div>
+
+<footer class="site-foot">
+  <span class="foot-mark-bg" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="mark" aria-hidden="true"></span>
+        <div><div class="en">Office of International Affairs</div><div class="zh">國立臺灣大學 國際事務處</div></div>
+      </div>
+      <div class="foot-col">
+        <h3 data-zh="地址">Address</h3>
+        <p>7F, Li-Hsien Building, No. 1, Sec. 4,<br>Roosevelt Rd., Da&rsquo;an Dist., Taipei 106319</p>
+        <p class="zh-addr">106319 臺北市大安區羅斯福路四段1號 禮賢樓7樓</p>
+      </div>
+      <div class="foot-col">
+        <h3 data-zh="聯絡">Contact</h3>
+        <dl class="kv">
+          <dt>TEL</dt><dd>+886 2 3366 2007<br>+886 2 2362 6801</dd>
+          <dt>FAX</dt><dd>+886 2 2362 0096</dd>
+          <dt>MAIL</dt><dd>intadmission@ntu.edu.tw</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2025 Office of International Affairs, National Taiwan University</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let lang='en';
+
+/* ---------- data ---------- */
+const COUNTRIES=[["AU","Australia","澳洲"],["CA","Canada","加拿大"],["CZ","Czech Republic","捷克"],["FR","France","法國"],["DE","Germany","德國"],["IN","India","印度"],["ID","Indonesia","印尼"],["IT","Italy","義大利"],["JP","Japan","日本"],["KR","Korea, Republic of","韓國"],["MY","Malaysia","馬來西亞"],["MN","Mongolia","蒙古"],["NL","Netherlands","荷蘭"],["NZ","New Zealand","紐西蘭"],["PH","Philippines","菲律賓"],["PL","Poland","波蘭"],["SG","Singapore","新加坡"],["ES","Spain","西班牙"],["SE","Sweden","瑞典"],["CH","Switzerland","瑞士"],["TH","Thailand","泰國"],["GB","United Kingdom","英國"],["US","United States","美國"],["VN","Viet Nam","越南"]];
+const UNIS={US:["University of Washington","University of California, Berkeley","Massachusetts Institute of Technology","University of Michigan"],JP:["The University of Tokyo","Kyoto University","Osaka University"],KR:["Seoul National University","KAIST","Yonsei University"],DE:["Technical University of Munich","Heidelberg University"],PH:["University of the Philippines Diliman","Ateneo de Manila University","De La Salle University"],IN:["IIT Bombay","Indian Institute of Science"],ID:["Universitas Indonesia","Institut Teknologi Bandung"],VN:["Vietnam National University, Hanoi","Hanoi University of Science and Technology"],FR:["Sorbonne Université","Université Paris-Saclay"],GB:["University of Edinburgh","University College London"],TH:["Chulalongkorn University","Mahidol University"],MY:["Universiti Malaya"],CA:["University of Toronto","McGill University"],AU:["The University of Melbourne","Australian National University"]};
+const COLLEGES=[
+ ["lib","College of Liberal Arts","文學院",[["Chinese Literature","中國文學系"],["Foreign Languages and Literatures","外國語文學系"],["History","歷史學系"],["Philosophy","哲學系"],["Anthropology","人類學系"]]],
+ ["sci","College of Science","理學院",[["Mathematics","數學系"],["Physics","物理學系"],["Chemistry","化學系"],["Geosciences","地質科學系"],["Psychology","心理學系"],["Geography","地理環境資源學系"],["Atmospheric Sciences","大氣科學系"]]],
+ ["soc","College of Social Sciences","社會科學院",[["Political Science","政治學系"],["Economics","經濟學系"],["Sociology","社會學系"],["Social Work","社會工作學系"]]],
+ ["med","College of Medicine","醫學院",[["Medicine","醫學系"],["Nursing","護理學系"],["Pharmacy","藥學系"]]],
+ ["eng","College of Engineering","工學院",[["Civil Engineering","土木工程學系"],["Mechanical Engineering","機械工程學系"],["Chemical Engineering","化學工程學系"],["Engineering Science and Ocean Engineering","工程科學及海洋工程學系"],["Materials Science and Engineering","材料科學與工程學系"]]],
+ ["bio","College of Bio-Resources and Agriculture","生物資源暨農學院",[["Agronomy","農藝學系"],["Forestry and Resource Conservation","森林環境暨資源學系"],["Bioenvironmental Systems Engineering","生物環境系統工程學系"]]],
+ ["mgt","College of Management","管理學院",[["Business Administration","工商管理學系"],["Accounting","會計學系"],["Finance","財務金融學系"],["Information Management","資訊管理學系"]]],
+ ["ph","College of Public Health","公共衛生學院",[["Epidemiology and Preventive Medicine","流行病學與預防醫學研究所"],["Health Policy and Management","健康政策與管理研究所"]]],
+ ["eecs","College of Electrical Engineering and Computer Science","電機資訊學院",[["Electrical Engineering","電機工程學系"],["Computer Science and Information Engineering","資訊工程學系"],["Communication Engineering","電信工程學研究所"]]],
+ ["law","College of Law","法律學院",[["Law","法律學系"]]],
+ ["life","College of Life Science","生命科學院",[["Life Science","生命科學系"],["Biochemical Science and Technology","生化科技學系"]]]
+];
+// Sample advisor records, for layout only
+const ADVISORS=[
+ {n:"Chen, Yu-Ting",z:"陳雨婷",e:"ytchen@ntu.example",c:"eng",d:0},
+ {n:"Lin, Kuan-Hsiang",z:"林冠翔",e:"khlin@ntu.example",c:"eng",d:0},
+ {n:"Huang, Shu-Fen",z:"黃淑芬",e:"sfhuang@ntu.example",c:"eng",d:4},
+ {n:"Wang, Po-Wei",z:"王柏維",e:"pwwang@ntu.example",c:"eng",d:1},
+ {n:"Tsai, Mei-Ling",z:"蔡美玲",e:"mltsai@ntu.example",c:"sci",d:1},
+ {n:"Liu, Cheng-Han",z:"劉承翰",e:"chliu@ntu.example",c:"eecs",d:1}
+];
+
+/* ---------- copy for dynamic strings ---------- */
+const T={
+ en:{days:n=>`<b>${n}</b> days`,over:"The research period can be at most 180 days. Choose an earlier end date.",order:"The end date must be after the start date.",
+     email:"This email domain cannot receive our mail. Use an address that does not end in .cn, qq.com, 126.com or 163.com.",req:"Fill in this field.",
+     summ:n=>`<b>${n} item${n>1?"s need":" needs"} attention before you continue.</b>`,saved:t=>`Draft saved · ${t}`,toastSave:"Draft saved",toastNext:"Saved. Next step: Entry Permit Information",
+     sel:"Select",change:"Change",choose:"Select",noRes:"No advisor matches in this college. Check the spelling or contact the department office.",cap:"Sample records shown for layout only.",
+     th:["Name","Email","Department",""],y:"Year",m:"Month",d:"Day",lastSaved:t=>`Last saved ${t}`,noMatch:"No match. Keep typing to use your own entry.",preview:"Preview opens in step 05 of the final system."},
+ zh:{days:n=>`共 <b>${n}</b> 天`,over:"研究期間最長 180 天，請調整結束日期。",order:"結束日期須晚於開始日期。",
+     email:"此網域無法收到本處信件，請改用非 .cn、qq.com、126.com、163.com 的信箱。",req:"此欄位為必填。",
+     summ:n=>`<b>尚有 ${n} 個欄位需要修正，才能進入下一步。</b>`,saved:t=>`草稿已儲存 · ${t}`,toastSave:"草稿已儲存",toastNext:"已儲存。下一步：入臺證申請資料",
+     sel:"請選擇",change:"更換",choose:"選擇",noRes:"此學院查無符合的教授，請確認拼字或聯絡系所辦公室。",cap:"以下為版面示意之範例資料。",
+     th:["姓名","Email","系所",""],y:"年",m:"月",d:"日",lastSaved:t=>`上次儲存 ${t}`,noMatch:"查無結果，可直接輸入。",preview:"正式系統中預覽位於步驟 05。"}
+};
+const t=k=>T[lang][k];
+
+/* ---------- i18n ---------- */
+function applyLang(l){
+  lang=l;
+  document.documentElement.lang= l==="zh"?"zh-Hant":"en";
+  $$("[data-zh]").forEach(el=>{
+    if(el.dataset.en===undefined) el.dataset.en=el.innerHTML;
+    el.innerHTML= l==="zh"? el.dataset.zh : el.dataset.en;
+  });
+  $$("[data-zh-ph]").forEach(el=>{
+    if(el.dataset.enPh===undefined) el.dataset.enPh=el.placeholder;
+    el.placeholder= l==="zh"? el.dataset.zhPh : el.dataset.enPh;
+  });
+  $("#lang-en").setAttribute("aria-pressed",l==="en");
+  $("#lang-zh").setAttribute("aria-pressed",l==="zh");
+  fillDob(); fillColleges(true); combos.forEach(c=>c.sync()); renderAdvisor(); updatePeriod();
+  $$(".err").forEach(e=>e.remove());
+  if(!$("#summary").hidden) validate(true);
+  try{localStorage.setItem("oia-lang",l)}catch(e){}
+}
+$("#lang-en").onclick=()=>applyLang("en");
+$("#lang-zh").onclick=()=>applyLang("zh");
+
+/* ---------- user menu ---------- */
+const ub=$("#user-btn"), um=$("#user-menu");
+ub.onclick=e=>{e.stopPropagation();um.hidden=!um.hidden;ub.setAttribute("aria-expanded",!um.hidden)};
+document.addEventListener("click",e=>{if(!um.contains(e.target)){um.hidden=true;ub.setAttribute("aria-expanded","false")}});
+
+/* ---------- DOB ---------- */
+const dob={y:"1998",m:"4",d:"17"};
+function fillDob(){
+  const Y=$("#f-dob-y"),M=$("#f-dob-m"),D=$("#f-dob-d");
+  if(Y.value)dob.y=Y.value; if(M.value)dob.m=M.value; if(D.value)dob.d=D.value;
+  const opt=(v,txt,s)=>`<option value="${v}"${s?" selected":""}>${txt}</option>`;
+  let h=opt("",t("y"));for(let y=2008;y>=1965;y--)h+=opt(y,y,String(y)===dob.y);Y.innerHTML=h;
+  const mn=lang==="zh"?[...Array(12)].map((_,i)=>`${i+1} 月`):["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  h=opt("",t("m"));mn.forEach((n,i)=>h+=opt(i+1,n,String(i+1)===dob.m));M.innerHTML=h;
+  const dim=new Date(+dob.y||2000,+dob.m||1,0).getDate();
+  h=opt("",t("d"));for(let d=1;d<=dim;d++)h+=opt(d,d,String(d)===dob.d);D.innerHTML=h;
+}
+["#f-dob-y","#f-dob-m"].forEach(s=>$(s).addEventListener("change",fillDob));
+
+/* ---------- combobox ---------- */
+const combos=[];
+function Combo(wrap){
+  const input=wrap.querySelector("input"), src=wrap.dataset.source;
+  const lb=document.createElement("ul");lb.className="listbox";lb.setAttribute("role","listbox");lb.id=input.id+"-lb";lb.hidden=true;wrap.appendChild(lb);
+  input.setAttribute("aria-controls",lb.id);
+  let items=[],active=-1;
+  const all=()=> src==="countries"? COUNTRIES.map(c=>({v:c[0],label:lang==="zh"?c[2]:c[1],alt:lang==="zh"?c[1]:c[2]}))
+                 : (UNIS[$("#f-hcountry").dataset.value]||[]).map(u=>({v:u,label:u,alt:""}));
+  function sync(){const it=all().find(i=>i.v===input.dataset.value); if(it) input.value=it.label;}
+  function render(q){
+    q=(q||"").trim().toLowerCase();
+    items=all().filter(i=>!q||i.label.toLowerCase().includes(q)||i.alt.toLowerCase().includes(q)||i.v.toLowerCase()===q);
+    active=items.length?0:-1;
+    lb.innerHTML=items.length? items.map((i,k)=>`<li role="option" id="${lb.id}-${k}" data-k="${k}" aria-selected="${k===active}">${i.label}${i.alt?`<small>${i.alt}</small>`:""}</li>`).join("")
+      :`<li class="empty">${t("noMatch")}</li>`;
+    lb.hidden=false;input.setAttribute("aria-expanded","true");
+  }
+  function close(){lb.hidden=true;input.setAttribute("aria-expanded","false");input.removeAttribute("aria-activedescendant")}
+  function pick(k){const i=items[k];if(!i)return;input.value=i.label;input.dataset.value=i.v;close();input.dispatchEvent(new Event("picked"));clearErr(input);progress()}
+  function move(d){if(!items.length)return;active=(active+d+items.length)%items.length;
+    lb.querySelectorAll("li").forEach((li,k)=>li.setAttribute("aria-selected",k===active));
+    const li=lb.children[active];li.scrollIntoView({block:"nearest"});input.setAttribute("aria-activedescendant",li.id)}
+  input.addEventListener("focus",()=>render(""));
+  input.addEventListener("input",()=>{input.dataset.value=src==="universities"?input.value:"";render(input.value);progress()});
+  input.addEventListener("keydown",e=>{
+    if(e.key==="ArrowDown"){e.preventDefault();lb.hidden?render(input.value):move(1)}
+    else if(e.key==="ArrowUp"){e.preventDefault();move(-1)}
+    else if(e.key==="Enter"&&!lb.hidden){e.preventDefault();pick(active)}
+    else if(e.key==="Escape"){close()}
+  });
+  lb.addEventListener("mousedown",e=>{const li=e.target.closest("li[data-k]");if(li){e.preventDefault();pick(+li.dataset.k)}});
+  input.addEventListener("blur",()=>setTimeout(close,120));
+  const c={input,sync};combos.push(c);sync();return c;
+}
+$$(".combo").forEach(Combo);
+$("#f-hcountry").addEventListener("picked",()=>{const u=$("#f-huni");u.value="";u.dataset.value=""});
+
+/* ---------- NTU college → department ---------- */
+let nsel={c:"eng",d:"0"};
+function fillColleges(keep){
+  const C=$("#f-ncollege"),D=$("#f-ndept");
+  if(keep&&C.value!==undefined&&C.options.length){nsel.c=C.value;nsel.d=D.value}
+  C.innerHTML=`<option value="">${t("sel")}</option>`+COLLEGES.map(c=>`<option value="${c[0]}"${c[0]===nsel.c?" selected":""}>${lang==="zh"?c[2]:c[1]}</option>`).join("");
+  fillDepts();
+}
+function fillDepts(){
+  const C=$("#f-ncollege"),D=$("#f-ndept"),col=COLLEGES.find(c=>c[0]===C.value);
+  D.disabled=!col;
+  D.innerHTML=`<option value="">${t("sel")}</option>`+(col?col[3].map((d,i)=>`<option value="${i}"${String(i)===nsel.d?" selected":""}>${lang==="zh"?d[1]:d[0]}</option>`).join(""):"");
+}
+$("#f-ncollege").addEventListener("change",()=>{nsel.c=$("#f-ncollege").value;nsel.d="";fillDepts();progress()});
+$("#f-ndept").addEventListener("change",()=>{nsel.d=$("#f-ndept").value;progress()});
+
+/* ---------- advisor ---------- */
+let advisor=0; // index into ADVISORS, or null
+const deptName=a=>{const c=COLLEGES.find(c=>c[0]===a.c);return c?(lang==="zh"?c[3][a.d][1]:c[3][a.d][0]):""};
+const advName=a=>lang==="zh"?`${a.z}　${a.n}`:a.n;
+function renderAdvisor(){
+  const P=$("#adv-picked"),S=$("#adv-search");
+  if(advisor!==null){const a=ADVISORS[advisor];
+    P.innerHTML=`<span class="ini">${a.n[0]}</span><span class="who"><b>Prof. ${advName(a)}</b><span>${deptName(a)} · ${a.e}</span></span><button type="button" class="btn sm" id="adv-change">${t("change")}</button>`;
+    P.hidden=false;S.hidden=true;$("#adv-change").onclick=()=>{advisor=null;renderAdvisor();progress();$("#f-advq").focus()};
+  } else {P.hidden=true;S.hidden=false; if(!$("#adv-results").hidden) search();}
+}
+function search(){
+  const q=$("#f-advq").value.trim().toLowerCase(), c=$("#f-ncollege").value, R=$("#adv-results");
+  const rows=ADVISORS.map((a,i)=>({a,i})).filter(({a})=>(!c||a.c===c)&&(!q||(a.n+a.z+a.e).toLowerCase().includes(q)));
+  const th=t("th");
+  R.innerHTML= rows.length? `<table><thead><tr>${th.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.map(({a,i})=>`<tr><td>Prof. ${advName(a)}</td><td><span class="mono">${a.e}</span></td><td>${deptName(a)}</td><td style="text-align:right"><button type="button" class="btn sm" data-i="${i}">${t("choose")}</button></td></tr>`).join("")}</tbody><caption>${t("cap")}</caption></table>`
+    : `<p class="hint" style="padding:14px;margin:0">${t("noRes")}</p>`;
+  R.hidden=false;
+  R.querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>{advisor=+b.dataset.i;renderAdvisor();progress();clearErrById("l-adv")});
+}
+$("#adv-go").onclick=search;
+$("#f-advq").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();search()}});
+
+/* ---------- period ---------- */
+function updatePeriod(){
+  const s=new Date($("#f-start").value),e=new Date($("#f-end").value),box=$("#days"),m=$("#meter"),h=$("#period-hint");
+  if(isNaN(s)||isNaN(e)){box.innerHTML=t("days")("—");m.firstElementChild.style.width="0";return true}
+  const n=Math.round((e-s)/864e5)+1;
+  const bad=n<1||n>180;
+  box.innerHTML=t("days")(n<1?0:n);box.classList.toggle("bad",bad);m.classList.toggle("bad",bad);
+  m.firstElementChild.style.width=Math.min(100,Math.max(0,n/180*100))+"%";
+  h.innerHTML= n<1? t("order") : n>180? t("over") : (lang==="zh"?h.dataset.zh:h.dataset.en||h.innerHTML);
+  h.style.color=bad?"var(--danger)":"";
+  return !bad;
+}
+["#f-start","#f-end"].forEach(s=>$(s).addEventListener("input",()=>{updatePeriod();progress()}));
+
+/* ---------- accommodation ---------- */
+function unlistedToggle(){const on=$("#f-unlisted").checked,u=$("#f-huni");$("#unlisted-wrap").hidden=!on;u.disabled=on;u.required=!on;if(on){u.value="";u.dataset.value="";clearErr(u)}else clearErr($("#f-huni-name"));progress()}
+$("#f-unlisted").addEventListener("change",unlistedToggle);
+function dormToggle(){$("#dorm-pref").hidden=document.querySelector('input[name="dorm"]:checked').value!=="yes"}
+$$('input[name="dorm"]').forEach(r=>r.addEventListener("change",dormToggle));
+// keep the two preferences different
+$$('input[name="pref1"],input[name="pref2"]').forEach(r=>r.addEventListener("change",()=>{
+  const other=r.name==="pref1"?"pref2":"pref1", v=r.value==="twin"?"quad":"twin";
+  document.querySelector(`input[name="${other}"][value="${v}"]`).checked=true;
+}));
+
+/* ---------- validation ---------- */
+const BLOCKED=/(\.cn|@qq\.com|@126\.com|@163\.com)$/i;
+function fieldOf(el){return el.closest(".field:not(.period .field)")||el.closest(".field")}
+function setErr(el,msg){const f=fieldOf(el);if(!f||f.querySelector(":scope > .err"))return;el.setAttribute&&el.setAttribute("aria-invalid","true");const d=document.createElement("div");d.className="err";d.textContent=msg;f.appendChild(d)}
+function clearErr(el){const f=fieldOf(el);el.removeAttribute("aria-invalid");f&&f.querySelectorAll(":scope > .err").forEach(e=>e.remove())}
+function clearErrById(id){const el=document.getElementById(id);const f=el&&el.closest(".field");f&&f.querySelectorAll(":scope > .err").forEach(e=>e.remove())}
+function emailOk(){const e=$("#f-email");return !BLOCKED.test(e.value.trim())}
+$("#f-email").addEventListener("blur",()=>{clearErr($("#f-email"));if($("#f-email").value&&!emailOk())setErr($("#f-email"),t("email"))});
+$$("#app .input,#app .select").forEach(el=>el.addEventListener("input",()=>{if(el.getAttribute("aria-invalid"))clearErr(el)}));
+
+function issues(){
+  const list=[];
+  $$("#app [required]").forEach(el=>{
+    if(el.type==="radio"){const g=$$(`input[name="${el.name}"]`);if(!g.some(r=>r.checked))list.push({el:g[0],msg:t("req")});return}
+    if(el.closest("[hidden]"))return;
+    if(!el.value.trim())list.push({el,msg:t("req")});
+  });
+  if($("#f-email").value&&!emailOk())list.push({el:$("#f-email"),msg:t("email")});
+  if(advisor===null)list.push({el:$("#f-advq"),msg:t("req"),id:"l-adv"});
+  if(!updatePeriod())list.push({el:$("#f-end"),msg:$("#period-hint").textContent});
+  return list;
+}
+function labelText(el){const f=el.closest(".field");const l=f&&(f.querySelector(".label"));return l?l.textContent.replace(/\*|Optional|選填/g,"").trim():el.id}
+function validate(silent){
+  $$(".err").forEach(e=>e.remove());$$('[aria-invalid="true"]').forEach(e=>e.removeAttribute("aria-invalid"));
+  const list=issues(),S=$("#summary");
+  list.forEach(i=>{if(i.el.id==="f-end")return; setErr(i.el,i.msg)});
+  if(list.length){
+    S.innerHTML=t("summ")(list.length)+"<ul>"+list.map(i=>`<li><a href="#${i.el.closest("section").id}">${labelText(i.el)}</a></li>`).join("")+"</ul>";
+    S.hidden=false; if(!silent){S.focus();S.scrollIntoView({block:"start"})}
+  } else S.hidden=true;
+  return !list.length;
+}
+
+/* ---------- section progress ---------- */
+function progress(){
+  $$("#toc a").forEach(a=>{
+    const sec=document.getElementById(a.dataset.sec);
+    const req=[...sec.querySelectorAll("[required]")].filter(el=>!el.closest("[hidden]")||el.type==="radio");
+    let total=0,done=0,names=new Set();
+    req.forEach(el=>{
+      if(el.type==="radio"){if(names.has(el.name))return;names.add(el.name);total++;if(sec.querySelector(`input[name="${el.name}"]:checked`))done++;}
+      else{total++;if(el.value.trim())done++;}
+    });
+    if(a.dataset.sec==="s-ntu"){total++;if(advisor!==null)done++}
+    const dot=a.querySelector(".dot");dot.className="dot"+(done===total?" done":done>0?" part":"");
+  });
+}
+$("#app").addEventListener("change",progress);
+$("#app").addEventListener("input",progress);
+
+/* active section in TOC */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){$$("#toc a").forEach(a=>a.classList.toggle("active",a.dataset.sec===e.target.id))}}),{rootMargin:"-30% 0px -60% 0px"});
+$$("#app > section").forEach(s=>io.observe(s));
+
+/* ---------- actions ---------- */
+let tt;
+function toast(msg){const el=$("#toast");el.textContent=msg;el.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>el.classList.remove("show"),2600)}
+function stamp(){const d=new Date();const s=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
+  const st=$("#saved-t");st.dataset.en=T.en.saved(s);st.dataset.zh=T.zh.saved(s);st.innerHTML=t("saved")(s);
+  const ms=$("#meta-saved");ms.dataset.en=T.en.lastSaved(s);ms.dataset.zh=T.zh.lastSaved(s);ms.innerHTML=t("lastSaved")(s)}
+$("#b-save").onclick=()=>{stamp();toast(t("toastSave"))};
+$("#b-next").onclick=()=>{if(validate()){stamp();toast(t("toastNext"))}};
+$("#b-preview").onclick=()=>toast(t("preview"));
+$("#app").addEventListener("submit",e=>e.preventDefault());
+
+/* ---------- boot ---------- */
+fillDob();fillColleges(false);renderAdvisor();dormToggle();updatePeriod();progress();
+let saved="en";try{saved=localStorage.getItem("oia-lang")||"en"}catch(e){}
+if(saved==="zh")applyLang("zh");
+})();
+</script>

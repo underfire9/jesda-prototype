@@ -1,0 +1,62 @@
+<% content_for :title do %>Preview &amp; Submit<% end %>
+<% content_for :title_key do %>steps.preview<% end %>
+<% content_for :page do %>preview<% end %>
+<% content_for :step do %>5<% end %>
+
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-bi-en="2025 Graduate Visiting Research" data-bi-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</p>
+    <h1 class="masthead__title" data-i18n="steps.preview">Preview &amp; Submit</h1>
+    <div class="masthead__meta">
+      <span class="chip chip--outline chip--dot" data-i18n="status.draft">Draft</span>
+      <span data-i18n="common.lastSaved" data-i18n-vars='{"time":"09:12"}' data-last-saved>Last saved 09:12</span>
+    </div>
+    <%= render :partial => "/partials/steps" %>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <nav class="toc" data-toc aria-labelledby="toc-title">
+        <p class="toc__title" id="toc-title" data-i18n="common.onThisPage">On this page</p>
+        <ol class="toc__list">
+          <li><a class="toc__link" href="#s-form"><span class="dot is-done" data-static></span><span data-i18n="steps.form">Application Form</span></a></li>
+          <li><a class="toc__link" href="#s-entry"><span class="dot is-done" data-static></span><span data-i18n="steps.entryPermit">Entry Permit Information</span></a></li>
+          <li><a class="toc__link" href="#s-docs"><span class="dot is-done" data-static></span><span data-i18n="summary.documents">Documents</span></a></li>
+          <li><a class="toc__link" href="#s-payment"><span class="dot is-done" data-static></span><span data-i18n="steps.payment">Payment</span></a></li>
+          <li><a class="toc__link" href="#s-confirm"><span class="dot"></span><span data-i18n="preview.nav.confirm">Confirm &amp; submit</span></a></li>
+        </ol>
+        <%= render :partial => "/partials/help" %>
+      </nav>
+    </aside>
+
+    <div class="page-grid__main">
+      <div class="notice notice--soft">
+        <div class="notice__body">
+          <p class="notice__title" data-i18n="preview.title">Check everything before you submit</p>
+          <p class="notice__text" data-i18n="preview.lead">Once submitted, your application is locked for review. If OIA needs changes, you will get an email and the affected items will open for editing.</p>
+        </div>
+      </div>
+
+      <%= render :partial => "/partials/application_summary" %>
+
+      <section class="card card--compact" id="s-confirm" aria-labelledby="s-confirm-title">
+        <div class="card__head">
+          <h2 class="card__title card__title--sm" id="s-confirm-title" data-i18n="preview.nav.confirm">Confirm &amp; submit</h2>
+        </div>
+        <label class="check">
+          <input type="checkbox" id="preview-confirm" required>
+          <span data-i18n="preview.confirm">I confirm that the information I have provided is true and complete.</span>
+        </label>
+      </section>
+
+      <div class="action-bar">
+        <div class="action-bar__status" aria-live="polite">
+          <p data-gate-on="preview-confirm" data-i18n="preview.ready" hidden>Ready to submit.</p>
+          <span data-gate-off="preview-confirm" id="preview-hint" data-i18n="preview.tickHint">Tick the confirmation above to enable Submit.</span>
+        </div>
+        <a class="btn btn--ghost" href="/apply/payment.html" data-i18n="common.back">Back</a>
+        <button type="button" class="btn btn--primary" data-enable-with="preview-confirm" data-submit-application aria-describedby="preview-hint" data-i18n="preview.submit" disabled>Submit application</button>
+      </div>
+    </div>
+  </div>
+</div>

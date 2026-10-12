@@ -1,0 +1,143 @@
+<% content_for :title do %>Admission Information<% end %>
+<% content_for :title_key do %>admission.title<% end %>
+<% content_for :page do %>admission<% end %>
+<% content_for :app_status do %>admitted<% end %>
+<% content_for :portal_status do %>
+<span class="chip chip--dot chip--ok" data-i18n="status.admitted">Admitted</span>
+<p data-i18n="portal.arriving" data-i18n-vars='{"date":"2026-02-16"}'>Arriving 2026-02-16</p>
+<% end %>
+
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-bi-en="2025 Graduate Visiting Research" data-bi-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</p>
+    <h1 class="masthead__title" data-i18n="admission.title">Admission Information</h1>
+    <p class="masthead__lead" data-i18n="admission.lead">Everything you need before you arrive. Please confirm your attendance at the bottom of this page.</p>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <%= render :partial => "/partials/portal_nav" %>
+    </aside>
+
+    <div class="page-grid__main">
+      <!-- Note from OIA：入學資訊，由後台提供 { en, zhHant } -->
+      <div class="oia-note oia-note--surface">
+        <p class="oia-note__tag" data-i18n="common.noteFromOia">Note from OIA</p>
+        <div class="cms">
+          <p lang="en">Welcome to NTU! Registration takes place on 2026-02-13 at the OIA office. Bring your passport, the documents you uploaded and the fees listed below.</p>
+          <p lang="zh-Hant">歡迎來到臺大！註冊將於 2026-02-13 在國際事務處辦理，請攜帶護照、已上傳的文件及下列費用。</p>
+        </div>
+        <a class="link" href="#" data-i18n="admission.guide">Read the pre-arrival guide</a>
+      </div>
+
+      <section class="card" aria-labelledby="enrollment-title">
+        <div class="card__head">
+          <h2 class="card__title" id="enrollment-title" data-i18n="admission.enrollment">Your enrollment</h2>
+        </div>
+        <dl class="kv-list">
+          <!-- 學號在 OIA 寄出註冊通知後才顯示 -->
+          <div class="kv kv--pending">
+            <dt data-i18n="admission.studentId">Student ID</dt>
+            <dd data-i18n="admission.studentIdPending">Shown after OIA sends your registration notice</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.programme">Programme</dt>
+            <dd data-bi-en="2025 Graduate Visiting Research · General Application" data-bi-zh="2025 來校訪問研究生 · 一般計畫申請">2025 Graduate Visiting Research · General Application</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.hostDept">Host department</dt>
+            <dd data-bi-en="College of Engineering · Department of Civil Engineering" data-bi-zh="工學院 · 土木工程學系">College of Engineering · Department of Civil Engineering</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="summary.supervisor">Supervisor</dt>
+            <dd data-i18n="form.ntu.prof" data-i18n-vars='{"name":{"en":"Lin, Chia-Hsin","zh-Hant":"林家欣"}}'>Prof. Lin, Chia-Hsin</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.visitingPeriod">Visiting period</dt>
+            <dd>2026-02-16 – 2026-06-30 (<span data-i18n="common.days" data-i18n-vars='{"n":135}'>135 days</span>)</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="card" aria-labelledby="dorm-title">
+        <div class="card__head">
+          <h2 class="card__title" id="dorm-title" data-i18n="admission.dorm">Dormitory assignment</h2>
+          <p class="card__lead" data-i18n="admission.dormLead">Assigned by the NTU Dormitory Service Office.</p>
+        </div>
+        <dl class="kv-list">
+          <div class="kv">
+            <dt data-i18n="admission.dormName">Dormitory</dt>
+            <dd data-bi-en="Shui-Yuan Dormitory, Building C" data-bi-zh="水源舍區 C 棟">Shui-Yuan Dormitory, Building C</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.room">Room</dt>
+            <dd><span data-i18n="form.ntu.twin">Twin room</span> · C-0512</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.housingFee">Housing fee</dt>
+            <dd data-bi-en="NT$ 31,500 for the visiting period" data-bi-zh="NT$ 31,500（訪問期間）">NT$ 31,500 for the visiting period</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.deposit">Deposit</dt>
+            <dd data-bi-en="NT$ 3,000 (refunded when you move out)" data-bi-zh="NT$ 3,000（退宿時退還）">NT$ 3,000 (refunded when you move out)</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.slip">Payment slip</dt>
+            <dd><a class="link" href="#" download data-i18n="admission.slipLink">Download payment slip (PDF)</a></dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.moreInfo">More information</dt>
+            <dd><a class="link" href="#" data-i18n="admission.moreInfoLink">Dormitory rules and move-in guide</a></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="card" aria-labelledby="fees-title">
+        <div class="card__head">
+          <h2 class="card__title" id="fees-title" data-i18n="admission.fees">Fees to pay at registration</h2>
+        </div>
+        <!-- 費用項目由後台設定 -->
+        <dl class="kv-list">
+          <div class="kv">
+            <dt data-i18n="admission.fee.registration">Registration fee</dt>
+            <dd>NT$ 10,000</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.fee.entryPermit">Entry permit fee</dt>
+            <dd>NT$ 1,000</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.fee.internet">Internet fee</dt>
+            <dd>NT$ 300</dd>
+          </div>
+          <div class="kv kv--strong">
+            <dt data-i18n="common.total">Total</dt>
+            <dd>NT$ 11,300</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- 是否報到：只能送出一次，送出後顯示 You already submitted… -->
+      <form class="stack" novalidate data-attend-form>
+        <section class="card" aria-labelledby="attend-title">
+          <div class="card__head">
+            <h2 class="card__title" id="attend-title" data-i18n="admission.attend">Confirm your attendance</h2>
+          </div>
+          <fieldset class="field fieldset">
+            <legend class="field__label"><span data-i18n="admission.attendQ">Will you attend the programme?</span><span class="field__req" aria-hidden="true">*</span></legend>
+            <div class="choice-group choice-group--fill">
+              <label class="choice"><input type="radio" name="attend" id="attend" value="yes" required><span data-i18n="admission.attendYes">Yes, I will attend</span></label>
+              <label class="choice"><input type="radio" name="attend" value="no"><span data-i18n="admission.attendNo">No, I will not attend</span></label>
+            </div>
+          </fieldset>
+          <p class="notice__title attend-done" data-attend-done hidden></p>
+        </section>
+
+        <div class="action-bar action-bar--static">
+          <p class="action-bar__status action-bar__status--hint" data-i18n="admission.attendHint">You can submit this once. Contact OIA if your plans change.</p>
+          <button type="submit" class="btn btn--primary" data-i18n="common.confirmSubmit">Confirm and submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

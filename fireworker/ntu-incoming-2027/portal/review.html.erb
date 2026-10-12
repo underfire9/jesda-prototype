@@ -1,0 +1,33 @@
+<% content_for :title do %>Your Application<% end %>
+<% content_for :title_key do %>review.title<% end %>
+<% content_for :page do %>review<% end %>
+<% content_for :app_status do %>underReview<% end %>
+<% content_for :portal_status do %>
+<span class="chip chip--dot chip--warn" data-i18n="status.underReview">Under review</span>
+<p data-i18n="portal.submittedAt" data-i18n-vars='{"datetime":"2025-10-06 14:03"}'>Submitted 2025-10-06 14:03</p>
+<% end %>
+
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-bi-en="2025 Graduate Visiting Research" data-bi-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</p>
+    <h1 class="masthead__title" data-i18n="review.title">Your Application</h1>
+    <p class="masthead__lead" data-i18n="review.lead">This is the application you submitted. You can read it here but can no longer change it.</p>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <%= render :partial => "/partials/portal_nav" %>
+    </aside>
+
+    <div class="page-grid__main">
+      <div class="notice notice--info">
+        <div class="notice__body">
+          <p class="notice__title" data-i18n="review.submittedOn" data-i18n-vars='{"date":"2025-10-06","time":"14:03"}'>Submitted on 2025-10-06 at 14:03 (Taipei time)</p>
+          <p class="notice__text" data-i18n="review.reviewing">OIA is reviewing your application. We will email you when the result is ready or if anything needs to be supplemented.</p>
+        </div>
+      </div>
+
+      <%= render :partial => "/partials/application_summary" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,330 @@
+<% content_for :title do %>Application Form<% end %>
+<% content_for :title_key do %>steps.form<% end %>
+<% content_for :page do %>form<% end %>
+<% content_for :step do %>1<% end %>
+<% content_for :js do %><script src="/javascripts/application-form.js"></script><% end %>
+
+<!-- 完整邏輯參考 reference/application-form.src.html：國家／學校／學院／系所連動、驗證、語系切換時保留已填內容 -->
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-bi-en="2025 Graduate Visiting Research" data-bi-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</p>
+    <h1 class="masthead__title" data-i18n="steps.form">Application Form</h1>
+    <div class="masthead__meta">
+      <span class="chip chip--outline chip--dot" data-i18n="status.draft">Draft</span>
+      <span data-i18n="common.lastSaved" data-i18n-vars='{"time":"09:12"}' data-last-saved>Last saved 09:12</span>
+    </div>
+    <%= render :partial => "/partials/steps" %>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <nav class="toc" data-toc aria-labelledby="toc-title">
+        <p class="toc__title" id="toc-title" data-i18n="common.onThisPage">On this page</p>
+        <ol class="toc__list">
+          <li><a class="toc__link" href="#s-category"><span class="dot is-done" data-static></span><span data-i18n="form.nav.category">Application Category</span></a></li>
+          <li><a class="toc__link" href="#s-home"><span class="dot"></span><span data-i18n="form.nav.home">Home University</span></a></li>
+          <li><a class="toc__link" href="#s-personal"><span class="dot"></span><span data-i18n="form.nav.personal">Personal Information</span></a></li>
+          <li><a class="toc__link" href="#s-contact"><span class="dot"></span><span data-i18n="form.nav.contact">Contact Information</span></a></li>
+          <li><a class="toc__link" href="#s-enroll"><span class="dot"></span><span data-i18n="form.nav.enroll">Current Enrollment</span></a></li>
+          <li><a class="toc__link" href="#s-ntu"><span class="dot"></span><span data-i18n="form.nav.ntu">NTU Visiting Research</span></a></li>
+          <li><a class="toc__link" href="#s-emergency"><span class="dot"></span><span data-i18n="form.nav.emergency">Emergency Contact</span></a></li>
+        </ol>
+        <%= render :partial => "/partials/help" %>
+      </nav>
+    </aside>
+
+    <form class="page-grid__main" id="app-form" novalidate data-process-form data-custom-validate>
+      <div class="error-summary" data-error-summary tabindex="-1" role="alert" hidden></div>
+
+      <!-- 申請類別：由承辦人在後台勾選，前台唯讀（灰階） -->
+      <section class="card" id="s-category" aria-labelledby="s-category-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-category-title" data-i18n="form.nav.category">Application Category</h2>
+          <p class="card__lead" data-i18n="form.category.lead">Your programme category is assigned by the Office of International Affairs.</p>
+        </div>
+        <div class="form-grid">
+          <div class="field span-6">
+            <label class="field__label" for="f-cat" data-i18n="form.category.label">Category</label>
+            <select class="select" id="f-cat" disabled aria-describedby="h-cat">
+              <option data-bi-en="General Application" data-bi-zh="一般計畫申請">General Application</option>
+            </select>
+            <p class="hint" id="h-cat" data-i18n="form.category.hint">Set by OIA staff when your application is opened. Contact us if this looks wrong.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 原就讀學校 -->
+      <section class="card" id="s-home" aria-labelledby="s-home-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-home-title" data-i18n="form.nav.home">Home University</h2>
+          <p class="card__lead" data-i18n="form.home.lead">The university where you are currently enrolled.</p>
+        </div>
+
+        <!-- Note from OIA：原校說明區，由後台提供 { en, zhHant } -->
+        <div class="oia-note">
+          <p class="oia-note__tag" data-i18n="common.noteFromOia">Note from OIA</p>
+          <div class="cms">
+            <p lang="en">Choose the university that currently holds your student status. If it is not in the list, tick the box below and type its full English name.</p>
+            <p lang="zh-Hant">請選擇您目前具有學籍的學校；若清單中找不到，請勾選下方選項並填寫學校完整英文名稱。</p>
+          </div>
+          <a class="link" href="#" data-i18n="form.home.guidelines">Read the visiting student guidelines</a>
+        </div>
+
+        <div class="form-grid form-grid--after-note">
+          <div class="field span-6">
+            <label class="field__label" for="f-hcountry"><span data-i18n="form.home.country">I am from</span><span class="field__req" aria-hidden="true">*</span></label>
+            <div class="combo" data-source="countries">
+              <input class="input" id="f-hcountry" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off" required placeholder="Please select country" data-i18n-attr="placeholder:form.home.countryPh" data-value="US">
+            </div>
+          </div>
+          <div class="field span-6">
+            <label class="field__label" for="f-huni"><span data-i18n="form.home.university">University</span><span class="field__req" aria-hidden="true">*</span></label>
+            <div class="combo" data-source="universities">
+              <input class="input" id="f-huni" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off" required placeholder="Type to search" data-i18n-attr="placeholder:form.home.universityPh" aria-describedby="h-huni" data-value="University of Washington">
+            </div>
+            <p class="hint" id="h-huni" data-i18n="form.home.universityHint">Type to search universities in the country you selected.</p>
+          </div>
+          <div class="field">
+            <label class="check">
+              <input type="checkbox" id="f-unlisted">
+              <span data-i18n="form.home.unlisted">My university is not listed</span>
+            </label>
+          </div>
+          <div class="field" id="unlisted-wrap" hidden>
+            <label class="field__label" for="f-huni-name"><span data-i18n="form.home.fullName">University full name (English)</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-huni-name" required placeholder="e.g. Cascadia Institute of Technology" data-i18n-attr="placeholder:form.home.fullNamePh" aria-describedby="h-huni-name">
+            <p class="hint" id="h-huni-name" data-i18n="form.home.fullNameHint">Write the official English name in full, without abbreviations.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 個人資料 -->
+      <section class="card" id="s-personal" aria-labelledby="s-personal-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-personal-title" data-i18n="form.nav.personal">Personal Information</h2>
+          <p class="card__lead" data-i18n="form.personal.lead">Use the same spelling as your passport. Fields marked * are required.</p>
+        </div>
+        <div class="form-grid">
+          <div class="field span-6">
+            <label class="field__label" for="f-family"><span data-i18n="form.personal.family">Family name</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-family" required autocomplete="family-name" value="WINSON">
+          </div>
+          <div class="field span-6">
+            <label class="field__label" for="f-given"><span data-i18n="form.personal.given">Given name</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-given" required autocomplete="given-name" value="ANGELA">
+          </div>
+          <div class="field span-6">
+            <label class="field__label" for="f-native"><span data-i18n="form.personal.chinese">Name in Chinese</span><span class="field__opt" data-i18n="common.optional">Optional</span></label>
+            <input class="input" id="f-native" placeholder="e.g. 溫安琪" data-i18n-attr="placeholder:form.personal.chinesePh">
+          </div>
+          <div class="field span-6">
+            <label class="field__label" for="f-passport"><span data-i18n="form.personal.passport">Passport number</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input input--mono" id="f-passport" required value="548210973">
+          </div>
+          <fieldset class="field fieldset span-4">
+            <legend class="field__label"><span data-i18n="form.personal.gender">Gender</span><span class="field__req" aria-hidden="true">*</span></legend>
+            <div class="choice-group choice-group--fill">
+              <label class="choice"><input type="radio" name="gender" id="f-gender" value="m" required><span data-i18n="form.personal.male">Male</span></label>
+              <label class="choice"><input type="radio" name="gender" value="f" checked><span data-i18n="form.personal.female">Female</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field fieldset span-4">
+            <legend class="field__label"><span data-i18n="common.dateOfBirth">Date of birth</span><span class="field__req" aria-hidden="true">*</span></legend>
+            <div class="inline-fields inline-fields--dob">
+              <select class="select" id="f-dob-y" aria-label="Year" data-i18n-attr="aria-label:form.personal.year" required></select>
+              <select class="select" id="f-dob-m" aria-label="Month" data-i18n-attr="aria-label:form.personal.month" required></select>
+              <select class="select" id="f-dob-d" aria-label="Day" data-i18n-attr="aria-label:form.personal.day" required></select>
+            </div>
+          </fieldset>
+          <div class="field span-4">
+            <label class="field__label" for="f-nation"><span data-i18n="form.personal.nationality">Nationality</span><span class="field__req" aria-hidden="true">*</span></label>
+            <div class="combo" data-source="countries">
+              <input class="input" id="f-nation" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off" required placeholder="Search country" data-i18n-attr="placeholder:form.personal.nationalityPh" data-value="US">
+            </div>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-email"><span data-i18n="common.email">Email</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-email" type="email" required autocomplete="email" value="angela.winson@uw.edu" aria-describedby="h-email" data-block-domains>
+            <p class="hint" id="h-email" data-i18n="form.personal.emailHint">We send every notice here. Addresses ending in .cn, @qq.com, @126.com or @163.com cannot receive our mail.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 聯絡資料 -->
+      <section class="card" id="s-contact" aria-labelledby="s-contact-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-contact-title" data-i18n="form.nav.contact">Contact Information</h2>
+          <p class="card__lead" data-i18n="form.contact.lead">How we reach you while your application is under review.</p>
+        </div>
+        <div class="form-grid">
+          <div class="field span-6">
+            <label class="field__label" for="f-phone"><span data-i18n="form.contact.mobile">Mobile phone</span><span class="field__req" aria-hidden="true">*</span></label>
+            <div class="inline-fields inline-fields--phone">
+              <select class="select" id="f-phone-cc" aria-label="Country code" data-i18n-attr="aria-label:form.contact.countryCode">
+                <option>+1</option><option>+44</option><option>+49</option><option>+63</option><option>+81</option><option>+82</option><option>+84</option><option>+86</option><option>+886</option><option>+91</option>
+              </select>
+              <input class="input" id="f-phone" type="tel" required autocomplete="tel-national" value="206 555 0142">
+            </div>
+          </div>
+          <div class="field span-6">
+            <label class="field__label" for="f-city"><span data-i18n="form.contact.city">City</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-city" required value="Seattle, WA">
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-addr"><span data-i18n="form.contact.address">Mailing address</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-addr" required autocomplete="street-address" value="4512 Brooklyn Ave NE, Seattle, WA 98105, United States">
+          </div>
+        </div>
+      </section>
+
+      <!-- 目前就讀資料 -->
+      <section class="card" id="s-enroll" aria-labelledby="s-enroll-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-enroll-title" data-i18n="form.nav.enroll">Current Enrollment</h2>
+          <p class="card__lead" data-i18n="form.enroll.lead">Your current programme at your home university.</p>
+        </div>
+        <div class="form-grid">
+          <fieldset class="field fieldset">
+            <legend class="field__label"><span data-i18n="form.enroll.level">Level of study</span><span class="field__req" aria-hidden="true">*</span></legend>
+            <div class="choice-group choice-group--fill">
+              <label class="choice"><input type="radio" name="level" id="f-level" value="ug" required><span data-i18n="form.enroll.ug">Undergraduate</span></label>
+              <label class="choice"><input type="radio" name="level" value="ms"><span data-i18n="form.enroll.ms">Master’s</span></label>
+              <label class="choice"><input type="radio" name="level" value="phd" checked><span data-i18n="form.enroll.phd">PhD</span></label>
+            </div>
+          </fieldset>
+          <div class="field span-6">
+            <label class="field__label" for="f-hcollege"><span data-i18n="form.enroll.college">College / School</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-hcollege" required value="College of Engineering">
+          </div>
+          <div class="field span-6">
+            <label class="field__label" for="f-hdept"><span data-i18n="form.enroll.dept">Department / Programme</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-hdept" required value="Civil &amp; Environmental Engineering">
+          </div>
+        </div>
+      </section>
+
+      <!-- 臺大訪問研究資料 -->
+      <section class="card" id="s-ntu" aria-labelledby="s-ntu-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-ntu-title" data-i18n="form.ntu.title">NTU Visiting Research Information</h2>
+          <p class="card__lead" data-i18n="form.ntu.lead">Choose your host department and advisor, and the dates you plan to be at NTU.</p>
+        </div>
+
+        <h3 class="card__subtitle"><b aria-hidden="true">A</b><span data-i18n="form.ntu.study">Study at NTU</span></h3>
+        <div class="form-grid">
+          <div class="field span-6">
+            <label class="field__label" for="f-ncollege"><span data-i18n="form.ntu.college">Host college</span><span class="field__req" aria-hidden="true">*</span></label>
+            <select class="select" id="f-ncollege" required></select>
+          </div>
+          <div class="field span-6">
+            <label class="field__label" for="f-ndept"><span data-i18n="form.ntu.dept">Host department / institute</span><span class="field__req" aria-hidden="true">*</span></label>
+            <select class="select" id="f-ndept" required></select>
+          </div>
+
+          <div class="field">
+            <label class="field__label" id="l-adv" for="f-advq"><span data-i18n="form.ntu.advisor">Faculty advisor</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input type="hidden" id="f-advisor" data-progress-required value="0">
+            <div class="picked" id="adv-picked" hidden></div>
+            <div id="adv-search">
+              <div class="search-row">
+                <input class="input" id="f-advq" placeholder="Search by name or email" data-i18n-attr="placeholder:form.ntu.advisorPh" aria-describedby="h-adv">
+                <button type="button" class="btn" id="adv-go" data-i18n="form.ntu.search">Search</button>
+              </div>
+              <p class="hint" id="h-adv" data-i18n="form.ntu.advisorHint">Contact your advisor before applying. Results are limited to the host college above.</p>
+              <div class="advisor-results table-wrap" id="adv-results" aria-live="polite" hidden></div>
+            </div>
+          </div>
+
+          <fieldset class="field fieldset">
+            <legend class="field__label"><span data-i18n="form.ntu.period">Research period</span><span class="field__req" aria-hidden="true">*</span></legend>
+            <div class="period">
+              <div class="field">
+                <label class="hint" for="f-start" data-i18n="form.ntu.start">Start date</label>
+                <input class="input" type="date" id="f-start" required value="2026-02-16">
+              </div>
+              <span class="period__arrow" aria-hidden="true">→</span>
+              <div class="field">
+                <label class="hint" for="f-end" data-i18n="form.ntu.end">End date</label>
+                <input class="input" type="date" id="f-end" required value="2026-06-30" aria-describedby="period-hint">
+              </div>
+              <div class="days" id="days" aria-live="polite"></div>
+            </div>
+            <div class="meter" id="meter"><span></span></div>
+            <p class="hint" id="period-hint" data-i18n="form.ntu.periodHint">Maximum stay is 180 days.</p>
+          </fieldset>
+        </div>
+
+        <h3 class="card__subtitle"><b aria-hidden="true">B</b><span data-i18n="form.ntu.housing">On-campus Accommodation</span></h3>
+        <fieldset class="field fieldset">
+          <legend class="field__label"><span data-i18n="form.ntu.housingQ">Do you need on-campus accommodation?</span><span class="field__req" aria-hidden="true">*</span></legend>
+          <div class="choice-group choice-group--fill">
+            <label class="choice"><input type="radio" name="dorm" id="f-dorm" value="yes" required checked><span data-i18n="form.ntu.yes">Yes</span></label>
+            <label class="choice"><input type="radio" name="dorm" value="no"><span data-i18n="form.ntu.no">No, I will arrange my own</span></label>
+          </div>
+        </fieldset>
+        <div class="reveal" id="dorm-pref">
+          <p class="field__label" data-i18n="form.ntu.pref">Room type preference</p>
+          <p class="hint reveal__hint" data-i18n="form.ntu.prefHint">Beds are allocated in order of submission; your first choice is not guaranteed.</p>
+          <div class="pref-grid">
+            <fieldset class="field fieldset">
+              <legend class="field__label" data-i18n="form.ntu.choice1">1st choice</legend>
+              <div class="choice-group choice-group--fill">
+                <label class="choice"><input type="radio" name="pref1" value="twin" checked><span data-i18n="form.ntu.twin">Twin room</span></label>
+                <label class="choice"><input type="radio" name="pref1" value="quad"><span data-i18n="form.ntu.quad">Quad room</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="field fieldset">
+              <legend class="field__label" data-i18n="form.ntu.choice2">2nd choice</legend>
+              <div class="choice-group choice-group--fill">
+                <label class="choice"><input type="radio" name="pref2" value="twin"><span data-i18n="form.ntu.twin">Twin room</span></label>
+                <label class="choice"><input type="radio" name="pref2" value="quad" checked><span data-i18n="form.ntu.quad">Quad room</span></label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </section>
+
+      <!-- 緊急聯絡人 -->
+      <section class="card" id="s-emergency" aria-labelledby="s-emergency-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-emergency-title" data-i18n="form.nav.emergency">Emergency Contact</h2>
+          <p class="card__lead" data-i18n="form.emergency.lead">The person we contact if something happens to you while you are in Taiwan.</p>
+        </div>
+        <div class="form-grid">
+          <div class="field span-6">
+            <label class="field__label" for="f-ecname"><span data-i18n="form.emergency.name">Full name</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-ecname" required value="Margaret Winson">
+          </div>
+          <div class="field span-6">
+            <label class="field__label" for="f-ecrel"><span data-i18n="form.emergency.relationship">Relationship</span><span class="field__req" aria-hidden="true">*</span></label>
+            <select class="select" id="f-ecrel" required>
+              <option value="" data-i18n="common.choose">Select</option>
+              <option value="parent" selected data-i18n="form.emergency.parent">Parent</option>
+              <option value="spouse" data-i18n="form.emergency.spouse">Spouse / partner</option>
+              <option value="sibling" data-i18n="form.emergency.sibling">Sibling</option>
+              <option value="other" data-i18n="form.emergency.other">Other</option>
+            </select>
+          </div>
+          <div class="field span-6">
+            <label class="field__label" for="f-ecphone"><span data-i18n="form.emergency.phone">Phone</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-ecphone" type="tel" required placeholder="+1 206 555 0143" data-i18n-attr="placeholder:form.emergency.phonePh" value="+1 206 555 0178">
+          </div>
+          <div class="field span-6">
+            <label class="field__label" for="f-ecemail"><span data-i18n="common.email">Email</span><span class="field__opt" data-i18n="common.optional">Optional</span></label>
+            <input class="input" id="f-ecemail" type="email" placeholder="name@example.com">
+          </div>
+        </div>
+      </section>
+
+      <div class="action-bar">
+        <div class="action-bar__status">
+          <p data-i18n="process.autosave">Your progress is saved automatically.</p>
+          <span data-i18n="process.autosaveSub" data-i18n-vars='{"time":"09:12"}' data-last-saved>Last saved 09:12 · You can leave and come back any time.</span>
+        </div>
+        <button type="button" class="btn" data-save data-i18n="common.save">Save</button>
+        <!-- 非中國大陸籍跳過步驟 2，直接進入上傳文件 -->
+        <button type="submit" class="btn btn--primary" data-next="/apply/upload.html" data-next-step="steps.upload" data-i18n="common.saveNext">Save &amp; Next</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<% content_for :title do %>Departure Form<% end %>
+<% content_for :title_key do %>departure.title<% end %>
+<% content_for :page do %>departure<% end %>
+<% content_for :app_status do %>enrolled<% end %>
+<% content_for :portal_status do %>
+<span class="chip chip--dot chip--ok" data-i18n="status.enrolled">Enrolled</span>
+<p data-i18n="portal.visiting" data-i18n-vars='{"from":"2026-02-16","to":"2026-06-30"}'>Visiting 2026-02-16 – 2026-06-30</p>
+<% end %>
+
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-bi-en="2025 Graduate Visiting Research" data-bi-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</p>
+    <h1 class="masthead__title" data-i18n="departure.title">Departure Form</h1>
+    <p class="masthead__lead" data-i18n="departure.lead">Complete the departure procedures before you leave NTU.</p>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <%= render :partial => "/partials/portal_nav" %>
+    </aside>
+
+    <!-- 下載範本 → 上傳簽章版 → 送出 -->
+    <form class="page-grid__main" novalidate data-departure-form>
+      <div class="error-summary" data-error-summary tabindex="-1" role="alert" hidden></div>
+
+      <!-- Note from OIA：離校手續單，由後台提供（預設值在 i18n 檔） -->
+      <div class="oia-note oia-note--surface">
+        <p class="oia-note__tag" data-i18n="common.noteFromOia">Note from OIA</p>
+        <p data-i18n="departure.note">Download the departure form, collect the signatures listed on it, then upload the signed form here. Your research certificate becomes available after OIA approves it.</p>
+        <a class="link" href="#" data-i18n="departure.procedures">Departure procedures</a>
+      </div>
+
+      <section class="card" aria-labelledby="departure-section-title">
+        <div class="card__head">
+          <h2 class="card__title" id="departure-section-title" data-i18n="departure.doc">Signed departure form</h2>
+        </div>
+        <div class="doc-list">
+          <div class="doc-item doc-item--compact" data-doc-item data-field>
+            <div class="doc-item__info">
+              <h3 class="doc-item__title" id="departure-file-title"><span data-i18n="departure.title">Departure Form</span><span class="field__req" aria-hidden="true">*</span></h3>
+              <p class="doc-item__desc" data-i18n="departure.docDesc">Signed by your supervisor, the dormitory office and the library.</p>
+              <a class="link" href="#" download data-i18n="common.downloadTemplate">Download template</a>
+            </div>
+            <div class="upload" data-upload data-required="true" data-accept="pdf,jpg,png">
+              <div class="file-row" data-upload-file hidden>
+                <span class="file-row__type" data-file-type></span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name></span>
+                  <span class="file-row__meta" data-file-meta></span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.pdfJpgPng5">PDF, JPG or PNG · up to 5 MB</span>
+                <input type="file" id="departure-file" accept=".pdf,.jpg,.jpeg,.png" aria-labelledby="departure-file-title">
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="action-bar action-bar--static">
+        <p class="action-bar__status action-bar__status--hint" data-i18n="departure.after">After you submit, OIA will review the form.</p>
+        <button type="submit" class="btn btn--primary" data-i18n="common.confirmSubmit">Confirm and submit</button>
+      </div>
+    </form>
+  </div>
+</div>

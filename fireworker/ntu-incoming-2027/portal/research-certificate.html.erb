@@ -1,0 +1,57 @@
+<% content_for :title do %>Research Certificate<% end %>
+<% content_for :title_key do %>researchCert.title<% end %>
+<% content_for :page do %>researchCert<% end %>
+<% content_for :app_status do %>departed<% end %>
+<% content_for :portal_status do %>
+<span class="chip chip--dot chip--muted" data-i18n="status.departed">Departed</span>
+<p data-i18n="portal.departureApproved" data-i18n-vars='{"date":"2026-07-02"}'>Departure approved 2026-07-02</p>
+<% end %>
+
+<!-- 離校手續核准後才能使用 -->
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-bi-en="2025 Graduate Visiting Research" data-bi-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</p>
+    <h1 class="masthead__title" data-i18n="researchCert.title">Research Certificate</h1>
+    <p class="masthead__lead" data-i18n="researchCert.lead">An official certificate of your visiting research at NTU.</p>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <%= render :partial => "/partials/portal_nav" %>
+    </aside>
+
+    <div class="page-grid__main">
+      <div class="notice notice--ok">
+        <div class="notice__body">
+          <p class="notice__title" data-i18n="researchCert.banner" data-i18n-vars='{"date":"2026-07-02"}'>Your departure form was approved on 2026-07-02</p>
+          <p class="notice__text" data-i18n="researchCert.bannerSub">You can now print your certificate of visiting research.</p>
+        </div>
+      </div>
+
+      <section class="card" aria-labelledby="cert-title">
+        <div class="card__head card__head--split">
+          <div class="stack stack--sm">
+            <h2 class="card__title" id="cert-title" data-i18n="researchCert.item">Certificate of Visiting Research</h2>
+            <p class="card__lead" id="cert-meta" data-i18n="researchCert.meta">Opens in a new tab, formatted for A4 paper. Print or save it as a PDF.</p>
+          </div>
+          <!-- 列印時在新分頁開啟 A4 版面 -->
+          <a class="btn btn--primary" href="/portal/research-certificate-print.html" target="_blank" rel="noopener" aria-describedby="cert-meta" data-i18n="researchCert.print">Print certificate</a>
+        </div>
+        <dl class="kv-list">
+          <div class="kv">
+            <dt data-i18n="common.name">Name</dt>
+            <dd>WINSON, Angela</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.hostDept">Host department</dt>
+            <dd data-bi-en="Department of Civil Engineering" data-bi-zh="土木工程學系">Department of Civil Engineering</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="admission.visitingPeriod">Visiting period</dt>
+            <dd>2026-02-16 – 2026-06-30</dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+  </div>
+</div>

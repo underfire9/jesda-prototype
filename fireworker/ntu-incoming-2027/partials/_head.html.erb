@@ -1,0 +1,19 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title><%= content_for?(:title) ? yield(:title) : "NTU OIA" %> · NTU Incoming Visiting Research Student Online Application System</title>
+<script>
+  /* 在繪製前先決定語系，避免中文頁先閃一下英文字型：?lang= → 上次選擇 → en */
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search).get("lang");
+      var l = p || localStorage.getItem("oia-lang");
+      if (l && /^zh/i.test(l)) document.documentElement.lang = "zh-Hant";
+    } catch (e) {}
+  })();
+</script>
+<link rel="icon" href="/assets/ntu-seal.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600&display=swap">
+<link rel="stylesheet" href="/stylesheets/application.css">

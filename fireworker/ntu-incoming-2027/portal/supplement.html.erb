@@ -1,0 +1,85 @@
+<% content_for :title do %>Supplement Required<% end %>
+<% content_for :title_key do %>supplement.title<% end %>
+<% content_for :page do %>supplement<% end %>
+<% content_for :app_status do %>supplement<% end %>
+<% content_for :portal_status do %>
+<span class="chip chip--dot chip--err" data-i18n="status.supplement">Supplement required</span>
+<p data-i18n="portal.replyBy" data-i18n-vars='{"date":"2025-11-05"}'>Reply by 2025-11-05</p>
+<% end %>
+
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-bi-en="2025 Graduate Visiting Research" data-bi-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</p>
+    <h1 class="masthead__title" data-i18n="supplement.title">Supplement Required</h1>
+    <p class="masthead__lead" data-i18n="supplement.lead">OIA has asked you to replace the documents below. Only these documents can be changed.</p>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <%= render :partial => "/partials/portal_nav" %>
+    </aside>
+
+    <form class="page-grid__main" novalidate data-supplement-form>
+      <div class="error-summary" data-error-summary tabindex="-1" role="alert" hidden></div>
+
+      <div class="notice notice--warn">
+        <div class="notice__body">
+          <p class="notice__title" data-i18n="supplement.banner" data-i18n-vars='{"n":1,"date":"2025-11-05"}'>1 document needs to be replaced by 2025-11-05</p>
+          <p class="notice__text" data-i18n="supplement.bannerSub">Your application stays on hold until you submit the replacement.</p>
+        </div>
+      </div>
+
+      <section class="card" aria-labelledby="supplement-section-title">
+        <div class="card__head">
+          <h2 class="card__title" id="supplement-section-title" data-i18n="supplement.section">Documents to replace</h2>
+        </div>
+
+        <!-- 只列出狀態為「需補件」的文件 -->
+        <div class="doc-list">
+          <div class="doc-item doc-item--stack" data-doc-item data-field>
+            <h3 class="doc-item__title" id="supp-photo-title"><span data-i18n="upload.doc.photo">Head-shot photo</span><span class="chip chip--dot chip--err" data-i18n="status.needsReplacement">Needs replacement</span></h3>
+
+            <!-- OIA 的補件說明由後台提供 { en, zhHant } -->
+            <div class="note-box">
+              <p class="note-box__tag" data-i18n="supplement.reason">Note from OIA</p>
+              <div class="cms">
+                <p lang="en">The background of the photo is not white, and your face is partly covered by hair. Please upload a recent photo with a plain white background, taken within the last 6 months.</p>
+                <p lang="zh-Hant">照片背景不是白色，且臉部被頭髮部分遮住。請上傳最近 6 個月內拍攝、白色素面背景的照片。</p>
+              </div>
+            </div>
+
+            <div class="file-row file-row--plain">
+              <span class="file-row__type">JPG</span>
+              <span class="file-row__body">
+                <span class="file-row__name">photo-winson.jpg</span>
+                <span class="file-row__meta" data-i18n="supplement.uploadedMeta" data-i18n-vars='{"date":"2025-10-06","size":"1.2 MB"}'>Uploaded 2025-10-06 · 1.2 MB · Rejected</span>
+              </span>
+              <span class="file-row__actions"><a class="link link--muted" href="#" data-i18n="common.view">View</a></span>
+            </div>
+
+            <div class="upload" data-upload data-required="true" data-accept="jpg">
+              <div class="file-row" data-upload-file hidden>
+                <span class="file-row__type" data-file-type></span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name></span>
+                  <span class="file-row__meta" data-file-meta></span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.jpg5">JPG · up to 5 MB</span>
+                <input type="file" id="supp-photo" accept=".jpg,.jpeg" aria-labelledby="supp-photo-title">
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="action-bar action-bar--static">
+        <p class="action-bar__status action-bar__status--hint" data-i18n="supplement.after">After you submit, OIA will review the new document.</p>
+        <button type="submit" class="btn btn--primary" data-i18n="supplement.submit">Submit supplement</button>
+      </div>
+    </form>
+  </div>
+</div>

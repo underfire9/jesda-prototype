@@ -1,0 +1,47 @@
+<% content_for :title do %>Log in<% end %>
+<% content_for :title_key do %>login.title<% end %>
+<% content_for :page do %>login<% end %>
+
+<div class="container auth">
+  <section class="auth__card" aria-labelledby="page-title">
+    <div class="auth__head">
+      <h1 class="auth__title" id="page-title" data-i18n="login.title">Log in</h1>
+      <p class="auth__lead" data-i18n="login.lead">Use the email address you registered with.</p>
+    </div>
+
+    <form class="auth__form" data-validate data-next="/applications/index.html">
+      <div class="field">
+        <label class="field__label" for="login-email"><span data-i18n="common.email">Email</span><span class="field__req" aria-hidden="true">*</span></label>
+        <input class="input" type="email" id="login-email" name="email" autocomplete="email" required>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="login-password"><span data-i18n="login.password">Password</span><span class="field__req" aria-hidden="true">*</span></label>
+        <input class="input" type="password" id="login-password" name="password" autocomplete="current-password" required>
+      </div>
+
+      <div class="captcha">
+        <div class="field">
+          <label class="field__label" for="login-captcha"><span data-i18n="login.captcha">Verification code</span><span class="field__req" aria-hidden="true">*</span></label>
+          <input class="input" type="text" id="login-captcha" name="captcha" autocomplete="off" inputmode="latin" required data-captcha-input>
+        </div>
+        <!-- 驗證碼方案依後端決定，此處以文字模擬圖片 -->
+        <span class="captcha__image" role="img" aria-label="Verification code image" data-i18n-attr="aria-label:login.captchaAlt" data-captcha-image></span>
+        <button type="button" class="link captcha__refresh" data-captcha-refresh data-i18n="login.captchaRefresh">Refresh</button>
+      </div>
+
+      <div class="auth__right">
+        <a class="link" href="/account/forgot-password.html" data-i18n="login.forgot">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--block" data-i18n="login.submit">Log in</button>
+    </form>
+
+    <hr class="auth__divider">
+
+    <p class="auth__links">
+      <span data-i18n="login.newHere">New to the system?</span>
+      <a class="link" href="/account/register.html" data-i18n="login.createAccount">Create an account</a>
+    </p>
+  </section>
+</div>

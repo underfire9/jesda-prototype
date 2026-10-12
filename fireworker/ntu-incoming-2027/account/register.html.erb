@@ -1,0 +1,38 @@
+<% content_for :title do %>Create an account<% end %>
+<% content_for :title_key do %>register.title<% end %>
+<% content_for :page do %>register<% end %>
+
+<div class="container auth">
+  <section class="auth__card" aria-labelledby="page-title">
+    <div class="auth__head">
+      <h1 class="auth__title" id="page-title" data-i18n="register.title">Create an account</h1>
+      <p class="auth__lead" data-i18n="register.lead">Enter your email address. We will send you a link to verify it and set your password.</p>
+    </div>
+
+    <form class="auth__form" data-validate data-next="/account/check-email.html" data-pass-email>
+      <div class="field">
+        <label class="field__label" for="register-email"><span data-i18n="common.email">Email</span><span class="field__req" aria-hidden="true">*</span></label>
+        <input class="input" type="email" id="register-email" name="email" autocomplete="email" required data-block-domains aria-describedby="register-email-hint">
+        <p class="hint" id="register-email-hint" data-i18n="register.emailHint">Use an address you check often. All notices about your application are sent here.</p>
+      </div>
+
+      <div class="captcha">
+        <div class="field">
+          <label class="field__label" for="register-captcha"><span data-i18n="login.captcha">Verification code</span><span class="field__req" aria-hidden="true">*</span></label>
+          <input class="input" type="text" id="register-captcha" name="captcha" autocomplete="off" required data-captcha-input>
+        </div>
+        <span class="captcha__image" role="img" aria-label="Verification code image" data-i18n-attr="aria-label:login.captchaAlt" data-captcha-image></span>
+        <button type="button" class="link captcha__refresh" data-captcha-refresh data-i18n="login.captchaRefresh">Refresh</button>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--block" data-i18n="register.submit">Send verification email</button>
+    </form>
+
+    <hr class="auth__divider">
+
+    <p class="auth__links">
+      <span data-i18n="register.haveAccount">Already have an account?</span>
+      <a class="link" href="/account/login.html" data-i18n="register.login">Log in</a>
+    </p>
+  </section>
+</div>

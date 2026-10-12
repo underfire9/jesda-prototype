@@ -1,0 +1,148 @@
+<% content_for :title do %>Upload Documents<% end %>
+<% content_for :title_key do %>steps.upload<% end %>
+<% content_for :page do %>upload<% end %>
+<% content_for :step do %>3<% end %>
+
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-bi-en="2025 Graduate Visiting Research" data-bi-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</p>
+    <h1 class="masthead__title" data-i18n="steps.upload">Upload Documents</h1>
+    <div class="masthead__meta">
+      <span class="chip chip--outline chip--dot" data-i18n="status.draft">Draft</span>
+      <span data-i18n="common.lastSaved" data-i18n-vars='{"time":"09:12"}' data-last-saved>Last saved 09:12</span>
+    </div>
+    <%= render :partial => "/partials/steps" %>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <nav class="toc" data-toc aria-labelledby="toc-title">
+        <p class="toc__title" id="toc-title" data-i18n="common.onThisPage">On this page</p>
+        <ol class="toc__list">
+          <li><a class="toc__link" href="#s-documents"><span class="dot"></span><span data-i18n="upload.nav.documents">Documents</span></a></li>
+        </ol>
+        <%= render :partial => "/partials/help" %>
+      </nav>
+    </aside>
+
+    <form class="page-grid__main" id="process-form" novalidate data-process-form>
+      <div class="error-summary" data-error-summary tabindex="-1" role="alert" hidden></div>
+
+      <div class="notice upload-progress">
+        <div class="notice__body">
+          <p class="notice__title" data-i18n="upload.progress" data-upload-count>2 of 3 required documents uploaded</p>
+          <p class="notice__text" data-i18n="upload.progressLead">The list is set by OIA for your application category and identity. Templates are provided where a specific format is needed.</p>
+        </div>
+        <div class="segments notice__action" data-upload-segments aria-hidden="true"></div>
+      </div>
+
+      <!-- 項目由後台設定（名稱、說明、範本皆為後端雙語資料）；上傳完成即儲存，支援拖放 -->
+      <section class="card" id="s-documents" aria-labelledby="s-documents-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-documents-title" data-i18n="upload.nav.documents">Documents</h2>
+        </div>
+
+        <div class="doc-list">
+          <div class="doc-item" data-doc-item data-field>
+            <div class="doc-item__info">
+              <h3 class="doc-item__title" id="doc-photo-title"><span data-i18n="upload.doc.photo">Head-shot photo</span><span class="chip" data-upload-chip></span></h3>
+              <p class="doc-item__desc" data-i18n="upload.doc.photoDesc">A digital photo that meets the passport photo rules of Taiwan’s Ministry of Foreign Affairs: white background, no headwear, and hair must not cover your ears.</p>
+              <a class="link" href="#" data-i18n="upload.doc.photoLink">Guidelines for ePassport photographs</a>
+            </div>
+            <div class="upload" data-upload data-required="true" data-accept="jpg">
+              <div class="file-row" data-upload-file>
+                <span class="file-row__type" data-file-type>JPG</span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name>photo-winson.jpg</span>
+                  <span class="file-row__meta" data-file-meta data-i18n="common.fileMeta" data-i18n-vars='{"size":"410 KB","date":"date:2025-10-06"}'>410 KB · uploaded 6 Oct 2025</span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone hidden>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.jpg5">JPG · up to 5 MB</span>
+                <input type="file" id="doc-photo" accept=".jpg,.jpeg" aria-labelledby="doc-photo-title">
+              </label>
+            </div>
+          </div>
+
+          <div class="doc-item" data-doc-item data-field>
+            <div class="doc-item__info">
+              <h3 class="doc-item__title" id="doc-proposal-title"><span data-i18n="upload.doc.proposal">Research proposal</span><span class="chip" data-upload-chip></span></h3>
+              <p class="doc-item__desc" data-i18n="upload.doc.proposalDesc">Two to five pages describing the research you plan to do at NTU, agreed with your NTU supervisor. Upload it if your programme asks for one.</p>
+              <a class="link" href="#" download data-i18n="upload.doc.proposalTemplate">Download template (.docx)</a>
+            </div>
+            <div class="upload" data-upload data-required="false" data-accept="pdf">
+              <div class="file-row" data-upload-file hidden>
+                <span class="file-row__type" data-file-type></span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name></span>
+                  <span class="file-row__meta" data-file-meta></span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.pdf5">PDF · up to 5 MB</span>
+                <input type="file" id="doc-proposal" accept=".pdf" aria-labelledby="doc-proposal-title">
+              </label>
+            </div>
+          </div>
+
+          <div class="doc-item" data-doc-item data-field>
+            <div class="doc-item__info">
+              <h3 class="doc-item__title" id="doc-transcript-title"><span data-i18n="upload.doc.transcript">Academic transcript</span><span class="chip" data-upload-chip></span></h3>
+              <p class="doc-item__desc" data-i18n="upload.doc.transcriptDesc">Official transcript from your home university, in English or Chinese. A scan of the original is accepted.</p>
+            </div>
+            <div class="upload" data-upload data-required="true" data-accept="pdf">
+              <div class="file-row" data-upload-file hidden>
+                <span class="file-row__type" data-file-type></span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name></span>
+                  <span class="file-row__meta" data-file-meta></span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.pdf5">PDF · up to 5 MB</span>
+                <input type="file" id="doc-transcript" accept=".pdf" aria-labelledby="doc-transcript-title">
+              </label>
+            </div>
+          </div>
+
+          <div class="doc-item" data-doc-item data-field>
+            <div class="doc-item__info">
+              <h3 class="doc-item__title" id="doc-passport-title"><span data-i18n="upload.doc.passport">Passport</span><span class="chip" data-upload-chip></span></h3>
+              <p class="doc-item__desc" data-i18n="upload.doc.passportDesc">The page with your photo and personal details. Your passport must be valid for at least six months after your visit ends.</p>
+            </div>
+            <div class="upload" data-upload data-required="true" data-accept="pdf">
+              <div class="file-row" data-upload-file>
+                <span class="file-row__type" data-file-type>PDF</span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name>passport-winson.pdf</span>
+                  <span class="file-row__meta" data-file-meta data-i18n="common.fileMeta" data-i18n-vars='{"size":"820 KB","date":"date:2025-10-06"}'>820 KB · uploaded 6 Oct 2025</span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone hidden>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.pdf5">PDF · up to 5 MB</span>
+                <input type="file" id="doc-passport" accept=".pdf" aria-labelledby="doc-passport-title">
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="action-bar">
+        <div class="action-bar__status">
+          <p data-i18n="upload.bar1">Files are saved as soon as they finish uploading.</p>
+          <span data-i18n="upload.bar2">You can come back and replace any file before you submit.</span>
+        </div>
+        <a class="btn btn--ghost" href="/apply/form.html" data-i18n="common.back">Back</a>
+        <button type="submit" class="btn btn--primary" data-next="/apply/payment.html" data-next-step="steps.payment" data-i18n="common.saveNext">Save &amp; Next</button>
+      </div>
+    </form>
+  </div>
+</div>

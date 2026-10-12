@@ -1,0 +1,50 @@
+<% content_for :title do %>Declaration of Consent<% end %>
+<% content_for :title_key do %>declaration.title<% end %>
+<% content_for :page do %>declaration<% end %>
+
+<!-- 只在第一次登入時出現 -->
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-i18n="declaration.eyebrow">Before you start</p>
+    <h1 class="masthead__title" data-i18n="declaration.title">Declaration of Consent</h1>
+    <p class="masthead__lead" data-i18n="declaration.lead">Please read the declaration below. You only need to do this once, the first time you log in.</p>
+  </header>
+
+  <div class="stack page-body">
+    <section class="card" aria-labelledby="declaration-title">
+      <div class="card__head">
+        <h2 class="card__title" id="declaration-title" data-i18n="declaration.cardTitle">Declaration</h2>
+        <p class="card__lead" data-i18n="declaration.cardNote">Content maintained by the Office of International Affairs.</p>
+      </div>
+
+      <!-- 聲明書內文由後台提供 { en, zhHant }；以下為示意內容，中文缺漏時顯示英文 -->
+      <div class="cms legal-box" data-cms="declaration">
+        <ol lang="en">
+          <li>I confirm that the information I provide in this application is true, complete and accurate. I understand that false or misleading information may lead to my application being rejected or my visiting status being revoked.</li>
+          <li>I agree that National Taiwan University may collect, process and use my personal data for the purposes of admission, enrolment, accommodation, visa support, insurance and student services, in accordance with the Personal Data Protection Act of Taiwan.</li>
+          <li>I understand that admission as a visiting research student does not lead to a degree from National Taiwan University, and that I must remain enrolled at my home university for the whole visiting period.</li>
+          <li>I will follow the regulations of National Taiwan University and the laws of Taiwan during my stay, including the conditions of my visa or entry permit.</li>
+          <li>I understand that application fees are non-refundable once my application has been submitted.</li>
+        </ol>
+        <ol lang="zh-Hant">
+          <li>本人確認於本申請所提供之資料均屬真實、完整且正確。本人了解如有不實或誤導之資訊，申請可能遭駁回，或訪問身分遭撤銷。</li>
+          <li>本人同意國立臺灣大學依《個人資料保護法》，為入學、註冊、住宿、簽證協助、保險及學生服務之目的，蒐集、處理及利用本人之個人資料。</li>
+          <li>本人了解以訪問研究生身分入學不授予國立臺灣大學學位，且於訪問期間須維持原就讀學校之學籍。</li>
+          <li>本人在臺期間將遵守國立臺灣大學之規定及中華民國法律，包括簽證或入臺證之相關規定。</li>
+          <li>本人了解申請送出後，申請費恕不退還。</li>
+        </ol>
+      </div>
+
+      <label class="check declaration-agree">
+        <input type="checkbox" id="declaration-agree">
+        <span data-i18n="declaration.agree">I have read and agree to the declaration above.</span>
+      </label>
+    </section>
+
+    <div class="action-bar action-bar--static">
+      <p class="action-bar__status action-bar__status--hint" id="declaration-hint" data-i18n="declaration.disabledHint">Until you tick the box, “Agree and continue” stays disabled.</p>
+      <a class="btn btn--ghost" href="/account/login.html" data-i18n="declaration.logout">Log out</a>
+      <button type="button" class="btn btn--primary" data-enable-with="declaration-agree" data-href="/applications/index.html" aria-describedby="declaration-hint" data-i18n="declaration.submit">Agree and continue</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<% content_for :title do %>Registration Documents<% end %>
+<% content_for :title_key do %>regDocs.title<% end %>
+<% content_for :page do %>regDocs<% end %>
+<% content_for :app_status do %>admitted<% end %>
+<% content_for :portal_status do %>
+<span class="chip chip--dot chip--ok" data-i18n="status.admitted">Admitted</span>
+<p data-i18n="portal.arriving" data-i18n-vars='{"date":"2026-02-16"}'>Arriving 2026-02-16</p>
+<% end %>
+
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-bi-en="2025 Graduate Visiting Research" data-bi-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</p>
+    <h1 class="masthead__title" data-i18n="regDocs.title">Registration Documents</h1>
+    <p class="masthead__lead" data-i18n="regDocs.lead">Upload these documents before you arrive. OIA checks them before registration day.</p>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <%= render :partial => "/partials/portal_nav" %>
+    </aside>
+
+    <form class="page-grid__main" novalidate data-regdocs-form>
+      <div class="error-summary" data-error-summary tabindex="-1" role="alert" hidden></div>
+
+      <div class="notice notice--info">
+        <div class="notice__body">
+          <p class="notice__title" data-i18n="regDocs.progress" data-upload-count>2 of 4 documents uploaded</p>
+          <p class="notice__text" data-i18n="regDocs.deadline" data-i18n-vars='{"date":"2026-01-31"}'>Upload all documents by 2026-01-31.</p>
+        </div>
+      </div>
+
+      <section class="card" aria-labelledby="regdocs-section-title">
+        <div class="card__head">
+          <h2 class="card__title" id="regdocs-section-title" data-i18n="regDocs.section">Documents to upload</h2>
+        </div>
+
+        <div class="doc-list">
+          <div class="doc-item doc-item--compact" data-doc-item data-field>
+            <div class="doc-item__info">
+              <h3 class="doc-item__title" id="reg-passport-title"><span data-i18n="regDocs.passport">Passport with entry stamp</span><span class="field__req" aria-hidden="true">*</span></h3>
+              <p class="doc-item__desc" data-i18n="regDocs.passportDesc">The photo page and the page with your Taiwan entry stamp, in one PDF.</p>
+            </div>
+            <div class="upload" data-upload data-required="true" data-accept="pdf">
+              <div class="file-row" data-upload-file>
+                <span class="file-row__type" data-file-type>PDF</span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name>passport-entry-winson.pdf</span>
+                  <span class="file-row__meta" data-file-meta data-i18n="common.fileMeta" data-i18n-vars='{"size":"820 KB","date":"date:2026-01-20"}'>820 KB · uploaded 20 Jan 2026</span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone hidden>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.pdf5">PDF · up to 5 MB</span>
+                <input type="file" id="reg-passport" accept=".pdf" aria-labelledby="reg-passport-title">
+              </label>
+            </div>
+          </div>
+
+          <div class="doc-item doc-item--compact" data-doc-item data-field>
+            <div class="doc-item__info">
+              <h3 class="doc-item__title" id="reg-health-title"><span data-i18n="regDocs.health">Health check report</span><span class="field__req" aria-hidden="true">*</span></h3>
+              <p class="doc-item__desc" data-i18n="regDocs.healthDesc">Issued by a hospital within the last 3 months, in English or Chinese.</p>
+            </div>
+            <div class="upload" data-upload data-required="true" data-accept="pdf,jpg,png">
+              <div class="file-row" data-upload-file>
+                <span class="file-row__type" data-file-type>PDF</span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name>health-check-2026.pdf</span>
+                  <span class="file-row__meta" data-file-meta data-i18n="common.fileMeta" data-i18n-vars='{"size":"820 KB","date":"date:2026-01-20"}'>820 KB · uploaded 20 Jan 2026</span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone hidden>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.pdfJpgPng5">PDF, JPG or PNG · up to 5 MB</span>
+                <input type="file" id="reg-health" accept=".pdf,.jpg,.jpeg,.png" aria-labelledby="reg-health-title">
+              </label>
+            </div>
+          </div>
+
+          <div class="doc-item doc-item--compact" data-doc-item data-field>
+            <div class="doc-item__info">
+              <h3 class="doc-item__title" id="reg-insurance-title"><span data-i18n="regDocs.insurance">Proof of medical insurance</span><span class="field__req" aria-hidden="true">*</span></h3>
+              <p class="doc-item__desc" data-i18n="regDocs.insuranceDesc">Must cover your whole visiting period in Taiwan.</p>
+            </div>
+            <div class="upload" data-upload data-required="true" data-accept="pdf,jpg,png">
+              <div class="file-row" data-upload-file hidden>
+                <span class="file-row__type" data-file-type></span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name></span>
+                  <span class="file-row__meta" data-file-meta></span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.pdfJpgPng5">PDF, JPG or PNG · up to 5 MB</span>
+                <input type="file" id="reg-insurance" accept=".pdf,.jpg,.jpeg,.png" aria-labelledby="reg-insurance-title">
+              </label>
+            </div>
+          </div>
+
+          <div class="doc-item doc-item--compact" data-doc-item data-field>
+            <div class="doc-item__info">
+              <h3 class="doc-item__title" id="reg-arc-title"><span data-i18n="regDocs.arc">Alien Resident Certificate application</span><span class="field__req" aria-hidden="true">*</span></h3>
+              <p class="doc-item__desc" data-i18n="regDocs.arcDesc">Required if you stay longer than 6 months.</p>
+              <a class="link" href="#" download data-i18n="regDocs.arcForm">Download the form</a>
+            </div>
+            <div class="upload" data-upload data-required="true" data-accept="pdf,jpg,png">
+              <div class="file-row" data-upload-file hidden>
+                <span class="file-row__type" data-file-type></span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name></span>
+                  <span class="file-row__meta" data-file-meta></span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.pdfJpgPng5">PDF, JPG or PNG · up to 5 MB</span>
+                <input type="file" id="reg-arc" accept=".pdf,.jpg,.jpeg,.png" aria-labelledby="reg-arc-title">
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="action-bar action-bar--static">
+        <p class="action-bar__status action-bar__status--hint" data-i18n="regDocs.bar">You can replace a file until you submit.</p>
+        <button type="button" class="btn" data-toast="common.saved" data-i18n="common.save">Save</button>
+        <button type="submit" class="btn btn--primary" data-i18n="common.confirmSubmit">Confirm and submit</button>
+      </div>
+    </form>
+  </div>
+</div>

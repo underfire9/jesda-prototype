@@ -1,0 +1,119 @@
+<% content_for :title do %>My Applications<% end %>
+<% content_for :title_key do %>record.title<% end %>
+<% content_for :page do %>record<% end %>
+
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-i18n="record.welcome" data-i18n-vars='{"firstName":"Angela"}'>Welcome back, Angela</p>
+    <h1 class="masthead__title" data-i18n="record.title">My Applications</h1>
+    <p class="masthead__lead" data-i18n="record.lead">Continue an application in progress, or start a new one when an application period is open.</p>
+  </header>
+
+  <div class="stack page-body">
+    <!-- 開放申請的 banner：計畫名稱由後端提供雙語 -->
+    <section class="open-banner" aria-labelledby="open-title">
+      <div class="open-banner__body">
+        <h2 class="open-banner__title" id="open-title" data-i18n="record.openBanner" data-i18n-vars='{"programme":{"en":"2026 Graduate Visiting Research","zh-Hant":"2026 來校訪問研究生"}}'>2026 Graduate Visiting Research is open for applications</h2>
+        <p class="open-banner__text" data-i18n="record.period" data-i18n-vars='{"from":"2025-10-01","to":"2025-11-30"}'>Application period: 2025-10-01 – 2025-11-30 (Taipei time)</p>
+      </div>
+      <a class="btn btn--primary" href="/apply/form.html" data-i18n="record.start">Start new application</a>
+    </section>
+
+    <section class="card" aria-labelledby="current-title">
+      <div class="card__head">
+        <h2 class="card__title" id="current-title" data-i18n="record.current">Current applications</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table data-table--record">
+          <thead>
+            <tr>
+              <th scope="col" data-i18n="record.th.status">Status</th>
+              <th scope="col" data-i18n="record.th.programme">Programme</th>
+              <th scope="col" data-i18n="record.th.period">Visiting period</th>
+              <th scope="col"><span class="visually-hidden" data-i18n="record.th.action">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody data-record-current>
+            <!-- 只有未送出的申請可以刪除 -->
+            <tr>
+              <td data-label="Status" data-i18n-attr="data-label:record.th.status"><span class="chip chip--dot chip--act" data-i18n="status.inProgress">In progress</span></td>
+              <td data-label="Programme" data-i18n-attr="data-label:record.th.programme"><span data-bi-en="2026 Graduate Visiting Research · General Application" data-bi-zh="2026 來校訪問研究生 · 一般計畫申請">2026 Graduate Visiting Research · General Application</span></td>
+              <td data-label="Visiting period" data-i18n-attr="data-label:record.th.period" class="nowrap">2026-09-01 – 2027-01-15</td>
+              <td class="data-table__actions">
+                <button type="button" class="link link--muted" data-dialog-open="delete-dialog" data-delete-row data-i18n="common.delete">Delete</button>
+                <a class="btn btn--sm" href="/apply/form.html" data-i18n="common.continue">Continue</a>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Status" data-i18n-attr="data-label:record.th.status"><span class="chip chip--dot chip--warn" data-i18n="status.underReview">Under review</span></td>
+              <td data-label="Programme" data-i18n-attr="data-label:record.th.programme"><span data-bi-en="2025 Graduate Visiting Research · General Application" data-bi-zh="2025 來校訪問研究生 · 一般計畫申請">2025 Graduate Visiting Research · General Application</span></td>
+              <td data-label="Visiting period" data-i18n-attr="data-label:record.th.period" class="nowrap">2026-02-16 – 2026-06-30</td>
+              <td class="data-table__actions">
+                <a class="btn btn--sm" href="/portal/review.html" data-i18n="common.view">View</a>
+              </td>
+            </tr>
+            <tr class="data-table__empty" data-record-empty hidden>
+              <td colspan="4" data-i18n="record.empty">You have no applications in progress.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note" data-i18n="record.deleteNote">Only applications that have not been submitted can be deleted.</p>
+    </section>
+
+    <section class="card" aria-labelledby="approved-title">
+      <div class="card__head">
+        <h2 class="card__title" id="approved-title" data-i18n="record.approved">Approved applications</h2>
+        <p class="card__lead" data-i18n="record.approvedLead">Your past visits to NTU. Open one to download certificates or complete departure procedures.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table data-table--record">
+          <thead>
+            <tr>
+              <th scope="col" data-i18n="record.th.status">Status</th>
+              <th scope="col" data-i18n="record.th.programme">Programme</th>
+              <th scope="col" data-i18n="record.th.period">Visiting period</th>
+              <th scope="col"><span class="visually-hidden" data-i18n="record.th.action">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Status" data-i18n-attr="data-label:record.th.status"><span class="chip chip--dot chip--ok" data-i18n="status.enrolled">Enrolled</span></td>
+              <td data-label="Programme" data-i18n-attr="data-label:record.th.programme"><span data-bi-en="2025 Graduate Visiting Research · General Application" data-bi-zh="2025 來校訪問研究生 · 一般計畫申請">2025 Graduate Visiting Research · General Application</span></td>
+              <td data-label="Visiting period" data-i18n-attr="data-label:record.th.period" class="nowrap">2025-02-17 – 2025-06-30</td>
+              <td class="data-table__actions">
+                <a class="btn btn--sm" href="/portal/enrollment-certificate.html" data-i18n="common.open">Open</a>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Status" data-i18n-attr="data-label:record.th.status"><span class="chip chip--dot chip--muted" data-i18n="status.departed">Departed</span></td>
+              <td data-label="Programme" data-i18n-attr="data-label:record.th.programme"><span data-bi-en="2024 Graduate Visiting Research · IIPP" data-bi-zh="2024 來校訪問研究生 · IIPP">2024 Graduate Visiting Research · IIPP</span></td>
+              <td data-label="Visiting period" data-i18n-attr="data-label:record.th.period" class="nowrap">2024-09-02 – 2025-01-10</td>
+              <td class="data-table__actions">
+                <a class="btn btn--sm" href="/portal/research-certificate.html" data-i18n="common.open">Open</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="dialog-backdrop" id="delete-dialog" hidden>
+  <div class="dialog dialog--sm" role="dialog" aria-modal="true" aria-labelledby="delete-dialog-title" aria-describedby="delete-dialog-body">
+    <div class="dialog__head">
+      <h2 class="dialog__title" id="delete-dialog-title" data-i18n="record.deleteTitle">Delete this application?</h2>
+      <button type="button" class="dialog__close" data-dialog-close aria-label="Close" data-i18n-attr="aria-label:common.close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <p class="dialog__body" id="delete-dialog-body" data-i18n="record.deleteBody">The draft and any files you uploaded will be removed. This cannot be undone.</p>
+    <div class="dialog__foot">
+      <button type="button" class="btn btn--ghost" data-dialog-close data-i18n="common.cancel">Cancel</button>
+      <button type="button" class="btn btn--primary" data-delete-confirm data-i18n="common.delete">Delete</button>
+    </div>
+  </div>
+</div>

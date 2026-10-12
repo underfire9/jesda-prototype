@@ -1,0 +1,273 @@
+<% content_for :title do %>Entry Permit Information<% end %>
+<% content_for :title_key do %>steps.entryPermit<% end %>
+<% content_for :page do %>entryPermit<% end %>
+<% content_for :step do %>2<% end %>
+<% content_for :prc do %>true<% end %>
+
+<!-- 只有中國大陸籍申請人才有這一步，其他人在步驟條上顯示 Not required 並跳過 -->
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-i18n="entry.eyebrow">Step 2 · Only for applicants of PRC nationality</p>
+    <h1 class="masthead__title" data-i18n="steps.entryPermit">Entry Permit Information</h1>
+    <div class="masthead__meta">
+      <span class="chip chip--outline chip--dot" data-i18n="status.draft">Draft</span>
+      <span data-i18n="common.lastSaved" data-i18n-vars='{"time":"09:12"}' data-last-saved>Last saved 09:12</span>
+    </div>
+    <%= render :partial => "/partials/steps" %>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <nav class="toc" data-toc aria-labelledby="toc-title">
+        <p class="toc__title" id="toc-title" data-i18n="common.onThisPage">On this page</p>
+        <ol class="toc__list">
+          <li><a class="toc__link" href="#s-applicant"><span class="dot"></span><span data-i18n="entry.nav.applicant">Applicant Information</span></a></li>
+          <li><a class="toc__link" href="#s-family"><span class="dot"></span><span data-i18n="entry.nav.family">Family Members</span></a></li>
+          <li><a class="toc__link" href="#s-taiwan"><span class="dot"></span><span data-i18n="entry.nav.address">Address &amp; Contact in Taiwan</span></a></li>
+          <li><a class="toc__link" href="#s-declaration"><span class="dot"></span><span data-i18n="entry.nav.declaration">Declaration</span></a></li>
+        </ol>
+        <%= render :partial => "/partials/help" %>
+      </nav>
+    </aside>
+
+    <form class="page-grid__main" id="process-form" novalidate data-process-form>
+      <div class="error-summary" data-error-summary tabindex="-1" role="alert" hidden></div>
+
+      <div class="notice notice--soft">
+        <div class="notice__body">
+          <p class="notice__title" data-i18n="entry.why.title">Why you see this step</p>
+          <p class="notice__text" data-i18n="entry.why.body">Your nationality is China, so NTU applies for your Entry Permit for Taiwan on your behalf. The information below goes to the National Immigration Agency exactly as you enter it.</p>
+        </div>
+      </div>
+
+      <!-- 申請人資料 -->
+      <section class="card" id="s-applicant" aria-labelledby="s-applicant-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-applicant-title" data-i18n="entry.nav.applicant">Applicant Information</h2>
+          <p class="card__lead" data-i18n="entry.applicant.lead">Details the National Immigration Agency needs in addition to your application form.</p>
+        </div>
+
+        <div class="form-grid">
+          <fieldset class="field fieldset">
+            <legend class="field__label"><span data-i18n="entry.type">Type of application</span><span class="field__req" aria-hidden="true">*</span></legend>
+            <div class="choice-group choice-group--fill">
+              <label class="choice"><input type="radio" name="entry-type" id="entry-type" value="first" required checked><span data-i18n="entry.type.first">First application</span></label>
+              <label class="choice"><input type="radio" name="entry-type" value="re"><span data-i18n="entry.type.re">Re-application</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field fieldset">
+            <legend class="field__label"><span data-i18n="entry.residence">Where you live now</span><span class="field__req" aria-hidden="true">*</span></legend>
+            <div class="choice-group choice-group--fill">
+              <label class="choice"><input type="radio" name="entry-residence" id="entry-residence" value="mainland" required checked><span data-i18n="entry.residence.mainland">Mainland China</span></label>
+              <label class="choice"><input type="radio" name="entry-residence" value="overseas"><span data-i18n="entry.residence.overseas">Overseas</span></label>
+              <label class="choice"><input type="radio" name="entry-residence" value="hk"><span data-i18n="entry.residence.hk">Hong Kong</span></label>
+              <label class="choice"><input type="radio" name="entry-residence" value="macao"><span data-i18n="entry.residence.macao">Macao</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field span-6">
+            <label class="field__label" for="entry-degree"><span data-i18n="entry.degree">Degree level</span><span class="field__req" aria-hidden="true">*</span></label>
+            <select class="select" id="entry-degree" required>
+              <option value="" data-i18n="common.choose">Select</option>
+              <option value="ug" data-i18n="form.enroll.ug">Undergraduate</option>
+              <option value="ms" data-i18n="form.enroll.ms">Master’s</option>
+              <option value="phd" data-i18n="entry.degree.doctoral" selected>Doctoral</option>
+            </select>
+          </div>
+
+          <div class="field span-6">
+            <label class="field__label" for="entry-enrol-date"><span data-i18n="entry.enrolDate">Enrolment date at home university</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" type="date" id="entry-enrol-date" required value="2023-09-01">
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="entry-address"><span data-i18n="entry.address">Current residential address</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" type="text" id="entry-address" required autocomplete="street-address" value="Room 1203, No. 18 Zhongguancun South Street, Haidian District, Beijing">
+          </div>
+
+          <div class="field" data-field>
+            <span class="field__label" id="entry-id-label" data-summary-label><span data-i18n="entry.idCard">Copy of Resident Identity Card</span><span class="field__req" aria-hidden="true">*</span></span>
+            <div class="upload" data-upload data-required="true" data-accept="pdf,jpg,png">
+              <div class="file-row file-row--dashed" data-upload-file>
+                <span class="file-row__type" data-file-type>PDF</span>
+                <span class="file-row__body">
+                  <span class="file-row__name" data-file-name>id-card-front-back.pdf</span>
+                  <span class="file-row__meta" data-file-meta data-i18n="common.fileMeta" data-i18n-vars='{"size":"1.2 MB","date":"date:2025-10-06"}'>1.2 MB · uploaded 6 Oct 2025</span>
+                </span>
+                <span class="file-row__actions"><button type="button" class="link link--muted" data-upload-remove data-i18n="common.remove">Remove</button></span>
+              </div>
+              <label class="dropzone" data-upload-zone hidden>
+                <span class="dropzone__main"><span class="link" data-i18n="common.dropzone.choose">Choose a file</span><span data-i18n="common.dropzone.drag">or drag it here</span></span>
+                <span class="dropzone__meta" data-i18n="common.fileTypes.pdfJpgPng5">PDF, JPG or PNG · up to 5 MB</span>
+                <input type="file" id="entry-id-file" accept=".pdf,.jpg,.jpeg,.png" aria-labelledby="entry-id-label" aria-describedby="entry-id-hint">
+              </label>
+            </div>
+            <p class="hint" id="entry-id-hint" data-i18n="entry.idCardHint">Both sides on one page. PDF, JPG or PNG, up to 5 MB.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 家屬資料：表格＋對話框新增或編輯 -->
+      <section class="card" id="s-family" aria-labelledby="s-family-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-family-title" data-i18n="entry.nav.family">Family Members</h2>
+          <p class="card__lead" data-i18n="entry.family.lead">List your parents, and your spouse and children if any.</p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col" data-i18n="entry.family.th.relationship">Relationship</th>
+                <th scope="col" data-i18n="common.name">Name</th>
+                <th scope="col" data-i18n="common.dateOfBirth">Date of birth</th>
+                <th scope="col" data-i18n="entry.family.th.status">Status</th>
+                <th scope="col" data-i18n="entry.family.th.occupation">Occupation</th>
+                <th scope="col"><span class="visually-hidden" data-i18n="record.th.action">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody data-family-rows></tbody>
+          </table>
+        </div>
+        <!-- 家屬列表需至少一筆 -->
+        <input type="hidden" id="entry-family-count" data-progress-required value="2">
+
+        <div class="card__actions">
+          <button type="button" class="btn" data-family-add data-i18n="entry.family.add">+ Add family member</button>
+        </div>
+      </section>
+
+      <!-- 在臺地址及聯絡人 -->
+      <section class="card" id="s-taiwan" aria-labelledby="s-taiwan-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-taiwan-title" data-i18n="entry.nav.address">Address &amp; Contact in Taiwan</h2>
+          <p class="card__lead" data-i18n="entry.taiwan.lead">Where you will stay in Taiwan and who we can reach there.</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label class="field__label" for="entry-tw-address"><span data-i18n="entry.taiwan.address">Address in Taiwan</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" type="text" id="entry-tw-address" required aria-describedby="entry-tw-address-hint" value="NTU Prince House, No. 160, Sec. 3, Keelung Rd., Da’an Dist., Taipei">
+            <p class="hint" id="entry-tw-address-hint" data-i18n="entry.taiwan.addressHint">If you have not booked housing yet, use the host department’s address.</p>
+          </div>
+
+          <div class="field span-6">
+            <label class="field__label" for="entry-tw-contact"><span data-i18n="entry.taiwan.contact">Contact person in Taiwan</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" type="text" id="entry-tw-contact" required value="Prof. Lin, Chia-Hsin">
+          </div>
+
+          <div class="field span-6">
+            <label class="field__label" for="entry-tw-phone"><span data-i18n="common.phone">Phone</span><span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" type="tel" id="entry-tw-phone" required value="+886 2 3366 2000">
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="entry-tw-contact-address"><span data-i18n="entry.taiwan.contactAddress">Contact address</span><span class="field__req" aria-hidden="true">*</span></label>
+            <label class="check">
+              <input type="checkbox" id="entry-same-address" checked>
+              <span data-i18n="entry.taiwan.sameAddress">Same as address in Taiwan</span>
+            </label>
+            <input class="input" type="text" id="entry-tw-contact-address" required>
+          </div>
+        </div>
+      </section>
+
+      <!-- 聲明事項：三選一，選第 2 或第 3 項才出現說明欄 -->
+      <section class="card" id="s-declaration" aria-labelledby="s-declaration-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-declaration-title" data-i18n="entry.nav.declaration">Declaration</h2>
+          <p class="card__lead" data-i18n="entry.decl.lead">Required by the Act Governing Relations between the People of the Taiwan Area and the Mainland Area. Choose one.</p>
+        </div>
+
+        <div class="stack">
+          <fieldset class="field fieldset">
+            <legend class="visually-hidden" data-summary-label data-i18n="entry.nav.declaration">Declaration</legend>
+            <div class="choice-rows">
+              <label class="choice-row"><input type="radio" name="entry-decl" id="entry-decl" value="never" required checked><span data-i18n="entry.decl.never">I have never held a position in, or been a member of, any Party, administrative, military or political organ, institution or group in mainland China.</span></label>
+              <label class="choice-row"><input type="radio" name="entry-decl" value="previously"><span data-i18n="entry.decl.previously">I previously held such a position or membership.</span></label>
+              <label class="choice-row"><input type="radio" name="entry-decl" value="currently"><span data-i18n="entry.decl.currently">I currently hold such a position or membership.</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field" data-decl-details hidden>
+            <label class="field__label" for="entry-decl-details"><span data-i18n="entry.decl.details">Details</span><span class="field__req" aria-hidden="true">*</span></label>
+            <p class="hint" id="entry-decl-details-hint" data-i18n="entry.decl.detailsHint">Shown only for the second or third option: name the organisation, your position and the period. Providing false information may result in legal liability.</p>
+            <textarea class="textarea" id="entry-decl-details" required aria-describedby="entry-decl-details-hint"></textarea>
+          </div>
+
+          <p class="legal-note" data-i18n="entry.decl.exemption">Mainland residents who committed the offence of insurrection or treason outside Taiwan, and declare it truthfully when applying to enter Taiwan, are exempt from prosecution and punishment.</p>
+        </div>
+      </section>
+
+      <div class="action-bar">
+        <div class="action-bar__status">
+          <p data-i18n="process.autosave">Your progress is saved automatically.</p>
+          <span data-i18n="process.autosaveSub" data-i18n-vars='{"time":"09:12"}' data-last-saved>Last saved 09:12 · You can leave and come back any time.</span>
+        </div>
+        <a class="btn btn--ghost" href="/apply/form.html" data-i18n="common.back">Back</a>
+        <button type="button" class="btn" data-save data-i18n="common.save">Save</button>
+        <button type="submit" class="btn btn--primary" data-next="/apply/upload.html" data-next-step="steps.upload" data-i18n="common.saveNext">Save &amp; Next</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 新增／編輯家屬 -->
+<div class="dialog-backdrop" id="family-dialog" hidden>
+  <form class="dialog" role="dialog" aria-modal="true" aria-labelledby="family-dialog-title" novalidate data-family-form>
+    <div class="dialog__head">
+      <h2 class="dialog__title" id="family-dialog-title" data-i18n="familyDialog.title">Add family member</h2>
+      <button type="button" class="dialog__close" data-dialog-close aria-label="Close" data-i18n-attr="aria-label:familyDialog.close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <div class="dialog__body">
+      <fieldset class="field fieldset">
+        <legend class="field__label"><span data-i18n="entry.family.th.relationship">Relationship</span><span class="field__req" aria-hidden="true">*</span></legend>
+        <div class="choice-group choice-group--fill">
+          <label class="choice"><input type="radio" name="fm-rel" id="fm-rel" value="father" required><span data-i18n="entry.family.rel.father">Father</span></label>
+          <label class="choice"><input type="radio" name="fm-rel" value="mother"><span data-i18n="entry.family.rel.mother">Mother</span></label>
+          <label class="choice"><input type="radio" name="fm-rel" value="spouse"><span data-i18n="entry.family.rel.spouse">Spouse</span></label>
+          <label class="choice"><input type="radio" name="fm-rel" value="child"><span data-i18n="entry.family.rel.child">Child</span></label>
+        </div>
+      </fieldset>
+      <div class="form-grid">
+        <div class="field span-6">
+          <label class="field__label" for="fm-name"><span data-i18n="familyDialog.fullName">Full name</span><span class="field__req" aria-hidden="true">*</span></label>
+          <input class="input" type="text" id="fm-name" required>
+        </div>
+        <div class="field span-6">
+          <label class="field__label" for="fm-dob"><span data-i18n="common.dateOfBirth">Date of birth</span><span class="field__req" aria-hidden="true">*</span></label>
+          <input class="input" type="date" id="fm-dob" required>
+        </div>
+      </div>
+      <fieldset class="field fieldset">
+        <legend class="field__label"><span data-i18n="entry.family.th.status">Status</span><span class="field__req" aria-hidden="true">*</span></legend>
+        <div class="choice-group choice-group--fill">
+          <label class="choice"><input type="radio" name="fm-status" id="fm-status" value="alive" required><span data-i18n="entry.family.status.alive">Alive</span></label>
+          <label class="choice"><input type="radio" name="fm-status" value="deceased"><span data-i18n="entry.family.status.deceased">Deceased</span></label>
+          <label class="choice"><input type="radio" name="fm-status" value="divorced"><span data-i18n="entry.family.status.divorced">Divorced</span></label>
+        </div>
+      </fieldset>
+      <div class="form-grid">
+        <div class="field span-6">
+          <label class="field__label" for="fm-job"><span data-i18n="entry.family.th.occupation">Occupation</span><span class="field__req" aria-hidden="true">*</span></label>
+          <input class="input" type="text" id="fm-job" required>
+        </div>
+        <div class="field span-6">
+          <label class="field__label" for="fm-phone"><span data-i18n="common.phone">Phone</span><span class="field__req" aria-hidden="true">*</span></label>
+          <input class="input" type="tel" id="fm-phone" required>
+        </div>
+        <div class="field">
+          <label class="field__label" for="fm-address"><span data-i18n="familyDialog.currentAddress">Current address</span><span class="field__req" aria-hidden="true">*</span></label>
+          <input class="input" type="text" id="fm-address" required>
+        </div>
+      </div>
+    </div>
+    <div class="dialog__foot">
+      <button type="button" class="btn btn--ghost" data-dialog-close data-i18n="common.cancel">Cancel</button>
+      <button type="submit" class="btn btn--primary" data-i18n="common.save">Save</button>
+    </div>
+  </form>
+</div>

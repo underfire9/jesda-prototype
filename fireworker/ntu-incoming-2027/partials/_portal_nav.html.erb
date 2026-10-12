@@ -1,0 +1,41 @@
+<!-- 選單項目與順序每頁相同；目前頁由 body[data-page] 標示，可否點擊由 body[data-app-status] 控制（實作時改由後端狀態決定） -->
+<nav class="portal-nav" aria-label="Application menu" data-i18n-attr="aria-label:portal.navLabel" data-portal-nav>
+  <button type="button" class="portal-nav__toggle" aria-expanded="false" aria-controls="portal-nav-panel" data-portal-toggle>
+    <span data-portal-current></span>
+  </button>
+  <div class="portal-nav__panel" id="portal-nav-panel">
+    <a class="link portal-nav__back" href="/applications/index.html" data-i18n="portal.backToApplications">← My applications</a>
+
+    <p class="portal-nav__group" data-i18n="portal.group.application">Application</p>
+    <ul class="portal-nav__list">
+      <li><a class="portal-nav__link" href="/portal/review.html" data-nav="review" data-i18n="portal.review">Review application</a></li>
+      <li><a class="portal-nav__link" href="/portal/supplement.html" data-nav="supplement" data-i18n="portal.supplement">Supplement required</a></li>
+      <li><a class="portal-nav__link" href="/portal/visa.html" data-nav="visa" data-i18n="portal.visa">Visa documents</a></li>
+    </ul>
+
+    <p class="portal-nav__group" data-i18n="portal.group.preArrival">Pre-arrival</p>
+    <ul class="portal-nav__list">
+      <li><a class="portal-nav__link" href="/portal/admission.html" data-nav="admission" data-i18n="portal.admission">Admission information</a></li>
+      <li><a class="portal-nav__link" href="/portal/registration-documents.html" data-nav="regDocs" data-i18n="portal.regDocs">Registration documents</a></li>
+      <li><a class="portal-nav__link" href="/portal/download.html" data-nav="download" data-i18n="portal.download">Download documents</a></li>
+    </ul>
+
+    <p class="portal-nav__group" data-i18n="portal.group.enrollment">Enrollment &amp; departure</p>
+    <ul class="portal-nav__list">
+      <li><a class="portal-nav__link" href="/portal/enrollment-certificate.html" data-nav="enrollCert" data-i18n="portal.enrollCert">Enrollment certificate</a></li>
+      <li><a class="portal-nav__link" href="/portal/departure.html" data-nav="departure" data-i18n="portal.departure">Departure form</a></li>
+      <li><a class="portal-nav__link" href="/portal/research-certificate.html" data-nav="researchCert" data-i18n="portal.researchCert">Research certificate</a></li>
+    </ul>
+
+    <div class="portal-nav__status">
+      <small data-i18n="portal.statusTitle">Application status</small>
+      <%= yield(:portal_status) %>
+    </div>
+  </div>
+</nav>
+<div class="portal-nav__extra">
+  <div class="help help--plain">
+    <p class="help__title" data-i18n="common.needHelp">Need help?</p>
+    <p class="help__body" data-i18n="common.needHelpBody" data-i18n-vars='{"email":"config:contactEmail"}'>Write to the OIA admissions team at intstudent@ntu.edu.tw</p>
+  </div>
+</div>

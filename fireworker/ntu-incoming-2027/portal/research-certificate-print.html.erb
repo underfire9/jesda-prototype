@@ -1,0 +1,42 @@
+<% content_for :title do %>Certificate of Visiting Research<% end %>
+<!doctype html>
+<html lang="en">
+<head>
+  <%= render :partial => "/partials/head" %>
+</head>
+<body class="print-page" data-page="researchCertPrint" data-title-key="researchCert.printTitle">
+  <div class="print-bar">
+    <button type="button" class="btn btn--primary" onclick="window.print()" data-i18n="researchCert.print">Print certificate</button>
+    <button type="button" class="btn" onclick="window.close()" data-i18n="common.close">Close</button>
+  </div>
+
+  <!-- A4 版面。證書版型由 OIA 提供，不在切版範圍內，以下僅示意開啟位置與基本欄位 -->
+  <main class="a4" id="main">
+    <div class="a4__head">
+      <img src="/assets/ntu-seal.svg" width="64" height="64" alt="National Taiwan University" data-i18n-attr="alt:header.logoAlt">
+      <div>
+        <p class="eyebrow" data-i18n="header.eyebrow">Office of International Affairs</p>
+        <p data-i18n="footer.wordmark2">National Taiwan University</p>
+      </div>
+    </div>
+    <h1 class="a4__title" data-i18n="researchCert.printTitle">Certificate of Visiting Research</h1>
+    <dl class="kv-list">
+      <div class="kv">
+        <dt data-i18n="common.name">Name</dt>
+        <dd>WINSON, Angela</dd>
+      </div>
+      <div class="kv">
+        <dt data-i18n="admission.hostDept">Host department</dt>
+        <dd data-bi-en="Department of Civil Engineering" data-bi-zh="土木工程學系">Department of Civil Engineering</dd>
+      </div>
+      <div class="kv">
+        <dt data-i18n="admission.visitingPeriod">Visiting period</dt>
+        <dd>2026-02-16 – 2026-06-30</dd>
+      </div>
+    </dl>
+    <p class="a4__note" data-i18n="researchCert.printNote">Certificate layout is provided by OIA. This page shows where it opens.</p>
+  </main>
+
+  <%= render :partial => "/partials/scripts" %>
+</body>
+</html>

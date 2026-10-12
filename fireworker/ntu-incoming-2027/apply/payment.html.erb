@@ -1,0 +1,111 @@
+<% content_for :title do %>Payment<% end %>
+<% content_for :title_key do %>steps.payment<% end %>
+<% content_for :page do %>payment<% end %>
+<% content_for :step do %>4<% end %>
+
+<div class="container">
+  <header class="masthead">
+    <p class="eyebrow" data-bi-en="2025 Graduate Visiting Research" data-bi-zh="2025 來校訪問研究生">2025 Graduate Visiting Research</p>
+    <h1 class="masthead__title" data-i18n="steps.payment">Payment</h1>
+    <div class="masthead__meta">
+      <span class="chip chip--outline chip--dot" data-i18n="status.draft">Draft</span>
+      <span data-i18n="common.lastSaved" data-i18n-vars='{"time":"09:12"}' data-last-saved>Last saved 09:12</span>
+    </div>
+    <%= render :partial => "/partials/steps" %>
+  </header>
+
+  <div class="page-grid">
+    <aside class="page-grid__aside">
+      <nav class="toc" data-toc aria-labelledby="toc-title">
+        <p class="toc__title" id="toc-title" data-i18n="common.onThisPage">On this page</p>
+        <ol class="toc__list">
+          <li><a class="toc__link" href="#s-summary"><span class="dot is-done" data-static></span><span data-i18n="payment.nav.summary">Application summary</span></a></li>
+          <li><a class="toc__link" href="#s-fees"><span class="dot is-done" data-static></span><span data-i18n="payment.nav.fees">Fees</span></a></li>
+          <li><a class="toc__link" href="#s-method"><span class="dot"></span><span data-i18n="payment.nav.method">Payment method</span></a></li>
+        </ol>
+        <%= render :partial => "/partials/help" %>
+      </nav>
+    </aside>
+
+    <div class="page-grid__main">
+      <section class="card" id="s-summary" aria-labelledby="s-summary-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-summary-title" data-i18n="payment.nav.summary">Application summary</h2>
+        </div>
+        <dl class="kv-list">
+          <div class="kv">
+            <dt data-i18n="payment.duration">Application Duration</dt>
+            <dd data-i18n="payment.durationValue" data-i18n-vars='{"from":"2026-02-16","to":"2026-06-30"}'>2026-02-16 to 2026-06-30</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="payment.totalDuration">Total Duration</dt>
+            <dd data-i18n="common.days" data-i18n-vars='{"n":135}'>135 days</dd>
+          </div>
+          <div class="kv">
+            <dt data-i18n="payment.programType">Program Type</dt>
+            <!-- 長名稱的 Program 與 (TEEP) 之間用 NBSP，避免括號單獨換行 -->
+            <dd data-bi-en="Taiwan Experience Education Program&nbsp;(TEEP)" data-bi-zh="臺灣經驗教育計畫（TEEP）">Taiwan Experience Education Program&nbsp;(TEEP)</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="card" id="s-fees" aria-labelledby="s-fees-title">
+        <div class="card__head card__head--split">
+          <h2 class="card__title" id="s-fees-title" data-i18n="payment.feesTitle">Fees to Pay Upon Application</h2>
+          <span class="chip chip--warn" data-pay-status data-i18n="status.unpaid">Unpaid</span>
+        </div>
+        <!-- 費用項目由後台設定 -->
+        <table class="fee-table">
+          <thead>
+            <tr>
+              <th scope="col" data-i18n="common.item">Item</th>
+              <th scope="col" data-i18n="common.amountNtd">Amount (NT$)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-i18n="payment.appFee">Application fee</td>
+              <td>5,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td data-i18n="common.total">Total</td>
+              <td>NT$ 5,000</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <section class="card" id="s-method" aria-labelledby="s-method-title">
+        <div class="card__head">
+          <h2 class="card__title" id="s-method-title" data-i18n="payment.nav.method">Payment method</h2>
+          <p class="card__lead" data-i18n="payment.methodLead">Choose how you would like to pay. Your application is reviewed once payment is confirmed.</p>
+        </div>
+        <!-- 實際付款頁不在切版範圍內 -->
+        <input type="hidden" id="pay-method" data-progress-required value="">
+        <div class="pay-options">
+          <div class="pay-option" data-pay-option="card">
+            <h3 class="pay-option__title" data-i18n="payment.card">Credit card</h3>
+            <p class="pay-option__desc" data-i18n="payment.cardDesc">Pay online. Payment is confirmed right away.</p>
+            <button type="button" class="btn btn--primary" data-pay="card" data-i18n="payment.cardBtn">Pay by credit card</button>
+          </div>
+          <div class="pay-option" data-pay-option="transfer">
+            <h3 class="pay-option__title" data-i18n="payment.transfer">Bank transfer</h3>
+            <p class="pay-option__desc" data-i18n="payment.transferDesc">Transfer the fee to NTU’s account, then upload your transfer receipt. OIA confirms it manually.</p>
+            <button type="button" class="btn" data-pay="transfer" data-i18n="payment.transferBtn">Pay by bank transfer</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="action-bar">
+        <div class="action-bar__status">
+          <p data-i18n="payment.bar1">You can review everything on the next page before you submit.</p>
+          <span data-i18n="payment.bar2">Payment status updates here once it is confirmed.</span>
+        </div>
+        <a class="btn btn--ghost" href="/apply/upload.html" data-i18n="common.back">Back</a>
+        <a class="btn" href="/apply/preview.html" data-i18n="steps.preview">Preview &amp; Submit</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -68,6 +68,29 @@
                             <span class="output">建國高級中學</span>
                         </li>
                     </ul>
+                    <div class="photo-upload">
+                        <div class="photo-upload-heading">
+                            <h5>2 吋大頭照</h5>
+                            <span>個人照片</span>
+                        </div>
+                        <label class="photo-upload-dropzone" for="application-photo">
+                            <input class="visually-hidden" type="file" id="application-photo" name="application_photo" accept="image/*" aria-describedby="application-photo-help application-photo-status">
+                            <span class="photo-upload-icon" aria-hidden="true"><i class="fas fa-cloud-upload-alt"></i></span>
+                            <span class="photo-upload-title">拖曳照片至此處上傳</span>
+                            <span class="photo-upload-subtitle">或點擊選擇圖片檔案</span>
+                            <span class="photo-upload-select">選擇照片</span>
+                        </label>
+                        <div class="photo-upload-help" id="application-photo-help">請選擇一張圖片；再次上傳即可更換照片。照片僅暫存在目前分頁，供預覽使用。</div>
+                        <div class="photo-upload-preview" hidden>
+                            <img class="photo-upload-image" alt="已選擇的大頭照預覽">
+                            <div class="photo-upload-details">
+                                <span class="photo-upload-caption">已選擇照片</span>
+                                <div class="photo-upload-name"></div>
+                                <button type="button" class="photo-upload-remove">刪除照片</button>
+                            </div>
+                        </div>
+                        <div class="photo-upload-status" id="application-photo-status" role="status" aria-live="polite"></div>
+                    </div>
                 </section>
                 <section class="process-section">
                     <h4 class="mb-4">聯絡資訊</h4>
@@ -209,6 +232,7 @@
 </div>
 
 <% content_for :js do %>
+<script src="../javascripts/application-photo.js"></script>
 <!-- Sticky Step -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {

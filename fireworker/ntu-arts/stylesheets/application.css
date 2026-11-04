@@ -1702,7 +1702,7 @@ body[data-section=about] .nav-about {
 }
 
 .subnav {
-  margin-bottom: 32px;
+  margin: 0 0 32px;
 }
 
 .filters {
@@ -2439,8 +2439,8 @@ body[data-section=about] .nav-about {
 
 .with-sidenav {
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
-  gap: 40px 40px;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 40px 64px;
 }
 @media (max-width: 1199px) {
   .with-sidenav {
@@ -2499,22 +2499,25 @@ body[data-section=about] .nav-about {
 
 .person {
   display: grid;
-  grid-template-columns: 173px 1fr;
+  grid-template-columns: 280px 1fr;
+  align-items: start;
   background: #ecede5;
   border-radius: 12px;
   overflow: hidden;
 }
 .person img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
   object-fit: cover;
-  aspect-ratio: 1;
+  object-position: center 20%;
 }
 .person .body {
-  padding: 20px;
+  align-self: stretch;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .person .role {
   font-size: 0.8125em;
@@ -2531,11 +2534,11 @@ body[data-section=about] .nav-about {
   color: #5f6058;
 }
 .person--sm {
-  grid-template-columns: 118px 1fr;
+  grid-template-columns: 192px 1fr;
 }
 .person--sm .body {
   justify-content: flex-start;
-  padding: 18px;
+  padding: 22px 18px;
 }
 .person--sm .name {
   font-family: "Noto Sans TC", system-ui, sans-serif;
@@ -2565,15 +2568,26 @@ body[data-section=about] .nav-about {
   color: #9a342b;
   text-decoration: underline;
 }
+@media (max-width: 1199px) {
+  .person {
+    grid-template-columns: 200px 1fr;
+  }
+  .person--sm {
+    grid-template-columns: 150px 1fr;
+  }
+}
 @media (max-width: 767px) {
   .person {
-    grid-template-columns: 110px 1fr;
+    grid-template-columns: 148px 1fr;
+  }
+  .person .body {
+    padding: 16px;
   }
   .person .name {
     font-size: 1.375em;
   }
   .person--sm {
-    grid-template-columns: 96px 1fr;
+    grid-template-columns: 104px 1fr;
   }
 }
 
@@ -3095,8 +3109,16 @@ fieldset {
 
 .video-side, .actions, .tabs, .pagination, .post-nav, .formats, .share ul, .proto-banner ul {
   list-style: none;
-  margin: 0;
   padding: 0;
+}
+
+.tabs > li {
+  display: flex;
+  flex: none;
+}
+
+.tabs .tab {
+  display: block;
 }
 
 .info-box .share span {
@@ -3144,5 +3166,17 @@ fieldset {
   }
   .news-head {
     flex-wrap: wrap;
+  }
+}
+.filter-apply {
+  align-self: flex-end;
+}
+
+.block--videos {
+  margin-top: 72px;
+}
+@media (max-width: 767px) {
+  .block--videos {
+    margin-top: 48px;
   }
 }

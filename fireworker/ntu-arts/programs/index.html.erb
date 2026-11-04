@@ -1,0 +1,56 @@
+<% content_for :title do %>當期節目<% end %>
+<% content_for :alt_url do %>/en/programs/index.html<% end %>
+<% content_for :section do %>programs<% end %>
+
+<header class="page-head">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="麵包屑"><ol><li><a class="accesskey" href="#C" title="中央內容區">:::</a> <a href="/home.html" title="首頁">首頁</a></li><li><a href="/programs/index.html">節目</a></li><li aria-current="page">當期節目</li></ol></nav>
+    <h1>當期節目</h1>
+    <p class="lead">主辦與外租節目合併顯示；節目結束後自動移到歷年回顧。</p>
+  </div>
+</header>
+<div class="container page-body">
+  <nav aria-label="節目分類"><ul class="tabs subnav"><li><a class="tab is-current" href="/programs/index.html" aria-current="page">當期節目</a></li><li><a class="tab" href="/programs/calendar.html">活動月曆</a></li><li><a class="tab" href="/programs/archive.html">歷年回顧</a></li></ul></nav>
+  <form class="filters js-filter" data-target="prog-grid" data-count="prog-count" aria-label="篩選節目">
+    <fieldset>
+    <legend class="visually-hidden">篩選節目</legend>
+    <div>
+      <span class="label" id="cat-label">類別</span>
+      <div class="chips" role="group" aria-labelledby="cat-label">
+        <button class="chip" type="button" value="all" aria-pressed="true">全部</button>
+        <button class="chip" type="button" value="music" aria-pressed="false">音樂</button>
+        <button class="chip" type="button" value="drama" aria-pressed="false">戲劇</button>
+        <button class="chip" type="button" value="dance" aria-pressed="false">舞蹈</button>
+        <button class="chip" type="button" value="film" aria-pressed="false">電影</button>
+        <button class="chip" type="button" value="exhibition" aria-pressed="false">展覽</button>
+        <button class="chip" type="button" value="talk" aria-pressed="false">講座</button>
+        <button class="chip" type="button" value="mixed" aria-pressed="false">綜合</button>
+      </div>
+    </div>
+    <div class="selects">
+      <div class="select"><label class="label" for="f-month">月份</label><select id="f-month" name="month"><option value="all">全部月份</option><option value="2026-10">2026 年 10 月</option><option value="2026-11">2026 年 11 月</option></select></div>
+      <div class="select"><label class="label" for="f-venue">場地</label><select id="f-venue" name="venuekey"><option value="all">全部場地</option><option value="yasong">雅頌坊</option><option value="youxin">遊心劇場</option><option value="campus">校園其他地點</option></select></div>
+      <div class="select"><label class="label" for="f-host">主辦類型</label><select id="f-host" name="hostkey"><option value="all">主辦與外租</option><option value="presented">中心主辦</option><option value="rental">外租節目</option></select></div>
+    </div>
+    </fieldset>
+  </form>
+  <p class="result-count" id="prog-count" role="status">共 6 檔節目</p>
+  <div class="prog-grid" id="prog-grid">
+    <% data.programs.items_zh.each do |p| %>
+    <article class="list-card" data-category="<%= p.catkey %>" data-month="<%= p.month %>" data-venuekey="<%= p.venuekey %>" data-hostkey="<%= p.hostkey %>">
+      <div class="cover">
+        <% if p.has_cover %><img src="<%= p.cover %>" alt="" loading="lazy"><% else %><div class="cover-fallback" aria-hidden="true"><%= p.cat %></div><% end %>
+      </div>
+      <p class="tags"><span class="tag <% if p.rental %>tag--outline<% else %>tag--dark<% end %>"><%= p.host %></span><span class="tag tag--outline"><%= p.cat %></span></p>
+      <h2><a href="<%= p.url %>"><%= p.title %></a></h2>
+      <p class="when"><%= p.date %><br><%= p.venue %></p>
+    </article>
+    <% end %>
+  </div>
+  <p class="empty-result" id="prog-empty" hidden>沒有符合條件的節目，請調整篩選條件。</p>
+  <nav aria-label="分頁"><ul class="pagination">
+    <li><span class="is-disabled" aria-disabled="true">上一頁</span></li>
+    <li><a href="/programs/index.html" aria-current="page" aria-label="第 1 頁">1</a></li><li><a href="/programs/index.html" aria-label="第 2 頁">2</a></li>
+    <li><a href="/programs/index.html">下一頁</a></li>
+  </ul></nav>
+</div>

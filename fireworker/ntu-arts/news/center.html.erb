@@ -1,0 +1,27 @@
+<% content_for :title do %>中心公告<% end %>
+<% content_for :alt_url do %>/en/news/center.html<% end %>
+<% content_for :section do %>news<% end %>
+
+<header class="page-head">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="麵包屑"><ol><li><a class="accesskey" href="#C" title="中央內容區">:::</a> <a href="/home.html" title="首頁">首頁</a></li><li><a href="/news/index.html">消息</a></li><li aria-current="page">中心公告</li></ol></nav>
+    <h1>中心公告</h1>
+    
+  </div>
+</header>
+<div class="container page-body">
+  <nav aria-label="消息分類"><ul class="tabs subnav"><li><a class="tab" href="/news/index.html">全部</a></li><li><a class="tab" href="/news/arts.html">藝文消息</a></li><li><a class="tab is-current" href="/news/center.html" aria-current="page">中心公告</a></li></ul></nav>
+  <ul class="news-list">
+    <% data.news.center_zh.each do |n| %>
+    <li class="news-item">
+      <p class="meta"><span class="date"><%= n.date %></span><span class="tag <% if n.kind_arts %>tag--fill<% else %>tag--outline<% end %>"><%= n.tag %></span></p>
+      <a class="title" href="<%= n.url %>"><%= n.title %></a>
+    </li>
+    <% end %>
+  </ul>
+  <nav aria-label="分頁"><ul class="pagination">
+    <li><span class="is-disabled" aria-disabled="true">上一頁</span></li>
+    <li><a href="/news/center.html" aria-current="page" aria-label="第 1 頁">1</a></li><li><a href="/news/center.html" aria-label="第 2 頁">2</a></li><li><a href="/news/center.html" aria-label="第 3 頁">3</a></li><li><span class="gap" aria-hidden="true">…</span></li><li><a href="/news/center.html" aria-label="第 14 頁">14</a></li>
+    <li><a href="/news/center.html">下一頁</a></li>
+  </ul></nav>
+</div>

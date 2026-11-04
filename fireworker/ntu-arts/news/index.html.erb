@@ -1,0 +1,26 @@
+<% content_for :title do %>消息<% end %>
+<% content_for :section do %>news<% end %>
+
+<header class="page-head">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="麵包屑"><ol><li><a class="accesskey" href="#C" title="中央內容區">:::</a> <a href="/home.html">首頁</a></li><li aria-current="page">消息</li></ol></nav>
+    <h1>消息</h1>
+    
+  </div>
+</header>
+<div class="container page-body">
+  <nav class="tabs subnav" aria-label="消息分類"><a class="tab is-current" href="/news/index.html" aria-current="page">全部</a><a class="tab" href="/news/arts.html">藝文消息</a><a class="tab" href="/news/center.html">中心公告</a></nav>
+  <ul class="news-list">
+    <% data.news.all.each do |n| %>
+    <li class="news-item">
+      <p class="meta"><span class="date"><%= n.date %></span><span class="tag <% if n.kind_arts %>tag--fill<% else %>tag--outline<% end %>"><%= n.tag %></span></p>
+      <a class="title" href="<%= n.url %>"><%= n.title %></a>
+    </li>
+    <% end %>
+  </ul>
+  <nav class="pagination" aria-label="分頁">
+    <span class="is-disabled">上一頁</span>
+    <a href="/news/index.html" aria-current="page">1</a><a href="/news/index.html">2</a><a href="/news/index.html">3</a><span class="gap">…</span><a href="/news/index.html">14</a>
+    <a href="/news/index.html">下一頁</a>
+  </nav>
+</div>

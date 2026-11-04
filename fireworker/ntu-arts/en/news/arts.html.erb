@@ -1,0 +1,27 @@
+<% content_for :title do %>Arts news<% end %>
+<% content_for :alt_url do %>/news/arts.html<% end %>
+<% content_for :section do %>news<% end %>
+
+<header class="page-head">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a class="accesskey" href="#C" title="Main content">:::</a> <a href="/en/home.html" title="Home">Home</a></li><li><a href="/en/news/index.html">News</a></li><li aria-current="page">Arts news</li></ol></nav>
+    <h1>Arts news</h1>
+    
+  </div>
+</header>
+<div class="container page-body">
+  <nav aria-label="News categories"><ul class="tabs subnav"><li><a class="tab" href="/en/news/index.html">All</a></li><li><a class="tab is-current" href="/en/news/arts.html" aria-current="page">Arts news</a></li><li><a class="tab" href="/en/news/center.html">Center notices</a></li></ul></nav>
+  <ul class="news-list">
+    <% data.news.arts_en.each do |n| %>
+    <li class="news-item">
+      <p class="meta"><span class="date"><%= n.date %></span><span class="tag <% if n.kind_arts %>tag--fill<% else %>tag--outline<% end %>"><%= n.tag %></span></p>
+      <a class="title" href="<%= n.url %>"><%= n.title %></a>
+    </li>
+    <% end %>
+  </ul>
+  <nav aria-label="Pagination"><ul class="pagination">
+    <li><span class="is-disabled" aria-disabled="true">Previous</span></li>
+    <li><a href="/en/news/arts.html" aria-current="page" aria-label="Page 1">1</a></li><li><a href="/en/news/arts.html" aria-label="Page 2">2</a></li><li><a href="/en/news/arts.html" aria-label="Page 3">3</a></li><li><span class="gap" aria-hidden="true">…</span></li><li><a href="/en/news/arts.html" aria-label="Page 14">14</a></li>
+    <li><a href="/en/news/arts.html">Next</a></li>
+  </ul></nav>
+</div>

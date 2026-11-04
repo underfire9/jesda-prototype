@@ -1,0 +1,23 @@
+<% content_for :title do %>Open Calls<% end %>
+<% content_for :alt_url do %>/calls/index.html<% end %>
+<% content_for :section do %>calls<% end %>
+
+<header class="page-head">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a class="accesskey" href="#C" title="Main content">:::</a> <a href="/en/home.html" title="Home">Home</a></li><li aria-current="page">Open Calls</li></ol></nav>
+    <h1>Open Calls</h1>
+    <p class="lead">Schemes for professional companies, musicians and NTU students. Each scheme's status is shown in words, not only by colour.</p>
+  </div>
+</header>
+<div class="container page-body">
+  <div class="call-grid">
+    <% data.calls.items_en.each do |c| %>
+    <article class="call-card">
+      <span class="tag tag--<%= c.st %>"><%= c.status %></span>
+      <h2><a href="<%= c.url %>"><%= c.title %></a></h2>
+      <p class="desc"><%= c.desc %></p>
+      <p class="period"><%= c.period %></p>
+    </article>
+    <% end %>
+  </div>
+</div>

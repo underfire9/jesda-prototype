@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <%= render :partial => "/partials/head_en" %>
+</head>
+<body data-section="<%= yield :section %>">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div id="pagetop"></div>
+  <%= render :partial => "/partials/header_en" %>
+  <main class="site-main" id="main" tabindex="-1">
+    <a class="accesskey accesskey--main" href="#C" id="C" accesskey="C" title="Main content">:::</a>
+    <%= yield %>
+  </main>
+  <%= render :partial => "/partials/footer_en" %>
+  <script src="/javascripts/calendar-data.js"></script>
+  <script src="/javascripts/app.js"></script>
+  <% if content_for? :js %>
+    <%= yield :js %>
+  <% end %>
+</body>
+</html>

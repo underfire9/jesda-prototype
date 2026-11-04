@@ -3,6 +3,10 @@
   "use strict";
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  /* 語言：依 <html lang>，英文頁網址前綴 /en */
+  var EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var tr = function (zh, en) { return EN ? en : zh; };
+  var url = function (path) { return EN ? "/en" + path : path; };
 
   /* ---------- 頁首：捲動邊線、手機選單 ---------- */
   var header = $("#site-header");
@@ -13,7 +17,7 @@
     if (toggle) toggle.addEventListener("click", function () {
       var open = header.classList.toggle("is-open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "關閉選單" : "開啟選單");
+      toggle.setAttribute("aria-label", open ? (toggle.getAttribute("data-label-close") || tr("關閉選單", "Close menu")) : (toggle.getAttribute("data-label-open") || tr("開啟選單", "Open menu")));
       $("use", toggle).setAttribute("href", open ? "#i-close" : "#i-menu");
     });
   }
@@ -25,6 +29,9 @@
     if (!slides.length || !controls) return;
     var cur = 0, timer = null, playing = !window.matchMedia("(prefers-reduced-motion: reduce)").matches, DURATION = 6000, start = 0, raf = null;
     var bar = $(".bar", controls), num = $(".current", controls), pauseBtn = $(".js-pause", controls);
+    var L_PAUSE = pauseBtn.getAttribute("data-label-pause") || tr("暫停輪播", "Pause carousel");
+    var L_PLAY = pauseBtn.getAttribute("data-label-play") || tr("播放輪播", "Play carousel");
+    var hold = false; /* 滑鼠移入或鍵盤焦點在輪播內時暫停（WCAG 2.2.2） */
     $(".total", controls).textContent = pad(slides.length);
     function pad(n) { return (n < 10 ? "0" : "") + n; }
     function show(i) {
@@ -37,6 +44,7 @@
       if (!start) start = t;
       var p = Math.min(1, (t - start) / DURATION);
       bar.style.width = (p * 100) + "%";
+      if (hold) { start = t - p * DURATION; raf = requestAnimationFrame(tick); return; }
       if (p >= 1) { show(cur + 1); return; }
       raf = requestAnimationFrame(tick);
     }
@@ -48,12 +56,18 @@
     $(".js-next", controls).addEventListener("click", function () { show(cur + 1); });
     pauseBtn.addEventListener("click", function () {
       playing = !playing;
-      pauseBtn.setAttribute("aria-label", playing ? "暫停輪播" : "播放輪播");
+      pauseBtn.setAttribute("aria-label", playing ? L_PAUSE : L_PLAY);
       $("use", pauseBtn).setAttribute("href", playing ? "#i-pause" : "#i-play");
       if (!playing) bar.style.width = "100%";
       restart();
     });
-    if (!playing) { pauseBtn.setAttribute("aria-label", "播放輪播"); $("use", pauseBtn).setAttribute("href", "#i-play"); }
+    [hero, controls].forEach(function (el) {
+      el.addEventListener("mouseenter", function () { hold = true; });
+      el.addEventListener("mouseleave", function () { hold = false; });
+      el.addEventListener("focusin", function () { hold = true; });
+      el.addEventListener("focusout", function (e) { if (!el.contains(e.relatedTarget)) hold = false; });
+    });
+    if (!playing) { pauseBtn.setAttribute("aria-label", L_PLAY); $("use", pauseBtn).setAttribute("href", "#i-play"); }
     show(0);
   });
 
@@ -87,7 +101,11 @@
   var byDate = {};
   EVENTS.forEach(function (ev) { ev.dates.forEach(function (d) { (byDate[d] = byDate[d] || []).push(ev); }); });
   function ymd(y, m, d) { return y + "-" + (m < 10 ? "0" : "") + m + "-" + (d < 10 ? "0" : "") + d; }
-  var WEEK = ["日", "一", "二", "三", "四", "五", "六"];
+  var WEEK = EN ? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] : ["日", "一", "二", "三", "四", "五", "六"];
+  var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  function f(ev, k) { return (EN && ev[k + "_en"]) || ev[k]; }
+  function dayName(m, d) { return EN ? d + " " + MONTHS[m - 1] : m + " 月 " + d + " 日"; }
+  function shortDate(p, dt) { return EN ? WEEK[dt.getDay()] + " " + (+p[2]) + "." + (+p[1]) : (+p[1]) + "." + p[2] + "（" + WEEK[dt.getDay()] + "）"; }
 
   $$(".js-calendar").forEach(function (box) {
     var parts = (box.getAttribute("data-month") || TODAY.slice(0, 7)).split("-");
@@ -105,10 +123,10 @@
       for (var d = 1; d <= days; d++) {
         var key = ymd(y, m, d), evs = byDate[key] || [];
         var cls = (key === TODAY ? "is-today " : "") + (evs.length ? "has-event" : "");
-        var desc = evs.length ? "，" + evs.length + " 場活動" : "";
+        var desc = evs.length ? tr("，" + evs.length + " 場活動", ", " + evs.length + (evs.length > 1 ? " events" : " event")) : "";
         var inner = evs.length
-          ? '<a class="day" href="' + (mode === "page" ? "#d-" + key : "/programs/calendar.html?d=" + key + "#d-" + key) + '" data-date="' + key + '" aria-label="' + m + " 月 " + d + " 日" + desc + '">' + d + "</a>"
-          : '<span class="day"' + (key === TODAY ? ' aria-label="今天，' + m + " 月 " + d + ' 日"' : "") + ">" + d + "</span>";
+          ? '<a class="day" href="' + (mode === "page" ? "#d-" + key : url("/programs/calendar.html") + "?d=" + key + "#d-" + key) + '" data-date="' + key + '" aria-label="' + (key === TODAY ? tr("今天，", "Today, ") : "") + dayName(m, d) + desc + '">' + d + "</a>"
+          : '<span class="day"' + (key === TODAY ? ' aria-label="' + tr("今天，", "Today, ") + dayName(m, d) + '"' : "") + ">" + d + "</span>";
         html += '<td class="' + cls + '">' + inner + "</td>";
         if (++col % 7 === 0 && d < days) html += "</tr><tr>";
       }
@@ -121,17 +139,17 @@
       var keys = Object.keys(byDate).sort().filter(function (k) { return k >= TODAY; });
       if (!keys.length) return;
       var ev = byDate[keys[0]][0], p = keys[0].split("-"), dt = new Date(+p[0], +p[1] - 1, +p[2]);
-      $(".label", next).textContent = "NEXT  /  " + (+p[1]) + "." + p[2] + "（" + WEEK[dt.getDay()] + "）" + ev.time;
-      var a = $(".title", next); a.textContent = ev.title; a.href = ev.url;
+      $(".label", next).textContent = "NEXT  /  " + shortDate(p, dt) + " " + f(ev, "time");
+      var a = $(".title", next); a.textContent = f(ev, "title"); a.href = url(ev.url);
     }
     function renderList() {
       var prefix = ymd(y, m, 1).slice(0, 8), keys = Object.keys(byDate).sort().filter(function (k) { return k.indexOf(prefix) === 0; });
-      var html = "<h2>" + y + " 年 " + m + " 月的活動</h2>";
-      if (!keys.length) html += '<p class="empty">這個月份目前沒有活動。</p>';
+      var html = "<h2>" + tr(y + " 年 " + m + " 月的活動", "Events in " + MONTHS[m - 1] + " " + y) + "</h2>";
+      if (!keys.length) html += '<p class="empty">' + tr("這個月份目前沒有活動。", "There are no events this month.") + "</p>";
       keys.forEach(function (k) {
         var p = k.split("-"), dt = new Date(+p[0], +p[1] - 1, +p[2]);
         byDate[k].forEach(function (ev, i) {
-          html += '<article class="event-row"' + (i === 0 ? ' id="d-' + k + '"' : "") + '><p class="d">' + (+p[1]) + "." + p[2] + "（" + WEEK[dt.getDay()] + "）" + ev.time + "</p><div><h3><a href=\"" + ev.url + "\">" + ev.title + "</a></h3><p>" + ev.tag + "｜" + ev.venue + "</p></div></article>";
+          html += '<article class="event-row"' + (i === 0 ? ' id="d-' + k + '"' : "") + '><p class="d">' + shortDate(p, dt) + " " + f(ev, "time") + "</p><div><h3><a href=\"" + url(ev.url) + "\">" + f(ev, "title") + "</a></h3><p>" + f(ev, "tag") + tr("｜", " | ") + f(ev, "venue") + "</p></div></article>";
         });
       });
       list.innerHTML = html;
@@ -159,7 +177,8 @@
         Object.keys(vals).forEach(function (k) { if (vals[k] !== "all" && card.getAttribute("data-" + k) !== vals[k]) ok = false; });
         card.hidden = !ok; if (ok) n++;
       });
-      if (count) count.textContent = "共 " + n + " 檔節目";
+      if (count) count.textContent = tr("共 " + n + " 檔節目", n + (n === 1 ? " programme" : " programmes"));
+      var empty = document.getElementById("prog-empty"); if (empty) empty.hidden = n > 0;
     }
     chips.forEach(function (c) { c.addEventListener("click", function () { chips.forEach(function (o) { o.setAttribute("aria-pressed", o === c ? "true" : "false"); }); apply(); }); });
     selects.forEach(function (s) { s.addEventListener("change", apply); });
@@ -178,7 +197,7 @@
   $$(".js-copy").forEach(function (b) {
     b.addEventListener("click", function (e) {
       e.preventDefault();
-      try { navigator.clipboard.writeText(location.href); b.textContent = "已複製連結"; } catch (err) {}
+      try { navigator.clipboard.writeText(location.href); b.textContent = b.getAttribute("data-done") || tr("已複製連結", "Link copied"); } catch (err) {}
     });
   });
 })();

@@ -1,19 +1,20 @@
 <% content_for :title do %>合作與徵件<% end %>
+<% content_for :alt_url do %>/en/calls/index.html<% end %>
 <% content_for :section do %>calls<% end %>
 
 <header class="page-head">
   <div class="container">
-    <nav class="breadcrumb" aria-label="麵包屑"><ol><li><a class="accesskey" href="#C" title="中央內容區">:::</a> <a href="/home.html">首頁</a></li><li aria-current="page">合作與徵件</li></ol></nav>
+    <nav class="breadcrumb" aria-label="麵包屑"><ol><li><a class="accesskey" href="#C" title="中央內容區">:::</a> <a href="/home.html" title="首頁">首頁</a></li><li aria-current="page">合作與徵件</li></ol></nav>
     <h1>合作與徵件</h1>
     <p class="lead">專業團隊、音樂人與臺大學生，都有對應的合作方案。狀態以文字標示，不只靠顏色。</p>
   </div>
 </header>
 <div class="container page-body">
   <div class="call-grid">
-    <% data.calls.items.each do |c| %>
+    <% data.calls.items_zh.each do |c| %>
     <article class="call-card">
       <span class="tag tag--<%= c.st %>"><%= c.status %></span>
-      <h3 ><a href="<%= c.url %>"><%= c.title %></a></h3>
+      <h2><a href="<%= c.url %>"><%= c.title %></a></h2>
       <p class="desc"><%= c.desc %></p>
       <p class="period"><%= c.period %></p>
     </article>

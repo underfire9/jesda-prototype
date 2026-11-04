@@ -8,6 +8,10 @@ html {
   scroll-padding-top: 80px;
 }
 
+html {
+  font-size: 100%;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -16,7 +20,7 @@ body {
   background: #f6f3ed;
   color: #252720;
   font-family: "Noto Sans TC", system-ui, sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
 }
@@ -49,6 +53,14 @@ button {
   outline-offset: 3px;
 }
 
+.site-footer :focus-visible, .hero :focus-visible, .section--dark :focus-visible, .proto-banner :focus-visible, .skip-link :focus-visible {
+  outline-color: #c8bc9e;
+}
+
+.skip-link:focus-visible {
+  outline-color: #c8bc9e;
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px;
@@ -74,12 +86,27 @@ button {
 
 .accesskey {
   color: #5f6058;
-  font-size: 14px;
+  font-size: 0.875em;
   text-decoration: none;
   letter-spacing: 1px;
 }
 .on-dark .accesskey {
   color: #c8bc9e;
+}
+.accesskey--main {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.accesskey--main:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  clip: auto;
+  display: inline-block;
+  margin: 8px 0;
 }
 
 .container {
@@ -110,15 +137,16 @@ button {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  height: 48px;
-  padding: 0 18px 0 22px;
+  min-height: 48px;
+  padding: 6px 18px 6px 22px;
+  text-align: center;
+  line-height: 1.3;
   border: 1px solid #b9b7aa;
   border-radius: 24px;
   background: transparent;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 500;
   text-decoration: none;
-  white-space: nowrap;
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
@@ -146,21 +174,22 @@ button {
   border-color: #f6f3ed;
 }
 .btn--sm {
-  height: 40px;
-  padding: 0 16px;
-  font-size: 14px;
+  min-height: 40px;
+  padding: 4px 16px;
+  font-size: 0.875em;
   gap: 6px;
 }
 .btn--file {
-  height: 44px;
-  padding: 0 17px;
-  font-size: 15px;
+  min-height: 44px;
+  padding: 4px 17px;
+  white-space: nowrap;
+  font-size: 0.9375em;
   background: #f6f3ed;
 }
 @media (max-width: 767px) {
   .btn {
-    height: 44px;
-    font-size: 15px;
+    min-height: 44px;
+    font-size: 0.9375em;
   }
 }
 
@@ -212,7 +241,7 @@ button {
   align-items: center;
   padding: 3px 10px;
   border-radius: 12px;
-  font-size: 14px;
+  font-size: 0.875em;
   font-weight: 500;
   line-height: 1.2;
   white-space: nowrap;
@@ -243,7 +272,7 @@ button {
 }
 .tag--closed {
   background: transparent;
-  border-color: #77786f;
+  border-color: #5f6058;
   color: #5f6058;
 }
 .tag--soon {
@@ -318,7 +347,7 @@ button {
   list-style: none;
 }
 .site-nav a {
-  font-size: 17px;
+  font-size: 1.0625em;
   font-weight: 500;
   text-decoration: none;
   padding: 6px 0;
@@ -344,11 +373,16 @@ button {
   display: flex;
   align-items: center;
   gap: 14px;
+  list-style: none;
+}
+.site-utils li {
+  display: flex;
+  align-items: center;
 }
 .site-utils .lang {
   font-family: "Manrope", "Noto Sans TC", sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 0.875em;
   text-decoration: none;
 }
 .site-utils .lang:hover {
@@ -390,7 +424,7 @@ button {
   .site-nav a {
     display: block;
     padding: 16px 0;
-    font-size: 18px;
+    font-size: 1.125em;
     border-bottom: 0;
   }
   .site-nav a[aria-current=page], .site-nav a.is-current {
@@ -445,11 +479,11 @@ body[data-section=about] .nav-about {
 .footer-brand .cn {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 1.75em;
 }
 .footer-brand .en {
   font-family: "Manrope", "Noto Sans TC", sans-serif;
-  font-size: 14px;
+  font-size: 0.875em;
   color: #c8bc9e;
   margin-top: 12px;
 }
@@ -460,7 +494,7 @@ body[data-section=about] .nav-about {
 }
 @media (max-width: 767px) {
   .footer-brand .cn {
-    font-size: 24px;
+    font-size: 1.5em;
   }
 }
 
@@ -471,7 +505,7 @@ body[data-section=about] .nav-about {
 }
 .footer-contact .label {
   font-family: "Manrope", "Noto Sans TC", sans-serif;
-  font-size: 14px;
+  font-size: 0.875em;
   color: #c8bc9e;
 }
 .footer-contact a {
@@ -486,6 +520,7 @@ body[data-section=about] .nav-about {
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
+  list-style: none;
 }
 @media (max-width: 1199px) {
   .footer-links {
@@ -504,7 +539,7 @@ body[data-section=about] .nav-about {
   padding-top: 28px;
   border-top: 1px solid #77786f;
   color: #c8bc9e;
-  font-size: 14px;
+  font-size: 0.875em;
 }
 .footer-legal .copyright {
   font-family: "Manrope", "Noto Sans TC", sans-serif;
@@ -596,7 +631,7 @@ body[data-section=about] .nav-about {
 }
 
 .eyebrow {
-  font-size: 15px;
+  font-size: 0.9375em;
   font-weight: 500;
   color: #9a342b;
 }
@@ -607,17 +642,17 @@ body[data-section=about] .nav-about {
 .section-title {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 46px;
+  font-size: 2.875em;
   margin-top: 6px;
 }
 @media (max-width: 1199px) {
   .section-title {
-    font-size: 38px;
+    font-size: 2.375em;
   }
 }
 @media (max-width: 767px) {
   .section-title {
-    font-size: 30px;
+    font-size: 1.875em;
   }
 }
 
@@ -687,14 +722,14 @@ body[data-section=about] .nav-about {
   display: flex;
   gap: 12px;
   color: #c8bc9e;
-  font-size: 15px;
+  font-size: 0.9375em;
   font-weight: 500;
 }
 
 .hero__title {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 60px;
+  font-size: 3.75em;
   line-height: 1.45;
 }
 .hero__title a {
@@ -702,7 +737,7 @@ body[data-section=about] .nav-about {
 }
 
 .hero__meta {
-  font-size: 20px;
+  font-size: 1.25em;
   font-weight: 500;
 }
 
@@ -732,10 +767,10 @@ body[data-section=about] .nav-about {
     gap: 16px;
   }
   .hero__title {
-    font-size: 40px;
+    font-size: 2.5em;
   }
   .hero__meta {
-    font-size: 18px;
+    font-size: 1.125em;
   }
 }
 @media (max-width: 767px) {
@@ -743,10 +778,10 @@ body[data-section=about] .nav-about {
     aspect-ratio: 16/10;
   }
   .hero__title {
-    font-size: 30px;
+    font-size: 1.875em;
   }
   .hero__meta {
-    font-size: 16px;
+    font-size: 1em;
   }
   .hero__text {
     padding-block: 24px 32px;
@@ -763,7 +798,7 @@ body[data-section=about] .nav-about {
   height: 82px;
 }
 .hero-controls .tagline {
-  font-size: 16px;
+  font-size: 1em;
   color: #5f6058;
 }
 @media (max-width: 767px) {
@@ -777,7 +812,7 @@ body[data-section=about] .nav-about {
   align-items: center;
   gap: 16px;
   font-family: "Manrope", "Noto Sans TC", sans-serif;
-  font-size: 15px;
+  font-size: 0.9375em;
 }
 .hero-progress .track {
   position: relative;
@@ -846,7 +881,7 @@ body[data-section=about] .nav-about {
   transition: transform 0.4s;
 }
 .prog-card .title {
-  font-size: 28px;
+  font-size: 1.75em;
   font-weight: 500;
 }
 .prog-card .title a {
@@ -865,7 +900,7 @@ body[data-section=about] .nav-about {
   min-height: 44px;
 }
 .prog-card .meta {
-  font-size: 14px;
+  font-size: 0.875em;
   color: #9a342b;
 }
 .prog-card:hover .cover img {
@@ -882,19 +917,19 @@ body[data-section=about] .nav-about {
   aspect-ratio: 2/1;
 }
 .prog-card--sm .title {
-  font-size: 21px;
+  font-size: 1.3125em;
 }
 @media (max-width: 1199px) {
   .prog-card .title {
-    font-size: 24px;
+    font-size: 1.5em;
   }
   .prog-card--sm .title {
-    font-size: 20px;
+    font-size: 1.25em;
   }
 }
 @media (max-width: 767px) {
   .prog-card .title {
-    font-size: 21px;
+    font-size: 1.3125em;
   }
   .prog-card--sm {
     flex-direction: row;
@@ -912,7 +947,7 @@ body[data-section=about] .nav-about {
     min-width: 0;
   }
   .prog-card--sm .title {
-    font-size: 17px;
+    font-size: 1.0625em;
   }
   .prog-card--sm .meta-row {
     min-height: 0;
@@ -930,8 +965,8 @@ body[data-section=about] .nav-about {
   align-items: center;
   justify-content: center;
   font-family: "Noto Serif TC", serif;
-  font-size: 40px;
-  color: #77786f;
+  font-size: 2.5em;
+  color: #5f6058;
   background: #e4e0d3;
 }
 
@@ -970,7 +1005,7 @@ body[data-section=about] .nav-about {
   transition: transform 0.4s;
 }
 .list-card h2, .list-card h3 {
-  font-size: 22px;
+  font-size: 1.375em;
   font-weight: 500;
   line-height: 1.45;
 }
@@ -983,7 +1018,7 @@ body[data-section=about] .nav-about {
   inset: 0;
 }
 .list-card .when {
-  font-size: 15px;
+  font-size: 0.9375em;
   color: #5f6058;
 }
 .list-card:hover .cover img {
@@ -1004,7 +1039,7 @@ body[data-section=about] .nav-about {
 }
 @media (max-width: 1199px) {
   .news-cal {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 56px;
   }
 }
@@ -1017,12 +1052,12 @@ body[data-section=about] .nav-about {
   margin-bottom: 20px;
 }
 .news-head .section-title {
-  font-size: 44px;
+  font-size: 2.75em;
   margin-top: 4px;
 }
 @media (max-width: 767px) {
   .news-head .section-title {
-    font-size: 30px;
+    font-size: 1.875em;
   }
 }
 
@@ -1043,7 +1078,7 @@ body[data-section=about] .nav-about {
   border: 0;
   border-bottom: 3px solid transparent;
   background: none;
-  font-size: 20px;
+  font-size: 1.25em;
   color: #5f6058;
   cursor: pointer;
   white-space: nowrap;
@@ -1057,9 +1092,12 @@ body[data-section=about] .nav-about {
 .tab:hover {
   color: #252720;
 }
+.tab:focus-visible {
+  outline-offset: -3px;
+}
 @media (max-width: 767px) {
   .tab {
-    font-size: 17px;
+    font-size: 1.0625em;
   }
 }
 
@@ -1087,13 +1125,13 @@ body[data-section=about] .nav-about {
 .news-item .date {
   font-family: "Manrope", "Noto Sans TC", sans-serif;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 0.9375em;
   color: #9a342b;
   width: 96px;
 }
 .news-item .title {
   flex: 1;
-  font-size: 19px;
+  font-size: 1.1875em;
   font-weight: 500;
   text-decoration: none;
 }
@@ -1112,7 +1150,7 @@ body[data-section=about] .nav-about {
     flex: none;
   }
   .news-item .title {
-    font-size: 17px;
+    font-size: 1.0625em;
   }
 }
 
@@ -1140,7 +1178,7 @@ body[data-section=about] .nav-about {
 .cal-head h2, .cal-head h3 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 1.75em;
 }
 
 .cal-nav {
@@ -1150,7 +1188,7 @@ body[data-section=about] .nav-about {
 }
 .cal-nav .month {
   font-family: "Manrope", "Noto Sans TC", sans-serif;
-  font-size: 22px;
+  font-size: 1.375em;
   color: #9a342b;
   min-width: 78px;
   text-align: center;
@@ -1163,7 +1201,7 @@ body[data-section=about] .nav-about {
 }
 .cal-grid th {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
   padding-bottom: 8px;
 }
@@ -1171,7 +1209,7 @@ body[data-section=about] .nav-about {
   height: 44px;
   text-align: center;
   font-family: "Manrope", "Noto Sans TC", sans-serif;
-  font-size: 15px;
+  font-size: 0.9375em;
   padding: 2px 0;
 }
 .cal-grid .day {
@@ -1199,7 +1237,7 @@ body[data-section=about] .nav-about {
 .cal-legend {
   display: flex;
   gap: 24px;
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
 }
 .cal-legend span {
@@ -1230,11 +1268,11 @@ body[data-section=about] .nav-about {
 }
 .cal-next .label {
   font-family: "Manrope", "Noto Sans TC", sans-serif;
-  font-size: 14px;
+  font-size: 0.875em;
   color: #9a342b;
 }
 .cal-next .title {
-  font-size: 18px;
+  font-size: 1.125em;
   font-weight: 500;
   text-decoration: none;
 }
@@ -1283,7 +1321,7 @@ body[data-section=about] .nav-about {
   object-fit: cover;
 }
 .archive-card .title {
-  font-size: 21px;
+  font-size: 1.3125em;
   font-weight: 500;
 }
 .archive-card .title a {
@@ -1296,7 +1334,7 @@ body[data-section=about] .nav-about {
 }
 .archive-card .year {
   font-family: "Manrope", "Noto Sans TC", sans-serif;
-  font-size: 14px;
+  font-size: 0.875em;
   color: #c8bc9e;
 }
 .section--paper .archive-card .year {
@@ -1367,7 +1405,7 @@ body[data-section=about] .nav-about {
   justify-content: center;
 }
 .video-card .title {
-  font-size: 21px;
+  font-size: 1.3125em;
   font-weight: 500;
 }
 .video-card--lg .thumb {
@@ -1378,14 +1416,14 @@ body[data-section=about] .nav-about {
   height: 72px;
 }
 .video-card--lg .title {
-  font-size: 28px;
+  font-size: 1.75em;
 }
 .video-card:hover .title {
   color: #9a342b;
 }
 @media (max-width: 767px) {
   .video-card--lg .title {
-    font-size: 21px;
+    font-size: 1.3125em;
   }
 }
 
@@ -1446,16 +1484,16 @@ body[data-section=about] .nav-about {
 .venue-intro h2 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 38px;
+  font-size: 2.375em;
   line-height: 1.45;
 }
 @media (max-width: 767px) {
   .venue-intro h2 {
-    font-size: 28px;
+    font-size: 1.75em;
   }
 }
 .venue-intro p {
-  font-size: 18px;
+  font-size: 1.125em;
   color: #5f6058;
 }
 .venue-intro .actions {
@@ -1500,7 +1538,7 @@ body[data-section=about] .nav-about {
   background: #ecede5;
 }
 .call-card h3 {
-  font-size: 20px;
+  font-size: 1.25em;
   font-weight: 500;
 }
 .call-card h3 a {
@@ -1512,11 +1550,11 @@ body[data-section=about] .nav-about {
   inset: 0;
 }
 .call-card .desc {
-  font-size: 15px;
+  font-size: 0.9375em;
   color: #5f6058;
 }
 .call-card .period {
-  font-size: 14px;
+  font-size: 0.875em;
   color: #252720;
 }
 .call-card:hover h3 {
@@ -1532,17 +1570,17 @@ body[data-section=about] .nav-about {
 .newsletter h2 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 38px;
+  font-size: 2.375em;
   margin: 10px 0;
 }
 @media (max-width: 767px) {
   .newsletter h2 {
-    font-size: 28px;
+    font-size: 1.75em;
   }
 }
 .newsletter p {
   color: #5f6058;
-  font-size: 17px;
+  font-size: 1.0625em;
 }
 @media (max-width: 1199px) {
   .newsletter {
@@ -1553,12 +1591,14 @@ body[data-section=about] .nav-about {
 
 .subscribe {
   flex: 0 1 550px;
+}
+.subscribe fieldset {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 .subscribe label {
-  font-size: 15px;
+  font-size: 0.9375em;
   font-weight: 500;
 }
 .subscribe .field {
@@ -1567,12 +1607,14 @@ body[data-section=about] .nav-about {
   gap: 8px;
   height: 66px;
   padding: 0 9px 0 26px;
-  border: 1px solid #d6d5ca;
+  border: 1px solid #77786f;
   border-radius: 33px;
   background: #fff;
 }
 .subscribe .field:focus-within {
   border-color: #252720;
+  outline: 3px solid #9a342b;
+  outline-offset: 2px;
 }
 .subscribe input {
   flex: 1;
@@ -1580,7 +1622,7 @@ body[data-section=about] .nav-about {
   border: 0;
   background: transparent;
   font: inherit;
-  font-size: 17px;
+  font-size: 1.0625em;
   outline: none;
 }
 @media (max-width: 1199px) {
@@ -1595,13 +1637,13 @@ body[data-section=about] .nav-about {
 .page-head h1 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 52px;
+  font-size: 3.25em;
   line-height: 1.45;
   margin-top: 14px;
 }
 .page-head .lead {
   margin-top: 14px;
-  font-size: 18px;
+  font-size: 1.125em;
   color: #5f6058;
   max-width: 960px;
 }
@@ -1610,7 +1652,7 @@ body[data-section=about] .nav-about {
 }
 @media (max-width: 1199px) {
   .page-head h1 {
-    font-size: 42px;
+    font-size: 2.625em;
   }
 }
 @media (max-width: 767px) {
@@ -1618,10 +1660,10 @@ body[data-section=about] .nav-about {
     padding: 28px 0 28px;
   }
   .page-head h1 {
-    font-size: 30px;
+    font-size: 1.875em;
   }
   .page-head .lead {
-    font-size: 16px;
+    font-size: 1em;
   }
 }
 
@@ -1631,7 +1673,7 @@ body[data-section=about] .nav-about {
   align-items: center;
   gap: 6px 10px;
   list-style: none;
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
 }
 .breadcrumb li + li::before {
@@ -1673,7 +1715,7 @@ body[data-section=about] .nav-about {
 }
 .filters .label {
   display: block;
-  font-size: 14px;
+  font-size: 0.875em;
   margin-bottom: 8px;
 }
 
@@ -1686,10 +1728,10 @@ body[data-section=about] .nav-about {
 .chip {
   height: 39px;
   padding: 0 16px;
-  border: 1px solid #b9b7aa;
+  border: 1px solid #77786f;
   border-radius: 20px;
   background: transparent;
-  font-size: 15px;
+  font-size: 0.9375em;
   cursor: pointer;
 }
 .chip[aria-pressed=true] {
@@ -1724,11 +1766,11 @@ body[data-section=about] .nav-about {
   max-width: 100%;
   height: 43px;
   padding: 0 36px 0 15px;
-  border: 1px solid #b9b7aa;
+  border: 1px solid #77786f;
   border-radius: 6px;
   background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0h10L5 6z' fill='%23252720'/%3E%3C/svg%3E") no-repeat right 15px center;
   font: inherit;
-  font-size: 15px;
+  font-size: 0.9375em;
 }
 @media (max-width: 767px) {
   .select select {
@@ -1737,7 +1779,7 @@ body[data-section=about] .nav-about {
 }
 
 .result-count {
-  font-size: 15px;
+  font-size: 0.9375em;
   color: #5f6058;
   margin-bottom: 24px;
 }
@@ -1759,7 +1801,7 @@ body[data-section=about] .nav-about {
   border: 1px solid #b9b7aa;
   border-radius: 6px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 0.9375em;
   background: #fff;
 }
 .pagination a:hover {
@@ -1771,7 +1813,7 @@ body[data-section=about] .nav-about {
   color: #f6f3ed;
 }
 .pagination .is-disabled {
-  color: #77786f;
+  color: #5f6058;
   background: transparent;
 }
 .pagination .gap {
@@ -1782,7 +1824,7 @@ body[data-section=about] .nav-about {
 }
 
 .prose {
-  font-size: 17px;
+  font-size: 1.0625em;
   line-height: 1.75;
 }
 .prose > * + * {
@@ -1791,12 +1833,10 @@ body[data-section=about] .nav-about {
 .prose h2 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 30px;
   line-height: 1.45;
   margin-top: 48px;
 }
 .prose h3 {
-  font-size: 21px;
   font-weight: 500;
   margin-top: 32px;
 }
@@ -1814,24 +1854,23 @@ body[data-section=about] .nav-about {
 }
 @media (max-width: 767px) {
   .prose {
-    font-size: 16px;
+    font-size: 1em;
   }
   .prose h2 {
-    font-size: 24px;
     margin-top: 36px;
   }
 }
 
-.lineup {
-  list-style: none;
-  padding: 0 !important;
-}
-.lineup li {
+.lineup > div {
   display: flex;
   gap: 16px;
 }
 .lineup dt {
   color: #5f6058;
+  min-width: 6em;
+}
+.lineup dd {
+  margin: 0;
 }
 
 .two-col {
@@ -1873,13 +1912,13 @@ body[data-section=about] .nav-about {
   padding-top: 0;
 }
 .info-box dt {
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
   margin-bottom: 4px;
 }
 .info-box dd {
   margin: 0;
-  font-size: 17px;
+  font-size: 1.0625em;
 }
 .info-box .actions {
   display: flex;
@@ -1893,7 +1932,7 @@ body[data-section=about] .nav-about {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
 }
 .info-box .share a {
@@ -1922,7 +1961,7 @@ body[data-section=about] .nav-about {
 .related h2 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 34px;
+  font-size: 2.125em;
   margin-bottom: 32px;
 }
 
@@ -1952,7 +1991,7 @@ body[data-section=about] .nav-about {
 .facts h2 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 26px;
+  font-size: 1.625em;
   margin-bottom: 16px;
 }
 .facts dl {
@@ -1962,12 +2001,12 @@ body[data-section=about] .nav-about {
   padding: 8px 0 16px;
 }
 .facts dt {
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
 }
 .facts dd {
   margin: 2px 0 0;
-  font-size: 18px;
+  font-size: 1.125em;
 }
 .facts .btn {
   margin-top: 8px;
@@ -1991,7 +2030,7 @@ body[data-section=about] .nav-about {
 }
 .inpage-nav a {
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1em;
   white-space: nowrap;
 }
 .inpage-nav a:hover {
@@ -2010,7 +2049,7 @@ body[data-section=about] .nav-about {
     gap: 20px;
   }
   .inpage-nav a {
-    font-size: 15px;
+    font-size: 0.9375em;
   }
 }
 
@@ -2020,18 +2059,18 @@ body[data-section=about] .nav-about {
 .venue-section h2 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 1.875em;
   margin-bottom: 20px;
 }
 .venue-section h3 {
-  font-size: 22px;
+  font-size: 1.375em;
   font-weight: 500;
   margin: 32px 0 12px;
 }
 
 .note {
   color: #5f6058;
-  font-size: 15px;
+  font-size: 0.9375em;
 }
 
 .table-wrap {
@@ -2049,12 +2088,14 @@ body[data-section=about] .nav-about {
 }
 .data-table caption {
   text-align: left;
-  padding: 0 0 8px;
+  padding: 12px 18px;
+  font-weight: 500;
+  background: #fff;
 }
 .data-table th, .data-table td {
   padding: 14px 18px;
   border: 1px solid #d6d5ca;
-  font-size: 15px;
+  font-size: 0.9375em;
 }
 .data-table thead th {
   background: #ecede5;
@@ -2068,6 +2109,9 @@ body[data-section=about] .nav-about {
   text-align: left;
   font-weight: 400;
   background: #fbfaf7;
+}
+.data-table th.left {
+  text-align: left;
 }
 
 .calendar-embed {
@@ -2097,16 +2141,16 @@ body[data-section=about] .nav-about {
 }
 .steps .n {
   font-family: "Noto Serif TC", serif;
-  font-size: 32px;
+  font-size: 2em;
   color: #9a342b;
 }
 .steps h3 {
-  font-size: 20px;
+  font-size: 1.25em;
   font-weight: 500;
   margin: 8px 0 8px !important;
 }
 .steps p {
-  font-size: 15px;
+  font-size: 0.9375em;
   color: #5f6058;
 }
 @media (max-width: 1199px) {
@@ -2134,7 +2178,7 @@ body[data-section=about] .nav-about {
   border-bottom: 1px solid #c9c7ba;
 }
 .file-item .name {
-  font-size: 17px;
+  font-size: 1.0625em;
   font-weight: 500;
 }
 .file-item .formats {
@@ -2159,7 +2203,7 @@ body[data-section=about] .nav-about {
   justify-content: space-between;
   gap: 16px;
   padding: 18px 0;
-  font-size: 18px;
+  font-size: 1.125em;
   font-weight: 500;
 }
 .faq summary::-webkit-details-marker {
@@ -2167,7 +2211,7 @@ body[data-section=about] .nav-about {
 }
 .faq summary::after {
   content: "＋";
-  font-size: 20px;
+  font-size: 1.1111em;
 }
 .faq[open] summary::after {
   content: "−";
@@ -2195,11 +2239,11 @@ body[data-section=about] .nav-about {
   padding: 24px;
 }
 .contact-card .role {
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
 }
 .contact-card .name {
-  font-size: 21px;
+  font-size: 1.3125em;
   font-weight: 500;
   margin: 4px 0 8px;
 }
@@ -2212,36 +2256,40 @@ body[data-section=about] .nav-about {
 }
 
 .call-summary {
-  display: grid;
-  grid-template-columns: auto 1fr 1fr 1fr auto;
-  gap: 24px 40px;
+  display: flex;
   align-items: center;
+  gap: 24px 40px;
+  flex-wrap: wrap;
   background: #ecede5;
   border-radius: 12px;
   padding: 24px;
   margin-bottom: 56px;
 }
+.call-summary dl {
+  flex: 1 1 600px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1fr;
+  gap: 24px 40px;
+  align-items: center;
+}
 .call-summary dt {
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
   margin-bottom: 4px;
 }
 .call-summary dd {
   margin: 0;
-  font-size: 17px;
+  font-size: 1.0625em;
   font-weight: 500;
 }
 @media (max-width: 1199px) {
-  .call-summary {
+  .call-summary dl {
     grid-template-columns: 1fr 1fr;
-  }
-  .call-summary .btn {
-    grid-column: 1/-1;
-    justify-self: start;
   }
 }
 @media (max-width: 767px) {
-  .call-summary {
+  .call-summary dl {
     grid-template-columns: 1fr;
   }
 }
@@ -2258,11 +2306,11 @@ body[data-section=about] .nav-about {
 }
 .option-grid .opt h3 {
   margin: 0 0 8px !important;
-  font-size: 19px;
+  font-size: 1.1875em;
 }
 .option-grid .opt p {
   color: #5f6058;
-  font-size: 16px;
+  font-size: 1em;
 }
 @media (max-width: 767px) {
   .option-grid {
@@ -2279,7 +2327,7 @@ body[data-section=about] .nav-about {
 .side-box h2 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 22px;
+  font-size: 1.375em;
   margin-bottom: 12px;
 }
 .side-box a {
@@ -2291,7 +2339,7 @@ body[data-section=about] .nav-about {
 }
 .side-box .note {
   margin-top: 8px;
-  font-size: 14px;
+  font-size: 0.875em;
 }
 .side-box .file-link {
   display: block;
@@ -2302,7 +2350,7 @@ body[data-section=about] .nav-about {
 
 .other-calls {
   margin-top: 24px;
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
 }
 .other-calls ul {
@@ -2319,7 +2367,7 @@ body[data-section=about] .nav-about {
 }
 .other-calls a {
   color: #252720;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 500;
 }
 
@@ -2336,7 +2384,7 @@ body[data-section=about] .nav-about {
 .article-meta .date {
   font-family: "Manrope", "Noto Sans TC", sans-serif;
   color: #9a342b;
-  font-size: 15px;
+  font-size: 0.9375em;
 }
 
 .doc-box {
@@ -2345,7 +2393,7 @@ body[data-section=about] .nav-about {
   padding: 16px 16px 4px;
 }
 .doc-box h2 {
-  font-size: 20px !important;
+  font-size: 1.25em !important;
   font-family: "Noto Serif TC", serif;
   margin: 0 0 8px !important;
 }
@@ -2359,17 +2407,27 @@ body[data-section=about] .nav-about {
   padding-top: 24px;
   border-top: 1px solid #c9c7ba;
 }
-.post-nav .prev {
+.post-nav .next {
+  text-align: right;
+  align-items: flex-end;
+}
+@media (max-width: 767px) {
+  .post-nav .next {
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+.post-nav .prev, .post-nav .next {
   text-decoration: none;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.post-nav .prev span {
-  font-size: 14px;
+.post-nav .prev span, .post-nav .next span {
+  font-size: 0.875em;
   color: #5f6058;
 }
-.post-nav .prev:hover strong {
+.post-nav .prev:hover strong, .post-nav .next:hover strong {
   color: #9a342b;
 }
 @media (max-width: 767px) {
@@ -2386,7 +2444,7 @@ body[data-section=about] .nav-about {
 }
 @media (max-width: 1199px) {
   .with-sidenav {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -2400,7 +2458,7 @@ body[data-section=about] .nav-about {
   display: block;
   padding: 14px 0;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 0.9375em;
 }
 .sidenav a:hover {
   color: #9a342b;
@@ -2410,13 +2468,13 @@ body[data-section=about] .nav-about {
 }
 .sidenav a[aria-current=page]::before {
   content: "▸ ";
-  font-size: 10px;
+  font-size: 0.625em;
 }
 @media (max-width: 1199px) {
   .sidenav ul {
     display: flex;
-    gap: 24px;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    gap: 0 24px;
     border-bottom: 1px solid #c9c7ba;
   }
   .sidenav li {
@@ -2459,17 +2517,17 @@ body[data-section=about] .nav-about {
   justify-content: flex-end;
 }
 .person .role {
-  font-size: 13px;
+  font-size: 0.8125em;
   color: #9a342b;
 }
 .person .name {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 1.75em;
   margin: 4px 0 8px;
 }
 .person .desc {
-  font-size: 15px;
+  font-size: 0.9375em;
   color: #5f6058;
 }
 .person--sm {
@@ -2481,14 +2539,14 @@ body[data-section=about] .nav-about {
 }
 .person--sm .name {
   font-family: "Noto Sans TC", system-ui, sans-serif;
-  font-size: 19px;
+  font-size: 1.1875em;
   margin: 2px 0 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #c9c7ba;
 }
 .person--sm dl {
   margin: 0;
-  font-size: 14px;
+  font-size: 0.875em;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 2px 10px;
@@ -2512,7 +2570,7 @@ body[data-section=about] .nav-about {
     grid-template-columns: 110px 1fr;
   }
   .person .name {
-    font-size: 22px;
+    font-size: 1.375em;
   }
   .person--sm {
     grid-template-columns: 96px 1fr;
@@ -2522,12 +2580,12 @@ body[data-section=about] .nav-about {
 .block-title {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 1.875em;
   margin-bottom: 20px;
 }
 @media (max-width: 767px) {
   .block-title {
-    font-size: 24px;
+    font-size: 1.5em;
   }
 }
 
@@ -2577,18 +2635,18 @@ body[data-section=about] .nav-about {
   align-items: center;
   justify-content: center;
   font-family: "Noto Serif TC", serif;
-  color: #77786f;
-  font-size: 20px;
+  color: #5f6058;
+  font-size: 1.25em;
   padding: 16px;
   text-align: center;
 }
-.pub-card h3 {
-  font-size: 17px;
+.pub-card h2 {
+  font-size: 1.0625em;
   font-weight: 500;
   margin-top: 12px;
 }
 .pub-card p {
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
   margin-top: 4px;
 }
@@ -2604,14 +2662,14 @@ body[data-section=about] .nav-about {
 }
 @media (max-width: 1199px) {
   .cal-page {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 .day-list h2 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 1.75em;
   margin-bottom: 8px;
 }
 .day-list .empty {
@@ -2629,10 +2687,10 @@ body[data-section=about] .nav-about {
 .event-row .d {
   font-family: "Manrope", "Noto Sans TC", sans-serif;
   color: #9a342b;
-  font-size: 15px;
+  font-size: 0.9375em;
 }
 .event-row h3 {
-  font-size: 19px;
+  font-size: 1.1875em;
   font-weight: 500;
 }
 .event-row h3 a {
@@ -2643,7 +2701,7 @@ body[data-section=about] .nav-about {
   text-decoration: underline;
 }
 .event-row p {
-  font-size: 14px;
+  font-size: 0.875em;
   color: #5f6058;
   margin-top: 4px;
 }
@@ -2655,20 +2713,28 @@ body[data-section=about] .nav-about {
 }
 
 .search-form {
-  display: flex;
-  gap: 12px;
   max-width: 720px;
   margin-top: 20px;
+}
+.search-form label {
+  display: block;
+  font-size: 0.9375em;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.search-form .row {
+  display: flex;
+  gap: 12px;
 }
 .search-form input {
   flex: 1;
   min-width: 0;
   height: 52px;
   padding: 0 20px;
-  border: 1px solid #b9b7aa;
+  border: 1px solid #77786f;
   border-radius: 26px;
   font: inherit;
-  font-size: 17px;
+  font-size: 1.0625em;
   background: #fff;
 }
 
@@ -2682,10 +2748,10 @@ body[data-section=about] .nav-about {
   border-bottom: 1px solid #c9c7ba;
 }
 .search-result .type {
-  font-size: 14px;
+  font-size: 0.875em;
 }
 .search-result h2 {
-  font-size: 21px;
+  font-size: 1.3125em;
   font-weight: 500;
   margin: 8px 0 6px;
 }
@@ -2698,11 +2764,11 @@ body[data-section=about] .nav-about {
 }
 .search-result p {
   color: #5f6058;
-  font-size: 15px;
+  font-size: 0.9375em;
 }
 .search-result mark {
   background: rgba(200, 188, 158, 0.55);
-  color: inherit;
+  color: #252720;
   padding: 0 2px;
 }
 
@@ -2712,7 +2778,7 @@ body[data-section=about] .nav-about {
 .proto-index h1 {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
-  font-size: 44px;
+  font-size: 2.75em;
 }
 .proto-index .lead {
   color: #5f6058;
@@ -2744,12 +2810,12 @@ body[data-section=about] .nav-about {
   padding: 24px;
 }
 .proto-group h2 {
-  font-size: 18px;
+  font-size: 1.125em;
   font-weight: 500;
   margin-bottom: 4px;
 }
 .proto-group .tpl {
-  font-size: 13px;
+  font-size: 0.8125em;
   color: #5f6058;
   margin-bottom: 12px;
 }
@@ -2772,7 +2838,7 @@ body[data-section=about] .nav-about {
 .proto-banner {
   background: #22251f;
   color: #c8bc9e;
-  font-size: 13px;
+  font-size: 0.8125em;
   text-align: center;
   padding: 6px 12px;
 }
@@ -2787,7 +2853,7 @@ body[data-section=about] .nav-about {
   }
   .hero-progress {
     gap: 10px;
-    font-size: 14px;
+    font-size: 0.875em;
   }
   .hero-progress .track {
     width: 56px;
@@ -2803,5 +2869,280 @@ body[data-section=about] .nav-about {
 @media (max-width: 1199px) {
   .hero__media img {
     object-position: 65% center;
+  }
+}
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.filters fieldset {
+  display: contents;
+}
+
+.hint {
+  font-size: 0.875em;
+  color: #5f6058;
+}
+
+.link-btn {
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: inherit;
+  color: inherit;
+}
+.link-btn:hover {
+  color: #9a342b;
+}
+
+.empty-result {
+  padding: 32px 0;
+  color: #5f6058;
+  font-size: 1.0625em;
+}
+
+.small-list {
+  font-size: 0.9375em;
+  color: #5f6058;
+  padding-left: 1.4em;
+}
+.small-list li + li {
+  margin-top: 0.3em;
+}
+
+.spaced {
+  margin-block: 16px;
+}
+
+.spaced-top {
+  margin-top: 16px;
+}
+
+.block-lead {
+  margin-bottom: 20px;
+}
+
+.other-calls .other-title {
+  font-size: 0.875em;
+  font-weight: 400;
+  color: #5f6058;
+}
+
+.sitemap-tree {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.sitemap-tree > li > a {
+  font-size: 1.25em;
+  font-weight: 500;
+}
+.sitemap-tree ul {
+  list-style: disc;
+  padding-left: 1.3em;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sitemap-tree a {
+  color: #252720;
+}
+.sitemap-tree a:hover {
+  color: #9a342b;
+}
+@media (max-width: 1199px) {
+  .sitemap-tree {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 767px) {
+  .sitemap-tree {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calendar-embed.short {
+  height: auto;
+  min-height: 120px;
+}
+
+.prose.small {
+  font-size: 0.9375em;
+}
+
+.en-link {
+  font-family: "Manrope", "Noto Sans TC", sans-serif;
+  font-size: 0.8125em;
+  color: #5f6058;
+  margin-left: 6px;
+}
+
+.hero-progress .current, .hero-progress .total {
+  min-width: 1.4em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+.prose h2 {
+  font-size: 1.7647em;
+}
+.prose h3 {
+  font-size: 1.2353em;
+}
+.prose .note {
+  font-size: 0.8824em;
+}
+.prose .faq summary {
+  font-size: 1.0588em;
+}
+.prose .sitemap-tree > li > a {
+  font-size: 1.1765em;
+}
+.prose .file-item .name {
+  font-size: 1em;
+}
+.prose .btn {
+  font-size: 0.9412em;
+}
+.prose .btn--sm {
+  font-size: 0.8235em;
+}
+.prose .btn--file {
+  font-size: 0.8824em;
+}
+.prose .option-grid .opt h3 {
+  font-size: 1.1176em;
+}
+.prose .option-grid .opt p {
+  font-size: 0.9412em;
+}
+.prose .tag {
+  font-size: 0.8235em;
+}
+.prose .doc-box h2 {
+  font-size: 1.1765em !important;
+}
+
+@media (max-width: 767px) {
+  .prose h2 {
+    font-size: 1.5em;
+  }
+  .prose h3 {
+    font-size: 1.3125em;
+  }
+  .prose .note {
+    font-size: 0.9375em;
+  }
+  .prose .faq summary {
+    font-size: 1.125em;
+  }
+  .prose .sitemap-tree > li > a {
+    font-size: 1.25em;
+  }
+  .prose .file-item .name {
+    font-size: 1.0625em;
+  }
+  .prose .btn {
+    font-size: 0.9375em;
+  }
+  .prose .btn--sm {
+    font-size: 0.875em;
+  }
+  .prose .btn--file {
+    font-size: 0.9375em;
+  }
+  .prose .option-grid .opt h3 {
+    font-size: 1.1875em;
+  }
+  .prose .option-grid .opt p {
+    font-size: 1em;
+  }
+  .prose .tag {
+    font-size: 0.875em;
+  }
+  .prose .doc-box h2 {
+    font-size: 1.25em !important;
+  }
+}
+.breadcrumb .accesskey, .footer-legal .accesskey {
+  font-size: 1em;
+}
+
+.other-calls .other-title, .other-calls .tag {
+  font-size: 1em;
+}
+.other-calls a {
+  font-size: 1.1429em;
+}
+
+.call-summary dd .tag {
+  font-size: 0.8235em;
+}
+
+.video-side, .actions, .tabs, .pagination, .post-nav, .formats, .share ul, .proto-banner ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.info-box .share span {
+  margin-right: 4px;
+}
+.info-box .share ul {
+  display: flex;
+  gap: 4px 12px;
+  flex-wrap: wrap;
+}
+.info-box .share li + li::before {
+  content: "／";
+  margin-right: 12px;
+}
+
+.proto-banner {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+.proto-banner p {
+  margin: 0;
+}
+.proto-banner ul {
+  display: flex;
+  gap: 20px;
+}
+
+.post-nav li:last-child {
+  margin-left: auto;
+}
+
+@media (max-width: 359px) {
+  .cal-panel {
+    padding-inline: 8px;
+  }
+  .cal-grid .day {
+    width: 34px;
+    height: 34px;
+  }
+  .cal-head {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .news-head {
+    flex-wrap: wrap;
   }
 }

@@ -1,0 +1,56 @@
+<% content_for :title do %>What's on<% end %>
+<% content_for :alt_url do %>/programs/index.html<% end %>
+<% content_for :section do %>programs<% end %>
+
+<header class="page-head">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a class="accesskey" href="#C" title="Main content">:::</a> <a href="/en/home.html" title="Home">Home</a></li><li><a href="/en/programs/index.html">Programmes</a></li><li aria-current="page">What's on</li></ol></nav>
+    <h1>What's on</h1>
+    <p class="lead">Presented and rental programmes are listed together. Past programmes move to the Archive automatically.</p>
+  </div>
+</header>
+<div class="container page-body">
+  <nav aria-label="Programme sections"><ul class="tabs subnav"><li><a class="tab is-current" href="/en/programs/index.html" aria-current="page">What's on</a></li><li><a class="tab" href="/en/programs/calendar.html">Calendar</a></li><li><a class="tab" href="/en/programs/archive.html">Archive</a></li></ul></nav>
+  <form class="filters js-filter" data-target="prog-grid" data-count="prog-count" aria-label="Filter programmes">
+    <fieldset>
+    <legend class="visually-hidden">Filter programmes</legend>
+    <div>
+      <span class="label" id="cat-label">Category</span>
+      <div class="chips" role="group" aria-labelledby="cat-label">
+        <button class="chip" type="button" value="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" value="music" aria-pressed="false">Music</button>
+        <button class="chip" type="button" value="drama" aria-pressed="false">Theatre</button>
+        <button class="chip" type="button" value="dance" aria-pressed="false">Dance</button>
+        <button class="chip" type="button" value="film" aria-pressed="false">Film</button>
+        <button class="chip" type="button" value="exhibition" aria-pressed="false">Exhibition</button>
+        <button class="chip" type="button" value="talk" aria-pressed="false">Talk</button>
+        <button class="chip" type="button" value="mixed" aria-pressed="false">Mixed</button>
+      </div>
+    </div>
+    <div class="selects">
+      <div class="select"><label class="label" for="f-month">Month</label><select id="f-month" name="month"><option value="all">All months</option><option value="2026-10">October 2026</option><option value="2026-11">November 2026</option></select></div>
+      <div class="select"><label class="label" for="f-venue">Venue</label><select id="f-venue" name="venuekey"><option value="all">All venues</option><option value="yasong">The Odeum</option><option value="youxin">Youxin Theatre</option><option value="campus">Elsewhere on campus</option></select></div>
+      <div class="select"><label class="label" for="f-host">Presenter</label><select id="f-host" name="hostkey"><option value="all">All</option><option value="presented">Presented by the Center</option><option value="rental">Rental</option></select></div>
+    </div>
+    </fieldset>
+  </form>
+  <p class="result-count" id="prog-count" role="status">6 programmes</p>
+  <div class="prog-grid" id="prog-grid">
+    <% data.programs.items_en.each do |p| %>
+    <article class="list-card" data-category="<%= p.catkey %>" data-month="<%= p.month %>" data-venuekey="<%= p.venuekey %>" data-hostkey="<%= p.hostkey %>">
+      <div class="cover">
+        <% if p.has_cover %><img src="<%= p.cover %>" alt="" loading="lazy"><% else %><div class="cover-fallback" aria-hidden="true"><%= p.cat %></div><% end %>
+      </div>
+      <p class="tags"><span class="tag <% if p.rental %>tag--outline<% else %>tag--dark<% end %>"><%= p.host %></span><span class="tag tag--outline"><%= p.cat %></span></p>
+      <h2><a href="<%= p.url %>"><%= p.title %></a></h2>
+      <p class="when"><%= p.date %><br><%= p.venue %></p>
+    </article>
+    <% end %>
+  </div>
+  <p class="empty-result" id="prog-empty" hidden>No programmes match. Try changing the filters.</p>
+  <nav aria-label="Pagination"><ul class="pagination">
+    <li><span class="is-disabled" aria-disabled="true">Previous</span></li>
+    <li><a href="/en/programs/index.html" aria-current="page" aria-label="Page 1">1</a></li><li><a href="/en/programs/index.html" aria-label="Page 2">2</a></li>
+    <li><a href="/en/programs/index.html">Next</a></li>
+  </ul></nav>
+</div>

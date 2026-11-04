@@ -17,6 +17,7 @@ $line-2: #c9c7ba;
 $border: #b9b7aa;
 
 // ---------- 字體 ----------
+// 字級一律用 em（網站無障礙規範 2.0 檢測碼 CS2040401／CS2040402），以 16px 為 1em。
 $sans: "Noto Sans TC", system-ui, sans-serif;
 $serif: "Noto Serif TC", serif;
 $latin: "Manrope", "Noto Sans TC", sans-serif;
@@ -39,6 +40,7 @@ $bp-tablet: 768px;
 
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
+html { font-size: 100%; }
 body {
   margin: 0;
   min-height: 100vh;
@@ -47,7 +49,7 @@ body {
   background: $paper;
   color: $ink;
   font-family: $sans;
-  font-size: 16px;
+  font-size: 1em;
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
 }
@@ -59,6 +61,11 @@ ul, ol { padding: 0; }
 button { font: inherit; color: inherit; }
 
 :focus-visible { outline: 3px solid $red; outline-offset: 3px; }
+// 深色底改用金色焦點框（紅色在深色底對比不足 3:1）
+.site-footer, .hero, .section--dark, .proto-banner, .skip-link {
+  :focus-visible { outline-color: $gold; }
+}
+.skip-link:focus-visible { outline-color: $gold; }
 
 .visually-hidden {
   position: absolute !important;
@@ -75,8 +82,13 @@ button { font: inherit; color: inherit; }
 
 // 無障礙定位點 :::
 .accesskey {
-  color: $text-2; font-size: 14px; text-decoration: none; letter-spacing: 1px;
+  color: $text-2; font-size: 0.875em; text-decoration: none; letter-spacing: 1px;
   .on-dark & { color: $gold; }
+  // 主內容區的 ::: 平時隱藏，鍵盤聚焦時才顯示
+  &--main {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);
+    &:focus { position: static; width: auto; height: auto; clip: auto; display: inline-block; margin: 8px 0; }
+  }
 }
 
 .container {
@@ -94,9 +106,9 @@ button { font: inherit; color: inherit; }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  height: 48px; padding: 0 18px 0 22px;
+  min-height: 48px; padding: 6px 18px 6px 22px; text-align: center; line-height: 1.3;
   border: 1px solid $border; border-radius: 24px; background: transparent;
-  font-size: 16px; font-weight: 500; text-decoration: none; white-space: nowrap;
+  font-size: 1em; font-weight: 500; text-decoration: none;
   cursor: pointer; transition: background .2s, color .2s, border-color .2s;
   &:hover { background: $ink; border-color: $ink; color: $paper; }
 
@@ -108,9 +120,9 @@ button { font: inherit; color: inherit; }
     border-color: $muted; color: $paper;
     &:hover { background: $paper; color: $ink; border-color: $paper; }
   }
-  &--sm { height: 40px; padding: 0 16px; font-size: 14px; gap: 6px; }
-  &--file { height: 44px; padding: 0 17px; font-size: 15px; background: $paper; }
-  @include mobile { height: 44px; font-size: 15px; }
+  &--sm { min-height: 40px; padding: 4px 16px; font-size: 0.875em; gap: 6px; }
+  &--file { min-height: 44px; padding: 4px 17px; white-space: nowrap; font-size: 0.9375em; background: $paper; }
+  @include mobile { min-height: 44px; font-size: 0.9375em; }
 }
 
 .icon-btn {
@@ -129,7 +141,7 @@ button { font: inherit; color: inherit; }
 .tag {
   display: inline-flex; align-items: center;
   padding: 3px 10px; border-radius: 12px;
-  font-size: 14px; font-weight: 500; line-height: 1.2; white-space: nowrap;
+  font-size: 0.875em; font-weight: 500; line-height: 1.2; white-space: nowrap;
   border: 1px solid $ink; color: $ink;
   &--fill { background: $red; border-color: $red; color: $paper; }
   &--dark { background: $ink; color: $paper; }
@@ -137,7 +149,7 @@ button { font: inherit; color: inherit; }
   // 徵件狀態：不只靠顏色，另有文字
   &--open { background: $red; border-color: $red; color: $paper; }
   &--rolling { background: $paper; border-color: $red; color: $red; }
-  &--closed { background: transparent; border-color: $muted; color: $text-2; }
+  &--closed { background: transparent; border-color: $text-2; color: $text-2; }
   &--soon { background: transparent; border-color: $ink; color: $ink; border-style: dashed; }
 }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -165,7 +177,7 @@ button { font: inherit; color: inherit; }
   display: flex; align-items: center; gap: 40px;
   ul { display: flex; gap: 40px; list-style: none; }
   a {
-    font-size: 17px; font-weight: 500; text-decoration: none;
+    font-size: 1.0625em; font-weight: 500; text-decoration: none;
     padding: 6px 0; border-bottom: 2px solid transparent;
     &:hover { color: $red; }
   }
@@ -173,8 +185,9 @@ button { font: inherit; color: inherit; }
   @include tablet { gap: 28px; ul { gap: 28px; } }
 }
 .site-utils {
-  display: flex; align-items: center; gap: 14px;
-  .lang { font-family: $latin; font-weight: 500; font-size: 14px; text-decoration: none; &:hover { color: $red; } }
+  display: flex; align-items: center; gap: 14px; list-style: none;
+  li { display: flex; align-items: center; }
+  .lang { font-family: $latin; font-weight: 500; font-size: 0.875em; text-decoration: none; &:hover { color: $red; } }
 }
 .menu-toggle { display: none; }
 
@@ -189,7 +202,7 @@ button { font: inherit; color: inherit; }
     .accesskey { display: none; }
     ul { flex-direction: column; gap: 0; }
     li { border-bottom: 1px solid $line; }
-    a { display: block; padding: 16px 0; font-size: 18px; border-bottom: 0; }
+    a { display: block; padding: 16px 0; font-size: 1.125em; border-bottom: 0; }
     a[aria-current="page"], a.is-current { border-bottom: 0; }
   }
   .site-header.is-open .site-nav { display: flex; }
@@ -215,24 +228,24 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
   @include mobile { grid-template-columns: 1fr; gap: 32px; }
 }
 .footer-brand {
-  .cn { font-family: $serif; font-weight: 500; font-size: 28px; }
-  .en { font-family: $latin; font-size: 14px; color: $gold; margin-top: 12px; }
+  .cn { font-family: $serif; font-weight: 500; font-size: 1.75em; }
+  .en { font-family: $latin; font-size: 0.875em; color: $gold; margin-top: 12px; }
   address { font-style: normal; color: $gold; margin-top: 12px; }
-  @include mobile { .cn { font-size: 24px; } }
+  @include mobile { .cn { font-size: 1.5em; } }
 }
 .footer-contact {
   display: flex; flex-direction: column; gap: 12px;
-  .label { font-family: $latin; font-size: 14px; color: $gold; }
+  .label { font-family: $latin; font-size: 0.875em; color: $gold; }
   a { text-decoration: none; &:hover { text-decoration: underline; } }
 }
 .footer-links {
-  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px; list-style: none;
   @include tablet { flex-direction: row; flex-wrap: wrap; }
 }
 .footer-legal {
   display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
   margin-top: 28px; padding-top: 28px; border-top: 1px solid $muted;
-  color: $gold; font-size: 14px;
+  color: $gold; font-size: 0.875em;
   .copyright { font-family: $latin; }
   ul { display: flex; flex-wrap: wrap; gap: 4px 20px; list-style: none; align-items: center; }
   a { text-decoration: none; &:hover { color: $paper; text-decoration: underline; } }
@@ -256,13 +269,13 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
   @include mobile { margin-bottom: 28px; gap: 16px; }
 }
 .eyebrow {
-  font-size: 15px; font-weight: 500; color: $red;
+  font-size: 0.9375em; font-weight: 500; color: $red;
   .section--dark & { color: $gold; }
 }
 .section-title {
-  font-family: $serif; font-weight: 500; font-size: 46px; margin-top: 6px;
-  @include tablet { font-size: 38px; }
-  @include mobile { font-size: 30px; }
+  font-family: $serif; font-weight: 500; font-size: 2.875em; margin-top: 6px;
+  @include tablet { font-size: 2.375em; }
+  @include mobile { font-size: 1.875em; }
 }
 
 // ========== 首頁：主視覺輪播 ==========
@@ -289,12 +302,12 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
   display: flex; flex-direction: column; justify-content: center; gap: 22px;
   .inner { max-width: 560px; display: flex; flex-direction: column; gap: 22px; }
 }
-.hero__eyebrow { display: flex; gap: 12px; color: $gold; font-size: 15px; font-weight: 500; }
+.hero__eyebrow { display: flex; gap: 12px; color: $gold; font-size: 0.9375em; font-weight: 500; }
 .hero__title {
-  font-family: $serif; font-weight: 500; font-size: 60px; line-height: 1.45;
+  font-family: $serif; font-weight: 500; font-size: 3.75em; line-height: 1.45;
   a { text-decoration: none; }
 }
-.hero__meta { font-size: 20px; font-weight: 500; }
+.hero__meta { font-size: 1.25em; font-weight: 500; }
 
 // 1200 以下：上圖下文
 @include tablet {
@@ -305,25 +318,25 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
     &::after { display: none; }
   }
   .hero__text { height: auto; padding-block: 32px 40px; .inner { gap: 16px; } }
-  .hero__title { font-size: 40px; }
-  .hero__meta { font-size: 18px; }
+  .hero__title { font-size: 2.5em; }
+  .hero__meta { font-size: 1.125em; }
 }
 @include mobile {
   .hero__media { aspect-ratio: 16 / 10; }
-  .hero__title { font-size: 30px; }
-  .hero__meta { font-size: 16px; }
+  .hero__title { font-size: 1.875em; }
+  .hero__meta { font-size: 1em; }
   .hero__text { padding-block: 24px 32px; }
 }
 
 .hero-controls {
   background: $paper;
   .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 82px; }
-  .tagline { font-size: 16px; color: $text-2; }
+  .tagline { font-size: 1em; color: $text-2; }
   @include mobile { .tagline { display: none; } }
 }
 .hero-progress {
   display: flex; align-items: center; gap: 16px;
-  font-family: $latin; font-size: 15px;
+  font-family: $latin; font-size: 0.9375em;
   .track { position: relative; width: 120px; height: 2px; background: $line; }
   .bar { position: absolute; inset: 0 auto 0 0; width: 0; background: $red; }
 }
@@ -345,26 +358,26 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
     aspect-ratio: 696 / 304; overflow: hidden; background: $sand;
     img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
   }
-  .title { font-size: 28px; font-weight: 500; a { text-decoration: none; &::after { content: ""; position: absolute; inset: 0; } } }
+  .title { font-size: 1.75em; font-weight: 500; a { text-decoration: none; &::after { content: ""; position: absolute; inset: 0; } } }
   .meta-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
-  .meta { font-size: 14px; color: $red; }
+  .meta { font-size: 0.875em; color: $red; }
   &:hover .cover img { transform: scale(1.03); }
   &:hover .icon-btn { background: $ink; color: $paper; }
   &--sm {
     gap: 16px;
     .cover { aspect-ratio: 2 / 1; }
-    .title { font-size: 21px; }
+    .title { font-size: 1.3125em; }
   }
-  @include tablet { .title { font-size: 24px; } &--sm .title { font-size: 20px; } }
+  @include tablet { .title { font-size: 1.5em; } &--sm .title { font-size: 1.25em; } }
   // 手機：小卡改精簡列
   @include mobile {
-    .title { font-size: 21px; }
+    .title { font-size: 1.3125em; }
     &--sm {
       flex-direction: row; align-items: center; gap: 14px;
       padding: 16px 0; border-top: 1px solid $line;
       .cover { flex: 0 0 120px; aspect-ratio: 4 / 3; }
       .body { flex: 1; min-width: 0; }
-      .title { font-size: 17px; }
+      .title { font-size: 1.0625em; }
       .meta-row { min-height: 0; margin-top: 4px; }
       .icon-btn { display: none; }
     }
@@ -372,7 +385,7 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 }
 .cover-fallback {
   width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-  font-family: $serif; font-size: 40px; color: $muted; background: $sand;
+  font-family: $serif; font-size: 2.5em; color: $text-2; background: $sand;
 }
 
 // 節目列表頁卡片
@@ -384,8 +397,8 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 .list-card {
   position: relative; display: flex; flex-direction: column; gap: 14px;
   .cover { aspect-ratio: 459 / 258; overflow: hidden; background: $sand; img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; } }
-  h2, h3 { font-size: 22px; font-weight: 500; line-height: 1.45; a { text-decoration: none; &::after { content: ""; position: absolute; inset: 0; } } }
-  .when { font-size: 15px; color: $text-2; }
+  h2, h3 { font-size: 1.375em; font-weight: 500; line-height: 1.45; a { text-decoration: none; &::after { content: ""; position: absolute; inset: 0; } } }
+  .when { font-size: 0.9375em; color: $text-2; }
   &:hover .cover img { transform: scale(1.03); }
   &:hover h2 a, &:hover h3 a { color: $red; }
   &[hidden] { display: none; }
@@ -394,11 +407,11 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 // ========== 首頁：消息＋月曆 ==========
 .news-cal {
   display: grid; grid-template-columns: minmax(0, 840fr) 520fr; gap: 80px; align-items: start;
-  @include tablet { grid-template-columns: 1fr; gap: 56px; }
+  @include tablet { grid-template-columns: minmax(0, 1fr); gap: 56px; }
 }
 .news-head {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px;
-  .section-title { font-size: 44px; margin-top: 4px; @include mobile { font-size: 30px; } }
+  .section-title { font-size: 2.75em; margin-top: 4px; @include mobile { font-size: 1.875em; } }
 }
 
 .tabs {
@@ -407,10 +420,11 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 }
 .tab {
   padding: 8px 0 14px; border: 0; border-bottom: 3px solid transparent; background: none;
-  font-size: 20px; color: $text-2; cursor: pointer; white-space: nowrap; text-decoration: none;
+  font-size: 1.25em; color: $text-2; cursor: pointer; white-space: nowrap; text-decoration: none;
   &[aria-selected="true"], &.is-current { color: $ink; font-weight: 500; border-bottom-color: $red; }
   &:hover { color: $ink; }
-  @include mobile { font-size: 17px; }
+  &:focus-visible { outline-offset: -3px; }
+  @include mobile { font-size: 1.0625em; }
 }
 .tab-panel[hidden] { display: none; }
 
@@ -418,12 +432,12 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 .news-item {
   display: flex; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid $line-2;
   .meta { flex: 0 0 170px; display: flex; align-items: center; gap: 12px; }
-  .date { font-family: $latin; font-weight: 500; font-size: 15px; color: $red; width: 96px; }
-  .title { flex: 1; font-size: 19px; font-weight: 500; text-decoration: none; &:hover { color: $red; text-decoration: underline; } }
+  .date { font-family: $latin; font-weight: 500; font-size: 0.9375em; color: $red; width: 96px; }
+  .title { flex: 1; font-size: 1.1875em; font-weight: 500; text-decoration: none; &:hover { color: $red; text-decoration: underline; } }
   @include mobile {
     flex-direction: column; align-items: flex-start; gap: 6px; padding: 14px 0;
     .meta { flex: none; }
-    .title { font-size: 17px; }
+    .title { font-size: 1.0625em; }
   }
 }
 
@@ -434,22 +448,22 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 }
 .cal-head {
   display: flex; align-items: center; justify-content: space-between; min-height: 64px;
-  h2, h3 { font-family: $serif; font-weight: 500; font-size: 28px; }
+  h2, h3 { font-family: $serif; font-weight: 500; font-size: 1.75em; }
 }
 .cal-nav {
   display: flex; align-items: center; gap: 8px;
-  .month { font-family: $latin; font-size: 22px; color: $red; min-width: 78px; text-align: center; }
+  .month { font-family: $latin; font-size: 1.375em; color: $red; min-width: 78px; text-align: center; }
 }
 .cal-grid {
   width: 100%; border-collapse: collapse; table-layout: fixed;
-  th { font-weight: 400; font-size: 14px; color: $text-2; padding-bottom: 8px; }
-  td { height: 44px; text-align: center; font-family: $latin; font-size: 15px; padding: 2px 0; }
+  th { font-weight: 400; font-size: 0.875em; color: $text-2; padding-bottom: 8px; }
+  td { height: 44px; text-align: center; font-family: $latin; font-size: 0.9375em; padding: 2px 0; }
   .day { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; text-decoration: none; }
   .is-today .day { border: 2px solid $red; color: $red; font-weight: 500; }
   .has-event .day { background: $red; color: $paper; &:hover { background: $ink; } }
 }
 .cal-legend {
-  display: flex; gap: 24px; font-size: 14px; color: $text-2;
+  display: flex; gap: 24px; font-size: 0.875em; color: $text-2;
   span { display: inline-flex; align-items: center; gap: 8px; }
   i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
   .today i { border: 2px solid $red; }
@@ -458,8 +472,8 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 .cal-next {
   border-top: 1px solid $line; padding-top: 14px;
   display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
-  .label { font-family: $latin; font-size: 14px; color: $red; }
-  .title { font-size: 18px; font-weight: 500; text-decoration: none; &:hover { color: $red; } }
+  .label { font-family: $latin; font-size: 0.875em; color: $red; }
+  .title { font-size: 1.125em; font-weight: 500; text-decoration: none; &:hover { color: $red; } }
 }
 
 // ========== 首頁：歷年回顧 ==========
@@ -475,8 +489,8 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 .archive-card {
   position: relative; display: flex; flex-direction: column; gap: 16px;
   .cover { aspect-ratio: 4 / 3; overflow: hidden; img { width: 100%; height: 100%; object-fit: cover; } }
-  .title { font-size: 21px; font-weight: 500; a { text-decoration: none; &::after { content: ""; position: absolute; inset: 0; } } }
-  .year { font-family: $latin; font-size: 14px; color: $gold; }
+  .title { font-size: 1.3125em; font-weight: 500; a { text-decoration: none; &::after { content: ""; position: absolute; inset: 0; } } }
+  .year { font-family: $latin; font-size: 0.875em; color: $gold; }
   .section--paper & .year { color: $red; }
   &:hover .title { text-decoration: underline; }
 }
@@ -495,10 +509,10 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
     width: 52px; height: 52px; border-radius: 50%; background: $paper;
     display: flex; align-items: center; justify-content: center;
   }
-  .title { font-size: 21px; font-weight: 500; }
-  &--lg { .thumb { border-radius: 16px; } .play { width: 72px; height: 72px; } .title { font-size: 28px; } }
+  .title { font-size: 1.3125em; font-weight: 500; }
+  &--lg { .thumb { border-radius: 16px; } .play { width: 72px; height: 72px; } .title { font-size: 1.75em; } }
   &:hover .title { color: $red; }
-  @include mobile { &--lg .title { font-size: 21px; } }
+  @include mobile { &--lg .title { font-size: 1.3125em; } }
 }
 
 // ========== 首頁：場地 ==========
@@ -515,8 +529,8 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 }
 .venue-intro {
   padding-top: 42px; display: flex; flex-direction: column; gap: 22px; align-items: flex-start;
-  h2 { font-family: $serif; font-weight: 500; font-size: 38px; line-height: 1.45; @include mobile { font-size: 28px; } }
-  p { font-size: 18px; color: $text-2; }
+  h2 { font-family: $serif; font-weight: 500; font-size: 2.375em; line-height: 1.45; @include mobile { font-size: 1.75em; } }
+  p { font-size: 1.125em; color: $text-2; }
   .actions { display: flex; flex-wrap: wrap; gap: 16px 24px; }
   @include tablet { padding-top: 0; }
 }
@@ -531,42 +545,43 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
   position: relative; background: $paper; border-radius: 12px; padding: 28px 24px;
   display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
   .section--paper &, .page-body & { background: $sage; }
-  h3 { font-size: 20px; font-weight: 500; a { text-decoration: none; &::after { content: ""; position: absolute; inset: 0; } } }
-  .desc { font-size: 15px; color: $text-2; }
-  .period { font-size: 14px; color: $ink; }
+  h3 { font-size: 1.25em; font-weight: 500; a { text-decoration: none; &::after { content: ""; position: absolute; inset: 0; } } }
+  .desc { font-size: 0.9375em; color: $text-2; }
+  .period { font-size: 0.875em; color: $ink; }
   &:hover h3 { color: $red; }
 }
 
 // ========== 電子報 ==========
 .newsletter {
   display: flex; align-items: center; justify-content: space-between; gap: 40px;
-  h2 { font-family: $serif; font-weight: 500; font-size: 38px; margin: 10px 0; @include mobile { font-size: 28px; } }
-  p { color: $text-2; font-size: 17px; }
+  h2 { font-family: $serif; font-weight: 500; font-size: 2.375em; margin: 10px 0; @include mobile { font-size: 1.75em; } }
+  p { color: $text-2; font-size: 1.0625em; }
   @include tablet { flex-direction: column; align-items: stretch; }
 }
 .subscribe {
-  flex: 0 1 550px; display: flex; flex-direction: column; gap: 8px;
-  label { font-size: 15px; font-weight: 500; }
+  flex: 0 1 550px;
+  fieldset { display: flex; flex-direction: column; gap: 8px; }
+  label { font-size: 0.9375em; font-weight: 500; }
   .field {
     display: flex; align-items: center; gap: 8px; height: 66px; padding: 0 9px 0 26px;
-    border: 1px solid $line; border-radius: 33px; background: #fff;
-    &:focus-within { border-color: $ink; }
+    border: 1px solid $muted; border-radius: 33px; background: #fff;
+    &:focus-within { border-color: $ink; outline: 3px solid $red; outline-offset: 2px; }
   }
-  input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 17px; outline: none; }
+  input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 1.0625em; outline: none; }
   @include tablet { flex-basis: auto; }
 }
 
 // ========== 內頁：標題區 ==========
 .page-head {
   padding: 56px 0 40px;
-  h1 { font-family: $serif; font-weight: 500; font-size: 52px; line-height: 1.45; margin-top: 14px; }
-  .lead { margin-top: 14px; font-size: 18px; color: $text-2; max-width: 960px; }
+  h1 { font-family: $serif; font-weight: 500; font-size: 3.25em; line-height: 1.45; margin-top: 14px; }
+  .lead { margin-top: 14px; font-size: 1.125em; color: $text-2; max-width: 960px; }
   .tags { margin-top: 16px; }
-  @include tablet { h1 { font-size: 42px; } }
-  @include mobile { padding: 28px 0 28px; h1 { font-size: 30px; } .lead { font-size: 16px; } }
+  @include tablet { h1 { font-size: 2.625em; } }
+  @include mobile { padding: 28px 0 28px; h1 { font-size: 1.875em; } .lead { font-size: 1em; } }
 }
 .breadcrumb {
-  ol { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; list-style: none; font-size: 14px; color: $text-2; }
+  ol { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; list-style: none; font-size: 0.875em; color: $text-2; }
   li + li::before { content: "/"; margin-right: 10px; color: $muted; }
   a { text-decoration: none; &:hover { color: $red; text-decoration: underline; } }
   .accesskey { margin-right: 4px; }
@@ -579,12 +594,12 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 .filters {
   display: flex; justify-content: space-between; align-items: flex-end; gap: 24px 32px; flex-wrap: wrap;
   margin-bottom: 32px;
-  .label { display: block; font-size: 14px; margin-bottom: 8px; }
+  .label { display: block; font-size: 0.875em; margin-bottom: 8px; }
 }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
-  height: 39px; padding: 0 16px; border: 1px solid $border; border-radius: 20px; background: transparent;
-  font-size: 15px; cursor: pointer;
+  height: 39px; padding: 0 16px; border: 1px solid $muted; border-radius: 20px; background: transparent;
+  font-size: 0.9375em; cursor: pointer;
   &[aria-pressed="true"] { background: $ink; border-color: $ink; color: $paper; &::before { content: "✓ "; } }
   &:hover { border-color: $ink; }
 }
@@ -592,38 +607,38 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 .select {
   select {
     appearance: none; width: 190px; max-width: 100%; height: 43px; padding: 0 36px 0 15px;
-    border: 1px solid $border; border-radius: 6px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0h10L5 6z' fill='%23252720'/%3E%3C/svg%3E") no-repeat right 15px center;
-    font: inherit; font-size: 15px;
+    border: 1px solid $muted; border-radius: 6px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0h10L5 6z' fill='%23252720'/%3E%3C/svg%3E") no-repeat right 15px center;
+    font: inherit; font-size: 0.9375em;
   }
   @include mobile { select { width: 100%; } }
 }
-.result-count { font-size: 15px; color: $text-2; margin-bottom: 24px; }
+.result-count { font-size: 0.9375em; color: $text-2; margin-bottom: 24px; }
 
 .pagination {
   display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; align-items: center;
   a, span {
     min-width: 41px; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; justify-content: center;
-    border: 1px solid $border; border-radius: 6px; text-decoration: none; font-size: 15px; background: #fff;
+    border: 1px solid $border; border-radius: 6px; text-decoration: none; font-size: 0.9375em; background: #fff;
   }
   a:hover { border-color: $ink; }
   [aria-current="page"] { background: $ink; border-color: $ink; color: $paper; }
-  .is-disabled { color: $muted; background: transparent; }
+  .is-disabled { color: $text-2; background: transparent; }
   .gap { border: 0; background: none; min-width: 0; padding: 0 4px; }
 }
 
 // ========== 內容區塊（文章） ==========
 .prose {
-  font-size: 17px; line-height: 1.75;
+  font-size: 1.0625em; line-height: 1.75;
   > * + * { margin-top: 1em; }
-  h2 { font-family: $serif; font-weight: 500; font-size: 30px; line-height: 1.45; margin-top: 48px; }
-  h3 { font-size: 21px; font-weight: 500; margin-top: 32px; }
+  h2 { font-family: $serif; font-weight: 500; line-height: 1.45; margin-top: 48px; }
+  h3 { font-weight: 500; margin-top: 32px; }
   > h2:first-child, > h3:first-child { margin-top: 0; }
   ul, ol { padding-left: 1.4em; }
   li + li { margin-top: .3em; }
   a { color: $red; }
-  @include mobile { font-size: 16px; h2 { font-size: 24px; margin-top: 36px; } }
+  @include mobile { font-size: 1em; h2 { margin-top: 36px; } }
 }
-.lineup { list-style: none; padding: 0 !important; li { display: flex; gap: 16px; } dt { color: $text-2; } }
+.lineup { > div { display: flex; gap: 16px; } dt { color: $text-2; min-width: 6em; } dd { margin: 0; } }
 
 .two-col {
   display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 64px; align-items: start;
@@ -636,15 +651,15 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
   background: $sage; border-radius: 12px; padding: 28px;
   dl { margin: 0; }
   .row { padding: 16px 0; border-bottom: 1px solid $line-2; &:first-child { padding-top: 0; } }
-  dt { font-size: 14px; color: $text-2; margin-bottom: 4px; }
-  dd { margin: 0; font-size: 17px; }
+  dt { font-size: 0.875em; color: $text-2; margin-bottom: 4px; }
+  dd { margin: 0; font-size: 1.0625em; }
   .actions { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 24px; }
-  .share { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; font-size: 14px; color: $text-2; a { text-decoration: none; &:hover { color: $red; } } }
+  .share { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; font-size: 0.875em; color: $text-2; a { text-decoration: none; &:hover { color: $red; } } }
   @include mobile { padding: 22px 18px; }
 }
 .hero-image { margin-bottom: 40px; img { width: 100%; } }
 
-.related { background: $sage; padding: 72px 0; h2 { font-family: $serif; font-weight: 500; font-size: 34px; margin-bottom: 32px; } }
+.related { background: $sage; padding: 72px 0; h2 { font-family: $serif; font-weight: 500; font-size: 2.125em; margin-bottom: 32px; } }
 
 // ========== 場地頁 ==========
 .venue-summary {
@@ -654,32 +669,33 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 }
 .facts {
   background: $sage; border-radius: 12px; padding: 32px 28px;
-  h2 { font-family: $serif; font-weight: 500; font-size: 26px; margin-bottom: 16px; }
+  h2 { font-family: $serif; font-weight: 500; font-size: 1.625em; margin-bottom: 16px; }
   dl { margin: 0; }
   .row { padding: 8px 0 16px; }
-  dt { font-size: 14px; color: $text-2; }
-  dd { margin: 2px 0 0; font-size: 18px; }
+  dt { font-size: 0.875em; color: $text-2; }
+  dd { margin: 2px 0 0; font-size: 1.125em; }
   .btn { margin-top: 8px; }
 }
 .inpage-nav {
   position: sticky; top: 128px; z-index: 20; margin-top: 64px;
   background: $sand; border-block: 1px solid $line;
   ul { display: flex; gap: 28px; list-style: none; overflow-x: auto; height: 52px; align-items: center; }
-  a { text-decoration: none; font-size: 16px; white-space: nowrap; &:hover { color: $red; } }
+  a { text-decoration: none; font-size: 1em; white-space: nowrap; &:hover { color: $red; } }
   @include tablet { top: 96px; }
-  @include mobile { top: 72px; ul { gap: 20px; } a { font-size: 15px; } }
+  @include mobile { top: 72px; ul { gap: 20px; } a { font-size: 0.9375em; } }
 }
-.venue-section { padding-top: 64px; h2 { font-family: $serif; font-weight: 500; font-size: 30px; margin-bottom: 20px; } h3 { font-size: 22px; font-weight: 500; margin: 32px 0 12px; } }
-.note { color: $text-2; font-size: 15px; }
+.venue-section { padding-top: 64px; h2 { font-family: $serif; font-weight: 500; font-size: 1.875em; margin-bottom: 20px; } h3 { font-size: 1.375em; font-weight: 500; margin: 32px 0 12px; } }
+.note { color: $text-2; font-size: 0.9375em; }
 
 .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid $line; border-radius: 8px; }
 .data-table {
   width: 100%; min-width: 720px; border-collapse: collapse; background: #fff;
-  caption { text-align: left; padding: 0 0 8px; }
-  th, td { padding: 14px 18px; border: 1px solid $line; font-size: 15px; }
+  caption { text-align: left; padding: 12px 18px; font-weight: 500; background: #fff; }
+  th, td { padding: 14px 18px; border: 1px solid $line; font-size: 0.9375em; }
   thead th { background: $sage; font-weight: 500; }
   td { text-align: center; font-family: $latin; }
   th[scope="row"] { text-align: left; font-weight: 400; background: #fbfaf7; }
+  th.left { text-align: left; }
 }
 
 .calendar-embed {
@@ -690,9 +706,9 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 .steps {
   display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; list-style: none; counter-reset: step;
   li { background: $sage; border-radius: 12px; padding: 24px 20px; }
-  .n { font-family: $serif; font-size: 32px; color: $red; }
-  h3 { font-size: 20px; font-weight: 500; margin: 8px 0 8px !important; }
-  p { font-size: 15px; color: $text-2; }
+  .n { font-family: $serif; font-size: 2em; color: $red; }
+  h3 { font-size: 1.25em; font-weight: 500; margin: 8px 0 8px !important; }
+  p { font-size: 0.9375em; color: $text-2; }
   @include tablet { grid-template-columns: repeat(3, 1fr); }
   @include mobile { grid-template-columns: 1fr; }
 }
@@ -700,7 +716,7 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 .file-list { list-style: none; border-top: 1px solid $line-2; }
 .file-item {
   display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid $line-2;
-  .name { font-size: 17px; font-weight: 500; }
+  .name { font-size: 1.0625em; font-weight: 500; }
   .formats { display: flex; gap: 8px; flex-wrap: wrap; }
   @include mobile { flex-direction: column; align-items: flex-start; }
 }
@@ -709,9 +725,9 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
   border-bottom: 1px solid $line-2;
   summary {
     list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; padding: 18px 0;
-    font-size: 18px; font-weight: 500;
+    font-size: 1.125em; font-weight: 500;
     &::-webkit-details-marker { display: none; }
-    &::after { content: "＋"; font-size: 20px; }
+    &::after { content: "＋"; font-size: 1.1111em; }
   }
   &[open] summary::after { content: "−"; }
   .answer { padding: 0 0 18px; color: $text-2; }
@@ -723,65 +739,68 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 }
 .contact-card {
   background: $sage; border-radius: 12px; padding: 24px;
-  .role { font-size: 14px; color: $text-2; }
-  .name { font-size: 21px; font-weight: 500; margin: 4px 0 8px; }
+  .role { font-size: 0.875em; color: $text-2; }
+  .name { font-size: 1.3125em; font-weight: 500; margin: 4px 0 8px; }
   a { text-decoration: none; &:hover { color: $red; text-decoration: underline; } }
 }
 
 // ========== 徵件頁 ==========
 .call-summary {
-  display: grid; grid-template-columns: auto 1fr 1fr 1fr auto; gap: 24px 40px; align-items: center;
+  display: flex; align-items: center; gap: 24px 40px; flex-wrap: wrap;
   background: $sage; border-radius: 12px; padding: 24px; margin-bottom: 56px;
-  dt { font-size: 14px; color: $text-2; margin-bottom: 4px; }
-  dd { margin: 0; font-size: 17px; font-weight: 500; }
-  @include tablet { grid-template-columns: 1fr 1fr; .btn { grid-column: 1 / -1; justify-self: start; } }
-  @include mobile { grid-template-columns: 1fr; }
+  dl { flex: 1 1 600px; margin: 0; display: grid; grid-template-columns: auto 1fr 1fr 1fr; gap: 24px 40px; align-items: center; }
+  dt { font-size: 0.875em; color: $text-2; margin-bottom: 4px; }
+  dd { margin: 0; font-size: 1.0625em; font-weight: 500; }
+  @include tablet { dl { grid-template-columns: 1fr 1fr; } }
+  @include mobile { dl { grid-template-columns: 1fr; } }
 }
 .option-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-  .opt { background: $sage; border-radius: 12px; padding: 24px 20px; h3 { margin: 0 0 8px !important; font-size: 19px; } p { color: $text-2; font-size: 16px; } }
+  .opt { background: $sage; border-radius: 12px; padding: 24px 20px; h3 { margin: 0 0 8px !important; font-size: 1.1875em; } p { color: $text-2; font-size: 1em; } }
   @include mobile { grid-template-columns: 1fr; }
 }
 .side-box {
   background: $sage; border-radius: 12px; padding: 24px 20px; margin-bottom: 16px;
-  h2 { font-family: $serif; font-weight: 500; font-size: 22px; margin-bottom: 12px; }
+  h2 { font-family: $serif; font-weight: 500; font-size: 1.375em; margin-bottom: 12px; }
   a { text-decoration: none; &:hover { color: $red; text-decoration: underline; } }
-  .note { margin-top: 8px; font-size: 14px; }
+  .note { margin-top: 8px; font-size: 0.875em; }
   .file-link { display: block; padding: 14px 0; border-top: 1px solid $line-2; font-weight: 500; }
 }
 .other-calls {
-  margin-top: 24px; font-size: 14px; color: $text-2;
+  margin-top: 24px; font-size: 0.875em; color: $text-2;
   ul { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
   li { display: flex; align-items: center; gap: 8px; }
-  a { color: $ink; font-size: 16px; font-weight: 500; }
+  a { color: $ink; font-size: 1em; font-weight: 500; }
 }
 
 // ========== 消息內頁 ==========
 .article { max-width: 880px; }
-.article-meta { display: flex; align-items: center; gap: 12px; margin-top: 12px; .date { font-family: $latin; color: $red; font-size: 15px; } }
+.article-meta { display: flex; align-items: center; gap: 12px; margin-top: 12px; .date { font-family: $latin; color: $red; font-size: 0.9375em; } }
 .doc-box {
   background: $sage; border-radius: 12px; padding: 16px 16px 4px;
-  h2 { font-size: 20px !important; font-family: $serif; margin: 0 0 8px !important; }
+  h2 { font-size: 1.25em !important; font-family: $serif; margin: 0 0 8px !important; }
 }
 .post-nav {
   display: flex; justify-content: space-between; align-items: center; gap: 24px;
   margin-top: 40px; padding-top: 24px; border-top: 1px solid $line-2;
-  .prev { text-decoration: none; display: flex; flex-direction: column; gap: 4px; span { font-size: 14px; color: $text-2; } &:hover strong { color: $red; } }
+  .next { text-align: right; align-items: flex-end; }
+  @include mobile { .next { text-align: left; align-items: flex-start; } }
+  .prev, .next { text-decoration: none; display: flex; flex-direction: column; gap: 4px; span { font-size: 0.875em; color: $text-2; } &:hover strong { color: $red; } }
   @include mobile { flex-direction: column; align-items: flex-start; }
 }
 
 // ========== 一般內容頁（含側欄） ==========
 .with-sidenav {
   display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 40px 40px;
-  @include tablet { grid-template-columns: 1fr; }
+  @include tablet { grid-template-columns: minmax(0, 1fr); }
 }
 .sidenav {
   ul { list-style: none; }
   li { border-bottom: 1px solid $line-2; }
-  a { display: block; padding: 14px 0; text-decoration: none; font-size: 15px; &:hover { color: $red; } }
-  a[aria-current="page"] { color: $red; &::before { content: "▸ "; font-size: 10px; } }
+  a { display: block; padding: 14px 0; text-decoration: none; font-size: 0.9375em; &:hover { color: $red; } }
+  a[aria-current="page"] { color: $red; &::before { content: "▸ "; font-size: 0.625em; } }
   @include tablet {
-    ul { display: flex; gap: 24px; overflow-x: auto; border-bottom: 1px solid $line-2; }
+    ul { display: flex; flex-wrap: wrap; gap: 0 24px; border-bottom: 1px solid $line-2; }
     li { border: 0; }
     a { white-space: nowrap; padding: 10px 0; }
   }
@@ -794,21 +813,21 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
   display: grid; grid-template-columns: 173px 1fr; background: $sage; border-radius: 12px; overflow: hidden;
   img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; }
   .body { padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; }
-  .role { font-size: 13px; color: $red; }
-  .name { font-family: $serif; font-weight: 500; font-size: 28px; margin: 4px 0 8px; }
-  .desc { font-size: 15px; color: $text-2; }
+  .role { font-size: 0.8125em; color: $red; }
+  .name { font-family: $serif; font-weight: 500; font-size: 1.75em; margin: 4px 0 8px; }
+  .desc { font-size: 0.9375em; color: $text-2; }
   &--sm {
     grid-template-columns: 118px 1fr;
     .body { justify-content: flex-start; padding: 18px; }
-    .name { font-family: $sans; font-size: 19px; margin: 2px 0 10px; padding-bottom: 10px; border-bottom: 1px solid $line-2; }
-    dl { margin: 0; font-size: 14px; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; }
+    .name { font-family: $sans; font-size: 1.1875em; margin: 2px 0 10px; padding-bottom: 10px; border-bottom: 1px solid $line-2; }
+    dl { margin: 0; font-size: 0.875em; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; }
     dt { color: $text-2; }
     dd { margin: 0; word-break: break-all; }
     a { text-decoration: none; &:hover { color: $red; text-decoration: underline; } }
   }
-  @include mobile { grid-template-columns: 110px 1fr; .name { font-size: 22px; } &--sm { grid-template-columns: 96px 1fr; } }
+  @include mobile { grid-template-columns: 110px 1fr; .name { font-size: 1.375em; } &--sm { grid-template-columns: 96px 1fr; } }
 }
-.block-title { font-family: $serif; font-weight: 500; font-size: 30px; margin-bottom: 20px; @include mobile { font-size: 24px; } }
+.block-title { font-family: $serif; font-weight: 500; font-size: 1.875em; margin-bottom: 20px; @include mobile { font-size: 1.5em; } }
 .block + .block { margin-top: 56px; }
 
 .map-embed {
@@ -822,47 +841,49 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
   @include mobile { grid-template-columns: 1fr 1fr; gap: 20px; }
 }
 .pub-card {
-  .cover { aspect-ratio: 3 / 4; background: $sand; display: flex; align-items: center; justify-content: center; font-family: $serif; color: $muted; font-size: 20px; padding: 16px; text-align: center; }
-  h3 { font-size: 17px; font-weight: 500; margin-top: 12px; }
-  p { font-size: 14px; color: $text-2; margin-top: 4px; }
+  .cover { aspect-ratio: 3 / 4; background: $sand; display: flex; align-items: center; justify-content: center; font-family: $serif; color: $text-2; font-size: 1.25em; padding: 16px; text-align: center; }
+  h2 { font-size: 1.0625em; font-weight: 500; margin-top: 12px; }
+  p { font-size: 0.875em; color: $text-2; margin-top: 4px; }
 }
 
 // ========== 活動月曆頁 ==========
 .cal-page {
   display: grid; grid-template-columns: 520px minmax(0, 1fr); gap: 56px; align-items: start;
   .cal-panel { background: $sage; }
-  @include tablet { grid-template-columns: 1fr; }
+  @include tablet { grid-template-columns: minmax(0, 1fr); }
 }
 .day-list {
-  h2 { font-family: $serif; font-weight: 500; font-size: 28px; margin-bottom: 8px; }
+  h2 { font-family: $serif; font-weight: 500; font-size: 1.75em; margin-bottom: 8px; }
   .empty { color: $text-2; padding: 24px 0; }
 }
 .event-row {
   display: grid; grid-template-columns: 140px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid $line-2;
-  .d { font-family: $latin; color: $red; font-size: 15px; }
-  h3 { font-size: 19px; font-weight: 500; a { text-decoration: none; &:hover { color: $red; text-decoration: underline; } } }
-  p { font-size: 14px; color: $text-2; margin-top: 4px; }
+  .d { font-family: $latin; color: $red; font-size: 0.9375em; }
+  h3 { font-size: 1.1875em; font-weight: 500; a { text-decoration: none; &:hover { color: $red; text-decoration: underline; } } }
+  p { font-size: 0.875em; color: $text-2; margin-top: 4px; }
   @include mobile { grid-template-columns: 1fr; gap: 4px; }
 }
 
 // ========== 搜尋 ==========
 .search-form {
-  display: flex; gap: 12px; max-width: 720px; margin-top: 20px;
-  input { flex: 1; min-width: 0; height: 52px; padding: 0 20px; border: 1px solid $border; border-radius: 26px; font: inherit; font-size: 17px; background: #fff; }
+  max-width: 720px; margin-top: 20px;
+  label { display: block; font-size: 0.9375em; font-weight: 500; margin-bottom: 8px; }
+  .row { display: flex; gap: 12px; }
+  input { flex: 1; min-width: 0; height: 52px; padding: 0 20px; border: 1px solid $muted; border-radius: 26px; font: inherit; font-size: 1.0625em; background: #fff; }
 }
 .search-results { list-style: none; max-width: 960px; }
 .search-result {
   padding: 24px 0; border-bottom: 1px solid $line-2;
-  .type { font-size: 14px; }
-  h2 { font-size: 21px; font-weight: 500; margin: 8px 0 6px; a { text-decoration: none; &:hover { color: $red; text-decoration: underline; } } }
-  p { color: $text-2; font-size: 15px; }
-  mark { background: rgba($gold, .55); color: inherit; padding: 0 2px; }
+  .type { font-size: 0.875em; }
+  h2 { font-size: 1.3125em; font-weight: 500; margin: 8px 0 6px; a { text-decoration: none; &:hover { color: $red; text-decoration: underline; } } }
+  p { color: $text-2; font-size: 0.9375em; }
+  mark { background: rgba($gold, .55); color: $ink; padding: 0 2px; }
 }
 
 // ========== 原型頁面清單（index） ==========
 .proto-index {
   padding: 56px 0 96px;
-  h1 { font-family: $serif; font-weight: 500; font-size: 44px; }
+  h1 { font-family: $serif; font-weight: 500; font-size: 2.75em; }
   .lead { color: $text-2; margin-top: 12px; max-width: 760px; }
 }
 .proto-groups {
@@ -872,21 +893,111 @@ body[data-section="about"] .nav-about { color: $red; border-bottom-color: $red; 
 }
 .proto-group {
   background: #fff; border: 1px solid $line; border-radius: 12px; padding: 24px;
-  h2 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
-  .tpl { font-size: 13px; color: $text-2; margin-bottom: 12px; }
+  h2 { font-size: 1.125em; font-weight: 500; margin-bottom: 4px; }
+  .tpl { font-size: 0.8125em; color: $text-2; margin-bottom: 12px; }
   ol { padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; }
   a { color: $ink; &:hover { color: $red; } }
   small { color: $text-2; }
 }
 .proto-banner {
-  background: $dark; color: $gold; font-size: 13px; text-align: center; padding: 6px 12px;
+  background: $dark; color: $gold; font-size: 0.8125em; text-align: center; padding: 6px 12px;
   a { color: $paper; }
 }
 
 // 手機：輪播控制列縮小，避免超出寬度
 @include mobile {
   .hero-controls .container { height: 68px; gap: 12px; }
-  .hero-progress { gap: 10px; font-size: 14px; .track { width: 56px; } }
+  .hero-progress { gap: 10px; font-size: 0.875em; .track { width: 56px; } }
   .hero-arrows { gap: 8px; .icon-btn { width: 44px; height: 44px; } }
 }
 @include tablet { .hero__media img { object-position: 65% center; } }
+
+// ========== 無障礙與共用小元件 ==========
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.filters fieldset { display: contents; }
+.hint { font-size: 0.875em; color: $text-2; }
+.link-btn {
+  border: 0; padding: 0; background: none; cursor: pointer; text-decoration: underline;
+  font-size: inherit; color: inherit;
+  &:hover { color: $red; }
+}
+.empty-result { padding: 32px 0; color: $text-2; font-size: 1.0625em; }
+.small-list { font-size: 0.9375em; color: $text-2; padding-left: 1.4em; li + li { margin-top: .3em; } }
+.spaced { margin-block: 16px; }
+.spaced-top { margin-top: 16px; }
+.block-lead { margin-bottom: 20px; }
+.other-calls .other-title { font-size: 0.875em; font-weight: 400; color: $text-2; }
+.sitemap-tree {
+  list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  > li > a { font-size: 1.25em; font-weight: 500; }
+  ul { list-style: disc; padding-left: 1.3em; margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+  a { color: $ink; &:hover { color: $red; } }
+  @include tablet { grid-template-columns: 1fr 1fr; }
+  @include mobile { grid-template-columns: 1fr; }
+}
+.calendar-embed.short { height: auto; min-height: 120px; }
+.prose.small { font-size: 0.9375em; }
+.en-link { font-family: $latin; font-size: 0.8125em; color: $text-2; margin-left: 6px; }
+.hero-progress .current, .hero-progress .total { min-width: 1.4em; }
+
+// 動態效果：尊重「減少動態」設定
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+// ---------- em 字級的父層換算 ----------
+// .prose 本身是 17px（手機 16px），裡面的元件字級要以父層換算，才能維持設計稿的 px 值。
+.prose {
+  h2 { font-size: 1.7647em; }
+  h3 { font-size: 1.2353em; }
+  .note { font-size: 0.8824em; }
+  .faq summary { font-size: 1.0588em; }
+  .sitemap-tree > li > a { font-size: 1.1765em; }
+  .file-item .name { font-size: 1em; }
+  .btn { font-size: 0.9412em; }
+  .btn--sm { font-size: 0.8235em; }
+  .btn--file { font-size: 0.8824em; }
+  .option-grid .opt h3 { font-size: 1.1176em; }
+  .option-grid .opt p { font-size: 0.9412em; }
+  .tag { font-size: 0.8235em; }
+  .doc-box h2 { font-size: 1.1765em !important; }
+}
+@include mobile {
+  .prose {
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.3125em; }
+  .note { font-size: 0.9375em; }
+  .faq summary { font-size: 1.125em; }
+  .sitemap-tree > li > a { font-size: 1.25em; }
+  .file-item .name { font-size: 1.0625em; }
+  .btn { font-size: 0.9375em; }
+  .btn--sm { font-size: 0.875em; }
+  .btn--file { font-size: 0.9375em; }
+  .option-grid .opt h3 { font-size: 1.1875em; }
+  .option-grid .opt p { font-size: 1em; }
+  .tag { font-size: 0.875em; }
+  .doc-box h2 { font-size: 1.25em !important; }
+  }
+}
+// 頁首、麵包屑、頁尾的 ::: 定位點跟著父層字級
+.breadcrumb .accesskey, .footer-legal .accesskey { font-size: 1em; }
+.other-calls {
+  .other-title, .tag { font-size: 1em; }
+  a { font-size: 1.1429em; }
+}
+.call-summary dd .tag { font-size: 0.8235em; }
+
+// 連續鏈結改用清單（規範 XH1080102），清單本身不顯示項目符號
+.video-side, .actions, .tabs, .pagination, .post-nav, .formats, .share ul, .proto-banner ul { list-style: none; margin: 0; padding: 0; }
+.info-box .share { span { margin-right: 4px; } ul { display: flex; gap: 4px 12px; flex-wrap: wrap; } li + li::before { content: "／"; margin-right: 12px; } }
+.proto-banner { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 20px; p { margin: 0; } ul { display: flex; gap: 20px; } }
+.post-nav li:last-child { margin-left: auto; }
+
+// 320px 寬（等同 1280px 放大 400%）仍不需水平捲動（WCAG 1.4.10）
+@media (max-width: 359px) {
+  .cal-panel { padding-inline: 8px; }
+  .cal-grid .day { width: 34px; height: 34px; }
+  .cal-head { flex-wrap: wrap; gap: 8px; }
+  .news-head { flex-wrap: wrap; }
+}

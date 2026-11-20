@@ -1,0 +1,754 @@
+// 百歲傳情‧海外同慶 前台原型樣式（純 SCSS，沒有使用 CSS 框架）
+// 斷點：桌機 ≥1200px、平板 768–1199px、手機 <768px；主選單在 1024px 以下收合。
+// 色彩取自校慶 logo：主色橘、暖灰文字。
+
+// ---------- 變數 ----------
+$orange: #DC4E14;        // 主色：按鈕、標籤、時間軸重點
+$orange-bright: #F25C19; // 點綴：標題短橫條、目前頁短線
+$ink: #333030;           // 內文
+$dark: #444141;          // 頁尾底色
+$brown: #887667;
+$grey: #706D6E;          // 說明文字
+$line: #E6E0D9;
+$cream: #F4F0EB;         // 頁首橫幅底色
+$paper: #FBF9F7;         // 內容區底色
+$white: #fff;
+
+$oc: #C2410C;  $oc-bg: #FDE9DF;   // 僑生
+$mc: #1F6F66;  $mc-bg: #DFF0EC;   // 陸生
+$intl: #34548A; $intl-bg: #E3EAF6; // 國際生
+$type-found: $orange;
+$type-develop: $brown;
+$type-exchange: #2F6F6A;
+
+$font-zh: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+$font-en: "Montserrat", $font-zh;
+$content: 1440px;
+$header-h: 104px;
+$header-h-sm: 68px;
+
+@mixin tablet { @media (max-width: 1199px) { @content; } }
+@mixin mobile { @media (max-width: 767px) { @content; } }
+@mixin nav-collapsed { @media (max-width: 1023px) { @content; } }
+
+// ---------- 基本 ----------
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $paper;
+  color: $ink;
+  font-family: $font-zh;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+html[lang="en"] body { font-family: $font-en; }
+img { max-width: 100%; height: auto; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+h1, h2, h3, p, ul, ol, dl, dd, blockquote, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+:focus-visible { outline: 2px solid $orange; outline-offset: 2px; }
+.no-scroll { overflow: hidden; }
+[hidden] { display: none !important; } // 有 hidden 屬性一律隱藏（避免被 .btn 等 display 設定蓋掉）
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: 16px; top: -60px; z-index: 200;
+  padding: 8px 16px; background: $ink; color: $white; border-radius: 4px; text-decoration: none;
+  &:focus { top: 16px; }
+}
+.container {
+  width: 100%;
+  max-width: $content + 48px;
+  margin: 0 auto;
+  padding-inline: 24px;
+  @include mobile { padding-inline: 16px; }
+}
+.site-main { flex: 1; outline: none; }
+.note { color: $grey; font-size: .8125rem; padding-block: 0 48px; }
+
+// ---------- 按鈕 ----------
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 0 28px;
+  border: 1px solid transparent; border-radius: 999px;
+  font-weight: 700; font-size: .9375rem; letter-spacing: .04em; line-height: 1;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background-color .2s, color .2s, border-color .2s;
+  &--primary { background: $orange; color: $white; &:hover { background: #C04310; } }
+  &--outline { background: $white; color: $orange; border-color: $orange; &:hover { background: #FFF3EE; } }
+  &--light { background: $white; color: $orange; &:hover { background: #FFF3EE; } }
+  &--sm { min-height: 42px; padding: 0 22px; font-size: .875rem; }
+  &__arrow { font-family: $font-en; font-weight: 600; }
+}
+.link-btn {
+  margin-left: auto; padding: 0; border: 0; background: none;
+  color: $orange; font-size: .8125rem; cursor: pointer;
+  &:hover { text-decoration: underline; }
+}
+
+// ---------- 頁首 ----------
+.site-header {
+  position: relative; z-index: 50;
+  background: $white;
+  box-shadow: 0 1px 0 $line;
+  &__inner { display: flex; align-items: center; gap: 40px; height: $header-h; }
+  @include nav-collapsed { &__inner { height: $header-h-sm; gap: 12px; } }
+}
+.site-logo {
+  display: block; flex-shrink: 0; margin-right: auto;
+  img { display: block; height: 60px; width: auto; }
+  @include nav-collapsed { img { height: 40px; } }
+}
+.site-nav {
+  display: flex; align-items: center; gap: 40px;
+  &__list { display: flex; gap: 40px; }
+}
+.nav-link {
+  position: relative; display: block; padding: 8px 0;
+  font-weight: 500; font-size: 1rem; letter-spacing: .06em; text-decoration: none;
+  &::after {
+    content: ""; position: absolute; left: 50%; bottom: -30px; width: 24px; height: 3px;
+    margin-left: -12px; background: $orange-bright; border-radius: 2px; opacity: 0;
+  }
+  &:hover { color: $orange; }
+}
+body[data-section="history"] .nav-history,
+body[data-section="blessings"] .nav-blessings {
+  color: $ink;
+  &::after { opacity: 1; }
+}
+.nav-submit { margin-left: 0; }
+.lang-switch {
+  display: flex; align-items: center;
+  font-family: $font-en; font-size: .8125rem; letter-spacing: .08em;
+  li + li { border-left: 1px solid $line; }
+  a, span { display: block; padding: 4px 10px; text-decoration: none; }
+  a { color: $grey; &:hover { color: $orange; } }
+  .is-current { font-weight: 700; color: $ink; }
+}
+.menu-toggle {
+  display: none;
+  width: 44px; height: 44px; padding: 12px 10px; margin-right: -10px;
+  border: 0; background: none; cursor: pointer;
+  span { display: block; height: 2px; margin: 4px 0; background: $ink; border-radius: 1px; transition: transform .2s, opacity .2s; }
+}
+@include nav-collapsed {
+  .menu-toggle { display: block; }
+  .site-nav {
+    position: absolute; left: 0; right: 0; top: 100%;
+    display: none; flex-direction: column; align-items: stretch; gap: 0;
+    padding: 8px 24px 24px; background: $white; box-shadow: 0 12px 24px rgba(0,0,0,.08);
+    &__list { flex-direction: column; gap: 0; }
+    .nav-link { padding: 14px 0; border-bottom: 1px solid $line; &::after { display: none; } }
+    .nav-submit { margin-top: 20px; }
+  }
+  body[data-section="history"] .nav-history,
+  body[data-section="blessings"] .nav-blessings { color: $orange; font-weight: 700; }
+  .site-header.is-open {
+    .site-nav { display: flex; }
+    .menu-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .menu-toggle span:nth-child(2) { opacity: 0; }
+    .menu-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  }
+}
+
+// ---------- 頁尾 ----------
+.site-footer {
+  background: $dark; color: rgba(255,255,255,.85);
+  &__inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; padding-block: 40px 44px; }
+  &__brand {
+    img { display: block; height: 60px; width: auto; margin-bottom: 18px; }
+    p { font-size: .8125rem; }
+  }
+  &__contact {
+    font-style: normal; text-align: right; font-size: .8125rem; line-height: 2;
+    a { color: inherit; }
+    .copyright { font-family: $font-en; font-size: .6875rem; color: rgba(255,255,255,.6); }
+  }
+  @include mobile {
+    &__inner { flex-direction: column; gap: 20px; padding-block: 32px; }
+    &__brand img { height: 44px; }
+    &__contact { text-align: left; }
+  }
+}
+
+// ---------- 頁首橫幅（各內頁共用） ----------
+.page-head {
+  background: $cream; overflow: hidden;
+  &__inner { position: relative; display: flex; justify-content: space-between; align-items: flex-end; padding-block: 56px 52px; }
+  &__text { position: relative; z-index: 1; max-width: 720px; }
+  &__deco {
+    position: absolute; right: 24px; bottom: 26px;
+    font-family: $font-en; font-weight: 800; font-size: 9rem; line-height: 1; letter-spacing: -.04em;
+    color: #EAE3DB; pointer-events: none; user-select: none;
+  }
+  @include tablet { &__deco { font-size: 6.5rem; opacity: .8; } }
+  @include mobile {
+    &__inner { padding-block: 28px 32px; }
+    &__deco { font-size: 4.5rem; right: 12px; bottom: auto; top: 16px; opacity: .6; }
+  }
+}
+.breadcrumb ol {
+  display: flex; flex-wrap: wrap; gap: 4px 0; font-size: .8125rem; color: $grey;
+  li + li::before { content: "/"; margin: 0 10px; color: #B9B1A9; }
+  a { text-decoration: none; &:hover { color: $orange; text-decoration: underline; } }
+}
+.page-title {
+  position: relative; margin-top: 30px; padding-top: 20px;
+  font-size: 2.75rem; font-weight: 700; line-height: 1.3; letter-spacing: .04em;
+  &::before { content: ""; position: absolute; top: 0; left: 0; width: 40px; height: 4px; background: $orange-bright; border-radius: 2px; }
+  &__sep { display: inline-block; width: 2px; height: .9em; margin: 0 .5em; vertical-align: -.08em; background: $ink; }
+  html[lang="en"] & { letter-spacing: 0; font-size: 2.5rem; }
+  @include mobile {
+    margin-top: 20px; font-size: 1.75rem;
+    html[lang="en"] & { font-size: 1.625rem; }
+    &__sep { display: block; width: 0; height: 0; margin: 0; }
+  }
+}
+.page-subtitle { margin-top: 8px; font-family: $font-en; font-weight: 600; color: $brown; font-size: 1.125rem; }
+.lead { margin-top: 16px; color: $grey; font-size: .9375rem; line-height: 1.9; }
+
+// ---------- 標籤 ----------
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  display: inline-flex; align-items: center; height: 22px; padding: 0 8px;
+  border-radius: 3px; font-size: .75rem; font-weight: 500; line-height: 1; white-space: nowrap;
+  &--oc { background: $oc-bg; color: $oc; }
+  &--mc { background: $mc-bg; color: $mc; }
+  &--intl { background: $intl-bg; color: $intl; }
+  &--region { background: $white; color: $grey; box-shadow: inset 0 0 0 1px #CFC8C0; }
+  &--club { background: #F1ECE6; color: $ink; }
+}
+
+// ---------- 篩選 chip ----------
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 36px; padding: 0 18px;
+  border: 1px solid $line; border-radius: 999px; background: $white;
+  font-size: .875rem; cursor: pointer; white-space: nowrap;
+  transition: border-color .15s, background-color .15s, color .15s;
+  &:hover { border-color: $brown; }
+  &.is-active { background: $ink; border-color: $ink; color: $white; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  &--type {
+    &.is-active { background: $white; color: $ink; border-color: #CFC8C0; }
+    &:not(.is-active) { color: #A39B93; .dot { opacity: .35; } }
+  }
+  &--found .dot { background: $type-found; }
+  &--develop .dot { background: $type-develop; }
+  &--exchange .dot { background: $type-exchange; }
+}
+.chips--scroll {
+  @include mobile {
+    flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding: 2px 16px 6px;
+    scrollbar-width: none; &::-webkit-scrollbar { display: none; }
+  }
+}
+
+// ---------- 下拉選單 ----------
+.select {
+  position: relative; display: block;
+  &::after {
+    content: ""; position: absolute; right: 16px; top: 50%; width: 7px; height: 7px; margin-top: -6px;
+    border-right: 1.5px solid $grey; border-bottom: 1.5px solid $grey; transform: rotate(45deg); pointer-events: none;
+  }
+  select {
+    width: 100%; height: 46px; padding: 0 40px 0 14px;
+    border: 1px solid #D5CEC6; border-radius: 4px; background: $white; appearance: none; cursor: pointer;
+  }
+  &--sm select { height: 40px; min-width: 150px; font-size: .875rem; }
+}
+
+// ---------- 01 線上祝福 ----------
+.filter-bar {
+  background: $white; border-bottom: 1px solid $line;
+  &__inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 24px; }
+  &__side { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+  @include tablet { &__inner { flex-direction: column; align-items: stretch; } &__side { justify-content: space-between; } }
+}
+.filters { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.filter-row {
+  display: flex; align-items: center; gap: 12px;
+  &__label { flex-shrink: 0; width: 3em; font-size: .875rem; color: $grey; }
+  html[lang="en"] &__label { width: 4.5em; }
+  @include mobile {
+    align-items: flex-start; flex-direction: column; gap: 6px;
+    .chips { flex-wrap: nowrap; overflow-x: auto; width: calc(100% + 32px); margin-inline: -16px; padding: 2px 16px 4px; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
+  }
+}
+.result-count { font-size: .875rem; color: $grey; white-space: nowrap; }
+
+.wall-section { padding-block: 48px 64px; }
+.wall {
+  column-count: 4; column-gap: 24px;
+  @include tablet { column-count: 3; column-gap: 20px; }
+  @include mobile { column-count: 2; column-gap: 12px; }
+  &__item { break-inside: avoid; margin-bottom: 24px; @include mobile { margin-bottom: 12px; } }
+}
+.wall-empty { padding: 64px 0; text-align: center; color: $grey; }
+.photo-card {
+  display: block; width: 100%; padding: 0; text-align: left;
+  border: 1px solid $line; border-radius: 4px; background: $white; overflow: hidden; cursor: pointer;
+  box-shadow: 0 1px 2px rgba(51,48,48,.04);
+  transition: box-shadow .2s, transform .2s;
+  &:hover { box-shadow: 0 10px 28px rgba(51,48,48,.12); transform: translateY(-2px); }
+  &__img { display: block; width: 100%; }
+  &__body { display: flex; flex-direction: column; gap: 8px; padding: 16px 16px 18px; }
+  &__title { font-weight: 500; font-size: .9375rem; line-height: 1.5; }
+  &__meta { font-size: .75rem; color: $grey; font-family: $font-en; }
+  @include mobile {
+    &__body { padding: 10px 10px 12px; gap: 6px; }
+    &__title { font-size: .8125rem; }
+    .tag { height: 20px; padding: 0 6px; font-size: .6875rem; }
+  }
+}
+// 示意照片：正式上線時換成投稿照片
+.ph {
+  background-color: #BBAE9E;
+  &--warm { background-image: linear-gradient(140deg, #D3BFA2 0%, #A88C73 55%, #8A725F 100%); }
+  &--grey { background-image: linear-gradient(140deg, #BDBCAE 0%, #8F9085 55%, #676B63 100%); }
+  &--rose { background-image: linear-gradient(140deg, #D9B998 0%, #B98A6C 55%, #9A6A52 100%); }
+  &--sand { background-image: linear-gradient(140deg, #C9BBA4 0%, #9F8F7A 55%, #776A5C 100%); }
+}
+.load-more {
+  display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 32px;
+  &__status { font-size: .8125rem; color: $grey; }
+}
+// 內容不足一屏時，main 會被撐高（讓頁尾貼底）；把 CTA 推到 main 最下方，多出的空白留在 CTA 上方
+.site-main:has(> .cta-band) { display: flex; flex-direction: column; }
+.cta-band {
+  margin-top: auto;
+  background: $orange; color: $white;
+  &__inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 52px; }
+  h2 { font-size: 1.75rem; letter-spacing: .04em; }
+  p { margin-top: 6px; opacity: .9; font-size: .9375rem; }
+  @include mobile { &__inner { flex-direction: column; align-items: flex-start; padding-block: 36px; } h2 { font-size: 1.375rem; } }
+}
+
+// ---------- 02 燈箱 ----------
+.lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; grid-template-columns: 120px minmax(0, 1fr) 120px; grid-template-rows: auto 1fr; align-items: center;
+  background: rgba(26,21,19,.96); color: $ink;
+  &[hidden] { display: none; }
+  &__top { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; padding: 24px 40px; color: $white; }
+  &__count { font-family: $font-en; font-size: .875rem; letter-spacing: .1em; }
+  &__close {
+    display: inline-flex; align-items: center; gap: 10px; padding: 8px 0; border: 0; background: none; color: $white; cursor: pointer; font-size: .875rem;
+    .x { position: relative; width: 16px; height: 16px;
+      &::before, &::after { content: ""; position: absolute; left: 7px; top: -1px; width: 2px; height: 18px; background: currentColor; }
+      &::before { transform: rotate(45deg); } &::after { transform: rotate(-45deg); } }
+  }
+  &__nav {
+    justify-self: center; width: 56px; height: 56px; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; background: none; cursor: pointer;
+    position: relative;
+    &::before { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -3px; border-left: 2px solid $white; border-bottom: 2px solid $white; transform: rotate(45deg); }
+    &--next::before { margin-left: -7px; transform: rotate(-135deg); }
+    &:hover { background: rgba(255,255,255,.1); }
+    &:disabled { opacity: .25; cursor: default; }
+  }
+  &__card {
+    display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(300px, 1fr);
+    max-width: 1460px; width: 100%; height: min(82vh, 820px); margin: 0 auto 40px;
+    background: $paper; border-radius: 6px; overflow: hidden; align-self: start;
+  }
+  &__photo { min-height: 100%; }
+  &__info { padding: 44px 44px 40px; overflow-y: auto; }
+  &__title { margin-top: 16px; padding-bottom: 20px; border-bottom: 1px solid $line; font-size: 1.625rem; line-height: 1.45; letter-spacing: .02em; }
+  @include tablet {
+    grid-template-columns: 72px minmax(0, 1fr) 72px;
+    &__nav { width: 44px; height: 44px; }
+    &__card { grid-template-columns: 1fr; height: auto; max-height: calc(100vh - 120px); overflow-y: auto; }
+    &__photo { min-height: 0; aspect-ratio: 4 / 3; }
+    &__info { overflow: visible; }
+  }
+  @include mobile {
+    display: flex; flex-direction: column; align-items: stretch; background: $paper; overflow-y: auto;
+    &__top { position: sticky; top: 0; z-index: 2; padding: 12px 16px; background: rgba(26,21,19,.96); }
+    &__card { display: block; max-height: none; margin: 0; border-radius: 0; overflow: visible; }
+    &__info { padding: 24px 16px 96px; }
+    &__title { font-size: 1.25rem; }
+    &__nav {
+      position: fixed; bottom: 20px; z-index: 3; width: 48px; height: 48px; background: rgba(26,21,19,.85); border-color: transparent;
+      &--prev { left: 16px; } &--next { right: 16px; }
+    }
+  }
+}
+.meta-list {
+  display: grid; gap: 8px; padding: 18px 0; border-bottom: 1px solid $line; font-size: .875rem;
+  div { display: flex; gap: 20px; }
+  dt { flex-shrink: 0; width: 3em; color: $grey; }
+  html[lang="en"] & dt { width: 5.5em; }
+  dd { font-weight: 500; }
+}
+.blessing {
+  padding-top: 24px; position: relative;
+  &::before { content: "\201C"; display: block; height: 40px; font-family: Georgia, serif; font-weight: 700; font-size: 4rem; line-height: 1; color: $orange-bright; }
+  p { margin-top: 16px; font-size: 1.0625rem; line-height: 2; }
+  footer { margin-top: 12px; font-size: .8125rem; color: $grey; }
+}
+
+// ---------- 03 社團發展歷程 ----------
+.club-tabs {
+  background: $paper; border-bottom: 1px solid $line;
+  .container { padding-block: 22px; }
+  .chip { min-height: 40px; }
+}
+.club-head {
+  &__inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-block: 40px 32px; }
+  &__title { margin-top: 6px; font-size: 2rem; letter-spacing: .04em; line-height: 1.35; html[lang="en"] & { letter-spacing: 0; } }
+  &__sub { margin-top: 4px; color: $grey; font-size: .9375rem; }
+  @include tablet { &__inner { flex-direction: column; align-items: flex-start; } }
+  @include mobile { &__inner { padding-block: 28px 20px; } &__title { font-size: 1.5rem; } }
+}
+.eyebrow { font-family: $font-en; font-weight: 600; font-size: .875rem; color: $brown; letter-spacing: .04em; }
+.type-filter {
+  display: flex; align-items: center; gap: 12px;
+  &__label { font-size: .8125rem; color: $grey; }
+  @include mobile { flex-wrap: wrap; .chips { gap: 6px; } .chip { padding: 0 12px; font-size: .8125rem; } }
+}
+
+// 年代軸（sticky）
+.rail {
+  position: sticky; top: 0; z-index: 20; background: #F1ECE6;
+  .container { padding-block: 18px 14px; }
+  &__list { display: flex; justify-content: space-between; }
+  &__item {
+    display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 52px; padding: 4px 2px;
+    border: 0; background: none; font-family: $font-en; font-size: .8125rem; color: #ABA39B; cursor: default;
+    &.has-data { color: $ink; cursor: pointer; &:hover .rail__year { color: $orange; } }
+    &.is-current { color: $orange; font-weight: 700; font-size: 1rem; }
+  }
+  &__dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #D3CBC3; transition: transform .2s;
+    .has-data & { background: $orange; }
+    .is-current & { transform: scale(1.75); }
+  }
+  &__year { height: 1.5em; display: flex; align-items: center; }
+  &__hint {
+    display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: .6875rem; color: $grey;
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: $ink; }
+  }
+  @include tablet {
+    &__list { overflow-x: auto; gap: 8px; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
+    &__item { min-width: 56px; }
+  }
+  @include mobile { .container { padding-block: 12px 10px; } &__hint { display: none; } }
+}
+.timeline-section { padding-block: 56px 24px; }
+
+// 事件卡片
+.event-card {
+  background: $white; border: 1px solid $line; border-radius: 4px; padding: 22px 24px;
+  &__labels { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  &__title { margin-top: 10px; font-size: 1.125rem; font-weight: 500; line-height: 1.5; }
+  &__text { margin-top: 8px; font-size: .875rem; color: $grey; line-height: 1.85; }
+  &--photo { display: grid; grid-template-columns: 136px minmax(0, 1fr); gap: 20px; align-items: start; padding: 20px; }
+  &__img { display: block; aspect-ratio: 4 / 3; border-radius: 2px; }
+  @include mobile { padding: 16px; &--photo { grid-template-columns: 88px minmax(0, 1fr); gap: 14px; padding: 14px; } &__title { font-size: 1rem; } }
+}
+// 時間軸照片：可點擊放大（燈箱）
+button.event-card__img {
+  position: relative; width: 100%; padding: 0; border: 0; cursor: zoom-in; transition: filter .2s;
+  &:hover { filter: brightness(1.06); }
+  &:focus-visible { outline: 3px solid $orange-bright; outline-offset: 2px; }
+}
+// 時間軸燈箱：沿用 02 燈箱外框，右欄顯示年份、label、title、text
+.lightbox {
+  &__year { margin-bottom: 14px; font-family: $font-en; font-weight: 700; font-size: 2.75rem; line-height: 1.1; color: $orange; }
+  &__text { margin-top: 20px; font-size: 1rem; line-height: 1.9; color: $ink; }
+  @include mobile { &__year { font-size: 2rem; } }
+}
+.event-type {
+  display: inline-flex; align-items: center; gap: 6px; font-size: .75rem;
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  &--found { color: $type-found; } &--develop { color: $type-develop; } &--exchange { color: $type-exchange; }
+}
+
+// 單一社團：中軸左右交錯
+.tl__list { position: relative; max-width: 1200px; margin: 0 auto; padding-bottom: 32px;
+  &::before { content: ""; position: absolute; left: 50%; top: 10px; bottom: 0; width: 2px; margin-left: -1px; background: $line; }
+}
+.tl__item {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr); align-items: start;
+  & + & { margin-top: 32px; }
+  .event-card { grid-row: 1; }
+  .tl__node { grid-column: 2; grid-row: 1; justify-self: center; margin-top: 18px; width: 16px; height: 16px; border-radius: 50%; background: $white; border: 3px solid $type-found; position: relative; z-index: 1; }
+  .tl__year { grid-row: 1; padding-top: 2px; font-family: $font-en; font-weight: 700; font-size: 2.25rem; line-height: 1.2; color: $ink; }
+  &--left { .event-card { grid-column: 1; } .tl__year { grid-column: 3; padding-left: 24px; } }
+  &--right { .event-card { grid-column: 3; } .tl__year { grid-column: 1; text-align: right; padding-right: 24px; } }
+  &--found .tl__year { color: $orange; }
+  &--develop .tl__node { border-color: $type-develop; }
+  &--exchange .tl__node { border-color: $type-exchange; }
+  @include mobile {
+    grid-template-columns: 28px minmax(0, 1fr);
+    & + & { margin-top: 24px; }
+    .tl__node { grid-column: 1; grid-row: 1; margin-top: 8px; width: 14px; height: 14px; }
+    .tl__year, &--left .tl__year, &--right .tl__year { grid-column: 2; grid-row: 1; text-align: left; padding: 0; font-size: 1.5rem; }
+    .event-card, &--left .event-card, &--right .event-card { grid-column: 2; grid-row: 2; margin-top: 8px; }
+  }
+}
+@include mobile { .tl__list::before { left: 14px; } }
+
+// 全部社團：依年份分組
+.year-groups { display: flex; flex-direction: column; gap: 40px; padding-bottom: 32px; }
+.yg {
+  display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 0;
+  &__year { position: sticky; top: 110px; align-self: start; padding-right: 32px; margin-right: 32px; border-right: 2px solid $line; min-height: 100%; }
+  &__num { display: block; font-family: $font-en; font-weight: 700; font-size: 2.75rem; line-height: 1.1; color: $orange; }
+  &__count { display: block; margin-top: 6px; font-size: .8125rem; color: $grey; }
+  &__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+  @include tablet { grid-template-columns: 160px minmax(0, 1fr); &__year { padding-right: 20px; margin-right: 20px; } &__num { font-size: 2.25rem; } }
+  @include mobile {
+    grid-template-columns: 1fr;
+    &__year { position: static; display: flex; align-items: baseline; gap: 12px; padding: 0 0 12px; margin: 0; border-right: 0; min-height: 0; }
+    &__num { font-size: 1.75rem; }
+    &__cards { grid-template-columns: 1fr; gap: 12px; }
+  }
+}
+
+// ---------- 04 投稿表單 ----------
+.form-layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 40px; align-items: start; padding-block: 48px 80px;
+  @include tablet { grid-template-columns: 1fr; .guide { grid-row: 1; } }
+  @include mobile { padding-block: 28px 56px; gap: 24px; }
+}
+.stepper {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 28px; font-size: .875rem; color: $grey;
+  li { display: flex; align-items: center; gap: 10px; }
+  li + li::before { content: ""; width: 56px; height: 1px; background: #D5CEC6; margin-right: 6px; }
+  &__num {
+    display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid #D5CEC6; background: $white; font-family: $font-en; font-size: .75rem; color: $grey;
+  }
+  .is-current { color: $ink; font-weight: 700; .stepper__num { background: $orange; border-color: $orange; color: $white; } }
+  .is-done .stepper__num { background: $white; border-color: $orange; color: $orange; }
+  @include mobile {
+    gap: 8px; font-size: .75rem;
+    li { flex-direction: column; gap: 4px; text-align: center; flex: 1; }
+    li + li::before { display: none; }
+  }
+}
+.form-alert { margin-bottom: 20px; padding: 12px 16px; border-radius: 4px; background: #FDECEA; color: #B3261E; font-size: .875rem; }
+.panel {
+  min-width: 0; margin: 0 0 28px; padding: 32px 36px 36px;
+  border: 1px solid $line; border-radius: 6px; background: $white;
+  &__title { float: left; width: 100%; margin-bottom: 20px; padding: 0; font-size: 1.375rem; font-weight: 700; letter-spacing: .04em;
+    html[lang="en"] & { letter-spacing: 0; } }
+  &__title + * { clear: both; }
+  @include mobile { padding: 22px 16px 24px; margin-bottom: 20px; }
+}
+.field-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 24px;
+  &--tight { gap: 12px 16px; }
+  @include mobile { grid-template-columns: 1fr; gap: 16px; }
+}
+.field {
+  min-width: 0; margin: 0; padding: 0; border: 0;
+  &--full { grid-column: 1 / -1; }
+  > label:not(.radio):not(.checkbox), > legend { display: block; margin-bottom: 8px; padding: 0; font-size: .875rem; font-weight: 500; }
+  input[type="text"], input[type="email"], textarea {
+    width: 100%; height: 46px; padding: 0 14px; border: 1px solid #D5CEC6; border-radius: 4px; background: $white;
+    &::placeholder { color: #A9A19A; }
+    &:focus { border-color: $orange; outline: none; box-shadow: 0 0 0 3px rgba(220,78,20,.15); }
+  }
+  textarea { height: auto; min-height: 128px; padding: 12px 14px; resize: vertical; line-height: 1.7; }
+  &.has-error {
+    input[type="text"], input[type="email"], textarea, select { border-color: #C62828; }
+  }
+}
+.req { color: $orange; }
+.field-error { margin-top: 6px; font-size: .8125rem; color: #C62828; &:empty { display: none; } }
+.radio-group {
+  > legend { float: left; width: 100%; }
+  .radio { margin-right: 28px; }
+  .field-error { clear: both; }
+}
+.radio, .checkbox {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 36px; cursor: pointer; font-size: .9375rem;
+  input { width: 18px; height: 18px; margin: 0; accent-color: $orange; flex-shrink: 0; }
+}
+.checkbox { align-items: flex-start; span { padding-top: 0; line-height: 1.6; } input { margin-top: 3px; } }
+.dropzone {
+  display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 40px 16px; text-align: center;
+  border: 1.5px dashed #BDB3A9; border-radius: 6px; background: #F7F3EF; cursor: pointer; transition: background-color .15s, border-color .15s;
+  input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  &:focus-within { outline: 2px solid $orange; outline-offset: 2px; }
+  &:hover, &.is-over { border-color: $orange; background: #FCEEE7; }
+  strong { font-weight: 500; font-size: .9375rem; } u { color: $orange; text-decoration: none; }
+  small { font-size: .75rem; color: $grey; }
+  &__icon {
+    position: relative; width: 22px; height: 22px; margin-bottom: 6px; border: 2px solid $orange; border-top: 0; border-radius: 0 0 3px 3px;
+    &::before { content: ""; position: absolute; left: 50%; top: -12px; width: 2px; height: 16px; margin-left: -1px; background: $orange; }
+    &::after { content: ""; position: absolute; left: 50%; top: -12px; width: 8px; height: 8px; margin-left: -4px; border-left: 2px solid $orange; border-top: 2px solid $orange; transform: rotate(45deg); }
+  }
+}
+.photo-list { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; &:empty { display: none; } }
+.photo-row {
+  display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 20px; padding: 16px; border: 1px solid $line; border-radius: 4px;
+  img { width: 120px; height: 90px; object-fit: cover; border-radius: 2px; }
+  &__file { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: .75rem; color: $grey; word-break: break-all; }
+  @include mobile { grid-template-columns: 1fr; img { width: 100%; height: auto; aspect-ratio: 4 / 3; } }
+}
+.agree { margin: 4px 0 28px; }
+.form-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+.guide {
+  position: sticky; top: 24px; padding: 28px; background: $cream; border-radius: 6px;
+  h2 { font-size: 1.125rem; margin-bottom: 12px; }
+  li { position: relative; padding-left: 14px; font-size: .8125rem; color: $grey; line-height: 1.8;
+    & + li { margin-top: 10px; }
+    &::before { content: "・"; position: absolute; left: -2px; } }
+  @include tablet { position: static; }
+  @include mobile { padding: 20px 18px; }
+}
+
+// ---------- 05 送出成功 ----------
+// 送出成功頁：底色區塊撐滿 main 的高度（內容不足一屏時不留白）
+.site-main:has(> .success) { display: flex; flex-direction: column; }
+.success {
+  flex: 1;
+  background: $cream; padding-block: 88px;
+  &__card { max-width: 720px; margin: 0 auto; padding: 56px 56px 48px; text-align: center; background: $white; border-radius: 8px; box-shadow: 0 12px 40px rgba(51,48,48,.08); }
+  &__icon {
+    position: relative; display: block; width: 80px; height: 80px; margin: 0 auto 24px; border-radius: 50%; background: $orange;
+    &::after { content: ""; position: absolute; left: 30px; top: 22px; width: 18px; height: 30px; border-right: 4px solid $white; border-bottom: 4px solid $white; transform: rotate(45deg); }
+  }
+  h1 { font-size: 2.25rem; letter-spacing: .08em; html[lang="en"] & { letter-spacing: 0; font-size: 2rem; } }
+  &__text { margin-top: 16px; font-size: .9375rem; color: $grey; line-height: 2; text-align: left; }
+  .status-pill + &__text { margin-top: 28px; }
+  &__meta {
+    display: flex; justify-content: center; gap: 32px; margin: 28px 0 32px; padding: 14px 0; border-block: 1px solid $line; font-size: .8125rem; color: $grey;
+    div { display: flex; gap: 8px; } dd { font-family: $font-en; color: $ink; }
+  }
+  &__actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
+  @include mobile {
+    padding-block: 32px;
+    &__card { padding: 36px 20px 32px; }
+    h1 { font-size: 1.75rem; }
+    &__meta { flex-direction: column; align-items: center; gap: 6px; }
+    &__actions li, &__actions .btn { width: 100%; }
+  }
+}
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 6px 16px; border-radius: 999px;
+  background: #EFE8E1; font-size: .875rem; font-weight: 500;
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: $orange; }
+}
+
+// ---------- 首頁（Infinite Canvas） ----------
+// 原版 Codrops 標題區、GitHub／credits／tags 與白底進度條都隱藏，由進場動畫取代
+.home { color-scheme: dark; background: #000; }
+.home-body { display: block; background: #000; color: $white; }
+.slogan-img { display: block; height: 96px; width: auto; visibility: hidden; }
+._frame__github_1rxye_51, ._frame__credits_1rxye_55, ._frame__tags_1rxye_59, ._overlay_15mji_1 { display: none !important; }
+
+// 進場：米白底＋logo，之後以 logo 為中心圓形開幕
+#intro {
+  position: fixed; inset: 0; z-index: 5000; background: #F5F2EE; cursor: pointer;
+  --r: 0px;
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent var(--r), #000 calc(var(--r) + 1px));
+  mask: radial-gradient(circle at 50% 50%, transparent var(--r), #000 calc(var(--r) + 1px));
+  .logo { position: absolute; left: 50%; top: 50%; height: var(--logo-px, 200px); width: auto; transform: translate(-50%, -50%); opacity: 0; animation: introLogo .8s cubic-bezier(.22,1,.36,1) forwards; }
+  .bar { position: absolute; left: 50%; top: calc(50% + var(--logo-px, 200px) / 2 + 28px); width: min(160px, 40vw); height: 2px; transform: translateX(-50%); background: rgba(242,92,25,.15); border-radius: 2px; overflow: hidden; opacity: 0; animation: introFade .4s .3s forwards; }
+  .bar i { display: block; height: 100%; width: 100%; background: $orange-bright; transform-origin: left; transform: scaleX(0); transition: transform .25s linear; }
+  .ring { position: absolute; left: 50%; top: 50%; width: var(--logo-px, 200px); height: var(--logo-px, 200px); border: 2px solid $orange-bright; border-radius: 50%; transform: translate(-50%, -50%) scale(.6); opacity: 0; pointer-events: none; }
+  &.ring-on .ring { animation: introRing .8s cubic-bezier(.22,1,.36,1) forwards; }
+  &.opening .bar { opacity: 0; transition: opacity .2s; }
+}
+@keyframes introLogo { from { opacity: 0; transform: translate(-50%, -50%) scale(.96); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes introFade { to { opacity: 1; } }
+@keyframes introRing { 0% { opacity: .9; transform: translate(-50%, -50%) scale(.6); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(2.6); } }
+@media (prefers-reduced-motion: reduce) { #intro .logo { animation: none; opacity: 1; } #intro .ring { display: none; } }
+
+// 語言切換：右上角，z-index 高於進場畫面 #intro（5000），所以載入中就看得到
+// 載入中（.is-loading）顯示但停用，進場開幕後才能切換；黑色滑塊標出目前語言
+// 首頁載入的 Codrops 樣式把根字級設為 12px，所以這裡用 px
+$lang-w: 46px;
+$lang-h: 34px;
+.home-lang {
+  position: fixed; z-index: 6000;
+  top: max(24px, env(safe-area-inset-top)); right: max(24px, env(safe-area-inset-right));
+  display: flex; padding: 3px;
+  background: rgba(255,255,255,.7);
+  border: 1px solid rgba(51,48,48,.14); border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(51,48,48,.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3); backdrop-filter: blur(12px) saturate(1.3);
+  transition: opacity .4s;
+  // 滑塊
+  &::before {
+    content: ""; position: absolute; top: 3px; left: 3px; width: $lang-w; height: $lang-h; border-radius: 999px;
+    background: $ink;
+    transition: transform .45s cubic-bezier(.22,1,.36,1), background-color .4s;
+  }
+  &[data-lang="en"]::before { transform: translateX($lang-w); }
+  &__btn {
+    position: relative; width: $lang-w; height: $lang-h; padding: 0;
+    border: 0; border-radius: 999px; background: none; cursor: pointer;
+    font-family: $font-en; font-size: 12px; font-weight: 700; letter-spacing: .1em; line-height: 1; color: $grey;
+    transition: color .3s;
+    &:lang(zh-Hant) { font-family: $font-zh; font-size: 14px; font-weight: 500; letter-spacing: 0; }
+    &[aria-pressed="true"] { color: $white; cursor: default; }
+    &:not([aria-pressed="true"]):not(:disabled):hover { color: $orange; }
+    &:focus-visible { outline: 2px solid $orange-bright; outline-offset: 2px; }
+    &:disabled { cursor: progress; }
+  }
+  // 載入中：滑塊變淺灰並輕輕呼吸，文字變淡
+  &.is-loading {
+    &::before { background: #C9C1B9; animation: langWait 1.4s ease-in-out infinite; }
+    .home-lang__btn { color: #B5ADA5; }
+    .home-lang__btn[aria-pressed="true"] { color: $white; }
+  }
+  @include mobile {
+    top: max(14px, env(safe-area-inset-top)); right: max(14px, env(safe-area-inset-right));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &::before { transition: none; }
+    &.is-loading::before { animation: none; }
+  }
+}
+@keyframes langWait { 50% { opacity: .5; } }
+
+// 首頁主選單：置中在 logo 正下方，兩顆霧面玻璃膠囊按鈕＋右側橘色小圓箭頭
+// 這段 HTML 只負責排版、鍵盤與螢幕報讀，文字是透明的、也不接收滑鼠；
+// 看得到的選單由 javascripts/home.js 依這裡的排版與顏色畫進 3D 場景，所以會和 logo 一樣被前方照片遮住。
+// 選單在 3D 場景裡，CSS 的 backdrop-filter 對它無效；霧面模糊改由 scene.js 處理，強度用 --nav-blur 調整。
+// 改字級、字距、按鈕大小 → 改這裡；改顏色、模糊、箭頭圓大小 → 改下面的 --nav-* 變數
+// 箭頭圓與按鈕右緣的距離 ＝（按鈕高 − 箭頭圓直徑）÷ 2；padding-right 要留：這段距離＋箭頭圓直徑＋與文字的間距
+.home-nav {
+  --nav-bg: rgba(255,255,255,.6);       // 按鈕底色（透明度 .6）
+  --nav-blur: 12px;                     // 按鈕背後照片的模糊程度（等同 backdrop-filter: blur）
+  --nav-color: #{$ink};                 // 文字
+  --nav-accent: #{$orange};             // 箭頭圓
+  --nav-arrow: 24px;                    // 箭頭圓直徑
+  --nav-hover-bg: #{$orange};           // 滑鼠移上去：按鈕底色
+  --nav-hover-color: #{$white};         // 滑鼠移上去：文字、箭頭圓
+  --nav-focus: #{$orange-bright};       // 鍵盤焦點框
+  --nav-gap: clamp(18px, 3.2vh, 40px);  // logo 與選單的距離
+  position: fixed; left: 50%; z-index: 1;
+  top: calc(50% + var(--logo-px, 200px) / 2 + var(--nav-gap));
+  transform: translateX(-50%);
+  pointer-events: none;
+  font-family: $font-zh; line-height: 1;
+  &__list { display: flex; align-items: center; gap: 16px; }
+  &__link {
+    display: flex; align-items: center; height: 56px; padding: 0 52px 0 28px; // 右：16＋24＋12
+    font-size: 18px; font-weight: 700; letter-spacing: .14em;
+    color: transparent; text-decoration: none; white-space: nowrap; outline: none;
+    html[lang="en"] & { font-family: $font-en; font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  }
+  // 手機：上下排列、等寬，點擊範圍更大
+  @include mobile {
+    --nav-arrow: 19px;
+    &__list { flex-direction: column; align-items: stretch; gap: 10px; }
+    &__link { height: 48px; padding: 0 44px 0 22px; font-size: 16px; letter-spacing: .1em; } // 右：14.5＋19＋10
+    html[lang="en"] & .home-nav__link { font-size: 13px; letter-spacing: .08em; }
+  }
+}

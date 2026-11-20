@@ -73,7 +73,7 @@
 }
 
 .page-content {
-	padding: calc(3.5rem + 3.5vw) 0;
+	padding: calc(1.5rem + 3.5vw) 0;
 	min-height: calc(100vh - 100px);
 	& > .container-lg {
 		height: 100%;
@@ -2179,5 +2179,1375 @@ $modal_radius: 2px;
 				left: .5rem;
 			}
 		}
+	}
+}
+/* `學生選課：我要選課 / 選課結果（115.11.02 會議紀錄 3.5、3.7 改版）
+-----------------------------------------------------------------------------*/
+
+$cs-ink:        #1f2a37;
+$cs-text:       #3b4552;
+$cs-muted:      #6b7684;
+$cs-line:       #e3e7ee;
+$cs-soft:       #f5f7fa;
+$cs-blue:       $primary-color;
+$cs-blue-soft:  #edf3fd;
+$cs-purple:     #8a3fc7;
+$cs-purple-soft:#f5edfc;
+$cs-green:      #2f9e44;
+$cs-green-soft: #ebf7ee;
+$cs-orange:     #e8820c;
+$cs-orange-soft:#fff4e5;
+$cs-red:        #d63939;
+$cs-red-soft:   #fdeeee;
+$cs-gray:       #6c757d;
+$cs-gray-soft:  #f1f3f5;
+$cs-radius:     12px;
+
+.legacy-view { display: none !important; }
+
+.cs-page {
+	color: $cs-text;
+
+	// ---------- 共用元件 ----------
+	.cs-head {
+		margin-bottom: 1.5rem;
+		&.cs-head-split {
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			gap: 1rem;
+		}
+	}
+	.cs-title {
+		margin-bottom: .25rem;
+		font-size: calc(1.5rem + .5vw);
+		font-weight: 700;
+		letter-spacing: .02em;
+		color: $darker_color;
+	}
+	.cs-subtitle {
+		margin-bottom: 0;
+		font-size: 1rem;
+		color: $cs-muted;
+	}
+	.cs-code {
+		display: inline-block;
+		padding: .125rem .4rem;
+		border-radius: 4px;
+		background: $cs-gray-soft;
+		font-size: .8125rem;
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		letter-spacing: .02em;
+		color: #4a5563;
+		white-space: nowrap;
+	}
+	.cs-type {
+		display: inline-block;
+		padding: .0625rem .4rem;
+		border: 1px solid rgba($cs-blue, .45);
+		border-radius: 4px;
+		font-size: .75rem;
+		font-weight: 600;
+		line-height: 1.5;
+		color: $cs-blue;
+		white-space: nowrap;
+	}
+	.cs-mode {
+		display: inline-block;
+		padding: .125rem .4rem;
+		border-radius: 4px;
+		font-size: .75rem;
+		line-height: 1.5;
+		white-space: nowrap;
+		&.is-onsite { background: $cs-green-soft; color: $cs-green; }
+		&.is-online { background: $cs-blue-soft; color: $cs-blue; }
+	}
+	.cs-name {
+		font-weight: 600;
+		color: $cs-ink;
+		&:hover, &:focus {
+			color: $cs-blue;
+			text-decoration: underline;
+			text-underline-offset: 3px;
+		}
+	}
+	.cs-rank {
+		display: inline-flex;
+		flex: none;
+		align-items: center;
+		justify-content: center;
+		width: 1.75rem;
+		height: 1.75rem;
+		border-radius: 50%;
+		background: $cs-blue-soft;
+		font-size: .875rem;
+		font-weight: 700;
+		color: $cs-blue;
+		&.cs-rank-lg {
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 10px;
+			font-size: 1.125rem;
+		}
+	}
+	.cs-icon-btn {
+		display: inline-flex;
+		flex: none;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		padding: 0;
+		border: 1px solid $cs-line;
+		border-radius: 8px;
+		background: #fff;
+		font-size: .8125rem;
+		color: $cs-muted;
+		transition: all .15s ease-in-out;
+		&:hover:not(:disabled) { border-color: $cs-blue; color: $cs-blue; }
+		&.is-danger:hover:not(:disabled) { border-color: $cs-red; color: $cs-red; }
+		&:disabled { opacity: .35; cursor: not-allowed; }
+		&:focus-visible { outline: 2px solid rgba($cs-blue, .5); outline-offset: 1px; }
+	}
+	.cs-caret { transition: transform .2s ease-in-out; }
+	.cs-cart-empty {
+		margin: 0;
+		padding: 1.5rem 1rem;
+		border: 1px dashed $cs-line;
+		border-radius: 10px;
+		text-align: center;
+		color: $cs-muted;
+	}
+
+	// ---------- 表格（桌機） ----------
+	.cs-table {
+		width: 100%;
+		border: 1px solid $cs-line;
+		border-collapse: separate;
+		border-spacing: 0;
+		border-radius: $cs-radius;
+		background: #fff;
+		overflow: hidden;
+		th {
+			padding: .75rem .625rem;
+			background: $cs-soft;
+			font-size: .875rem;
+			font-weight: 600;
+			color: $cs-muted;
+			white-space: nowrap;
+			vertical-align: middle;
+		}
+		td {
+			padding: .875rem .625rem;
+			border-top: 1px solid $cs-line;
+			font-size: .9375rem;
+			vertical-align: middle;
+		}
+		th:first-child, td:first-child { padding-left: 1rem; }
+		th:last-child, td:last-child { padding-right: 1rem; }
+		.c-no {
+			width: 2.5rem;
+			text-align: center;
+			color: $cs-muted;
+		}
+	}
+}
+
+/* `我要選課
+-----------------------------------------------------------------------------*/
+
+#csSelect {
+
+	// 原型預覽：階段切換（正式上線移除）
+	.cs-dev-switch {
+		display: inline-flex;
+		align-items: center;
+		gap: .25rem;
+		margin-top: 1rem;
+		padding: .25rem;
+		border: 1px dashed #c3cad4;
+		border-radius: 8px;
+		background: repeating-linear-gradient(-45deg, #fafbfc, #fafbfc 6px, #f3f5f8 6px, #f3f5f8 12px);
+	}
+	.cs-dev-label {
+		display: inline-flex;
+		align-items: center;
+		gap: .375rem;
+		padding: 0 .5rem 0 .375rem;
+		font-size: .75rem;
+		font-weight: 600;
+		letter-spacing: .04em;
+		color: #8a94a3;
+		white-space: nowrap;
+	}
+	.cs-dev-tab {
+		padding: .25rem .75rem;
+		border: 0;
+		border-radius: 6px;
+		background: transparent;
+		font-size: .875rem;
+		font-weight: 600;
+		color: $cs-muted;
+		white-space: nowrap;
+		&:hover { color: $cs-ink; }
+		&.is-active {
+			background: #fff;
+			color: $cs-ink;
+			box-shadow: 0 1px 3px rgba(#1f2a37, .12);
+		}
+	}
+
+	// 階段資訊（依時間僅顯示目前階段）
+	.cs-phase-info {
+		display: flex;
+		align-items: center;
+		gap: 1rem 2rem;
+		margin-bottom: 1.5rem;
+		padding: 1rem 1.5rem;
+		border: 1px solid rgba($cs-blue, .35);
+		border-left: 4px solid $cs-blue;
+		border-radius: $cs-radius;
+		background: $cs-blue-soft;
+		&.is-s2 {
+			border-color: rgba($cs-purple, .3);
+			border-left-color: $cs-purple;
+			background: $cs-purple-soft;
+			.cs-phase-name { color: $cs-purple; }
+			.cs-phase-main { border-right-color: rgba($cs-purple, .2); }
+		}
+	}
+	.cs-phase-main {
+		display: flex;
+		flex: none;
+		flex-direction: column;
+		gap: .25rem;
+		padding-right: 2rem;
+		border-right: 1px solid rgba($cs-blue, .2);
+	}
+	.cs-phase-name {
+		font-size: 1.125rem;
+		font-weight: 700;
+		color: $cs-blue;
+		.fa-info-circle { margin-left: .25rem; font-size: .875rem; opacity: .6; }
+	}
+	.cs-phase-date {
+		font-size: .9375rem;
+		font-variant-numeric: tabular-nums;
+		color: $cs-text;
+		.fa-clock { margin-right: .375rem; color: $cs-muted; }
+	}
+	.cs-phase-notes {
+		margin: 0;
+		padding-left: 1.125rem;
+		font-size: .9375rem;
+		line-height: 1.75;
+	}
+
+	// 步驟
+	.cs-steps {
+		display: flex;
+		align-items: center;
+		gap: .75rem;
+		margin: 0 0 1.25rem;
+		padding: 0;
+		list-style: none;
+	}
+	.cs-step {
+		display: flex;
+		align-items: center;
+		gap: .5rem;
+		font-weight: 600;
+		color: $cs-muted;
+		& + .cs-step::before {
+			content: "";
+			display: block;
+			width: calc(1.5rem + 3vw);
+			height: 2px;
+			margin-right: .25rem;
+			border-radius: 2px;
+			background: $cs-line;
+		}
+		.cs-step-num {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 1.75rem;
+			height: 1.75rem;
+			border: 2px solid $cs-line;
+			border-radius: 50%;
+			background: #fff;
+			font-size: .875rem;
+		}
+		&.is-current {
+			color: $cs-ink;
+			.cs-step-num { border-color: $cs-blue; background: $cs-blue; color: #fff; }
+		}
+		&.is-done {
+			color: $cs-blue;
+			.cs-step-num { border-color: $cs-blue; color: $cs-blue; }
+		}
+		&.is-current::before, &.is-done + .cs-step::before { background: $cs-blue; }
+	}
+
+	// 版面
+	.cs-layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 300px;
+		align-items: start;
+		gap: 1.5rem;
+	}
+	.cs-main { min-width: 0; }
+
+	// 篩選
+	.cs-filter {
+		margin-bottom: 1.25rem;
+		border: 1px solid $cs-line;
+		border-radius: $cs-radius;
+		background: #fff;
+	}
+	.cs-filter-toggle { display: none; }
+	.cs-filter-body.collapse { display: block; }
+	.cs-filter-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-auto-flow: dense;
+		gap: 1rem 1.25rem;
+		padding: 1.25rem;
+	}
+	.cs-field {
+		min-width: 0;
+		.form-label {
+			margin-bottom: .375rem;
+			font-size: .875rem;
+			font-weight: 600;
+			color: $cs-ink;
+		}
+		.form-select, .form-control { font-size: .9375rem; }
+	}
+	.cs-field-wide { grid-column: span 2; }
+	.cs-field-keyword { grid-column: span 2; }
+	.cs-date-range {
+		display: flex;
+		align-items: center;
+		gap: .375rem;
+		.form-control { min-width: 0; padding-left: .5rem; padding-right: .5rem; }
+	}
+	.cs-tilde { color: $cs-muted; }
+	.cs-weekdays {
+		display: flex;
+		flex-wrap: wrap;
+		gap: .375rem;
+	}
+	.cs-chip {
+		display: inline-flex;
+		align-items: center;
+		height: calc(1.5em + .75rem + 2px);
+		padding: 0 .625rem;
+		border: 1px solid $cs-line;
+		border-radius: 999px;
+		background: #fff;
+		font-size: .875rem;
+		color: $cs-text;
+		cursor: pointer;
+		user-select: none;
+		transition: all .15s ease-in-out;
+		&:hover { border-color: $cs-blue; }
+	}
+	.btn-check:checked + .cs-chip {
+		border-color: $cs-blue;
+		background: $cs-blue;
+		color: #fff;
+	}
+	.btn-check:focus-visible + .cs-chip { box-shadow: 0 0 0 .2rem rgba($cs-blue, .25); }
+	.cs-filter-foot {
+		grid-column: span 2;
+		display: flex;
+		align-items: flex-end;
+		justify-content: flex-end;
+		.cs-clear {
+			padding: .375rem 0;
+			font-weight: 600;
+			color: $cs-blue;
+			text-decoration: none;
+			box-shadow: none;
+		}
+	}
+
+	// 結果列
+	.cs-resultbar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: .5rem 1rem;
+		margin-bottom: .75rem;
+		strong { color: $cs-blue; }
+	}
+	.cs-resultbar-tools {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: .5rem 1rem;
+	}
+	.cs-expand-all {
+		display: inline-flex;
+		align-items: center;
+		gap: .375rem;
+		height: calc(1.5em + .5rem + 2px);
+		padding: 0 .75rem;
+		border: 1px solid $cs-line;
+		border-radius: 999px;
+		background: #fff;
+		font-size: .875rem;
+		font-weight: 600;
+		color: $cs-text;
+		white-space: nowrap;
+		transition: all .15s ease-in-out;
+		i { transition: transform .2s ease-in-out; }
+		&:hover { border-color: $cs-blue; color: $cs-blue; }
+		&[aria-pressed="true"] {
+			border-color: $cs-blue;
+			background: $cs-blue-soft;
+			color: $cs-blue;
+			i { transform: rotate(180deg); }
+		}
+		&:focus-visible { outline: 2px solid rgba($cs-blue, .5); outline-offset: 1px; }
+	}
+	.cs-sortby {
+		display: flex;
+		align-items: center;
+		gap: .375rem;
+		label { font-size: .875rem; color: $cs-muted; white-space: nowrap; }
+		.form-select { width: auto; font-size: .875rem; }
+	}
+
+	// 課程表格
+	.cs-course-table {
+		.c-name {
+			min-width: 7.5rem;
+			.cs-code { display: table; margin-bottom: .25rem; }
+		}
+		.c-teacher { white-space: nowrap; }
+		.c-place { min-width: 8.5rem; font-size: .875rem; }
+		.c-range {
+			min-width: 6.5rem;
+			font-size: .875rem;
+			font-variant-numeric: tabular-nums;
+			.cs-sep { margin: 0 .25rem; color: $cs-muted; }
+			.text-nowrap:last-child { display: block; }
+		}
+		.c-field { min-width: 6.5rem; }
+		.c-credit, .c-quota { text-align: center; white-space: nowrap; }
+		th.c-credit, th.c-quota { text-align: center; }
+		.c-more, .c-action { width: 1%; white-space: nowrap; text-align: center; }
+		.c-action .btn { min-width: 4.25rem; }
+		tbody.cs-course {
+			transition: background-color .2s ease-in-out;
+			&:hover { background: #fafbfd; }
+			&.is-added {
+				background: #f4f8ff;
+				.c-no { box-shadow: inset 3px 0 0 $cs-blue; color: $cs-blue; font-weight: 700; }
+			}
+			&.is-full .cs-name { color: $cs-muted; }
+		}
+	}
+	.cs-field-tag {
+		display: inline-block;
+		padding: .125rem .5rem;
+		border-radius: 6px;
+		background: $cs-purple-soft;
+		font-size: .8125rem;
+		line-height: 1.5;
+		color: $cs-purple;
+	}
+	.cs-quota {
+		font-variant-numeric: tabular-nums;
+		color: $cs-muted;
+		b { font-size: 1rem; color: $cs-ink; }
+		&.is-low b { color: $cs-orange; }
+		&.is-empty b { color: $cs-red; }
+	}
+	.cs-more-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: .25rem;
+		padding: .25rem .5rem;
+		border: 0;
+		border-radius: 6px;
+		background: transparent;
+		font-size: .8125rem;
+		font-weight: 600;
+		color: $cs-muted;
+		i { font-size: .6875rem; transition: transform .2s ease-in-out; }
+		&:hover { background: $cs-gray-soft; color: $cs-ink; }
+		&[aria-expanded="true"] {
+			color: $cs-blue;
+			i { transform: rotate(180deg); }
+		}
+	}
+	.cs-more-row {
+		&[hidden] { display: none !important; }
+		td {
+			padding-top: .625rem;
+			padding-bottom: .625rem;
+			border-top: 1px dashed $cs-line;
+			background: $cs-soft;
+		}
+	}
+	.cs-more-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: .375rem 2rem;
+		margin: 0;
+		padding-left: 2.5rem;
+		font-size: .875rem;
+		& > div { display: flex; gap: .5rem; }
+		dt { font-weight: 400; color: $cs-muted; white-space: nowrap; }
+		dd { margin: 0; color: $cs-ink; }
+	}
+
+	// 分頁
+	.cs-listfoot {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: .75rem 1rem;
+		margin-top: 1rem;
+		.pagination { margin: 0 auto; }
+	}
+	.cs-footnote {
+		margin: 0;
+		font-size: .875rem;
+		color: $cs-muted;
+	}
+	.cs-perpage { width: auto; font-size: .875rem; }
+
+	// 側欄：已加入的課程
+	.cs-aside {
+		position: sticky;
+		top: 1.5rem;
+	}
+	.cs-cart {
+		padding: 1.25rem;
+		border: 1px solid $cs-line;
+		border-radius: $cs-radius;
+		background: #fff;
+		box-shadow: 0 6px 20px rgba(#1f2a37, .06);
+	}
+	.cs-cart-title {
+		margin-bottom: 1rem;
+		font-size: 1.0625rem;
+		font-weight: 700;
+		color: $cs-ink;
+	}
+	.cs-cart-count {
+		font-size: .9375rem;
+		font-weight: 400;
+		color: $cs-muted;
+		b { color: $cs-blue; }
+	}
+	.cs-cart-list {
+		display: flex;
+		flex-direction: column;
+		gap: .5rem;
+		max-height: 50vh;
+		margin: 0 0 1rem;
+		padding: 0;
+		list-style: none;
+		overflow-y: auto;
+		&:empty { display: none; }
+	}
+	.cs-cart-empty[data-cart-empty] { margin-bottom: 1rem; }
+	.cs-cart-item {
+		display: flex;
+		align-items: center;
+		gap: .625rem;
+		padding: .625rem .625rem .625rem .75rem;
+		border: 1px solid $cs-line;
+		border-radius: 10px;
+		background: #fff;
+	}
+	.cs-cart-body {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-width: 0;
+	}
+	.cs-cart-name {
+		overflow: hidden;
+		font-size: .9375rem;
+		font-weight: 600;
+		color: $cs-ink;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.cs-cart-meta {
+		font-size: .8125rem;
+		color: $cs-muted;
+		i {
+			display: inline-block;
+			width: 1px;
+			height: .75em;
+			margin: 0 .5rem;
+			background: $cs-line;
+			vertical-align: -1px;
+		}
+	}
+
+	// 手機 / 平板固定入口
+	.cs-dock { display: none; }
+
+	// 第一階段：排列志願序
+	.cs-sort {
+		max-width: 880px;
+	}
+	.cs-sort-head {
+		margin-bottom: 1rem;
+		.cs-back {
+			margin: 0 0 .5rem;
+			padding: 0;
+			font-weight: 600;
+			text-decoration: none;
+			box-shadow: none;
+		}
+	}
+	.cs-sort-title {
+		margin-bottom: .25rem;
+		font-size: 1.375rem;
+		font-weight: 700;
+		color: $cs-ink;
+	}
+	.cs-sort-desc { margin: 0; color: $cs-muted; }
+	.cs-sort-tip {
+		display: flex;
+		gap: .625rem;
+		margin-bottom: 1rem;
+		padding: .75rem 1rem;
+		border: 1px solid #f3d9a6;
+		border-radius: 10px;
+		background: $cs-orange-soft;
+		font-size: .9375rem;
+		.fa-info-circle { margin-top: .25rem; color: $cs-orange; }
+		.cs-tip-mobile { display: none; }
+	}
+	.cs-sort-list {
+		display: flex;
+		flex-direction: column;
+		gap: .625rem;
+		margin: 0 0 1.5rem;
+		padding: 0;
+		list-style: none;
+	}
+	.cs-sort-item {
+		display: grid;
+		grid-template-columns: auto auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: .875rem;
+		padding: .875rem 1rem;
+		border: 1px solid $cs-line;
+		border-radius: $cs-radius;
+		background: #fff;
+		transition: box-shadow .2s ease-in-out, border-color .2s ease-in-out;
+		&:hover { border-color: rgba($cs-blue, .45); box-shadow: 0 4px 14px rgba(#1f2a37, .06); }
+		&.is-dragging {
+			border-style: dashed;
+			border-color: $cs-blue;
+			background: $cs-blue-soft;
+			opacity: .6;
+		}
+		&.is-moved { animation: cs-flash .8s ease-out; }
+	}
+	.cs-handle {
+		padding: .25rem;
+		color: #b2bac4;
+		cursor: grab;
+		&:active { cursor: grabbing; }
+	}
+	.cs-sort-name {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: .25rem .5rem;
+		margin-bottom: .375rem;
+		.cs-name { font-size: 1.0625rem; }
+	}
+	.cs-sort-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: .25rem 1.5rem;
+		margin: 0;
+		font-size: .875rem;
+		& > div { display: flex; gap: .5rem; }
+		dt { font-weight: 400; color: $cs-muted; white-space: nowrap; }
+		dd { margin: 0; color: $cs-text; }
+	}
+	.cs-sort-ctrl {
+		display: flex;
+		gap: .375rem;
+	}
+	.cs-sort-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: .75rem;
+	}
+
+	// 第二階段：隱藏第一階段專用區塊
+	&[data-phase="1"] [data-phase-only="2"] { display: none !important; }
+	&[data-phase="2"] {
+		[data-phase-only="1"] { display: none !important; }
+		.cs-layout { grid-template-columns: minmax(0, 1fr); }
+	}
+	&[data-step="2"] .cs-dock { display: none !important; }
+}
+
+@keyframes cs-flash {
+	0%   { background: #dfeafc; }
+	100% { background: #fff; }
+}
+
+/* `選課結果
+-----------------------------------------------------------------------------*/
+
+.cs-result {
+	.csr-layout {
+		display: grid;
+		grid-template-columns: 250px minmax(0, 1fr);
+		align-items: start;
+		gap: 1.5rem;
+	}
+	.csr-main { min-width: 0; }
+
+	// 總覽
+	.csr-summary {
+		padding: 1.25rem;
+		border: 1px solid $cs-line;
+		border-radius: $cs-radius;
+		background: #fff;
+	}
+	.csr-total {
+		display: flex;
+		align-items: flex-start;
+		gap: .875rem;
+		margin-bottom: 1rem;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid $cs-line;
+		& > div { display: flex; flex-direction: column; }
+	}
+	.csr-total-icon {
+		display: inline-flex;
+		flex: none;
+		align-items: center;
+		justify-content: center;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		background: $cs-orange-soft;
+		font-size: 1.375rem;
+		color: $cs-orange;
+	}
+	.csr-total-label { font-weight: 700; color: $cs-blue; }
+	.csr-total-num {
+		font-size: 2rem;
+		font-weight: 700;
+		line-height: 1.2;
+		color: $cs-ink;
+		small { font-size: 1.125rem; }
+	}
+	.csr-total-cap { font-size: .875rem; color: $cs-muted; }
+	.csr-stats {
+		display: flex;
+		flex-direction: column;
+		gap: .625rem;
+		margin: 0 0 1.25rem;
+		padding: 0;
+		list-style: none;
+		li {
+			display: flex;
+			align-items: center;
+			gap: .5rem;
+			font-size: .9375rem;
+			&::before {
+				content: "";
+				flex: none;
+				width: .625rem;
+				height: .625rem;
+				border-radius: 50%;
+			}
+			span { flex: 1; }
+			b { font-weight: 600; color: $cs-ink; white-space: nowrap; }
+		}
+		.is-paid::before    { background: $cs-green; }
+		.is-pending::before { background: $cs-orange; }
+		.is-gaveup::before  { background: $cs-gray; }
+		.is-overdue::before { background: $cs-red; }
+	}
+	.csr-rule-btn {
+		display: block;
+		width: 100%;
+		border: 0;
+		background: $cs-blue-soft;
+		font-weight: 600;
+		color: $cs-blue;
+		box-shadow: none;
+		&:hover, &:focus { background: darken($cs-blue-soft, 4); color: darken($cs-blue, 8); }
+	}
+
+	// 選課紀錄表格
+	.csr-table {
+		td { vertical-align: middle; }
+		.c-stage { width: 1%; white-space: nowrap; }
+		.c-info { min-width: 10rem; }
+		.c-time {
+			min-width: 9.5rem;
+			font-size: .875rem;
+			line-height: 1.65;
+			color: $cs-text;
+		}
+		.c-fee { white-space: nowrap; font-size: .9375rem; b { color: $cs-ink; } }
+		.c-status { min-width: 9.5rem; }
+		.c-ops { width: 1%; text-align: center; }
+		tr.is-gaveup, tr.is-overdue {
+			.c-info, .c-time, .c-fee { opacity: .72; }
+		}
+	}
+	.csr-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: .25rem .375rem;
+		margin-bottom: .375rem;
+	}
+	.csr-sub {
+		display: block;
+		margin-top: .125rem;
+		font-size: .8125rem;
+		color: $cs-muted;
+		i {
+			display: inline-block;
+			width: 1px;
+			height: .75em;
+			margin: 0 .5rem;
+			background: $cs-line;
+			vertical-align: -1px;
+		}
+	}
+	.csr-place {
+		color: $cs-muted;
+		i { margin-right: .375rem; font-size: .75rem; }
+	}
+	.csr-stage {
+		display: inline-block;
+		padding: .25rem .625rem;
+		border-radius: 6px;
+		font-size: .8125rem;
+		font-weight: 600;
+		&.is-s1 { background: $cs-blue-soft; color: $cs-blue; }
+		&.is-s2 { background: $cs-purple-soft; color: $cs-purple; }
+	}
+	.csr-status {
+		display: flex;
+		align-items: center;
+		gap: .375rem;
+		margin-bottom: .125rem;
+		font-weight: 700;
+		&.is-paid    { color: $cs-green; }
+		&.is-pending { color: $cs-orange; }
+		&.is-gaveup  { color: $cs-gray; }
+		&.is-overdue { color: $cs-red; }
+	}
+	.csr-note {
+		display: block;
+		font-size: .875rem;
+		color: $cs-muted;
+	}
+	tr.is-pending .csr-note { color: $cs-red; }
+	.csr-ops {
+		display: flex;
+		flex-direction: column;
+		gap: .375rem;
+		.btn { min-width: 6rem; }
+	}
+	.csr-none { color: $cs-muted; }
+
+	// 第一階段登記紀錄
+	.csr-record {
+		margin-top: 1.25rem;
+		border: 1px solid $cs-line;
+		border-radius: $cs-radius;
+		background: #fff;
+		overflow: hidden;
+		.cs-table { border: 0; border-top: 1px solid $cs-line; border-radius: 0; }
+	}
+	.csr-record-toggle {
+		display: flex;
+		align-items: center;
+		gap: .75rem;
+		width: 100%;
+		padding: 1rem 1.25rem;
+		border: 0;
+		background: #fff;
+		text-align: left;
+		&:hover { background: $cs-soft; }
+		.cs-caret { color: $cs-muted; transform: rotate(180deg); }
+		&.collapsed .cs-caret { transform: none; }
+	}
+	.csr-record-title {
+		flex: 1;
+		font-weight: 700;
+		color: $cs-ink;
+		i { margin-right: .5rem; color: $cs-blue; }
+	}
+	.csr-record-meta {
+		font-size: .875rem;
+		color: $cs-muted;
+		b { color: $cs-ink; }
+		i {
+			display: inline-block;
+			width: 1px;
+			height: .75em;
+			margin: 0 .5rem;
+			background: $cs-line;
+		}
+	}
+	.csr-record-table {
+		.c-rank { width: 4.5rem; text-align: center; }
+		.c-code { width: 6rem; }
+		.c-result { width: 1%; white-space: nowrap; text-align: center; }
+	}
+	.csr-result {
+		display: inline-block;
+		padding: .1875rem .75rem;
+		border-radius: 999px;
+		font-size: .8125rem;
+		font-weight: 700;
+		&.is-ok { background: $cs-green-soft; color: $cs-green; }
+		&.is-no { background: $cs-gray-soft; color: $cs-gray; }
+	}
+
+	// 提醒事項
+	.csr-reminder {
+		margin-top: 2rem;
+		padding: 1.25rem 1.5rem;
+		border: 1px solid #f3d9a6;
+		border-radius: $cs-radius;
+		background: #fffaf1;
+		ol {
+			margin: 0;
+			padding-left: 1.25rem;
+			font-size: .9375rem;
+			line-height: 1.85;
+		}
+	}
+	.csr-reminder-title {
+		display: flex;
+		align-items: center;
+		gap: .5rem;
+		margin-bottom: .5rem;
+		font-size: 1.0625rem;
+		font-weight: 700;
+		color: $cs-ink;
+		i { font-size: 1.25rem; color: $cs-orange; }
+	}
+}
+
+/* `選課 RWD
+-----------------------------------------------------------------------------*/
+
+// 側欄改為底部固定入口
+@media (max-width: 1399px) {
+	#csSelect {
+		.cs-layout { grid-template-columns: minmax(0, 1fr); }
+		.cs-aside { display: none !important; }
+		.cs-dock {
+			display: block;
+			position: fixed;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1010;
+			padding: .75rem 0;
+			padding-bottom: calc(.75rem + env(safe-area-inset-bottom));
+			border-top: 1px solid $cs-line;
+			background: rgba(#fff, .96);
+			box-shadow: 0 -6px 20px rgba(#1f2a37, .08);
+			backdrop-filter: blur(6px);
+		}
+		.cs-dock-inner {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+			max-width: 1140px;
+			margin: 0 auto;
+			padding: 0 12px;
+		}
+		.cs-dock-info {
+			font-weight: 600;
+			color: $cs-ink;
+			b {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-width: 1.75rem;
+				height: 1.75rem;
+				margin: 0 .25rem 0 .5rem;
+				padding: 0 .375rem;
+				border-radius: 999px;
+				background: $cs-blue;
+				font-size: .9375rem;
+				color: #fff;
+			}
+			span { font-weight: 400; color: $cs-muted; }
+		}
+		&[data-phase="1"][data-step="1"] { padding-bottom: 4rem; }
+	}
+	.portal-layout:has(#csSelect[data-phase="1"][data-step="1"]) #backtop { bottom: 4.75rem; }
+}
+
+@media (max-width: 1199px) {
+	#csSelect .cs-dock-inner { max-width: 960px; }
+}
+
+// 表格轉卡片
+@media (max-width: 991px) {
+	#csSelect {
+		.cs-filter-toggle {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			padding: .875rem 1.25rem;
+			border: 0;
+			border-radius: $cs-radius;
+			background: #fff;
+			font-weight: 600;
+			color: $cs-ink;
+			&[aria-expanded="true"] {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+				.cs-caret { transform: rotate(180deg); }
+			}
+		}
+		.cs-filter-body.collapse:not(.show) { display: none; }
+		.cs-filter-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			padding-top: 1rem;
+			border-top: 1px solid $cs-line;
+		}
+		.cs-field-wide, .cs-field-keyword, .cs-field-range, .cs-filter-foot { grid-column: span 2; }
+
+		.cs-course-table {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			align-items: start;
+			gap: .875rem;
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+			overflow: visible;
+			thead { display: none; }
+			tbody.cs-course {
+				display: block;
+				border: 1px solid $cs-line;
+				border-radius: $cs-radius;
+				background: #fff;
+				overflow: hidden;
+				&:hover { background: #fff; }
+				&.is-added {
+					border-color: rgba($cs-blue, .55);
+					background: #f7faff;
+					box-shadow: inset 4px 0 0 $cs-blue;
+				}
+			}
+			tr.cs-row {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) auto;
+				grid-template-areas:
+					"name    quota"
+					"teacher credit"
+					"place   place"
+					"range   range"
+					"field   field"
+					"more    action";
+				gap: .375rem .75rem;
+				padding: .875rem 1rem;
+			}
+			td {
+				display: block;
+				padding: 0 !important;
+				border: 0;
+				font-size: .9375rem;
+				text-align: left;
+				width: auto;
+				min-width: 0;
+			}
+			td[data-label] {
+				display: flex;
+				gap: .625rem;
+				&::before {
+					content: attr(data-label);
+					flex: none;
+					min-width: 4.5em;
+					font-size: .8125rem;
+					line-height: 1.75;
+					color: $cs-muted;
+				}
+			}
+			.c-no { display: none; }
+			.c-quota {
+				grid-area: quota;
+				align-self: start;
+				&::before { min-width: 0 !important; }
+			}
+			.c-name {
+				grid-area: name;
+				margin-bottom: .25rem;
+				.cs-name { font-size: 1.125rem; }
+			}
+			.c-teacher { grid-area: teacher; }
+			.c-credit {
+				grid-area: credit;
+				justify-content: flex-end;
+				&::before { min-width: 0 !important; }
+			}
+			.c-place { grid-area: place; font-size: .9375rem; }
+			.c-range {
+				grid-area: range;
+				font-size: .9375rem;
+				.text-nowrap:last-child { display: inline; }
+			}
+			.c-field { grid-area: field; }
+			.c-more {
+				grid-area: more;
+				align-self: center;
+				.cs-more-btn { margin-left: -.5rem; }
+			}
+			.c-action {
+				grid-area: action;
+				.btn { min-width: 5.5rem; padding: .375rem 1rem; font-size: .9375rem; }
+			}
+			.c-more, .c-action {
+				margin-top: .5rem;
+				padding-top: .75rem !important;
+				border-top: 1px dashed $cs-line;
+			}
+			.cs-more-row {
+				display: block;
+				td {
+					display: block;
+					padding: .75rem 1rem !important;
+					border-top: 1px solid $cs-line;
+				}
+			}
+			.cs-more-list {
+				flex-direction: column;
+				padding-left: 0;
+				& > div { gap: .625rem; }
+				dt { min-width: 6.5em; }
+			}
+		}
+	}
+
+	.cs-result {
+		.csr-layout { grid-template-columns: minmax(0, 1fr); }
+		.csr-summary {
+			display: grid;
+			grid-template-columns: auto minmax(0, 1fr);
+			align-items: center;
+			gap: 1rem 2rem;
+		}
+		.csr-total {
+			margin: 0;
+			padding: 0 2rem 0 0;
+			border-bottom: 0;
+			border-right: 1px solid $cs-line;
+		}
+		.csr-stats {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: .5rem 1.5rem;
+			margin: 0;
+		}
+		.csr-rule-btn { grid-column: 1 / -1; }
+
+		.csr-table {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			align-items: start;
+			gap: .875rem;
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+			overflow: visible;
+			thead { display: none; }
+			tbody { display: contents; }
+			tr.csr-row {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) auto;
+				grid-template-areas:
+					"stage  fee"
+					"info   info"
+					"time   time"
+					"status status"
+					"ops    ops";
+				gap: .625rem .75rem;
+				padding: 1rem;
+				border: 1px solid $cs-line;
+				border-radius: $cs-radius;
+				background: #fff;
+			}
+			td {
+				display: block;
+				padding: 0 !important;
+				border: 0;
+				width: auto;
+				min-width: 0;
+				text-align: left;
+			}
+			.c-no { display: none; }
+			.c-stage { grid-area: stage; align-self: center; }
+			.c-fee {
+				grid-area: fee;
+				align-self: center;
+				text-align: right;
+				span, b { display: inline !important; }
+				b { margin-left: .5rem; }
+			}
+			.c-info {
+				grid-area: info;
+				.cs-name { font-size: 1.125rem; }
+			}
+			.c-time { grid-area: time; }
+			.c-status {
+				grid-area: status;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: .125rem .75rem;
+				padding: .625rem .875rem !important;
+				border-radius: 8px;
+				background: $cs-soft;
+				.csr-status { margin: 0; }
+			}
+			tr.is-paid .c-status    { background: $cs-green-soft; }
+			tr.is-pending .c-status { background: $cs-orange-soft; }
+			tr.is-overdue .c-status { background: $cs-red-soft; }
+			.c-ops {
+				grid-area: ops;
+				width: auto;
+				&:has(.csr-none) { display: none; }
+			}
+			.csr-ops {
+				flex-direction: row;
+				flex-wrap: wrap;
+				.btn { flex: 1 1 auto; min-width: 0; padding-top: .5rem; padding-bottom: .5rem; }
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	#csSelect {
+		.cs-phase-info {
+			flex-direction: column;
+			align-items: stretch;
+			gap: .625rem;
+			padding: .875rem 1rem;
+		}
+		.cs-phase-main {
+			padding: 0 0 .625rem;
+			border-right: 0;
+			border-bottom: 1px solid rgba($cs-blue, .2);
+		}
+		.cs-phase-info.is-s2 .cs-phase-main { border-bottom-color: rgba($cs-purple, .2); }
+		.cs-phase-name { font-size: 1rem; }
+		.cs-phase-date, .cs-phase-notes { font-size: .875rem; }
+		.cs-course-table { grid-template-columns: minmax(0, 1fr); }
+
+		.cs-sort-tip {
+			.cs-tip-desktop { display: none; }
+			.cs-tip-mobile { display: inline; }
+		}
+		.cs-sort-item {
+			grid-template-columns: auto minmax(0, 1fr) auto;
+			align-items: start;
+			gap: .75rem;
+			padding: .875rem;
+		}
+		.cs-handle { display: none; }
+		.cs-sort-meta {
+			flex-direction: column;
+			gap: .125rem;
+			dt { min-width: 5.5em; }
+		}
+		.cs-sort-ctrl {
+			flex-direction: column;
+			.cs-icon-btn { width: 2.25rem; height: 2.25rem; }
+		}
+		.cs-sort-actions {
+			flex-direction: column-reverse;
+			.btn { width: 100%; }
+		}
+	}
+
+	.cs-result {
+		.csr-table { grid-template-columns: minmax(0, 1fr); }
+		.csr-record-meta { display: none; }
+		.csr-record-table {
+			display: block;
+			thead { display: none; }
+			tbody { display: block; }
+			tr {
+				display: grid;
+				grid-template-columns: auto auto minmax(0, 1fr) auto;
+				grid-template-areas:
+					"rank name name    result"
+					"rank code teacher result";
+				align-items: center;
+				gap: .125rem .5rem;
+				padding: .75rem 1rem;
+				border-top: 1px solid $cs-line;
+				&:first-child { border-top: 0; }
+			}
+			td {
+				display: block;
+				padding: 0 !important;
+				border: 0;
+				width: auto !important;
+			}
+			.c-rank { grid-area: rank; padding-right: .25rem !important; }
+			.c-name { grid-area: name; }
+			.c-code { grid-area: code; }
+			.c-teacher { grid-area: teacher; font-size: .8125rem; color: $cs-muted; }
+			.c-result { grid-area: result; }
+		}
+	}
+}
+
+@media (max-width: 575px) {
+	#csSelect {
+		.cs-filter-grid { gap: .875rem 1rem; padding: 1rem; }
+		.cs-listfoot {
+			justify-content: center;
+			.cs-footnote { width: 100%; text-align: center; }
+			.pagination { margin: 0; }
+		}
+		.cs-dock-info { font-size: .9375rem; span { display: none; } }
+		.cs-dock .btn { padding-left: .875rem; padding-right: .875rem; font-size: .9375rem; }
+	}
+
+	.cs-result {
+		.cs-head-split { align-items: flex-start; }
+		.csr-summary {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 1rem;
+		}
+		.csr-total {
+			padding: 0 0 1rem;
+			border-right: 0;
+			border-bottom: 1px solid $cs-line;
+		}
+		.csr-reminder { padding: 1rem 1.125rem; }
 	}
 }

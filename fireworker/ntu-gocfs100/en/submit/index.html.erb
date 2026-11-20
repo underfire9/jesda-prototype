@@ -1,0 +1,106 @@
+<% content_for :title do %>Submit a Blessing<% end %>
+<% content_for :alt_url do %>/submit/index.html<% end %>
+<% content_for :section do %>submit<% end %>
+
+<header class="page-head">
+  <div class="container page-head__inner">
+    <div class="page-head__text">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/en/index.html">Home</a></li><li aria-current="page">Submit a Blessing</li></ol></nav>
+      <h1 class="page-title">Submit a Blessing</h1>
+      <p class="page-subtitle">Share Your NTU Memory</p>
+      <p class="lead">Upload your NTU photos and your blessing. After review by the organizing office, submissions will be showcased together in Online Blessings, and may also appear in Club History.</p>
+    </div>
+    <p class="page-head__deco" aria-hidden="true">100</p>
+  </div>
+</header>
+
+<div class="container form-layout">
+  <form class="submit-form" id="submit-form" action="/en/submit/success.html" novalidate>
+    <ol class="stepper" aria-label="Steps">
+      <li class="is-current" data-step="1"><span class="stepper__num">1</span>Your details</li>
+      <li data-step="2"><span class="stepper__num">2</span>Photos &amp; captions</li>
+      <li data-step="3"><span class="stepper__num">3</span>Blessing &amp; submit</li>
+    </ol>
+    <p class="form-alert" id="form-alert" role="alert" hidden>Some fields still need your attention. Please check the messages in red.</p>
+
+    <fieldset class="panel" data-step="1">
+      <legend class="panel__title">About You</legend>
+      <div class="field-grid">
+        <div class="field"><label for="f-name">Your name <span class="req">*</span></label><input id="f-name" name="name" type="text" placeholder="Full name" required><p class="field-error"></p></div>
+        <div class="field"><label for="f-email">Email <span class="req">*</span></label><input id="f-email" name="email" type="email" placeholder="Only used by the organizing office if needed" required><p class="field-error"></p></div>
+        <fieldset class="field field--full radio-group" data-required>
+          <legend>Identity <span class="req">*</span></legend>
+          <label class="radio"><input type="radio" name="identity" value="oc"><span>Overseas Chinese</span></label>
+          <label class="radio"><input type="radio" name="identity" value="mc"><span>Mainland Chinese</span></label>
+          <label class="radio"><input type="radio" name="identity" value="intl"><span>International</span></label>
+          <p class="field-error"></p>
+        </fieldset>
+        <fieldset class="field field--full radio-group" data-required>
+          <legend>Region <span class="req">*</span></legend>
+          <label class="radio"><input type="radio" name="region" value="asia"><span>Asia</span></label>
+          <label class="radio"><input type="radio" name="region" value="europe"><span>Europe</span></label>
+          <label class="radio"><input type="radio" name="region" value="namerica"><span>North America</span></label>
+          <label class="radio"><input type="radio" name="region" value="samerica"><span>South America</span></label>
+          <label class="radio"><input type="radio" name="region" value="oceania"><span>Oceania</span></label>
+          <label class="radio"><input type="radio" name="region" value="africa"><span>Africa</span></label>
+          <p class="field-error"></p>
+        </fieldset>
+        <div class="field"><label for="f-source">Source <span class="req">*</span></label>
+          <span class="select"><select id="f-source" name="source" required>
+            <option value="">Choose an association or "Personal"</option>
+            <option>Malaysian Students' Association</option><option>HK &amp; Macau Students' Association</option><option>Coconut Island Club</option><option>Myanmar Overseas Chinese Students' Association</option><option>Overseas Chinese Students' Association</option><option>Graduate Overseas Chinese Students Exchange</option><option>Mainland Chinese Students' Association</option><option>Personal submission</option>
+          </select></span><p class="field-error"></p></div>
+        <div class="field"><label for="f-category">Category <span class="req">*</span></label>
+          <span class="select"><select id="f-category" name="category" required>
+            <option value="">Choose a category</option>
+            <option>Graduation</option><option>Club activities</option><option>Campus life</option><option>Festivals</option><option>Teachers &amp; mentors</option><option>Other</option>
+          </select></span><p class="field-error"></p></div>
+        <div class="field"><label for="f-year">Year <span class="req">*</span></label>
+          <span class="select"><select id="f-year" name="year" required data-year-select><option value="">19XX</option></select></span><p class="field-error"></p></div>
+        <div class="field"><label for="f-date">Date taken</label><input id="f-date" name="date" type="text" placeholder="YYYY/MM/DD" inputmode="numeric"><p class="field-error"></p></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="panel" data-step="2">
+      <legend class="panel__title">Photos</legend>
+      <label class="dropzone" id="dropzone">
+        <input type="file" id="f-photos" accept="image/jpeg,image/png" multiple>
+        <span class="dropzone__icon" aria-hidden="true"></span>
+        <strong>Drag photos here, or <u>click to browse</u></strong>
+        <small>JPG / PNG, up to 10 MB each, max. 5 photos</small>
+      </label>
+      <p class="field-error" id="photo-error"></p>
+      <ul class="photo-list" id="photo-list"></ul>
+    </fieldset>
+
+    <fieldset class="panel" data-step="3">
+      <legend class="panel__title">Your Blessing</legend>
+      <div class="field-grid">
+        <div class="field"><label for="f-title-zh">Photo title (Chinese) <span class="req">*</span></label><input id="f-title-zh" name="title_zh" type="text" lang="zh-Hant" placeholder="例：王小明 與 陳志強 於椰林大道留念" required><p class="field-error"></p></div>
+        <div class="field"><label for="f-title-en">Photo title (English) <span class="req">*</span></label><input id="f-title-en" name="title_en" type="text" placeholder="e.g. Wang with Chen on the Palm Blvd." required><p class="field-error"></p></div>
+        <div class="field"><label for="f-msg-zh">Blessing (Chinese) <span class="req">*</span></label><textarea id="f-msg-zh" name="message_zh" rows="5" maxlength="200" lang="zh-Hant" placeholder="寫下你想對臺大說的話（200 字內）" required></textarea><p class="field-error"></p></div>
+        <div class="field"><label for="f-msg-en">Blessing (English) <span class="req">*</span></label><textarea id="f-msg-en" name="message_en" rows="5" placeholder="Your message to NTU (within 100 words)" required></textarea><p class="field-error"></p></div>
+      </div>
+    </fieldset>
+
+    <div class="field agree">
+      <label class="checkbox"><input type="checkbox" id="f-agree" name="agree" required><span>I agree to have my photos displayed on this site and have read the Submission Guidelines &amp; Privacy Notice.</span></label>
+      <p class="field-error"></p>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn--primary" type="submit">Submit</button>
+      <button class="btn btn--outline" type="reset">Clear form</button>
+    </div>
+  </form>
+
+  <aside class="guide" aria-labelledby="guide-title">
+    <h2 id="guide-title">Submission Guidelines</h2>
+    <ul>
+      <li>Both Chinese and English fields are required.</li>
+      <li>Photos must be JPG or PNG, up to 10 MB each.</li>
+      <li>New submissions are marked "Pending Review" and appear on the site once approved by the organizing office.</li>
+      <li>Submissions are reviewed during the collection period and showcased together. No individual email notifications will be sent.</li>
+      <li>Please make sure you took the photos yourself or have permission to share them.</li>
+    </ul>
+  </aside>
+</div>

@@ -1,0 +1,105 @@
+<% content_for :title do %>投稿專區<% end %>
+<% content_for :alt_url do %>/en/submit/index.html<% end %>
+<% content_for :section do %>submit<% end %>
+
+<header class="page-head">
+  <div class="container page-head__inner">
+    <div class="page-head__text">
+      <nav class="breadcrumb" aria-label="麵包屑"><ol><li><a href="/index.html">首頁</a></li><li aria-current="page">投稿專區</li></ol></nav>
+      <h1 class="page-title">投稿專區</h1>
+      <p class="lead">上傳你在臺大的照片與祝福。投稿經承辦單位審核後，將統一安排展示於「百歲傳情‧海外同慶」線上祝福，並可能收錄於社團發展歷程。</p>
+    </div>
+    <p class="page-head__deco" aria-hidden="true">100</p>
+  </div>
+</header>
+
+<div class="container form-layout">
+  <form class="submit-form" id="submit-form" action="/submit/success.html" novalidate>
+    <ol class="stepper" aria-label="投稿步驟">
+      <li class="is-current" data-step="1"><span class="stepper__num">1</span>填寫基本資料</li>
+      <li data-step="2"><span class="stepper__num">2</span>上傳照片與描述</li>
+      <li data-step="3"><span class="stepper__num">3</span>祝福內容與送出</li>
+    </ol>
+    <p class="form-alert" id="form-alert" role="alert" hidden>還有欄位需要填寫，請檢查標示紅字的地方。</p>
+
+    <fieldset class="panel" data-step="1">
+      <legend class="panel__title">基本資料</legend>
+      <div class="field-grid">
+        <div class="field"><label for="f-name">投稿者姓名 <span class="req">*</span></label><input id="f-name" name="name" type="text" placeholder="請輸入姓名" required><p class="field-error"></p></div>
+        <div class="field"><label for="f-email">Email <span class="req">*</span></label><input id="f-email" name="email" type="email" placeholder="必要時供承辦單位聯繫使用" required><p class="field-error"></p></div>
+        <fieldset class="field field--full radio-group" data-required>
+          <legend>身分 <span class="req">*</span></legend>
+          <label class="radio"><input type="radio" name="identity" value="oc"><span>僑生</span></label>
+          <label class="radio"><input type="radio" name="identity" value="mc"><span>陸生</span></label>
+          <label class="radio"><input type="radio" name="identity" value="intl"><span>國際生</span></label>
+          <p class="field-error"></p>
+        </fieldset>
+        <fieldset class="field field--full radio-group" data-required>
+          <legend>所屬洲別 <span class="req">*</span></legend>
+          <label class="radio"><input type="radio" name="region" value="asia"><span>亞洲</span></label>
+          <label class="radio"><input type="radio" name="region" value="europe"><span>歐洲</span></label>
+          <label class="radio"><input type="radio" name="region" value="namerica"><span>北美洲</span></label>
+          <label class="radio"><input type="radio" name="region" value="samerica"><span>南美洲</span></label>
+          <label class="radio"><input type="radio" name="region" value="oceania"><span>大洋洲</span></label>
+          <label class="radio"><input type="radio" name="region" value="africa"><span>非洲</span></label>
+          <p class="field-error"></p>
+        </fieldset>
+        <div class="field"><label for="f-source">來源 <span class="req">*</span></label>
+          <span class="select"><select id="f-source" name="source" required>
+            <option value="">選擇社團或「個人投稿」</option>
+            <option>馬來西亞同學會</option><option>港澳同學會</option><option>椰島社</option><option>緬甸僑生同學會</option><option>華僑同學會</option><option>研究生僑生交流會</option><option>大陸同學會</option><option>個人投稿</option>
+          </select></span><p class="field-error"></p></div>
+        <div class="field"><label for="f-category">分類 <span class="req">*</span></label>
+          <span class="select"><select id="f-category" name="category" required>
+            <option value="">請選擇分類</option>
+            <option>畢業留念</option><option>社團活動</option><option>校園生活</option><option>節慶活動</option><option>師生情誼</option><option>其他</option>
+          </select></span><p class="field-error"></p></div>
+        <div class="field"><label for="f-year">年份 <span class="req">*</span></label>
+          <span class="select"><select id="f-year" name="year" required data-year-select><option value="">19XX</option></select></span><p class="field-error"></p></div>
+        <div class="field"><label for="f-date">拍攝日期</label><input id="f-date" name="date" type="text" placeholder="YYYY/MM/DD" inputmode="numeric"><p class="field-error"></p></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="panel" data-step="2">
+      <legend class="panel__title">照片與描述</legend>
+      <label class="dropzone" id="dropzone">
+        <input type="file" id="f-photos" accept="image/jpeg,image/png" multiple>
+        <span class="dropzone__icon" aria-hidden="true"></span>
+        <strong>拖曳照片至此，或 <u>點擊選擇檔案</u></strong>
+        <small>JPG / PNG，單張 10MB 以內，最多 5 張</small>
+      </label>
+      <p class="field-error" id="photo-error"></p>
+      <ul class="photo-list" id="photo-list"></ul>
+    </fieldset>
+
+    <fieldset class="panel" data-step="3">
+      <legend class="panel__title">祝福內容</legend>
+      <div class="field-grid">
+        <div class="field"><label for="f-title-zh">照片名稱（中文） <span class="req">*</span></label><input id="f-title-zh" name="title_zh" type="text" placeholder="例：王小明 與 陳志強 於椰林大道留念" required><p class="field-error"></p></div>
+        <div class="field"><label for="f-title-en">照片名稱（英文） <span class="req">*</span></label><input id="f-title-en" name="title_en" type="text" lang="en" placeholder="e.g. Wang with Chen on the Palm Blvd." required><p class="field-error"></p></div>
+        <div class="field"><label for="f-msg-zh">祝福的話（中文） <span class="req">*</span></label><textarea id="f-msg-zh" name="message_zh" rows="5" maxlength="200" placeholder="寫下你想對臺大說的話（200 字內）" required></textarea><p class="field-error"></p></div>
+        <div class="field"><label for="f-msg-en">祝福的話（英文） <span class="req">*</span></label><textarea id="f-msg-en" name="message_en" rows="5" lang="en" placeholder="Your message to NTU (within 100 words)" required></textarea><p class="field-error"></p></div>
+      </div>
+    </fieldset>
+
+    <div class="field agree">
+      <label class="checkbox"><input type="checkbox" id="f-agree" name="agree" required><span>我同意照片授權於本專區展示，並已閱讀《投稿須知與隱私說明》</span></label>
+      <p class="field-error"></p>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn--primary" type="submit">送出投稿</button>
+      <button class="btn btn--outline" type="reset">清除重填</button>
+    </div>
+  </form>
+
+  <aside class="guide" aria-labelledby="guide-title">
+    <h2 id="guide-title">投稿須知</h2>
+    <ul>
+      <li>中文與英文欄位皆為必填。</li>
+      <li>照片格式 JPG / PNG，單張 10MB 以內。</li>
+      <li>投稿送出後狀態為「待審核」，經承辦單位審核通過後才會顯示於前台。</li>
+      <li>投稿內容將由承辦單位於徵集期間審核後統一安排展示，不另行以 Email 個別通知。</li>
+      <li>請確認照片為本人拍攝或已取得授權。</li>
+    </ul>
+  </aside>
+</div>

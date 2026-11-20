@@ -1,0 +1,94 @@
+<% content_for :title do %>線上祝福<% end %>
+<% content_for :alt_url do %>/en/blessings/index.html<% end %>
+<% content_for :section do %>blessings<% end %>
+<% content_for :data_js do %><script src="/javascripts/blessings-data.js"></script><% end %>
+
+<header class="page-head">
+  <div class="container page-head__inner">
+    <div class="page-head__text">
+      <nav class="breadcrumb" aria-label="麵包屑"><ol><li><a href="/index.html">首頁</a></li><li aria-current="page">百歲傳情‧海外同慶｜線上祝福</li></ol></nav>
+      <h1 class="page-title">百歲傳情‧海外同慶<span class="page-title__sep" aria-hidden="true"></span>線上祝福</h1>
+      <p class="lead">一張老照片，一句祝福。收錄歷屆僑生、陸生與國際生在臺大留下的身影，與散居世界各地的校友一同迎接臺大百年。</p>
+    </div>
+    <p class="page-head__deco" aria-hidden="true">100</p>
+  </div>
+</header>
+
+<section class="filter-bar" aria-label="篩選祝福">
+  <div class="container filter-bar__inner">
+    <div class="filters">
+      <div class="filter-row" role="group" aria-labelledby="f-identity">
+        <span class="filter-row__label" id="f-identity">身分</span>
+        <ul class="chips" data-filter="identity">
+          <li><button class="chip is-active" type="button" data-value="" aria-pressed="true">全部</button></li>
+          <li><button class="chip" type="button" data-value="oc" aria-pressed="false">僑生</button></li>
+          <li><button class="chip" type="button" data-value="mc" aria-pressed="false">陸生</button></li>
+          <li><button class="chip" type="button" data-value="intl" aria-pressed="false">國際生</button></li>
+        </ul>
+      </div>
+      <div class="filter-row" role="group" aria-labelledby="f-region">
+        <span class="filter-row__label" id="f-region">洲別</span>
+        <ul class="chips" data-filter="region">
+          <li><button class="chip is-active" type="button" data-value="" aria-pressed="true">全部</button></li>
+          <li><button class="chip" type="button" data-value="asia" aria-pressed="false">亞洲</button></li>
+          <li><button class="chip" type="button" data-value="europe" aria-pressed="false">歐洲</button></li>
+          <li><button class="chip" type="button" data-value="namerica" aria-pressed="false">北美洲</button></li>
+          <li><button class="chip" type="button" data-value="samerica" aria-pressed="false">南美洲</button></li>
+          <li><button class="chip" type="button" data-value="oceania" aria-pressed="false">大洋洲</button></li>
+          <li><button class="chip" type="button" data-value="africa" aria-pressed="false">非洲</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="filter-bar__side">
+      <p class="result-count" id="result-count" aria-live="polite">共 0 則祝福</p>
+      <label class="select select--sm"><span class="visually-hidden">年份</span>
+        <select id="year-filter">
+          <option value="">年份：全部</option>
+          <option value="1950">1950 年代</option><option value="1960">1960 年代</option><option value="1970">1970 年代</option><option value="1980">1980 年代</option><option value="1990">1990 年代</option><option value="2000">2000 年代</option><option value="2010">2010 年代</option><option value="2020">2020 年代</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</section>
+
+<section class="wall-section" aria-label="祝福照片">
+  <div class="container">
+    <ul class="wall" id="wall"></ul>
+    <p class="wall-empty" id="wall-empty" hidden>目前沒有符合條件的祝福，試試其他篩選條件。</p>
+    <div class="load-more">
+      <button class="btn btn--outline" type="button" id="load-more">載入更多祝福</button>
+      <p class="load-more__status" id="load-status"></p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <h2>你也有一張在臺大的老照片嗎？</h2>
+      <p>分享你在臺大的回憶，為百年校慶送上祝福。</p>
+    </div>
+    <a class="btn btn--light" href="/submit/index.html">我要投稿<span class="btn__arrow" aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lb-title" hidden>
+  <div class="lightbox__top">
+    <p class="lightbox__count" id="lb-count"></p>
+    <button class="lightbox__close" type="button" id="lb-close">關閉<span aria-hidden="true" class="x"></span></button>
+  </div>
+  <button class="lightbox__nav lightbox__nav--prev" type="button" id="lb-prev" aria-label="上一張"></button>
+  <div class="lightbox__card">
+    <div class="lightbox__photo ph" id="lb-photo" role="img" aria-label="示意照片"></div>
+    <div class="lightbox__info">
+      <p class="tags" id="lb-tags"></p>
+      <h2 class="lightbox__title" id="lb-title"></h2>
+      <dl class="meta-list" id="lb-meta"></dl>
+      <blockquote class="blessing">
+        <p id="lb-message"></p>
+        <footer id="lb-signer"></footer>
+      </blockquote>
+    </div>
+  </div>
+  <button class="lightbox__nav lightbox__nav--next" type="button" id="lb-next" aria-label="下一張"></button>
+</div>

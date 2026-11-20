@@ -1,0 +1,71 @@
+<!--
+  特效來源 / Credits
+  首頁的 3D 無限照片牆特效改作自「Infinite Canvas」
+  原作者：Edoardo Lunardi（https://github.com/edoardolunardi）
+  發表於 Codrops：https://tympanus.net/codrops/
+  原始碼：https://github.com/edoardolunardi/infinite-canvas
+  授權：MIT License，Copyright (c) 2009 - 2025 Codrops（https://codrops.com），授權全文見 /assets/canvas/LICENSE.txt
+  本版修改：置入臺大百年校慶 logo、進場動畫、自動前進、首頁選單（畫進 3D 場景）與中英切換
+-->
+<!-- 語言切換：右上角、在進場畫面之上；載入中先停用，開幕後才能切換（home.js） -->
+<div class="home-lang is-loading" id="home-lang" role="group" aria-label="語言 Language" data-lang="zh">
+  <button class="home-lang__btn" type="button" data-lang="zh" lang="zh-Hant" aria-pressed="true" disabled>中</button>
+  <button class="home-lang__btn" type="button" data-lang="en" lang="en" aria-pressed="false" disabled>EN</button>
+</div>
+<!-- 主選單：這段 HTML 負責排版、鍵盤操作與螢幕報讀，看得到的樣子由 home.js 畫進 3D 場景（和 logo 一樣會被照片遮住） -->
+<nav class="home-nav" id="home-nav" aria-label="主選單">
+  <ul class="home-nav__list">
+    <li><a class="home-nav__link" href="/history/index.html" data-href-zh="/history/index.html" data-href-en="/en/history/index.html" data-zh="社團發展歷程" data-en="Club History">社團發展歷程</a></li>
+    <li><a class="home-nav__link" href="/blessings/index.html" data-href-zh="/blessings/index.html" data-href-en="/en/blessings/index.html" data-zh="線上祝福" data-en="Online Blessings">線上祝福</a></li>
+  </ul>
+</nav>
+<div id="root"></div>
+<div id="intro" role="presentation">
+  <img class="logo" src="/assets/canvas/slogan-06.svg" alt="臺大百年校慶">
+  <div class="ring"></div>
+  <div class="bar"><i></i></div>
+</div>
+<script>
+(function(){
+  window.__logoSrc='/assets/canvas/slogan-06.svg';
+  window.__homeLangUrl=true;
+  // logo 高度：390px 手機 = 120px，2560px 以上 = 280px，中間線性縮放
+  function logoPx(){return Math.round(Math.min(280,Math.max(120,innerWidth*.073733+91.244)));}
+  var intro=document.getElementById('intro'),bar=intro.querySelector('.bar i');
+  // 同時寫到 :root，讓首頁選單能對齊在 logo 正下方
+  function size(){var v=logoPx();window.__logoPx=v;intro.style.setProperty('--logo-px',v+'px');document.documentElement.style.setProperty('--logo-px',v+'px');}
+  size();addEventListener('resize',size);
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CAM_FAR=120;
+  window.__introZ=reduce?0:CAM_FAR;
+  var t0=performance.now(),opened=false;
+  function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+  function easeOut(t){return 1-Math.pow(1-t,3)}
+  if(!reduce)setTimeout(function(){intro.classList.add('ring-on')},800);
+  function open(dur){
+    if(opened)return;opened=true;intro.classList.add('opening');document.documentElement.classList.add('intro-done');window.dispatchEvent(new Event('home:introdone'));
+    if(reduce){intro.style.transition='opacity .5s';intro.style.opacity='0';setTimeout(done,500);return;}
+    var s=performance.now(),max=Math.hypot(innerWidth,innerHeight)/2+40,z0=window.__introZ;
+    (function step(now){
+      var t=Math.min(1,(now-s)/dur);
+      intro.style.setProperty('--r',(ease(t)*max)+'px');
+      window.__introZ=z0*(1-easeOut(Math.min(1,(now-s)/(dur*1.2))));
+      if(t<1||window.__introZ>0.01)requestAnimationFrame(step);else{window.__introZ=0;done();}
+    })(s);
+  }
+  function done(){intro.remove();}
+  (function wait(){
+    if(opened)return;
+    var p=window.__introProgress||0,el=performance.now()-t0;
+    bar.style.transform='scaleX('+(Math.min(p,100)/100)+')';
+    var ready=p>=100&&window.__logoReady;
+    if((ready&&el>=(reduce?300:1600))||el>8000){bar.style.transform='scaleX(1)';open(1000);return;}
+    requestAnimationFrame(wait);
+  })();
+  function hold(){window.__lastWheel=performance.now()}
+  addEventListener('wheel',hold,{passive:true,capture:true});
+  addEventListener('touchmove',function(e){if(e.touches.length>1)hold()},{passive:true,capture:true});
+  intro.addEventListener('click',function(){if(!opened){open(450);}});
+})();
+</script>
+<script type="module" src="/assets/canvas/index.js"></script>
